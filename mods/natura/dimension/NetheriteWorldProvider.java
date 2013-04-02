@@ -24,7 +24,7 @@ public class NetheriteWorldProvider extends WorldProvider
     @SideOnly(Side.CLIENT)
 
     /**
-     * Return Vec3D with biome specific fog color
+     * Return Vec3 with biome specific fog color
      */
     public Vec3 getFogColor(float par1, float par2)
     {

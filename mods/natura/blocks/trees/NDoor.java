@@ -65,11 +65,11 @@ public class NDoor extends BlockDoor
         {
             int i1 = this.getFullMetadata(par1IBlockAccess, par2, par3, par4);
             int j1 = i1 & 3;
-            boolean flag = (i1 & 4) != 0;
-            boolean flag1 = false;
+            /*boolean flag = (i1 & 4) != 0;
+            boolean flag1 = false;*/
             boolean flag2 = (i1 & 8) != 0;
 
-            if (flag)
+            /*if (flag)
             {
                 if (j1 == 0 && par5 == 2)
                 {
@@ -111,9 +111,9 @@ public class NDoor extends BlockDoor
                 {
                     flag1 = !flag1;
                 }
-            }
+            }*/
 
-            return this.icons[0 + (flag1 ? 1 : 0) + (flag2 ? 1 : 0)];
+            return this.icons[(flag2 ? 1 : 0)];
         }
         else
         {

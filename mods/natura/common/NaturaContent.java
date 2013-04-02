@@ -7,7 +7,6 @@ import mods.natura.blocks.CloudBlock;
 import mods.natura.blocks.CloudItem;
 import mods.natura.blocks.crops.*;
 import mods.natura.blocks.trees.*;
-import mods.natura.clouds.*;
 import mods.natura.items.*;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
