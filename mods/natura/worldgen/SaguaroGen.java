@@ -24,10 +24,8 @@ public class SaguaroGen extends WorldGenerator
 	{
 		int yPos = findGround(world, x, y, z, useHeight);
 		int currentID = world.getBlockId(x, yPos, z);
-		System.out.println("id "+yPos);
 		if (currentID != 0)
 		{
-			System.out.println("Tick");
 			if (currentID == NaturaContent.saguaro.blockID)
 			{
 				Block block = Block.blocksList[world.getBlockId(x, yPos - 1, z)];
@@ -42,13 +40,10 @@ public class SaguaroGen extends WorldGenerator
 			Block block = Block.blocksList[world.getBlockId(x, yPos - 1, z)];
 			if (block == null || !block.canSustainPlant(world, x, yPos-1, z, ForgeDirection.UP, (IPlantable) NaturaContent.saguaro))
 			{
-
-				System.out.println("Tock "+block);
 				return false;
 			}
 		}
 
-		System.out.println("Tack");
 		if (random.nextInt(20) == 0)
 			generateCactusTree(world, random, x, yPos, z);
 		else

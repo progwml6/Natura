@@ -1,11 +1,10 @@
-package mods.natura.clouds;
+package mods.natura.blocks;
 
 import java.util.List;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-import mods.natura.blocks.NBlock;
 import mods.natura.common.NaturaContent;
 import mods.natura.common.NaturaTab;
 import net.minecraft.block.Block;

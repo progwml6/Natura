@@ -24,14 +24,14 @@ import net.minecraftforge.common.IPlantable;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class BerryBush extends BlockLeavesBase implements IPlantable
+public class NetherBerryBush extends BlockLeavesBase implements IPlantable
 {
 	Random random;
 	public Icon[] fastIcons;
 	public Icon[] fancyIcons;
 	public static String[] textureNames = new String[] { "raspberry", "blueberry", "blackberry", "geoberry", "raspberry_ripe", "blueberry_ripe", "blackberry_ripe", "geoberry_ripe" };
 
-	public BerryBush(int id)
+	public NetherBerryBush(int id)
 	{
 		super(id, Material.leaves, false);
 		this.setTickRandomly(true);

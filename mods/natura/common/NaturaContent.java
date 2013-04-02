@@ -3,6 +3,8 @@ package mods.natura.common;
 import java.util.HashMap;
 import java.util.List;
 
+import mods.natura.blocks.CloudBlock;
+import mods.natura.blocks.CloudItem;
 import mods.natura.blocks.crops.*;
 import mods.natura.blocks.trees.*;
 import mods.natura.clouds.*;

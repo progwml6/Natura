@@ -1,4 +1,4 @@
-package mods.natura.clouds;
+package mods.natura.worldgen;
 
 import java.util.Random;
 

@@ -3,6 +3,7 @@ package mods.natura.common;
 import java.io.File;
 import java.io.IOException;
 
+import mods.natura.Natura;
 import net.minecraftforge.common.Configuration;
 
 public class PHNatura

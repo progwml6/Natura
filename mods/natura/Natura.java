@@ -1,8 +1,14 @@
-package mods.natura.common;
+package mods.natura;
 
-import mods.natura.clouds.BaseCloudWorldgen;
+import mods.natura.common.NCommonProxy;
+import mods.natura.common.NaturaContent;
+import mods.natura.common.NaturaTab;
+import mods.natura.common.PHNatura;
+import mods.natura.dimension.NetheriteWorldProvider;
+import mods.natura.worldgen.BaseCloudWorldgen;
 import mods.natura.worldgen.BaseCropWorldgen;
 import mods.natura.worldgen.BaseTreeWorldgen;
+import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.Event;
 import net.minecraftforge.event.ForgeSubscribe;
@@ -46,6 +52,9 @@ public class Natura
 		NaturaTab.init(content.wheatBag.itemID);
 		proxy.registerRenderer();
 		proxy.addNames();
+		
+		//DimensionManager.unregisterProviderType(-1);
+		//DimensionManager.registerProviderType(-1, NetheriteWorldProvider.class, true);
 	}
 	
 	@ForgeSubscribe
