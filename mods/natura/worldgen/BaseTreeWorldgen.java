@@ -50,7 +50,7 @@ public class BaseTreeWorldgen implements IWorldGenerator
 				for (int iter = 0; iter < 3; iter++)
 				{
 					xSpawn = xPos + random.nextInt(16);
-					ySpawn = random.nextInt(PHNatura.sakuraSpawnRange) + PHNatura.sakuraSpawnHeight;
+					ySpawn = random.nextInt(PHNatura.sakuraSpawnRange) + PHNatura.seaLevel;
 					zSpawn = zPos + random.nextInt(16);
 					pinkSakura.generate(world, random, xSpawn, ySpawn, zSpawn);
 				}
@@ -58,7 +58,7 @@ public class BaseTreeWorldgen implements IWorldGenerator
 			if (PHNatura.generateSmallEucalyptus && random.nextInt(PHNatura.eucalyptusShortSpawnRarity) == 0)
 			{
 				xSpawn = xPos + random.nextInt(16);
-				ySpawn = random.nextInt(PHNatura.eucalyptusShortSpawnRange) + PHNatura.eucalyptusShortSpawnHeight;
+				ySpawn = random.nextInt(PHNatura.eucalyptusShortSpawnRange) + PHNatura.seaLevel;
 				zSpawn = zPos + random.nextInt(16);
 				eucalyptusShort.generate(world, random, xSpawn, ySpawn, zSpawn);
 			}
@@ -84,14 +84,14 @@ public class BaseTreeWorldgen implements IWorldGenerator
 			if (PHNatura.generateBush && random.nextInt(PHNatura.bushSpawnRarity) == 0)
 			{
 				xSpawn = xPos + random.nextInt(16) + 8;
-				ySpawn = random.nextInt(PHNatura.bushSpawnRange) + PHNatura.bushSpawnHeight;
+				ySpawn = random.nextInt(PHNatura.bushSpawnRange) + PHNatura.seaLevel;
 				zSpawn = zPos + random.nextInt(16) + 8;
 				bush.generate(world, random, xSpawn, ySpawn, zSpawn);
 			}
 			if (PHNatura.generateSmallEucalyptus && random.nextInt(PHNatura.eucalyptusShortSpawnRarity) < 10)
 			{
 				xSpawn = xPos + random.nextInt(16) + 8;
-				ySpawn = random.nextInt(PHNatura.eucalyptusShortSpawnRange) + PHNatura.eucalyptusShortSpawnHeight;
+				ySpawn = random.nextInt(PHNatura.eucalyptusShortSpawnRange) + PHNatura.seaLevel;
 				zSpawn = zPos + random.nextInt(16) + 8;
 				eucalyptusShort.generate(world, random, xSpawn, ySpawn, zSpawn);
 			}
@@ -103,7 +103,7 @@ public class BaseTreeWorldgen implements IWorldGenerator
 				for (int iter = 0; iter < 3; iter++)
 				{
 					xSpawn = xPos + random.nextInt(16);
-					ySpawn = random.nextInt(PHNatura.sakuraSpawnRange) + PHNatura.sakuraSpawnHeight;
+					ySpawn = random.nextInt(PHNatura.sakuraSpawnRange) + PHNatura.seaLevel;
 					zSpawn = zPos + random.nextInt(16);
 					pinkSakura.generate(world, random, xSpawn, ySpawn, zSpawn);
 				}

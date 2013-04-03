@@ -13,7 +13,7 @@ public class PlantItem extends NCraftingItem
 {
     public PlantItem(int id)
     {
-        super(id, new String[] { "barley.plant", "barley.flour", "wheat.flour", "cotton.plant" }, new String[] { "barley_plant", "barley_flour", "wheat_flour", "cotton_plant" });
+        super(id, new String[] { "barley.plant", "barley.flour", "wheat.flour", "cotton.plant", "powder.sulfur" }, new String[] { "barley_plant", "barley_flour", "wheat_flour", "cotton_plant", "sulfur" });
         this.setCreativeTab(NaturaTab.tab);
     }
     
@@ -39,6 +39,8 @@ public class PlantItem extends NCraftingItem
     		break;
     	case 3:
     		list.add("The source of all string and wool");
+    	case 4:
+    		list.add("2x2 converts into gunpowder");
     	}
 	}
 }

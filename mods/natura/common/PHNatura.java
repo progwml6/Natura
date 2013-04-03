@@ -78,32 +78,26 @@ public class PHNatura
 		berryMedley = config.getItem("Berry Medley", 12418).getInt(12417);
 		seedFood = config.getItem("Saguaro Fruit", 12418).getInt(12417);
 
-
 		generateRedwood = config.get("Disabler", "Generate Redwood Trees", true).getBoolean(true);
 		generateSakura = config.get("Disabler", "Generate Sakura Trees", true).getBoolean(true);
 		generateSmallEucalyptus = config.get("Disabler", "Generate Small Eucalyptus Trees", true).getBoolean(true);
 		generateBush = config.get("Disabler", "Generate Hopseed Trees", true).getBoolean(true);
 		generateBloodwood = config.get("Disabler", "Generate Bloodwood Trees", true).getBoolean(true);
 		generateGhost = config.get("Disabler", "Generate Ghost Trees", true).getBoolean(true);
-		enableBerries = config.get("Disabler", "Enable Berry Bushes", true).getBoolean(true);
-		enableCrops = config.get("Disabler", "Enable Crops", true).getBoolean(true);
-		generateSaguaro = config.get("Disabler", "Enable Saguaro Cactus", true).getBoolean(true);
+		generateSaguaro = config.get("Disabler", "Generate Saguaro Cactus", true).getBoolean(true);
 
 		redwoodSpawnRarity = config.get("Worldgen", "Redwood Tree Spawn Rarity", 150).getInt(150);
 		bloodSpawnRarity = config.get("Worldgen", "Bloodwood Tree Spawn Rarity", 14).getInt(14);
 		bloodSpawnHeight = config.get("Worldgen", "Bloodwood Tree Spawn Height", 32).getInt(32);
 		bloodSpawnRange = config.get("Worldgen", "Bloodwood Tree Spawn Range", 64).getInt(64);
 		eucalyptusShortSpawnRarity = config.get("Worldgen", "Small Eucalyptus Tree Spawn Rarity", 25).getInt(25);
-		eucalyptusShortSpawnHeight = config.get("Worldgen", "Small Eucalyptus Tree Spawn Height", 64).getInt(64);
 		eucalyptusShortSpawnRange = config.get("Worldgen", "Small Eucalyptus Tree Spawn Range", 32).getInt(32);
 		sakuraSpawnRarity = config.get("Worldgen", "Sakura Tree Spawn Rarity", 10).getInt(10);
-		sakuraSpawnHeight = config.get("Worldgen", "Sakura Tree Spawn Height", 64).getInt(64);
 		sakuraSpawnRange = config.get("Worldgen", "Sakura Tree Spawn Range", 32).getInt(32);
 		ghostSpawnRarity = config.get("Worldgen", "Ghost Tree Spawn Rarity", 25).getInt(25);
 		ghostSpawnHeight = config.get("Worldgen", "Ghost Tree Spawn Height", 16).getInt(16);
 		ghostSpawnRange = config.get("Worldgen", "Ghost Tree Spawn Range", 80).getInt(80);
 		bushSpawnRarity = config.get("Worldgen", "Bush Tree Spawn Rarity", 10).getInt(10);
-		bushSpawnHeight = config.get("Worldgen", "Bush Tree Spawn Height", 64).getInt(64);
 		bushSpawnRange = config.get("Worldgen", "Bush Tree Spawn Range", 20).getInt(20);
 		
 		saguaroSpawnRarity = config.get("Worldgen", "Saguaro Cactus Spawn Rarity", 5).getInt(5);
@@ -120,9 +114,6 @@ public class PHNatura
 		ashSpawnRarity = config.get("Worldgen", "Ash Cloud Spawn Rarity", 8).getInt(8);
 		ashSpawnHeight = config.get("Worldgen", "Ash Cloud Spawn Height", 40).getInt(40);
 		ashSpawnRange = config.get("Worldgen", "Ash Cloud Spawn Range", 78).getInt(78);
-
-		cottonSpawnRange = config.get("Worldgen", "Cotton Spawn Range", 64).getInt(64);
-		barleySpawnRange = config.get("Worldgen", "Barley Spawn Range", 64).getInt(64);
 
 		raspSpawnRarity = config.get("Worldgen", "Raspberry Spawn Rarity", 30).getInt(30);
 		raspSpawnRange = config.get("Worldgen", "Raspberry Spawn Range", 128).getInt(128);
@@ -143,8 +134,12 @@ public class PHNatura
 
 	public static int seaLevel;
 
-	public static boolean enableBerries;
-	public static boolean enableCrops;
+	public static boolean generateBarley;
+	public static boolean generateCotton;
+	public static boolean generateBlueberries;
+	public static boolean generateBlackberries;
+	public static boolean generateRaspberries;
+	public static boolean generateGeoberries;
 
 	public static int wheatBagID;
 	public static int barleyBagID;
@@ -160,9 +155,6 @@ public class PHNatura
 	public static int seedFood;
 
 	public static int saguaroID;
-
-	public static int cottonSpawnRange;
-	public static int barleySpawnRange;
 
 	public static int saguaroSpawnRarity;
 	public static int saguaroSpawnHeight;
@@ -236,15 +228,12 @@ public class PHNatura
 	public static int bloodSpawnHeight;
 	public static int bloodSpawnRange;
 	public static int eucalyptusShortSpawnRarity;
-	public static int eucalyptusShortSpawnHeight;
 	public static int eucalyptusShortSpawnRange;
 	public static int sakuraSpawnRarity;
-	public static int sakuraSpawnHeight;
 	public static int sakuraSpawnRange;
 	public static int ghostSpawnRarity;
 	public static int ghostSpawnHeight;
 	public static int ghostSpawnRange;
 	public static int bushSpawnRarity;
-	public static int bushSpawnHeight;
 	public static int bushSpawnRange;
 }

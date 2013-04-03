@@ -37,23 +37,21 @@ public class BaseCropWorldgen implements IWorldGenerator
 		BiomeGenBase biome = world.getWorldChunkManager().getBiomeGenAt(chunkX * 16 + 16, chunkZ * 16 + 16);
 
 		//Barley
-		if (PHNatura.enableCrops && random.nextInt(5) == 0 && goodClimate(biome, 0.11f, 1.0f, 0.11f, 2f))
+		if (PHNatura.generateBarley && random.nextInt(5) == 0 && goodClimate(biome, 0.11f, 1.0f, 0.11f, 2f))
 		{
-			generateBarley(world, random, xCh, yCh + PHNatura.barleySpawnRange - 64, zCh);
-			generateBarley(world, random, xCh, yCh + PHNatura.barleySpawnRange - 64, zCh);
+			generateBarley(world, random, xCh, yCh + PHNatura.seaLevel, zCh);
+			generateBarley(world, random, xCh, yCh + PHNatura.seaLevel, zCh);
 		}
 		
 		//Cotton
-		if (PHNatura.enableCrops && random.nextInt(12) == 0 && goodClimate(biome, 0.11f, 1.0f, 0.11f, 2f))
+		if (PHNatura.generateCotton && random.nextInt(12) == 0 && goodClimate(biome, 0.11f, 1.0f, 0.11f, 2f))
 		{
-			generateCotton(world, random, xCh, yCh + PHNatura.cottonSpawnRange - 64, zCh);
-			generateCotton(world, random, xCh, yCh + PHNatura.cottonSpawnRange - 64, zCh);
+			generateCotton(world, random, xCh, yCh + PHNatura.seaLevel, zCh);
+			generateCotton(world, random, xCh, yCh + PHNatura.seaLevel, zCh);
 		}
 		
 		//Berry bushes
-		if (PHNatura.enableBerries)
-		{
-			if(random.nextInt(PHNatura.raspSpawnRarity) == 0 && goodClimate(biome, 0.5f, 2.0f, 0.2f, 0.4f))
+			if(PHNatura.generateRaspberries && random.nextInt(PHNatura.raspSpawnRarity) == 0 && goodClimate(biome, 0.5f, 2.0f, 0.2f, 0.4f))
 			{				
 				xCh = xChunk + random.nextInt(16);
 				yCh = random.nextInt(PHNatura.raspSpawnRange) + PHNatura.seaLevel;
@@ -61,7 +59,7 @@ public class BaseCropWorldgen implements IWorldGenerator
 				raspgen.generate(world, random, xCh, yCh, zCh);
 			}
 			
-			if (random.nextInt(PHNatura.blueSpawnRarity) == 0 && goodClimate(biome, 0.3f, 0.81f, 0.3f, 0.8f))
+			if (PHNatura.generateBlueberries && random.nextInt(PHNatura.blueSpawnRarity) == 0 && goodClimate(biome, 0.3f, 0.81f, 0.3f, 0.8f))
 			{
 				xCh = xChunk + random.nextInt(16);
 				yCh = random.nextInt(PHNatura.blueSpawnRange) + PHNatura.seaLevel;
@@ -69,7 +67,7 @@ public class BaseCropWorldgen implements IWorldGenerator
 				bluegen.generate(world, random, xCh, yCh, zCh);
 			}
 			
-			if (random.nextInt(PHNatura.blackSpawnRarity) == 0 && goodClimate(biome, 0.5f, 5.0f, 0.6f, 3.0f))
+			if (PHNatura.generateBlackberries && random.nextInt(PHNatura.blackSpawnRarity) == 0 && goodClimate(biome, 0.5f, 5.0f, 0.6f, 3.0f))
 			{
 				xCh = xChunk + random.nextInt(16);
 				yCh = random.nextInt(PHNatura.blackSpawnRange) + PHNatura.seaLevel;
@@ -77,7 +75,7 @@ public class BaseCropWorldgen implements IWorldGenerator
 				blackgen.generate(world, random, xCh, yCh, zCh);
 			}
 			
-			if (random.nextInt(PHNatura.blackSpawnRarity/3) == 0 && biome == BiomeGenBase.swampland)
+			if (PHNatura.generateBlackberries && random.nextInt(PHNatura.blackSpawnRarity/3) == 0 && biome == BiomeGenBase.swampland)
 			{
 				xCh = xChunk + random.nextInt(16);
 				yCh = random.nextInt(PHNatura.blackSpawnRange) + PHNatura.seaLevel;
@@ -85,7 +83,7 @@ public class BaseCropWorldgen implements IWorldGenerator
 				blackgen.generate(world, random, xCh, yCh, zCh);
 			}
 			
-			if (random.nextInt(PHNatura.geoSpawnRarity) == 0 && goodClimate(biome, 0.0f, 0.3f, 0.0f, 5.0f))
+			if (PHNatura.generateGeoberries && random.nextInt(PHNatura.geoSpawnRarity) == 0 && goodClimate(biome, 0.0f, 0.3f, 0.0f, 5.0f))
 			{
 				xCh = xChunk + random.nextInt(16);
 				yCh = random.nextInt(PHNatura.geoSpawnRange) + PHNatura.seaLevel;
@@ -93,7 +91,7 @@ public class BaseCropWorldgen implements IWorldGenerator
 				geogen.generate(world, random, xCh, yCh, zCh);
 			}
 		}
-	}
+	
 	
 	public boolean generateBarley(World world, Random random, int x, int y, int z)
     {

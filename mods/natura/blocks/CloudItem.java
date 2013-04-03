@@ -47,10 +47,10 @@ public class CloudItem extends ItemBlock
     		list.add("Causes lightning strikes");
     		break;
     	case 2:
-    		list.add("Converts into charcoal");
+    		list.add("3x3 Converts into charcoal");
     		break;
     	case 3:
-    		list.add("Converts into sulfur");
+    		list.add("2x2 Converts into sulfur");
     		break;
     	}
 	}
