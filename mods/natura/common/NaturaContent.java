@@ -39,10 +39,13 @@ public class NaturaContent
 		netherWartBag = new SeedBag(PHNatura.netherWartBagID, Block.netherStalk, 0, "netherwart").setUnlocalizedName("wartBag");
 		cottonBag = new SeedBag(PHNatura.cottonBagID, crops, 4, "cotton").setUnlocalizedName("cottonBag");
 
+		netherBerryItem = new NetherBerryItem(PHNatura.netherBerryItem, 1).setUnlocalizedName("berry.nether");
 		berryItem = new BerryItem(PHNatura.berryItemID, 1).setUnlocalizedName("berry");
 		berryMedley = new BerryMedley(PHNatura.berryMedley, 5).setUnlocalizedName("berryMedley");
 		berryBush = new BerryBush(PHNatura.berryBlockID);
 		GameRegistry.registerBlock(berryBush, BerryBushItem.class, "BerryBush");
+		netherBerryBush = new NetherBerryBush(PHNatura.netherBerryBlock);
+		GameRegistry.registerBlock(netherBerryBush, NetherBerryBushItem.class, "NetherBerryBush");
 
 		//Clouds
 		cloud = new CloudBlock(PHNatura.cloudID);
@@ -112,6 +115,7 @@ public class NaturaContent
 
 		GameRegistry.addRecipe(new ItemStack(Item.bread), "bbb", 'b', new ItemStack(plantItem, 1, 0));
 		GameRegistry.addRecipe(new ItemStack(plantItem, 1, 1), "X", 'X', new ItemStack(plantItem, 1, 0));
+		GameRegistry.addRecipe(new ItemStack(plantItem, 1, 2), "X", 'X', new ItemStack(Item.wheat));
 
 		for (int i = 1; i <= 2; i++)
 		{
@@ -251,6 +255,7 @@ public class NaturaContent
 
 	public static Item seeds;
 	public static Item plantItem;
+	public static Item netherBerryItem;
 	public static Item berryItem;
 	public static Item berryMedley;
 	public static Item seedFood;
@@ -259,6 +264,7 @@ public class NaturaContent
 
 	public static CropBlock crops;
 	public static BerryBush berryBush;
+	public static NetherBerryBush netherBerryBush;
 
 	public static Block baseHerb;
 	public static Block bloodyHerb;

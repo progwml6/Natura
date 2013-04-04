@@ -48,7 +48,7 @@ public class RedwoodItem extends ItemBlock
     		list.add("Heart of the tree");
     		break;
     	case 2:
-    		list.add("Creative-only");
+    		list.add("Root of the tree");
     		break;
     	}
 	}

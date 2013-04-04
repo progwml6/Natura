@@ -1,14 +1,15 @@
 package mods.natura;
 
+import java.util.Random;
+
 import mods.natura.common.NCommonProxy;
 import mods.natura.common.NaturaContent;
 import mods.natura.common.NaturaTab;
 import mods.natura.common.PHNatura;
-import mods.natura.dimension.NetheriteWorldProvider;
 import mods.natura.worldgen.BaseCloudWorldgen;
 import mods.natura.worldgen.BaseCropWorldgen;
 import mods.natura.worldgen.BaseTreeWorldgen;
-import net.minecraftforge.common.DimensionManager;
+import net.minecraft.block.material.Material;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.Event;
 import net.minecraftforge.event.ForgeSubscribe;
@@ -22,7 +23,7 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
 
-@Mod(modid = "Natura", name = "Natura", version = "1.5.1_2.0.1")
+@Mod(modid = "Natura", name = "Natura", version = "1.5.1_2.0.5")
 public class Natura
 {
 	/* Proxies for sides, used for graphics processing */
@@ -32,6 +33,7 @@ public class Natura
 	/* Instance of this mod, used for grabbing prototype fields */
 	@Instance("Natura")
 	public static Natura instance;
+	public static Material cloud = new CloudMaterial();
 	
 	@PreInit
 	public void preInit(FMLPreInitializationEvent evt)
@@ -73,4 +75,5 @@ public class Natura
 	}
 	
 	NaturaContent content;
+	public static Random random = new Random();
 }

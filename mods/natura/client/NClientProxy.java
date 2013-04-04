@@ -36,18 +36,29 @@ public class NClientProxy extends NCommonProxy
 		LanguageRegistry.instance().addStringLocalization("item.wheat.flour.name", "en_US", "Wheat Flour");
 		LanguageRegistry.instance().addStringLocalization("item.cotton.plant.name", "en_US", "Cotton");
 		LanguageRegistry.instance().addStringLocalization("item.cotton.seed.name", "en_US", "Cotton Seeds");
+		LanguageRegistry.instance().addStringLocalization("item.powder.sulfur.name", "en_US", "Sulfur");
 		LanguageRegistry.instance().addStringLocalization("item.waterdrop.name", "en_US", "Cactus Juice");
 		LanguageRegistry.instance().addStringLocalization("item.saguaro.fruit.name", "en_US", "Saguaro Fruit");
 
 		LanguageRegistry.instance().addStringLocalization("item.berry.rasp.name", "en_US", "Raspberry");
 		LanguageRegistry.instance().addStringLocalization("item.berry.blue.name", "en_US", "Blueberry");
 		LanguageRegistry.instance().addStringLocalization("item.berry.black.name", "en_US", "Blackberry");
-		LanguageRegistry.instance().addStringLocalization("item.berry.geo.name", "en_US", "Geoberry");
+		LanguageRegistry.instance().addStringLocalization("item.berry.geo.name", "en_US", "Maloberry");
 		LanguageRegistry.instance().addStringLocalization("item.berry.medley.name", "en_US", "Berry Medley");
+		LanguageRegistry.instance().addStringLocalization("item.berry.blight.name", "en_US", "Blightberry");
+		LanguageRegistry.instance().addStringLocalization("item.berry.dusk.name", "en_US", "Duskberry");
+		LanguageRegistry.instance().addStringLocalization("item.berry.sky.name", "en_US", "Skyberry");
+		LanguageRegistry.instance().addStringLocalization("item.berry.sting.name", "en_US", "Stingberry");
+		
 		LanguageRegistry.instance().addStringLocalization("block.raspberryBush.name", "en_US", "Raspberry Bush");
 		LanguageRegistry.instance().addStringLocalization("block.blueberryBush.name", "en_US", "Blueberry Bush");
 		LanguageRegistry.instance().addStringLocalization("block.blackberryBush.name", "en_US", "Blackberry Bush");
-		LanguageRegistry.instance().addStringLocalization("block.geoberryBush.name", "en_US", "Geoberry Bush");
+		LanguageRegistry.instance().addStringLocalization("block.geoberryBush.name", "en_US", "Maloberry Bush");
+		
+		LanguageRegistry.instance().addStringLocalization("block.bush.berry.blight.name", "en_US", "Blightberry Bush");
+		LanguageRegistry.instance().addStringLocalization("block.bush.berry.dusk.name", "en_US", "Duskberry Bush");
+		LanguageRegistry.instance().addStringLocalization("block.bush.berry.sky.name", "en_US", "Skyberry Bush");
+		LanguageRegistry.instance().addStringLocalization("block.bush.berry.sting.name", "en_US", "Stingberry Bush");
 
 		LanguageRegistry.instance().addStringLocalization("normalcloud.name", "en_US", "Cloud");
 		LanguageRegistry.instance().addStringLocalization("darkcloud.name", "en_US", "Dark Cloud");

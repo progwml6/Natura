@@ -15,7 +15,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class SimpleLog extends Planks
 {
-	public String[] textureNames = new String[] { "redwood_bark", "redwood_heart", "redwood_unused" };
+	public String[] textureNames = new String[] { "redwood_bark", "redwood_heart", "redwood_root" };
 	public SimpleLog(int id) 
 	{
 		super(id);

@@ -40,13 +40,13 @@ public class NetherBerryBushItem extends ItemBlock
         {
             Block block = Block.blocksList[world.getBlockId(x, y, z)];
 
-            if (block != null && block.canSustainPlant(world, x, y, z, ForgeDirection.UP, (IPlantable) NaturaContent.berryBush) && world.isAirBlock(x, y + 1, z))
+            if (block != null && (block.canSustainPlant(world, x, y, z, ForgeDirection.UP, (IPlantable) NaturaContent.netherBerryBush) || block == Block.netherrack) && world.isAirBlock(x, y + 1, z))
             {
-                world.setBlock(x, y + 1, z, NaturaContent.berryBush.blockID, stack.getItemDamage() % 4, 3);
+                world.setBlock(x, y + 1, z, NaturaContent.netherBerryBush.blockID, stack.getItemDamage() % 4, 3);
                 if (!player.capabilities.isCreativeMode)
                 	stack.stackSize--;
                 if (!world.isRemote)
-                	world.playAuxSFX(2001, x, y, z, Block.grass.blockID);
+                	world.playAuxSFX(2001, x, y, z, NaturaContent.netherBerryBush.blockID);
                 return true;
             }
             else
@@ -60,35 +60,32 @@ public class NetherBerryBushItem extends ItemBlock
     @Override
     public String getUnlocalizedName(ItemStack itemstack)
     {
-        return (new StringBuilder()).append("block.").append(blockType[itemstack.getItemDamage()]).append("berryBush").toString();
+        return (new StringBuilder()).append("block.bush.berry.").append(blockType[itemstack.getItemDamage()]).toString();
     }
     public static final String blockType[] =
     {
-        "rasp", "blue", "black", "geo", "rasp", "blue", "black", "geo",
-        "rasp", "blue", "black", "geo", "rasp", "blue", "black", "geo"
+        "blight", "dusk", "sky", "sting", "blight", "dusk", "sky", "sting",
+        "blight", "dusk", "sky", "sting", "blight", "dusk", "sky", "sting"
     };
     
     @Override
 	@SideOnly(Side.CLIENT)
 	public void addInformation (ItemStack stack, EntityPlayer player, List list, boolean par4)
 	{
+		list.add("A little bit evil");
     	switch (stack.getItemDamage() % 4)
     	{
     	case 0: 
-    		list.add("Sweet and red");
-    		list.add("Found in warm areas");
+    		list.add("Killer healing");
     		break;
     	case 1:
-    		list.add("Tart and blue");
-    		list.add("Found in temperate areas");
+    		list.add("Visible night");
     		break;
     	case 2:
-    		list.add("Sweet and black");
-    		list.add("Found in wet areas");
+    		list.add("Slow dive");
     		break;
     	case 3:
-    		list.add("Square and yellow");
-    		list.add("Found in cold areas");
+    		list.add("Hit like a truck");
     		break;
     	}
 	}

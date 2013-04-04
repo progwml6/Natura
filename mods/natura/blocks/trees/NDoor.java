@@ -65,53 +65,7 @@ public class NDoor extends BlockDoor
         {
             int i1 = this.getFullMetadata(par1IBlockAccess, par2, par3, par4);
             int j1 = i1 & 3;
-            /*boolean flag = (i1 & 4) != 0;
-            boolean flag1 = false;*/
             boolean flag2 = (i1 & 8) != 0;
-
-            /*if (flag)
-            {
-                if (j1 == 0 && par5 == 2)
-                {
-                    flag1 = !flag1;
-                }
-                else if (j1 == 1 && par5 == 5)
-                {
-                    flag1 = !flag1;
-                }
-                else if (j1 == 2 && par5 == 3)
-                {
-                    flag1 = !flag1;
-                }
-                else if (j1 == 3 && par5 == 4)
-                {
-                    flag1 = !flag1;
-                }
-            }
-            else
-            {
-                if (j1 == 0 && par5 == 5)
-                {
-                    flag1 = !flag1;
-                }
-                else if (j1 == 1 && par5 == 3)
-                {
-                    flag1 = !flag1;
-                }
-                else if (j1 == 2 && par5 == 4)
-                {
-                    flag1 = !flag1;
-                }
-                else if (j1 == 3 && par5 == 2)
-                {
-                    flag1 = !flag1;
-                }
-
-                if ((i1 & 16) != 0)
-                {
-                    flag1 = !flag1;
-                }
-            }*/
 
             return this.icons[(flag2 ? 1 : 0)];
         }
@@ -119,6 +73,12 @@ public class NDoor extends BlockDoor
         {
             return this.icons[0];
         }
+    }
+    
+    @Override
+    public Icon getBlockTextureFromSideAndMetadata(int par1, int par2)
+    {
+        return this.icons[0];
     }
     
     public ItemStack getPickBlock(MovingObjectPosition target, World world, int x, int y, int z)

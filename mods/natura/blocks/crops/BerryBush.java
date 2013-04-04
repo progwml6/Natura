@@ -226,11 +226,7 @@ public class BerryBush extends BlockLeavesBase implements IPlantable
 
 	public boolean shouldSideBeRendered (IBlockAccess iblockaccess, int i, int j, int k, int l)
 	{
-		if (l > 7)
-		{
-			return super.shouldSideBeRendered(iblockaccess, i, j, k, l);
-		}
-		else if (graphicsLevel)
+		if (l > 7 || graphicsLevel)
 		{
 			return super.shouldSideBeRendered(iblockaccess, i, j, k, l);
 		}

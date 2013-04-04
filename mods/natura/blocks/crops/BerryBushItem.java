@@ -46,7 +46,7 @@ public class BerryBushItem extends ItemBlock
                 if (!player.capabilities.isCreativeMode)
                 	stack.stackSize--;
                 if (!world.isRemote)
-                	world.playAuxSFX(2001, x, y, z, Block.grass.blockID);
+                	world.playAuxSFX(2001, x, y, z, NaturaContent.berryBush.blockID);
                 return true;
             }
             else
@@ -87,7 +87,7 @@ public class BerryBushItem extends ItemBlock
     		list.add("Found in wet areas");
     		break;
     	case 3:
-    		list.add("Square and yellow");
+    		list.add("Tasty and yellow-orange");
     		list.add("Found in cold areas");
     		break;
     	}

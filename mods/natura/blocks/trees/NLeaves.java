@@ -1,5 +1,6 @@
 package mods.natura.blocks.trees;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -9,6 +10,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockLeaves;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
 import net.minecraft.world.ColorizerFoliage;
@@ -112,6 +114,22 @@ public class NLeaves extends BlockLeaves
         return NaturaContent.floraSapling.blockID;
     }
     
+    @Override
+    public void dropBlockAsItemWithChance(World par1World, int par2, int par3, int par4, int par5, float par6, int par7)
+    {
+    	if (!par1World.isRemote)
+        {
+            ArrayList<ItemStack> items = getBlockDropped(par1World, par2, par3, par4, par5, par7);
+
+            for (ItemStack item : items)
+            {
+                if (par1World.rand.nextFloat() <= par6)
+                {
+                    this.dropBlockAsItem_do(par1World, par2, par3, par4, item);
+                }
+            }
+        }
+    }
 
 	protected String[] textureNames = new String[] { "redwood", "eucalyptus", "hopseed" };
 	public Icon[] fastIcons;

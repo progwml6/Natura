@@ -39,8 +39,10 @@ public class PlantItem extends NCraftingItem
     		break;
     	case 3:
     		list.add("The source of all string and wool");
+    		break;
     	case 4:
     		list.add("2x2 converts into gunpowder");
+    		break;
     	}
 	}
 }

@@ -29,7 +29,7 @@ public class NetherBerryBush extends BlockLeavesBase implements IPlantable
 	Random random;
 	public Icon[] fastIcons;
 	public Icon[] fancyIcons;
-	public static String[] textureNames = new String[] { "raspberry", "blueberry", "blackberry", "geoberry", "raspberry_ripe", "blueberry_ripe", "blackberry_ripe", "geoberry_ripe" };
+	public static String[] textureNames = new String[] { "blightberry", "duskberry", "skyberry", "stingberry", "blightberry_ripe", "duskberry_ripe", "skyberry_ripe", "stingberry_ripe" };
 
 	public NetherBerryBush(int id)
 	{
@@ -174,7 +174,7 @@ public class NetherBerryBush extends BlockLeavesBase implements IPlantable
 			if (meta >= 12)
 			{
 				world.setBlock(x, y, z, blockID, meta - 4, 3);
-				EntityItem entityitem = new EntityItem(world, player.posX, player.posY - 1.0D, player.posZ, new ItemStack(NaturaContent.berryItem.itemID, 1, meta - 12));
+				EntityItem entityitem = new EntityItem(world, player.posX, player.posY - 1.0D, player.posZ, new ItemStack(NaturaContent.netherBerryItem.itemID, 1, meta - 12));
 				world.spawnEntityInWorld(entityitem);
 				entityitem.onCollideWithPlayer(player);
 			}
@@ -192,7 +192,7 @@ public class NetherBerryBush extends BlockLeavesBase implements IPlantable
 		if (meta >= 12)
 		{
 			world.setBlock(x, y, z, blockID, meta - 4, 3);
-			EntityItem entityitem = new EntityItem(world, player.posX, player.posY - 1.0D, player.posZ, new ItemStack(NaturaContent.berryItem.itemID, 1, meta - 12));
+			EntityItem entityitem = new EntityItem(world, player.posX, player.posY - 1.0D, player.posZ, new ItemStack(NaturaContent.netherBerryItem.itemID, 1, meta - 12));
 			world.spawnEntityInWorld(entityitem);
 			entityitem.onCollideWithPlayer(player);
 		}
@@ -210,7 +210,6 @@ public class NetherBerryBush extends BlockLeavesBase implements IPlantable
 	public void setGraphicsLevel (boolean flag)
 	{
 		graphicsLevel = flag;
-		//this.blockIndexInTexture = this.icon + (flag ? 0 : 32);
 	}
 
 	@Override
@@ -226,11 +225,7 @@ public class NetherBerryBush extends BlockLeavesBase implements IPlantable
 
 	public boolean shouldSideBeRendered (IBlockAccess iblockaccess, int i, int j, int k, int l)
 	{
-		if (l > 7)
-		{
-			return super.shouldSideBeRendered(iblockaccess, i, j, k, l);
-		}
-		else if (graphicsLevel)
+		if (l > 7 || graphicsLevel)
 		{
 			return super.shouldSideBeRendered(iblockaccess, i, j, k, l);
 		}
@@ -257,7 +252,7 @@ public class NetherBerryBush extends BlockLeavesBase implements IPlantable
 			;
 		}
 
-		if (random1.nextInt(20) == 0 && world.getBlockLightValue(x, y, z) >= 8)
+		if (random1.nextInt(75) == 0)
 		{
 			int md = world.getBlockMetadata(x, y, z);
 			if (md < 12)
@@ -307,7 +302,7 @@ public class NetherBerryBush extends BlockLeavesBase implements IPlantable
 	@Override
 	public EnumPlantType getPlantType (World world, int x, int y, int z)
 	{
-		return EnumPlantType.Plains;
+		return EnumPlantType.Nether;
 	}
 
 	@Override

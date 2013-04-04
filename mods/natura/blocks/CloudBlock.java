@@ -1,26 +1,19 @@
 package mods.natura.blocks;
 
-import java.util.List;
-
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-
+import mods.natura.Natura;
 import mods.natura.common.NaturaContent;
 import mods.natura.common.NaturaTab;
 import net.minecraft.block.Block;
-import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 public class CloudBlock extends NBlock
 {
-    public CloudBlock(int i)
+    public CloudBlock(int id)
     {
-        super(i, Material.cloth, 0.3F, new String[] { "cloud_white", "cloud_gray", "cloud_dark", "cloud_sulfur" });
+        super(id, Natura.cloud, 0.3F, new String[] { "cloud_white", "cloud_gray", "cloud_dark", "cloud_sulfur" });
         this.setStepSound(Block.soundClothFootstep);
         this.setUnlocalizedName("cloud");
         this.setCreativeTab(NaturaTab.tab);
