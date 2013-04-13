@@ -8,6 +8,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.MathHelper;
 
 public class TreeItem extends ItemBlock
 {
@@ -32,7 +33,8 @@ public class TreeItem extends ItemBlock
     @Override
     public String getUnlocalizedName(ItemStack itemstack)
     {
-        return (new StringBuilder()).append(blockType[itemstack.getItemDamage()]).append("Log").toString();
+        int i = MathHelper.clamp_int(itemstack.getItemDamage(), 0, 3);
+        return (new StringBuilder()).append(blockType[i]).append("Log").toString();
     }
     
     @Override

@@ -25,6 +25,7 @@ public class NCropsTickHandler implements ITickHandler
 	public void tickStart(EnumSet<TickType> type, Object... tickData) 
 	{
 		NaturaContent.berryBush.setGraphicsLevel(Block.leaves.graphicsLevel);
+        NaturaContent.netherBerryBush.setGraphicsLevel(Block.leaves.graphicsLevel);
 		NaturaContent.floraLeaves.setGraphicsLevel(Block.leaves.graphicsLevel);
 		NaturaContent.floraLeavesNoColor.setGraphicsLevel(Block.leaves.graphicsLevel);
 	}

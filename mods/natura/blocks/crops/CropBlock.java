@@ -114,7 +114,6 @@ public class CropBlock extends BlockFlower
         
         if (meta == 8 && !player.capabilities.isCreativeMode)
         {
-            System.out.println("Woo~ "+meta);
         	world.setBlock(x, y, z, this.blockID, 6, 3);
         }
     }

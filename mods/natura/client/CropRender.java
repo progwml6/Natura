@@ -27,7 +27,7 @@ public class CropRender implements ISimpleBlockRenderingHandler
 			else
 				return renderer.renderCrossedSquares(block, x, y, z);
 		}
-		return false;
+		return true;
 	}
 
 	@Override

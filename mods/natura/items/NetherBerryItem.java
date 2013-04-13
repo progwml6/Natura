@@ -202,4 +202,9 @@ public class NetherBerryItem extends ItemFood
             par3List.add(new ItemStack(par1, 1, var4));
         }
     }
+    
+    /*public boolean isPotionIngredient()
+    {
+        return true;
+    }*/
 }

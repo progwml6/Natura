@@ -38,7 +38,7 @@ public class SaguaroRenderer implements ISimpleBlockRenderingHandler
 				return renderFruit((SaguaroBlock) block, x, y, z, world, meta);
 		}
 
-		return false;
+		return true;
 	}
 
 	@Override
