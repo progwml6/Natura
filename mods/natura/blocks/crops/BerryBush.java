@@ -59,7 +59,7 @@ public class BerryBush extends BlockLeavesBase implements IPlantable
 	}
 
 	@Override
-	public Icon getBlockTextureFromSideAndMetadata (int side, int metadata)
+	public Icon getIcon (int side, int metadata)
 	{
 		if (graphicsLevel)
 		{

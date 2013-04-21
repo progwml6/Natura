@@ -32,7 +32,7 @@ public class NSaplingItem extends ItemBlock
 
     public Icon getIconFromDamage(int i)
     {
-        return NaturaContent.floraSapling.getBlockTextureFromSideAndMetadata(0, i);
+        return NaturaContent.floraSapling.getIcon(0, i);
     }
     
     @Override

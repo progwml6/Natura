@@ -64,9 +64,9 @@ public class SeedBag extends Item
     
     @SideOnly(Side.CLIENT)
     @Override
-    public void updateIcons(IconRegister par1IconRegister)
+    public void registerIcons(IconRegister par1IconRegister)
     {
-        this.iconIndex = par1IconRegister.registerIcon("natura:seedbag_"+textureName);
+        this.itemIcon = par1IconRegister.registerIcon("natura:seedbag_"+textureName);
     }
     
     @Override

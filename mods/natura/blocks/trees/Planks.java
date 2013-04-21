@@ -25,10 +25,11 @@ public class Planks extends Block
 		setBurnProperties(this.blockID, 5, 20);
 		this.setHardness(2.0f);
 		this.setCreativeTab(NaturaTab.tab);
+		this.setStepSound(Block.soundWoodFootstep);
 	}
 	
 	@Override
-	public Icon getBlockTextureFromSideAndMetadata(int side, int meta)
+	public Icon getIcon(int side, int meta)
     {
 		if (meta == 0)
 			return icons[1];

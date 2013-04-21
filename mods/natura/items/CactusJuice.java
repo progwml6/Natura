@@ -43,9 +43,9 @@ public class CactusJuice extends ItemFood
     
     @SideOnly(Side.CLIENT)
     @Override
-    public void updateIcons(IconRegister par1IconRegister)
+    public void registerIcons(IconRegister par1IconRegister)
     {
-        this.iconIndex = par1IconRegister.registerIcon("natura:waterdrop");
+        this.itemIcon = par1IconRegister.registerIcon("natura:waterdrop");
     }
     
     @Override

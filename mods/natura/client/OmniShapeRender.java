@@ -1,6 +1,8 @@
 package mods.natura.client;
 
-import mods.natura.blocks.MultiShapeBlock;
+import org.lwjgl.opengl.GL11;
+
+import mods.natura.blocks.OmniShapeBlock;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.EntityRenderer;
 import net.minecraft.client.renderer.RenderBlocks;
@@ -9,13 +11,30 @@ import net.minecraft.world.IBlockAccess;
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 
-public class MultiShapeRender implements ISimpleBlockRenderingHandler
+public class OmniShapeRender implements ISimpleBlockRenderingHandler
 {
     public static int model = RenderingRegistry.getNextAvailableRenderId();
 
     @Override
     public void renderInventoryBlock (Block block, int metadata, int modelID, RenderBlocks renderer)
     {
+        if (metadata < 8)
+        {
+            renderer.setRenderBounds(0.0, 0.0F, 0.0, 1.0, 0.5F, 1.0);
+            this.renderInvBlock(renderer, block, metadata);
+            renderer.setRenderBounds(0.0, 0.5, 0.0, 1.0, 1.0, 0.5);
+            this.renderInvBlock(renderer, block, metadata);
+        }
+        else if (metadata < 14)
+        {
+            renderer.setRenderBounds(0.0, 0.0F, 0.0, 1.0, 0.5F, 1.0);
+            this.renderInvBlock(renderer, block, metadata);
+        }
+        else if (metadata < 15)
+        {
+            renderer.setRenderBounds(0.375, 0.0F, 0.375, 0.625, 1F, 0.625);
+            this.renderInvBlock(renderer, block, metadata);
+        }
     }
 
     @Override
@@ -25,11 +44,18 @@ public class MultiShapeRender implements ISimpleBlockRenderingHandler
         {
             int meta = world.getBlockMetadata(x, y, z);
             if (meta < 8)
-                return renderBlockStairs((MultiShapeBlock) block, world, x, y, z, renderer);
+            {
+                //renderer.renderStandardBlock(block, x, y, z);
+                return renderBlockStairs((OmniShapeBlock) block, world, x, y, z, renderer);
+            }
             else if (meta < 14)
+            {
                 return renderBlockSlab(block, world, meta, x, y, z, renderer);
+            }
             else if (meta == 14)
-                return renderBlockWall((MultiShapeBlock) block, world, x, y, z, renderer);
+            {
+                return renderBlockWall((OmniShapeBlock) block, world, x, y, z, renderer);
+            }
         }
         return true;
     }
@@ -45,8 +71,8 @@ public class MultiShapeRender implements ISimpleBlockRenderingHandler
     {
         return model;
     }
-    
-    public boolean renderBlockStairs(MultiShapeBlock block, IBlockAccess world, int x, int y, int z, RenderBlocks renderer)
+
+    public boolean renderBlockStairs (OmniShapeBlock block, IBlockAccess world, int x, int y, int z, RenderBlocks renderer)
     {
         block.func_82541_d(world, x, y, z);
         renderer.setRenderBoundsFromBlock(block);
@@ -63,24 +89,37 @@ public class MultiShapeRender implements ISimpleBlockRenderingHandler
 
         return true;
     }
-    
+
     public boolean renderBlockSlab (Block block, IBlockAccess world, int meta, int x, int y, int z, RenderBlocks renderer)
     {
+        float offset = 0.5f;
         switch (meta)
         {
-        case 8: renderer.setRenderBounds(0f, 0f, 0f, 1f, 0.5f, 1f); break;
-        case 9: renderer.setRenderBounds(0f, 0.5f, 0f, 1f, 1f, 1f); break;
-        case 10: renderer.setRenderBounds(0.5f, 0f, 0f, 1f, 1f, 1f); break;
-        case 11: renderer.setRenderBounds(0f, 0f, 0.5f, 1f, 1f, 1f); break;
-        case 12: renderer.setRenderBounds(0f, 0f, 0f, 0.5f, 1f, 1f); break;
-        case 13: renderer.setRenderBounds(0f, 0f, 0f, 1f, 1f, 0.5f); break;
+        case 8:
+            renderer.setRenderBounds(0f, offset, 0f, 1f, 1f, 1f);
+            break;
+        case 9:
+            renderer.setRenderBounds(0f, 0f, 0f, 1f, offset, 1f);
+            break;
+        case 10:
+            renderer.setRenderBounds(0f, 0f, offset, 1f, 1f, 1f);
+            break;
+        case 11:
+            renderer.setRenderBounds(0f, 0f, 0f, 1f, 1f, offset);
+            break;
+        case 12:
+            renderer.setRenderBounds(offset, 0f, 0f, 1f, 1f, 1f);
+            break;
+        case 13:
+            renderer.setRenderBounds(0f, 0f, 0f, offset, 1f, 1f);
+            break;
         }
-        
+
         renderer.renderStandardBlock(block, x, y, z);
         return false;
     }
-    
-    public boolean renderBlockWall(MultiShapeBlock block, IBlockAccess world, int x, int y, int z, RenderBlocks renderer)
+
+    public boolean renderBlockWall (OmniShapeBlock block, IBlockAccess world, int x, int y, int z, RenderBlocks renderer)
     {
         boolean flag = block.canConnectWallTo(world, x - 1, y, z);
         boolean flag1 = block.canConnectWallTo(world, x + 1, y, z);
@@ -135,5 +174,36 @@ public class MultiShapeRender implements ISimpleBlockRenderingHandler
 
         block.setBlockBoundsBasedOnState(world, x, y, z);
         return true;
+    }
+
+    private void renderInvBlock (RenderBlocks renderblocks, Block block, int meta)
+    {
+        Tessellator tessellator = Tessellator.instance;
+        GL11.glTranslatef(-0.5F, -0.5F, -0.5F);
+        tessellator.startDrawingQuads();
+        tessellator.setNormal(0.0F, -1F, 0.0F);
+        renderblocks.renderBottomFace(block, 0.0D, 0.0D, 0.0D, block.getIcon(0, meta));
+        tessellator.draw();
+        tessellator.startDrawingQuads();
+        tessellator.setNormal(0.0F, 1.0F, 0.0F);
+        renderblocks.renderTopFace(block, 0.0D, 0.0D, 0.0D, block.getIcon(1, meta));
+        tessellator.draw();
+        tessellator.startDrawingQuads();
+        tessellator.setNormal(0.0F, 0.0F, -1F);
+        renderblocks.renderEastFace(block, 0.0D, 0.0D, 0.0D, block.getIcon(2, meta));
+        tessellator.draw();
+        tessellator.startDrawingQuads();
+        tessellator.setNormal(0.0F, 0.0F, 1.0F);
+        renderblocks.renderWestFace(block, 0.0D, 0.0D, 0.0D, block.getIcon(3, meta));
+        tessellator.draw();
+        tessellator.startDrawingQuads();
+        tessellator.setNormal(-1F, 0.0F, 0.0F);
+        renderblocks.renderNorthFace(block, 0.0D, 0.0D, 0.0D, block.getIcon(4, meta));
+        tessellator.draw();
+        tessellator.startDrawingQuads();
+        tessellator.setNormal(1.0F, 0.0F, 0.0F);
+        renderblocks.renderSouthFace(block, 0.0D, 0.0D, 0.0D, block.getIcon(5, meta));
+        tessellator.draw();
+        GL11.glTranslatef(0.5F, 0.5F, 0.5F);
     }
 }

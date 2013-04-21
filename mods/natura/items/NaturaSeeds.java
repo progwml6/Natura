@@ -33,7 +33,7 @@ public class NaturaSeeds extends ItemSeeds
     
     @SideOnly(Side.CLIENT)
 	@Override
-    public void updateIcons(IconRegister iconRegister)
+    public void registerIcons(IconRegister iconRegister)
     {
 		this.icons = new Icon[textureNames.length];
 

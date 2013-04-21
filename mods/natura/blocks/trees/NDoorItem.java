@@ -25,6 +25,7 @@ public class NDoorItem extends Item
         super(id);
         maxStackSize = 64;
         setCreativeTab(NaturaTab.tab);
+        setHasSubtypes(true);
     }
     
     public static final String unlocalizedNames[] = {
@@ -57,7 +58,6 @@ public class NDoorItem extends Item
         case 6: block = NaturaContent.redwoodBarkDoor; break;
         default: block = Block.doorWood; break;
         }
-        System.out.println(itemstack.getItemDamage());
         if (!player.canPlayerEdit(x, y, z, side, itemstack) || !player.canPlayerEdit(x, y + 1, z, side, itemstack))
         {
             return false;
@@ -130,7 +130,7 @@ public class NDoorItem extends Item
 	
 	@SideOnly(Side.CLIENT)
 	@Override
-    public void updateIcons(IconRegister iconRegister)
+    public void registerIcons(IconRegister iconRegister)
     {
 		this.icons = new Icon[textureNames.length];
 

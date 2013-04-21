@@ -58,9 +58,9 @@ public class SeedFood extends ItemSeedFood
 	
 	@SideOnly(Side.CLIENT)
     @Override
-    public void updateIcons(IconRegister par1IconRegister)
+    public void registerIcons(IconRegister par1IconRegister)
     {
-        this.iconIndex = par1IconRegister.registerIcon("natura:saguaro_fruit_item");
+        this.itemIcon = par1IconRegister.registerIcon("natura:saguaro_fruit_item");
     }
 	
 	@Override

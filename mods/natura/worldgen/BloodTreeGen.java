@@ -18,13 +18,13 @@ public class BloodTreeGen extends WorldGenerator
         mdLeaves = leaves;
     }
 
-    public boolean generate(World world, Random random, int x, int y, int z)
+    public boolean generate (World world, Random random, int x, int y, int z)
     {
         int height = findGround(world, x, y, z);
         return generateRandomTree(world, random, x, height, z);
     }
 
-    int findGround(World world, int x, int y, int z)
+    int findGround (World world, int x, int y, int z)
     {
         int l = 0;
         int bID = world.getBlockId(x, y - 1, z);
@@ -46,12 +46,11 @@ public class BloodTreeGen extends WorldGenerator
                 break;
             }
             k1--;
-        }
-        while (true);
+        } while (k1 > 0);
         return l;
     }
 
-    public boolean generateRandomTree(World world, Random random, int x, int y, int z)
+    public boolean generateRandomTree (World world, Random random, int x, int y, int z)
     {
         int treeHeight = random.nextInt(5) + 8;
         boolean flag = true;
@@ -70,8 +69,7 @@ public class BloodTreeGen extends WorldGenerator
             {
                 byte0 = 2;
             }
-            label0:
-            for (int l1 = x - byte0; l1 <= x + byte0 && flag; l1++)
+            label0: for (int l1 = x - byte0; l1 <= x + byte0 && flag; l1++)
             {
                 int j2 = z - byte0;
                 do
@@ -95,8 +93,7 @@ public class BloodTreeGen extends WorldGenerator
                         continue label0;
                     }
                     j2++;
-                }
-                while (true);
+                } while (true);
             }
         }
 
@@ -136,7 +133,7 @@ public class BloodTreeGen extends WorldGenerator
         return true;
     }
 
-    private void genBranch(World world, Random random, int i, int j, int k, int l, int i1)
+    private void genBranch (World world, Random random, int i, int j, int k, int l, int i1)
     {
         int j1 = i;
         int k1 = j + l;
@@ -145,25 +142,25 @@ public class BloodTreeGen extends WorldGenerator
         byte byte1 = 0;
         switch (i1)
         {
-            case 1:
-                byte0 = 1;
-                byte1 = 1;
-                break;
+        case 1:
+            byte0 = 1;
+            byte1 = 1;
+            break;
 
-            case 2:
-                byte0 = -1;
-                byte1 = 1;
-                break;
+        case 2:
+            byte0 = -1;
+            byte1 = 1;
+            break;
 
-            case 3:
-                byte0 = 1;
-                byte1 = -1;
-                break;
+        case 3:
+            byte0 = 1;
+            byte1 = -1;
+            break;
 
-            case 4:
-                byte0 = -1;
-                byte1 = -1;
-                break;
+        case 4:
+            byte0 = -1;
+            byte1 = -1;
+            break;
         }
         int i2 = random.nextInt(15);
         for (int j2 = 4; j2 > 0; j2--)
@@ -182,7 +179,7 @@ public class BloodTreeGen extends WorldGenerator
         }
     }
 
-    private void genStraightBranch(World world, Random random, int i, int j, int k, int l, int i1)
+    private void genStraightBranch (World world, Random random, int i, int j, int k, int l, int i1)
     {
         int j1 = i;
         int k1 = j + l;
@@ -191,25 +188,25 @@ public class BloodTreeGen extends WorldGenerator
         byte byte1 = 0;
         switch (i1)
         {
-            case 1:
-                byte0 = 1;
-                byte1 = 0;
-                break;
+        case 1:
+            byte0 = 1;
+            byte1 = 0;
+            break;
 
-            case 2:
-                byte0 = 0;
-                byte1 = 1;
-                break;
+        case 2:
+            byte0 = 0;
+            byte1 = 1;
+            break;
 
-            case 3:
-                byte0 = -1;
-                byte1 = 0;
-                break;
+        case 3:
+            byte0 = -1;
+            byte1 = 0;
+            break;
 
-            case 4:
-                byte0 = 0;
-                byte1 = -1;
-                break;
+        case 4:
+            byte0 = 0;
+            byte1 = -1;
+            break;
         }
         int i2 = random.nextInt(5);
         for (int j2 = 4; j2 > 0; j2--)
@@ -230,7 +227,7 @@ public class BloodTreeGen extends WorldGenerator
         }
     }
 
-    public boolean generateNode(World world, Random random, int i, int j, int k)
+    public boolean generateNode (World world, Random random, int i, int j, int k)
     {
         setBlockAndMetadata(world, i, j, k, NaturaContent.bloodwood.blockID, 15);
         for (int l = i - 1; l <= i + 1; l++)
@@ -264,7 +261,7 @@ public class BloodTreeGen extends WorldGenerator
         {
             for (int i2 = k - 1; i2 <= k + 1; i2++)
             {
-                int l2 = world.getBlockId(j1, j+1, i2);
+                int l2 = world.getBlockId(j1, j + 1, i2);
                 if (l2 != NaturaContent.floraLeaves.blockID && !Block.opaqueCubeLookup[l2])
                 {
                     setBlockAndMetadata(world, j1, j, i2, NaturaContent.floraLeavesNoColor.blockID, mdLeaves);

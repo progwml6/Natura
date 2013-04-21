@@ -135,7 +135,7 @@ public class NLeaves extends BlockLeaves
 	public Icon[] fastIcons;
 	public Icon[] fancyIcons;
 
-    public Icon getBlockTextureFromSideAndMetadata(int side, int metadata)
+    public Icon getIcon(int side, int metadata)
     {
     	if (graphicsLevel)
     		return fancyIcons[metadata % 4];

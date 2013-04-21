@@ -55,7 +55,7 @@ public class SimpleLog extends Planks
     }
     
     @Override
-	public Icon getBlockTextureFromSideAndMetadata(int side, int meta)
+	public Icon getIcon(int side, int meta)
     {		
 		return icons[meta];
     }

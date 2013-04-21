@@ -31,7 +31,7 @@ public class TreeBlock extends BlockLog
         this.setCreativeTab(NaturaTab.tab);
     }
     
-    public Icon getBlockTextureFromSideAndMetadata(int side, int metadata)
+    public Icon getIcon(int side, int metadata)
     {
     	int tex = (metadata % 4);
     	int orientation = metadata / 4;

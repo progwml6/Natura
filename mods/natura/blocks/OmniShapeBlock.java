@@ -3,7 +3,8 @@ package mods.natura.blocks;
 import java.util.List;
 import java.util.Random;
 
-import mods.natura.client.MultiShapeRender;
+import mods.natura.client.OmniShapeRender;
+import mods.natura.common.NaturaTab;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
@@ -23,17 +24,17 @@ import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class MultiShapeBlock extends Block
+public class OmniShapeBlock extends Block
 {
-    private static final int[][] field_72159_a = new int[][] { { 2, 6 }, { 3, 7 }, { 2, 3 }, { 6, 7 }, { 0, 4 }, { 1, 5 }, { 0, 1 }, { 4, 5 } };
+    public static final int[][] field_72159_a = new int[][] { { 2, 6 }, { 3, 7 }, { 2, 3 }, { 6, 7 }, { 0, 4 }, { 1, 5 }, { 0, 1 }, { 4, 5 } };
 
     /** The block that is used as model for the stair. */
-    private final Block modelBlock;
-    private final int modelBlockMetadata;
-    private boolean field_72156_cr = false;
-    private int field_72160_cs = 0;
+    public final Block modelBlock;
+    public final int modelBlockMetadata;
+    public boolean field_72156_cr = false;
+    public int field_72160_cs = 0;
 
-    protected MultiShapeBlock(int id, Block block, int meta)
+    public OmniShapeBlock(int id, Block block, int meta)
     {
         super(id, block.blockMaterial);
         this.modelBlock = block;
@@ -41,8 +42,8 @@ public class MultiShapeBlock extends Block
         this.setHardness(block.blockHardness);
         this.setResistance(block.blockResistance / 3.0F);
         this.setStepSound(block.stepSound);
-        this.setLightOpacity(255);
-        this.setCreativeTab(CreativeTabs.tabBlock);
+        //this.setLightOpacity(255);
+        this.setCreativeTab(NaturaTab.tab);
     }
 
     /**
@@ -63,17 +64,30 @@ public class MultiShapeBlock extends Block
                 this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
             }
         }
-        
+
         else if (meta < 14)
         {
+            float offset = 0.5f;
             switch (meta)
             {
-            case 8: setBlockBounds(0f, 0f, 0f, 1f, 0.5f, 1f); break;
-            case 9: setBlockBounds(0f, 0.5f, 0f, 1f, 1f, 1f); break;
-            case 10: setBlockBounds(0.5f, 0f, 0f, 1f, 1f, 1f); break;
-            case 11: setBlockBounds(0f, 0f, 0.5f, 1f, 1f, 1f); break;
-            case 12: setBlockBounds(0f, 0f, 0f, 0.5f, 1f, 1f); break;
-            case 13: setBlockBounds(0f, 0f, 0f, 1f, 1f, 0.5f); break;
+            case 8:
+                setBlockBounds(0f, offset, 0f, 1f, 1f, 1f);
+                break;
+            case 9:
+                setBlockBounds(0f, 0f, 0f, 1f, offset, 1f);
+                break;
+            case 10:
+                setBlockBounds(0f, 0f, offset, 1f, 1f, 1f);
+                break;
+            case 11:
+                setBlockBounds(0f, 0f, 0f, 1f, 1f, offset);
+                break;
+            case 12:
+                setBlockBounds(offset, 0f, 0f, 1f, 1f, 1f);
+                break;
+            case 13:
+                setBlockBounds(0f, 0f, 0f, offset, 1f, 1f);
+                break;
             }
         }
 
@@ -141,24 +155,14 @@ public class MultiShapeBlock extends Block
         }
     }
 
-    /**
-     * Is this block (a) opaque and (b) a full 1m cube?  This determines whether or not to render the shared face of two
-     * adjacent blocks and also whether the player can attach torches, redstone wire, etc to this block.
-     */
+    @Override
     public boolean isOpaqueCube ()
     {
         return false;
     }
 
-    /**
-     * If this block doesn't render as an ordinary block it will return False (examples: signs, buttons, stairs, etc)
-     */
+    @Override
     public boolean renderAsNormalBlock ()
-    {
-        return false;
-    }
-
-    public boolean getBlocksMovement (IBlockAccess par1IBlockAccess, int par2, int par3, int par4)
     {
         return false;
     }
@@ -168,7 +172,7 @@ public class MultiShapeBlock extends Block
      */
     public int getRenderType ()
     {
-        return MultiShapeRender.model;
+        return OmniShapeRender.model;
     }
 
     public void func_82541_d (IBlockAccess par1IBlockAccess, int par2, int par3, int par4)
@@ -190,10 +194,10 @@ public class MultiShapeBlock extends Block
      */
     public static boolean isBlockStairsID (int par0)
     {
-        return par0 > 0 && Block.blocksList[par0] instanceof MultiShapeBlock;
+        return par0 > 0 && Block.blocksList[par0] instanceof OmniShapeBlock;
     }
 
-    private boolean func_82540_f (IBlockAccess par1IBlockAccess, int par2, int par3, int par4, int par5)
+    public boolean func_82540_f (IBlockAccess par1IBlockAccess, int par2, int par3, int par4, int par5)
     {
         int i1 = par1IBlockAccess.getBlockId(par2, par3, par4);
         return isBlockStairsID(i1) && par1IBlockAccess.getBlockMetadata(par2, par3, par4) == par5;
@@ -489,23 +493,23 @@ public class MultiShapeBlock extends Block
         this.modelBlock.onBlockDestroyedByPlayer(par1World, par2, par3, par4, par5);
     }
 
-    @SideOnly(Side.CLIENT)
+    //@SideOnly(Side.CLIENT)
     /**
      * Goes straight to getLightBrightnessForSkyBlocks for Blocks, does some fancy computing for Fluids
      */
-    public int getMixedBrightnessForBlock (IBlockAccess par1IBlockAccess, int par2, int par3, int par4)
+    /*public int getMixedBrightnessForBlock (IBlockAccess par1IBlockAccess, int par2, int par3, int par4)
     {
         return this.modelBlock.getMixedBrightnessForBlock(par1IBlockAccess, par2, par3, par4);
-    }
+    }*/
 
-    @SideOnly(Side.CLIENT)
+    //@SideOnly(Side.CLIENT)
     /**
      * How bright to render this block based on the light its receiving. Args: iBlockAccess, x, y, z
      */
-    public float getBlockBrightness (IBlockAccess par1IBlockAccess, int par2, int par3, int par4)
+    /*public float getBlockBrightness (IBlockAccess par1IBlockAccess, int par2, int par3, int par4)
     {
         return this.modelBlock.getBlockBrightness(par1IBlockAccess, par2, par3, par4);
-    }
+    }*/
 
     /**
      * Returns how much this block can resist explosions from the passed in entity.
@@ -531,31 +535,33 @@ public class MultiShapeBlock extends Block
         this.modelBlock.velocityToAddToEntity(par1World, par2, par3, par4, par5Entity, par6Vec3);
     }
 
-    @SideOnly(Side.CLIENT)
+    //@SideOnly(Side.CLIENT)
     /**
      * Returns which pass should this block be rendered on. 0 for solids and 1 for alpha
      */
-    public int getRenderBlockPass ()
+    /*public int getRenderBlockPass ()
     {
         return this.modelBlock.getRenderBlockPass();
-    }
+    }*/
 
     @SideOnly(Side.CLIENT)
     /**
      * From the specified side and block metadata retrieves the blocks texture. Args: side, metadata
      */
-    public Icon getBlockTextureFromSideAndMetadata (int side, int meta)
+    public Icon getIcon (int side, int meta)
     {
-        return this.modelBlock.getBlockTextureFromSideAndMetadata(side, this.modelBlockMetadata);
+        return this.modelBlock.getIcon(side, this.modelBlockMetadata);
     }
 
-    @SideOnly(Side.CLIENT)
+    //@SideOnly(Side.CLIENT)
     /**
      * Returns the bounding box of the wired rectangular prism to render.
      */
     public AxisAlignedBB getSelectedBoundingBoxFromPool (World world, int x, int y, int z)
     {
-        return this.modelBlock.getSelectedBoundingBoxFromPool(world, x, y, z);
+        if (world.getBlockMetadata(x, y, z) < 8)
+            return this.modelBlock.getSelectedBoundingBoxFromPool(world, x, y, z);
+        return super.getSelectedBoundingBoxFromPool(world, x, y, z);
     }
 
     /**
@@ -577,10 +583,10 @@ public class MultiShapeBlock extends Block
     /**
      * Checks to see if its valid to put this block at the specified coordinates. Args: world, x, y, z
      */
-    public boolean canPlaceBlockAt (World par1World, int par2, int par3, int par4)
+    /*public boolean canPlaceBlockAt (World par1World, int par2, int par3, int par4)
     {
         return this.modelBlock.canPlaceBlockAt(par1World, par2, par3, par4);
-    }
+    }*/
 
     /**
      * Called whenever the block is added into the world. Args: world, x, y, z
@@ -594,42 +600,42 @@ public class MultiShapeBlock extends Block
     /**
      * ejects contained items into the world, and notifies neighbours of an update, as appropriate
      */
-    public void breakBlock (World par1World, int par2, int par3, int par4, int par5, int par6)
+    /*public void breakBlock (World par1World, int par2, int par3, int par4, int par5, int par6)
     {
         this.modelBlock.breakBlock(par1World, par2, par3, par4, par5, par6);
-    }
+    }*/
 
     /**
      * Called whenever an entity is walking on top of this block. Args: world, x, y, z, entity
      */
-    public void onEntityWalking (World par1World, int par2, int par3, int par4, Entity par5Entity)
+    /*public void onEntityWalking (World par1World, int par2, int par3, int par4, Entity par5Entity)
     {
         this.modelBlock.onEntityWalking(par1World, par2, par3, par4, par5Entity);
-    }
+    }*/
 
     /**
      * Ticks the block if it's been scheduled
      */
-    public void updateTick (World par1World, int par2, int par3, int par4, Random par5Random)
+    /*public void updateTick (World par1World, int par2, int par3, int par4, Random par5Random)
     {
         this.modelBlock.updateTick(par1World, par2, par3, par4, par5Random);
-    }
+    }*/
 
     /**
      * Called upon block activation (right click on the block.)
      */
-    public boolean onBlockActivated (World par1World, int par2, int par3, int par4, EntityPlayer par5EntityPlayer, int par6, float par7, float par8, float par9)
+    /*public boolean onBlockActivated (World par1World, int par2, int par3, int par4, EntityPlayer par5EntityPlayer, int par6, float par7, float par8, float par9)
     {
         return this.modelBlock.onBlockActivated(par1World, par2, par3, par4, par5EntityPlayer, 0, 0.0F, 0.0F, 0.0F);
-    }
+    }*/
 
     /**
      * Called upon the block being destroyed by an explosion
      */
-    public void onBlockDestroyedByExplosion (World par1World, int par2, int par3, int par4, Explosion par5Explosion)
+    /*public void onBlockDestroyedByExplosion (World par1World, int par2, int par3, int par4, Explosion par5Explosion)
     {
         this.modelBlock.onBlockDestroyedByExplosion(par1World, par2, par3, par4, par5Explosion);
-    }
+    }*/
 
     /**
      * Called when the block is placed in the world.
@@ -637,26 +643,30 @@ public class MultiShapeBlock extends Block
     public void onBlockPlacedBy (World world, int x, int y, int z, EntityLiving living, ItemStack stack)
     {
         int rotation = MathHelper.floor_double((double) (living.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
-        int meta = world.getBlockMetadata(x, y, z) & 4;
-
-        if (rotation == 0)
+        int meta = world.getBlockMetadata(x, y, z);
+        if (meta < 8)
         {
-            world.setBlockMetadataWithNotify(x, y, z, 2 | meta, 2);
-        }
+            meta = meta & 4;
 
-        if (rotation == 1)
-        {
-            world.setBlockMetadataWithNotify(x, y, z, 1 | meta, 2);
-        }
+            if (rotation == 0)
+            {
+                world.setBlockMetadataWithNotify(x, y, z, 2 | meta, 2);
+            }
 
-        if (rotation == 2)
-        {
-            world.setBlockMetadataWithNotify(x, y, z, 3 | meta, 2);
-        }
+            if (rotation == 1)
+            {
+                world.setBlockMetadataWithNotify(x, y, z, 1 | meta, 2);
+            }
 
-        if (rotation == 3)
-        {
-            world.setBlockMetadataWithNotify(x, y, z, 0 | meta, 2);
+            if (rotation == 2)
+            {
+                world.setBlockMetadataWithNotify(x, y, z, 3 | meta, 2);
+            }
+
+            if (rotation == 3)
+            {
+                world.setBlockMetadataWithNotify(x, y, z, 0 | meta, 2);
+            }
         }
     }
 
@@ -665,7 +675,12 @@ public class MultiShapeBlock extends Block
      */
     public int onBlockPlaced (World par1World, int x, int y, int z, int side, float hitX, float hitY, float hitZ, int meta)
     {
-        return side != 0 && (side == 1 || (double) hitY <= 0.5D) ? meta : meta | 4;
+        if (meta < 8)
+            return side != 0 && (side == 1 || (double) hitY <= 0.5D) ? meta : meta | 4;
+        else if (meta < 14)
+            return side + 8;
+        else
+            return meta;
     }
 
     /**
@@ -736,6 +751,14 @@ public class MultiShapeBlock extends Block
         return movingobjectposition;
     }
 
+    @Override
+    public boolean shouldSideBeRendered (IBlockAccess world, int x, int y, int z, int side)
+    {
+        //if (world.getBlockMetadata(x, y, z) == 0)
+            return true;
+        //return super.shouldSideBeRendered(world, x, y, z, side);
+    }
+
     @SideOnly(Side.CLIENT)
     /**
      * When this method is called, your block should register all the icons it needs with the given IconRegister. This
@@ -743,5 +766,12 @@ public class MultiShapeBlock extends Block
      */
     public void registerIcons (IconRegister par1IconRegister)
     {
+    }
+
+    public void getSubBlocks (int par1, CreativeTabs par2CreativeTabs, List par3List)
+    {
+        par3List.add(new ItemStack(par1, 1, 0));
+        par3List.add(new ItemStack(par1, 1, 8));
+        par3List.add(new ItemStack(par1, 1, 14));
     }
 }

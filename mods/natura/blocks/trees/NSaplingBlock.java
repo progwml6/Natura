@@ -155,7 +155,7 @@ public class NSaplingBlock extends BlockFlower
 		}
 	}
 
-	public Icon getBlockTextureFromSideAndMetadata (int side, int meta)
+	public Icon getIcon (int side, int meta)
 	{
 		return icons[meta % 8];
 	}

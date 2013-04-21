@@ -56,7 +56,7 @@ public class LogTwoxTwo extends BlockLog
 	}
 
 	@Override
-	public Icon getBlockTextureFromSideAndMetadata (int side, int meta)
+	public Icon getIcon (int side, int meta)
 	{
 		if (meta == 15) //Fullbark
 			return icons[0];

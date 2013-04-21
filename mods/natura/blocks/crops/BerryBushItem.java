@@ -19,7 +19,6 @@ public class BerryBushItem extends ItemBlock
     public BerryBushItem(int i)
     {
         super(i);
-        //setMaxDamage(0);
         setHasSubtypes(true);
     }
     

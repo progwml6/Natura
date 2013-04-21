@@ -18,7 +18,7 @@ public class FruitTreeBlock extends BlockLog
         this.setCreativeTab(NaturaTab.tab);
     }
     
-    /*public int getBlockTextureFromSideAndMetadata(int side, int metadata)
+    /*public int getIcon(int side, int metadata)
     {
     	int tex = blockIndexInTexture + (metadata % 4);
     	int orientation = metadata / 4;

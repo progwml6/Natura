@@ -18,6 +18,7 @@ public class NClientProxy extends NCommonProxy
 		RenderingRegistry.registerBlockHandler(new BerryRender());
 		RenderingRegistry.registerBlockHandler(new SaguaroRenderer());
 		RenderingRegistry.registerBlockHandler(new CropRender());
+        RenderingRegistry.registerBlockHandler(new OmniShapeRender());
 		TickRegistry.registerTickHandler(new NCropsTickHandler(), Side.CLIENT);
 	}
 

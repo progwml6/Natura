@@ -76,7 +76,7 @@ public class NDoor extends BlockDoor
     }
     
     @Override
-    public Icon getBlockTextureFromSideAndMetadata(int par1, int par2)
+    public Icon getIcon(int par1, int par2)
     {
         return this.icons[0];
     }
@@ -88,5 +88,10 @@ public class NDoor extends BlockDoor
     
     public void getSubBlocks(int par1, CreativeTabs par2CreativeTabs, List par3List)
     {
+    }
+    
+    public int getRenderType()
+    {
+        return 7;
     }
 }

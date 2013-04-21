@@ -5,6 +5,8 @@ import java.util.List;
 
 import mods.natura.blocks.CloudBlock;
 import mods.natura.blocks.CloudItem;
+import mods.natura.blocks.OmniShapeBlock;
+import mods.natura.blocks.OmniShapeBlockItem;
 import mods.natura.blocks.crops.BerryBush;
 import mods.natura.blocks.crops.BerryBushItem;
 import mods.natura.blocks.crops.CropBlock;
@@ -43,8 +45,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.item.crafting.ShapedRecipes;
-import net.minecraft.util.WeightedRandomChestContent;
-import net.minecraftforge.common.ChestGenHooks;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
@@ -103,6 +103,8 @@ public class NaturaContent
         ghostDoor = new NDoor(PHNatura.ghostDoor, Material.wood, 4, "ghostwood");
         bloodDoor = new NDoor(PHNatura.bloodDoor, Material.wood, 5, "bloodwood");
         redwoodBarkDoor = new NDoor(PHNatura.redwoodBarkDoor, Material.wood, 6, "redwoodbark");
+        
+        //omniSakura = new OmniShapeBlock(PHNatura.omniSakura, planks, 3).setUnlocalizedName("omniblock.sakura");
 
         //floraBoat = new NBoat(PHNatura.boatItemID).setIconCoord(0, 3).setUnlocalizedName("floraBoat");
 
@@ -115,6 +117,8 @@ public class NaturaContent
         GameRegistry.registerBlock(redwoodDoor, "Redwood Door");
         GameRegistry.registerBlock(bloodwood, LogTwoxTwoItem.class, "bloodwood");
         GameRegistry.registerBlock(saguaro, SaguaroItem.class, "Saguaro");
+        
+        //GameRegistry.registerBlock(omniSakura, OmniShapeBlockItem.class, "omniblock.sakura");
 
         MinecraftForge.addGrassSeed(new ItemStack(seeds, 1, 0), 3);
         MinecraftForge.addGrassSeed(new ItemStack(seeds, 1, 1), 3);
@@ -133,7 +137,7 @@ public class NaturaContent
         GameRegistry.addRecipe(new ItemStack(cottonBag, 1, 0), "sss", "sss", "sss", 's', new ItemStack(seeds, 1, 1));
 
         GameRegistry.addRecipe(new ItemStack(Item.seeds, 9, 0), "s", 's', wheatBag);
-        GameRegistry.addRecipe(new ItemStack(seeds, 0, 9), "s", 's', barleyBag);
+        GameRegistry.addRecipe(new ItemStack(seeds, 9, 0), "s", 's', barleyBag);
         GameRegistry.addRecipe(new ItemStack(Item.potato, 9, 0), "s", 's', potatoBag);
         GameRegistry.addRecipe(new ItemStack(Item.carrot, 9, 0), "s", 's', carrotBag);
         GameRegistry.addRecipe(new ItemStack(Item.netherStalkSeeds, 9, 0), "s", 's', netherWartBag);
@@ -353,6 +357,8 @@ public class NaturaContent
     public static Block flower;
 
     //Trees
+    public static Block omniSakura;
+    
     public static Block tree;
     public static Block redwood;
     public static Block planks;
