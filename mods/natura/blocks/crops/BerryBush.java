@@ -185,18 +185,22 @@ public class BerryBush extends BlockLeavesBase implements IPlantable
 	@Override
 	public boolean onBlockActivated (World world, int x, int y, int z, EntityPlayer player, int par6, float par7, float par8, float par9)
 	{
-		if (world.isRemote)
-			return false;
+		/*if (world.isRemote)
+			return false;*/
 
 		int meta = world.getBlockMetadata(x, y, z);
 		if (meta >= 12)
 		{
+            if (world.isRemote)
+                return true;
+            
 			world.setBlock(x, y, z, blockID, meta - 4, 3);
 			EntityItem entityitem = new EntityItem(world, player.posX, player.posY - 1.0D, player.posZ, new ItemStack(NaturaContent.berryItem.itemID, 1, meta - 12));
 			world.spawnEntityInWorld(entityitem);
 			entityitem.onCollideWithPlayer(player);
+			return true;
 		}
-		return true;
+		return false;
 	}
 
 	/* Render logic */
@@ -266,6 +270,13 @@ public class BerryBush extends BlockLeavesBase implements IPlantable
 			}
 		}
 	}
+	
+	public boolean canSustainPlant(World world, int x, int y, int z, ForgeDirection direction, IPlantable plant)
+    {
+        if (plant instanceof BerryBush)
+            return (world.getBlockMetadata(x, y, z) > 7);
+        return super.canSustainPlant(world, x, y, z, direction, plant);
+    }
 
 	/* Resistance to fire */
 

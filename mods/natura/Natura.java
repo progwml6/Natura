@@ -35,7 +35,7 @@ import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
 
-@Mod(modid = "Natura", name = "Natura", version = "1.5.1_2.0.14")
+@Mod(modid = "Natura", name = "Natura", version = "1.5.1_2.0.15")
 public class Natura
 {
     /* Proxies for sides, used for graphics processing */

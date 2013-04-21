@@ -83,10 +83,12 @@ public class RedwoodTreeGen extends WorldGenerator
     int leafNodes[][];
     int genWoodID;
     int genWoodMetadata;
+    boolean useHeight;
 
     public RedwoodTreeGen(boolean flag, int bID, int bMD)
     {
         super(flag);
+        useHeight = flag;
         rand = new Random();
         heightLimit = 0;
         heightAttenuation = 0.61799999999999999D;
@@ -126,9 +128,13 @@ public class RedwoodTreeGen extends WorldGenerator
 
     public boolean generate (World world, Random random, int x, int yPos, int z)
     {
-        int groundPoint = findGround(world, x, yPos, z);
-        if (!isValidSpawn(world, x, groundPoint, z))
-            return false;
+        int groundPoint = yPos;
+        if (!useHeight)
+        {
+            groundPoint = findGround(world, x, yPos, z);
+            if (!isValidSpawn(world, x, groundPoint, z))
+                return false;
+        }
 
         int treeHeight = random.nextInt(60) + 80;
         worldObj = world;
