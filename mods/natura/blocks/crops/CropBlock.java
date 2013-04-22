@@ -6,26 +6,24 @@ import java.util.Random;
 import mods.natura.client.CropRender;
 import mods.natura.common.NaturaContent;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockFlower;
+import net.minecraft.block.BlockCrops;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.stats.StatList;
 import net.minecraft.util.Icon;
 import net.minecraft.world.World;
 import net.minecraftforge.common.EnumPlantType;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class CropBlock extends BlockFlower
+public class CropBlock extends BlockCrops
 {
     public CropBlock(int id)
     {
-        super(id, Material.plants);
+        super(id);
         this.setTickRandomly(true);
         float var3 = 0.5F;
         this.setBlockBounds(0.5F - var3, 0.0F, 0.5F - var3, 0.5F + var3, 0.25F, 0.5F + var3);
@@ -63,7 +61,16 @@ public class CropBlock extends BlockFlower
     /**
      * Apply bonemeal to the crops.
      */
-    public boolean fertilize (World world, int x, int y, int z)
+    public void fertilize (World world, int x, int y, int z)
+    {
+        int meta = world.getBlockMetadata(x, y, z);
+        if (meta != 3 && meta != 8)
+        {
+            world.setBlockMetadataWithNotify(x, y, z, meta + 1, 3);
+        }
+    }
+    
+    public boolean boneFertilize (World world, int x, int y, int z)
     {
         int meta = world.getBlockMetadata(x, y, z);
         if (meta != 3 && meta != 8)

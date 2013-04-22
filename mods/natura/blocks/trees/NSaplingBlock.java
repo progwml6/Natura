@@ -3,9 +3,6 @@ package mods.natura.blocks.trees;
 import java.util.List;
 import java.util.Random;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-
 import mods.natura.common.NaturaTab;
 import mods.natura.common.PHNatura;
 import mods.natura.worldgen.BloodTreeGen;
@@ -15,7 +12,7 @@ import mods.natura.worldgen.RedwoodTreeGen;
 import mods.natura.worldgen.SakuraTreeGen;
 import mods.natura.worldgen.WhiteTreeGen;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockFlower;
+import net.minecraft.block.BlockSapling;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
@@ -24,8 +21,10 @@ import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.common.EnumPlantType;
 import net.minecraftforge.common.ForgeDirection;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
-public class NSaplingBlock extends BlockFlower
+public class NSaplingBlock extends BlockSapling
 {
 	public Icon[] icons;
 	public String[] textureNames = new String[] { "redwood", "eucalyptus", "hopseed", "sakura", "ghostwood", "bloodwood" };
@@ -166,8 +165,14 @@ public class NSaplingBlock extends BlockFlower
 	{
 		return icons[meta % 8];
 	}
+	
+	@Override
+	public void func_96477_c(World world, int x, int y, int z, Random random)
+    {
+	    boneFertilize(world, x, y, z, random);
+    }
 
-	public boolean fertilize (World world, int x, int y, int z, Random random)
+	public boolean boneFertilize (World world, int x, int y, int z, Random random)
 	{
 		int meta = world.getBlockMetadata(x, y, z);
 

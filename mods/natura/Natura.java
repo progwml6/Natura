@@ -82,12 +82,12 @@ public class Natura
     {
         if (event.ID == content.crops.blockID)
         {
-            if (content.crops.fertilize(event.world, event.X, event.Y, event.Z))
+            if (content.crops.boneFertilize(event.world, event.X, event.Y, event.Z))
                 event.setResult(Event.Result.ALLOW);
         }
         if (event.ID == content.floraSapling.blockID)
         {
-            if (content.floraSapling.fertilize(event.world, event.X, event.Y, event.Z, event.world.rand))
+            if (content.floraSapling.boneFertilize(event.world, event.X, event.Y, event.Z, event.world.rand))
                 event.setResult(Event.Result.ALLOW);
         }
     }
