@@ -11,6 +11,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.stats.StatList;
@@ -96,8 +97,47 @@ public class CropBlock extends BlockFlower
     {
         return par1 == Block.tilledField.blockID;
     }
+    
+    /* Left-click harvests berries */
+    @Override
+    public void onBlockClicked (World world, int x, int y, int z, EntityPlayer player)
+    {
+        if (!world.isRemote)
+        {
+            int meta = world.getBlockMetadata(x, y, z);
+            if (meta == 8)
+            {
+                world.setBlock(x, y, z, blockID, 6, 3);
+                EntityItem entityitem = new EntityItem(world, player.posX, player.posY - 1.0D, player.posZ, new ItemStack(NaturaContent.plantItem.itemID, 1, 4));
+                world.spawnEntityInWorld(entityitem);
+                entityitem.onCollideWithPlayer(player);
+            }
+        }
+    }
 
-    public void harvestBlock (World world, EntityPlayer player, int x, int y, int z, int meta)
+    /* Right-click harvests berries */
+    @Override
+    public boolean onBlockActivated (World world, int x, int y, int z, EntityPlayer player, int par6, float par7, float par8, float par9)
+    {
+        /*if (world.isRemote)
+            return false;*/
+
+        int meta = world.getBlockMetadata(x, y, z);
+        if (meta == 8)
+        {
+            if (world.isRemote)
+                return true;
+            
+            world.setBlock(x, y, z, blockID, 6, 3);
+            EntityItem entityitem = new EntityItem(world, player.posX, player.posY - 1.0D, player.posZ, new ItemStack(NaturaContent.plantItem.itemID, 1, 3));
+            world.spawnEntityInWorld(entityitem);
+            entityitem.onCollideWithPlayer(player);
+            return true;
+        }
+        return false;
+    }
+
+    /*public void harvestBlock (World world, EntityPlayer player, int x, int y, int z, int meta)
     {
         player.addStat(StatList.mineBlockStatArray[this.blockID], 1);
         player.addExhaustion(0.025F);
@@ -122,6 +162,13 @@ public class CropBlock extends BlockFlower
             world.setBlock(x, y, z, this.blockID, 6, 3);
             System.out.println("Setblock");
         }
+    }*/
+    
+    public float getBlockHardness(World world, int x, int y, int z)
+    {
+        if (world.getBlockMetadata(x, y, z) > 3)
+            return 0.5f;
+        return this.blockHardness;
     }
 
     /*public void breakBlock(World world, int x, int y, int z, int blockID, int meta)
