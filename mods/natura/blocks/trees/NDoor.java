@@ -76,6 +76,7 @@ public class NDoor extends BlockDoor
     }
     
     @Override
+    @SideOnly(Side.CLIENT)
     public Icon getIcon(int par1, int par2)
     {
         return this.icons[0];

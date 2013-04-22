@@ -56,6 +56,7 @@ public class LogTwoxTwo extends BlockLog
 	}
 
 	@Override
+    @SideOnly(Side.CLIENT)
 	public Icon getIcon (int side, int meta)
 	{
 		if (meta == 15) //Fullbark
@@ -301,6 +302,8 @@ public class LogTwoxTwo extends BlockLog
 	@Override
 	public int onBlockPlaced (World par1World, int blockX, int blockY, int blockZ, int side, float clickX, float clickY, float clickZ, int metadata)
 	{
+	    if (metadata >= 12)
+	        return metadata;
 
 		int meta = metadata & 3;
 		byte add = 0;

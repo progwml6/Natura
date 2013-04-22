@@ -3,13 +3,14 @@ package mods.natura.blocks;
 import java.util.List;
 
 import mods.natura.common.NaturaTab;
-import mods.tinker.tconstruct.TConstruct;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class NBlock extends Block
 {
@@ -29,6 +30,8 @@ public class NBlock extends Block
 		return meta;
 	}
 	
+	@Override
+	@SideOnly(Side.CLIENT)
 	public void registerIcons(IconRegister iconRegister)
     {
 		this.icons = new Icon[textureNames.length];
@@ -40,6 +43,7 @@ public class NBlock extends Block
     }
 	
 	@Override
+    @SideOnly(Side.CLIENT)
 	public Icon getIcon (int side, int meta)
 	{
 		return icons[meta];

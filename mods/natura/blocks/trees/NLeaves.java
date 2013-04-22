@@ -134,7 +134,9 @@ public class NLeaves extends BlockLeaves
 	protected String[] textureNames = new String[] { "redwood", "eucalyptus", "hopseed" };
 	public Icon[] fastIcons;
 	public Icon[] fancyIcons;
-
+	
+	@Override
+    @SideOnly(Side.CLIENT)
     public Icon getIcon(int side, int metadata)
     {
     	if (graphicsLevel)

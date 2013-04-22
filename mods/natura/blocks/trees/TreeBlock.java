@@ -30,7 +30,9 @@ public class TreeBlock extends BlockLog
         setBurnProperties(this.blockID, 5, 20);
         this.setCreativeTab(NaturaTab.tab);
     }
-    
+
+    @Override
+    @SideOnly(Side.CLIENT)
     public Icon getIcon(int side, int metadata)
     {
     	int tex = (metadata % 4);
@@ -55,6 +57,8 @@ public class TreeBlock extends BlockLog
 		return icons[tex];
     }
     
+    @Override
+    @SideOnly(Side.CLIENT)
     public void registerIcons(IconRegister iconRegister)
     {
 		this.icons = new Icon[textureNames.length];

@@ -2,6 +2,9 @@ package mods.natura.blocks.trees;
 
 import java.util.Random;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+
 import mods.natura.client.SaguaroRenderer;
 import mods.natura.common.NaturaContent;
 import mods.natura.common.NaturaTab;
@@ -176,6 +179,8 @@ public class SaguaroBlock extends Block implements IPlantable
 	public Icon[] icons;
 	public String[] textureNames = new String[] { "saguaro_bottom", "saguaro_top", "saguaro_side", "saguaro_fruit" };
 
+	@Override
+    @SideOnly(Side.CLIENT)
 	public void registerIcons (IconRegister iconRegister)
 	{
 		this.icons = new Icon[textureNames.length];
@@ -186,7 +191,8 @@ public class SaguaroBlock extends Block implements IPlantable
 		}
 	}
 
-	@Override
+    @Override
+    @SideOnly(Side.CLIENT)
 	public Icon getIcon (int side, int meta)
 	{
 		if (meta == 0)

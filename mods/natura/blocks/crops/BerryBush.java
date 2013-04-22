@@ -59,6 +59,7 @@ public class BerryBush extends BlockLeavesBase implements IPlantable
 	}
 
 	@Override
+    @SideOnly(Side.CLIENT)
 	public Icon getIcon (int side, int metadata)
 	{
 		if (graphicsLevel)

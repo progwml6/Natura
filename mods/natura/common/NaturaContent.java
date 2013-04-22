@@ -196,7 +196,7 @@ public class NaturaContent
             //Planks
             GameRegistry.addRecipe(new ItemStack(planks, 4, i), "w", 'w', new ItemStack(tree, 1, i));
         GameRegistry.addRecipe(new ItemStack(planks, 4, 3), "w", 'w', new ItemStack(redwood, 1, 1));
-        GameRegistry.addRecipe(new ItemStack(planks, 4, 4), "w", 'w', new ItemStack(bloodwood, 1, -1));
+        GameRegistry.addRecipe(new ItemStack(planks, 4, 4), "w", 'w', new ItemStack(bloodwood, 1, Short.MAX_VALUE));
         GameRegistry.addRecipe(new ItemStack(planks, 4, 5), "w", 'w', new ItemStack(tree, 1, 3));
 
         ItemStack[] plankStacks = new ItemStack[] { new ItemStack(planks, 1, 0), new ItemStack(planks, 1, 1), new ItemStack(planks, 1, 2), new ItemStack(planks, 1, 3), new ItemStack(planks, 1, 5) };
@@ -270,7 +270,7 @@ public class NaturaContent
             }
             else if (objArray[var4 + 1] instanceof Block)
             {
-                var14 = new ItemStack((Block) objArray[var4 + 1], 1, -1);
+                var14 = new ItemStack((Block) objArray[var4 + 1], 1, Short.MAX_VALUE);
             }
             else if (objArray[var4 + 1] instanceof ItemStack)
             {

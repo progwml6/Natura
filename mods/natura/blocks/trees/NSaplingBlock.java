@@ -3,6 +3,9 @@ package mods.natura.blocks.trees;
 import java.util.List;
 import java.util.Random;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+
 import mods.natura.common.NaturaTab;
 import mods.natura.common.PHNatura;
 import mods.natura.worldgen.BloodTreeGen;
@@ -38,6 +41,8 @@ public class NSaplingBlock extends BlockFlower
 		this.setCreativeTab(NaturaTab.tab);
 	}
 
+	@Override
+    @SideOnly(Side.CLIENT)
 	public void registerIcons (IconRegister iconRegister)
 	{
 		this.icons = new Icon[textureNames.length];
@@ -155,6 +160,8 @@ public class NSaplingBlock extends BlockFlower
 		}
 	}
 
+	@Override
+    @SideOnly(Side.CLIENT)
 	public Icon getIcon (int side, int meta)
 	{
 		return icons[meta % 8];

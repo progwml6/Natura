@@ -62,12 +62,12 @@ public class PHNatura
 		bloodDoor = config.getBlock("Bloodwood Door", 3268).getInt(3268);
 		redwoodBarkDoor = config.getBlock("Redwood Bark Door", 3269).getInt(3269);
 
-        omniRedwood = config.getBlock("Redwood Plank Stairslabs", 3270).getInt(3270);
+        /*omniRedwood = config.getBlock("Redwood Plank Stairslabs", 3270).getInt(3270);
         omniEucalyptus = config.getBlock("Eucalyptus Plank Stairslabs", 3271).getInt(3271);
         omniHopseed = config.getBlock("Hopseed Plank Stairslabs", 3272).getInt(3272);
         omniSakura = config.getBlock("Sakura Plank Stairslabs", 3273).getInt(3273);
         omniGhostwood = config.getBlock("Ghostwood Plank Stairslabs", 3274).getInt(3274);
-        omniBloodwood = config.getBlock("Bloodwood Plank Stairslabs", 3275).getInt(3275);
+        omniBloodwood = config.getBlock("Bloodwood Plank Stairslabs", 3275).getInt(3275);*/
 
 		netherBerryItem = config.getItem("Nether Berry Food", 12401).getInt(12401);
 		berryItemID = config.getItem("Berry Food", 12402).getInt(12402);

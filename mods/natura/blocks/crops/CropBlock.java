@@ -183,6 +183,8 @@ public class CropBlock extends BlockFlower
     public Icon[] icons;
     public String[] textureNames = new String[] { "barley_1", "barley_2", "barley_3", "barley_4", "cotton_1", "cotton_2", "cotton_3", "cotton_4", "cotton_5" };
 
+    @Override
+    @SideOnly(Side.CLIENT)
     public void registerIcons (IconRegister iconRegister)
     {
         this.icons = new Icon[textureNames.length];
@@ -194,6 +196,7 @@ public class CropBlock extends BlockFlower
     }
 
     @Override
+    @SideOnly(Side.CLIENT)
     public Icon getIcon (int side, int meta)
     {
         return icons[meta];

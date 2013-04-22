@@ -22,6 +22,8 @@ public class SimpleLog extends Planks
 		this.setCreativeTab(NaturaTab.tab);
 	}
 	
+	@Override
+    @SideOnly(Side.CLIENT)
 	public void registerIcons(IconRegister iconRegister)
     {
 		this.icons = new Icon[textureNames.length];
@@ -53,8 +55,9 @@ public class SimpleLog extends Planks
     {
         return blockFireSpreadSpeed[blockID];
     }
-    
+
     @Override
+    @SideOnly(Side.CLIENT)
 	public Icon getIcon(int side, int meta)
     {		
 		return icons[meta];

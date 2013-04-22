@@ -27,8 +27,9 @@ public class Planks extends Block
 		this.setCreativeTab(NaturaTab.tab);
 		this.setStepSound(Block.soundWoodFootstep);
 	}
-	
-	@Override
+
+    @Override
+    @SideOnly(Side.CLIENT)
 	public Icon getIcon(int side, int meta)
     {
 		if (meta == 0)
@@ -47,6 +48,8 @@ public class Planks extends Block
 		return icons[meta];
     }
 	
+	@Override
+    @SideOnly(Side.CLIENT)
 	public void registerIcons(IconRegister iconRegister)
     {
 		this.icons = new Icon[textureNames.length];
