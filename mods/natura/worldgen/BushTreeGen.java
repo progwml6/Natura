@@ -2,7 +2,7 @@ package mods.natura.worldgen;
 
 import java.util.Random;
 
-import mods.natura.common.NaturaContent;
+import mods.natura.common.NContent;
 import mods.natura.common.PHNatura;
 import net.minecraft.block.Block;
 import net.minecraft.util.MathHelper;
@@ -124,7 +124,7 @@ public class BushTreeGen extends WorldGenerator
                         {
                             var11 = x + (int)(1.5F + MathHelper.cos(var15) * (float)var13);
                             var12 = z + (int)(1.5F + MathHelper.sin(var15) * (float)var13);
-                            this.setBlockAndMetadata(world, var11, var14 - 3 + var13 / 2, var12, NaturaContent.tree.blockID, this.woodMetadata);
+                            this.setBlockAndMetadata(world, var11, var14 - 3 + var13 / 2, var12, NContent.tree.blockID, this.woodMetadata);
                         }
                     }
 
@@ -134,7 +134,7 @@ public class BushTreeGen extends WorldGenerator
 
                         if (var11 == 0 || Block.blocksList[var11] == null || Block.blocksList[var11].isLeaves(world, x, y + var10, z))
                         {
-                            this.setBlockAndMetadata(world, x, y + var10, z, NaturaContent.tree.blockID, this.woodMetadata);
+                            this.setBlockAndMetadata(world, x, y + var10, z, NContent.tree.blockID, this.woodMetadata);
 
                             /*if (var10 > 0)
                             {
@@ -156,7 +156,7 @@ public class BushTreeGen extends WorldGenerator
 
                             if (var11 == 0 || Block.blocksList[var11] == null || Block.blocksList[var11].isLeaves(world, x + 1, y + var10, z))
                             {
-                                this.setBlockAndMetadata(world, x + 1, y + var10, z, NaturaContent.tree.blockID, this.woodMetadata);
+                                this.setBlockAndMetadata(world, x + 1, y + var10, z, NContent.tree.blockID, this.woodMetadata);
 
                                 /*if (var10 > 0)
                                 {
@@ -176,7 +176,7 @@ public class BushTreeGen extends WorldGenerator
 
                             if (var11 == 0 || Block.blocksList[var11] == null || Block.blocksList[var11].isLeaves(world, x + 1, y + var10, z + 1))
                             {
-                                this.setBlockAndMetadata(world, x + 1, y + var10, z + 1, NaturaContent.tree.blockID, this.woodMetadata);
+                                this.setBlockAndMetadata(world, x + 1, y + var10, z + 1, NContent.tree.blockID, this.woodMetadata);
 
                                 /*if (var10 > 0)
                                 {
@@ -196,7 +196,7 @@ public class BushTreeGen extends WorldGenerator
 
                             if (var11 == 0 || Block.blocksList[var11] == null || Block.blocksList[var11].isLeaves(world, x, y + var10, z + 1))
                             {
-                                this.setBlockAndMetadata(world, x, y + var10, z + 1, NaturaContent.tree.blockID, this.woodMetadata);
+                                this.setBlockAndMetadata(world, x, y + var10, z + 1, NContent.tree.blockID, this.woodMetadata);
 
                                 /*if (var10 > 0)
                                 {
@@ -252,7 +252,7 @@ public class BushTreeGen extends WorldGenerator
                         (par6Random.nextInt(4) != 0 || var12 * var12 + var14 * var14 <= (var10 - 1) * (var10 - 1)) && 
                         (block == null || block.canBeReplacedByLeaves(par1World, var11, var8, var13)))
                     {
-                        this.setBlockAndMetadata(par1World, var11, var8, var13, NaturaContent.floraLeaves.blockID, this.leavesMetadata);
+                        this.setBlockAndMetadata(par1World, var11, var8, var13, NContent.floraLeaves.blockID, this.leavesMetadata);
                     }
                 }
             }

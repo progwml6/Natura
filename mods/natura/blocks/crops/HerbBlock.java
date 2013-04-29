@@ -2,7 +2,7 @@ package mods.natura.blocks.crops;
 
 import java.util.Random;
 
-import mods.natura.common.NaturaContent;
+import mods.natura.common.NContent;
 import mods.natura.common.NaturaTab;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -68,12 +68,12 @@ public class HerbBlock extends CropBlock
     
     protected int getCropItem(int meta)
     {
-        return NaturaContent.plantItem.itemID;
+        return NContent.plantItem.itemID;
     }
 
     protected int getSeedItem(int meta)
     {
-        return NaturaContent.seeds.itemID;
+        return NContent.seeds.itemID;
     }
     
     public int damageDropped(int meta)

@@ -6,7 +6,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 import mods.natura.client.SaguaroRenderer;
-import mods.natura.common.NaturaContent;
+import mods.natura.common.NContent;
 import mods.natura.common.NaturaTab;
 import mods.natura.worldgen.SaguaroGen;
 import net.minecraft.block.Block;
@@ -61,7 +61,7 @@ public class SaguaroBlock extends Block implements IPlantable
 		}
 		else if (meta == 2 && random.nextInt(200) == 0)
 		{
-			SaguaroGen gen = new SaguaroGen(NaturaContent.saguaro.blockID, 0, true);
+			SaguaroGen gen = new SaguaroGen(NContent.saguaro.blockID, 0, true);
 			gen.generate(world, random, x, y, z);
 		}
 		else if (meta == 1 && random.nextInt(200) == 0)
@@ -173,7 +173,7 @@ public class SaguaroBlock extends Block implements IPlantable
 		if (meta == 0)
 			return this.blockID;
 		else
-			return NaturaContent.seedFood.itemID;
+			return NContent.seedFood.itemID;
 	}
 
 	public Icon[] icons;

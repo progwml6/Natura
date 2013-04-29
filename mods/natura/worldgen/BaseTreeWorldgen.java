@@ -2,7 +2,7 @@ package mods.natura.worldgen;
 
 import java.util.Random;
 
-import mods.natura.common.NaturaContent;
+import mods.natura.common.NContent;
 import mods.natura.common.PHNatura;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
@@ -12,13 +12,13 @@ public class BaseTreeWorldgen implements IWorldGenerator
 {
 	public BaseTreeWorldgen()
 	{
-		genRedwood = new RedwoodTreeGen(false, NaturaContent.redwood.blockID, 0);
+		genRedwood = new RedwoodTreeGen(false, NContent.redwood.blockID, 0);
 		genBlood = new BloodTreeGen(3, 2);
 		bush = new BushTreeGen(false, 2, 3, 2);
 		pinkSakura = new SakuraTreeGen(false, 1, 0);
 		whiteSakura = new WhiteTreeGen(false, 2, 1);
 		eucalyptusShort = new EucalyptusTreeGenShort(0, 1);
-		saguaro = new SaguaroGen(NaturaContent.saguaro.blockID, 0, false);
+		saguaro = new SaguaroGen(NContent.saguaro.blockID, 0, false);
 	}
 
 	RedwoodTreeGen genRedwood;

@@ -3,7 +3,7 @@ package mods.natura.blocks.trees;
 import java.util.List;
 import java.util.Random;
 
-import mods.natura.common.NaturaContent;
+import mods.natura.common.NContent;
 import mods.natura.common.NaturaTab;
 import net.minecraft.block.BlockLog;
 import net.minecraft.client.renderer.texture.IconRegister;
@@ -43,7 +43,7 @@ public class LogTwoxTwo extends BlockLog
 	
 	public int idDropped(int par1, Random par2Random, int par3)
     {
-        return NaturaContent.bloodwood.blockID;
+        return NContent.bloodwood.blockID;
     }
 
 	public int damageDropped (int meta)

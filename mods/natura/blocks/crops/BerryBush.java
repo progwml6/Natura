@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Random;
 
 import mods.natura.client.BerryRender;
-import mods.natura.common.NaturaContent;
+import mods.natura.common.NContent;
 import mods.natura.common.NaturaTab;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLeavesBase;
@@ -175,7 +175,7 @@ public class BerryBush extends BlockLeavesBase implements IPlantable
 			if (meta >= 12)
 			{
 				world.setBlock(x, y, z, blockID, meta - 4, 3);
-				EntityItem entityitem = new EntityItem(world, player.posX, player.posY - 1.0D, player.posZ, new ItemStack(NaturaContent.berryItem.itemID, 1, meta - 12));
+				EntityItem entityitem = new EntityItem(world, player.posX, player.posY - 1.0D, player.posZ, new ItemStack(NContent.berryItem.itemID, 1, meta - 12));
 				world.spawnEntityInWorld(entityitem);
 				entityitem.onCollideWithPlayer(player);
 			}
@@ -196,7 +196,7 @@ public class BerryBush extends BlockLeavesBase implements IPlantable
                 return true;
             
 			world.setBlock(x, y, z, blockID, meta - 4, 3);
-			EntityItem entityitem = new EntityItem(world, player.posX, player.posY - 1.0D, player.posZ, new ItemStack(NaturaContent.berryItem.itemID, 1, meta - 12));
+			EntityItem entityitem = new EntityItem(world, player.posX, player.posY - 1.0D, player.posZ, new ItemStack(NContent.berryItem.itemID, 1, meta - 12));
 			world.spawnEntityInWorld(entityitem);
 			entityitem.onCollideWithPlayer(player);
 			return true;

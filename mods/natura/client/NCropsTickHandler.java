@@ -2,7 +2,7 @@ package mods.natura.client;
 
 import java.util.EnumSet;
 
-import mods.natura.common.NaturaContent;
+import mods.natura.common.NContent;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.src.ModLoader;
@@ -24,10 +24,10 @@ public class NCropsTickHandler implements ITickHandler
 	@Override
 	public void tickStart(EnumSet<TickType> type, Object... tickData) 
 	{
-		NaturaContent.berryBush.setGraphicsLevel(Block.leaves.graphicsLevel);
-        NaturaContent.netherBerryBush.setGraphicsLevel(Block.leaves.graphicsLevel);
-		NaturaContent.floraLeaves.setGraphicsLevel(Block.leaves.graphicsLevel);
-		NaturaContent.floraLeavesNoColor.setGraphicsLevel(Block.leaves.graphicsLevel);
+		NContent.berryBush.setGraphicsLevel(Block.leaves.graphicsLevel);
+        NContent.netherBerryBush.setGraphicsLevel(Block.leaves.graphicsLevel);
+		NContent.floraLeaves.setGraphicsLevel(Block.leaves.graphicsLevel);
+		NContent.floraLeavesNoColor.setGraphicsLevel(Block.leaves.graphicsLevel);
 	}
 
 	@Override

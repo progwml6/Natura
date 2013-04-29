@@ -1,7 +1,7 @@
 package mods.natura.entities.boats;
 import java.util.List;
 
-import mods.natura.common.NaturaContent;
+import mods.natura.common.NContent;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
@@ -97,7 +97,7 @@ public class BloodBoat extends Entity
             }
             for (int j = 0; j < 5; j++)
             {
-                entityDropItem(new ItemStack(NaturaContent.tree, 1, 4), 0F);
+                entityDropItem(new ItemStack(NContent.tree, 1, 4), 0F);
             }
 
             setDead();
@@ -272,7 +272,7 @@ public class BloodBoat extends Entity
             	setDead();
                 for (int j = 0; j < 5; j++)
                 {
-                	entityDropItem(new ItemStack(NaturaContent.tree, 1, 4), 0F);
+                	entityDropItem(new ItemStack(NContent.tree, 1, 4), 0F);
                 }
             }
         }

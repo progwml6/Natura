@@ -2,7 +2,7 @@ package mods.natura.worldgen;
 
 import java.util.Random;
 
-import mods.natura.common.NaturaContent;
+import mods.natura.common.NContent;
 import mods.natura.common.PHNatura;
 import net.minecraft.block.Block;
 import net.minecraft.util.MathHelper;
@@ -2077,7 +2077,7 @@ public class RedwoodTreeGen extends WorldGenerator
         for (int i1 = j + leafDistanceLimit; l < i1; l++)
         {
             float f = func_526_b(l - j);
-            func_523_a(i, l, k, f, (byte) 1, NaturaContent.floraLeaves.blockID);
+            func_523_a(i, l, k, f, (byte) 1, NContent.floraLeaves.blockID);
         }
     }
 
@@ -2152,7 +2152,7 @@ public class RedwoodTreeGen extends WorldGenerator
             int k = ai[1] - basePos[1];
             if (leafNodeNeedsBase(k))
             {
-                placeBlockLine(ai, ai2, NaturaContent.redwood.blockID);
+                placeBlockLine(ai, ai2, NContent.redwood.blockID);
             }
         }
     }

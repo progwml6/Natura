@@ -2,7 +2,7 @@ package mods.natura.worldgen;
 
 import java.util.Random;
 
-import mods.natura.common.NaturaContent;
+import mods.natura.common.NContent;
 import mods.natura.common.PHNatura;
 import net.minecraft.block.Block;
 import net.minecraft.world.World;
@@ -183,7 +183,7 @@ public class BerryBushGen extends WorldGenerator
         if (!Block.opaqueCubeLookup[world.getBlockId(x, y, z)])
         {
             int metaOffset = random.nextInt(5) == 0 ? 1 : 0;
-            setBlockAndMetadata(world, x, y, z, NaturaContent.berryBush.blockID, metadata + 8 + metaOffset * 4);
+            setBlockAndMetadata(world, x, y, z, NContent.berryBush.blockID, metadata + 8 + metaOffset * 4);
         }
     }
 
@@ -192,7 +192,7 @@ public class BerryBushGen extends WorldGenerator
         if (!Block.opaqueCubeLookup[world.getBlockId(x, y, z)])
         {
             int metaOffset = random.nextInt(4);
-            setBlockAndMetadata(world, x, y, z, NaturaContent.berryBush.blockID, metadata + metaOffset * 4);
+            setBlockAndMetadata(world, x, y, z, NContent.berryBush.blockID, metadata + metaOffset * 4);
         }
     }
 }

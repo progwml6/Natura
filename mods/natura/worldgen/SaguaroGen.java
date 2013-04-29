@@ -2,7 +2,7 @@ package mods.natura.worldgen;
 
 import java.util.Random;
 
-import mods.natura.common.NaturaContent;
+import mods.natura.common.NContent;
 import mods.natura.common.PHNatura;
 import net.minecraft.block.Block;
 import net.minecraft.world.World;
@@ -26,10 +26,10 @@ public class SaguaroGen extends WorldGenerator
 		int currentID = world.getBlockId(x, yPos, z);
 		if (currentID != 0)
 		{
-			if (currentID == NaturaContent.saguaro.blockID)
+			if (currentID == NContent.saguaro.blockID)
 			{
 				Block block = Block.blocksList[world.getBlockId(x, yPos - 1, z)];
-				if (block == null || !block.canSustainPlant(world, x, yPos - 1, z, ForgeDirection.UP, (IPlantable) NaturaContent.saguaro))
+				if (block == null || !block.canSustainPlant(world, x, yPos - 1, z, ForgeDirection.UP, (IPlantable) NContent.saguaro))
 					return false;
 			}
 			else
@@ -38,7 +38,7 @@ public class SaguaroGen extends WorldGenerator
 		else
 		{
 			Block block = Block.blocksList[world.getBlockId(x, yPos - 1, z)];
-			if (block == null || !block.canSustainPlant(world, x, yPos-1, z, ForgeDirection.UP, (IPlantable) NaturaContent.saguaro))
+			if (block == null || !block.canSustainPlant(world, x, yPos-1, z, ForgeDirection.UP, (IPlantable) NContent.saguaro))
 			{
 				return false;
 			}
@@ -135,7 +135,7 @@ public class SaguaroGen extends WorldGenerator
 	void genBlock (World world, int x, int y, int z)
 	{
 		if (!Block.opaqueCubeLookup[world.getBlockId(x, y, z)])
-			world.setBlock(x, y, z, NaturaContent.saguaro.blockID);
+			world.setBlock(x, y, z, NContent.saguaro.blockID);
 	}
 
 	int findGround (World world, int x, int y, int z, boolean useHeight)

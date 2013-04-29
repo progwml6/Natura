@@ -3,7 +3,7 @@ package mods.natura;
 import java.util.Random;
 
 import mods.natura.common.NCommonProxy;
-import mods.natura.common.NaturaContent;
+import mods.natura.common.NContent;
 import mods.natura.common.NaturaTab;
 import mods.natura.common.PHNatura;
 import mods.natura.worldgen.BaseCloudWorldgen;
@@ -35,7 +35,7 @@ import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
 
-@Mod(modid = "Natura", name = "Natura", version = "1.5.1_2.0.17")
+@Mod(modid = "Natura", name = "Natura", version = "1.5.1_2.0.19.2")
 public class Natura
 {
     /* Proxies for sides, used for graphics processing */
@@ -53,7 +53,7 @@ public class Natura
         MinecraftForge.EVENT_BUS.register(this);
 
         PHNatura.initProps();
-        content = new NaturaContent();
+        content = new NContent();
         content.preInit();
     }
 
@@ -100,7 +100,7 @@ public class Natura
         {
             ItemStack equipped = event.entityPlayer.getCurrentEquippedItem();
             EntityAnimal creature = (EntityAnimal) event.target;
-            if (equipped != null && equipped.itemID == NaturaContent.plantItem.itemID && equipped.getItemDamage() == 0 && creature.getGrowingAge() == 0 && creature.inLove <= 0)
+            if (equipped != null && equipped.itemID == NContent.plantItem.itemID && equipped.getItemDamage() == 0 && creature.getGrowingAge() == 0 && creature.inLove <= 0)
             {
                 EntityPlayer player = event.entityPlayer;
                 if (!player.capabilities.isCreativeMode)
@@ -134,15 +134,15 @@ public class Natura
     {
         if (event.entityLiving instanceof EntityCow || event.entityLiving instanceof EntitySheep)
         {
-            event.entityLiving.tasks.addTask(3, new EntityAITempt((EntityCreature) event.entityLiving, 0.25F, NaturaContent.plantItem.itemID, false));
+            event.entityLiving.tasks.addTask(3, new EntityAITempt((EntityCreature) event.entityLiving, 0.25F, NContent.plantItem.itemID, false));
         }
 
         if (event.entityLiving instanceof EntityChicken)
         {
-            event.entityLiving.tasks.addTask(3, new EntityAITempt((EntityCreature) event.entityLiving, 0.25F, NaturaContent.seeds.itemID, false));
+            event.entityLiving.tasks.addTask(3, new EntityAITempt((EntityCreature) event.entityLiving, 0.25F, NContent.seeds.itemID, false));
         }
     }
 
-    NaturaContent content;
+    NContent content;
     public static Random random = new Random();
 }

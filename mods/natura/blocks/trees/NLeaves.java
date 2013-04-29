@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import mods.natura.common.NaturaContent;
+import mods.natura.common.NContent;
 import mods.natura.common.NaturaTab;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLeaves;
@@ -111,7 +111,7 @@ public class NLeaves extends BlockLeaves
     @Override
     public int idDropped(int var1, Random var2, int var3)
     {
-        return NaturaContent.floraSapling.blockID;
+        return NContent.floraSapling.blockID;
     }
     
     @Override

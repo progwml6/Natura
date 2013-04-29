@@ -1,7 +1,7 @@
 package mods.natura.blocks;
 
 import mods.natura.Natura;
-import mods.natura.common.NaturaContent;
+import mods.natura.common.NContent;
 import mods.natura.common.NaturaTab;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
@@ -39,7 +39,7 @@ public class CloudBlock extends NBlock
     public boolean shouldSideBeRendered(IBlockAccess iblockaccess, int x, int y, int z, int side)
     {
         int blockID = iblockaccess.getBlockId(x, y, z);
-        if (blockID == NaturaContent.cloud.blockID)
+        if (blockID == NContent.cloud.blockID)
         {
             return false;
         }
@@ -71,7 +71,7 @@ public class CloudBlock extends NBlock
     public boolean isBlockSolid(IBlockAccess iblockaccess, int x, int y, int z, int l)
     {
         int blockID = iblockaccess.getBlockId(x, y, z);
-        if (blockID == NaturaContent.cloud.blockID)
+        if (blockID == NContent.cloud.blockID)
         {
             return false;
         }
@@ -84,7 +84,7 @@ public class CloudBlock extends NBlock
     @Override
     public AxisAlignedBB getCollisionBoundingBoxFromPool(World world, int x, int y, int z)
     {
-        if (world.getBlockId(x, y - 1, z) == NaturaContent.cloud.blockID)
+        if (world.getBlockId(x, y - 1, z) == NContent.cloud.blockID)
         {
             return null;
         }

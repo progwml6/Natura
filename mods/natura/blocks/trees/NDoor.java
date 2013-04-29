@@ -2,7 +2,7 @@ package mods.natura.blocks.trees;
 import java.util.List;
 import java.util.Random;
 
-import mods.natura.common.NaturaContent;
+import mods.natura.common.NContent;
 import mods.natura.common.PHNatura;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDoor;
@@ -84,7 +84,7 @@ public class NDoor extends BlockDoor
     
     public ItemStack getPickBlock(MovingObjectPosition target, World world, int x, int y, int z)
     {
-    	return new ItemStack(NaturaContent.doorItem, 1, meta);
+    	return new ItemStack(NContent.doorItem, 1, meta);
     }
     
     public void getSubBlocks(int par1, CreativeTabs par2CreativeTabs, List par3List)

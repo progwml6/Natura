@@ -51,7 +51,7 @@ import net.minecraftforge.oredict.ShapelessOreRecipe;
 import cpw.mods.fml.common.event.FMLInterModComms;
 import cpw.mods.fml.common.registry.GameRegistry;
 
-public class NaturaContent
+public class NContent
 {
 
     public void preInit ()
@@ -84,12 +84,12 @@ public class NaturaContent
         GameRegistry.registerBlock(cloud, CloudItem.class, "Cloud");
 
         //Trees
-        tree = new TreeBlock(PHNatura.treeID);
-        redwood = new SimpleLog(PHNatura.redwoodID);
-        planks = new Planks(PHNatura.planksID);
-        floraLeaves = new NLeaves(PHNatura.floraLeavesID);
-        floraLeavesNoColor = new NLeavesNocolor(PHNatura.cherryLeavesID);
-        floraSapling = new NSaplingBlock(PHNatura.floraSaplingID);
+        tree = new TreeBlock(PHNatura.treeID).setUnlocalizedName("natura.treeblock");
+        redwood = new SimpleLog(PHNatura.redwoodID).setUnlocalizedName("natura.redwood");
+        planks = new Planks(PHNatura.planksID).setUnlocalizedName("natura.planks");
+        floraLeaves = (NLeaves) new NLeaves(PHNatura.floraLeavesID).setUnlocalizedName("natura.leaves");
+        floraLeavesNoColor = (NLeaves) new NLeavesNocolor(PHNatura.cherryLeavesID).setUnlocalizedName("natura.leavesnocolor");
+        floraSapling = (NSaplingBlock) new NSaplingBlock(PHNatura.floraSaplingID).setUnlocalizedName("natura.sapling");
         bloodwood = new LogTwoxTwo(PHNatura.bloodwoodID, 8f).setUnlocalizedName("bloodwood");
 
         saguaro = new SaguaroBlock(PHNatura.saguaroID).setUnlocalizedName("saguaro.block");

@@ -1,7 +1,7 @@
 package mods.natura.blocks.trees;
 import java.util.List;
 
-import mods.natura.common.NaturaContent;
+import mods.natura.common.NContent;
 import mods.natura.common.NaturaTab;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IconRegister;
@@ -49,13 +49,13 @@ public class NDoorItem extends Item
         Block block;
         switch (itemstack.getItemDamage())
         {
-        case 0: block = NaturaContent.redwoodDoor; break;
-        case 1: block = NaturaContent.eucalyptusDoor; break;
-        case 2: block = NaturaContent.hopseedDoor; break;
-        case 3: block = NaturaContent.sakuraDoor; break;
-        case 4: block = NaturaContent.ghostDoor; break;
-        case 5: block = NaturaContent.bloodDoor; break;
-        case 6: block = NaturaContent.redwoodBarkDoor; break;
+        case 0: block = NContent.redwoodDoor; break;
+        case 1: block = NContent.eucalyptusDoor; break;
+        case 2: block = NContent.hopseedDoor; break;
+        case 3: block = NContent.sakuraDoor; break;
+        case 4: block = NContent.ghostDoor; break;
+        case 5: block = NContent.bloodDoor; break;
+        case 6: block = NContent.redwoodBarkDoor; break;
         default: block = Block.doorWood; break;
         }
         if (!player.canPlayerEdit(x, y, z, side, itemstack) || !player.canPlayerEdit(x, y + 1, z, side, itemstack))

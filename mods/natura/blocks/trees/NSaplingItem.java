@@ -4,7 +4,7 @@ import java.util.List;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import mods.natura.common.NaturaContent;
+import mods.natura.common.NContent;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
@@ -32,7 +32,7 @@ public class NSaplingItem extends ItemBlock
 
     public Icon getIconFromDamage(int i)
     {
-        return NaturaContent.floraSapling.getIcon(0, i);
+        return NContent.floraSapling.getIcon(0, i);
     }
     
     @Override

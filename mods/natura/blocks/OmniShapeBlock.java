@@ -54,7 +54,7 @@ public class OmniShapeBlock extends Block
         int meta = par1IBlockAccess.getBlockMetadata(par2, par3, par4);
         if (meta < 8)
         {
-            if (this.field_72156_cr)
+            /*if (this.field_72156_cr)
             {
                 this.setBlockBounds(0.5F * (float) (this.field_72160_cs % 2), 0.5F * (float) (this.field_72160_cs / 2 % 2), 0.5F * (float) (this.field_72160_cs / 4 % 2),
                         0.5F + 0.5F * (float) (this.field_72160_cs % 2), 0.5F + 0.5F * (float) (this.field_72160_cs / 2 % 2), 0.5F + 0.5F * (float) (this.field_72160_cs / 4 % 2));
@@ -62,7 +62,7 @@ public class OmniShapeBlock extends Block
             else
             {
                 this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
-            }
+            }*/
         }
 
         else if (meta < 14)
@@ -449,7 +449,7 @@ public class OmniShapeBlock extends Block
      */
     public void addCollisionBoxesToList (World world, int x, int y, int z, AxisAlignedBB aabb, List list, Entity entity)
     {
-        int meta = world.getBlockMetadata(x, y, z);
+        /*int meta = world.getBlockMetadata(x, y, z);
         if (meta < 8)
         {
             this.func_82541_d(world, x, y, z);
@@ -464,7 +464,7 @@ public class OmniShapeBlock extends Block
 
             this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
         }
-        else
+        else*/
             super.addCollisionBoxesToList(world, x, y, z, aabb, list, entity);
     }
 

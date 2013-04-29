@@ -74,7 +74,7 @@ public class OmniShapeRender implements ISimpleBlockRenderingHandler
 
     public boolean renderBlockStairs (OmniShapeBlock block, IBlockAccess world, int x, int y, int z, RenderBlocks renderer)
     {
-        block.func_82541_d(world, x, y, z);
+        /*block.func_82541_d(world, x, y, z);
         renderer.setRenderBoundsFromBlock(block);
         renderer.renderStandardBlock(block, x, y, z);
         boolean flag = block.func_82542_g(world, x, y, z);
@@ -85,7 +85,7 @@ public class OmniShapeRender implements ISimpleBlockRenderingHandler
         {
             renderer.setRenderBoundsFromBlock(block);
             renderer.renderStandardBlock(block, x, y, z);
-        }
+        }*/
 
         return true;
     }
@@ -172,7 +172,7 @@ public class OmniShapeRender implements ISimpleBlockRenderingHandler
             }
         }
 
-        block.setBlockBoundsBasedOnState(world, x, y, z);
+        //block.setBlockBoundsBasedOnState(world, x, y, z);
         return true;
     }
 

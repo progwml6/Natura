@@ -2,7 +2,7 @@ package mods.natura.worldgen;
 
 import java.util.Random;
 
-import mods.natura.common.NaturaContent;
+import mods.natura.common.NContent;
 import mods.natura.common.PHNatura;
 import net.minecraft.block.Block;
 import net.minecraft.util.MathHelper;
@@ -236,7 +236,7 @@ public class SakuraTreeGen extends WorldGenerator
         for (int iter = y + this.leafDistanceLimit; height < iter; ++height)
         {
             float var6 = this.leafSize(height - y);
-            this.genTreeLayer(x, height, z, var6, (byte) 1, NaturaContent.floraLeavesNoColor.blockID, world);
+            this.genTreeLayer(x, height, z, var6, (byte) 1, NContent.floraLeavesNoColor.blockID, world);
         }
     }
 
@@ -340,19 +340,19 @@ public class SakuraTreeGen extends WorldGenerator
         int var4 = this.basePos[2];
         int[] var5 = new int[] { var1, var2, var4 };
         int[] var6 = new int[] { var1, var3, var4 };
-        this.placeBlockLine(var5, var6, NaturaContent.tree.blockID, world);
+        this.placeBlockLine(var5, var6, NContent.tree.blockID, world);
 
         if (this.trunkSize == 2)
         {
             ++var5[0];
             ++var6[0];
-            this.placeBlockLine(var5, var6, NaturaContent.tree.blockID, world);
+            this.placeBlockLine(var5, var6, NContent.tree.blockID, world);
             ++var5[2];
             ++var6[2];
-            this.placeBlockLine(var5, var6, NaturaContent.tree.blockID, world);
+            this.placeBlockLine(var5, var6, NContent.tree.blockID, world);
             var5[0] += -1;
             var6[0] += -1;
-            this.placeBlockLine(var5, var6, NaturaContent.tree.blockID, world);
+            this.placeBlockLine(var5, var6, NContent.tree.blockID, world);
         }
     }
 
@@ -373,7 +373,7 @@ public class SakuraTreeGen extends WorldGenerator
 
             if (this.leafNodeNeedsBase(var6))
             {
-                this.placeBlockLine(var3, var5, NaturaContent.tree.blockID, world);
+                this.placeBlockLine(var3, var5, NContent.tree.blockID, world);
             }
         }
     }

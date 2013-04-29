@@ -4,7 +4,7 @@ import java.util.List;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import mods.natura.common.NaturaContent;
+import mods.natura.common.NContent;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemBlock;
@@ -40,13 +40,13 @@ public class NetherBerryBushItem extends ItemBlock
         {
             Block block = Block.blocksList[world.getBlockId(x, y, z)];
 
-            if (block != null && (block.canSustainPlant(world, x, y, z, ForgeDirection.UP, (IPlantable) NaturaContent.netherBerryBush) || block == Block.netherrack) && world.isAirBlock(x, y + 1, z))
+            if (block != null && (block.canSustainPlant(world, x, y, z, ForgeDirection.UP, (IPlantable) NContent.netherBerryBush) || block == Block.netherrack) && world.isAirBlock(x, y + 1, z))
             {
-                world.setBlock(x, y + 1, z, NaturaContent.netherBerryBush.blockID, stack.getItemDamage() % 4, 3);
+                world.setBlock(x, y + 1, z, NContent.netherBerryBush.blockID, stack.getItemDamage() % 4, 3);
                 if (!player.capabilities.isCreativeMode)
                 	stack.stackSize--;
                 if (!world.isRemote)
-                	world.playAuxSFX(2001, x, y, z, NaturaContent.netherBerryBush.blockID);
+                	world.playAuxSFX(2001, x, y, z, NContent.netherBerryBush.blockID);
                 return true;
             }
             else

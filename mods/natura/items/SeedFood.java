@@ -4,7 +4,7 @@ import java.util.List;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import mods.natura.common.NaturaContent;
+import mods.natura.common.NContent;
 import mods.natura.common.NaturaTab;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IconRegister;
@@ -37,7 +37,7 @@ public class SeedFood extends ItemSeedFood
             int i1 = world.getBlockId(x, y, z);
             Block soil = Block.blocksList[i1];
 
-            if (soil != null && soil.canSustainPlant(world, x, y, z, ForgeDirection.UP, (IPlantable) NaturaContent.saguaro) && world.isAirBlock(x, y + 1, z))
+            if (soil != null && soil.canSustainPlant(world, x, y, z, ForgeDirection.UP, (IPlantable) NContent.saguaro) && world.isAirBlock(x, y + 1, z))
             {
                 world.setBlock(x, y + 1, z, this.crop, 1, 3);
                 --stack.stackSize;

@@ -3,7 +3,7 @@ package mods.natura.client;
 import java.io.File;
 
 import mods.natura.common.NCommonProxy;
-import mods.natura.common.NaturaContent;
+import mods.natura.common.NContent;
 import net.minecraft.client.Minecraft;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
@@ -66,8 +66,8 @@ public class NClientProxy extends NCommonProxy
 		LanguageRegistry.instance().addStringLocalization("ashcloud.name", "en_US", "Ash Cloud");
 		LanguageRegistry.instance().addStringLocalization("sulfurcloud.name", "en_US", "Sulfur Cloud");
 
-		LanguageRegistry.instance().addName(NaturaContent.bloodwood, "Bloodwood");
-		LanguageRegistry.instance().addName(NaturaContent.saguaro, "Saguaro Cactus");
+		LanguageRegistry.instance().addName(NContent.bloodwood, "Bloodwood");
+		LanguageRegistry.instance().addName(NContent.saguaro, "Saguaro Cactus");
 
 		LanguageRegistry.instance().addStringLocalization("redwoodNDoor.name", "en_US", "Redwood Door");
 		LanguageRegistry.instance().addStringLocalization("eucalyptusNDoor.name", "en_US", "Eucalyptus Door");

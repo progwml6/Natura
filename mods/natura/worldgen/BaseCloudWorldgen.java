@@ -2,7 +2,7 @@ package mods.natura.worldgen;
 
 import java.util.Random;
 
-import mods.natura.common.NaturaContent;
+import mods.natura.common.NContent;
 import mods.natura.common.PHNatura;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
@@ -21,24 +21,24 @@ public class BaseCloudWorldgen implements IWorldGenerator
 	
 	public BaseCloudWorldgen()
 	{
-		smallcloud = new CloudGen(NaturaContent.cloud.blockID, 0, 10, false);
-		mediumcloud = new CloudGen(NaturaContent.cloud.blockID, 0, 20, false);
-		largecloud = new CloudGen(NaturaContent.cloud.blockID, 0, 30, false);
-		hugecloud = new CloudGen(NaturaContent.cloud.blockID, 0, 40, false);
-		smalldarkcloud = new CloudGen(NaturaContent.cloud.blockID, 1, 10, false);
-		mediumdarkcloud = new CloudGen(NaturaContent.cloud.blockID, 1, 20, false);
-		largedarkcloud = new CloudGen(NaturaContent.cloud.blockID, 1, 30, false);
-		hugedarkcloud = new CloudGen(NaturaContent.cloud.blockID, 1, 40, false);
-		tinyashcloud = new CloudGen(NaturaContent.cloud.blockID, 2, 3, false);
-		smallashcloud = new CloudGen(NaturaContent.cloud.blockID, 2, 10, false);
-		mediumashcloud = new CloudGen(NaturaContent.cloud.blockID, 2, 18, false);
-		largeashcloud = new CloudGen(NaturaContent.cloud.blockID, 2, 27, false);
-		hugeashcloud = new CloudGen(NaturaContent.cloud.blockID, 2, 37, false);
-		tinysulfurcloud = new CloudGen(NaturaContent.cloud.blockID, 3, 3, false);
-		smallsulfurcloud = new CloudGen(NaturaContent.cloud.blockID, 3, 10, false);
-		mediumsulfurcloud = new CloudGen(NaturaContent.cloud.blockID, 3, 18, false);
-		largesulfurcloud = new CloudGen(NaturaContent.cloud.blockID, 3, 27, false);
-		hugesulfurcloud = new CloudGen(NaturaContent.cloud.blockID, 3, 37, false);
+		smallcloud = new CloudGen(NContent.cloud.blockID, 0, 10, false);
+		mediumcloud = new CloudGen(NContent.cloud.blockID, 0, 20, false);
+		largecloud = new CloudGen(NContent.cloud.blockID, 0, 30, false);
+		hugecloud = new CloudGen(NContent.cloud.blockID, 0, 40, false);
+		smalldarkcloud = new CloudGen(NContent.cloud.blockID, 1, 10, false);
+		mediumdarkcloud = new CloudGen(NContent.cloud.blockID, 1, 20, false);
+		largedarkcloud = new CloudGen(NContent.cloud.blockID, 1, 30, false);
+		hugedarkcloud = new CloudGen(NContent.cloud.blockID, 1, 40, false);
+		tinyashcloud = new CloudGen(NContent.cloud.blockID, 2, 3, false);
+		smallashcloud = new CloudGen(NContent.cloud.blockID, 2, 10, false);
+		mediumashcloud = new CloudGen(NContent.cloud.blockID, 2, 18, false);
+		largeashcloud = new CloudGen(NContent.cloud.blockID, 2, 27, false);
+		hugeashcloud = new CloudGen(NContent.cloud.blockID, 2, 37, false);
+		tinysulfurcloud = new CloudGen(NContent.cloud.blockID, 3, 3, false);
+		smallsulfurcloud = new CloudGen(NContent.cloud.blockID, 3, 10, false);
+		mediumsulfurcloud = new CloudGen(NContent.cloud.blockID, 3, 18, false);
+		largesulfurcloud = new CloudGen(NContent.cloud.blockID, 3, 27, false);
+		hugesulfurcloud = new CloudGen(NContent.cloud.blockID, 3, 37, false);
 	}
 
 	@Override

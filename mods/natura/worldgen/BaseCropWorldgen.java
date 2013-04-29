@@ -2,7 +2,7 @@ package mods.natura.worldgen;
 
 import java.util.Random;
 
-import mods.natura.common.NaturaContent;
+import mods.natura.common.NContent;
 import mods.natura.common.PHNatura;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFlower;
@@ -25,10 +25,10 @@ public class BaseCropWorldgen implements IWorldGenerator
 		blackgen = new BerryBushGen(2, PHNatura.seaLevel + PHNatura.blackSpawnRange);
 		malogen = new BerryBushGen(3, PHNatura.seaLevel + PHNatura.geoSpawnRange);
 		
-		blightgen = new NetherBerryBushGen(NaturaContent.netherBerryBush, 0);
-		duskgen = new NetherBerryBushGen(NaturaContent.netherBerryBush, 1);
-		skygen = new NetherBerryBushGen(NaturaContent.netherBerryBush, 2);
-		stinggen = new NetherBerryBushGen(NaturaContent.netherBerryBush, 3);
+		blightgen = new NetherBerryBushGen(NContent.netherBerryBush, 0);
+		duskgen = new NetherBerryBushGen(NContent.netherBerryBush, 1);
+		skygen = new NetherBerryBushGen(NContent.netherBerryBush, 2);
+		stinggen = new NetherBerryBushGen(NContent.netherBerryBush, 3);
 	}
 
 	@Override
@@ -141,7 +141,7 @@ public class BaseCropWorldgen implements IWorldGenerator
 			int k1 = (z + random.nextInt(8)) - random.nextInt(8);
 			if (world.isAirBlock(i1, j1, k1) && ((BlockFlower) Block.blocksList[Block.plantYellow.blockID]).canBlockStay(world, i1, j1, k1))
 			{
-				world.setBlock(i1, j1, k1, NaturaContent.crops.blockID, 3, 2);
+				world.setBlock(i1, j1, k1, NContent.crops.blockID, 3, 2);
 			}
 		}
 
@@ -157,7 +157,7 @@ public class BaseCropWorldgen implements IWorldGenerator
 			int k1 = (z + random.nextInt(8)) - random.nextInt(8);
 			if (world.isAirBlock(i1, j1, k1) && ((BlockFlower) Block.blocksList[Block.plantYellow.blockID]).canBlockStay(world, i1, j1, k1))
 			{
-				world.setBlock(i1, j1, k1, NaturaContent.crops.blockID, 8, 2);
+				world.setBlock(i1, j1, k1, NContent.crops.blockID, 8, 2);
 			}
 		}
 

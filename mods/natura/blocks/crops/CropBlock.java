@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import mods.natura.client.CropRender;
-import mods.natura.common.NaturaContent;
+import mods.natura.common.NContent;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockCrops;
 import net.minecraft.block.material.Material;
@@ -38,7 +38,7 @@ public class CropBlock extends BlockCrops
      */
     public void updateTick (World world, int x, int y, int z, Random random)
     {
-        super.updateTick(world, x, y, z, random);
+        this.checkFlowerChange(world, x, y, z);
 
         int light = world.getBlockLightValue(x, y, z);
         if (light >= 8)
@@ -115,7 +115,7 @@ public class CropBlock extends BlockCrops
             if (meta == 8)
             {
                 world.setBlock(x, y, z, blockID, 6, 3);
-                EntityItem entityitem = new EntityItem(world, player.posX, player.posY - 1.0D, player.posZ, new ItemStack(NaturaContent.plantItem.itemID, 1, 4));
+                EntityItem entityitem = new EntityItem(world, player.posX, player.posY - 1.0D, player.posZ, new ItemStack(NContent.plantItem.itemID, 1, 3));
                 world.spawnEntityInWorld(entityitem);
                 entityitem.onCollideWithPlayer(player);
             }
@@ -136,7 +136,7 @@ public class CropBlock extends BlockCrops
                 return true;
             
             world.setBlock(x, y, z, blockID, 6, 3);
-            EntityItem entityitem = new EntityItem(world, player.posX, player.posY - 1.0D, player.posZ, new ItemStack(NaturaContent.plantItem.itemID, 1, 3));
+            EntityItem entityitem = new EntityItem(world, player.posX, player.posY - 1.0D, player.posZ, new ItemStack(NContent.plantItem.itemID, 1, 3));
             world.spawnEntityInWorld(entityitem);
             entityitem.onCollideWithPlayer(player);
             return true;
@@ -226,12 +226,12 @@ public class CropBlock extends BlockCrops
 
     protected int getCropItem (int meta)
     {
-        return NaturaContent.plantItem.itemID;
+        return NContent.plantItem.itemID;
     }
 
     protected int getSeedItem (int meta)
     {
-        return NaturaContent.seeds.itemID;
+        return NContent.seeds.itemID;
     }
 
     public int damageDropped (int meta)

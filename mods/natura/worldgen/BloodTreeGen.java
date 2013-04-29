@@ -2,7 +2,7 @@ package mods.natura.worldgen;
 
 import java.util.Random;
 
-import mods.natura.common.NaturaContent;
+import mods.natura.common.NContent;
 import net.minecraft.block.Block;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
@@ -81,7 +81,7 @@ public class BloodTreeGen extends WorldGenerator
                     if (i1 >= 0 && i1 < 256)
                     {
                         int k2 = world.getBlockId(l1, i1, j2);
-                        if (k2 != 0 && k2 != NaturaContent.floraLeavesNoColor.blockID)
+                        if (k2 != 0 && k2 != NContent.floraLeavesNoColor.blockID)
                         {
                             flag = false;
                             continue label0;
@@ -113,12 +113,12 @@ public class BloodTreeGen extends WorldGenerator
         for (int k1 = 0; k1 < treeHeight; k1++)
         {
             int i2 = world.getBlockId(x, y + k1, z);
-            if (i2 == 0 || i2 == NaturaContent.floraLeaves.blockID)
+            if (i2 == 0 || i2 == NContent.floraLeaves.blockID)
             {
-                setBlockAndMetadata(world, x, y + k1, z, NaturaContent.bloodwood.blockID, 0);
-                setBlockAndMetadata(world, x + 1, y + k1, z, NaturaContent.bloodwood.blockID, 1);
-                setBlockAndMetadata(world, x, y + k1, z + 1, NaturaContent.bloodwood.blockID, 2);
-                setBlockAndMetadata(world, x + 1, y + k1, z + 1, NaturaContent.bloodwood.blockID, 3);
+                setBlockAndMetadata(world, x, y + k1, z, NContent.bloodwood.blockID, 0);
+                setBlockAndMetadata(world, x + 1, y + k1, z, NContent.bloodwood.blockID, 1);
+                setBlockAndMetadata(world, x, y + k1, z + 1, NContent.bloodwood.blockID, 2);
+                setBlockAndMetadata(world, x + 1, y + k1, z + 1, NContent.bloodwood.blockID, 3);
             }
         }
 
@@ -229,7 +229,7 @@ public class BloodTreeGen extends WorldGenerator
 
     public boolean generateNode (World world, Random random, int i, int j, int k)
     {
-        setBlockAndMetadata(world, i, j, k, NaturaContent.bloodwood.blockID, 15);
+        setBlockAndMetadata(world, i, j, k, NContent.bloodwood.blockID, 15);
         for (int l = i - 1; l <= i + 1; l++)
         {
             for (int k1 = k - 1; k1 <= k + 1; k1++)
@@ -237,9 +237,9 @@ public class BloodTreeGen extends WorldGenerator
                 for (int j2 = j - 1; j2 <= j + 1; j2++)
                 {
                     int i3 = world.getBlockId(l, j2, k1);
-                    if (i3 != NaturaContent.floraLeaves.blockID && !Block.opaqueCubeLookup[i3])
+                    if (i3 != NContent.floraLeaves.blockID && !Block.opaqueCubeLookup[i3])
                     {
-                        setBlockAndMetadata(world, l, j2, k1, NaturaContent.floraLeavesNoColor.blockID, mdLeaves);
+                        setBlockAndMetadata(world, l, j2, k1, NContent.floraLeavesNoColor.blockID, mdLeaves);
                     }
                 }
             }
@@ -250,9 +250,9 @@ public class BloodTreeGen extends WorldGenerator
             for (int l1 = k - 2; l1 <= k + 2; l1++)
             {
                 int k2 = world.getBlockId(i1, j, l1);
-                if (k2 != NaturaContent.floraLeaves.blockID && !Block.opaqueCubeLookup[k2])
+                if (k2 != NContent.floraLeaves.blockID && !Block.opaqueCubeLookup[k2])
                 {
-                    setBlockAndMetadata(world, i1, j, l1, NaturaContent.floraLeavesNoColor.blockID, mdLeaves);
+                    setBlockAndMetadata(world, i1, j, l1, NContent.floraLeavesNoColor.blockID, mdLeaves);
                 }
             }
         }
@@ -262,9 +262,9 @@ public class BloodTreeGen extends WorldGenerator
             for (int i2 = k - 1; i2 <= k + 1; i2++)
             {
                 int l2 = world.getBlockId(j1, j + 1, i2);
-                if (l2 != NaturaContent.floraLeaves.blockID && !Block.opaqueCubeLookup[l2])
+                if (l2 != NContent.floraLeaves.blockID && !Block.opaqueCubeLookup[l2])
                 {
-                    setBlockAndMetadata(world, j1, j, i2, NaturaContent.floraLeavesNoColor.blockID, mdLeaves);
+                    setBlockAndMetadata(world, j1, j, i2, NContent.floraLeavesNoColor.blockID, mdLeaves);
                 }
             }
         }
