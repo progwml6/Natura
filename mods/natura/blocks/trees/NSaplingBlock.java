@@ -167,7 +167,7 @@ public class NSaplingBlock extends BlockSapling
 	}
 	
 	@Override
-	public void func_96477_c(World world, int x, int y, int z, Random random)
+	public void markOrGrowMarked(World world, int x, int y, int z, Random random)
     {
 	    boneFertilize(world, x, y, z, random);
     }
