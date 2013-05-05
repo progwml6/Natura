@@ -3,10 +3,12 @@ package mods.natura.blocks.trees;
 import java.util.List;
 import java.util.Random;
 
+import mods.natura.common.NContent;
 import mods.natura.common.NaturaTab;
 import mods.natura.common.PHNatura;
-import mods.natura.worldgen.BloodTreeGen;
+import mods.natura.worldgen.BloodTreeLargeGen;
 import mods.natura.worldgen.BushTreeGen;
+import mods.natura.worldgen.DarkwoodGen;
 import mods.natura.worldgen.EucalyptusTreeGenShort;
 import mods.natura.worldgen.RedwoodTreeGen;
 import mods.natura.worldgen.SakuraTreeGen;
@@ -27,7 +29,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class NSaplingBlock extends BlockSapling
 {
 	public Icon[] icons;
-	public String[] textureNames = new String[] { "redwood", "eucalyptus", "hopseed", "sakura", "ghostwood", "bloodwood" };
+	public String[] textureNames = new String[] { "redwood", "eucalyptus", "hopseed", "sakura", "ghostwood", "bloodwood", "darkwood" };
 
 	public NSaplingBlock(int id)
 	{
@@ -36,7 +38,6 @@ public class NSaplingBlock extends BlockSapling
 		setBlockBounds(0.5F - f, 0.0F, 0.5F - f, 0.5F + f, f * 2.0F, 0.5F + f);
 		this.setHardness(0.0F);
 		this.setStepSound(Block.soundGrassFootstep);
-		this.setUnlocalizedName("floraSapling");
 		this.setCreativeTab(NaturaTab.tab);
 	}
 
@@ -56,27 +57,40 @@ public class NSaplingBlock extends BlockSapling
 	{
 		int blockID = world.getBlockId(x, y, z);
 		if (blockID == 0 || blocksList[blockID].blockMaterial.isReplaceable())
-			return canBlockStay(world, x, y, z);
+		    return true;
+			//return canBlockStay(world, x, y, z);
 		return false;
 	}
 
-	protected boolean canThisPlantGrowOnThisBlockID (int i)
+	public boolean canThisPlantGrowOnThisBlockID (int id)
 	{
-		return i == Block.grass.blockID || i == Block.dirt.blockID || i == Block.slowSand.blockID || i == Block.netherrack.blockID;
+		return id == Block.grass.blockID || id == Block.dirt.blockID || id == Block.slowSand.blockID || id == Block.netherrack.blockID || id == NContent.taintedSoil.blockID;
 	}
 
 	@Override
 	public boolean canBlockStay (World world, int x, int y, int z)
 	{
-		int blockID = world.getBlockId(x, y - 1, z);
-		if (blockID == Block.slowSand.blockID)
-			return true;
-		/*int md = world.getBlockMetadata(x, y, z) % 8;
-		if (md >= 4)
-			return true;*/
-
-		Block soil = blocksList[blockID];
-		return (world.getFullBlockLightValue(x, y, z) >= 8 || world.canBlockSeeTheSky(x, y, z)) && (soil != null && soil.canSustainPlant(world, x, y - 1, z, ForgeDirection.UP, this));
+	    int meta = world.getBlockMetadata(x, y, z) % 8;
+	    switch (meta)
+	    {
+	    case 0:
+	    case 1:
+	    case 2:
+	    case 3:
+	        int blockID = world.getBlockId(x, y - 1, z);
+	        Block soil = blocksList[blockID];
+	        return (world.getFullBlockLightValue(x, y, z) >= 8 || world.canBlockSeeTheSky(x, y, z)) && (soil != null && soil.canSustainPlant(world, x, y - 1, z, ForgeDirection.UP, this));
+	    case 4:
+	    case 6:
+            int belowID = world.getBlockId(x, y - 1, z);
+            Block netherSoil = blocksList[belowID];
+            return netherSoil != null && (netherSoil == Block.netherrack || netherSoil.canSustainPlant(world, x, y - 1, z, ForgeDirection.UP, this));
+	    case 5:
+            int aboveID = world.getBlockId(x, y + 1, z);
+            Block nSoil = blocksList[aboveID];
+            return nSoil != null && (nSoil == Block.netherrack || nSoil == Block.slowSand || nSoil == NContent.taintedSoil);
+        default: return true;
+	    }
 	}
 
 	@Override
@@ -119,7 +133,6 @@ public class NSaplingBlock extends BlockSapling
 						}
 					}
 
-					System.out.println("Ticky: "+numSaplings);
 					if (numSaplings >= 40)
 					{
 						for (int xPos = -4; xPos <= 4; xPos++)
@@ -210,7 +223,10 @@ public class NSaplingBlock extends BlockSapling
 			obj = new WhiteTreeGen(true, 2, 1);
 
 		else if (md == 5)
-			obj = new BloodTreeGen(3, 2);
+			obj = new BloodTreeLargeGen(3, 2);
+		
+		else if (md == 6)
+            obj = new DarkwoodGen(true, 3, 0);
 
 		else
 			obj = new RedwoodTreeGen(true, PHNatura.redwoodID, 0);

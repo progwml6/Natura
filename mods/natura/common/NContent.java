@@ -4,40 +4,46 @@ import java.util.HashMap;
 import java.util.List;
 
 import mods.natura.blocks.CloudBlock;
-import mods.natura.blocks.CloudItem;
-import mods.natura.blocks.OmniShapeBlock;
-import mods.natura.blocks.OmniShapeBlockItem;
+import mods.natura.blocks.Glowshroom;
+import mods.natura.blocks.HeatSand;
+import mods.natura.blocks.TaintedSoil;
 import mods.natura.blocks.crops.BerryBush;
-import mods.natura.blocks.crops.BerryBushItem;
 import mods.natura.blocks.crops.CropBlock;
 import mods.natura.blocks.crops.NetherBerryBush;
-import mods.natura.blocks.crops.NetherBerryBushItem;
+import mods.natura.blocks.trees.DarkTreeBlock;
 import mods.natura.blocks.trees.LogTwoxTwo;
-import mods.natura.blocks.trees.LogTwoxTwoItem;
 import mods.natura.blocks.trees.NDoor;
-import mods.natura.blocks.trees.NDoorItem;
 import mods.natura.blocks.trees.NLeaves;
-import mods.natura.blocks.trees.NLeavesItem;
-import mods.natura.blocks.trees.NLeavesNoColorItem;
+import mods.natura.blocks.trees.NLeavesDark;
 import mods.natura.blocks.trees.NLeavesNocolor;
 import mods.natura.blocks.trees.NSaplingBlock;
-import mods.natura.blocks.trees.NSaplingItem;
 import mods.natura.blocks.trees.Planks;
-import mods.natura.blocks.trees.PlanksItem;
-import mods.natura.blocks.trees.RedwoodItem;
 import mods.natura.blocks.trees.SaguaroBlock;
-import mods.natura.blocks.trees.SaguaroItem;
 import mods.natura.blocks.trees.SimpleLog;
 import mods.natura.blocks.trees.TreeBlock;
-import mods.natura.blocks.trees.TreeItem;
 import mods.natura.items.BerryItem;
 import mods.natura.items.BerryMedley;
+import mods.natura.items.BoneBag;
 import mods.natura.items.CactusJuice;
 import mods.natura.items.NaturaSeeds;
 import mods.natura.items.NetherBerryItem;
+import mods.natura.items.NetherFoodItem;
 import mods.natura.items.PlantItem;
 import mods.natura.items.SeedBag;
 import mods.natura.items.SeedFood;
+import mods.natura.items.blocks.BerryBushItem;
+import mods.natura.items.blocks.CloudItem;
+import mods.natura.items.blocks.LogTwoxTwoItem;
+import mods.natura.items.blocks.NDoorItem;
+import mods.natura.items.blocks.NLeavesDarkItem;
+import mods.natura.items.blocks.NLeavesItem;
+import mods.natura.items.blocks.NSaplingItem;
+import mods.natura.items.blocks.NetherBerryBushItem;
+import mods.natura.items.blocks.NoColorLeavesItem;
+import mods.natura.items.blocks.PlanksItem;
+import mods.natura.items.blocks.RedwoodItem;
+import mods.natura.items.blocks.SaguaroItem;
+import mods.natura.items.blocks.TreeItem;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.Item;
@@ -70,10 +76,12 @@ public class NContent
         carrotBag = new SeedBag(PHNatura.carrotBagID, Block.carrot, 0, "carrot").setUnlocalizedName("carrotBag");
         netherWartBag = new SeedBag(PHNatura.netherWartBagID, Block.netherStalk, 0, "netherwart").setUnlocalizedName("wartBag");
         cottonBag = new SeedBag(PHNatura.cottonBagID, crops, 4, "cotton").setUnlocalizedName("cottonBag");
+        boneBag = new BoneBag(PHNatura.boneBagID, "bone").setUnlocalizedName("boneBag");
 
         netherBerryItem = new NetherBerryItem(PHNatura.netherBerryItem, 1).setUnlocalizedName("berry.nether");
         berryItem = new BerryItem(PHNatura.berryItemID, 1).setUnlocalizedName("berry");
         berryMedley = new BerryMedley(PHNatura.berryMedley, 5).setUnlocalizedName("berryMedley");
+        
         berryBush = new BerryBush(PHNatura.berryBlockID);
         GameRegistry.registerBlock(berryBush, BerryBushItem.class, "BerryBush");
         netherBerryBush = new NetherBerryBush(PHNatura.netherBerryBlock);
@@ -96,15 +104,16 @@ public class NContent
         seedFood = new SeedFood(PHNatura.seedFood, 3, 0.3f, saguaro.blockID).setUnlocalizedName("saguaro.fruit");
 
         doorItem = new NDoorItem(PHNatura.doorItemID).setUnlocalizedName("redwoodDoorItem");
-        redwoodDoor = new NDoor(PHNatura.redwoodDoor, Material.wood, 0, "redwood");
-        eucalyptusDoor = new NDoor(PHNatura.eucalyptusDoor, Material.wood, 1, "eucalyptus");
-        hopseedDoor = new NDoor(PHNatura.hopseedDoor, Material.wood, 2, "hopseed");
-        sakuraDoor = new NDoor(PHNatura.sakuraDoor, Material.wood, 3, "sakura");
-        ghostDoor = new NDoor(PHNatura.ghostDoor, Material.wood, 4, "ghostwood");
-        bloodDoor = new NDoor(PHNatura.bloodDoor, Material.wood, 5, "bloodwood");
-        redwoodBarkDoor = new NDoor(PHNatura.redwoodBarkDoor, Material.wood, 6, "redwoodbark");
+        redwoodDoor = new NDoor(PHNatura.redwoodDoor, Material.wood, 0, "redwood").setUnlocalizedName("door.redwood");
+        eucalyptusDoor = new NDoor(PHNatura.eucalyptusDoor, Material.wood, 1, "eucalyptus").setUnlocalizedName("door.eucalyptus");
+        hopseedDoor = new NDoor(PHNatura.hopseedDoor, Material.wood, 2, "hopseed").setUnlocalizedName("door.hopseed");
+        sakuraDoor = new NDoor(PHNatura.sakuraDoor, Material.wood, 3, "sakura").setUnlocalizedName("door.sakura");
+        ghostDoor = new NDoor(PHNatura.ghostDoor, Material.wood, 4, "ghostwood").setUnlocalizedName("door.ghostwood");
+        bloodDoor = new NDoor(PHNatura.bloodDoor, Material.wood, 5, "bloodwood").setUnlocalizedName("door.bloodwood");
+        redwoodBarkDoor = new NDoor(PHNatura.redwoodBarkDoor, Material.wood, 6, "redwoodbark").setUnlocalizedName("door.redwoodbark");
         
-        //omniSakura = new OmniShapeBlock(PHNatura.omniSakura, planks, 3).setUnlocalizedName("omniblock.sakura");
+        MinecraftForge.addGrassSeed(new ItemStack(seeds, 1, 0), 3);
+        MinecraftForge.addGrassSeed(new ItemStack(seeds, 1, 1), 3);
 
         //floraBoat = new NBoat(PHNatura.boatItemID).setIconCoord(0, 3).setUnlocalizedName("floraBoat");
 
@@ -112,16 +121,25 @@ public class NContent
         GameRegistry.registerBlock(redwood, RedwoodItem.class, "redwood");
         GameRegistry.registerBlock(planks, PlanksItem.class, "planks");
         GameRegistry.registerBlock(floraLeaves, NLeavesItem.class, "floraleaves");
-        GameRegistry.registerBlock(floraLeavesNoColor, NLeavesNoColorItem.class, "floraleavesnocolor");
+        GameRegistry.registerBlock(floraLeavesNoColor, NoColorLeavesItem.class, "floraleavesnocolor");
         GameRegistry.registerBlock(floraSapling, NSaplingItem.class, "florasapling");
         GameRegistry.registerBlock(redwoodDoor, "Redwood Door");
         GameRegistry.registerBlock(bloodwood, LogTwoxTwoItem.class, "bloodwood");
         GameRegistry.registerBlock(saguaro, SaguaroItem.class, "Saguaro");
         
-        //GameRegistry.registerBlock(omniSakura, OmniShapeBlockItem.class, "omniblock.sakura");
+        //Nether
+        taintedSoil = new TaintedSoil(PHNatura.taintedSoil).setUnlocalizedName("TaintedSoil");
+        GameRegistry.registerBlock(taintedSoil, "soil.tainted");
+        heatSand = new HeatSand(PHNatura.heatSand).setUnlocalizedName("HeatSand");
+        GameRegistry.registerBlock(heatSand, "heatsand");
+        glowshroom = new Glowshroom(PHNatura.glowshroom).setUnlocalizedName("Glowshroom").setLightValue(0.625f);
+        GameRegistry.registerBlock(glowshroom, "Glowshroom");
+        darkTree = new DarkTreeBlock(PHNatura.darkTree).setUnlocalizedName("Darktree");
+        GameRegistry.registerBlock(glowshroom, "Dark Tree");
+        darkLeaves = (NLeaves) new NLeavesDark(PHNatura.darkLeaves).setUnlocalizedName("Darkleaves");
+        GameRegistry.registerBlock(darkLeaves, NLeavesDarkItem.class, "Dark Leaves");
 
-        MinecraftForge.addGrassSeed(new ItemStack(seeds, 1, 0), 3);
-        MinecraftForge.addGrassSeed(new ItemStack(seeds, 1, 1), 3);
+        potashApple = new NetherFoodItem(PHNatura.netherFood).setUnlocalizedName("Natura.netherfood");
 
         addRecipes();
     }
@@ -135,6 +153,7 @@ public class NContent
         GameRegistry.addRecipe(new ItemStack(carrotBag, 1, 0), "sss", "sss", "sss", 's', Item.carrot);
         GameRegistry.addRecipe(new ItemStack(netherWartBag, 1, 0), "sss", "sss", "sss", 's', Item.netherStalkSeeds);
         GameRegistry.addRecipe(new ItemStack(cottonBag, 1, 0), "sss", "sss", "sss", 's', new ItemStack(seeds, 1, 1));
+        GameRegistry.addRecipe(new ItemStack(boneBag, 1, 0), "sss", "sss", "sss", 's', new ItemStack(Item.dyePowder, 1, 15));
 
         GameRegistry.addRecipe(new ItemStack(Item.seeds, 9, 0), "s", 's', wheatBag);
         GameRegistry.addRecipe(new ItemStack(seeds, 9, 0), "s", 's', barleyBag);
@@ -142,6 +161,7 @@ public class NContent
         GameRegistry.addRecipe(new ItemStack(Item.carrot, 9, 0), "s", 's', carrotBag);
         GameRegistry.addRecipe(new ItemStack(Item.netherStalkSeeds, 9, 0), "s", 's', netherWartBag);
         GameRegistry.addRecipe(new ItemStack(seeds, 9, 1), "s", 's', cottonBag);
+        GameRegistry.addRecipe(new ItemStack(Item.dyePowder, 9, 15), "s", 's', boneBag);
 
         GameRegistry.addRecipe(new ItemStack(Item.silk), "sss", 's', new ItemStack(plantItem, 1, 3));
         GameRegistry.addRecipe(new ItemStack(Block.cloth), "sss", "sss", "sss", 's', new ItemStack(plantItem, 1, 3));
@@ -331,6 +351,7 @@ public class NContent
     public static Item carrotBag;
     public static Item netherWartBag;
     public static Item cottonBag;
+    public static Item boneBag;
 
     public static Item seeds;
     public static Item plantItem;
@@ -382,4 +403,13 @@ public class NContent
 
     public static Item doorItem;
     public static Item floraBoat;
+    
+    //Nether
+    public static Block taintedSoil;
+    public static Block heatSand;
+    public static Block glowshroom;
+    public static Block darkTree;
+    public static NLeaves darkLeaves;
+    
+    public static Item potashApple;
 }

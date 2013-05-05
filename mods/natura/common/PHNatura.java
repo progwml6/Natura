@@ -39,6 +39,9 @@ public class PHNatura
 		/* Define the mod's IDs. 
 		 * Avoid values below 4096 for items and in the 250-450 range for blocks
 		 */
+		
+		taintedSoil = config.getTerrainBlock("terrain", "Tainted Soil", 181, "Requires blockID < 256").getInt(181);
+        heatSand = config.getTerrainBlock("terrain", "Heat Sand", 182, "Requires blockID < 256").getInt(182);
 
 		treeID = config.getBlock("Wood Block", 3251).getInt(3251);
 		redwoodDoor = config.getBlock("Redwood Door", 3252).getInt(3252);
@@ -61,7 +64,11 @@ public class PHNatura
 		ghostDoor = config.getBlock("Ghostwood Door", 3267).getInt(3267);
 		bloodDoor = config.getBlock("Bloodwood Door", 3268).getInt(3268);
 		redwoodBarkDoor = config.getBlock("Redwood Bark Door", 3269).getInt(3269);
-
+		
+        glowshroom = config.getBlock("Glowing Mushroom", 3270).getInt(3270);
+        darkTree = config.getBlock("Darkwood Log", 3271).getInt(3271);
+        darkLeaves = config.getBlock("Darkwood Leaves", 3272).getInt(3272);
+        
         /*omniRedwood = config.getBlock("Redwood Plank Stairslabs", 3270).getInt(3270);
         omniEucalyptus = config.getBlock("Eucalyptus Plank Stairslabs", 3271).getInt(3271);
         omniHopseed = config.getBlock("Hopseed Plank Stairslabs", 3272).getInt(3272);
@@ -86,6 +93,8 @@ public class PHNatura
 		
 		berryMedley = config.getItem("Berry Medley", 12417).getInt(12417);
 		seedFood = config.getItem("Saguaro Fruit", 12418).getInt(12418);
+        boneBagID = config.getItem("Bonemeal Bag", 12419).getInt(12419);
+        netherFood = config.getItem("Nether foodstuffs", 12420).getInt(12420);
 
 		generateRedwood = config.get("Disabler", "Generate Redwood Trees", true).getBoolean(true);
 		generateSakura = config.get("Disabler", "Generate Sakura Trees", true).getBoolean(true);
@@ -94,6 +103,7 @@ public class PHNatura
 		generateBloodwood = config.get("Disabler", "Generate Bloodwood Trees", true).getBoolean(true);
 		generateGhost = config.get("Disabler", "Generate Ghost Trees", true).getBoolean(true);
 		generateSaguaro = config.get("Disabler", "Generate Saguaro Cactus", true).getBoolean(true);
+        generateDarkwood = config.get("Disabler", "Generate Darkwood Trees", true).getBoolean(true);
 
 		generateBarley = config.get("Disabler", "Generate Barley Crops", true).getBoolean(true);
 		generateCotton = config.get("Disabler", "Generate Cotton Crops", true).getBoolean(true);
@@ -110,17 +120,14 @@ public class PHNatura
 
 		redwoodSpawnRarity = config.get("Worldgen", "Redwood Tree Spawn Rarity", 150).getInt(150);
 		bloodSpawnRarity = config.get("Worldgen", "Bloodwood Tree Spawn Rarity", 14).getInt(14);
-		bloodSpawnHeight = config.get("Worldgen", "Bloodwood Tree Spawn Height", 32).getInt(32);
-		bloodSpawnRange = config.get("Worldgen", "Bloodwood Tree Spawn Range", 64).getInt(64);
 		eucalyptusShortSpawnRarity = config.get("Worldgen", "Small Eucalyptus Tree Spawn Rarity", 25).getInt(25);
 		eucalyptusShortSpawnRange = config.get("Worldgen", "Small Eucalyptus Tree Spawn Range", 32).getInt(32);
 		sakuraSpawnRarity = config.get("Worldgen", "Sakura Tree Spawn Rarity", 10).getInt(10);
 		sakuraSpawnRange = config.get("Worldgen", "Sakura Tree Spawn Range", 32).getInt(32);
-		ghostSpawnRarity = config.get("Worldgen", "Ghost Tree Spawn Rarity", 25).getInt(25);
-		ghostSpawnHeight = config.get("Worldgen", "Ghost Tree Spawn Height", 16).getInt(16);
-		ghostSpawnRange = config.get("Worldgen", "Ghost Tree Spawn Range", 80).getInt(80);
+		ghostSpawnRarity = config.get("Worldgen", "Ghostwood Tree Spawn Rarity", 10).getInt(10);
 		bushSpawnRarity = config.get("Worldgen", "Bush Tree Spawn Rarity", 10).getInt(10);
 		bushSpawnRange = config.get("Worldgen", "Bush Tree Spawn Range", 20).getInt(20);
+		darkSpawnRarity = config.get("Worldgen", "Darkwood Tree Spawn Rarity", 10).getInt(10);
 		
 		saguaroSpawnRarity = config.get("Worldgen", "Saguaro Cactus Spawn Rarity", 5).getInt(5);
 
@@ -164,7 +171,17 @@ public class PHNatura
 	/* Prototype fields, used elsewhere */
 
 	public static int seaLevel;
-
+	
+	//Nether
+	public static int taintedSoil;
+	public static int heatSand;
+	public static int glowshroom;
+	public static int darkTree;
+	public static int darkLeaves;
+	
+	public static int netherFood;
+	
+	//Overworld
 	public static boolean generateBarley;
 	public static boolean generateCotton;
 	public static boolean generateBlueberries;
@@ -189,6 +206,8 @@ public class PHNatura
 	public static int floraCropsID;
 	public static int foodID;
 	public static int seedFood;
+	
+	public static int boneBagID;
 
 	public static int saguaroID;
 
@@ -275,19 +294,17 @@ public class PHNatura
 	public static boolean generateGhost;
 	public static boolean generateBush;
 	public static boolean generateSaguaro;
+    public static boolean generateDarkwood;
 
 	public static int redwoodSpawnRarity;
 	public static int redwoodSpawnRange;
 	public static int bloodSpawnRarity;
-	public static int bloodSpawnHeight;
-	public static int bloodSpawnRange;
 	public static int eucalyptusShortSpawnRarity;
 	public static int eucalyptusShortSpawnRange;
 	public static int sakuraSpawnRarity;
 	public static int sakuraSpawnRange;
 	public static int ghostSpawnRarity;
-	public static int ghostSpawnHeight;
-	public static int ghostSpawnRange;
 	public static int bushSpawnRarity;
 	public static int bushSpawnRange;
+	public static int darkSpawnRarity;
 }

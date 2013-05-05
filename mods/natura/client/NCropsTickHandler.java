@@ -28,6 +28,7 @@ public class NCropsTickHandler implements ITickHandler
         NContent.netherBerryBush.setGraphicsLevel(Block.leaves.graphicsLevel);
 		NContent.floraLeaves.setGraphicsLevel(Block.leaves.graphicsLevel);
 		NContent.floraLeavesNoColor.setGraphicsLevel(Block.leaves.graphicsLevel);
+        NContent.darkLeaves.setGraphicsLevel(Block.leaves.graphicsLevel);
 	}
 
 	@Override

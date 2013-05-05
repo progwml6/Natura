@@ -1,4 +1,5 @@
 package mods.natura.blocks.trees;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -38,7 +39,7 @@ public class NDoor extends BlockDoor
 
     public int idDropped(int i, Random random, int j)
     {
-    	return PHNatura.doorItemID;
+    	return (i & 8) != 0 ? 0 : NContent.doorItem.itemID;
     }
     
     public int damageDropped(int par1)

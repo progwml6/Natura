@@ -1,4 +1,4 @@
-package mods.natura.blocks.trees;
+package mods.natura.items.blocks;
 
 import java.util.List;
 
@@ -8,14 +8,14 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 
-public class NLeavesNoColorItem extends ItemBlock
+public class RedwoodItem extends ItemBlock
 {
     public static final String blockType[] =
     {
-    	 "sakura", "ghost", "blood", "", "", "", "", "", "", "", "", "", "", "", "", "", ""
+        "bark", "heart", "root", "", "", "", "", "", "", "", "", "", "", "", "", ""
     };
 
-    public NLeavesNoColorItem(int i)
+    public RedwoodItem(int i)
     {
         super(i);
         setMaxDamage(0);
@@ -31,7 +31,7 @@ public class NLeavesNoColorItem extends ItemBlock
     @Override
     public String getUnlocalizedName(ItemStack itemstack)
     {
-        return (new StringBuilder()).append(blockType[itemstack.getItemDamage()]).append("NLeaves").toString();
+        return (new StringBuilder()).append(blockType[itemstack.getItemDamage()]).append("Redwood").toString();
     }
     
     @Override
@@ -41,15 +41,14 @@ public class NLeavesNoColorItem extends ItemBlock
     	switch (stack.getItemDamage())
     	{
     	case 0: 
-    		list.add("Flowering Cherry");
+    		list.add("Burn it for charcoal");
+    		list.add("or make a hidden tree door");
     		break;
     	case 1:
-    		list.add("Nether Tree");
-    		list.add("Fire-resistant leaves");
+    		list.add("Heart of the tree");
     		break;
     	case 2:
-    		list.add("Nether Tree");
-    		list.add("Pale as a ghost");
+    		list.add("Root of the tree");
     		break;
     	}
 	}

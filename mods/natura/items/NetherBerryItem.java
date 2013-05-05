@@ -31,6 +31,16 @@ public class NetherBerryItem extends ItemFood
         //this.setAlwaysEdible();
     }
     
+    public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer player)
+    {
+        if (player.canEat(true) && player.foodStats.getSaturationLevel() < 20F)
+        {
+            player.setItemInUse(par1ItemStack, this.getMaxItemUseDuration(par1ItemStack));
+        }
+
+        return par1ItemStack;
+    }
+    
     protected void onFoodEaten(ItemStack stack, World world, EntityPlayer player)
     {
     	if (!world.isRemote)

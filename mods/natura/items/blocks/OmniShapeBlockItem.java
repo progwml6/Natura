@@ -1,4 +1,4 @@
-package mods.natura.blocks;
+package mods.natura.items.blocks;
 
 import java.util.List;
 

@@ -6,6 +6,7 @@ import mods.natura.common.NCommonProxy;
 import mods.natura.common.NContent;
 import mods.natura.common.NaturaTab;
 import mods.natura.common.PHNatura;
+import mods.natura.dimension.NetheriteWorldProvider;
 import mods.natura.worldgen.BaseCloudWorldgen;
 import mods.natura.worldgen.BaseCropWorldgen;
 import mods.natura.worldgen.BaseTreeWorldgen;
@@ -18,6 +19,7 @@ import net.minecraft.entity.passive.EntityCow;
 import net.minecraft.entity.passive.EntitySheep;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.Event;
 import net.minecraftforge.event.ForgeSubscribe;
@@ -35,7 +37,7 @@ import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
 
-@Mod(modid = "Natura", name = "Natura", version = "1.5.1_2.0.19.2")
+@Mod(modid = "Natura", name = "Natura", version = "1.5.1_2.1.0")
 public class Natura
 {
     /* Proxies for sides, used for graphics processing */
@@ -67,8 +69,8 @@ public class Natura
         proxy.registerRenderer();
         proxy.addNames();
 
-        //DimensionManager.unregisterProviderType(-1);
-        //DimensionManager.registerProviderType(-1, NetheriteWorldProvider.class, true);
+        DimensionManager.unregisterProviderType(-1);
+        DimensionManager.registerProviderType(-1, NetheriteWorldProvider.class, true);
     }
 
     @PostInit

@@ -8,7 +8,7 @@ public class CloudMaterial extends Material
     public CloudMaterial()
     {
         super(MapColor.snowColor);
-        this.setReplaceable();
+        //this.setReplaceable();
         this.setNoPushMobility();
     }
 

@@ -1,4 +1,4 @@
-package mods.natura.blocks.trees;
+package mods.natura.items.blocks;
 
 import java.util.List;
 
@@ -62,13 +62,15 @@ public class NSaplingItem extends ItemBlock
     		list.add("Flowering Cherry");
     		break;
     	case 4:
-    		list.add("Grows on Soul Sand");
     		list.add("Pale as a ghost");
     		break;
     	case 5:
-    		list.add("Grows on Soul Sand");
-    		list.add("Fire-resistant tree");
+    		list.add("Lava-resistant");
+            list.add("Grows on the ceiling");
     		break;
+    	case 6:
+            list.add("Produces chalky apples");
+            break;
     	}
 	}
 }

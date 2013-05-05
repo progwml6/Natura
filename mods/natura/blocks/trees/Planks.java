@@ -17,74 +17,75 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class Planks extends Block
 {
-	public Icon[] icons;
-	public String[] textureNames = new String[] { "redwood", "eucalyptus", "hopseed", "sakura", "ghostwood", "bloodwood" };
-	public Planks(int id) 
-	{
-		super(id, Material.wood);
-		setBurnProperties(this.blockID, 5, 20);
-		this.setHardness(2.0f);
-		this.setCreativeTab(NaturaTab.tab);
-		this.setStepSound(Block.soundWoodFootstep);
-	}
+    public Icon[] icons;
+    public String[] textureNames = new String[] { "redwood", "eucalyptus", "hopseed", "sakura", "ghostwood", "bloodwood" };
+
+    public Planks(int id)
+    {
+        super(id, Material.wood);
+        setBurnProperties(this.blockID, 5, 20);
+        this.setHardness(2.0f);
+        this.setCreativeTab(NaturaTab.tab);
+        this.setStepSound(Block.soundWoodFootstep);
+    }
 
     @Override
     @SideOnly(Side.CLIENT)
-	public Icon getIcon(int side, int meta)
+    public Icon getIcon (int side, int meta)
     {
-		if (meta == 0)
-			return icons[1];
-		if (meta == 1)
-			return icons[3];
-		if (meta == 2)
-			return icons[4];
-		if (meta == 3)
-			return icons[0];
-		if (meta == 4)
-			return icons[5];
-		if (meta == 5)
-			return icons[2];
-		
-		return icons[meta];
+        if (meta == 0)
+            return icons[1];
+        if (meta == 1)
+            return icons[3];
+        if (meta == 2)
+            return icons[4];
+        if (meta == 3)
+            return icons[0];
+        if (meta == 4)
+            return icons[5];
+        if (meta == 5)
+            return icons[2];
+
+        return icons[meta];
     }
-	
-	@Override
+
+    @Override
     @SideOnly(Side.CLIENT)
-	public void registerIcons(IconRegister iconRegister)
+    public void registerIcons (IconRegister iconRegister)
     {
-		this.icons = new Icon[textureNames.length];
+        this.icons = new Icon[textureNames.length];
 
         for (int i = 0; i < this.icons.length; ++i)
         {
-            this.icons[i] = iconRegister.registerIcon("natura:"+textureNames[i]+"_planks");
+            this.icons[i] = iconRegister.registerIcon("natura:" + textureNames[i] + "_planks");
         }
     }
-	
-	public int getFlammability(IBlockAccess world, int x, int y, int z, int metadata, ForgeDirection face)
+
+    public int getFlammability (IBlockAccess world, int x, int y, int z, int metadata, ForgeDirection face)
     {
-		if (metadata == 1 || metadata == 4)
-			return 0;
+        if (metadata == 1 || metadata == 4)
+            return 0;
         return blockFlammability[blockID];
     }
 
-    public int getFireSpreadSpeed(World world, int x, int y, int z, int metadata, ForgeDirection face)
+    public int getFireSpreadSpeed (World world, int x, int y, int z, int metadata, ForgeDirection face)
     {
-    	if (metadata == 1 || metadata == 4)
-			return 0;
+        if (metadata == 1 || metadata == 4)
+            return 0;
         return blockFireSpreadSpeed[blockID];
     }
-    
+
     @Override
-    public int damageDropped(int meta)
+    public int damageDropped (int meta)
     {
         return meta;
     }
-	
-	@SideOnly(Side.CLIENT)
-	@Override
-    public void getSubBlocks(int par1, CreativeTabs par2CreativeTabs, List par3List)
+
+    @SideOnly(Side.CLIENT)
+    @Override
+    public void getSubBlocks (int par1, CreativeTabs par2CreativeTabs, List par3List)
     {
-		for (int i = 0; i < 6; i++)
-        par3List.add(new ItemStack(par1, 1, i));
+        for (int i = 0; i < 6; i++)
+            par3List.add(new ItemStack(par1, 1, i));
     }
 }

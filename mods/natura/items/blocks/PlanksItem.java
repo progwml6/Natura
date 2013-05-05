@@ -1,4 +1,4 @@
-package mods.natura.blocks.trees;
+package mods.natura.items.blocks;
 
 import java.util.List;
 
@@ -8,14 +8,14 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 
-public class RedwoodItem extends ItemBlock
+public class PlanksItem extends ItemBlock
 {
     public static final String blockType[] =
     {
-        "bark", "heart", "root", "", "", "", "", "", "", "", "", "", "", "", "", ""
+        "eucalyptus", "sakura", "ghost", "redwood", "blood", "bush", "", "", "", "", "", "", "", "", "", ""
     };
 
-    public RedwoodItem(int i)
+    public PlanksItem(int i)
     {
         super(i);
         setMaxDamage(0);
@@ -31,7 +31,7 @@ public class RedwoodItem extends ItemBlock
     @Override
     public String getUnlocalizedName(ItemStack itemstack)
     {
-        return (new StringBuilder()).append(blockType[itemstack.getItemDamage()]).append("Redwood").toString();
+        return (new StringBuilder()).append(blockType[itemstack.getItemDamage()]).append("NPlanks").toString();
     }
     
     @Override
@@ -41,14 +41,22 @@ public class RedwoodItem extends ItemBlock
     	switch (stack.getItemDamage())
     	{
     	case 0: 
-    		list.add("Burn it for charcoal");
-    		list.add("or make a hidden tree door");
+    		list.add("The pink wood");
     		break;
     	case 1:
-    		list.add("Heart of the tree");
+    		list.add("Flowering Cherry");
     		break;
     	case 2:
-    		list.add("Root of the tree");
+    		list.add("Pale as a ghost");
+    		break;
+    	case 3:
+    		list.add("Giant Sequoia");
+    		break;
+    	case 4:
+    		list.add("Fire-resistant planks");
+    		break;
+    	case 5:
+    		list.add("Ascended Glitch");
     		break;
     	}
 	}

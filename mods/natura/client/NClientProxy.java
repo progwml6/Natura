@@ -31,6 +31,7 @@ public class NClientProxy extends NCommonProxy
 		LanguageRegistry.instance().addStringLocalization("item.carrotBag.name", "en_US", "Carrot Bag");
 		LanguageRegistry.instance().addStringLocalization("item.wartBag.name", "en_US", "Nether Wart Bag");
 		LanguageRegistry.instance().addStringLocalization("item.cottonBag.name", "en_US", "Cotton Seed Bag");
+        LanguageRegistry.instance().addStringLocalization("item.boneBag.name", "en_US", "Bonemeal Bag");
 		LanguageRegistry.instance().addStringLocalization("item.barley.seed.name", "en_US", "Barley Seeds");
 		LanguageRegistry.instance().addStringLocalization("item.barley.plant.name", "en_US", "Barley");
 		LanguageRegistry.instance().addStringLocalization("item.barley.flour.name", "en_US", "Barley Flour");
