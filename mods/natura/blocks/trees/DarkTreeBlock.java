@@ -19,7 +19,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class DarkTreeBlock extends BlockLog
 {
     public Icon[] icons;
-    public String[] textureNames = new String[] { "darkwood_bark", "darkwood_heart" };
+    public String[] textureNames = new String[] { "darkwood_bark", "darkwood_heart", "fusewood_bark", "fusewood_heart" };
     
     public DarkTreeBlock(int id)
     {
@@ -27,7 +27,7 @@ public class DarkTreeBlock extends BlockLog
         this.setHardness(5.0F);
         this.setResistance(40F);
         this.setStepSound(Block.soundWoodFootstep);
-        setBurnProperties(this.blockID, 5, 20);
+        //setBurnProperties(this.blockID, 5, 20);
         this.setCreativeTab(NaturaTab.tab);
     }
 

@@ -49,7 +49,7 @@ public class BloodTreeLargeGen extends WorldGenerator
     {
         int treeHeight = random.nextInt(8) + 8;
         
-        boolean valid = true;
+        /*boolean valid = true;
         for (int yPos = 0; yPos < treeHeight+2; yPos++)
         {
             int range = 1;
@@ -63,14 +63,14 @@ public class BloodTreeLargeGen extends WorldGenerator
             {
                 for (int zPos = 0-range; zPos < 2+range; zPos++)
                 {
-                    Block block = Block.blocksList[world.getBlockId(xPos, yPos, zPos)];
-                    if (block == null || block.isLeaves(world, xPos, yPos, zPos))
+                    Block block = Block.blocksList[world.getBlockId(x + xPos, y - yPos, z + zPos)];
+                    if (block == null || block.isLeaves(world, x + xPos, y - yPos, z + zPos))
                         valid = false;
                 }
             }
             if (!valid)
                 return false;
-        }
+        }*/
         
         for (int heightIter = 0; heightIter < treeHeight; heightIter++)
         {

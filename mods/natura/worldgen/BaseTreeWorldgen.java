@@ -20,6 +20,13 @@ public class BaseTreeWorldgen implements IWorldGenerator
         eucalyptusShort = new EucalyptusTreeGenShort(0, 1);
         saguaro = new SaguaroGen(NContent.saguaro.blockID, 0, false);
         darkwood = new DarkwoodGen(false, 3, 0);
+        fusewood = new FusewoodGen(false, 3, 1);
+
+        silverbell = new RareTreeGen(false, 4, 2, 1, 1);
+        purpleheart = new RareTreeGen(false, 9, 8, 2, 2);
+        tiger = new RareTreeGen(false, 6, 4, 3, 3);
+        maple = new RareTreeGen(false, 4, 2, 0, 0);
+        willow = new WillowGen(false);
     }
 
     RedwoodTreeGen genRedwood;
@@ -29,6 +36,7 @@ public class BaseTreeWorldgen implements IWorldGenerator
     WhiteTreeGen whiteSakura;
     EucalyptusTreeGenShort eucalyptusShort;
     DarkwoodGen darkwood;
+    FusewoodGen fusewood;
 
     SaguaroGen saguaro;
 
@@ -36,6 +44,12 @@ public class BaseTreeWorldgen implements IWorldGenerator
     FlowerGen lily;
     FlowerGen tulip;
     FlowerGen pansy;
+
+    RareTreeGen maple;
+    RareTreeGen silverbell;
+    RareTreeGen purpleheart;
+    RareTreeGen tiger;
+    WillowGen willow;
 
     @Override
     public void generate (Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider)
@@ -123,6 +137,7 @@ public class BaseTreeWorldgen implements IWorldGenerator
             }
         }
 
+        //Nether trees
         if (biomeName.equals("Hell"))
         {
             if (PHNatura.generateBloodwood && random.nextInt(PHNatura.bloodSpawnRarity) == 0)
@@ -149,7 +164,57 @@ public class BaseTreeWorldgen implements IWorldGenerator
                 xSpawn = xPos + random.nextInt(16);
                 zSpawn = zPos + random.nextInt(16);
                 darkwood.generate(world, random, xSpawn, ySpawn, zSpawn);
+            }
+            if (PHNatura.generateFusewood && random.nextInt(PHNatura.fuseSpawnRarity) == 0)
+            {
+                ySpawn = random.nextInt(64) + 32;
+                xSpawn = xPos + random.nextInt(16);
+                zSpawn = zPos + random.nextInt(16);
+                fusewood.generate(world, random, xSpawn, ySpawn, zSpawn);
+            }
+        }
 
+        if (biomeName == "Jungle" || biomeName == "JungleHills" || biomeName == "Extreme Jungle")
+        {
+            if (PHNatura.generatePurpleheart)// && random.nextInt((int) PHNatura.purpleheartRarity) == 0)
+            {
+                xSpawn = xPos + random.nextInt(16);
+                zSpawn = zPos + random.nextInt(16);
+                purpleheart.generate(world, random, xSpawn, PHNatura.seaLevel + 48, zSpawn);
+            }
+        }
+        if (biomeName == "Forest" || biomeName == "Woodlands" || biomeName == "AutumnWoods")
+        {
+            if (PHNatura.generateMaple && random.nextInt((int) PHNatura.mapleRarity) == 0)
+            {
+                xSpawn = xPos + random.nextInt(16);
+                zSpawn = zPos + random.nextInt(16);
+                maple.generate(world, random, xSpawn, PHNatura.seaLevel + 48, zSpawn);
+            }
+
+            if (PHNatura.generateSilverbell && random.nextInt((int) PHNatura.silverbellRarity) == 0)
+            {
+                xSpawn = xPos + random.nextInt(16);
+                zSpawn = zPos + random.nextInt(16);
+                silverbell.generate(world, random, xSpawn, PHNatura.seaLevel + 48, zSpawn);
+            }
+        }
+        if (biomeName == "Forest" || biomeName == "Rainforest" || biomeName == "TemperateRainforest")
+        {
+            if (PHNatura.generateTiger && random.nextInt((int) PHNatura.tigerRarity) == 0)
+            {
+                xSpawn = xPos + random.nextInt(16);
+                zSpawn = zPos + random.nextInt(16);
+                tiger.generate(world, random, xSpawn, PHNatura.seaLevel + 48, zSpawn);
+            }
+        }
+        if (biomeName == "Swampland" || biomeName == "ForestHills")
+        {
+            if (PHNatura.generateWillow && random.nextInt((int) PHNatura.willowRarity) == 0)
+            {
+                xSpawn = xPos + random.nextInt(16);
+                zSpawn = zPos + random.nextInt(16);
+                willow.generate(world, random, xSpawn, PHNatura.seaLevel + 16, zSpawn);
             }
         }
     }

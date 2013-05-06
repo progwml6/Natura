@@ -10,10 +10,7 @@ import net.minecraft.item.ItemStack;
 
 public class NoColorLeavesItem extends ItemBlock
 {
-    public static final String blockType[] =
-    {
-    	 "sakura", "ghost", "blood", "", "", "", "", "", "", "", "", "", "", "", "", "", ""
-    };
+    public static final String blockType[] = { "sakura", "ghost", "blood", "", "", "", "", "", "", "", "", "", "", "", "", "", "" };
 
     public NoColorLeavesItem(int i)
     {
@@ -23,34 +20,34 @@ public class NoColorLeavesItem extends ItemBlock
     }
 
     @Override
-    public int getMetadata(int md)
+    public int getMetadata (int md)
     {
-        return md;
+        return md | 4;
     }
 
     @Override
-    public String getUnlocalizedName(ItemStack itemstack)
+    public String getUnlocalizedName (ItemStack itemstack)
     {
         return (new StringBuilder()).append(blockType[itemstack.getItemDamage()]).append("NLeaves").toString();
     }
-    
+
     @Override
-	@SideOnly(Side.CLIENT)
+    @SideOnly(Side.CLIENT)
     public void addInformation (ItemStack stack, EntityPlayer player, List list, boolean par4)
-	{
-    	switch (stack.getItemDamage())
-    	{
-    	case 0: 
-    		list.add("Flowering Cherry");
-    		break;
-    	case 1:
-    		list.add("Nether Tree");
+    {
+        switch (stack.getItemDamage())
+        {
+        case 0:
+            list.add("Flowering Cherry");
+            break;
+        case 1:
+            list.add("Nether Tree");
             list.add("Pale as a ghost");
-    		break;
-    	case 2:
-    		list.add("Nether Tree");
+            break;
+        case 2:
+            list.add("Nether Tree");
             list.add("Fire-resistant leaves");
-    		break;
-    	}
-	}
+            break;
+        }
+    }
 }

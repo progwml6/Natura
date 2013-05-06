@@ -1,10 +1,13 @@
 package mods.natura.blocks.trees;
 
+import java.util.List;
 import java.util.Random;
 
 import mods.natura.common.NContent;
 import mods.natura.common.NaturaTab;
 import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -14,7 +17,6 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class NLeavesDark extends NLeaves
 {
-	protected String[] textureNames = new String[] { "darkwood", "darkwood_flowering", "darkwood_fruit" };
 	public NLeavesDark(int id) 
 	{
 		super(id);
@@ -25,6 +27,7 @@ public class NLeavesDark extends NLeaves
 	@Override
 	public void registerIcons (IconRegister iconRegister)
 	{
+	    String[] textureNames = new String[] { "darkwood", "darkwood_flowering", "darkwood_fruit", "fusewood" };
 		this.fastIcons = new Icon[textureNames.length];
 		this.fancyIcons = new Icon[textureNames.length];
 
@@ -90,5 +93,13 @@ public class NLeavesDark extends NLeaves
         if (meta % 4 == 2)
             return 1;
         return quantityDroppedWithBonus(fortune, random);
+    }
+    
+    public void getSubBlocks(int par1, CreativeTabs par2CreativeTabs, List par3List)
+    {
+        par3List.add(new ItemStack(par1, 1, 0));
+        par3List.add(new ItemStack(par1, 1, 1));
+        par3List.add(new ItemStack(par1, 1, 2));
+        par3List.add(new ItemStack(par1, 1, 3));
     }
 }

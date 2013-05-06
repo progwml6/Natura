@@ -5,6 +5,7 @@ import java.util.Random;
 
 import mods.natura.common.NContent;
 import mods.natura.common.NaturaTab;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockLog;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
@@ -26,6 +27,7 @@ public class LogTwoxTwo extends BlockLog
 	{
 		super(id);
 		this.setHardness(hardness);
+        this.setStepSound(Block.soundMetalFootstep);
 		this.setCreativeTab(NaturaTab.tab);
 	}
 	
@@ -346,7 +348,7 @@ public class LogTwoxTwo extends BlockLog
     public void getSubBlocks(int par1, CreativeTabs par2CreativeTabs, List par3List)
     {
         par3List.add(new ItemStack(par1, 1, 0));
-        par3List.add(new ItemStack(par1, 1, 12));
+        //par3List.add(new ItemStack(par1, 1, 12));
         par3List.add(new ItemStack(par1, 1, 15));
     }
 }

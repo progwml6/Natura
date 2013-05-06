@@ -37,7 +37,7 @@ import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
 
-@Mod(modid = "Natura", name = "Natura", version = "1.5.1_2.1.0")
+@Mod(modid = "Natura", name = "Natura", version = "1.5.1_2.1.dev1")
 public class Natura
 {
     /* Proxies for sides, used for graphics processing */
@@ -90,6 +90,11 @@ public class Natura
         if (event.ID == content.floraSapling.blockID)
         {
             if (content.floraSapling.boneFertilize(event.world, event.X, event.Y, event.Z, event.world.rand))
+                event.setResult(Event.Result.ALLOW);
+        }
+        if (event.ID == content.rareSapling.blockID)
+        {
+            if (content.rareSapling.boneFertilize(event.world, event.X, event.Y, event.Z, event.world.rand))
                 event.setResult(Event.Result.ALLOW);
         }
     }

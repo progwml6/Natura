@@ -65,7 +65,7 @@ public class NLeaves extends BlockLeaves
      */
     public int colorMultiplier(IBlockAccess var1, int x, int y, int z)
     {
-        int meta = var1.getBlockMetadata(x, y, z);
+        //int meta = var1.getBlockMetadata(x, y, z);
 
         /*if (meta == 1)
         {
@@ -130,8 +130,6 @@ public class NLeaves extends BlockLeaves
             }
         }
     }
-
-	protected String[] textureNames = new String[] { "redwood", "eucalyptus", "hopseed" };
 	public Icon[] fastIcons;
 	public Icon[] fancyIcons;
 	
@@ -139,6 +137,7 @@ public class NLeaves extends BlockLeaves
     @SideOnly(Side.CLIENT)
     public Icon getIcon(int side, int metadata)
     {
+	    //System.out.println("Class: "+this.getClass());
     	if (graphicsLevel)
     		return fancyIcons[metadata % 4];
     	else
@@ -149,6 +148,7 @@ public class NLeaves extends BlockLeaves
 	@Override
 	public void registerIcons (IconRegister iconRegister)
 	{
+        String[] textureNames = new String[] { "redwood", "eucalyptus", "hopseed" };
 		this.fastIcons = new Icon[textureNames.length];
 		this.fancyIcons = new Icon[textureNames.length];
 

@@ -3,47 +3,12 @@ package mods.natura.common;
 import java.util.HashMap;
 import java.util.List;
 
-import mods.natura.blocks.CloudBlock;
-import mods.natura.blocks.Glowshroom;
-import mods.natura.blocks.HeatSand;
-import mods.natura.blocks.TaintedSoil;
-import mods.natura.blocks.crops.BerryBush;
-import mods.natura.blocks.crops.CropBlock;
-import mods.natura.blocks.crops.NetherBerryBush;
-import mods.natura.blocks.trees.DarkTreeBlock;
-import mods.natura.blocks.trees.LogTwoxTwo;
-import mods.natura.blocks.trees.NDoor;
-import mods.natura.blocks.trees.NLeaves;
-import mods.natura.blocks.trees.NLeavesDark;
-import mods.natura.blocks.trees.NLeavesNocolor;
-import mods.natura.blocks.trees.NSaplingBlock;
-import mods.natura.blocks.trees.Planks;
-import mods.natura.blocks.trees.SaguaroBlock;
-import mods.natura.blocks.trees.SimpleLog;
-import mods.natura.blocks.trees.TreeBlock;
-import mods.natura.items.BerryItem;
-import mods.natura.items.BerryMedley;
-import mods.natura.items.BoneBag;
-import mods.natura.items.CactusJuice;
-import mods.natura.items.NaturaSeeds;
-import mods.natura.items.NetherBerryItem;
-import mods.natura.items.NetherFoodItem;
-import mods.natura.items.PlantItem;
-import mods.natura.items.SeedBag;
-import mods.natura.items.SeedFood;
-import mods.natura.items.blocks.BerryBushItem;
-import mods.natura.items.blocks.CloudItem;
-import mods.natura.items.blocks.LogTwoxTwoItem;
-import mods.natura.items.blocks.NDoorItem;
-import mods.natura.items.blocks.NLeavesDarkItem;
-import mods.natura.items.blocks.NLeavesItem;
-import mods.natura.items.blocks.NSaplingItem;
-import mods.natura.items.blocks.NetherBerryBushItem;
-import mods.natura.items.blocks.NoColorLeavesItem;
-import mods.natura.items.blocks.PlanksItem;
-import mods.natura.items.blocks.RedwoodItem;
-import mods.natura.items.blocks.SaguaroItem;
-import mods.natura.items.blocks.TreeItem;
+import mods.natura.blocks.*;
+import mods.natura.blocks.crops.*;
+import mods.natura.blocks.trees.*;
+import mods.natura.items.*;
+import mods.natura.items.blocks.*;
+import mods.natura.worldgen.WillowGen;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.Item;
@@ -51,6 +16,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.item.crafting.ShapedRecipes;
+import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
@@ -99,6 +65,7 @@ public class NContent
         floraLeavesNoColor = (NLeaves) new NLeavesNocolor(PHNatura.cherryLeavesID).setUnlocalizedName("natura.leavesnocolor");
         floraSapling = (NSaplingBlock) new NSaplingBlock(PHNatura.floraSaplingID).setUnlocalizedName("natura.sapling");
         bloodwood = new LogTwoxTwo(PHNatura.bloodwoodID, 8f).setUnlocalizedName("bloodwood");
+        willow = new WillowBlock(PHNatura.willow).setUnlocalizedName("willow");
 
         saguaro = new SaguaroBlock(PHNatura.saguaroID).setUnlocalizedName("saguaro.block");
         seedFood = new SeedFood(PHNatura.seedFood, 3, 0.3f, saguaro.blockID).setUnlocalizedName("saguaro.fruit");
@@ -126,6 +93,7 @@ public class NContent
         GameRegistry.registerBlock(redwoodDoor, "Redwood Door");
         GameRegistry.registerBlock(bloodwood, LogTwoxTwoItem.class, "bloodwood");
         GameRegistry.registerBlock(saguaro, SaguaroItem.class, "Saguaro");
+        GameRegistry.registerBlock(willow, WillowItem.class, "willow");
         
         //Nether
         taintedSoil = new TaintedSoil(PHNatura.taintedSoil).setUnlocalizedName("TaintedSoil");
@@ -133,14 +101,27 @@ public class NContent
         heatSand = new HeatSand(PHNatura.heatSand).setUnlocalizedName("HeatSand");
         GameRegistry.registerBlock(heatSand, "heatsand");
         glowshroom = new Glowshroom(PHNatura.glowshroom).setUnlocalizedName("Glowshroom").setLightValue(0.625f);
-        GameRegistry.registerBlock(glowshroom, "Glowshroom");
+        GameRegistry.registerBlock(glowshroom, GlowshroomItem.class, "Glowshroom");
         darkTree = new DarkTreeBlock(PHNatura.darkTree).setUnlocalizedName("Darktree");
-        GameRegistry.registerBlock(glowshroom, "Dark Tree");
+        GameRegistry.registerBlock(darkTree, DarkTreeItem.class, "Dark Tree");
         darkLeaves = (NLeaves) new NLeavesDark(PHNatura.darkLeaves).setUnlocalizedName("Darkleaves");
         GameRegistry.registerBlock(darkLeaves, NLeavesDarkItem.class, "Dark Leaves");
 
         potashApple = new NetherFoodItem(PHNatura.netherFood).setUnlocalizedName("Natura.netherfood");
+        
+        //Rare overworld
+        rareTree = new OverworldTreeBlock(PHNatura.rareTree).setUnlocalizedName("RareTree");
+        GameRegistry.registerBlock(rareTree, OverworldTreeItem.class, "Rare Tree");
+        rareLeaves = (NLeaves) new OverworldLeaves(PHNatura.rareLeaves).setUnlocalizedName("RareLeaves");
+        GameRegistry.registerBlock(rareLeaves, OverworldLeavesItem.class, "Rare Leaves");
+        rareSapling = (OverworldSapling) new OverworldSapling(PHNatura.rareSapling).setUnlocalizedName("RareSapling");
+        GameRegistry.registerBlock(rareSapling, OverworldSaplingItem.class, "Rare Sapling");
+        //rareLeaves;
+        bluebells = new FlowerBlock(PHNatura.bluebells).setUnlocalizedName("Bluebells");
+        GameRegistry.registerBlock(bluebells, "Bluebells");
 
+        //Material.vine.setRequiresTool();
+        //BiomeGenBase.swampland.worldGeneratorSwamp = new WillowGen();
         addRecipes();
     }
 
@@ -379,13 +360,12 @@ public class NContent
     public static Block ivy;
     public static Block flower;
 
-    //Trees
-    public static Block omniSakura;
-    
+    //Trees    
     public static Block tree;
     public static Block redwood;
     public static Block planks;
     public static Block bloodwood;
+    public static Block willow;
 
     public static NLeaves floraLeaves;
     public static NLeaves floraLeavesNoColor;
@@ -412,4 +392,10 @@ public class NContent
     public static NLeaves darkLeaves;
     
     public static Item potashApple;
+    
+    //Extra overworld
+    public static Block rareTree;
+    public static NLeaves rareLeaves;
+    public static OverworldSapling rareSapling;
+    public static Block bluebells;
 }

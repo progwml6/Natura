@@ -10,6 +10,7 @@ import mods.natura.worldgen.BloodTreeLargeGen;
 import mods.natura.worldgen.BushTreeGen;
 import mods.natura.worldgen.DarkwoodGen;
 import mods.natura.worldgen.EucalyptusTreeGenShort;
+import mods.natura.worldgen.FusewoodGen;
 import mods.natura.worldgen.RedwoodTreeGen;
 import mods.natura.worldgen.SakuraTreeGen;
 import mods.natura.worldgen.WhiteTreeGen;
@@ -29,7 +30,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class NSaplingBlock extends BlockSapling
 {
 	public Icon[] icons;
-	public String[] textureNames = new String[] { "redwood", "eucalyptus", "hopseed", "sakura", "ghostwood", "bloodwood", "darkwood" };
+	public String[] textureNames = new String[] { "redwood", "eucalyptus", "hopseed", "sakura", "ghostwood", "bloodwood", "darkwood", "fusewood" };
 
 	public NSaplingBlock(int id)
 	{
@@ -82,6 +83,7 @@ public class NSaplingBlock extends BlockSapling
 	        return (world.getFullBlockLightValue(x, y, z) >= 8 || world.canBlockSeeTheSky(x, y, z)) && (soil != null && soil.canSustainPlant(world, x, y - 1, z, ForgeDirection.UP, this));
 	    case 4:
 	    case 6:
+	    case 7:
             int belowID = world.getBlockId(x, y - 1, z);
             Block netherSoil = blocksList[belowID];
             return netherSoil != null && (netherSoil == Block.netherrack || netherSoil.canSustainPlant(world, x, y - 1, z, ForgeDirection.UP, this));
@@ -227,12 +229,15 @@ public class NSaplingBlock extends BlockSapling
 		
 		else if (md == 6)
             obj = new DarkwoodGen(true, 3, 0);
+		
+        else if (md == 7)
+            obj = new FusewoodGen(true, 3, 1);
 
 		else
 			obj = new RedwoodTreeGen(true, PHNatura.redwoodID, 0);
 
 		if (!(obj.generate(world, random, x, y, z)))
-			world.setBlock(x, y, z, blockID, md, 3);
+			world.setBlock(x, y, z, blockID, md+8, 3);
 	}
 
 	public int damageDropped (int i)
@@ -240,13 +245,11 @@ public class NSaplingBlock extends BlockSapling
 		return i % 8;
 	}
 
-	public void getSubBlocks (int par1, CreativeTabs par2CreativeTabs, List par3List)
-	{
-		par3List.add(new ItemStack(par1, 1, 0));
-		par3List.add(new ItemStack(par1, 1, 1));
-		par3List.add(new ItemStack(par1, 1, 2));
-		par3List.add(new ItemStack(par1, 1, 3));
-		par3List.add(new ItemStack(par1, 1, 4));
-		par3List.add(new ItemStack(par1, 1, 5));
-	}
+	@SideOnly(Side.CLIENT)
+    @Override
+    public void getSubBlocks (int par1, CreativeTabs par2CreativeTabs, List par3List)
+    {
+        for (int i = 0; i < 8; i++)
+            par3List.add(new ItemStack(par1, 1, i));
+    }
 }

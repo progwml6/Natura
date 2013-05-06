@@ -10,10 +10,7 @@ import net.minecraft.item.ItemStack;
 
 public class NLeavesDarkItem extends ItemBlock
 {
-    public static final String blockType[] =
-    {
-    	 "dark", "dark.flowering", "dark.fruit", "", "", "", "", "", "", "", "", "", "", "", "", "", ""
-    };
+    public static final String blockType[] = { "darkwood", "darkwood.flowering", "darkwood.fruit", "fusewood", "", "", "", "", "", "", "", "", "", "", "", "", "" };
 
     public NLeavesDarkItem(int i)
     {
@@ -23,34 +20,38 @@ public class NLeavesDarkItem extends ItemBlock
     }
 
     @Override
-    public int getMetadata(int md)
+    public int getMetadata (int md)
     {
-        return md;
+        return md | 4;
     }
 
     @Override
-    public String getUnlocalizedName(ItemStack itemstack)
+    public String getUnlocalizedName (ItemStack itemstack)
     {
-        return (new StringBuilder()).append("block.NLeaves.").append(blockType[itemstack.getItemDamage()]).toString();
+        return (new StringBuilder()).append("block.leaves.").append(blockType[itemstack.getItemDamage()]).toString();
     }
-    
+
     @Override
-	@SideOnly(Side.CLIENT)
+    @SideOnly(Side.CLIENT)
     public void addInformation (ItemStack stack, EntityPlayer player, List list, boolean par4)
-	{
-    	switch (stack.getItemDamage())
-    	{
-    	case 0: 
+    {
+        switch (stack.getItemDamage())
+        {
+        case 0:
             list.add("Nether Tree");
-    		break;
-    	case 1:
+            break;
+        case 1:
             list.add("Nether Tree");
-    		list.add("Flowers!");
-    		break;
-    	case 2:
-    		list.add("Nether Tree");
-    		list.add("Contains an apple");
-    		break;
-    	}
-	}
+            list.add("Flowers!");
+            break;
+        case 2:
+            list.add("Nether Tree");
+            list.add("Contains an apple");
+            break;
+        case 3:
+            list.add("Nether Tree");
+            list.add("Explosive Personality");
+            break;
+        }
+    }
 }

@@ -14,7 +14,7 @@ public class NSaplingItem extends ItemBlock
 {
 	public static final String blockType[] =
 	{
-	    "redwood", "eucalyptus", "bush", "sakura", "ghost", "blood", "", "", "", "", "", "", "", "", "", ""
+	    "redwood", "eucalyptus", "bush", "sakura", "ghost", "blood", "darkwood", "fusewood", "", "", "", "", "", "", "", "", ""
 	};
 	
     public NSaplingItem(int i)
@@ -38,7 +38,7 @@ public class NSaplingItem extends ItemBlock
     @Override
     public String getUnlocalizedName(ItemStack itemstack)
     {
-        return (new StringBuilder()).append(blockType[itemstack.getItemDamage()]).append("NSapling").toString();
+        return (new StringBuilder()).append("block.sapling.").append(blockType[itemstack.getItemDamage()]).toString();
     }
     
     @Override
@@ -53,7 +53,6 @@ public class NSaplingItem extends ItemBlock
     		break;
     	case 1:
     		list.add("The pink wood");
-    		//list.add("Also makes a good healing potion");
     		break;
     	case 2:
     		list.add("Ascended Glitch");
@@ -70,6 +69,9 @@ public class NSaplingItem extends ItemBlock
     		break;
     	case 6:
             list.add("Produces chalky apples");
+            break;
+        case 7:
+            list.add("Explosive personality");
             break;
     	}
 	}

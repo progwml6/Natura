@@ -54,6 +54,12 @@ public class BaseCropWorldgen implements IWorldGenerator
 			generateCotton(world, random, xCh, yCh + PHNatura.seaLevel, zCh);
 			generateCotton(world, random, xCh, yCh + PHNatura.seaLevel, zCh);
 		}
+		
+		//Bluebells
+		if (PHNatura.generateBluebells && random.nextInt(12) == 0)
+        {
+            generateBluebells(world, random, xCh, yCh + PHNatura.seaLevel, zCh);
+        }
 
 		//Berry bushes
 		if (PHNatura.generateRaspberries && random.nextInt(PHNatura.raspSpawnRarity) == 0 && goodClimate(biome, 0.6f, 2.0f, 0.2f, 0.93f))
@@ -163,6 +169,22 @@ public class BaseCropWorldgen implements IWorldGenerator
 
 		return true;
 	}
+	
+	public boolean generateBluebells (World world, Random random, int x, int y, int z)
+    {
+        for (int tries = 0; tries < 40; tries++)
+        {
+            int i1 = (x + random.nextInt(8)) - random.nextInt(8);
+            int j1 = (y + random.nextInt(8)) - random.nextInt(8);
+            int k1 = (z + random.nextInt(8)) - random.nextInt(8);
+            if (world.isAirBlock(i1, j1, k1) && ((BlockFlower) Block.blocksList[Block.plantYellow.blockID]).canBlockStay(world, i1, j1, k1))
+            {
+                world.setBlock(i1, j1, k1, NContent.bluebells.blockID, 0, 2);
+            }
+        }
+
+        return true;
+    }
 
 	public boolean goodClimate (BiomeGenBase biome, float minTemp, float maxTemp, float minRain, float maxRain)
 	{

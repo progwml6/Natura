@@ -40,8 +40,8 @@ public class PHNatura
 		 * Avoid values below 4096 for items and in the 250-450 range for blocks
 		 */
 		
-		taintedSoil = config.getTerrainBlock("terrain", "Tainted Soil", 181, "Requires blockID < 256").getInt(181);
-        heatSand = config.getTerrainBlock("terrain", "Heat Sand", 182, "Requires blockID < 256").getInt(182);
+		taintedSoil = config.getTerrainBlock("terrain", "Tainted Soil", 169, "Requires blockID < 256").getInt(181);
+        heatSand = config.getTerrainBlock("terrain", "Heat Sand", 170, "Requires blockID < 256").getInt(182);
 
 		treeID = config.getBlock("Wood Block", 3251).getInt(3251);
 		redwoodDoor = config.getBlock("Redwood Door", 3252).getInt(3252);
@@ -58,6 +58,7 @@ public class PHNatura
 		planksID = config.getBlock("Planks Block", 3262).getInt(3262);
 		bloodwoodID = config.getBlock("Bloodwood Block", 3263).getInt(3263);
 		
+		
 		eucalyptusDoor = config.getBlock("Eucalyptus Door", 3264).getInt(3264);
 		hopseedDoor = config.getBlock("Hopseed Door", 3265).getInt(3265);
 		sakuraDoor = config.getBlock("Sakura Door", 3266).getInt(3266);
@@ -69,12 +70,12 @@ public class PHNatura
         darkTree = config.getBlock("Darkwood Log", 3271).getInt(3271);
         darkLeaves = config.getBlock("Darkwood Leaves", 3272).getInt(3272);
         
-        /*omniRedwood = config.getBlock("Redwood Plank Stairslabs", 3270).getInt(3270);
-        omniEucalyptus = config.getBlock("Eucalyptus Plank Stairslabs", 3271).getInt(3271);
-        omniHopseed = config.getBlock("Hopseed Plank Stairslabs", 3272).getInt(3272);
-        omniSakura = config.getBlock("Sakura Plank Stairslabs", 3273).getInt(3273);
-        omniGhostwood = config.getBlock("Ghostwood Plank Stairslabs", 3274).getInt(3274);
-        omniBloodwood = config.getBlock("Bloodwood Plank Stairslabs", 3275).getInt(3275);*/
+        rareTree = config.getBlock("Rare Log", 3277).getInt(3277);
+        rareLeaves = config.getBlock("Rare Leaves", 3278).getInt(3278);
+        rareSapling = config.getBlock("Rare Sapling", 3279).getInt(3279);
+        
+        willow = config.getBlock("Willow Log", 3280).getInt(3280);
+        bluebells = config.getBlock("Flower", 3281).getInt(3281);
 
 		netherBerryItem = config.getItem("Nether Berry Food", 12401).getInt(12401);
 		berryItemID = config.getItem("Berry Food", 12402).getInt(12402);
@@ -103,10 +104,19 @@ public class PHNatura
 		generateBloodwood = config.get("Disabler", "Generate Bloodwood Trees", true).getBoolean(true);
 		generateGhost = config.get("Disabler", "Generate Ghost Trees", true).getBoolean(true);
 		generateSaguaro = config.get("Disabler", "Generate Saguaro Cactus", true).getBoolean(true);
+		
+        generatePurpleheart = config.get("Disabler", "Generate Amaranth Trees", true).getBoolean(true);
+        generateWillow = config.get("Disabler", "Generate Willow Trees", true).getBoolean(true);
+        generateTiger = config.get("Disabler", "Generate Tigerwood Trees", true).getBoolean(true);
+        generateSilverbell = config.get("Disabler", "Generate Silverbell Trees", true).getBoolean(true);
+        generateMaple = config.get("Disabler", "Generate Maple Trees", true).getBoolean(true);
+        
         generateDarkwood = config.get("Disabler", "Generate Darkwood Trees", true).getBoolean(true);
+        generateFusewood = config.get("Disabler", "Generate Fusewood Trees", true).getBoolean(true);
 
 		generateBarley = config.get("Disabler", "Generate Barley Crops", true).getBoolean(true);
 		generateCotton = config.get("Disabler", "Generate Cotton Crops", true).getBoolean(true);
+        generateCotton = config.get("Disabler", "Generate Bluebell Flowers", true).getBoolean(true);
 		
 		generateBlueberries = config.get("Disabler", "Generate Blueberry Bushes", true).getBoolean(true);
 		generateBlackberries = config.get("Disabler", "Generate Blackberry Bushes", true).getBoolean(true);
@@ -119,7 +129,7 @@ public class PHNatura
 		generateStingberries = config.get("Disabler", "Generate Stingberry Bushes", true).getBoolean(true);
 
 		redwoodSpawnRarity = config.get("Worldgen", "Redwood Tree Spawn Rarity", 150).getInt(150);
-		bloodSpawnRarity = config.get("Worldgen", "Bloodwood Tree Spawn Rarity", 14).getInt(14);
+		bloodSpawnRarity = config.get("Worldgen", "Blood Tree Spawn Rarity", 14).getInt(14);
 		eucalyptusShortSpawnRarity = config.get("Worldgen", "Small Eucalyptus Tree Spawn Rarity", 25).getInt(25);
 		eucalyptusShortSpawnRange = config.get("Worldgen", "Small Eucalyptus Tree Spawn Range", 32).getInt(32);
 		sakuraSpawnRarity = config.get("Worldgen", "Sakura Tree Spawn Rarity", 10).getInt(10);
@@ -127,7 +137,15 @@ public class PHNatura
 		ghostSpawnRarity = config.get("Worldgen", "Ghostwood Tree Spawn Rarity", 10).getInt(10);
 		bushSpawnRarity = config.get("Worldgen", "Bush Tree Spawn Rarity", 10).getInt(10);
 		bushSpawnRange = config.get("Worldgen", "Bush Tree Spawn Range", 20).getInt(20);
-		darkSpawnRarity = config.get("Worldgen", "Darkwood Tree Spawn Rarity", 10).getInt(10);
+
+        willowRarity = config.get("Worldgen", "Willow Tree Spawn Rarity", 10).getInt(10);
+		purpleheartRarity = config.get("Worldgen", "Amaranth Tree Spawn Rarity", 1).getInt(1);
+		mapleRarity = config.get("Worldgen", "Maple Tree Spawn Rarity", 8).getInt(8);
+		tigerRarity = config.get("Worldgen", "Tigerwood Tree Spawn Rarity", 8).getInt(8);
+		silverbellRarity = config.get("Worldgen", "Silverbell Tree Spawn Rarity", 22).getInt(22);
+		
+        darkSpawnRarity = config.get("Worldgen", "Darkwood Tree Spawn Rarity", 10).getInt(10);
+        fuseSpawnRarity = config.get("Worldgen", "Fusewood Tree Spawn Rarity", 50).getInt(50);
 		
 		saguaroSpawnRarity = config.get("Worldgen", "Saguaro Cactus Spawn Rarity", 5).getInt(5);
 
@@ -181,9 +199,15 @@ public class PHNatura
 	
 	public static int netherFood;
 	
+	//Rare trees
+	public static int rareTree;
+	public static int rareLeaves;
+    public static int rareSapling;
+	
 	//Overworld
 	public static boolean generateBarley;
 	public static boolean generateCotton;
+    public static boolean generateBluebells;
 	public static boolean generateBlueberries;
 	public static boolean generateBlackberries;
 	public static boolean generateRaspberries;
@@ -264,6 +288,9 @@ public class PHNatura
 	public static int redwoodID;
 	public static int planksID;
 	public static int bloodwoodID;
+	public static int willow;
+	
+	public static int bluebells;
 
 	public static int floraSaplingID;
 	public static int floraLeavesID;
@@ -294,7 +321,15 @@ public class PHNatura
 	public static boolean generateGhost;
 	public static boolean generateBush;
 	public static boolean generateSaguaro;
+	
+    public static boolean generatePurpleheart;
+    public static boolean generateWillow;
+    public static boolean generateTiger;
+    public static boolean generateSilverbell;
+    public static boolean generateMaple;
+    
     public static boolean generateDarkwood;
+    public static boolean generateFusewood;
 
 	public static int redwoodSpawnRarity;
 	public static int redwoodSpawnRange;
@@ -307,4 +342,10 @@ public class PHNatura
 	public static int bushSpawnRarity;
 	public static int bushSpawnRange;
 	public static int darkSpawnRarity;
+    public static int fuseSpawnRarity;
+    public static int purpleheartRarity;
+    public static int mapleRarity;
+    public static int willowRarity;
+    public static int tigerRarity;
+    public static int silverbellRarity;
 }

@@ -29,6 +29,7 @@ public class NCropsTickHandler implements ITickHandler
 		NContent.floraLeaves.setGraphicsLevel(Block.leaves.graphicsLevel);
 		NContent.floraLeavesNoColor.setGraphicsLevel(Block.leaves.graphicsLevel);
         NContent.darkLeaves.setGraphicsLevel(Block.leaves.graphicsLevel);
+        NContent.rareLeaves.setGraphicsLevel(Block.leaves.graphicsLevel);
 	}
 
 	@Override

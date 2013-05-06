@@ -1,5 +1,6 @@
 package mods.natura.blocks;
 
+import mods.natura.common.NaturaTab;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockSand;
 import net.minecraft.client.renderer.texture.IconRegister;
@@ -16,6 +17,7 @@ public class HeatSand extends BlockSand
         super(par1);
         this.setHardness(5f);
         this.setStepSound(Block.soundSandFootstep);
+        this.setCreativeTab(NaturaTab.tab);
     }
     
     @Override
