@@ -3,7 +3,6 @@ package mods.natura.worldgen;
 import java.util.Random;
 
 import mods.natura.common.NContent;
-import mods.tinker.tconstruct.library.util.CoordTuple;
 import net.minecraft.block.Block;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
