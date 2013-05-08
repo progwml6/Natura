@@ -1,4 +1,4 @@
-package mods.natura.blocks;
+package mods.natura.blocks.crops;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -20,6 +20,6 @@ public class FlowerBlock extends BlockFlower
     @Override
     public void registerIcons (IconRegister iconRegister)
     {
-        this.blockIcon = iconRegister.registerIcon("natura:bluebells");
+        this.blockIcon = iconRegister.registerIcon("natura:flower_bluebells");
     }
 }

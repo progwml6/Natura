@@ -107,8 +107,15 @@ public class NClientProxy extends NCommonProxy
 		LanguageRegistry.instance().addStringLocalization("sakuraNPlanks.name", "en_US", "Sakura Planks");
 		LanguageRegistry.instance().addStringLocalization("ghostNPlanks.name", "en_US", "Ghostwood Planks");
 		LanguageRegistry.instance().addStringLocalization("bushNPlanks.name", "en_US", "Hopseed Planks");
-		LanguageRegistry.instance().addStringLocalization("redwoodNPlanks.name", "en_US", "Redwood Planks");
-		LanguageRegistry.instance().addStringLocalization("bloodNPlanks.name", "en_US", "Bloodplanks");
+		LanguageRegistry.instance().addStringLocalization("bloodNPlanks.name", "en_US", "Bloodwood Planks");
+        LanguageRegistry.instance().addStringLocalization("redwoodNPlanks.name", "en_US", "Redwood Planks");
+		LanguageRegistry.instance().addStringLocalization("mapleNPlanks.name", "en_US", "Maple Planks");
+        LanguageRegistry.instance().addStringLocalization("silverbellNPlanks.name", "en_US", "Silverbell Planks");
+        LanguageRegistry.instance().addStringLocalization("tigerNPlanks.name", "en_US", "Tigerwood Planks");
+        LanguageRegistry.instance().addStringLocalization("purpleheartNPlanks.name", "en_US", "Amaranth Planks");
+        LanguageRegistry.instance().addStringLocalization("willowNPlanks.name", "en_US", "Willow Planks");
+        LanguageRegistry.instance().addStringLocalization("darkwoodNPlanks.name", "en_US", "Darkwood Planks");
+        LanguageRegistry.instance().addStringLocalization("fusewoodNPlanks.name", "en_US", "Fusewood Planks");
 
 		LanguageRegistry.instance().addStringLocalization("block.sapling.eucalyptus.name", "en_US", "Eucalyptus Sapling");
 		LanguageRegistry.instance().addStringLocalization("block.sapling.sakura.name", "en_US", "Sakura Sapling");
@@ -126,6 +133,7 @@ public class NClientProxy extends NCommonProxy
         
         LanguageRegistry.instance().addStringLocalization("block.glowshroom.green.name", "en_US", "Green Glowshroom");
         LanguageRegistry.instance().addStringLocalization("block.glowshroom.purple.name", "en_US", "Purple Glowshroom");
+        LanguageRegistry.instance().addStringLocalization("block.glowshroom.blue.name", "en_US", "Blue Glowshroom");
 
 		LanguageRegistry.instance().addStringLocalization("eucalyptusNLeaves.name", "en_US", "Eucalyptus Leaves");
 		LanguageRegistry.instance().addStringLocalization("sakuraNLeaves.name", "en_US", "Sakura Leaves");
@@ -145,6 +153,8 @@ public class NClientProxy extends NCommonProxy
 		LanguageRegistry.instance().addStringLocalization("eucalyptusBoat.name", "en_US", "Eucalyptus Boat");
 		LanguageRegistry.addName(NContent.taintedSoil, "Tainted Soil");
         LanguageRegistry.addName(NContent.heatSand, "Heat Sand");
+        LanguageRegistry.addName(NContent.infernalStone, "Infernal Stone");
+        LanguageRegistry.addName(NContent.thornVines, "Thornvines");
         LanguageRegistry.addName(NContent.potashApple, "Potash Apple");
 	}
 

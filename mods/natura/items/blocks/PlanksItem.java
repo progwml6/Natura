@@ -12,7 +12,7 @@ public class PlanksItem extends ItemBlock
 {
     public static final String blockType[] =
     {
-        "eucalyptus", "sakura", "ghost", "redwood", "blood", "bush", "", "", "", "", "", "", "", "", "", ""
+        "eucalyptus", "sakura", "ghost", "redwood", "blood", "bush", "maple", "silverbell", "purpleheart", "tiger", "willow", "darkwood", "fusewood", "", "", ""
     };
 
     public PlanksItem(int i)
@@ -58,6 +58,28 @@ public class PlanksItem extends ItemBlock
     	case 5:
     		list.add("Ascended Glitch");
     		break;
+        case 6:
+            list.add("Somewhat Sweet");
+            break;
+        case 7:
+            list.add("Silver Bells");
+            break;
+        case 8:
+            list.add("Heart of Wood");
+            break;
+        case 9:
+            list.add("Wild Grain");
+            break;
+        case 10:
+            list.add("The Weeper");
+            break;
+        case 11:
+            list.add("Nether Tree");
+            break;
+        case 12:
+            list.add("Nether Tree");
+            list.add("Explosive Personality");
+            break;
     	}
 	}
 }

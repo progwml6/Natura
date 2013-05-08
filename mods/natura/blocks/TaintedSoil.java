@@ -35,4 +35,9 @@ public class TaintedSoil extends NBlock
             return true;
         return super.canSustainPlant(world, x, y, z, direction, plant);
     }
+    
+    public boolean isFireSource(World world, int x, int y, int z, int metadata, ForgeDirection side)
+    {
+        return true;
+    }
 }

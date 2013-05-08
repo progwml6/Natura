@@ -272,19 +272,19 @@ public class NetherBerryBush extends BlockLeavesBase implements IPlantable
 	@Override
 	public int getFlammability (IBlockAccess world, int x, int y, int z, int metadata, ForgeDirection face)
 	{
-		return 25;
+		return 0;
 	}
 
 	@Override
 	public boolean isFlammable (IBlockAccess world, int x, int y, int z, int metadata, ForgeDirection face)
 	{
-		return true;
+		return false;
 	}
 
 	@Override
 	public int getFireSpreadSpeed (World world, int x, int y, int z, int metadata, ForgeDirection face)
 	{
-		return 4;
+		return 0;
 	}
 
 	/**

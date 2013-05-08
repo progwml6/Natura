@@ -18,7 +18,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class Planks extends Block
 {
     public Icon[] icons;
-    public String[] textureNames = new String[] { "redwood", "eucalyptus", "hopseed", "sakura", "ghostwood", "bloodwood" };
+    public static String[] textureNames = new String[] { "eucalyptus", "sakura", "ghostwood", "redwood", "bloodwood", "hopseed", "maple", "silverbell", "purpleheart", "tiger", "willow", "darkwood", "fusewood" };
 
     public Planks(int id)
     {
@@ -33,19 +33,6 @@ public class Planks extends Block
     @SideOnly(Side.CLIENT)
     public Icon getIcon (int side, int meta)
     {
-        if (meta == 0)
-            return icons[1];
-        if (meta == 1)
-            return icons[3];
-        if (meta == 2)
-            return icons[4];
-        if (meta == 3)
-            return icons[0];
-        if (meta == 4)
-            return icons[5];
-        if (meta == 5)
-            return icons[2];
-
         return icons[meta];
     }
 
@@ -63,14 +50,14 @@ public class Planks extends Block
 
     public int getFlammability (IBlockAccess world, int x, int y, int z, int metadata, ForgeDirection face)
     {
-        if (metadata == 1 || metadata == 4)
+        if (metadata == 1 || metadata == 4 || metadata > 10)
             return 0;
         return blockFlammability[blockID];
     }
 
     public int getFireSpreadSpeed (World world, int x, int y, int z, int metadata, ForgeDirection face)
     {
-        if (metadata == 1 || metadata == 4)
+        if (metadata == 1 || metadata == 4 || metadata > 10)
             return 0;
         return blockFireSpreadSpeed[blockID];
     }
@@ -85,7 +72,7 @@ public class Planks extends Block
     @Override
     public void getSubBlocks (int par1, CreativeTabs par2CreativeTabs, List par3List)
     {
-        for (int i = 0; i < 6; i++)
+        for (int i = 0; i < textureNames.length; i++)
             par3List.add(new ItemStack(par1, 1, i));
     }
 }

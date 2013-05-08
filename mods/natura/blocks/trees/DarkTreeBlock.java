@@ -8,6 +8,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockLog;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
 import net.minecraft.world.IBlockAccess;
@@ -74,21 +75,11 @@ public class DarkTreeBlock extends BlockLog
         return this.blockID;
     }
 
-    /*@Override
-    public int damageDropped(int meta)
+    public void onBlockHarvested(World world, int x, int y, int z, int meta, EntityPlayer player) 
     {
-        return meta % 4;
+        world.createExplosion(null, x, y, z, 2f, false);
+        //System.out.println("Block ID: "+world.getBlockId(x, y, z));
     }
-
-    public int getFlammability(IBlockAccess world, int x, int y, int z, int metadata, ForgeDirection face)
-    {
-        return metadata % 4 != 2 ? blockFlammability[blockID] : 0;
-    }
-
-    public int getFireSpreadSpeed(World world, int x, int y, int z, int metadata, ForgeDirection face)
-    {
-        return metadata % 4 != 2 ? blockFireSpreadSpeed[blockID] : 0;
-    }*/
 
     @SideOnly(Side.CLIENT)
     @Override

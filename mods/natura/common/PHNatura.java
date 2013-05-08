@@ -39,9 +39,10 @@ public class PHNatura
 		/* Define the mod's IDs. 
 		 * Avoid values below 4096 for items and in the 250-450 range for blocks
 		 */
-		
-		taintedSoil = config.getTerrainBlock("terrain", "Tainted Soil", 169, "Requires blockID < 256").getInt(181);
-        heatSand = config.getTerrainBlock("terrain", "Heat Sand", 170, "Requires blockID < 256").getInt(182);
+
+        infernalStone = config.getTerrainBlock("terrain", "Infernal Stone", 168, "Requires blockID < 256").getInt(168);
+		taintedSoil = config.getTerrainBlock("terrain", "Tainted Soil", 169, "Requires blockID < 256").getInt(169);
+        heatSand = config.getTerrainBlock("terrain", "Heat Sand", 170, "Requires blockID < 256").getInt(170);
 
 		treeID = config.getBlock("Wood Block", 3251).getInt(3251);
 		redwoodDoor = config.getBlock("Redwood Door", 3252).getInt(3252);
@@ -70,12 +71,21 @@ public class PHNatura
         darkTree = config.getBlock("Darkwood Log", 3271).getInt(3271);
         darkLeaves = config.getBlock("Darkwood Leaves", 3272).getInt(3272);
         
+        glowshroomBlue = config.getBlock("Blue Glowshroom", 3273).getInt(3273);
+        glowshroomGreen = config.getBlock("Green Glowshroom", 3274).getInt(3274);
+        glowshroomPurple = config.getBlock("Purple Glowshroom", 3275).getInt(3275);
+        
         rareTree = config.getBlock("Rare Log", 3277).getInt(3277);
         rareLeaves = config.getBlock("Rare Leaves", 3278).getInt(3278);
         rareSapling = config.getBlock("Rare Sapling", 3279).getInt(3279);
         
         willow = config.getBlock("Willow Log", 3280).getInt(3280);
         bluebells = config.getBlock("Flower", 3281).getInt(3281);
+        thornVines = config.getBlock("Thornvines", 3282).getInt(3282);
+        
+        alternateWorkbench = config.getBlock("Crafting Table", 3283).getInt(3283);
+        alternateBookshelf = config.getBlock("Bookshelf", 3284).getInt(3284);
+        alternateFence = config.getBlock("Fence", 3285).getInt(3285);        
 
 		netherBerryItem = config.getItem("Nether Berry Food", 12401).getInt(12401);
 		berryItemID = config.getItem("Berry Food", 12402).getInt(12402);
@@ -113,6 +123,7 @@ public class PHNatura
         
         generateDarkwood = config.get("Disabler", "Generate Darkwood Trees", true).getBoolean(true);
         generateFusewood = config.get("Disabler", "Generate Fusewood Trees", true).getBoolean(true);
+        generateThornvines = config.get("Disabler", "Generate Thornvines", true).getBoolean(true);
 
 		generateBarley = config.get("Disabler", "Generate Barley Crops", true).getBoolean(true);
 		generateCotton = config.get("Disabler", "Generate Cotton Crops", true).getBoolean(true);
@@ -179,6 +190,8 @@ public class PHNatura
 		skySpawnRange = config.get("Worldgen", "Skyberry Spawn Range", 100).getInt(100);
 		stingSpawnRarity = config.get("Worldgen", "Stingberry Spawn Rarity", 18).getInt(18);
 		stingSpawnRange = config.get("Worldgen", "Stingberry Spawn Range", 100).getInt(100);
+		
+		thornSpawnRarity = config.get("Worldgen", "Thornvines Spawn Rarity", 40).getInt(40);
 
 		seaLevel = config.get("general", "Sea level", 64).getInt(64);
 
@@ -193,9 +206,14 @@ public class PHNatura
 	//Nether
 	public static int taintedSoil;
 	public static int heatSand;
+    public static int infernalStone;
 	public static int glowshroom;
 	public static int darkTree;
 	public static int darkLeaves;
+	
+    public static int glowshroomBlue;
+    public static int glowshroomGreen;
+    public static int glowshroomPurple;
 	
 	public static int netherFood;
 	
@@ -264,6 +282,8 @@ public class PHNatura
 	public static int berryMedley;
 	public static int berryBlockID;
 	public static int netherBerryBlock;
+	
+    public static int thornSpawnRarity;
 
 	//Clouds
 
@@ -291,6 +311,7 @@ public class PHNatura
 	public static int willow;
 	
 	public static int bluebells;
+	public static int thornVines;
 
 	public static int floraSaplingID;
 	public static int floraLeavesID;
@@ -306,6 +327,10 @@ public class PHNatura
 	public static int redwoodBarkDoor;
 
 	public static int boatItemID;
+
+    public static int alternateWorkbench;
+    public static int alternateBookshelf;
+    public static int alternateFence;
 	
 	public static int omniRedwood;
 	public static int omniEucalyptus;
@@ -330,6 +355,8 @@ public class PHNatura
     
     public static boolean generateDarkwood;
     public static boolean generateFusewood;
+    
+    public static boolean generateThornvines;
 
 	public static int redwoodSpawnRarity;
 	public static int redwoodSpawnRange;

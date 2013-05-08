@@ -14,7 +14,7 @@ public class GlowshroomItem extends ItemBlock
 {
     public static final String blockType[] =
     {
-        "green", "purple"
+        "green", "purple", "blue"
     };
 
     public GlowshroomItem(int i)

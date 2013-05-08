@@ -5,12 +5,15 @@ import java.util.List;
 
 import mods.natura.blocks.*;
 import mods.natura.blocks.crops.*;
+import mods.natura.blocks.overrides.*;
 import mods.natura.blocks.trees.*;
 import mods.natura.items.*;
 import mods.natura.items.blocks.*;
 import mods.natura.worldgen.WillowGen;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockFence;
 import net.minecraft.block.material.Material;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;
@@ -47,7 +50,7 @@ public class NContent
         netherBerryItem = new NetherBerryItem(PHNatura.netherBerryItem, 1).setUnlocalizedName("berry.nether");
         berryItem = new BerryItem(PHNatura.berryItemID, 1).setUnlocalizedName("berry");
         berryMedley = new BerryMedley(PHNatura.berryMedley, 5).setUnlocalizedName("berryMedley");
-        
+
         berryBush = new BerryBush(PHNatura.berryBlockID);
         GameRegistry.registerBlock(berryBush, BerryBushItem.class, "BerryBush");
         netherBerryBush = new NetherBerryBush(PHNatura.netherBerryBlock);
@@ -78,7 +81,7 @@ public class NContent
         ghostDoor = new NDoor(PHNatura.ghostDoor, Material.wood, 4, "ghostwood").setUnlocalizedName("door.ghostwood");
         bloodDoor = new NDoor(PHNatura.bloodDoor, Material.wood, 5, "bloodwood").setUnlocalizedName("door.bloodwood");
         redwoodBarkDoor = new NDoor(PHNatura.redwoodBarkDoor, Material.wood, 6, "redwoodbark").setUnlocalizedName("door.redwoodbark");
-        
+
         MinecraftForge.addGrassSeed(new ItemStack(seeds, 1, 0), 3);
         MinecraftForge.addGrassSeed(new ItemStack(seeds, 1, 1), 3);
 
@@ -94,21 +97,32 @@ public class NContent
         GameRegistry.registerBlock(bloodwood, LogTwoxTwoItem.class, "bloodwood");
         GameRegistry.registerBlock(saguaro, SaguaroItem.class, "Saguaro");
         GameRegistry.registerBlock(willow, WillowItem.class, "willow");
-        
+
         //Nether
         taintedSoil = new TaintedSoil(PHNatura.taintedSoil).setUnlocalizedName("TaintedSoil");
         GameRegistry.registerBlock(taintedSoil, "soil.tainted");
         heatSand = new HeatSand(PHNatura.heatSand).setUnlocalizedName("HeatSand");
         GameRegistry.registerBlock(heatSand, "heatsand");
-        glowshroom = new Glowshroom(PHNatura.glowshroom).setUnlocalizedName("Glowshroom").setLightValue(0.625f);
+        infernalStone = new NBlock(PHNatura.infernalStone, Material.rock, 1.5f, new String[] { "infernal_stone" }).setUnlocalizedName("infernalStone");
+        GameRegistry.registerBlock(infernalStone, "infernalStone");
+
+        glowshroom = (Glowshroom) new Glowshroom(PHNatura.glowshroom).setUnlocalizedName("Glowshroom").setLightValue(0.625f);
         GameRegistry.registerBlock(glowshroom, GlowshroomItem.class, "Glowshroom");
         darkTree = new DarkTreeBlock(PHNatura.darkTree).setUnlocalizedName("Darktree");
         GameRegistry.registerBlock(darkTree, DarkTreeItem.class, "Dark Tree");
         darkLeaves = (NLeaves) new NLeavesDark(PHNatura.darkLeaves).setUnlocalizedName("Darkleaves");
         GameRegistry.registerBlock(darkLeaves, NLeavesDarkItem.class, "Dark Leaves");
+        thornVines = new ThornVines(PHNatura.thornVines).setUnlocalizedName("Thornvines").setLightValue(0.625f);
+        GameRegistry.registerBlock(thornVines, "Thornvines");
+        glowshroomBlue = new LargeGlowshroom(PHNatura.glowshroomBlue, Material.wood, "blue").setUnlocalizedName("blueGlowshroom").setLightValue(0.625f);
+        GameRegistry.registerBlock(glowshroomBlue, "blueGlowshroom");
+
+        /*public static Block glowshroomBlue;
+        public static Block glowshroomGreen;
+        public static Block glowshroomPurple;*/
 
         potashApple = new NetherFoodItem(PHNatura.netherFood).setUnlocalizedName("Natura.netherfood");
-        
+
         //Rare overworld
         rareTree = new OverworldTreeBlock(PHNatura.rareTree).setUnlocalizedName("RareTree");
         GameRegistry.registerBlock(rareTree, OverworldTreeItem.class, "Rare Tree");
@@ -119,6 +133,25 @@ public class NContent
         //rareLeaves;
         bluebells = new FlowerBlock(PHNatura.bluebells).setUnlocalizedName("Bluebells");
         GameRegistry.registerBlock(bluebells, "Bluebells");
+
+        //Vanilla overrides and alternates
+        //Block.blocksList[58] = null;
+        //Item.itemsList[58] = null;
+        alternateWorkbench = new AlternateWorkbench(PHNatura.alternateWorkbench).setHardness(2.5F).setStepSound(Block.soundWoodFootstep).setUnlocalizedName("workbench").setCreativeTab(NaturaTab.tab);
+        GameRegistry.registerBlock(alternateWorkbench, NAlternateItem.class, "Natura.workbench");
+
+        //Block.blocksList[47] = null;
+        //Item.itemsList[47] = null;
+        alternateBookshelf = new AlternateBookshelf(PHNatura.alternateBookshelf).setHardness(1.5F).setStepSound(Block.soundWoodFootstep).setUnlocalizedName("bookshelf").setCreativeTab(NaturaTab.tab);
+        GameRegistry.registerBlock(alternateBookshelf, NAlternateItem.class, "Natura.bookshelf");
+
+        alternateFence = new AlternateFence(PHNatura.alternateFence, Material.wood).setHardness(2.0F).setResistance(5.0F).setStepSound(Block.soundWoodFootstep).setUnlocalizedName("fence")
+                .setCreativeTab(NaturaTab.tab);
+        GameRegistry.registerBlock(alternateFence, NAlternateItem.class, "Natura.fence");
+
+        Item.itemsList[24] = null;
+        Item.stick = null;
+        Item.stick = (new StickItem(24)).setFull3D().setUnlocalizedName("stick").setCreativeTab(CreativeTabs.tabMaterials);
 
         //Material.vine.setRequiresTool();
         //BiomeGenBase.swampland.worldGeneratorSwamp = new WillowGen();
@@ -153,7 +186,7 @@ public class NContent
         GameRegistry.addRecipe(new ItemStack(Item.bread), "bbb", 'b', new ItemStack(plantItem, 1, 0));
         GameRegistry.addRecipe(new ItemStack(plantItem, 1, 1), "X", 'X', new ItemStack(plantItem, 1, 0));
         GameRegistry.addRecipe(new ItemStack(plantItem, 1, 2), "X", 'X', new ItemStack(Item.wheat));
-        
+
         FurnaceRecipes.smelting().addSmelting(saguaro.blockID, 0, new ItemStack(Item.dyePowder, 1, 2), 0.2F);
 
         for (int i = 1; i <= 2; i++)
@@ -194,14 +227,22 @@ public class NContent
 
         //Trees
         for (int i = 0; i < 3; i++)
-            //Planks
+        {
             GameRegistry.addRecipe(new ItemStack(planks, 4, i), "w", 'w', new ItemStack(tree, 1, i));
+            GameRegistry.addRecipe(new ItemStack(planks, 4, i+6), "w", 'w', new ItemStack(rareTree, 1, i));
+        }
         GameRegistry.addRecipe(new ItemStack(planks, 4, 3), "w", 'w', new ItemStack(redwood, 1, 1));
         GameRegistry.addRecipe(new ItemStack(planks, 4, 4), "w", 'w', new ItemStack(bloodwood, 1, Short.MAX_VALUE));
         GameRegistry.addRecipe(new ItemStack(planks, 4, 5), "w", 'w', new ItemStack(tree, 1, 3));
+        GameRegistry.addRecipe(new ItemStack(planks, 4, 10), "w", 'w', new ItemStack(willow, 1, 0));
+        GameRegistry.addRecipe(new ItemStack(planks, 4, 11), "w", 'w', new ItemStack(darkTree, 1, 0));
+        GameRegistry.addRecipe(new ItemStack(planks, 4, 12), "w", 'w', new ItemStack(darkTree, 1, 1));
 
-        ItemStack[] plankStacks = new ItemStack[] { new ItemStack(planks, 1, 0), new ItemStack(planks, 1, 1), new ItemStack(planks, 1, 2), new ItemStack(planks, 1, 3), new ItemStack(planks, 1, 5) };
-        ItemStack[] logStacks = new ItemStack[] { new ItemStack(tree, 4, 0), new ItemStack(tree, 4, 1), new ItemStack(tree, 4, 2), new ItemStack(tree, 4, 3), new ItemStack(redwood, 1, 1) };
+        ItemStack[] plankStacks = new ItemStack[] { new ItemStack(planks, 1, 0), new ItemStack(planks, 1, 1), new ItemStack(planks, 1, 2), new ItemStack(planks, 1, 3), new ItemStack(planks, 1, 5),
+                new ItemStack(planks, 1, 6), new ItemStack(planks, 1, 7), new ItemStack(planks, 1, 8), new ItemStack(planks, 1, 9), new ItemStack(planks, 1, 10), new ItemStack(planks, 1, 11),
+                new ItemStack(planks, 1, 12) };
+        ItemStack[] logStacks = new ItemStack[] { new ItemStack(tree, 1, 0), new ItemStack(tree, 1, 1), new ItemStack(tree, 1, 2), new ItemStack(tree, 1, 3), new ItemStack(redwood, 1, 1),
+                new ItemStack(rareTree, 1, 0), new ItemStack(rareTree, 1, 1), new ItemStack(rareTree, 1, 2), new ItemStack(rareTree, 1, 3), new ItemStack(willow, 1, 0), new ItemStack(darkTree, 1, 0), new ItemStack(darkTree, 1, 1) };
 
         List recipes = CraftingManager.getInstance().getRecipeList();
         addShapedRecipeFirst(recipes, new ItemStack(doorItem, 1, 0), "##", "##", "##", '#', new ItemStack(planks, 1, 3));
@@ -211,6 +252,14 @@ public class NContent
         addShapedRecipeFirst(recipes, new ItemStack(doorItem, 1, 4), "##", "##", "##", '#', new ItemStack(planks, 1, 2));
         addShapedRecipeFirst(recipes, new ItemStack(doorItem, 1, 5), "##", "##", "##", '#', new ItemStack(planks, 1, 4));
         addShapedRecipeFirst(recipes, new ItemStack(doorItem, 1, 6), "##", "##", "##", '#', new ItemStack(redwood, 1, 0));
+
+        for (int i = 0; i < woodTextureNames.length; i++)
+        {
+            addShapedRecipeFirst(recipes, new ItemStack(Item.stick, 4, i + 1), "#", "#", '#', new ItemStack(planks, 1, i));
+            addShapedRecipeFirst(recipes, new ItemStack(alternateWorkbench, 1, i), "##", "##", '#', new ItemStack(planks, 1, i));
+            addShapedRecipeFirst(recipes, new ItemStack(alternateBookshelf, 1, i), "###", "bbb", "###", '#', new ItemStack(planks, 1, i), 'b', Item.book);
+            addShapedRecipeFirst(recipes, new ItemStack(alternateFence, 2, i), "###", "###", '#', new ItemStack(Item.stick, 1, i + 1));
+        }
 
         for (int i = 0; i < plankStacks.length; i++)
         {
@@ -300,8 +349,8 @@ public class NContent
         ShapedRecipes var17 = new ShapedRecipes(var5, var6, var15, itemstack);
         recipeList.add(0, var17);
     }
-    
-    public void addLoot()
+
+    public void addLoot ()
     {
         //ChestGenHooks.getInfo(ChestGenHooks.BONUS_CHEST).addItem(new WeightedRandomChestContent(new ItemStack(VanityBlocksStorage.StorageBlock,0,0),3,5,6));
     }
@@ -383,19 +432,32 @@ public class NContent
 
     public static Item doorItem;
     public static Item floraBoat;
-    
+
     //Nether
     public static Block taintedSoil;
     public static Block heatSand;
-    public static Block glowshroom;
+    public static Block infernalStone;
+    public static Glowshroom glowshroom;
     public static Block darkTree;
     public static NLeaves darkLeaves;
-    
+    public static Block thornVines;
+
+    public static Block glowshroomBlue;
+    public static Block glowshroomGreen;
+    public static Block glowshroomPurple;
+
     public static Item potashApple;
-    
+
     //Extra overworld
     public static Block rareTree;
     public static NLeaves rareLeaves;
     public static OverworldSapling rareSapling;
     public static Block bluebells;
+
+    //Vanilla overrides and alternates
+    public static final String woodTextureNames[] = { "eucalyptus", "sakura", "ghostwood", "redwood", "bloodwood", "hopseed", "maple", "silverbell", "purpleheart", "tiger", "willow", "darkwood",
+            "fusewood" };
+    public static Block alternateWorkbench;
+    public static Block alternateBookshelf;
+    public static Block alternateFence;
 }

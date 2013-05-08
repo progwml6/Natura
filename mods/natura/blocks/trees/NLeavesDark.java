@@ -85,7 +85,11 @@ public class NLeavesDark extends NLeaves
     
     public int damageDropped(int par1)
     {
-        return par1 % 4 == 2 ? 0 : 6;
+        if (par1 % 4 == 2)
+            return 0;
+        if (par1 % 4 == 3)
+            return 7;
+        return 6;
     }
     
     public int quantityDropped(int meta, int fortune, Random random)

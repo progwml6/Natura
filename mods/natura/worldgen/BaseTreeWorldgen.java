@@ -172,6 +172,23 @@ public class BaseTreeWorldgen implements IWorldGenerator
                 zSpawn = zPos + random.nextInt(16);
                 fusewood.generate(world, random, xSpawn, ySpawn, zSpawn);
             }
+            if (PHNatura.generateThornvines && random.nextInt(PHNatura.thornSpawnRarity) == 0)
+            {
+                ySpawn = 108;
+                for (int i = 0; i < 20; i++)
+                {
+                    int vineMeta = random.nextInt(16);
+                    xSpawn = xPos + random.nextInt(16);
+                    zSpawn = zPos + random.nextInt(16);
+                    int size = random.nextInt(25)+1;
+                    int height = ySpawn - (random.nextInt(size) + random.nextInt(size) + random.nextInt(size));
+                    for (int yHeight = ySpawn; yHeight > height; yHeight--)
+                    {
+                        if (world.getBlockId(xSpawn, yHeight, zSpawn) == 0)
+                            world.setBlock(xSpawn, yHeight, zSpawn, NContent.thornVines.blockID, vineMeta, 2);
+                    }
+                }
+            }
         }
 
         if (biomeName == "Jungle" || biomeName == "JungleHills" || biomeName == "Extreme Jungle")

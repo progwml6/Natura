@@ -56,15 +56,15 @@ public class CloudBlock extends NBlock
     }
 
     @Override
-    public int damageDropped(int meta)
-    {
-        return meta;
-    }
-
-    @Override
     public boolean isOpaqueCube()
     {
         return false;
+    }
+
+    @Override
+    public int damageDropped(int meta)
+    {
+        return meta;
     }
 
     @Override
