@@ -40,7 +40,7 @@ public class PHNatura
 		 * Avoid values below 4096 for items and in the 250-450 range for blocks
 		 */
 
-        infernalStone = config.getTerrainBlock("terrain", "Infernal Stone", 168, "Requires blockID < 256").getInt(168);
+        //infernalStone = config.getTerrainBlock("terrain", "Infernal Stone", 168, "Requires blockID < 256").getInt(168);
 		taintedSoil = config.getTerrainBlock("terrain", "Tainted Soil", 169, "Requires blockID < 256").getInt(169);
         heatSand = config.getTerrainBlock("terrain", "Heat Sand", 170, "Requires blockID < 256").getInt(170);
 
@@ -106,6 +106,7 @@ public class PHNatura
 		seedFood = config.getItem("Saguaro Fruit", 12418).getInt(12418);
         boneBagID = config.getItem("Bonemeal Bag", 12419).getInt(12419);
         netherFood = config.getItem("Nether foodstuffs", 12420).getInt(12420);
+        stickItem = config.getItem("Stick", 12421).getInt(12421);
 
 		generateRedwood = config.get("Disabler", "Generate Redwood Trees", true).getBoolean(true);
 		generateSakura = config.get("Disabler", "Generate Sakura Trees", true).getBoolean(true);
@@ -216,6 +217,7 @@ public class PHNatura
     public static int glowshroomPurple;
 	
 	public static int netherFood;
+    public static int stickItem;
 	
 	//Rare trees
 	public static int rareTree;

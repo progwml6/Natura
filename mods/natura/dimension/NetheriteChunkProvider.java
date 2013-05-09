@@ -770,8 +770,8 @@ public class NetheriteChunkProvider implements IChunkProvider
 
         MinecraftForge.EVENT_BUS.post(new PopulateChunkEvent.Pre(par1IChunkProvider, worldObj, hellRNG, par2, par3, false));
 
-        int k = par2 * 16;
-        int l = par3 * 16;
+        int blockX = par2 * 16;
+        int blockZ = par3 * 16;
         this.genNetherBridge.generateStructuresInChunk(this.worldObj, this.hellRNG, par2, par3);
         int i1;
         int xPos;
@@ -781,9 +781,9 @@ public class NetheriteChunkProvider implements IChunkProvider
         boolean doGen = TerrainGen.populate(par1IChunkProvider, worldObj, hellRNG, par2, par3, false, NETHER_LAVA);
         for (i1 = 0; doGen && i1 < 8; ++i1)
         {
-            xPos = k + this.hellRNG.nextInt(16) + 8;
+            xPos = blockX + this.hellRNG.nextInt(16) + 8;
             yPos = this.hellRNG.nextInt(120) + 4;
-            zPos = l + this.hellRNG.nextInt(16) + 8;
+            zPos = blockZ + this.hellRNG.nextInt(16) + 8;
             (new WorldGenHellLava(Block.lavaMoving.blockID, false)).generate(this.worldObj, this.hellRNG, xPos, yPos, zPos);
         }
 
@@ -793,10 +793,10 @@ public class NetheriteChunkProvider implements IChunkProvider
         doGen = TerrainGen.populate(par1IChunkProvider, worldObj, hellRNG, par2, par3, false, FIRE);
         for (xPos = 0; doGen && xPos < i1; ++xPos)
         {
-            yPos = k + this.hellRNG.nextInt(16) + 8;
+            yPos = blockX + this.hellRNG.nextInt(16) + 8;
             zPos = this.hellRNG.nextInt(120) + 4;
-            i2 = l + this.hellRNG.nextInt(16) + 8;
-            (new WorldGenFire()).generate(this.worldObj, this.hellRNG, yPos, zPos, i2);
+            i2 = blockZ + this.hellRNG.nextInt(16) + 8;
+            (new FireGen()).generate(this.worldObj, this.hellRNG, yPos, zPos, i2);
         }
 
         i1 = this.hellRNG.nextInt(this.hellRNG.nextInt(10) + 1);
@@ -804,37 +804,18 @@ public class NetheriteChunkProvider implements IChunkProvider
         doGen = TerrainGen.populate(par1IChunkProvider, worldObj, hellRNG, par2, par3, false, GLOWSTONE);
         for (xPos = 0; doGen && xPos < i1; ++xPos)
         {
-            yPos = k + this.hellRNG.nextInt(16) + 8;
+            yPos = blockX + this.hellRNG.nextInt(16) + 8;
             zPos = this.hellRNG.nextInt(120) + 4;
-            i2 = l + this.hellRNG.nextInt(16) + 8;
+            i2 = blockZ + this.hellRNG.nextInt(16) + 8;
             (new WorldGenGlowStone1()).generate(this.worldObj, this.hellRNG, yPos, zPos, i2);
         }
 
         for (xPos = 0; doGen && xPos < 10; ++xPos)
         {
-            yPos = k + this.hellRNG.nextInt(16) + 8;
+            yPos = blockX + this.hellRNG.nextInt(16) + 8;
             zPos = this.hellRNG.nextInt(128);
-            i2 = l + this.hellRNG.nextInt(16) + 8;
+            i2 = blockZ + this.hellRNG.nextInt(16) + 8;
             (new WorldGenGlowStone2()).generate(this.worldObj, this.hellRNG, yPos, zPos, i2);
-        }
-
-        MinecraftForge.EVENT_BUS.post(new DecorateBiomeEvent.Pre(worldObj, hellRNG, k, l));
-
-        doGen = TerrainGen.decorate(worldObj, hellRNG, k, l, SHROOM);
-        if (doGen && this.hellRNG.nextInt(1) == 0)
-        {
-            xPos = k + this.hellRNG.nextInt(16) + 8;
-            yPos = this.hellRNG.nextInt(128);
-            zPos = l + this.hellRNG.nextInt(16) + 8;
-            (new WorldGenFlowers(Block.mushroomBrown.blockID)).generate(this.worldObj, this.hellRNG, xPos, yPos, zPos);
-        }
-
-        if (doGen && this.hellRNG.nextInt(1) == 0)
-        {
-            xPos = k + this.hellRNG.nextInt(16) + 8;
-            yPos = this.hellRNG.nextInt(128);
-            zPos = l + this.hellRNG.nextInt(16) + 8;
-            (new WorldGenFlowers(Block.mushroomRed.blockID)).generate(this.worldObj, this.hellRNG, xPos, yPos, zPos);
         }
 
         WorldGenMinable worldgenminable = new WorldGenMinable(Block.oreNetherQuartz.blockID, 13, Block.netherrack.blockID);
@@ -842,42 +823,61 @@ public class NetheriteChunkProvider implements IChunkProvider
 
         for (yPos = 0; yPos < 16; ++yPos)
         {
-            zPos = k + this.hellRNG.nextInt(16);
+            zPos = blockX + this.hellRNG.nextInt(16);
             i2 = this.hellRNG.nextInt(108) + 10;
-            j2 = l + this.hellRNG.nextInt(16);
+            j2 = blockZ + this.hellRNG.nextInt(16);
             worldgenminable.generate(this.worldObj, this.hellRNG, zPos, i2, j2);
         }
 
         for (yPos = 0; yPos < 16; ++yPos)
         {
-            zPos = k + this.hellRNG.nextInt(16);
+            zPos = blockX + this.hellRNG.nextInt(16);
             i2 = this.hellRNG.nextInt(108) + 10;
-            j2 = l + this.hellRNG.nextInt(16);
+            j2 = blockZ + this.hellRNG.nextInt(16);
             (new WorldGenHellLava(Block.lavaMoving.blockID, true)).generate(this.worldObj, this.hellRNG, zPos, i2, j2);
         }
-        if (hellRNG.nextInt(3) == 0)
+        MinecraftForge.EVENT_BUS.post(new DecorateBiomeEvent.Pre(worldObj, hellRNG, blockX, blockZ));
+        doGen = TerrainGen.decorate(worldObj, hellRNG, blockX, blockZ, SHROOM);
+
+        if (doGen && this.hellRNG.nextInt(1) == 0)
         {
-            int l2 = k + hellRNG.nextInt(16) + 8;
+            xPos = blockX + this.hellRNG.nextInt(16) + 8;
+            yPos = this.hellRNG.nextInt(128);
+            zPos = blockZ + this.hellRNG.nextInt(16) + 8;
+            (new WorldGenFlowers(Block.mushroomBrown.blockID)).generate(this.worldObj, this.hellRNG, xPos, yPos, zPos);
+        }
+
+        if (doGen && this.hellRNG.nextInt(1) == 0)
+        {
+            xPos = blockX + this.hellRNG.nextInt(16) + 8;
+            yPos = this.hellRNG.nextInt(128);
+            zPos = blockZ + this.hellRNG.nextInt(16) + 8;
+            (new WorldGenFlowers(Block.mushroomRed.blockID)).generate(this.worldObj, this.hellRNG, xPos, yPos, zPos);
+        }
+        
+        if (doGen && hellRNG.nextInt(7) == 0)
+        {
+            int l2 = blockX + hellRNG.nextInt(16) + 8;
             int k4 = hellRNG.nextInt(128);
-            int j6 = l + hellRNG.nextInt(16) + 8;
+            int j6 = blockZ + hellRNG.nextInt(16) + 8;
             (new FlowerGen(NContent.glowshroom.blockID, 0)).generate(worldObj, hellRNG, l2, k4, j6);
         }
-        if (hellRNG.nextInt(4) == 0)
+        if (doGen && hellRNG.nextInt(8) == 0)
         {
-            int i3 = k + hellRNG.nextInt(16) + 8;
+            int i3 = blockX + hellRNG.nextInt(16) + 8;
             int l4 = hellRNG.nextInt(128);
-            int k6 = l + hellRNG.nextInt(16) + 8;
+            int k6 = blockZ + hellRNG.nextInt(16) + 8;
             (new FlowerGen(NContent.glowshroom.blockID, 1)).generate(worldObj, hellRNG, i3, l4, k6);
         }
-        if (hellRNG.nextInt(5) == 0)
+        if (doGen && hellRNG.nextInt(9) == 0)
         {
-            int i3 = k + hellRNG.nextInt(16) + 8;
+            int i3 = blockX + hellRNG.nextInt(16) + 8;
             int l4 = hellRNG.nextInt(128);
-            int k6 = l + hellRNG.nextInt(16) + 8;
+            int k6 = blockZ + hellRNG.nextInt(16) + 8;
             (new FlowerGen(NContent.glowshroom.blockID, 2)).generate(worldObj, hellRNG, i3, l4, k6);
         }
 
-        MinecraftForge.EVENT_BUS.post(new DecorateBiomeEvent.Post(worldObj, hellRNG, k, l));
+        MinecraftForge.EVENT_BUS.post(new DecorateBiomeEvent.Post(worldObj, hellRNG, blockX, blockZ));
         MinecraftForge.EVENT_BUS.post(new PopulateChunkEvent.Post(par1IChunkProvider, worldObj, hellRNG, par2, par3, false));
 
         BlockSand.fallInstantly = false;

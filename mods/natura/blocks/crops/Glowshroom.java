@@ -4,7 +4,8 @@ import java.util.List;
 import java.util.Random;
 
 import mods.natura.common.NaturaTab;
-import mods.natura.worldgen.BlueGlowshroomGen;
+import mods.natura.worldgen.GlowshroomGenBlueGreen;
+import mods.natura.worldgen.GlowshroomGenPurple;
 import net.minecraft.block.BlockMushroom;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
@@ -83,13 +84,24 @@ public class Glowshroom extends BlockMushroom
     
     public boolean fertilizeMushroom(World world, int x, int y, int z, Random random)
     {
+        if (world.isRemote)
+            return false;
+        
         int meta = world.getBlockMetadata(x, y, z);
         world.setBlockToAir(x, y, z);
         WorldGenerator obj = null;
-        
+
+        if (meta == 0)
+        {
+            obj = new GlowshroomGenBlueGreen(true, 0);
+        }
+        if (meta == 1)
+        {
+            obj = new GlowshroomGenPurple(true);
+        }
         if (meta == 2)
         {
-            obj = new BlueGlowshroomGen(true);
+            obj = new GlowshroomGenBlueGreen(true, 1);
         }
 
         /*if (this.blockID == Block.mushroomBrown.blockID)

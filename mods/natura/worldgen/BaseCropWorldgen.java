@@ -205,4 +205,9 @@ public class BaseCropWorldgen implements IWorldGenerator
 	NetherBerryBushGen duskgen;
 	NetherBerryBushGen skygen;
 	NetherBerryBushGen stinggen;
+	
+    FlowerGen bluebells;
+    FlowerGen lily;
+    FlowerGen tulip;
+    FlowerGen pansy;
 }

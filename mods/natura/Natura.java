@@ -7,6 +7,7 @@ import mods.natura.common.NContent;
 import mods.natura.common.NaturaTab;
 import mods.natura.common.PHNatura;
 import mods.natura.dimension.NetheriteWorldProvider;
+import mods.natura.gui.NGuiHandler;
 import mods.natura.worldgen.BaseCloudWorldgen;
 import mods.natura.worldgen.BaseCropWorldgen;
 import mods.natura.worldgen.BaseTreeWorldgen;
@@ -35,9 +36,12 @@ import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.network.NetworkMod;
+import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 
-@Mod(modid = "Natura", name = "Natura", version = "1.5.1_2.1.dev3")
+@Mod(modid = "Natura", name = "Natura", version = "1.5.1_2.1.dev4.1")
+@NetworkMod(serverSideRequired = false, clientSideRequired = true)
 public class Natura
 {
     /* Proxies for sides, used for graphics processing */
@@ -68,6 +72,7 @@ public class Natura
         NaturaTab.init(content.wheatBag.itemID);
         proxy.registerRenderer();
         proxy.addNames();
+        NetworkRegistry.instance().registerGuiHandler(instance, new NGuiHandler());
 
         DimensionManager.unregisterProviderType(-1);
         DimensionManager.registerProviderType(-1, NetheriteWorldProvider.class, true);

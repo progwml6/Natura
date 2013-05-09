@@ -34,28 +34,22 @@ public class StickItem extends Item
     @Override
     public void registerIcons (IconRegister iconRegister)
     {
-        this.icons = new Icon[textureNames.length + 1];
-
-        icons[0] = iconRegister.registerIcon("stick");
+        this.icons = new Icon[textureNames.length];
         for (int i = 0; i < this.textureNames.length; ++i)
         {
-            this.icons[i + 1] = iconRegister.registerIcon("natura:" + textureNames[i] + "_stick");
+            this.icons[i] = iconRegister.registerIcon("natura:" + textureNames[i] + "_stick");
         }
     }
 
     public void getSubItems (int id, CreativeTabs tab, List list)
     {
-        if (tab == getCreativeTab())
-            list.add(new ItemStack(id, 1, 0));
-
-        else
             for (int i = 0; i < textureNames.length; i++)
                 list.add(new ItemStack(id, 1, i + 1));
     }
 
-    public CreativeTabs[] getCreativeTabs ()
+    /*public CreativeTabs[] getCreativeTabs ()
     {
         return new CreativeTabs[] { getCreativeTab(), NaturaTab.tab };
-    }
+    }*/
 
 }

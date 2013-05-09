@@ -4,8 +4,10 @@ import java.util.Random;
 
 import mods.natura.common.NContent;
 import mods.natura.common.PHNatura;
+import net.minecraft.block.Block;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
+import net.minecraft.world.gen.feature.WorldGenerator;
 import cpw.mods.fml.common.IWorldGenerator;
 
 public class BaseTreeWorldgen implements IWorldGenerator
@@ -27,6 +29,9 @@ public class BaseTreeWorldgen implements IWorldGenerator
         tiger = new RareTreeGen(false, 6, 4, 3, 3);
         maple = new RareTreeGen(false, 4, 2, 0, 0);
         willow = new WillowGen(false);
+
+        blueGreenGlowshroom = new GlowshroomGenBlueGreen(false);
+        purpleGlowshroom = new GlowshroomGenPurple(false);
     }
 
     RedwoodTreeGen genRedwood;
@@ -40,10 +45,8 @@ public class BaseTreeWorldgen implements IWorldGenerator
 
     SaguaroGen saguaro;
 
-    FlowerGen bluebells;
-    FlowerGen lily;
-    FlowerGen tulip;
-    FlowerGen pansy;
+    GlowshroomGenBlueGreen blueGreenGlowshroom;
+    GlowshroomGenPurple purpleGlowshroom;
 
     RareTreeGen maple;
     RareTreeGen silverbell;
@@ -137,60 +140,6 @@ public class BaseTreeWorldgen implements IWorldGenerator
             }
         }
 
-        //Nether trees
-        if (biomeName.equals("Hell"))
-        {
-            if (PHNatura.generateBloodwood && random.nextInt(PHNatura.bloodSpawnRarity) == 0)
-            {
-                xSpawn = xPos + random.nextInt(16);
-                ySpawn = 72;
-                zSpawn = zPos + random.nextInt(16);
-                genBlood.generate(world, random, xSpawn, ySpawn, zSpawn);
-            }
-            if (PHNatura.generateGhost && random.nextInt(PHNatura.ghostSpawnRarity) == 0)
-            {
-                for (int iter = 0; iter < 3; iter++)
-                {
-                    ySpawn = random.nextInt(80) + 16;
-                    xSpawn = xPos + random.nextInt(16);
-                    zSpawn = zPos + random.nextInt(16);
-                    whiteSakura.generate(world, random, xSpawn, ySpawn, zSpawn);
-                }
-            }
-
-            if (PHNatura.generateDarkwood && random.nextInt(PHNatura.darkSpawnRarity) == 0)
-            {
-                ySpawn = random.nextInt(64) + 32;
-                xSpawn = xPos + random.nextInt(16);
-                zSpawn = zPos + random.nextInt(16);
-                darkwood.generate(world, random, xSpawn, ySpawn, zSpawn);
-            }
-            if (PHNatura.generateFusewood && random.nextInt(PHNatura.fuseSpawnRarity) == 0)
-            {
-                ySpawn = random.nextInt(64) + 32;
-                xSpawn = xPos + random.nextInt(16);
-                zSpawn = zPos + random.nextInt(16);
-                fusewood.generate(world, random, xSpawn, ySpawn, zSpawn);
-            }
-            if (PHNatura.generateThornvines && random.nextInt(PHNatura.thornSpawnRarity) == 0)
-            {
-                ySpawn = 108;
-                for (int i = 0; i < 20; i++)
-                {
-                    int vineMeta = random.nextInt(16);
-                    xSpawn = xPos + random.nextInt(16);
-                    zSpawn = zPos + random.nextInt(16);
-                    int size = random.nextInt(25)+1;
-                    int height = ySpawn - (random.nextInt(size) + random.nextInt(size) + random.nextInt(size));
-                    for (int yHeight = ySpawn; yHeight > height; yHeight--)
-                    {
-                        if (world.getBlockId(xSpawn, yHeight, zSpawn) == 0)
-                            world.setBlock(xSpawn, yHeight, zSpawn, NContent.thornVines.blockID, vineMeta, 2);
-                    }
-                }
-            }
-        }
-
         if (biomeName == "Jungle" || biomeName == "JungleHills" || biomeName == "Extreme Jungle")
         {
             if (PHNatura.generatePurpleheart)// && random.nextInt((int) PHNatura.purpleheartRarity) == 0)
@@ -234,5 +183,87 @@ public class BaseTreeWorldgen implements IWorldGenerator
                 willow.generate(world, random, xSpawn, PHNatura.seaLevel + 16, zSpawn);
             }
         }
+
+        //Nether trees
+        if (biomeName.equals("Hell"))
+        {
+            if (PHNatura.generateBloodwood && random.nextInt(PHNatura.bloodSpawnRarity) == 0)
+            {
+                xSpawn = xPos + random.nextInt(16);
+                ySpawn = 72;
+                zSpawn = zPos + random.nextInt(16);
+                genBlood.generate(world, random, xSpawn, ySpawn, zSpawn);
+            }
+            if (PHNatura.generateGhost && random.nextInt(PHNatura.ghostSpawnRarity) == 0)
+            {
+                for (int iter = 0; iter < 3; iter++)
+                {
+                    ySpawn = random.nextInt(80) + 16;
+                    xSpawn = xPos + random.nextInt(16);
+                    zSpawn = zPos + random.nextInt(16);
+                    whiteSakura.generate(world, random, xSpawn, ySpawn, zSpawn);
+                }
+            }
+
+            if (PHNatura.generateDarkwood && random.nextInt(PHNatura.darkSpawnRarity) == 0)
+            {
+                ySpawn = random.nextInt(64) + 32;
+                xSpawn = xPos + random.nextInt(16);
+                zSpawn = zPos + random.nextInt(16);
+                darkwood.generate(world, random, xSpawn, ySpawn, zSpawn);
+            }
+            if (PHNatura.generateFusewood && random.nextInt(PHNatura.fuseSpawnRarity) == 0)
+            {
+                ySpawn = random.nextInt(64) + 32;
+                xSpawn = xPos + random.nextInt(16);
+                zSpawn = zPos + random.nextInt(16);
+                fusewood.generate(world, random, xSpawn, ySpawn, zSpawn);
+            }
+            if (PHNatura.generateThornvines && random.nextInt(PHNatura.thornSpawnRarity) == 0)
+            {
+                ySpawn = 108;
+                for (int i = 0; i < 20; i++)
+                {
+                    int vineMeta = random.nextInt(16);
+                    xSpawn = xPos + random.nextInt(16);
+                    zSpawn = zPos + random.nextInt(16);
+                    int size = random.nextInt(25) + 1;
+                    int height = ySpawn - (random.nextInt(size) + random.nextInt(size) + random.nextInt(size));
+                    for (int yHeight = ySpawn; yHeight > height; yHeight--)
+                    {
+                        if (world.getBlockId(xSpawn, yHeight, zSpawn) == 0)
+                            world.setBlock(xSpawn, yHeight, zSpawn, NContent.thornVines.blockID, vineMeta, 2);
+                    }
+                }
+            }
+            if (random.nextInt(35) == 0)
+            {
+                for (int i = 0; i < 5; i++)
+                {
+                    WorldGenerator obj = random.nextInt(3) == 0 ? purpleGlowshroom : blueGreenGlowshroom;
+                    xSpawn = xPos + random.nextInt(24) - 4;
+                    zSpawn = zPos + random.nextInt(24) - 4;
+                    ySpawn = findGround(world, xSpawn, random.nextInt(64) + 32, zSpawn);
+                    if (ySpawn != -1)
+                    {
+                        obj.generate(world, random, xSpawn, ySpawn, zSpawn);
+                    }
+                }
+            }
+        }
+    }
+
+    int findGround (World world, int x, int y, int z)
+    {
+        boolean foundGround = false;
+        int height = y;
+        do
+        {
+            height--;
+            int underID = world.getBlockId(x, height, z);
+            if (underID == Block.netherrack.blockID || underID == Block.slowSand.blockID || underID == NContent.taintedSoil.blockID || height < 0)
+                foundGround = true;
+        } while (!foundGround);
+        return height + 1;
     }
 }

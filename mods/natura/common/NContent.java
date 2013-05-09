@@ -101,21 +101,25 @@ public class NContent
         //Nether
         taintedSoil = new TaintedSoil(PHNatura.taintedSoil).setUnlocalizedName("TaintedSoil");
         GameRegistry.registerBlock(taintedSoil, "soil.tainted");
-        heatSand = new HeatSand(PHNatura.heatSand).setUnlocalizedName("HeatSand");
+        heatSand = new HeatSand(PHNatura.heatSand).setUnlocalizedName("HeatSand").setLightValue(0.375f);
         GameRegistry.registerBlock(heatSand, "heatsand");
-        infernalStone = new NBlock(PHNatura.infernalStone, Material.rock, 1.5f, new String[] { "infernal_stone" }).setUnlocalizedName("infernalStone");
-        GameRegistry.registerBlock(infernalStone, "infernalStone");
+        /*infernalStone = new NBlock(PHNatura.infernalStone, Material.rock, 1.5f, new String[] { "infernal_stone" }).setUnlocalizedName("infernalStone");
+        GameRegistry.registerBlock(infernalStone, "infernalStone");*/
 
-        glowshroom = (Glowshroom) new Glowshroom(PHNatura.glowshroom).setUnlocalizedName("Glowshroom").setLightValue(0.625f);
-        GameRegistry.registerBlock(glowshroom, GlowshroomItem.class, "Glowshroom");
         darkTree = new DarkTreeBlock(PHNatura.darkTree).setUnlocalizedName("Darktree");
         GameRegistry.registerBlock(darkTree, DarkTreeItem.class, "Dark Tree");
         darkLeaves = (NLeaves) new NLeavesDark(PHNatura.darkLeaves).setUnlocalizedName("Darkleaves");
         GameRegistry.registerBlock(darkLeaves, NLeavesDarkItem.class, "Dark Leaves");
         thornVines = new ThornVines(PHNatura.thornVines).setUnlocalizedName("Thornvines").setLightValue(0.625f);
         GameRegistry.registerBlock(thornVines, "Thornvines");
+        glowshroom = (Glowshroom) new Glowshroom(PHNatura.glowshroom).setUnlocalizedName("Glowshroom").setLightValue(0.625f);
+        GameRegistry.registerBlock(glowshroom, GlowshroomItem.class, "Glowshroom");
         glowshroomBlue = new LargeGlowshroom(PHNatura.glowshroomBlue, Material.wood, "blue").setUnlocalizedName("blueGlowshroom").setLightValue(0.625f);
         GameRegistry.registerBlock(glowshroomBlue, "blueGlowshroom");
+        glowshroomPurple = new LargeGlowshroom(PHNatura.glowshroomPurple, Material.wood, "purple").setUnlocalizedName("purpleGlowshroom").setLightValue(0.5f);
+        GameRegistry.registerBlock(glowshroomPurple, "purpleGlowshroom");
+        glowshroomGreen = new LargeGlowshroom(PHNatura.glowshroomGreen, Material.wood, "green").setUnlocalizedName("greenGlowshroom").setLightValue(0.5f);
+        GameRegistry.registerBlock(glowshroomGreen, "greenGlowshroom");
 
         /*public static Block glowshroomBlue;
         public static Block glowshroomGreen;
@@ -149,9 +153,10 @@ public class NContent
                 .setCreativeTab(NaturaTab.tab);
         GameRegistry.registerBlock(alternateFence, NAlternateItem.class, "Natura.fence");
 
-        Item.itemsList[24] = null;
-        Item.stick = null;
-        Item.stick = (new StickItem(24)).setFull3D().setUnlocalizedName("stick").setCreativeTab(CreativeTabs.tabMaterials);
+        //Item.itemsList[24] = null;
+        //Item.stick = null;
+        stickItem = (new StickItem(PHNatura.stickItem)).setFull3D().setUnlocalizedName("natura.stick").setCreativeTab(NaturaTab.tab);
+        GameRegistry.registerItem(stickItem, "natura.stick");
 
         //Material.vine.setRequiresTool();
         //BiomeGenBase.swampland.worldGeneratorSwamp = new WillowGen();
@@ -195,7 +200,6 @@ public class NContent
             GameRegistry.addRecipe(new ItemStack(Item.cake, 1), "AAA", "BEB", " C ", 'A', Item.bucketMilk, 'B', Item.sugar, 'C', new ItemStack(plantItem, 1, i), 'E', Item.egg);
         }
 
-        //OreDictionary.registerOre("oreCobalt", new ItemStack(oreSlag, 1, 1));
         String[] berryTypes = new String[] { "cropRaspberry", "cropBlueberry", "cropBlackberry", "cropMaloberry", "cropStrawberry", "cropCranberry" };
 
         for (int iter1 = 0; iter1 < berryTypes.length - 2; iter1++)
@@ -229,7 +233,7 @@ public class NContent
         for (int i = 0; i < 3; i++)
         {
             GameRegistry.addRecipe(new ItemStack(planks, 4, i), "w", 'w', new ItemStack(tree, 1, i));
-            GameRegistry.addRecipe(new ItemStack(planks, 4, i+6), "w", 'w', new ItemStack(rareTree, 1, i));
+            GameRegistry.addRecipe(new ItemStack(planks, 4, i + 6), "w", 'w', new ItemStack(rareTree, 1, i));
         }
         GameRegistry.addRecipe(new ItemStack(planks, 4, 3), "w", 'w', new ItemStack(redwood, 1, 1));
         GameRegistry.addRecipe(new ItemStack(planks, 4, 4), "w", 'w', new ItemStack(bloodwood, 1, Short.MAX_VALUE));
@@ -238,11 +242,11 @@ public class NContent
         GameRegistry.addRecipe(new ItemStack(planks, 4, 11), "w", 'w', new ItemStack(darkTree, 1, 0));
         GameRegistry.addRecipe(new ItemStack(planks, 4, 12), "w", 'w', new ItemStack(darkTree, 1, 1));
 
-        ItemStack[] plankStacks = new ItemStack[] { new ItemStack(planks, 1, 0), new ItemStack(planks, 1, 1), new ItemStack(planks, 1, 2), new ItemStack(planks, 1, 3), new ItemStack(planks, 1, 5),
-                new ItemStack(planks, 1, 6), new ItemStack(planks, 1, 7), new ItemStack(planks, 1, 8), new ItemStack(planks, 1, 9), new ItemStack(planks, 1, 10), new ItemStack(planks, 1, 11),
-                new ItemStack(planks, 1, 12) };
+        /*ItemStack[] plankStacks = new ItemStack[] { new ItemStack(planks, 1, 0), new ItemStack(planks, 1, 1), new ItemStack(planks, 1, 2), new ItemStack(planks, 1, 3), new ItemStack(planks, 1, 5),
+                new ItemStack(planks, 1, 6), new ItemStack(planks, 1, 7), new ItemStack(planks, 1, 8), new ItemStack(planks, 1, 9), new ItemStack(planks, 1, 10), new ItemStack(planks, 1, 11) };*/
         ItemStack[] logStacks = new ItemStack[] { new ItemStack(tree, 1, 0), new ItemStack(tree, 1, 1), new ItemStack(tree, 1, 2), new ItemStack(tree, 1, 3), new ItemStack(redwood, 1, 1),
-                new ItemStack(rareTree, 1, 0), new ItemStack(rareTree, 1, 1), new ItemStack(rareTree, 1, 2), new ItemStack(rareTree, 1, 3), new ItemStack(willow, 1, 0), new ItemStack(darkTree, 1, 0), new ItemStack(darkTree, 1, 1) };
+                new ItemStack(rareTree, 1, 0), new ItemStack(rareTree, 1, 1), new ItemStack(rareTree, 1, 2), new ItemStack(rareTree, 1, 3), new ItemStack(willow, 1, 0), new ItemStack(darkTree, 1, 0) };
+        int[] exclusions = { 4, 11 };
 
         List recipes = CraftingManager.getInstance().getRecipeList();
         addShapedRecipeFirst(recipes, new ItemStack(doorItem, 1, 0), "##", "##", "##", '#', new ItemStack(planks, 1, 3));
@@ -255,16 +259,24 @@ public class NContent
 
         for (int i = 0; i < woodTextureNames.length; i++)
         {
-            addShapedRecipeFirst(recipes, new ItemStack(Item.stick, 4, i + 1), "#", "#", '#', new ItemStack(planks, 1, i));
+            addShapedRecipeFirst(recipes, new ItemStack(stickItem, 4, i), "#", "#", '#', new ItemStack(planks, 1, i));
             addShapedRecipeFirst(recipes, new ItemStack(alternateWorkbench, 1, i), "##", "##", '#', new ItemStack(planks, 1, i));
             addShapedRecipeFirst(recipes, new ItemStack(alternateBookshelf, 1, i), "###", "bbb", "###", '#', new ItemStack(planks, 1, i), 'b', Item.book);
-            addShapedRecipeFirst(recipes, new ItemStack(alternateFence, 2, i), "###", "###", '#', new ItemStack(Item.stick, 1, i + 1));
+            addShapedRecipeFirst(recipes, new ItemStack(alternateFence, 2, i), "###", "###", '#', new ItemStack(stickItem, 1, i));
         }
 
-        for (int i = 0; i < plankStacks.length; i++)
+        int meta = 0;
+        for (int i = 0; i < logStacks.length; i++)
         {
-            OreDictionary.registerOre("plankWood", plankStacks[i]);
+            for (int e = 0; e < exclusions.length; e++)
+            {
+                if (exclusions[e] == i)
+                        meta++;
+            }
+            OreDictionary.registerOre("plankWood", new ItemStack(planks, 1, meta));
             OreDictionary.registerOre("logWood", logStacks[i]);
+            OreDictionary.registerOre("stickWood", new ItemStack(stickItem, 1, meta));
+            meta++;
         }
 
         //Turn logs into charcoal
@@ -431,12 +443,12 @@ public class NContent
     public static Block redwoodBarkDoor;
 
     public static Item doorItem;
-    public static Item floraBoat;
+    //public static Item floraBoat;
 
     //Nether
     public static Block taintedSoil;
     public static Block heatSand;
-    public static Block infernalStone;
+    //public static Block infernalStone;
     public static Glowshroom glowshroom;
     public static Block darkTree;
     public static NLeaves darkLeaves;
@@ -447,6 +459,7 @@ public class NContent
     public static Block glowshroomPurple;
 
     public static Item potashApple;
+    public static Item stickItem;
 
     //Extra overworld
     public static Block rareTree;

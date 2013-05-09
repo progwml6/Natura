@@ -26,6 +26,8 @@ public class LargeGlowshroom extends Block
     {
         super(par1, par2Material);
         mushroomType = type;
+        this.setStepSound(Block.soundWoodFootstep);
+        this.setHardness(0.2F);
     }
 
     @SideOnly(Side.CLIENT)
@@ -53,6 +55,18 @@ public class LargeGlowshroom extends Block
 
         return i;
     }
+    
+    public int damageDropped(int meta)
+    {
+        if (this.blockID == NContent.glowshroomBlue.blockID)
+            return 2;
+        if (this.blockID == NContent.glowshroomPurple.blockID)
+            return 1;
+        if (this.blockID == NContent.glowshroomGreen.blockID)
+            return 0;
+        
+        return 0;
+    }
 
     @Override
     public boolean renderAsNormalBlock()
@@ -76,7 +90,7 @@ public class LargeGlowshroom extends Block
     public boolean shouldSideBeRendered(IBlockAccess iblockaccess, int x, int y, int z, int side)
     {
         int blockID = iblockaccess.getBlockId(x, y, z);
-        if (blockID == NContent.glowshroomBlue.blockID)
+        if (blockID == NContent.glowshroomBlue.blockID || blockID == NContent.glowshroomPurple.blockID)
         {
             return false;
         }

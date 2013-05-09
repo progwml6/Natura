@@ -153,7 +153,6 @@ public class NClientProxy extends NCommonProxy
 		LanguageRegistry.instance().addStringLocalization("eucalyptusBoat.name", "en_US", "Eucalyptus Boat");
 		LanguageRegistry.addName(NContent.taintedSoil, "Tainted Soil");
         LanguageRegistry.addName(NContent.heatSand, "Heat Sand");
-        LanguageRegistry.addName(NContent.infernalStone, "Infernal Stone");
         LanguageRegistry.addName(NContent.thornVines, "Thornvines");
         LanguageRegistry.addName(NContent.potashApple, "Potash Apple");
 	}

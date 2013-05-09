@@ -7,33 +7,49 @@ import net.minecraft.block.Block;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 
-public class BlueGlowshroomGen extends WorldGenerator
+public class GlowshroomGenBlueGreen extends WorldGenerator
 {
-
-    public BlueGlowshroomGen(boolean flag)
+    int mushroomType = -1;
+    
+    public GlowshroomGenBlueGreen(boolean flag)
     {
         super(flag);
+    }
+    
+    public GlowshroomGenBlueGreen(boolean flag, int type)
+    {
+        super(flag);
+        mushroomType = type;
     }
 
     public boolean generate(World world, Random random, int x, int y, int z)
     {
-        int type = 1;
+        int type;
+
+        if (this.mushroomType >= 0)
+        {
+            type = this.mushroomType;
+        }
+        else
+        {
+            type = random.nextInt(2);
+        }
 
         int height = random.nextInt(3) + 4;
         boolean flag = true;
 
         if (y >= 1 && y + height + 1 < 256)
         {
-            int j1;
+            int blockID;
             int posY;
             int l1;
             int posX;
 
-            for (j1 = y; j1 <= y + 1 + height; ++j1)
+            for (blockID = y; blockID <= y + 1 + height; ++blockID)
             {
                 byte b0 = 3;
 
-                if (j1 <= y + 3)
+                if (blockID <= y + 3)
                 {
                     b0 = 0;
                 }
@@ -42,13 +58,13 @@ public class BlueGlowshroomGen extends WorldGenerator
                 {
                     for (l1 = z - b0; l1 <= z + b0 && flag; ++l1)
                     {
-                        if (j1 >= 0 && j1 < 256)
+                        if (blockID >= 0 && blockID < 256)
                         {
-                            posX = world.getBlockId(posY, j1, l1);
+                            posX = world.getBlockId(posY, blockID, l1);
 
                             Block block = Block.blocksList[posX];
                             
-                            if (posX != 0 && block != null && !block.isLeaves(world, posY, j1, l1))
+                            if (posX != 0 && block != null && !block.isLeaves(world, posY, blockID, l1) && posX != NContent.glowshroom.blockID)
                             {
                                 flag = false;
                             }
@@ -67,9 +83,9 @@ public class BlueGlowshroomGen extends WorldGenerator
             }
             else
             {
-                j1 = world.getBlockId(x, y - 1, z);
+                blockID = world.getBlockId(x, y - 1, z);
 
-                if (j1 != Block.dirt.blockID && j1 != Block.grass.blockID && j1 != Block.mycelium.blockID)
+                if (blockID != Block.mycelium.blockID && blockID != Block.netherrack.blockID && blockID != NContent.taintedSoil.blockID && blockID != Block.slowSand.blockID)
                 {
                     return false;
                 }
@@ -179,7 +195,8 @@ public class BlueGlowshroomGen extends WorldGenerator
 
                                 if ((meta != 0 || y >= y + height - 1) && (block == null || block.canBeReplacedByLeaves(world, posX, posY, posZ)))
                                 {
-                                    this.setBlockAndMetadata(world, posX, posY, posZ, NContent.glowshroomBlue.blockID, meta);
+                                    int localID = type == 1 ? NContent.glowshroomBlue.blockID : NContent.glowshroomGreen.blockID;
+                                    this.setBlockAndMetadata(world, posX, posY, posZ, localID, meta);
                                 }
                             }
                         }
@@ -193,7 +210,8 @@ public class BlueGlowshroomGen extends WorldGenerator
 
                         if (block == null || block.canBeReplacedByLeaves(world, x, y + posY, z))
                         {
-                            this.setBlockAndMetadata(world, x, y + posY, z, NContent.glowshroomBlue.blockID, 10);
+                            int localID = type == 1 ? NContent.glowshroomBlue.blockID : NContent.glowshroomGreen.blockID;
+                            this.setBlockAndMetadata(world, x, y + posY, z, localID, 10);
                         }
                     }
 
