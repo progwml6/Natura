@@ -144,7 +144,7 @@ public class DarkwoodGen extends WorldGenerator
 
                                     if (block == null || block.canBeReplacedByLeaves(world, j2, j1, l2))
                                     {
-                                        this.setBlockAndMetadata(world, j2, j1, l2, NContent.darkLeaves.blockID, random.nextInt(15) == 0 ? 2 : random.nextInt(10) == 0 ? 1 : 0);
+                                        this.setBlockAndMetadata(world, j2, j1, l2, NContent.darkLeaves.blockID, random.nextInt(25) == 0 ? 2 : random.nextInt(15) == 0 ? 1 : 0);
                                     }
                                 }
                             }

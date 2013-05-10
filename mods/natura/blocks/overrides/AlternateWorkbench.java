@@ -38,6 +38,11 @@ public class AlternateWorkbench extends BlockWorkbench
 
         return sideIcons[metadata];
     }
+    
+    public boolean renderAsNormalBlock()
+    {
+        return false;
+    }
 
     @SideOnly(Side.CLIENT)
     public void registerIcons (IconRegister iconRegister)

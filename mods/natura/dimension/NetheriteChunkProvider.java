@@ -839,7 +839,7 @@ public class NetheriteChunkProvider implements IChunkProvider
         MinecraftForge.EVENT_BUS.post(new DecorateBiomeEvent.Pre(worldObj, hellRNG, blockX, blockZ));
         doGen = TerrainGen.decorate(worldObj, hellRNG, blockX, blockZ, SHROOM);
 
-        if (doGen && this.hellRNG.nextInt(1) == 0)
+        /*if (doGen && this.hellRNG.nextInt(1) == 0)
         {
             xPos = blockX + this.hellRNG.nextInt(16) + 8;
             yPos = this.hellRNG.nextInt(128);
@@ -853,7 +853,7 @@ public class NetheriteChunkProvider implements IChunkProvider
             yPos = this.hellRNG.nextInt(128);
             zPos = blockZ + this.hellRNG.nextInt(16) + 8;
             (new WorldGenFlowers(Block.mushroomRed.blockID)).generate(this.worldObj, this.hellRNG, xPos, yPos, zPos);
-        }
+        }*/
         
         if (doGen && hellRNG.nextInt(7) == 0)
         {

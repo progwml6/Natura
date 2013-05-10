@@ -6,7 +6,7 @@ import java.util.Random;
 import mods.natura.common.NContent;
 import mods.natura.common.NaturaTab;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockLog;
+import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
@@ -19,13 +19,13 @@ import cpw.mods.fml.relauncher.SideOnly;
  * This class is for a single tree with a 2x2 base and inside textures 
  */
 
-public class LogTwoxTwo extends BlockLog
+public class LogTwoxTwo extends Block
 {
 	public Icon[] icons;
 	public String[] textureNames = new String[] {"bark", "heart_small", "upper_left", "upper_right", "side_left", "side_right", "lower_left", "lower_right" };
-	public LogTwoxTwo(int id, float hardness)
+	public LogTwoxTwo(int id, float hardness, Material material)
 	{
-		super(id);
+		super(id, material);
 		this.setHardness(hardness);
         this.setStepSound(Block.soundMetalFootstep);
 		this.setCreativeTab(NaturaTab.tab);
@@ -56,6 +56,59 @@ public class LogTwoxTwo extends BlockLog
 			return 15;
 		return 12;
 	}
+	
+	public boolean isBlockReplaceable(World world, int x, int y, int z)
+    {
+        return false;
+    }
+	
+	/**
+     * ejects contained items into the world, and notifies neighbours of an update, as appropriate
+     */
+    public void breakBlock(World par1World, int par2, int par3, int par4, int par5, int par6)
+    {
+        byte b0 = 4;
+        int j1 = b0 + 1;
+
+        if (par1World.checkChunksExist(par2 - j1, par3 - j1, par4 - j1, par2 + j1, par3 + j1, par4 + j1))
+        {
+            for (int k1 = -b0; k1 <= b0; ++k1)
+            {
+                for (int l1 = -b0; l1 <= b0; ++l1)
+                {
+                    for (int i2 = -b0; i2 <= b0; ++i2)
+                    {
+                        int j2 = par1World.getBlockId(par2 + k1, par3 + l1, par4 + i2);
+
+                        if (Block.blocksList[j2] != null)
+                        {
+                            Block.blocksList[j2].beginLeavesDecay(par1World, par2 + k1, par3 + l1, par4 + i2);
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    /**
+     * The type of render function that is called for this block
+     */
+    public int getRenderType()
+    {
+        return 31;
+    }
+
+    protected ItemStack createStackedBlock(int par1)
+    {
+        return new ItemStack(this.blockID, 1, limitToValidMetadata(par1));
+    }
+    /**
+     * returns a number between 0 and 3
+     */
+    public static int limitToValidMetadata(int par0)
+    {
+        return par0 & 3;
+    }
 
 	@Override
     @SideOnly(Side.CLIENT)
@@ -350,5 +403,19 @@ public class LogTwoxTwo extends BlockLog
         par3List.add(new ItemStack(par1, 1, 0));
         //par3List.add(new ItemStack(par1, 1, 12));
         par3List.add(new ItemStack(par1, 1, 15));
+    }
+	
+
+
+    @Override
+    public boolean canSustainLeaves(World world, int x, int y, int z)
+    {
+        return true;
+    }
+
+    @Override
+    public boolean isWood(World world, int x, int y, int z)
+    {
+        return true;
     }
 }

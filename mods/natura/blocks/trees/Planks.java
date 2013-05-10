@@ -47,6 +47,11 @@ public class Planks extends Block
             this.icons[i] = iconRegister.registerIcon("natura:" + textureNames[i] + "_planks");
         }
     }
+    
+    /*public boolean renderAsNormalBlock()
+    {
+        return false;
+    }*/
 
     public int getFlammability (IBlockAccess world, int x, int y, int z, int metadata, ForgeDirection face)
     {

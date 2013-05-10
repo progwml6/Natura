@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.IOException;
 
 import mods.natura.Natura;
+import mods.natura.items.BowlEmpty;
+import net.minecraft.item.Item;
 import net.minecraftforge.common.Configuration;
 
 public class PHNatura
@@ -107,6 +109,34 @@ public class PHNatura
         boneBagID = config.getItem("Bonemeal Bag", 12419).getInt(12419);
         netherFood = config.getItem("Nether foodstuffs", 12420).getInt(12420);
         stickItem = config.getItem("Stick", 12421).getInt(12421);
+        
+        ghostwoodSword = config.getItem("Ghostwood Sword", 12422).getInt(12422);
+        ghostwoodPickaxe = config.getItem("Ghostwood Pickaxe", 12423).getInt(12423);
+        ghostwoodShovel = config.getItem("Ghostwood Shovel", 12424).getInt(12424);
+        ghostwoodAxe = config.getItem("Ghostwood Hatchet", 12425).getInt(12425);
+        
+        bloodwoodSword = config.getItem("Bloodwood Sword", 12426).getInt(12426);
+        bloodwoodPickaxe = config.getItem("Bloodwood Pickaxe", 12427).getInt(12427);
+        bloodwoodShovel = config.getItem("Bloodwood Shovel", 12428).getInt(12428);
+        bloodwoodAxe = config.getItem("Bloodwood Hatchet", 12429).getInt(12429);
+        
+        darkwoodSword = config.getItem("Darkwood Sword", 12430).getInt(12430);
+        darkwoodPickaxe = config.getItem("Darkwood Pickaxe", 12431).getInt(12431);
+        darkwoodShovel = config.getItem("Darkwood Shovel", 12432).getInt(12432);
+        darkwoodAxe = config.getItem("Darkwood Hatchet", 12433).getInt(12433);
+        
+        fusewoodSword = config.getItem("Fusewood Sword", 12434).getInt(12434);
+        fusewoodPickaxe = config.getItem("Fusewood Pickaxe", 12435).getInt(12435);
+        fusewoodShovel = config.getItem("Fusewood Shovel", 12436).getInt(12436);
+        fusewoodAxe = config.getItem("Fusewood Hatchet", 12437).getInt(12437);
+        
+        netherquartzSword = config.getItem("Quartz Sword", 12438).getInt(12438);
+        netherquartzPickaxe = config.getItem("Quartz Pickaxe", 12439).getInt(12439);
+        netherquartzShovel = config.getItem("Quartz Shovel", 12440).getInt(12440);
+        netherquartzAxe = config.getItem("Quartz Axe", 12441).getInt(12441);
+        
+        bowlEmpty = config.getItem("Empty Bowl", 12442).getInt(12442);
+        bowlStew = config.getItem("Stew Bowl", 12443).getInt(12443);
 
 		generateRedwood = config.get("Disabler", "Generate Redwood Trees", true).getBoolean(true);
 		generateSakura = config.get("Disabler", "Generate Sakura Trees", true).getBoolean(true);
@@ -218,6 +248,34 @@ public class PHNatura
 	
 	public static int netherFood;
     public static int stickItem;
+    public static int bowlEmpty;
+    public static int bowlStew;
+    
+    //Tools
+    public static int ghostwoodSword;
+    public static int ghostwoodPickaxe;
+    public static int ghostwoodShovel;
+    public static int ghostwoodAxe;
+    
+    public static int bloodwoodSword;
+    public static int bloodwoodPickaxe;
+    public static int bloodwoodShovel;
+    public static int bloodwoodAxe;
+    
+    public static int darkwoodSword;
+    public static int darkwoodPickaxe;
+    public static int darkwoodShovel;
+    public static int darkwoodAxe;
+    
+    public static int fusewoodSword;
+    public static int fusewoodPickaxe;
+    public static int fusewoodShovel;
+    public static int fusewoodAxe;
+    
+    public static int netherquartzSword;
+    public static int netherquartzPickaxe;
+    public static int netherquartzShovel;
+    public static int netherquartzAxe;
 	
 	//Rare trees
 	public static int rareTree;

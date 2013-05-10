@@ -40,7 +40,7 @@ import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 
-@Mod(modid = "Natura", name = "Natura", version = "1.5.1_2.1.dev4.1")
+@Mod(modid = "Natura", name = "Natura", version = "1.5.1_2.1.dev5.3")
 @NetworkMod(serverSideRequired = false, clientSideRequired = true)
 public class Natura
 {
@@ -61,6 +61,7 @@ public class Natura
         PHNatura.initProps();
         content = new NContent();
         content.preInit();
+        content.addOredictSupport();
     }
 
     @Init
@@ -73,15 +74,11 @@ public class Natura
         proxy.registerRenderer();
         proxy.addNames();
         NetworkRegistry.instance().registerGuiHandler(instance, new NGuiHandler());
+        
+        content.intermodCommunication();
 
         DimensionManager.unregisterProviderType(-1);
         DimensionManager.registerProviderType(-1, NetheriteWorldProvider.class, true);
-    }
-
-    @PostInit
-    public void postInit (FMLPostInitializationEvent evt)
-    {
-        content.addModSupport();
     }
 
     @ForgeSubscribe

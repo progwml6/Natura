@@ -43,8 +43,8 @@ public class StickItem extends Item
 
     public void getSubItems (int id, CreativeTabs tab, List list)
     {
-            for (int i = 0; i < textureNames.length; i++)
-                list.add(new ItemStack(id, 1, i + 1));
+        for (int i = 0; i < textureNames.length; i++)
+            list.add(new ItemStack(id, 1, i));
     }
 
     /*public CreativeTabs[] getCreativeTabs ()

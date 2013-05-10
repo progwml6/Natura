@@ -19,8 +19,9 @@ public class TaintedSoil extends NBlock
 
     public TaintedSoil(int id)
     {
-        super(id, Material.ground, 5f, new String[] { "tainted_soil", "tainted_farmland_dry", "tainted_farmland_heated" });
+        super(id, Material.ground, 3f, new String[] { "tainted_soil", "tainted_farmland_dry", "tainted_farmland_heated" });
         this.setStepSound(Block.soundGravelFootstep);
+        this.setResistance(25f);
     }
 
     public boolean isFertile (World world, int x, int y, int z)

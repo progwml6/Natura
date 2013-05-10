@@ -1,27 +1,87 @@
 package mods.natura.common;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import mods.natura.blocks.*;
-import mods.natura.blocks.crops.*;
-import mods.natura.blocks.overrides.*;
-import mods.natura.blocks.trees.*;
-import mods.natura.items.*;
-import mods.natura.items.blocks.*;
-import mods.natura.worldgen.WillowGen;
+import mods.natura.blocks.CloudBlock;
+import mods.natura.blocks.HeatSand;
+import mods.natura.blocks.TaintedSoil;
+import mods.natura.blocks.crops.BerryBush;
+import mods.natura.blocks.crops.CropBlock;
+import mods.natura.blocks.crops.FlowerBlock;
+import mods.natura.blocks.crops.Glowshroom;
+import mods.natura.blocks.crops.LargeGlowshroom;
+import mods.natura.blocks.crops.NetherBerryBush;
+import mods.natura.blocks.crops.ThornVines;
+import mods.natura.blocks.overrides.AlternateBookshelf;
+import mods.natura.blocks.overrides.AlternateFence;
+import mods.natura.blocks.overrides.AlternateWorkbench;
+import mods.natura.blocks.trees.DarkTreeBlock;
+import mods.natura.blocks.trees.LogTwoxTwo;
+import mods.natura.blocks.trees.NDoor;
+import mods.natura.blocks.trees.NLeaves;
+import mods.natura.blocks.trees.NLeavesDark;
+import mods.natura.blocks.trees.NLeavesNocolor;
+import mods.natura.blocks.trees.NSaplingBlock;
+import mods.natura.blocks.trees.OverworldLeaves;
+import mods.natura.blocks.trees.OverworldSapling;
+import mods.natura.blocks.trees.OverworldTreeBlock;
+import mods.natura.blocks.trees.Planks;
+import mods.natura.blocks.trees.SaguaroBlock;
+import mods.natura.blocks.trees.SimpleLog;
+import mods.natura.blocks.trees.TreeBlock;
+import mods.natura.blocks.trees.WillowBlock;
+import mods.natura.items.BerryItem;
+import mods.natura.items.BerryMedley;
+import mods.natura.items.BoneBag;
+import mods.natura.items.BowlEmpty;
+import mods.natura.items.BowlStew;
+import mods.natura.items.CactusJuice;
+import mods.natura.items.NaturaSeeds;
+import mods.natura.items.NetherBerryItem;
+import mods.natura.items.NetherFoodItem;
+import mods.natura.items.PlantItem;
+import mods.natura.items.SeedBag;
+import mods.natura.items.SeedFood;
+import mods.natura.items.StickItem;
+import mods.natura.items.blocks.BerryBushItem;
+import mods.natura.items.blocks.CloudItem;
+import mods.natura.items.blocks.DarkTreeItem;
+import mods.natura.items.blocks.GlowshroomItem;
+import mods.natura.items.blocks.LogTwoxTwoItem;
+import mods.natura.items.blocks.NAlternateItem;
+import mods.natura.items.blocks.NDoorItem;
+import mods.natura.items.blocks.NLeavesDarkItem;
+import mods.natura.items.blocks.NLeavesItem;
+import mods.natura.items.blocks.NSaplingItem;
+import mods.natura.items.blocks.NetherBerryBushItem;
+import mods.natura.items.blocks.NoColorLeavesItem;
+import mods.natura.items.blocks.OverworldLeavesItem;
+import mods.natura.items.blocks.OverworldSaplingItem;
+import mods.natura.items.blocks.OverworldTreeItem;
+import mods.natura.items.blocks.PlanksItem;
+import mods.natura.items.blocks.RedwoodItem;
+import mods.natura.items.blocks.SaguaroItem;
+import mods.natura.items.blocks.TreeItem;
+import mods.natura.items.blocks.WillowItem;
+import mods.natura.items.tools.NaturaHatchet;
+import mods.natura.items.tools.NaturaPickaxe;
+import mods.natura.items.tools.NaturaShovel;
+import mods.natura.items.tools.NaturaSword;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockFence;
 import net.minecraft.block.material.Material;
-import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.EnumToolMaterial;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.item.crafting.ShapedRecipes;
-import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraft.item.crafting.ShapelessRecipes;
+import net.minecraftforge.common.EnumHelper;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.oredict.OreDictionary;
+import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
 import cpw.mods.fml.common.event.FMLInterModComms;
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -67,7 +127,6 @@ public class NContent
         floraLeaves = (NLeaves) new NLeaves(PHNatura.floraLeavesID).setUnlocalizedName("natura.leaves");
         floraLeavesNoColor = (NLeaves) new NLeavesNocolor(PHNatura.cherryLeavesID).setUnlocalizedName("natura.leavesnocolor");
         floraSapling = (NSaplingBlock) new NSaplingBlock(PHNatura.floraSaplingID).setUnlocalizedName("natura.sapling");
-        bloodwood = new LogTwoxTwo(PHNatura.bloodwoodID, 8f).setUnlocalizedName("bloodwood");
         willow = new WillowBlock(PHNatura.willow).setUnlocalizedName("willow");
 
         saguaro = new SaguaroBlock(PHNatura.saguaroID).setUnlocalizedName("saguaro.block");
@@ -94,11 +153,12 @@ public class NContent
         GameRegistry.registerBlock(floraLeavesNoColor, NoColorLeavesItem.class, "floraleavesnocolor");
         GameRegistry.registerBlock(floraSapling, NSaplingItem.class, "florasapling");
         GameRegistry.registerBlock(redwoodDoor, "Redwood Door");
-        GameRegistry.registerBlock(bloodwood, LogTwoxTwoItem.class, "bloodwood");
         GameRegistry.registerBlock(saguaro, SaguaroItem.class, "Saguaro");
         GameRegistry.registerBlock(willow, WillowItem.class, "willow");
 
         //Nether
+        bloodwood = new LogTwoxTwo(PHNatura.bloodwoodID, 8f, Material.vine).setUnlocalizedName("bloodwood");
+        GameRegistry.registerBlock(bloodwood, LogTwoxTwoItem.class, "bloodwood");
         taintedSoil = new TaintedSoil(PHNatura.taintedSoil).setUnlocalizedName("TaintedSoil");
         GameRegistry.registerBlock(taintedSoil, "soil.tainted");
         heatSand = new HeatSand(PHNatura.heatSand).setUnlocalizedName("HeatSand").setLightValue(0.375f);
@@ -120,6 +180,8 @@ public class NContent
         GameRegistry.registerBlock(glowshroomPurple, "purpleGlowshroom");
         glowshroomGreen = new LargeGlowshroom(PHNatura.glowshroomGreen, Material.wood, "green").setUnlocalizedName("greenGlowshroom").setLightValue(0.5f);
         GameRegistry.registerBlock(glowshroomGreen, "greenGlowshroom");
+        
+        Block.netherrack.setResistance(4f);
 
         /*public static Block glowshroomBlue;
         public static Block glowshroomGreen;
@@ -158,8 +220,59 @@ public class NContent
         stickItem = (new StickItem(PHNatura.stickItem)).setFull3D().setUnlocalizedName("natura.stick").setCreativeTab(NaturaTab.tab);
         GameRegistry.registerItem(stickItem, "natura.stick");
 
+        EnumToolMaterial Bloodwood = EnumHelper.addToolMaterial("Bloodwood", 2, 350, 7f, 3, 24);
+
+        ghostwoodSword = new NaturaSword(PHNatura.ghostwoodSword, EnumToolMaterial.WOOD, "ghostwood").setUnlocalizedName("natura.sword.ghostwood");
+        ghostwoodPickaxe = new NaturaPickaxe(PHNatura.ghostwoodPickaxe, EnumToolMaterial.WOOD, "ghostwood").setUnlocalizedName("natura.pickaxe.ghostwood");
+        ghostwoodShovel = new NaturaShovel(PHNatura.ghostwoodShovel, EnumToolMaterial.WOOD, "ghostwood").setUnlocalizedName("natura.shovel.ghostwood");
+        ghostwoodAxe = new NaturaHatchet(PHNatura.ghostwoodAxe, EnumToolMaterial.WOOD, "ghostwood").setUnlocalizedName("natura.axe.ghostwood");
+        
+        bloodwoodSword = new NaturaSword(PHNatura.bloodwoodSword, Bloodwood, "bloodwood").setUnlocalizedName("natura.sword.bloodwood");
+        bloodwoodPickaxe = new NaturaPickaxe(PHNatura.bloodwoodPickaxe, Bloodwood, "bloodwood").setUnlocalizedName("natura.pickaxe.bloodwood");
+        bloodwoodShovel = new NaturaShovel(PHNatura.bloodwoodShovel, Bloodwood, "bloodwood").setUnlocalizedName("natura.shovel.bloodwood");
+        bloodwoodAxe = new NaturaHatchet(PHNatura.bloodwoodAxe, Bloodwood, "bloodwood").setUnlocalizedName("natura.axe.bloodwood");
+        
+        darkwoodSword = new NaturaSword(PHNatura.darkwoodSword, EnumToolMaterial.STONE, "darkwood").setUnlocalizedName("natura.sword.darkwood");
+        darkwoodPickaxe = new NaturaPickaxe(PHNatura.darkwoodPickaxe, EnumToolMaterial.STONE, "darkwood").setUnlocalizedName("natura.pickaxe.darkwood");
+        darkwoodShovel = new NaturaShovel(PHNatura.darkwoodShovel, EnumToolMaterial.STONE, "darkwood").setUnlocalizedName("natura.shovel.darkwood");
+        darkwoodAxe = new NaturaHatchet(PHNatura.darkwoodAxe, EnumToolMaterial.STONE, "darkwood").setUnlocalizedName("natura.axe.darkwood");
+        
+        fusewoodSword = new NaturaSword(PHNatura.fusewoodSword, EnumToolMaterial.IRON, "fusewood").setUnlocalizedName("natura.sword.fusewood");
+        fusewoodPickaxe = new NaturaPickaxe(PHNatura.fusewoodPickaxe, EnumToolMaterial.IRON, "fusewood").setUnlocalizedName("natura.pickaxe.fusewood");
+        fusewoodShovel = new NaturaShovel(PHNatura.fusewoodShovel, EnumToolMaterial.IRON, "fusewood").setUnlocalizedName("natura.shovel.fusewood");
+        fusewoodAxe = new NaturaHatchet(PHNatura.fusewoodAxe, EnumToolMaterial.IRON, "fusewood").setUnlocalizedName("natura.axe.fusewood");
+        
+        netherquartzSword = new NaturaSword(PHNatura.netherquartzSword, EnumToolMaterial.STONE, "netherquartz").setUnlocalizedName("natura.sword.netherquartz");
+        netherquartzPickaxe = new NaturaPickaxe(PHNatura.netherquartzPickaxe, EnumToolMaterial.STONE, "netherquartz").setUnlocalizedName("natura.pickaxe.netherquartz");
+        netherquartzShovel = new NaturaShovel(PHNatura.netherquartzShovel, EnumToolMaterial.STONE, "netherquartz").setUnlocalizedName("natura.shovel.netherquartz");
+        netherquartzAxe = new NaturaHatchet(PHNatura.netherquartzAxe, EnumToolMaterial.STONE, "netherquartz").setUnlocalizedName("natura.axe.netherquartz");
+        
+        MinecraftForge.setToolClass(ghostwoodPickaxe, "pickaxe", 0);
+        MinecraftForge.setToolClass(ghostwoodShovel, "shovel", 0);
+        MinecraftForge.setToolClass(ghostwoodAxe, "axe", 0);
+        
+        MinecraftForge.setToolClass(bloodwoodPickaxe, "pickaxe", 2);
+        MinecraftForge.setToolClass(bloodwoodShovel, "shovel", 2);
+        MinecraftForge.setToolClass(bloodwoodAxe, "axe", 2);
+        
+        MinecraftForge.setToolClass(darkwoodPickaxe, "pickaxe", 1);
+        MinecraftForge.setToolClass(darkwoodShovel, "shovel", 1);
+        MinecraftForge.setToolClass(darkwoodAxe, "axe", 1);
+        
+        MinecraftForge.setToolClass(fusewoodPickaxe, "pickaxe", 2);
+        MinecraftForge.setToolClass(fusewoodShovel, "shovel", 2);
+        MinecraftForge.setToolClass(fusewoodAxe, "axe", 2);
+        
+        MinecraftForge.setToolClass(netherquartzPickaxe, "pickaxe", 1);
+        MinecraftForge.setToolClass(netherquartzShovel, "shovel", 1);
+        MinecraftForge.setToolClass(netherquartzAxe, "axe", 1);
         //Material.vine.setRequiresTool();
-        //BiomeGenBase.swampland.worldGeneratorSwamp = new WillowGen();
+
+        MinecraftForge.setBlockHarvestLevel(bloodwood, "axe", 2);
+        MinecraftForge.setBlockHarvestLevel(darkTree, 1, "axe", 1);
+        
+        bowlEmpty = new BowlEmpty(PHNatura.bowlEmpty).setUnlocalizedName("natura.emptybowl");
+        bowlStew = new BowlStew(PHNatura.bowlStew).setUnlocalizedName("natura.stewbowl");
         addRecipes();
     }
 
@@ -278,7 +391,48 @@ public class NContent
             OreDictionary.registerOre("stickWood", new ItemStack(stickItem, 1, meta));
             meta++;
         }
+        int[] toolMeta = {2, 4, 11, 12};
+        Item[][] tools = {
+                {ghostwoodSword, ghostwoodPickaxe, ghostwoodShovel, ghostwoodAxe},
+                {bloodwoodSword, bloodwoodPickaxe, bloodwoodShovel, bloodwoodAxe},
+                {darkwoodSword, darkwoodPickaxe, darkwoodShovel, darkwoodAxe},
+                {fusewoodSword, fusewoodPickaxe, fusewoodShovel, fusewoodAxe}
+                };
+        for (int i = 0; i < toolMeta.length; i++)
+        {
+            addShapedRecipeFirst(recipes, new ItemStack(tools[i][0], 1, 0), "#", "#", "s", '#', new ItemStack(planks, 1, toolMeta[i]), 's', new ItemStack(stickItem, 1, toolMeta[i]));
+            addShapedRecipeFirst(recipes, new ItemStack(tools[i][1], 1, 0), "###", " s ", " s ", '#', new ItemStack(planks, 1, toolMeta[i]), 's', new ItemStack(stickItem, 1, toolMeta[i]));
+            addShapedRecipeFirst(recipes, new ItemStack(tools[i][2], 1, 0), "#", "s", "s", '#', new ItemStack(planks, 1, toolMeta[i]), 's', new ItemStack(stickItem, 1, toolMeta[i]));
+            addShapedRecipeFirst(recipes, new ItemStack(tools[i][3], 1, 0), "##", "#s", " s", '#', new ItemStack(planks, 1, toolMeta[i]), 's', new ItemStack(stickItem, 1, toolMeta[i]));
+        }
+        
+        GameRegistry.addRecipe(new ItemStack(netherquartzSword, 1, 0), "#", "#", "s", '#', new ItemStack(Block.blockNetherQuartz, 1, Short.MAX_VALUE), 's', new ItemStack(stickItem, 1, 2));
+        GameRegistry.addRecipe(new ItemStack(netherquartzPickaxe, 1, 0), "###", " s ", " s ", '#',new ItemStack(Block.blockNetherQuartz, 1, Short.MAX_VALUE), 's', new ItemStack(stickItem, 1, 2));
+        GameRegistry.addRecipe(new ItemStack(netherquartzShovel, 1, 0), "#", "s", "s", '#', new ItemStack(Block.blockNetherQuartz, 1, Short.MAX_VALUE), 's', new ItemStack(stickItem, 1, 2));
+        GameRegistry.addRecipe(new ItemStack(netherquartzAxe, 1, 0), "##", "#s", " s", '#', new ItemStack(Block.blockNetherQuartz, 1, Short.MAX_VALUE), 's', new ItemStack(stickItem, 1, 2));
 
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Item.swordWood, 1, 0), "##", "#s", " s", 's', new ItemStack(stickItem, 1, Short.MAX_VALUE), '#', "plankWood"));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Item.pickaxeWood, 1, 0), "##", "#s", " s", 's', new ItemStack(stickItem, 1, Short.MAX_VALUE), '#', "plankWood"));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Item.shovelWood, 1, 0), "##", "#s", " s", 's', new ItemStack(stickItem, 1, Short.MAX_VALUE), '#', "plankWood"));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Item.axeWood, 1, 0), "##", "#s", " s", 's', new ItemStack(stickItem, 1, Short.MAX_VALUE), '#', "plankWood"));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Item.hoeWood, 1, 0), "##", "#s", " s", 's', new ItemStack(stickItem, 1, Short.MAX_VALUE), '#', "plankWood"));
+        
+        for (int i = 0; i < BowlEmpty.textureNames.length; i++)
+        {
+            if (!(BowlEmpty.textureNames[i].equals("")))
+            {
+                addShapedRecipeFirst(recipes, new ItemStack(bowlEmpty, 4, i), "# #", " # ", '#', new ItemStack(planks, 1, i));
+                GameRegistry.addShapelessRecipe(new ItemStack(bowlStew, 1, i+1), new ItemStack(bowlEmpty, 1, i), new ItemStack(Block.mushroomBrown), new ItemStack(Block.mushroomRed));
+                GameRegistry.addShapelessRecipe(new ItemStack(bowlStew, 1, i+15), new ItemStack(bowlEmpty, 1, i), new ItemStack(glowshroom, 1, 0), new ItemStack(glowshroom, 1, 1), new ItemStack(glowshroom, 1, 2));
+            }
+        }
+        
+        addShapelessRecipeFirst(recipes, new ItemStack(bowlStew, 1, 0), new ItemStack(Block.mushroomBrown), new ItemStack(Block.mushroomRed), new ItemStack(Item.bowlEmpty));
+        GameRegistry.addShapelessRecipe(new ItemStack(bowlStew, 1, 14), new ItemStack(glowshroom, 1, 0), new ItemStack(glowshroom, 1, 1), new ItemStack(glowshroom, 1, 2), new ItemStack(Item.bowlEmpty));
+        
+        /*bowlEmpty = new BowlEmpty(PHNatura.bowlEmpty).setUnlocalizedName("natura.emptybowl");
+        bowlStew = new BowlStew(PHNatura.bowlStew).setUnlocalizedName("natura.stewbowl");*/
+        
         //Turn logs into charcoal
         FurnaceRecipes.smelting().addSmelting(tree.blockID, 0, new ItemStack(Item.coal, 1, 1), 0.15f);
         FurnaceRecipes.smelting().addSmelting(tree.blockID, 1, new ItemStack(Item.coal, 1, 1), 0.15f);
@@ -361,13 +515,63 @@ public class NContent
         ShapedRecipes var17 = new ShapedRecipes(var5, var6, var15, itemstack);
         recipeList.add(0, var17);
     }
+    
+    public void addShapelessRecipeFirst(List recipeList, ItemStack par1ItemStack, Object ... par2ArrayOfObj)
+    {
+        ArrayList arraylist = new ArrayList();
+        Object[] aobject = par2ArrayOfObj;
+        int i = par2ArrayOfObj.length;
+
+        for (int j = 0; j < i; ++j)
+        {
+            Object object1 = aobject[j];
+
+            if (object1 instanceof ItemStack)
+            {
+                arraylist.add(((ItemStack)object1).copy());
+            }
+            else if (object1 instanceof Item)
+            {
+                arraylist.add(new ItemStack((Item)object1));
+            }
+            else
+            {
+                if (!(object1 instanceof Block))
+                {
+                    throw new RuntimeException("Invalid shapeless recipy!");
+                }
+
+                arraylist.add(new ItemStack((Block)object1));
+            }
+        }
+
+        recipeList.add(0, new ShapelessRecipes(par1ItemStack, arraylist));
+    }
 
     public void addLoot ()
     {
         //ChestGenHooks.getInfo(ChestGenHooks.BONUS_CHEST).addItem(new WeightedRandomChestContent(new ItemStack(VanityBlocksStorage.StorageBlock,0,0),3,5,6));
     }
+    
+    public void intermodCommunication()
+    {
+        FMLInterModComms.sendMessage("Thaumcraft", "harvestClickableCrop", new ItemStack(berryBush, 1, 12));
+        FMLInterModComms.sendMessage("Thaumcraft", "harvestClickableCrop", new ItemStack(berryBush, 1, 13));
+        FMLInterModComms.sendMessage("Thaumcraft", "harvestClickableCrop", new ItemStack(berryBush, 1, 14));
+        FMLInterModComms.sendMessage("Thaumcraft", "harvestClickableCrop", new ItemStack(berryBush, 1, 15));
+        FMLInterModComms.sendMessage("Thaumcraft", "harvestClickableCrop", new ItemStack(netherBerryBush, 1, 12));
+        FMLInterModComms.sendMessage("Thaumcraft", "harvestClickableCrop", new ItemStack(netherBerryBush, 1, 13));
+        FMLInterModComms.sendMessage("Thaumcraft", "harvestClickableCrop", new ItemStack(netherBerryBush, 1, 14));
+        FMLInterModComms.sendMessage("Thaumcraft", "harvestClickableCrop", new ItemStack(netherBerryBush, 1, 15));
 
-    public void addModSupport ()
+        StringBuilder builder = new StringBuilder();
+        String string = builder.append("farmBarley@").append(seeds.itemID).append(".0.").append(crops.blockID).append(".3").toString();
+        FMLInterModComms.sendMessage("Forestry", "add-farmable-crop", string);
+        string = builder.append("farmCotton@").append(seeds.itemID).append(".1.").append(crops.blockID).append(".8").toString();
+        FMLInterModComms.sendMessage("Forestry", "add-farmable-crop", string);
+    }
+
+    public void addOredictSupport ()
     {
         OreDictionary.registerOre("cropRaspberry", new ItemStack(berryItem, 1, 0));
         OreDictionary.registerOre("cropBlueberry", new ItemStack(berryItem, 1, 1));
@@ -378,12 +582,6 @@ public class NContent
         OreDictionary.registerOre("cropDuskberry", new ItemStack(netherBerryItem, 1, 1));
         OreDictionary.registerOre("cropSkyberry", new ItemStack(netherBerryItem, 1, 2));
         OreDictionary.registerOre("cropStingberry", new ItemStack(netherBerryItem, 1, 3));
-
-        StringBuilder builder = new StringBuilder();
-        String string = builder.append("farmBarley@").append(seeds.itemID).append(".0.").append(crops.blockID).append(".3").toString();
-        FMLInterModComms.sendMessage("Forestry", "add-farmable-crop", string);
-        string = builder.append("farmCotton@").append(seeds.itemID).append(".1.").append(crops.blockID).append(".8").toString();
-        FMLInterModComms.sendMessage("Forestry", "add-farmable-crop", string);
     }
 
     //Crops
@@ -459,13 +657,38 @@ public class NContent
     public static Block glowshroomPurple;
 
     public static Item potashApple;
-    public static Item stickItem;
+    
+    //Tools
+    public static Item ghostwoodSword;
+    public static Item ghostwoodPickaxe;
+    public static Item ghostwoodShovel;
+    public static Item ghostwoodAxe;
+    public static Item bloodwoodSword;
+    public static Item bloodwoodPickaxe;
+    public static Item bloodwoodShovel;
+    public static Item bloodwoodAxe;
+    public static Item darkwoodSword;
+    public static Item darkwoodPickaxe;
+    public static Item darkwoodShovel;
+    public static Item darkwoodAxe;
+    public static Item fusewoodSword;
+    public static Item fusewoodPickaxe;
+    public static Item fusewoodShovel;
+    public static Item fusewoodAxe;
+    public static Item netherquartzSword;
+    public static Item netherquartzPickaxe;
+    public static Item netherquartzShovel;
+    public static Item netherquartzAxe;
 
     //Extra overworld
     public static Block rareTree;
     public static NLeaves rareLeaves;
     public static OverworldSapling rareSapling;
     public static Block bluebells;
+    
+    public static Item stickItem;
+    public static Item bowlEmpty;
+    public static Item bowlStew;
 
     //Vanilla overrides and alternates
     public static final String woodTextureNames[] = { "eucalyptus", "sakura", "ghostwood", "redwood", "bloodwood", "hopseed", "maple", "silverbell", "purpleheart", "tiger", "willow", "darkwood",

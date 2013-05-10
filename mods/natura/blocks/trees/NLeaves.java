@@ -22,7 +22,6 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class NLeaves extends BlockLeaves
 {
     int[] adjacentTreeBlocks;
-
     public NLeaves(int id)
     {
         super(id);
@@ -41,14 +40,6 @@ public class NLeaves extends BlockLeaves
         double var1 = 0.5D;
         double var3 = 1.0D;
         return ColorizerFoliage.getFoliageColor(var1, var3);
-    }
-
-    /**
-     * How many world ticks before ticking
-     */
-    public int tickRate()
-    {
-        return 20;
     }
 
     /**
@@ -94,6 +85,41 @@ public class NLeaves extends BlockLeaves
 
             return (var6 / 9 & 255) << 16 | (var7 / 9 & 255) << 8 | var8 / 9 & 255;
         //}
+    }
+    
+    public void updateTick(World world, int x, int y, int z, Random random)
+    {
+        if (!world.isRemote)
+        {
+            int meta = world.getBlockMetadata(x, y, z);
+
+            if ((meta & 4) == 0)
+            {
+                boolean nearbyTree = false;
+                byte range = 4;
+                for (int posX = x - range; posX <= x + range; posX++)
+                {
+                    for (int posY = y - range; posY <= y + range; posY++)
+                    {
+                        for (int posZ = z - range; posZ <= z + range; posZ++)
+                        {
+                            Block block = Block.blocksList[world.getBlockId(posX, posY, posZ)];
+                            if (block != null && block.canSustainLeaves(world, posX, posY, posZ))
+                                nearbyTree = true;
+                        }
+                    }
+                }
+                
+                if (!nearbyTree)
+                    this.removeLeaves(world, x, y, z);
+            }
+        }
+    }
+    
+    public void removeLeaves(World world, int x, int y, int z)
+    {
+        this.dropBlockAsItem(world, x, y, z, world.getBlockMetadata(x, y, z), 0);
+        world.setBlockToAir(x, y, z);
     }
 
     /**

@@ -68,12 +68,15 @@ public class NClientProxy extends NCommonProxy
         LanguageRegistry.instance().addStringLocalization("block.log.willow.name", "en_US", "Willow Wood");
         
         LanguageRegistry.instance().addStringLocalization("block.log.darkwood.name", "en_US", "Darkwood");
-        LanguageRegistry.instance().addStringLocalization("block.log.fusewood.name", "en_US", "Fusewood");
+        LanguageRegistry.instance().addStringLocalization("block.log.fusewood.name", "en_US", "Katsu");
+        
+        LanguageRegistry.instance().addStringLocalization("item.bowl.mushroom.name", "en_US", "Mushroom Stew");
+        LanguageRegistry.instance().addStringLocalization("item.bowl.glowshroom.name", "en_US", "Glowshroom Stew");
         
         LanguageRegistry.instance().addStringLocalization("block.leaves.darkwood.name", "en_US", "Darkwood Leaves");
         LanguageRegistry.instance().addStringLocalization("block.leaves.darkwood.flowering.name", "en_US", "Darkwood Leaves");
         LanguageRegistry.instance().addStringLocalization("block.leaves.darkwood.fruit.name", "en_US", "Darkwood Leaves");
-        LanguageRegistry.instance().addStringLocalization("block.leaves.fusewood.name", "en_US", "Fusewood Leaves");
+        LanguageRegistry.instance().addStringLocalization("block.leaves.fusewood.name", "en_US", "Katsu Leaves");
         
         LanguageRegistry.instance().addStringLocalization("item.food.nether.potashapple.name", "en_US", "Potash Apple");
 		
@@ -115,7 +118,7 @@ public class NClientProxy extends NCommonProxy
         LanguageRegistry.instance().addStringLocalization("purpleheartNPlanks.name", "en_US", "Amaranth Planks");
         LanguageRegistry.instance().addStringLocalization("willowNPlanks.name", "en_US", "Willow Planks");
         LanguageRegistry.instance().addStringLocalization("darkwoodNPlanks.name", "en_US", "Darkwood Planks");
-        LanguageRegistry.instance().addStringLocalization("fusewoodNPlanks.name", "en_US", "Fusewood Planks");
+        LanguageRegistry.instance().addStringLocalization("fusewoodNPlanks.name", "en_US", "Katsu Planks");
 
 		LanguageRegistry.instance().addStringLocalization("block.sapling.eucalyptus.name", "en_US", "Eucalyptus Sapling");
 		LanguageRegistry.instance().addStringLocalization("block.sapling.sakura.name", "en_US", "Sakura Sapling");
@@ -124,7 +127,7 @@ public class NClientProxy extends NCommonProxy
 		LanguageRegistry.instance().addStringLocalization("block.sapling.redwood.name", "en_US", "Redwood Sapling");
 		LanguageRegistry.instance().addStringLocalization("block.sapling.blood.name", "en_US", "Blood Sapling");
         LanguageRegistry.instance().addStringLocalization("block.sapling.darkwood.name", "en_US", "Darkwood Sapling");
-        LanguageRegistry.instance().addStringLocalization("block.sapling.fusewood.name", "en_US", "Fusewood Sapling");
+        LanguageRegistry.instance().addStringLocalization("block.sapling.fusewood.name", "en_US", "Katsu Sapling");
         LanguageRegistry.instance().addStringLocalization("block.sapling.willow.name", "en_US", "Willow Sapling");
         LanguageRegistry.instance().addStringLocalization("block.sapling.tiger.name", "en_US", "Tigerwood Sapling");
         LanguageRegistry.instance().addStringLocalization("block.sapling.maple.name", "en_US", "Maple Sapling");
@@ -155,6 +158,28 @@ public class NClientProxy extends NCommonProxy
         LanguageRegistry.addName(NContent.heatSand, "Heat Sand");
         LanguageRegistry.addName(NContent.thornVines, "Thornvines");
         LanguageRegistry.addName(NContent.potashApple, "Potash Apple");
+        LanguageRegistry.addName(NContent.stickItem, "Stick");
+        
+        LanguageRegistry.addName(NContent.ghostwoodSword, "Ghostwood Sword");
+        LanguageRegistry.addName(NContent.ghostwoodPickaxe, "Ghostwood Pickaxe");
+        LanguageRegistry.addName(NContent.ghostwoodShovel, "Ghostwood Shovel");
+        LanguageRegistry.addName(NContent.ghostwoodAxe, "Ghostwood Hatchet");
+        LanguageRegistry.addName(NContent.bloodwoodSword, "Bloodwood Sword");
+        LanguageRegistry.addName(NContent.bloodwoodPickaxe, "Bloodwood Pickaxe");
+        LanguageRegistry.addName(NContent.bloodwoodShovel, "Bloodwood Shovel");
+        LanguageRegistry.addName(NContent.bloodwoodAxe, "Bloodwood Hatchet");
+        LanguageRegistry.addName(NContent.darkwoodSword, "Darkwood Sword");
+        LanguageRegistry.addName(NContent.darkwoodPickaxe, "Darkwood Pickaxe");
+        LanguageRegistry.addName(NContent.darkwoodShovel, "Darkwood Shovel");
+        LanguageRegistry.addName(NContent.darkwoodAxe, "Darkwood Hatchet");
+        LanguageRegistry.addName(NContent.fusewoodSword, "Katsu Sword");
+        LanguageRegistry.addName(NContent.fusewoodPickaxe, "Katsu Pickaxe");
+        LanguageRegistry.addName(NContent.fusewoodShovel, "Katsu Shovel");
+        LanguageRegistry.addName(NContent.fusewoodAxe, "Katsu Hatchet");
+        LanguageRegistry.addName(NContent.netherquartzSword, "Quartz Sword");
+        LanguageRegistry.addName(NContent.netherquartzPickaxe, "Quartz Pickaxe");
+        LanguageRegistry.addName(NContent.netherquartzShovel, "Quartz Shovel");
+        LanguageRegistry.addName(NContent.netherquartzAxe, "Quartz Hatchet");
 	}
 
 	public File getMinecraftDir ()

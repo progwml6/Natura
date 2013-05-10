@@ -47,6 +47,11 @@ public class AlternateBookshelf extends BlockBookshelf
         return meta;
     }
     
+    public boolean renderAsNormalBlock()
+    {
+        return false;
+    }
+    
     public float getEnchantPowerBonus(World world, int x, int y, int z)
     {
         return 1f;
