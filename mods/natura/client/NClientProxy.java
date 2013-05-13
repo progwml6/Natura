@@ -2,9 +2,14 @@ package mods.natura.client;
 
 import java.io.File;
 
+import org.lwjgl.opengl.GL11;
+
 import mods.natura.common.NCommonProxy;
 import mods.natura.common.NContent;
+import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.RenderBlocks;
+import net.minecraft.client.renderer.Tessellator;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import cpw.mods.fml.common.registry.TickRegistry;
@@ -180,6 +185,37 @@ public class NClientProxy extends NCommonProxy
         LanguageRegistry.addName(NContent.netherquartzPickaxe, "Quartz Pickaxe");
         LanguageRegistry.addName(NContent.netherquartzShovel, "Quartz Shovel");
         LanguageRegistry.addName(NContent.netherquartzAxe, "Quartz Hatchet");
+	}
+	
+    public static void renderStandardInvBlock(RenderBlocks renderblocks, Block block, int meta)
+	{
+		Tessellator tessellator = Tessellator.instance;
+		GL11.glTranslatef(-0.5F, -0.5F, -0.5F);
+		tessellator.startDrawingQuads();
+		tessellator.setNormal(0.0F, -1F, 0.0F);
+		renderblocks.renderFaceYNeg(block, 0.0D, 0.0D, 0.0D, block.getIcon(0, meta));
+		tessellator.draw();
+		tessellator.startDrawingQuads();
+		tessellator.setNormal(0.0F, 1.0F, 0.0F);
+		renderblocks.renderFaceYPos(block, 0.0D, 0.0D, 0.0D, block.getIcon(1, meta));
+		tessellator.draw();
+		tessellator.startDrawingQuads();
+		tessellator.setNormal(0.0F, 0.0F, -1F);
+		renderblocks.renderFaceZNeg(block, 0.0D, 0.0D, 0.0D, block.getIcon(2, meta));
+		tessellator.draw();
+		tessellator.startDrawingQuads();
+		tessellator.setNormal(0.0F, 0.0F, 1.0F);
+		renderblocks.renderFaceZPos(block, 0.0D, 0.0D, 0.0D, block.getIcon(3, meta));
+		tessellator.draw();
+		tessellator.startDrawingQuads();
+		tessellator.setNormal(-1F, 0.0F, 0.0F);
+		renderblocks.renderFaceXNeg(block, 0.0D, 0.0D, 0.0D, block.getIcon(4, meta));
+		tessellator.draw();
+		tessellator.startDrawingQuads();
+		tessellator.setNormal(1.0F, 0.0F, 0.0F);
+		renderblocks.renderFaceXPos(block, 0.0D, 0.0D, 0.0D, block.getIcon(5, meta));
+		tessellator.draw();
+		GL11.glTranslatef(0.5F, 0.5F, 0.5F);
 	}
 
 	public File getMinecraftDir ()

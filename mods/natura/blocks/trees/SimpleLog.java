@@ -59,8 +59,11 @@ public class SimpleLog extends Planks
     @Override
     @SideOnly(Side.CLIENT)
 	public Icon getIcon(int side, int meta)
-    {		
-		return icons[meta];
+    {
+        int meat = meta;
+        if (meat >= textureNames.length)
+            meat = textureNames.length - 1;
+		return icons[meat];
     }
     
     @SideOnly(Side.CLIENT)

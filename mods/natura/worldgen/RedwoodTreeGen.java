@@ -82,10 +82,10 @@ public class RedwoodTreeGen extends WorldGenerator
     int leafDistanceLimit;
     int leafNodes[][];
     int genWoodID;
-    int genWoodMetadata;
+    int genWoodMetadata = 0;
     boolean useHeight;
 
-    public RedwoodTreeGen(boolean flag, int bID, int bMD)
+    public RedwoodTreeGen(boolean flag, int bID)
     {
         super(flag);
         useHeight = flag;
@@ -100,7 +100,6 @@ public class RedwoodTreeGen extends WorldGenerator
         heightLimitLimit = 12;
         leafDistanceLimit = 4;
         genWoodID = bID;
-        genWoodMetadata = bMD;
     }
 
     int findGround (World world, int x, int y, int z)

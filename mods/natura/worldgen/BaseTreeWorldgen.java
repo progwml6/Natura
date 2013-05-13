@@ -14,7 +14,7 @@ public class BaseTreeWorldgen implements IWorldGenerator
 {
     public BaseTreeWorldgen()
     {
-        genRedwood = new RedwoodTreeGen(false, NContent.redwood.blockID, 0);
+        genRedwood = new RedwoodTreeGen(false, NContent.redwood.blockID);
         genBlood = new BloodTreeLargeGen(3, 2);
         bush = new BushTreeGen(false, 2, 3, 2);
         pinkSakura = new SakuraTreeGen(false, 1, 0);

@@ -323,7 +323,7 @@ public class CropBlock extends BlockCrops
     {
         int meta = world.getBlockMetadata(x, y, z); //Wild crops can stay
         if (meta == 3 || meta == 8)
-            return world.getBlockId(x, y, z) != 0;
+            return world.getBlockId(x, y-1, z) != 0;
 
         return super.canBlockStay(world, x, y, z);
     }

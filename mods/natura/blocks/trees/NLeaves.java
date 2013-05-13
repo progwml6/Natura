@@ -119,7 +119,7 @@ public class NLeaves extends BlockLeaves
     public void removeLeaves(World world, int x, int y, int z)
     {
         this.dropBlockAsItem(world, x, y, z, world.getBlockMetadata(x, y, z), 0);
-        world.setBlockToAir(x, y, z);
+        world.setBlock(x, y, z, 0, 0, 7);
     }
 
     /**

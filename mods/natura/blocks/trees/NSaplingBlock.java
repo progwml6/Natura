@@ -56,11 +56,14 @@ public class NSaplingBlock extends BlockSapling
 
 	public boolean canPlaceBlockAt (World world, int x, int y, int z)
 	{
-		int blockID = world.getBlockId(x, y, z);
-		if (blockID == 0 || blocksList[blockID].blockMaterial.isReplaceable())
-		    return true;
-			//return canBlockStay(world, x, y, z);
-		return false;
+        int blockID = world.getBlockId(x, y, z);
+        Block block = Block.blocksList[blockID];
+        if (block == null || block.isBlockReplaceable(world, x, y, z))
+        {
+            int lowerID = world.getBlockId(x, y-1, z);
+            return canThisPlantGrowOnThisBlockID(lowerID);
+        }
+        return false;
 	}
 
 	public boolean canThisPlantGrowOnThisBlockID (int id)
@@ -155,7 +158,7 @@ public class NSaplingBlock extends BlockSapling
 		}
 		else if (md % 8 <= 3 && random.nextInt(10) == 0)
 		{
-			if (world.getBlockLightValue(x, y + 1, z) >= 9 && random.nextInt(120) == 0)
+			if (world.getBlockLightValue(x, y + 1, z) >= 9 )//&& random.nextInt(120) == 0)
 			{
 				if ((md & 8) == 0)
 					world.setBlockMetadataWithNotify(x, y, z, md | 8, 4);
@@ -164,7 +167,7 @@ public class NSaplingBlock extends BlockSapling
 					growTree(world, x, y, z, random);
 			}
 		}
-		else
+		else if (random.nextInt(10) == 0)
 		{
 			if ((md & 8) == 0)
 				world.setBlockMetadataWithNotify(x, y, z, md | 8, 4);
@@ -182,7 +185,7 @@ public class NSaplingBlock extends BlockSapling
 	}
 	
 	@Override
-	public void func_96477_c(World world, int x, int y, int z, Random random)
+	public void markOrGrowMarked(World world, int x, int y, int z, Random random)
     {
 	    boneFertilize(world, x, y, z, random);
     }
@@ -234,7 +237,7 @@ public class NSaplingBlock extends BlockSapling
             obj = new FusewoodGen(true, 3, 1);
 
 		else
-			obj = new RedwoodTreeGen(true, PHNatura.redwoodID, 0);
+			obj = new RedwoodTreeGen(true, PHNatura.redwoodID);
 
 		if (!(obj.generate(world, random, x, y, z)))
 			world.setBlock(x, y, z, blockID, md+8, 3);

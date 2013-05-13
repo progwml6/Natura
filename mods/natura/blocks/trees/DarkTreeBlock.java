@@ -175,4 +175,16 @@ public class DarkTreeBlock extends Block
         for (int i = 0; i < icons.length / 2; i++)
             par3List.add(new ItemStack(par1, 1, i));
     }
+    
+    @Override
+    public boolean canSustainLeaves(World world, int x, int y, int z)
+    {
+        return true;
+    }
+
+    @Override
+    public boolean isWood(World world, int x, int y, int z)
+    {
+        return true;
+    }
 }

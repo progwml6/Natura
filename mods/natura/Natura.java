@@ -40,7 +40,7 @@ import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 
-@Mod(modid = "Natura", name = "Natura", version = "1.5.1_2.1.dev5.3")
+@Mod(modid = "Natura", name = "Natura", version = "1.5.1_2.1.dev5.8")
 @NetworkMod(serverSideRequired = false, clientSideRequired = true)
 public class Natura
 {
@@ -74,7 +74,7 @@ public class Natura
         proxy.registerRenderer();
         proxy.addNames();
         NetworkRegistry.instance().registerGuiHandler(instance, new NGuiHandler());
-        
+
         content.intermodCommunication();
 
         DimensionManager.unregisterProviderType(-1);
@@ -84,25 +84,28 @@ public class Natura
     @ForgeSubscribe
     public void bonemealEvent (BonemealEvent event)
     {
-        if (event.ID == content.crops.blockID)
+        if (!event.world.isRemote)
         {
-            if (content.crops.boneFertilize(event.world, event.X, event.Y, event.Z))
-                event.setResult(Event.Result.ALLOW);
-        }
-        if (event.ID == content.floraSapling.blockID)
-        {
-            if (content.floraSapling.boneFertilize(event.world, event.X, event.Y, event.Z, event.world.rand))
-                event.setResult(Event.Result.ALLOW);
-        }
-        if (event.ID == content.rareSapling.blockID)
-        {
-            if (content.rareSapling.boneFertilize(event.world, event.X, event.Y, event.Z, event.world.rand))
-                event.setResult(Event.Result.ALLOW);
-        }
-        if (event.ID == content.glowshroom.blockID)
-        {
-            if (content.glowshroom.fertilizeMushroom(event.world, event.X, event.Y, event.Z, event.world.rand))
-                event.setResult(Event.Result.ALLOW);
+            if (event.ID == content.crops.blockID)
+            {
+                if (content.crops.boneFertilize(event.world, event.X, event.Y, event.Z))
+                    event.setResult(Event.Result.ALLOW);
+            }
+            if (event.ID == content.floraSapling.blockID)
+            {
+                if (content.floraSapling.boneFertilize(event.world, event.X, event.Y, event.Z, event.world.rand))
+                    event.setResult(Event.Result.ALLOW);
+            }
+            if (event.ID == content.rareSapling.blockID)
+            {
+                if (content.rareSapling.boneFertilize(event.world, event.X, event.Y, event.Z, event.world.rand))
+                    event.setResult(Event.Result.ALLOW);
+            }
+            if (event.ID == content.glowshroom.blockID)
+            {
+                if (content.glowshroom.fertilizeMushroom(event.world, event.X, event.Y, event.Z, event.world.rand))
+                    event.setResult(Event.Result.ALLOW);
+            }
         }
     }
 

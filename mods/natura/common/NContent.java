@@ -161,7 +161,7 @@ public class NContent
         GameRegistry.registerBlock(bloodwood, LogTwoxTwoItem.class, "bloodwood");
         taintedSoil = new TaintedSoil(PHNatura.taintedSoil).setUnlocalizedName("TaintedSoil");
         GameRegistry.registerBlock(taintedSoil, "soil.tainted");
-        heatSand = new HeatSand(PHNatura.heatSand).setUnlocalizedName("HeatSand").setLightValue(0.375f);
+        heatSand = new HeatSand(PHNatura.heatSand).setUnlocalizedName("HeatSand");//.setLightValue(0.375f);
         GameRegistry.registerBlock(heatSand, "heatsand");
         /*infernalStone = new NBlock(PHNatura.infernalStone, Material.rock, 1.5f, new String[] { "infernal_stone" }).setUnlocalizedName("infernalStone");
         GameRegistry.registerBlock(infernalStone, "infernalStone");*/
@@ -563,6 +563,7 @@ public class NContent
         FMLInterModComms.sendMessage("Thaumcraft", "harvestClickableCrop", new ItemStack(netherBerryBush, 1, 13));
         FMLInterModComms.sendMessage("Thaumcraft", "harvestClickableCrop", new ItemStack(netherBerryBush, 1, 14));
         FMLInterModComms.sendMessage("Thaumcraft", "harvestClickableCrop", new ItemStack(netherBerryBush, 1, 15));
+        FMLInterModComms.sendMessage("Thaumcraft", "harvestClickableCrop", new ItemStack(crops, 1, 8));
 
         StringBuilder builder = new StringBuilder();
         String string = builder.append("farmBarley@").append(seeds.itemID).append(".0.").append(crops.blockID).append(".3").toString();
