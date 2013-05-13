@@ -2,7 +2,6 @@ package mods.natura.common;
 
 import java.util.List;
 
-import mods.tinker.tconstruct.TConstruct;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
