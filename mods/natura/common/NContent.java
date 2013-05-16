@@ -65,7 +65,9 @@ import mods.natura.items.blocks.RedwoodItem;
 import mods.natura.items.blocks.SaguaroItem;
 import mods.natura.items.blocks.TreeItem;
 import mods.natura.items.blocks.WillowItem;
+import mods.natura.items.tools.NaturaBow;
 import mods.natura.items.tools.NaturaHatchet;
+import mods.natura.items.tools.NaturaKama;
 import mods.natura.items.tools.NaturaPickaxe;
 import mods.natura.items.tools.NaturaShovel;
 import mods.natura.items.tools.NaturaSword;
@@ -163,6 +165,8 @@ public class NContent
         GameRegistry.registerBlock(taintedSoil, "soil.tainted");
         heatSand = new HeatSand(PHNatura.heatSand).setUnlocalizedName("HeatSand");//.setLightValue(0.375f);
         GameRegistry.registerBlock(heatSand, "heatsand");
+        /*netherAir = new SulfurAirBlock(PHNatura.sulfurair).setUnlocalizedName("SulfurAir");
+        GameRegistry.registerBlock(netherAir, "netherAir");*/
         /*infernalStone = new NBlock(PHNatura.infernalStone, Material.rock, 1.5f, new String[] { "infernal_stone" }).setUnlocalizedName("infernalStone");
         GameRegistry.registerBlock(infernalStone, "infernalStone");*/
 
@@ -246,6 +250,22 @@ public class NContent
         netherquartzPickaxe = new NaturaPickaxe(PHNatura.netherquartzPickaxe, EnumToolMaterial.STONE, "netherquartz").setUnlocalizedName("natura.pickaxe.netherquartz");
         netherquartzShovel = new NaturaShovel(PHNatura.netherquartzShovel, EnumToolMaterial.STONE, "netherquartz").setUnlocalizedName("natura.shovel.netherquartz");
         netherquartzAxe = new NaturaHatchet(PHNatura.netherquartzAxe, EnumToolMaterial.STONE, "netherquartz").setUnlocalizedName("natura.axe.netherquartz");
+        netherquartzKama = new NaturaKama(PHNatura.netherquartzKama, EnumToolMaterial.STONE, "netherquartz").setUnlocalizedName("natura.kama.netherquartz");
+
+        ghostwoodKama = new NaturaKama(PHNatura.ghostwoodKama, EnumToolMaterial.WOOD, "ghostwood").setUnlocalizedName("natura.kama.ghostwood");
+        bloodwoodKama = new NaturaKama(PHNatura.bloodwoodKama, Bloodwood, "bloodwood").setUnlocalizedName("natura.kama.bloodwood");
+        darkwoodKama = new NaturaKama(PHNatura.darkwoodKama, EnumToolMaterial.STONE, "darkwood").setUnlocalizedName("natura.kama.darkwood");
+        fusewoodKama = new NaturaKama(PHNatura.fusewoodKama, EnumToolMaterial.IRON, "fusewood").setUnlocalizedName("natura.kama.fusewood");
+        
+        ghostwoodBow = new NaturaBow(PHNatura.ghostwoodBow, 384, "ghostwood").setUnlocalizedName("natura.bow.ghostwood");
+        bloodwoodBow = new NaturaBow(PHNatura.bloodwoodBow, 1501, "bloodwood").setUnlocalizedName("natura.bow.bloodwood");
+        darkwoodBow = new NaturaBow(PHNatura.darkwoodBow, 162, "darkwood").setUnlocalizedName("natura.bow.darkwood");
+        fusewoodBow = new NaturaBow(PHNatura.fusewoodBow, 28, "fusewood").setUnlocalizedName("natura.bow.fusewood");
+        
+        /*public static Item ghostwoodBow;
+        public static Item bloodwoodBow;
+        public static Item darkwoodBow;
+        public static Item fusewoodBow;*/
         
         MinecraftForge.setToolClass(ghostwoodPickaxe, "pickaxe", 0);
         MinecraftForge.setToolClass(ghostwoodShovel, "shovel", 0);
@@ -354,12 +374,20 @@ public class NContent
         GameRegistry.addRecipe(new ItemStack(planks, 4, 10), "w", 'w', new ItemStack(willow, 1, 0));
         GameRegistry.addRecipe(new ItemStack(planks, 4, 11), "w", 'w', new ItemStack(darkTree, 1, 0));
         GameRegistry.addRecipe(new ItemStack(planks, 4, 12), "w", 'w', new ItemStack(darkTree, 1, 1));
+        
+        GameRegistry.addRecipe(new ItemStack(plantItem, 1, 1), "X", 'X', new ItemStack(plantItem, 1, 0));
 
         /*ItemStack[] plankStacks = new ItemStack[] { new ItemStack(planks, 1, 0), new ItemStack(planks, 1, 1), new ItemStack(planks, 1, 2), new ItemStack(planks, 1, 3), new ItemStack(planks, 1, 5),
                 new ItemStack(planks, 1, 6), new ItemStack(planks, 1, 7), new ItemStack(planks, 1, 8), new ItemStack(planks, 1, 9), new ItemStack(planks, 1, 10), new ItemStack(planks, 1, 11) };*/
         ItemStack[] logStacks = new ItemStack[] { new ItemStack(tree, 1, 0), new ItemStack(tree, 1, 1), new ItemStack(tree, 1, 2), new ItemStack(tree, 1, 3), new ItemStack(redwood, 1, 1),
                 new ItemStack(rareTree, 1, 0), new ItemStack(rareTree, 1, 1), new ItemStack(rareTree, 1, 2), new ItemStack(rareTree, 1, 3), new ItemStack(willow, 1, 0), new ItemStack(darkTree, 1, 0) };
         int[] exclusions = { 4, 11 };
+        
+        GameRegistry.addRecipe(new ItemStack(plantItem, 1, 5), " s ", "#s#", "#s#", 's', new ItemStack(stickItem, 1, 2), '#', new ItemStack(floraLeavesNoColor, 1, 1));
+        GameRegistry.addRecipe(new ItemStack(Item.arrow, 4, 0), " f ", "#s#", " # ", 's', new ItemStack(stickItem, 1, Short.MAX_VALUE), '#', new ItemStack(plantItem, 1, 5),
+        		'f', Item.flint);
+        GameRegistry.addRecipe(new ItemStack(Item.arrow, 4, 0), " f ", "#s#", " # ", 's', Item.stick, '#', new ItemStack(plantItem, 1, 5),
+        		'f', Item.flint);
 
         List recipes = CraftingManager.getInstance().getRecipeList();
         addShapedRecipeFirst(recipes, new ItemStack(doorItem, 1, 0), "##", "##", "##", '#', new ItemStack(planks, 1, 3));
@@ -393,17 +421,20 @@ public class NContent
         }
         int[] toolMeta = {2, 4, 11, 12};
         Item[][] tools = {
-                {ghostwoodSword, ghostwoodPickaxe, ghostwoodShovel, ghostwoodAxe},
-                {bloodwoodSword, bloodwoodPickaxe, bloodwoodShovel, bloodwoodAxe},
-                {darkwoodSword, darkwoodPickaxe, darkwoodShovel, darkwoodAxe},
-                {fusewoodSword, fusewoodPickaxe, fusewoodShovel, fusewoodAxe}
+                {ghostwoodSword, ghostwoodPickaxe, ghostwoodShovel, ghostwoodAxe, ghostwoodKama, ghostwoodBow},
+                {bloodwoodSword, bloodwoodPickaxe, bloodwoodShovel, bloodwoodAxe, bloodwoodKama, bloodwoodBow},
+                {darkwoodSword, darkwoodPickaxe, darkwoodShovel, darkwoodAxe, darkwoodKama, darkwoodBow},
+                {fusewoodSword, fusewoodPickaxe, fusewoodShovel, fusewoodAxe, fusewoodKama, fusewoodBow}
                 };
+        
         for (int i = 0; i < toolMeta.length; i++)
         {
             addShapedRecipeFirst(recipes, new ItemStack(tools[i][0], 1, 0), "#", "#", "s", '#', new ItemStack(planks, 1, toolMeta[i]), 's', new ItemStack(stickItem, 1, toolMeta[i]));
             addShapedRecipeFirst(recipes, new ItemStack(tools[i][1], 1, 0), "###", " s ", " s ", '#', new ItemStack(planks, 1, toolMeta[i]), 's', new ItemStack(stickItem, 1, toolMeta[i]));
             addShapedRecipeFirst(recipes, new ItemStack(tools[i][2], 1, 0), "#", "s", "s", '#', new ItemStack(planks, 1, toolMeta[i]), 's', new ItemStack(stickItem, 1, toolMeta[i]));
             addShapedRecipeFirst(recipes, new ItemStack(tools[i][3], 1, 0), "##", "#s", " s", '#', new ItemStack(planks, 1, toolMeta[i]), 's', new ItemStack(stickItem, 1, toolMeta[i]));
+            addShapedRecipeFirst(recipes, new ItemStack(tools[i][4], 1, 0), "##", " s", " s", '#', new ItemStack(planks, 1, toolMeta[i]), 's', new ItemStack(stickItem, 1, toolMeta[i]));
+            addShapedRecipeFirst(recipes, new ItemStack(tools[i][5], 1, 0), "#s ", "# s", "#s ", '#', new ItemStack(Item.silk), 's', new ItemStack(stickItem, 1, toolMeta[i]));
         }
         
         GameRegistry.addRecipe(new ItemStack(netherquartzSword, 1, 0), "#", "#", "s", '#', new ItemStack(Block.blockNetherQuartz, 1, Short.MAX_VALUE), 's', new ItemStack(stickItem, 1, 2));
@@ -625,6 +656,7 @@ public class NContent
     public static Block redwood;
     public static Block planks;
     public static Block bloodwood;
+    public static Block netherAir;
     public static Block willow;
 
     public static NLeaves floraLeaves;
@@ -680,6 +712,17 @@ public class NContent
     public static Item netherquartzPickaxe;
     public static Item netherquartzShovel;
     public static Item netherquartzAxe;
+
+    public static Item ghostwoodKama;
+    public static Item bloodwoodKama;
+    public static Item darkwoodKama;
+    public static Item fusewoodKama;
+    public static Item netherquartzKama;
+    
+    public static Item ghostwoodBow;
+    public static Item bloodwoodBow;
+    public static Item darkwoodBow;
+    public static Item fusewoodBow;
 
     //Extra overworld
     public static Block rareTree;

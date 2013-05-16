@@ -89,7 +89,7 @@ public class CropBlock extends BlockCrops
         if (world.canBlockSeeTheSky(x, y, z) || !requiresSun(meta))
             growth += 2f;
 
-        if (soil.isFertile(world, x, y, z))
+        if (soil != null && soil.isFertile(world, x, y-1, z))
             growth *= 2f;
 
         return 1f + growth;

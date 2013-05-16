@@ -45,7 +45,8 @@ public class PHNatura
         //infernalStone = config.getTerrainBlock("terrain", "Infernal Stone", 168, "Requires blockID < 256").getInt(168);
 		taintedSoil = config.getTerrainBlock("terrain", "Tainted Soil", 169, "Requires blockID < 256").getInt(169);
         heatSand = config.getTerrainBlock("terrain", "Heat Sand", 170, "Requires blockID < 256").getInt(170);
-
+        //sulfurair = config.getTerrainBlock("terrain", "Sulfurous Air", 168, "Requires blockID < 256").getInt(168);
+        
 		treeID = config.getBlock("Wood Block", 3251).getInt(3251);
 		redwoodDoor = config.getBlock("Redwood Door", 3252).getInt(3252);
 		cloudID = config.getBlock("Cloud Block", 3253).getInt(3253);
@@ -137,6 +138,17 @@ public class PHNatura
         
         bowlEmpty = config.getItem("Empty Bowl", 12442).getInt(12442);
         bowlStew = config.getItem("Stew Bowl", 12443).getInt(12443);
+        
+        ghostwoodKama = config.getItem("Ghostwood Kama", 12444).getInt(12444);
+        bloodwoodKama = config.getItem("Bloodwood Kama", 12445).getInt(12445);
+        darkwoodKama = config.getItem("Darkwood Kama", 12446).getInt(12446);
+        fusewoodKama = config.getItem("Fusewood Kama", 12447).getInt(12447);
+        netherquartzKama = config.getItem("Quartz Kama", 12448).getInt(12448);
+        
+        ghostwoodBow = config.getItem("Ghostwood Bow", 12449).getInt(12449);
+        bloodwoodBow = config.getItem("Bloodwood Bow", 12450).getInt(12450);
+        darkwoodBow = config.getItem("Darkwood Bow", 12451).getInt(12451);
+        fusewoodBow = config.getItem("Fusewood Bow", 12452).getInt(12452);
 
 		generateRedwood = config.get("Disabler", "Generate Redwood Trees", true).getBoolean(true);
 		generateSakura = config.get("Disabler", "Generate Sakura Trees", true).getBoolean(true);
@@ -241,6 +253,7 @@ public class PHNatura
 	public static int glowshroom;
 	public static int darkTree;
 	public static int darkLeaves;
+	public static int sulfurair;
 	
     public static int glowshroomBlue;
     public static int glowshroomGreen;
@@ -276,6 +289,17 @@ public class PHNatura
     public static int netherquartzPickaxe;
     public static int netherquartzShovel;
     public static int netherquartzAxe;
+
+    public static int ghostwoodKama;
+    public static int bloodwoodKama;
+    public static int darkwoodKama;
+    public static int fusewoodKama;
+    public static int netherquartzKama;
+    
+    public static int ghostwoodBow;
+    public static int bloodwoodBow;
+    public static int darkwoodBow;
+    public static int fusewoodBow;
 	
 	//Rare trees
 	public static int rareTree;

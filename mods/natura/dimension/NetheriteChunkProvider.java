@@ -161,7 +161,7 @@ public class NetheriteChunkProvider implements IChunkProvider
 
                             for (int k2 = 0; k2 < 4; ++k2)
                             {
-                                int blockID = 0;
+                                int blockID = NContent.netherAir.blockID;
 
                                 if (iterY * 8 + offsetY < b1)
                                 {
