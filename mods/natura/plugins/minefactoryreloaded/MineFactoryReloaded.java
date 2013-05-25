@@ -45,6 +45,7 @@ public class MineFactoryReloaded
 			int floraLeavesId = NContent.floraLeaves.blockID;
 			int floraLeavesNoColorId = NContent.floraLeavesNoColor.blockID;
 			int bloodwoodId = NContent.bloodwood.blockID;
+			int bluebellsId = NContent.bluebells.blockID;
 			
 			FarmingRegistry.registerPlantable(new PlantableNaturaCrop(seedsId, cropsId));
 			FarmingRegistry.registerPlantable(new PlantableStandard(berryBushId, berryBushId));
@@ -52,12 +53,18 @@ public class MineFactoryReloaded
 			FarmingRegistry.registerPlantable(new PlantableStandard(saguaroFruitId, saguaroId));
 			FarmingRegistry.registerPlantable(new PlantableStandard(floraSaplingId, floraSaplingId));
 			
+			//misc plants
+			FarmingRegistry.registerHarvestable(new HarvestableStandard(bluebellsId, HarvestType.Normal));
+			//crops
 			FarmingRegistry.registerHarvestable(new HarvestableNaturaCropPlant(cropsId, cottonItemId));
+			//bushes
 			FarmingRegistry.registerHarvestable(new HarvestableNaturaBerry(berryBushId, berryItemId));
 			FarmingRegistry.registerHarvestable(new HarvestableNaturaBerry(netherBerryBushId, netherBerryItemId));
+			//trees
 			FarmingRegistry.registerHarvestable(new HarvestableStandard(treeId, HarvestType.Tree));
 			FarmingRegistry.registerHarvestable(new HarvestableStandard(redwoodId, HarvestType.Tree));
-			FarmingRegistry.registerHarvestable(new HarvestableStandard(bloodwoodId, HarvestType.Tree));
+			FarmingRegistry.registerHarvestable(new HarvestableStandard(bloodwoodId, HarvestType.TreeFlipped));
+			//leaves
 			FarmingRegistry.registerHarvestable(new HarvestableNaturaTreeLeaves(floraLeavesId));
 			FarmingRegistry.registerHarvestable(new HarvestableNaturaTreeLeaves(floraLeavesNoColorId));
 			
