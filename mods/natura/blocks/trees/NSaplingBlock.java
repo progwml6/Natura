@@ -156,9 +156,9 @@ public class NSaplingBlock extends BlockSapling
 				}
 			}
 		}
-		else if (md % 8 <= 3 && random.nextInt(10) == 0)
+		else if (md % 8 <= 3)
 		{
-			if (world.getBlockLightValue(x, y + 1, z) >= 9 )//&& random.nextInt(120) == 0)
+			if ( random.nextInt(10) == 0 && world.getBlockLightValue(x, y + 1, z) >= 9 )//&& random.nextInt(120) == 0)
 			{
 				if ((md & 8) == 0)
 					world.setBlockMetadataWithNotify(x, y, z, md | 8, 4);

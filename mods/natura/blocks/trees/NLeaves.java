@@ -163,11 +163,14 @@ public class NLeaves extends BlockLeaves
     @SideOnly(Side.CLIENT)
     public Icon getIcon(int side, int metadata)
     {
-	    //System.out.println("Class: "+this.getClass());
+		int meta = metadata % 4;
+		if (metadata == 3)
+			meta = 0;
+		
     	if (graphicsLevel)
-    		return fancyIcons[metadata % 4];
+    		return fancyIcons[meta];
     	else
-    		return fastIcons[metadata % 4];
+    		return fastIcons[meta];
     }
     
     @SideOnly(Side.CLIENT)

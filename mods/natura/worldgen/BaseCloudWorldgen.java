@@ -49,7 +49,7 @@ public class BaseCloudWorldgen implements IWorldGenerator
         int xChunk = chunkX * 16, zChunk = chunkZ * 16;
         BiomeGenBase biome = world.getWorldChunkManager().getBiomeGenAt(xChunk + 16, zChunk + 16);
 
-        if (biome.rainfall > 0.15f && random.nextInt(PHNatura.cloudSpawnRarity) == 0)
+        if (PHNatura.generateOverworldClouds && biome.rainfall > 0.15f && random.nextInt(PHNatura.cloudSpawnRarity) == 0)
         {
             xCh = xChunk + random.nextInt(16);
             zCh = zChunk + random.nextInt(16);
@@ -74,36 +74,36 @@ public class BaseCloudWorldgen implements IWorldGenerator
         }
 
         //End Generation
-        if (biome == BiomeGenBase.sky && random.nextInt(4) == 0)
+        if (PHNatura.generateDarkClouds && biome == BiomeGenBase.sky && random.nextInt(4) == 0)
         {
             xCh = xChunk * 16 + random.nextInt(16);
             zCh = zChunk * 16 + random.nextInt(16);
-            //for(int iter = 0; iter < PHNatura.darkCloudSpawnRarity; iter++)
-            //{
+            for(int iter = 0; iter < PHNatura.darkCloudSpawnRarity; iter++)
+            {
             int height = random.nextInt(PHNatura.darkCloudSpawnRange);
             if (random.nextInt(5) == 0)
             {
-                smalldarkcloud.generate(world, random, xCh, height + PHNatura.darkCloudSpawnHeight - 64, zCh);
+                smalldarkcloud.generate(world, random, xCh, height + PHNatura.darkCloudSpawnHeight, zCh);
             }
             else if (random.nextInt(4) == 0)
             {
-                mediumcloud.generate(world, random, xCh, height + PHNatura.darkCloudSpawnHeight - 64, zCh);
+                mediumcloud.generate(world, random, xCh, height + PHNatura.darkCloudSpawnHeight, zCh);
             }
             else if (random.nextInt(3) == 0)
             {
-                largedarkcloud.generate(world, random, xCh, height + PHNatura.darkCloudSpawnHeight - 64, zCh);
+                largedarkcloud.generate(world, random, xCh, height + PHNatura.darkCloudSpawnHeight, zCh);
             }
             if (random.nextInt(2) == 0)
             {
-                hugedarkcloud.generate(world, random, xCh, height + PHNatura.darkCloudSpawnHeight - 64, zCh);
+                hugedarkcloud.generate(world, random, xCh, height + PHNatura.darkCloudSpawnHeight, zCh);
             }
-            //}
+            }
         }
 
         //Nether
         if (biome == BiomeGenBase.hell)
         {
-            if (random.nextInt(PHNatura.ashSpawnRarity) == 0)
+            if (PHNatura.generateAshClouds && random.nextInt(PHNatura.ashSpawnRarity) == 0)
             {
                 xCh = xChunk + random.nextInt(16);
                 yCh = random.nextInt(PHNatura.ashSpawnRange) + PHNatura.ashSpawnHeight;
@@ -127,7 +127,7 @@ public class BaseCloudWorldgen implements IWorldGenerator
                 }
             }
 
-            if (random.nextInt(PHNatura.sulfurSpawnRarity) == 0)
+            if (PHNatura.generateSulfurClouds && random.nextInt(PHNatura.sulfurSpawnRarity) == 0)
             {
                 xCh = xChunk + random.nextInt(16);
                 yCh = random.nextInt(PHNatura.sulfurSpawnRange) + PHNatura.sulfurSpawnHeight;

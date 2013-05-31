@@ -1,0 +1,63 @@
+package mods.natura.items.tools;
+
+import java.util.List;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import mods.natura.common.NContent;
+import mods.natura.common.NaturaTab;
+import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.Entity;
+import net.minecraft.item.EnumArmorMaterial;
+import net.minecraft.item.ItemArmor;
+import net.minecraft.item.ItemStack;
+
+public class NaturaArmor extends ItemArmor
+{
+	String itemTexture;
+	String armorTexture;
+
+	public NaturaArmor(int id, EnumArmorMaterial material, int renderIndex, int slotType, String itemTexture, String armorTexture)
+	{
+		super(id, material, renderIndex, slotType);
+		this.itemTexture = itemTexture;
+		this.armorTexture = armorTexture;
+        this.setCreativeTab(NaturaTab.tab);
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public void registerIcons (IconRegister par1IconRegister)
+	{
+		this.itemIcon = par1IconRegister.registerIcon("natura:armor_" + itemTexture);
+	}
+
+	@Override
+	public String getArmorTexture (ItemStack stack, Entity entity, int slot, int layer)
+	{
+		if (slot == 2)
+			return "/mods/natura/textures/armor/" + armorTexture + "_2.png";
+		else
+			return "/mods/natura/textures/armor/" + armorTexture + "_1.png";
+	}
+	
+	public void getSubItems (int id, CreativeTabs tab, List list)
+    {
+		switch (armorType)
+		{
+		case 0: 
+            list.add(NContent.impHelmetStack.copy());
+            break;
+		case 1: 
+            list.add(NContent.impJerkinStack.copy());
+            break;
+		case 2: 
+            list.add(NContent.impLeggingsStack.copy());
+            break;
+		case 3: 
+            list.add(NContent.impBootsStack.copy());
+            break;
+		}
+    }
+}

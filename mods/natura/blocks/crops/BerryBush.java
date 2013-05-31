@@ -19,6 +19,7 @@ import net.minecraft.util.Icon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.EnumPlantType;
+import net.minecraftforge.common.FakePlayer;
 import net.minecraftforge.common.ForgeDirection;
 import net.minecraftforge.common.IPlantable;
 import cpw.mods.fml.relauncher.Side;
@@ -53,13 +54,13 @@ public class BerryBush extends BlockLeavesBase implements IPlantable
 
 		for (int i = 0; i < this.fastIcons.length; i++)
 		{
-			this.fastIcons[i] = iconRegister.registerIcon("natura:" + textureNames[i]+"_fast");
-			this.fancyIcons[i] = iconRegister.registerIcon("natura:" + textureNames[i]+"_fancy");
+			this.fastIcons[i] = iconRegister.registerIcon("natura:" + textureNames[i] + "_fast");
+			this.fancyIcons[i] = iconRegister.registerIcon("natura:" + textureNames[i] + "_fancy");
 		}
 	}
 
 	@Override
-    @SideOnly(Side.CLIENT)
+	@SideOnly(Side.CLIENT)
 	public Icon getIcon (int side, int metadata)
 	{
 		if (graphicsLevel)
@@ -177,7 +178,8 @@ public class BerryBush extends BlockLeavesBase implements IPlantable
 				world.setBlock(x, y, z, blockID, meta - 4, 3);
 				EntityItem entityitem = new EntityItem(world, player.posX, player.posY - 1.0D, player.posZ, new ItemStack(NContent.berryItem.itemID, 1, meta - 12));
 				world.spawnEntityInWorld(entityitem);
-				entityitem.onCollideWithPlayer(player);
+				if (!(player instanceof FakePlayer))
+					entityitem.onCollideWithPlayer(player);
 			}
 		}
 	}
@@ -192,13 +194,14 @@ public class BerryBush extends BlockLeavesBase implements IPlantable
 		int meta = world.getBlockMetadata(x, y, z);
 		if (meta >= 12)
 		{
-            if (world.isRemote)
-                return true;
-            
+			if (world.isRemote)
+				return true;
+
 			world.setBlock(x, y, z, blockID, meta - 4, 3);
 			EntityItem entityitem = new EntityItem(world, player.posX, player.posY - 1.0D, player.posZ, new ItemStack(NContent.berryItem.itemID, 1, meta - 12));
 			world.spawnEntityInWorld(entityitem);
-			entityitem.onCollideWithPlayer(player);
+			if (!(player instanceof FakePlayer))
+				entityitem.onCollideWithPlayer(player);
 			return true;
 		}
 		return false;
@@ -271,13 +274,13 @@ public class BerryBush extends BlockLeavesBase implements IPlantable
 			}
 		}
 	}
-	
-	public boolean canSustainPlant(World world, int x, int y, int z, ForgeDirection direction, IPlantable plant)
-    {
-        if (plant instanceof BerryBush)
-            return (world.getBlockMetadata(x, y, z) > 7);
-        return super.canSustainPlant(world, x, y, z, direction, plant);
-    }
+
+	public boolean canSustainPlant (World world, int x, int y, int z, ForgeDirection direction, IPlantable plant)
+	{
+		if (plant instanceof BerryBush)
+			return (world.getBlockMetadata(x, y, z) > 7);
+		return super.canSustainPlant(world, x, y, z, direction, plant);
+	}
 
 	/* Resistance to fire */
 
@@ -329,4 +332,29 @@ public class BerryBush extends BlockLeavesBase implements IPlantable
 	{
 		return world.getBlockMetadata(x, y, z) - 4;
 	}
+
+	public boolean boneFertilize (World world, int x, int y, int z, Random random)
+    {
+        int meta = world.getBlockMetadata(x, y, z);
+
+        if (meta / 4 < 2)
+        {
+        	int setMeta = random.nextInt(2) + 1 + meta / 4;
+        	if (setMeta > 2)
+        		setMeta = 2;
+            world.setBlockMetadataWithNotify(x, y, z, meta % 4 + setMeta * 4, 4);
+            return true;
+        }
+        
+        Block block = Block.blocksList[world.getBlockId(x, y+1, z)];
+        if (block == null || block.isAirBlock(world, x, y+1, z))
+        {
+        	if (random.nextInt(3) == 0)
+        		world.setBlock(x, y+1, z, this.blockID, meta % 4, 3);
+        	
+        	return true;
+        }
+
+        return false;
+    }
 }

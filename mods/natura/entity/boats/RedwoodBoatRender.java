@@ -1,4 +1,4 @@
-package mods.natura.entities.boats;
+package mods.natura.entity.boats;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelBoat;
 import net.minecraft.client.renderer.entity.Render;
@@ -7,17 +7,17 @@ import net.minecraft.util.MathHelper;
 
 import org.lwjgl.opengl.GL11;
 
-public class BloodBoatRender extends Render
+public class RedwoodBoatRender extends Render
 {
     protected ModelBase modelBoat;
 
-    public BloodBoatRender()
+    public RedwoodBoatRender()
     {
         shadowSize = 0.5F;
         modelBoat = new ModelBoat();
     }
 
-    public void renderBoat(BloodBoat entityboat, double d, double d1, double d2,
+    public void renderBoat(RedwoodBoat entityboat, double d, double d1, double d2,
             float f, float f1)
     {
         GL11.glPushMatrix();
@@ -33,11 +33,10 @@ public class BloodBoatRender extends Render
         {
             GL11.glRotatef(((MathHelper.sin(f2) * f2 * f3) / 10F) * (float)entityboat.getForwardDirection(), 1.0F, 0.0F, 0.0F);
         }
-        //loadTexture("/terrain.png");
         float f4 = 0.75F;
         GL11.glScalef(f4, f4, f4);
         GL11.glScalef(1.0F / f4, 1.0F / f4, 1.0F / f4);
-        loadTexture("/floratex/bloodboat.png");
+        loadTexture("/floratex/redwoodboat.png");
         GL11.glScalef(-1F, -1F, 1.0F);
         modelBoat.render(entityboat, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F);
         GL11.glPopMatrix();
@@ -46,6 +45,6 @@ public class BloodBoatRender extends Render
     public void doRender(Entity entity, double d, double d1, double d2,
             float f, float f1)
     {
-        renderBoat((BloodBoat)entity, d, d1, d2, f, f1);
+        renderBoat((RedwoodBoat)entity, d, d1, d2, f, f1);
     }
 }

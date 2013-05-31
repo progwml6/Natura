@@ -38,6 +38,18 @@ public class NLeavesDark extends NLeaves
 		}
 	}
 	
+	@Override
+    @SideOnly(Side.CLIENT)
+    public Icon getIcon(int side, int metadata)
+    {
+		int meta = metadata % 4;
+		
+    	if (graphicsLevel)
+    		return fancyIcons[meta];
+    	else
+    		return fastIcons[meta];
+    }
+	
 	@SideOnly(Side.CLIENT)
     public int getBlockColor()
     {

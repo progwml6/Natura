@@ -1,7 +1,13 @@
 package mods.natura.blocks.trees;
 
+import java.util.List;
+import java.util.Random;
+
+import mods.natura.common.NContent;
 import mods.natura.common.NaturaTab;
 import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -30,6 +36,18 @@ public class NLeavesNocolor extends NLeaves
             this.fastIcons[i] = iconRegister.registerIcon("natura:" + textureNames[i] + "_leaves_fast");
             this.fancyIcons[i] = iconRegister.registerIcon("natura:" + textureNames[i] + "_leaves_fancy");
         }
+    }
+    
+    @Override
+    @SideOnly(Side.CLIENT)
+    public Icon getIcon(int side, int metadata)
+    {
+		int meta = metadata % 4;
+		
+    	if (graphicsLevel)
+    		return fancyIcons[meta];
+    	else
+    		return fastIcons[meta];
     }
 
     @SideOnly(Side.CLIENT)
@@ -67,8 +85,26 @@ public class NLeavesNocolor extends NLeaves
         return metadata % 4 == 0 ? blockFireSpreadSpeed[blockID] : 0;
     }
 
-    public int damageDropped (int par1)
+    public int damageDropped (int meta)
     {
-        return (par1 & 3) + 3;
+    	if (meta % 4 == 3)
+    		return 4;
+        return (meta & 3) + 3;
+    }
+    
+    @Override
+    public int idDropped(int meta, Random random, int fortune)
+    {
+    	if (meta % 4 == 3)
+    		return NContent.rareSapling.blockID;
+        return NContent.floraSapling.blockID;
+    }
+    
+    public void getSubBlocks(int par1, CreativeTabs par2CreativeTabs, List par3List)
+    {
+        par3List.add(new ItemStack(par1, 1, 0));
+        par3List.add(new ItemStack(par1, 1, 1));
+        par3List.add(new ItemStack(par1, 1, 2));
+        par3List.add(new ItemStack(par1, 1, 3));
     }
 }

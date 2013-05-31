@@ -1,4 +1,4 @@
-package mods.natura.entities.boats;
+package mods.natura.entity.boats;
 import java.util.List;
 
 import mods.natura.common.NContent;
@@ -13,7 +13,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
-public class RedwoodBoat extends Entity
+public class EucalyptusBoat extends Entity
 {
     private int boatPosRotationIncrements;
     private double boatX;
@@ -26,12 +26,12 @@ public class RedwoodBoat extends Entity
     private double velocityZ;
     private int md;
 
-    public RedwoodBoat(World world)
+    public EucalyptusBoat(World world)
     {
         this(world, 0);
     }
     
-    public RedwoodBoat(World world, int metadata)
+    public EucalyptusBoat(World world, int metadata)
     {
         super(world);
         preventEntitySpawning = true;
@@ -67,7 +67,7 @@ public class RedwoodBoat extends Entity
         return true;
     }
 
-    public RedwoodBoat(World world, double d, double d1, double d2)
+    public EucalyptusBoat(World world, double d, double d1, double d2)
     {
         this(world);
         setPosition(d, d1 + (double)yOffset, d2);
@@ -102,7 +102,7 @@ public class RedwoodBoat extends Entity
             }
             for (int j = 0; j < 5; j++)
             {
-            	entityDropItem(new ItemStack(NContent.tree, 1, 2), 0F);
+            	entityDropItem(new ItemStack(NContent.tree, 1, 8), 0F);
             }
 
             setDead();
@@ -276,7 +276,7 @@ public class RedwoodBoat extends Entity
             	setDead();
                 for (int j = 0; j < 5; j++)
                 {
-                	entityDropItem(new ItemStack(NContent.tree, 1, 2), 0F);
+                	entityDropItem(new ItemStack(NContent.tree, 1, 8), 0F);
                 }
             }
         }
@@ -313,7 +313,7 @@ public class RedwoodBoat extends Entity
             for (int j1 = 0; j1 < list.size(); j1++)
             {
                 Entity entity = (Entity)list.get(j1);
-                if (entity != riddenByEntity && entity.canBePushed() && (entity instanceof RedwoodBoat))
+                if (entity != riddenByEntity && entity.canBePushed() && (entity instanceof EucalyptusBoat))
                 {
                     entity.applyEntityCollision(this);
                 }

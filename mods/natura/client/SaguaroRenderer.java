@@ -18,7 +18,7 @@ public class SaguaroRenderer implements ISimpleBlockRenderingHandler
 	public void renderInventoryBlock (Block block, int metadata, int modelID, RenderBlocks renderer)
 	{
 		if (modelID == model)
-			NClientProxy.renderStandardInvBlock(renderer, block, metadata);
+			NProxyClient.renderStandardInvBlock(renderer, block, metadata);
 	}
 
 	@Override

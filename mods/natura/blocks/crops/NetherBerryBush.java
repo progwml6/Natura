@@ -53,13 +53,13 @@ public class NetherBerryBush extends BlockLeavesBase implements IPlantable
 
 		for (int i = 0; i < this.fastIcons.length; i++)
 		{
-			this.fastIcons[i] = iconRegister.registerIcon("natura:" + textureNames[i]+"_fast");
-			this.fancyIcons[i] = iconRegister.registerIcon("natura:" + textureNames[i]+"_fancy");
+			this.fastIcons[i] = iconRegister.registerIcon("natura:" + textureNames[i] + "_fast");
+			this.fancyIcons[i] = iconRegister.registerIcon("natura:" + textureNames[i] + "_fancy");
 		}
 	}
 
 	@Override
-    @SideOnly(Side.CLIENT)
+	@SideOnly(Side.CLIENT)
 	public Icon getIcon (int side, int metadata)
 	{
 		if (graphicsLevel)
@@ -316,5 +316,37 @@ public class NetherBerryBush extends BlockLeavesBase implements IPlantable
 	public int getPlantMetadata (World world, int x, int y, int z)
 	{
 		return world.getBlockMetadata(x, y, z) - 4;
+	}
+
+	public boolean boneFertilize (World world, int x, int y, int z, Random random)
+	{
+
+		int meta = world.getBlockMetadata(x, y, z);
+
+		if (meta / 4 < 2)
+		{
+			if (random.nextBoolean())
+			{
+				int setMeta = random.nextInt(2) + 1 + meta / 4;
+				if (setMeta > 2)
+					setMeta = 2;
+				world.setBlockMetadataWithNotify(x, y, z, meta % 4 + setMeta * 4, 4);
+			}
+			return true;
+		}
+
+		Block block = Block.blocksList[world.getBlockId(x, y + 1, z)];
+		if (block == null || block.isAirBlock(world, x, y + 1, z))
+		{
+			if (random.nextBoolean())
+			{
+				if (random.nextInt(3) == 0)
+					world.setBlock(x, y + 1, z, this.blockID, meta % 4, 3);
+			}
+
+			return true;
+		}
+
+		return false;
 	}
 }

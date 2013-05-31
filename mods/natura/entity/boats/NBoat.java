@@ -1,4 +1,4 @@
-package mods.natura.entities.boats;
+package mods.natura.entity.boats;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 

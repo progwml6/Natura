@@ -1,4 +1,4 @@
-package mods.natura.entities.boats;
+package mods.natura.entity.boats;
 import java.util.List;
 
 import mods.natura.common.NContent;

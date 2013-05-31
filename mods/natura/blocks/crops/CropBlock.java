@@ -61,21 +61,47 @@ public class CropBlock extends BlockCrops
     /**
      * Apply bonemeal to the crops.
      */
-    public void fertilize (World world, int x, int y, int z)
+    public void fertilize (World world, int x, int y, int z, Random random)
     {
         int meta = world.getBlockMetadata(x, y, z);
         if (meta != 3 && meta != 8)
         {
-            world.setBlockMetadataWithNotify(x, y, z, meta + 1, 3);
+        	if (meta < 3)
+        	{
+        		int output = random.nextInt(3) + 1 + meta;
+        		if (output > 3)
+        			output = 3;
+        		world.setBlockMetadataWithNotify(x, y, z, output, 3);
+        	}
+        	else
+        	{
+        		int output = random.nextInt(4) + 1 + meta;
+        		if (output > 8)
+        			output = 8;
+        		world.setBlockMetadataWithNotify(x, y, z, output, 3);
+        	}
         }
     }
     
-    public boolean boneFertilize (World world, int x, int y, int z)
+    public boolean boneFertilize (World world, int x, int y, int z, Random random)
     {
         int meta = world.getBlockMetadata(x, y, z);
-        if (meta != 3 && meta != 8)
+        if (meta != 3 && meta < 7)
         {
-            world.setBlockMetadataWithNotify(x, y, z, meta + 1, 3);
+        	if (meta < 3)
+        	{
+        		int output = random.nextInt(3) + 1 + meta;
+        		if (output > 3)
+        			output = 3;
+        		world.setBlockMetadataWithNotify(x, y, z, output, 3);
+        	}
+        	else
+        	{
+        		int output = random.nextInt(4) + 1 + meta;
+        		if (output > 7)
+        			output = 7;
+        		world.setBlockMetadataWithNotify(x, y, z, output, 3);
+        	}
             return true;
         }
         return false;
@@ -143,33 +169,6 @@ public class CropBlock extends BlockCrops
         }
         return false;
     }
-
-    /*public void harvestBlock (World world, EntityPlayer player, int x, int y, int z, int meta)
-    {
-        player.addStat(StatList.mineBlockStatArray[this.blockID], 1);
-        player.addExhaustion(0.025F);
-
-        if (this.canSilkHarvest(world, player, x, y, z, meta) && EnchantmentHelper.getSilkTouchModifier(player))
-        {
-            ItemStack itemstack = this.createStackedBlock(meta);
-
-            if (itemstack != null)
-            {
-                this.dropBlockAsItem_do(world, x, y, z, itemstack);
-            }
-        }
-        else
-        {
-            int fortune = EnchantmentHelper.getFortuneModifier(player);
-            this.dropBlockAsItem(world, x, y, z, meta, fortune);
-        }
-
-        if (meta == 8 && !player.capabilities.isCreativeMode)
-        {
-            world.setBlock(x, y, z, this.blockID, 6, 3);
-            System.out.println("Setblock");
-        }
-    }*/
     
     public float getBlockHardness(World world, int x, int y, int z)
     {
@@ -177,15 +176,6 @@ public class CropBlock extends BlockCrops
             return 0.5f;
         return this.blockHardness;
     }
-
-    /*public void breakBlock(World world, int x, int y, int z, int blockID, int meta)
-    {
-    	if (meta == 8)
-        {
-            System.out.println("Woo~ "+meta);
-        	world.setBlock(x, y, z, this.blockID, 6, 3);
-        }
-    }*/
 
     public Icon[] icons;
     public String[] textureNames = new String[] { "barley_1", "barley_2", "barley_3", "barley_4", "cotton_1", "cotton_2", "cotton_3", "cotton_4", "cotton_5" };
@@ -273,12 +263,22 @@ public class CropBlock extends BlockCrops
                 }
             }
         }
-
+        if (metadata >= 4)
+        {
+        	ret.add(new ItemStack(this.getSeedItem(metadata), 1, seedDamageDropped(metadata)));
+            if (metadata >= 5 && world.rand.nextBoolean())
+                ret.add(new ItemStack(this.getSeedItem(metadata), 1, seedDamageDropped(metadata)));
+            if (metadata >= 7 && world.rand.nextBoolean())
+                ret.add(new ItemStack(this.getSeedItem(metadata), 1, seedDamageDropped(metadata)));
+        }
+        else
+        {
         ret.add(new ItemStack(this.getSeedItem(metadata), 1, seedDamageDropped(metadata)));
-        if (metadata % 4 >= 2 && world.rand.nextInt(4) == 0)
+        if (metadata >= 2 && world.rand.nextInt(3) == 0)
             ret.add(new ItemStack(this.getSeedItem(metadata), 1, seedDamageDropped(metadata)));
-        if ((metadata % 4 >= 3 || metadata == 8) && world.rand.nextInt(4) == 0)
+        if (metadata >= 3 && world.rand.nextInt(4) == 0)
             ret.add(new ItemStack(this.getSeedItem(metadata), 1, seedDamageDropped(metadata)));
+        }
 
         return ret;
     }
