@@ -1,4 +1,4 @@
-package mods.natura.entities.boats;
+package mods.natura.entity.boats;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelBoat;
 import net.minecraft.client.renderer.entity.Render;
@@ -7,18 +7,18 @@ import net.minecraft.util.MathHelper;
 
 import org.lwjgl.opengl.GL11;
 
-public class WhiteBoatRender extends Render
+public class EucalyptusBoatRender extends Render
 {
     protected ModelBase modelBoat;
     private String texture;
 
-    public WhiteBoatRender()
+    public EucalyptusBoatRender()
     {
         shadowSize = 0.5F;
         modelBoat = new ModelBoat();
     }
 
-    public void renderBoat(WhiteWoodBoat entityboat, double d, double d1, double d2,
+    public void renderBoat(EucalyptusBoat entityboat, double d, double d1, double d2,
             float f, float f1)
     {
         GL11.glPushMatrix();
@@ -38,7 +38,7 @@ public class WhiteBoatRender extends Render
         float f4 = 0.75F;
         GL11.glScalef(f4, f4, f4);
         GL11.glScalef(1.0F / f4, 1.0F / f4, 1.0F / f4);
-        loadTexture("/floratex/whiteboat.png");
+        loadTexture("/floratex/eucalyptusboat.png");
         GL11.glScalef(-1F, -1F, 1.0F);
         modelBoat.render(entityboat, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F);
         GL11.glPopMatrix();
@@ -47,6 +47,6 @@ public class WhiteBoatRender extends Render
     public void doRender(Entity entity, double d, double d1, double d2,
             float f, float f1)
     {
-        renderBoat((WhiteWoodBoat)entity, d, d1, d2, f, f1);
+        renderBoat((EucalyptusBoat)entity, d, d1, d2, f, f1);
     }
 }

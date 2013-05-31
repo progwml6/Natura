@@ -19,7 +19,7 @@ public class TaintedSoil extends NBlock
 
     public TaintedSoil(int id)
     {
-        super(id, Material.ground, 3f, new String[] { "tainted_soil", "tainted_farmland_dry", "tainted_farmland_heated" });
+        super(id, Material.ground, 2.2f, new String[] { "tainted_soil", "tainted_farmland_dry", "tainted_farmland_heated" });
         this.setStepSound(Block.soundGravelFootstep);
         this.setResistance(25f);
     }

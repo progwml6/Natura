@@ -166,22 +166,22 @@ public class WillowGen extends WorldGenerator
                                 {
                                     if (par2Random.nextInt(4) == 0 && world.getBlockId(l1 - 1, j2, i2) == 0)
                                     {
-                                        this.generateVines(world, l1 - 1, j2, i2, 15);
+                                        this.generateVines(world, l1 - 1, j2, i2, 3);
                                     }
 
                                     if (par2Random.nextInt(4) == 0 && world.getBlockId(l1 + 1, j2, i2) == 0)
                                     {
-                                        this.generateVines(world, l1 + 1, j2, i2, 15);
+                                        this.generateVines(world, l1 + 1, j2, i2, 3);
                                     }
 
                                     if (par2Random.nextInt(4) == 0 && world.getBlockId(l1, j2, i2 - 1) == 0)
                                     {
-                                        this.generateVines(world, l1, j2, i2 - 1, 15);
+                                        this.generateVines(world, l1, j2, i2 - 1, 3);
                                     }
 
                                     if (par2Random.nextInt(4) == 0 && world.getBlockId(l1, j2, i2 + 1) == 0)
                                     {
-                                        this.generateVines(world, l1, j2, i2 + 1, 15);
+                                        this.generateVines(world, l1, j2, i2 + 1, 3);
                                     }
                                 }
                             }

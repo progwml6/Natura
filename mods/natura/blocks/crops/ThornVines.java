@@ -1,17 +1,17 @@
 package mods.natura.blocks.crops;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import mods.natura.Natura;
 import mods.natura.common.NaturaTab;
 import net.minecraft.block.BlockVine;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
+import net.minecraft.entity.monster.EntityGhast;
 import net.minecraft.util.DamageSource;
-import net.minecraft.world.ColorizerFoliage;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class ThornVines extends BlockVine
 {
@@ -51,7 +51,7 @@ public class ThornVines extends BlockVine
     public void onEntityCollidedWithBlock (World par1World, int x, int y, int z, Entity entity)
     {
         //entity.motionY *= 1.5D;
-        if (!(entity instanceof EntityItem) && Natura.random.nextInt(10) == 0)
+        if (!(entity instanceof EntityItem) && !(entity instanceof EntityGhast) && Natura.random.nextInt(30) == 0)
         {
             DamageSource source = Natura.random.nextBoolean() ? DamageSource.cactus : DamageSource.lava;
             entity.attackEntityFrom(source, 1);

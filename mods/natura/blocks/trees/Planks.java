@@ -55,14 +55,14 @@ public class Planks extends Block
 
     public int getFlammability (IBlockAccess world, int x, int y, int z, int metadata, ForgeDirection face)
     {
-        if (metadata == 1 || metadata == 4 || metadata > 10)
+        if (metadata == 2 || metadata == 4 || metadata > 10)
             return 0;
         return blockFlammability[blockID];
     }
 
     public int getFireSpreadSpeed (World world, int x, int y, int z, int metadata, ForgeDirection face)
     {
-        if (metadata == 1 || metadata == 4 || metadata > 10)
+        if (metadata == 2 || metadata == 4 || metadata > 10)
             return 0;
         return blockFireSpreadSpeed[blockID];
     }

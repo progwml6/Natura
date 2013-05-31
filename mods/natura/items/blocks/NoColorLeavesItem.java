@@ -10,7 +10,7 @@ import net.minecraft.item.ItemStack;
 
 public class NoColorLeavesItem extends ItemBlock
 {
-    public static final String blockType[] = { "sakura", "ghost", "blood", "", "", "", "", "", "", "", "", "", "", "", "", "", "" };
+    public static final String blockType[] = { "sakura", "ghost", "blood", "willow", "", "", "", "", "", "", "", "", "", "", "", "", "" };
 
     public NoColorLeavesItem(int i)
     {
@@ -28,7 +28,7 @@ public class NoColorLeavesItem extends ItemBlock
     @Override
     public String getUnlocalizedName (ItemStack itemstack)
     {
-        return (new StringBuilder()).append(blockType[itemstack.getItemDamage()]).append("NLeaves").toString();
+        return (new StringBuilder()).append("block.leaves.").append(blockType[itemstack.getItemDamage()]).toString();
     }
 
     @Override
@@ -47,6 +47,9 @@ public class NoColorLeavesItem extends ItemBlock
         case 2:
             list.add("Nether Tree");
             list.add("Fire-resistant leaves");
+            break;
+        case 3:
+            list.add("The weeper");
             break;
         }
     }

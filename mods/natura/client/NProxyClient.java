@@ -2,20 +2,30 @@ package mods.natura.client;
 
 import java.io.File;
 
-import org.lwjgl.opengl.GL11;
-
-import mods.natura.common.NCommonProxy;
+import mods.natura.client.entity.FusewoodArrowRender;
+import mods.natura.client.entity.ImpModel;
 import mods.natura.common.NContent;
+import mods.natura.common.NProxyCommon;
+import mods.natura.entity.FlameSpider;
+import mods.natura.entity.FusewoodArrow;
+import mods.natura.entity.ImpEntity;
+import mods.natura.entity.NitroCreeper;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.client.renderer.entity.RenderCreeper;
+import net.minecraft.client.renderer.entity.RenderLiving;
+import net.minecraft.client.renderer.entity.RenderSpider;
+
+import org.lwjgl.opengl.GL11;
+
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
 import cpw.mods.fml.common.registry.TickRegistry;
 import cpw.mods.fml.relauncher.Side;
 
-public class NClientProxy extends NCommonProxy
+public class NProxyClient extends NProxyCommon
 {
 	@Override
 	public void registerRenderer ()
@@ -24,11 +34,19 @@ public class NClientProxy extends NCommonProxy
 		RenderingRegistry.registerBlockHandler(new SaguaroRenderer());
 		RenderingRegistry.registerBlockHandler(new CropRender());
 		TickRegistry.registerTickHandler(new NCropsTickHandler(), Side.CLIENT);
+		
+        RenderingRegistry.registerEntityRenderingHandler(ImpEntity.class, new RenderLiving(new ImpModel(), 0f));
+        RenderingRegistry.registerEntityRenderingHandler(FlameSpider.class, new RenderSpider());
+        RenderingRegistry.registerEntityRenderingHandler(NitroCreeper.class, new RenderCreeper());
+        RenderingRegistry.registerEntityRenderingHandler(FusewoodArrow.class, new FusewoodArrowRender());
 	}
 
 	@Override
 	public void addNames ()
 	{
+		super.addNames();
+		LanguageRegistry.instance().addStringLocalization("item.natura.spawnegg.name", "en_US", "Spawn ");
+		
 		LanguageRegistry.instance().addStringLocalization("item.wheatBag.name", "en_US", "Wheat Seed Bag");
 		LanguageRegistry.instance().addStringLocalization("item.barleyBag.name", "en_US", "Barley Seed Bag");
 		LanguageRegistry.instance().addStringLocalization("item.potatoBag.name", "en_US", "Potato Bag");
@@ -43,6 +61,10 @@ public class NClientProxy extends NCommonProxy
 		LanguageRegistry.instance().addStringLocalization("item.wheat.flour.name", "en_US", "Wheat Flour");
 		LanguageRegistry.instance().addStringLocalization("item.cotton.plant.name", "en_US", "Cotton");
 		LanguageRegistry.instance().addStringLocalization("item.fletching.ghostwood.name", "en_US", "Ghostwood Fletching");
+		LanguageRegistry.instance().addStringLocalization("item.leather.imp.name", "en_US", "Imp Leather");
+		LanguageRegistry.instance().addStringLocalization("item.string.flame.name", "en_US", "Flamestring");
+		LanguageRegistry.instance().addStringLocalization("item.dye.blue.name", "en_US", "Blue Dye");
+		
 		LanguageRegistry.instance().addStringLocalization("item.cotton.seed.name", "en_US", "Cotton Seeds");
 		LanguageRegistry.instance().addStringLocalization("item.powder.sulfur.name", "en_US", "Sulfur");
 		LanguageRegistry.instance().addStringLocalization("item.waterdrop.name", "en_US", "Cactus Juice");
@@ -100,6 +122,7 @@ public class NClientProxy extends NCommonProxy
 
 		LanguageRegistry.instance().addName(NContent.bloodwood, "Bloodwood");
 		LanguageRegistry.instance().addName(NContent.saguaro, "Saguaro Cactus");
+		LanguageRegistry.instance().addName(NContent.bluebells, "Bluebells");
 
 		LanguageRegistry.instance().addStringLocalization("redwoodNDoor.name", "en_US", "Redwood Door");
 		LanguageRegistry.instance().addStringLocalization("eucalyptusNDoor.name", "en_US", "Eucalyptus Door");
@@ -146,11 +169,11 @@ public class NClientProxy extends NCommonProxy
         LanguageRegistry.instance().addStringLocalization("block.glowshroom.blue.name", "en_US", "Blue Glowshroom");
 
 		LanguageRegistry.instance().addStringLocalization("eucalyptusNLeaves.name", "en_US", "Eucalyptus Leaves");
-		LanguageRegistry.instance().addStringLocalization("sakuraNLeaves.name", "en_US", "Sakura Leaves");
-		LanguageRegistry.instance().addStringLocalization("ghostNLeaves.name", "en_US", "Ghostwood Leaves");
+		LanguageRegistry.instance().addStringLocalization("block.leaves.sakura.name", "en_US", "Sakura Leaves");
+		LanguageRegistry.instance().addStringLocalization("block.leaves.ghost.name", "en_US", "Ghostwood Leaves");
 		LanguageRegistry.instance().addStringLocalization("bushNLeaves.name", "en_US", "Hopseed Leaves");
 		LanguageRegistry.instance().addStringLocalization("redwoodNLeaves.name", "en_US", "Redwood Leaves");
-		LanguageRegistry.instance().addStringLocalization("bloodNLeaves.name", "en_US", "Bloodleaves");
+		LanguageRegistry.instance().addStringLocalization("block.leaves.blood.name", "en_US", "Bloodleaves");
 
 		LanguageRegistry.instance().addStringLocalization("eucalyptusLog.name", "en_US", "Eucalyptus Wood");
 		LanguageRegistry.instance().addStringLocalization("sakuraLog.name", "en_US", "Sakura Wood");
@@ -161,6 +184,10 @@ public class NClientProxy extends NCommonProxy
 		LanguageRegistry.instance().addStringLocalization("bloodBoat.name", "en_US", "Bloodwood Boat");
 		LanguageRegistry.instance().addStringLocalization("whiteBoat.name", "en_US", "White Boat");
 		LanguageRegistry.instance().addStringLocalization("eucalyptusBoat.name", "en_US", "Eucalyptus Boat");
+		
+		LanguageRegistry.instance().addStringLocalization("item.impmeat.raw.name", "en_US", "Raw Imphide");
+		LanguageRegistry.instance().addStringLocalization("item.impmeat.cooked.name", "en_US", "Cooked Imphide");
+		
 		LanguageRegistry.addName(NContent.taintedSoil, "Tainted Soil");
         LanguageRegistry.addName(NContent.heatSand, "Heat Sand");
         LanguageRegistry.addName(NContent.thornVines, "Thornvines");
@@ -200,6 +227,11 @@ public class NClientProxy extends NCommonProxy
         LanguageRegistry.addName(NContent.netherquartzShovel, "Quartz Shovel");
         LanguageRegistry.addName(NContent.netherquartzAxe, "Quartz Hatchet");
         LanguageRegistry.addName(NContent.netherquartzKama, "Quartz Kama");
+        
+        LanguageRegistry.addName(NContent.impHelmet, "Impskin Helmet");
+        LanguageRegistry.addName(NContent.impJerkin, "Impskin Jerkin");
+        LanguageRegistry.addName(NContent.impLeggings, "Impskin Leggings");
+        LanguageRegistry.addName(NContent.impBoots, "Impskin Boots");
 	}
 	
     public static void renderStandardInvBlock(RenderBlocks renderblocks, Block block, int meta)

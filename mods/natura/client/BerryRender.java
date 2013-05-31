@@ -48,7 +48,7 @@ public class BerryRender implements ISimpleBlockRenderingHandler
 		{
 			Tessellator tessellator = Tessellator.instance;
 			renderer.setRenderBounds(0.25F, 0.0F, 0.25F, 0.75F, 0.5F, 0.75F);
-			NClientProxy.renderStandardInvBlock(renderer, block, metadata);
+			NProxyClient.renderStandardInvBlock(renderer, block, metadata);
 		}
 	}
 
