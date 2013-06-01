@@ -767,8 +767,8 @@ public class NContent
 			for (int i = 0; i < 3; i++)
 			{
 				ThaumcraftApi.registerObjectTag(redwood.blockID, i, logTags);
-				ThaumcraftApi.registerObjectTag(glowshroom.blockID, i, shroomTag);
 				ThaumcraftApi.registerObjectTag(floraLeaves.blockID, i, leafTags);
+				ThaumcraftApi.registerObjectTag(glowshroom.blockID, i, shroomTag);
 			}
 			
 			ObjectTags berryTag = new ObjectTags();
