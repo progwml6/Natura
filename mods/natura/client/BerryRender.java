@@ -1,6 +1,5 @@
 package mods.natura.client;
 
-import mods.tinker.tconstruct.client.TProxyClient;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.Tessellator;
