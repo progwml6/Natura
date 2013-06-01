@@ -5,7 +5,6 @@ import java.util.List;
 import mods.natura.entity.FlameSpider;
 import mods.natura.entity.ImpEntity;
 import mods.natura.entity.NitroCreeper;
-import mods.tinker.tconstruct.entity.BlueSlime;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
@@ -121,18 +120,6 @@ public class SpawnEgg extends Item
 			entity.setPosition(x, y, z);
 			entity.setAngles(player.cameraYaw, player.cameraYaw);
 			((EntityLiving) entity).initCreature();
-			world.spawnEntityInWorld(entity);
-		}
-	}
-
-	public static void spawnBossSlime (double x, double y, double z, BlueSlime entity, World world, EntityPlayer player)
-	{
-		if (!world.isRemote)
-		{
-			entity.setPosition(x, y, z);
-			entity.setAngles(player.cameraYaw, player.cameraYaw);
-			entity.setSlimeSize(8);
-			entity.initCreature();
 			world.spawnEntityInWorld(entity);
 		}
 	}
