@@ -101,12 +101,12 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
-import thaumcraft.api.EnumTag;
 import thaumcraft.api.ObjectTags;
 import thaumcraft.api.ThaumcraftApi;
 import cpw.mods.fml.common.event.FMLInterModComms;
 import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
+import thaumcraft.api.EnumTag;
 
 public class NContent
 {
@@ -739,28 +739,56 @@ public class NContent
 		{
 			Class.forName("thaumcraft.api.ThaumcraftApi");
 			
+                        /* Registering seeds */
 			ObjectTags seedTags = new ObjectTags();
 			seedTags.add(EnumTag.PLANT, 1);
 			seedTags.add(EnumTag.EXCHANGE, 1);			
 			ThaumcraftApi.registerObjectTag(seeds.itemID, 0, seedTags);
 			ThaumcraftApi.registerObjectTag(seeds.itemID, 1, seedTags);
+                        
+                        /* Registering plants */
+                        ThaumcraftApi.registerObjectTag(plantItem.itemID, 0, 
+                                new ObjectTags().add(EnumTag.LIFE, 2).add(EnumTag.CROP, 2));
+			ThaumcraftApi.registerObjectTag(plantItem.itemID, 3, 
+                                new ObjectTags().add(EnumTag.CLOTH, 1));
+			ThaumcraftApi.registerObjectTag(plantItem.itemID, 4, 
+                                new ObjectTags().add(EnumTag.DESTRUCTION, 1).add(EnumTag.FIRE, 1));
+			ThaumcraftApi.registerObjectTag(plantItem.itemID, 5, 
+                                new ObjectTags().add(EnumTag.WIND, 1).add(EnumTag.FLIGHT, 1));
+			ThaumcraftApi.registerObjectTag(plantItem.itemID, 6, 
+                                new ObjectTags().add(EnumTag.BEAST, 1).add(EnumTag.FLESH, 1).add(EnumTag.CLOTH, 1).add(EnumTag.ARMOR, 1).add(EnumTag.FIRE, 1));
+			ThaumcraftApi.registerObjectTag(plantItem.itemID, 7, 
+                                new ObjectTags().add(EnumTag.BEAST, 1).add(EnumTag.CLOTH, 1).add(EnumTag.TRAP, 1).add(EnumTag.FIRE, 1));
 			
+                        /* Registering wood */
 			ObjectTags logTags = new ObjectTags();
 			logTags.add(EnumTag.WOOD, 4);
 			ThaumcraftApi.registerObjectTag(tree.blockID, 0, logTags);
 			ThaumcraftApi.registerObjectTag(tree.blockID, 1, logTags);
 			ThaumcraftApi.registerObjectTag(tree.blockID, 3, logTags);
 			ThaumcraftApi.registerObjectTag(willow.blockID, 3, logTags);
+                        ThaumcraftApi.registerObjectTag(redwood.blockID, 0, 
+                                new ObjectTags().add(EnumTag.ARMOR, 1).add(EnumTag.WOOD, 3));
+                        ThaumcraftApi.registerObjectTag(redwood.blockID, 1, logTags);
+                        ThaumcraftApi.registerObjectTag(redwood.blockID, 2, 
+                                new ObjectTags().add(EnumTag.EARTH, 1).add(EnumTag.WOOD, 3));
 			
+                        /* Leafy goodness */
 			ObjectTags leafTags = new ObjectTags();
 			leafTags.add(EnumTag.PLANT, 2);	
-			
+			ThaumcraftApi.registerObjectTag(floraLeavesNoColor.blockID, 0, leafTags);
+			ThaumcraftApi.registerObjectTag(floraLeavesNoColor.blockID, 1, leafTags);
+			ThaumcraftApi.registerObjectTag(floraLeavesNoColor.blockID, 
+                                2, new ObjectTags().add(EnumTag.WOOD, 2).add(EnumTag.METAL, 1));
+                        
+                        /* And rare trees, too. */
 			for (int i = 0; i < 4; i++)
 			{
 				ThaumcraftApi.registerObjectTag(rareTree.blockID, i, logTags);
 				ThaumcraftApi.registerObjectTag(rareLeaves.blockID, i, leafTags);
 			}
 			
+                        /* Add mushrooms */
 			ObjectTags shroomTag = new ObjectTags();
 			shroomTag.add(EnumTag.FUNGUS, 4);
 			shroomTag.add(EnumTag.LIGHT, 1);
@@ -772,6 +800,7 @@ public class NContent
 				ThaumcraftApi.registerObjectTag(floraLeaves.blockID, i, leafTags);
 			}
 			
+                        /* Adding berries! */
 			ObjectTags berryTag = new ObjectTags();
 			berryTag.add(EnumTag.LIFE, 1);
 			berryTag.add(EnumTag.CROP, 1);
@@ -780,6 +809,7 @@ public class NContent
 				ThaumcraftApi.registerObjectTag(berryItem.itemID, i, berryTag);				
 			}
 			
+                        /* Adding berry bushes */
 			ObjectTags berryBushTag = new ObjectTags();
 			berryBushTag.add(EnumTag.PLANT, 1);
 			for (int i = 0; i < 4; i++)
@@ -787,6 +817,7 @@ public class NContent
 				ThaumcraftApi.registerObjectTag(berryBush.blockID, i, berryBushTag);				
 			}
 
+                        /* Adding bowls, bowls of stew, and other bowl-based goodies! */
 			ObjectTags bowlEmptyTag = new ObjectTags();
 			bowlEmptyTag.add(EnumTag.VOID, 1);
 			ObjectTags bowlStewTag = new ObjectTags();
@@ -806,6 +837,7 @@ public class NContent
 				ThaumcraftApi.registerObjectTag(bowlStew.itemID, i+13, glowStewTag);				
 			}
 
+                        /* Adding other overwold saplings */
 			ObjectTags saplingTag = new ObjectTags();
 			saplingTag.add(EnumTag.WOOD, 2);
 			saplingTag.add(EnumTag.PLANT, 2);
@@ -814,51 +846,66 @@ public class NContent
 				ThaumcraftApi.registerObjectTag(floraSapling.blockID, i, saplingTag);	
 				ThaumcraftApi.registerObjectTag(rareSapling.blockID, i, saplingTag);
 			}
-			ThaumcraftApi.registerObjectTag(rareSapling.blockID, 4, new ObjectTags().add(EnumTag.SPIRIT, 1).add(EnumTag.PLANT, 2).add(EnumTag.WOOD, 2));
-			ThaumcraftApi.registerObjectTag(rareSapling.blockID, 5, new ObjectTags().add(EnumTag.WOOD, 2).add(EnumTag.PLANT, 2));
-			ThaumcraftApi.registerObjectTag(rareSapling.blockID, 6, new ObjectTags().add(EnumTag.WOOD, 2).add(EnumTag.PLANT, 2));
-			ThaumcraftApi.registerObjectTag(rareSapling.blockID, 7, new ObjectTags().add(EnumTag.WOOD, 2).add(EnumTag.PLANT, 2).add(EnumTag.DESTRUCTION, 2));
 			
-			ThaumcraftApi.registerObjectTag(floraSapling.blockID, 4, saplingTag);	
+                        /* More overworld saplings */
+                        ThaumcraftApi.registerObjectTag(floraSapling.blockID, 4, saplingTag);
+                        ThaumcraftApi.registerObjectTag(rareSapling.blockID, 4, 
+                                new ObjectTags().add(EnumTag.SPIRIT, 1).add(EnumTag.PLANT, 2).add(EnumTag.WOOD, 2));
+			ThaumcraftApi.registerObjectTag(rareSapling.blockID, 5, 
+                                new ObjectTags().add(EnumTag.WOOD, 2).add(EnumTag.PLANT, 2));
+			ThaumcraftApi.registerObjectTag(rareSapling.blockID, 6, 
+                                new ObjectTags().add(EnumTag.WOOD, 2).add(EnumTag.PLANT, 2));
+			ThaumcraftApi.registerObjectTag(rareSapling.blockID, 7, 
+                                new ObjectTags().add(EnumTag.WOOD, 2).add(EnumTag.PLANT, 2).add(EnumTag.DESTRUCTION, 2));
 			
-			ThaumcraftApi.registerObjectTag(netherBerryItem.itemID, 0, new ObjectTags().add(EnumTag.EVIL, 4).add(EnumTag.POISON, 4).add(EnumTag.LIFE, 1).add(EnumTag.CROP, 1));
-			ThaumcraftApi.registerObjectTag(netherBerryItem.itemID, 1, new ObjectTags().add(EnumTag.EVIL, 4).add(EnumTag.DARK, 4).add(EnumTag.LIFE, 1).add(EnumTag.CROP, 1));
-			ThaumcraftApi.registerObjectTag(netherBerryItem.itemID, 2, new ObjectTags().add(EnumTag.EVIL, 4).add(EnumTag.FLIGHT, 4).add(EnumTag.LIFE, 1).add(EnumTag.CROP, 1));
-			ThaumcraftApi.registerObjectTag(netherBerryItem.itemID, 3, new ObjectTags().add(EnumTag.EVIL, 4).add(EnumTag.DESTRUCTION, 4).add(EnumTag.LIFE, 1).add(EnumTag.CROP, 1));
-
-			ThaumcraftApi.registerObjectTag(netherBerryBush.blockID, 0, new ObjectTags().add(EnumTag.EVIL, 4).add(EnumTag.POISON, 4).add(EnumTag.PLANT, 1));
-			ThaumcraftApi.registerObjectTag(netherBerryBush.blockID, 1, new ObjectTags().add(EnumTag.EVIL, 4).add(EnumTag.DARK, 4).add(EnumTag.PLANT, 1));
-			ThaumcraftApi.registerObjectTag(netherBerryBush.blockID, 2, new ObjectTags().add(EnumTag.EVIL, 4).add(EnumTag.FLIGHT, 4).add(EnumTag.PLANT, 1));
-			ThaumcraftApi.registerObjectTag(netherBerryBush.blockID, 3, new ObjectTags().add(EnumTag.EVIL, 4).add(EnumTag.DESTRUCTION, 4).add(EnumTag.PLANT, 1));
+                        /* Nether blocks */
+			ThaumcraftApi.registerObjectTag(heatSand.blockID, 0, 
+                                new ObjectTags().add(EnumTag.FIRE, 2).add(EnumTag.ROCK, 1));
+			ThaumcraftApi.registerObjectTag(taintedSoil.blockID, 0, 
+                                new ObjectTags().add(EnumTag.ROCK, 2));
 			
-			ThaumcraftApi.registerObjectTag(floraLeavesNoColor.blockID, 0, leafTags);
-			ThaumcraftApi.registerObjectTag(floraLeavesNoColor.blockID, 1, leafTags);
-			ThaumcraftApi.registerObjectTag(floraLeavesNoColor.blockID, 2, new ObjectTags().add(EnumTag.WOOD, 2).add(EnumTag.METAL, 1));
-			
-			ThaumcraftApi.registerObjectTag(darkLeaves.blockID, 0, leafTags);
+                        /* Nether trees and leaves */
+                        ThaumcraftApi.registerObjectTag(darkTree.blockID, 0, 
+                                new ObjectTags().add(EnumTag.WOOD, 4));
+			ThaumcraftApi.registerObjectTag(darkTree.blockID, 1, 
+                                new ObjectTags().add(EnumTag.WOOD, 4).add(EnumTag.DESTRUCTION, 2));
+			ThaumcraftApi.registerObjectTag(bloodwood.blockID, 0, 
+                                new ObjectTags().add(EnumTag.WOOD, 2).add(EnumTag.POWER, 2).add(EnumTag.METAL, 1));
+			ThaumcraftApi.registerObjectTag(bloodwood.blockID, 15, 
+                                new ObjectTags().add(EnumTag.WOOD, 2).add(EnumTag.POWER, 2).add(EnumTag.METAL, 1));
+                        ThaumcraftApi.registerObjectTag(darkLeaves.blockID, 0, leafTags);
 			ThaumcraftApi.registerObjectTag(darkLeaves.blockID, 1, leafTags);
-			ThaumcraftApi.registerObjectTag(darkLeaves.blockID, 2, new ObjectTags().add(EnumTag.PLANT, 2).add(EnumTag.CROP, 2));
-			ThaumcraftApi.registerObjectTag(darkLeaves.blockID, 3, new ObjectTags().add(EnumTag.PLANT, 2).add(EnumTag.DESTRUCTION, 1));
-
-			ThaumcraftApi.registerObjectTag(heatSand.blockID, 0, new ObjectTags().add(EnumTag.FIRE, 2).add(EnumTag.ROCK, 1));
-			ThaumcraftApi.registerObjectTag(taintedSoil.blockID, 0, new ObjectTags().add(EnumTag.ROCK, 2));
-			ThaumcraftApi.registerObjectTag(thornVines.blockID, 0, new ObjectTags().add(EnumTag.FIRE, 1).add(EnumTag.PLANT, 1));
-			ThaumcraftApi.registerObjectTag(darkTree.blockID, 0, new ObjectTags().add(EnumTag.WOOD, 4));
-			ThaumcraftApi.registerObjectTag(darkTree.blockID, 1, new ObjectTags().add(EnumTag.WOOD, 4).add(EnumTag.DESTRUCTION, 2));
-			ThaumcraftApi.registerObjectTag(bloodwood.blockID, 0, new ObjectTags().add(EnumTag.WOOD, 2).add(EnumTag.POWER, 2).add(EnumTag.METAL, 1));
-			ThaumcraftApi.registerObjectTag(bloodwood.blockID, 15, new ObjectTags().add(EnumTag.WOOD, 2).add(EnumTag.POWER, 2).add(EnumTag.METAL, 1));
-			
-			ThaumcraftApi.registerObjectTag(potashApple.itemID, 0, new ObjectTags().add(EnumTag.CROP, 2).add(EnumTag.POISON, 2));
-			ThaumcraftApi.registerObjectTag(plantItem.itemID, 0, new ObjectTags().add(EnumTag.LIFE, 2).add(EnumTag.CROP, 2));
-			ThaumcraftApi.registerObjectTag(plantItem.itemID, 3, new ObjectTags().add(EnumTag.CLOTH, 1));
-			ThaumcraftApi.registerObjectTag(plantItem.itemID, 4, new ObjectTags().add(EnumTag.DESTRUCTION, 1).add(EnumTag.FIRE, 1));
-			ThaumcraftApi.registerObjectTag(plantItem.itemID, 5, new ObjectTags().add(EnumTag.WIND, 1).add(EnumTag.FLIGHT, 1));
-			ThaumcraftApi.registerObjectTag(plantItem.itemID, 6, new ObjectTags().add(EnumTag.BEAST, 1).add(EnumTag.FLESH, 1).add(EnumTag.CLOTH, 1).add(EnumTag.ARMOR, 1).add(EnumTag.FIRE, 1));
-			ThaumcraftApi.registerObjectTag(plantItem.itemID, 7, new ObjectTags().add(EnumTag.BEAST, 1).add(EnumTag.CLOTH, 1).add(EnumTag.TRAP, 1).add(EnumTag.FIRE, 1));
+			ThaumcraftApi.registerObjectTag(darkLeaves.blockID, 2, 
+                                new ObjectTags().add(EnumTag.PLANT, 2).add(EnumTag.CROP, 2));
+			ThaumcraftApi.registerObjectTag(darkLeaves.blockID, 3, 
+                                new ObjectTags().add(EnumTag.PLANT, 2).add(EnumTag.DESTRUCTION, 1));
+                        
+                        /*Nether vines and bushes */
+			ThaumcraftApi.registerObjectTag(netherBerryBush.blockID, 0, 
+                                new ObjectTags().add(EnumTag.EVIL, 4).add(EnumTag.POISON, 4).add(EnumTag.PLANT, 1));
+			ThaumcraftApi.registerObjectTag(netherBerryBush.blockID, 1, 
+                                new ObjectTags().add(EnumTag.EVIL, 4).add(EnumTag.DARK, 4).add(EnumTag.PLANT, 1));
+			ThaumcraftApi.registerObjectTag(netherBerryBush.blockID, 2, 
+                                new ObjectTags().add(EnumTag.EVIL, 4).add(EnumTag.FLIGHT, 4).add(EnumTag.PLANT, 1));
+			ThaumcraftApi.registerObjectTag(netherBerryBush.blockID, 3, 
+                                new ObjectTags().add(EnumTag.EVIL, 4).add(EnumTag.DESTRUCTION, 4).add(EnumTag.PLANT, 1));
+                        ThaumcraftApi.registerObjectTag(thornVines.blockID, 0, 
+                                new ObjectTags().add(EnumTag.FIRE, 1).add(EnumTag.PLANT, 1));
+                        
+                        /*Other nether items/plants */
+                        ThaumcraftApi.registerObjectTag(potashApple.itemID, 0, 
+                                new ObjectTags().add(EnumTag.CROP, 2).add(EnumTag.POISON, 2));
+                        ThaumcraftApi.registerObjectTag(netherBerryItem.itemID, 0, 
+                                new ObjectTags().add(EnumTag.EVIL, 4).add(EnumTag.POISON, 4).add(EnumTag.LIFE, 1).add(EnumTag.CROP, 1));
+			ThaumcraftApi.registerObjectTag(netherBerryItem.itemID, 1, 
+                                new ObjectTags().add(EnumTag.EVIL, 4).add(EnumTag.DARK, 4).add(EnumTag.LIFE, 1).add(EnumTag.CROP, 1));
+			ThaumcraftApi.registerObjectTag(netherBerryItem.itemID, 2, 
+                                new ObjectTags().add(EnumTag.EVIL, 4).add(EnumTag.FLIGHT, 4).add(EnumTag.LIFE, 1).add(EnumTag.CROP, 1));
+			ThaumcraftApi.registerObjectTag(netherBerryItem.itemID, 3, 
+                                new ObjectTags().add(EnumTag.EVIL, 4).add(EnumTag.DESTRUCTION, 4).add(EnumTag.LIFE, 1).add(EnumTag.CROP, 1));
 		}
-		catch (Exception e)
-		{
-			
+		catch (Exception e) {
+		   System.out.println("ThaumCraft integration failed.");
 		}
 	}
 	
