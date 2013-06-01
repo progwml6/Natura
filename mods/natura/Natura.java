@@ -40,7 +40,7 @@ import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 
-@Mod(modid = "Natura", name = "Natura", version = "1.5.1_2.1.beta.6")
+@Mod(modid = "Natura", name = "Natura", version = "1.5.1_2.1.beta.6.2")
 @NetworkMod(serverSideRequired = false, clientSideRequired = true)
 public class Natura
 {

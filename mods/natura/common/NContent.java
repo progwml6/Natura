@@ -80,7 +80,6 @@ import mods.natura.items.tools.NaturaKama;
 import mods.natura.items.tools.NaturaPickaxe;
 import mods.natura.items.tools.NaturaShovel;
 import mods.natura.items.tools.NaturaSword;
-import mods.tinker.tconstruct.TConstruct;
 import mods.tinker.tconstruct.library.crafting.PatternBuilder;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -712,8 +711,8 @@ public class NContent
     {
         EntityRegistry.registerModEntity(ImpEntity.class, "Imp", 0, Natura.instance, 32, 5, true);
         EntityRegistry.registerModEntity(FlameSpider.class, "FlameSpider", 1, Natura.instance, 32, 5, true);
-		EntityRegistry.registerModEntity(NitroCreeper.class, "NitroCreeper", 2, TConstruct.instance, 64, 5, true);
-		EntityRegistry.registerModEntity(FusewoodArrow.class, "FusewoodArrow", 3, TConstruct.instance, 64, 3, true);
+		EntityRegistry.registerModEntity(NitroCreeper.class, "NitroCreeper", 2, Natura.instance, 64, 5, true);
+		EntityRegistry.registerModEntity(FusewoodArrow.class, "FusewoodArrow", 3, Natura.instance, 64, 3, true);
         
         BiomeGenBase[] nether = BiomeDictionary.getBiomesForType(BiomeDictionary.Type.NETHER);
 
