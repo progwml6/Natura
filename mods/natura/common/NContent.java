@@ -779,6 +779,9 @@ public class NContent
 			ThaumcraftApi.registerObjectTag(floraLeavesNoColor.blockID, 1, leafTags);
 			ThaumcraftApi.registerObjectTag(floraLeavesNoColor.blockID, 
                                 2, new ObjectTags().add(EnumTag.WOOD, 2).add(EnumTag.METAL, 1));
+                        ThaumcraftApi.registerObjectTag(floraLeaves.blockID, 0, leafTags);
+                        ThaumcraftApi.registerObjectTag(floraLeaves.blockID, 1, leafTags);
+                        ThaumcraftApi.registerObjectTag(floraLeaves.blockID, 2, leafTags);
                         
                         /* And rare trees, too. */
 			for (int i = 0; i < 4; i++)
@@ -792,11 +795,8 @@ public class NContent
 			shroomTag.add(EnumTag.FUNGUS, 4);
 			shroomTag.add(EnumTag.LIGHT, 1);
 			shroomTag.add(EnumTag.SPIRIT, 1);
-			for (int i = 0; i < 3; i++)
-			{
-				ThaumcraftApi.registerObjectTag(redwood.blockID, i, logTags);
+			for (int i = 0; i < 3; i++) {
 				ThaumcraftApi.registerObjectTag(glowshroom.blockID, i, shroomTag);
-				ThaumcraftApi.registerObjectTag(floraLeaves.blockID, i, leafTags);
 			}
 			
                         /* Adding berries! */
