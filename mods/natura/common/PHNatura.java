@@ -157,7 +157,16 @@ public class PHNatura
 		impMeat = config.getItem("Imp Meat", 12457).getInt(12457);
 		spawnEgg = config.getItem("Spawn Egg", 12458).getInt(12458);
 		
-		overrideNether = config.get("Disabler", "Override Nether", true).getBoolean(true);
+		boolean BoP = false;
+		try
+		{
+			Class c = Class.forName("biomesoplenty.BiomesOPlenty");
+			BoP = true;
+		}
+		catch (Exception e)
+		{
+		}
+		overrideNether = config.get("Disabler", "Override Nether", !BoP).getBoolean(!BoP);
 
 		generateRedwood = config.get("Disabler", "Generate Redwood Trees", true).getBoolean(true);
 		generateSakura = config.get("Disabler", "Generate Sakura Trees", true).getBoolean(true);
