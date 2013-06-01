@@ -759,7 +759,8 @@ public class NContent
 			ThaumcraftApi.registerObjectTag(tree.blockID, 0, logTags);
 			ThaumcraftApi.registerObjectTag(tree.blockID, 1, logTags);
 			ThaumcraftApi.registerObjectTag(tree.blockID, 3, logTags);
-			ThaumcraftApi.registerObjectTag(willow.blockID, 3, logTags);
+			ThaumcraftApi.registerObjectTag(willow.blockID, 0, logTags);
+                        ThaumcraftApi.registerObjectTag(willow.blockID, 1, logTags);
 			ThaumcraftApi.registerObjectTag(redwood.blockID, 0, new ObjectTags().add(EnumTag.ARMOR, 1).add(EnumTag.WOOD, 3));
 			ThaumcraftApi.registerObjectTag(redwood.blockID, 1, logTags);
 			ThaumcraftApi.registerObjectTag(redwood.blockID, 2, new ObjectTags().add(EnumTag.EARTH, 1).add(EnumTag.WOOD, 3));
@@ -773,6 +774,7 @@ public class NContent
 			ThaumcraftApi.registerObjectTag(floraLeaves.blockID, 0, leafTags);
 			ThaumcraftApi.registerObjectTag(floraLeaves.blockID, 1, leafTags);
 			ThaumcraftApi.registerObjectTag(floraLeaves.blockID, 2, leafTags);
+                        ThaumcraftApi.registerObjectTag(floraLeaves.blockID, 3, leafTags);
 
 			/* And rare trees, too. */
 			for (int i = 0; i < 4; i++)
@@ -786,9 +788,7 @@ public class NContent
 			shroomTag.add(EnumTag.FUNGUS, 4);
 			shroomTag.add(EnumTag.LIGHT, 1);
 			shroomTag.add(EnumTag.SPIRIT, 1);
-			for (int i = 0; i < 3; i++)
-			{
-				ThaumcraftApi.registerObjectTag(floraLeaves.blockID, i, leafTags);
+			for (int i = 0; i < 3; i++) {
 				ThaumcraftApi.registerObjectTag(glowshroom.blockID, i, shroomTag);
 			}
 
@@ -829,28 +829,45 @@ public class NContent
 				ThaumcraftApi.registerObjectTag(bowlStew.itemID, i + 13, glowStewTag);
 			}
 
-			/* Adding other overwold saplings */
+			/* Adding other overworld saplings */
 			ObjectTags saplingTag = new ObjectTags();
 			saplingTag.add(EnumTag.WOOD, 2);
 			saplingTag.add(EnumTag.PLANT, 2);
+                        ThaumcraftApi.registerObjectTag(rareSapling.blockID, 4, saplingTag);
 			for (int i = 0; i < 4; i++)
 			{
 				ThaumcraftApi.registerObjectTag(floraSapling.blockID, i, saplingTag);
 				ThaumcraftApi.registerObjectTag(rareSapling.blockID, i, saplingTag);
 			}
+                        
+                        /* Cactus Stuff */
+                        ObjectTags cactusTag = new ObjectTags();
+                        cactusTag.add(EnumTag.WATER, 1);
+                        cactusTag.add(EnumTag.PLANT, 2);
+                        cactusTag.add(EnumTag.WEAPON, 1);
+                        cactusTag.add(EnumTag.WOOD, 2);
+                        
+                        ThaumcraftApi.registerObjectTag(saguaro.blockID, 0, cactusTag);
+                        ThaumcraftApi.registerObjectTag(waterDrop.itemID, 0, new ObjectTags().add(EnumTag.WATER, 1));
+                        ThaumcraftApi.registerObjectTag(seedFood.itemID, 0, new ObjectTags().add(EnumTag.CROP, 2).add(EnumTag.PLANT, 1).add(EnumTag.WATER, 1));
+                        
+                        /* Overworld Clouds */
+                        ThaumcraftApi.registerObjectTag(cloud.blockID, 0, new ObjectTags().add(EnumTag.WIND, 1).add(EnumTag.FLIGHT, 1).add(EnumTag.WATER, 1));
 
-			/* More overworld saplings */
-			ThaumcraftApi.registerObjectTag(floraSapling.blockID, 4, saplingTag);
-			ThaumcraftApi.registerObjectTag(rareSapling.blockID, 4, new ObjectTags().add(EnumTag.SPIRIT, 1).add(EnumTag.PLANT, 2).add(EnumTag.WOOD, 2));
-			ThaumcraftApi.registerObjectTag(rareSapling.blockID, 5, new ObjectTags().add(EnumTag.WOOD, 2).add(EnumTag.PLANT, 2));
-			ThaumcraftApi.registerObjectTag(rareSapling.blockID, 6, new ObjectTags().add(EnumTag.WOOD, 2).add(EnumTag.PLANT, 2));
-			ThaumcraftApi.registerObjectTag(rareSapling.blockID, 7, new ObjectTags().add(EnumTag.WOOD, 2).add(EnumTag.PLANT, 2).add(EnumTag.DESTRUCTION, 2));
+			/* Nether saplings */
+			ThaumcraftApi.registerObjectTag(floraSapling.blockID, 4, new ObjectTags().add(EnumTag.SPIRIT, 1).add(EnumTag.PLANT, 2).add(EnumTag.WOOD, 2));
+                        ThaumcraftApi.registerObjectTag(floraSapling.blockID, 5, new ObjectTags().add(EnumTag.WOOD, 2).add(EnumTag.PLANT, 2));
+			ThaumcraftApi.registerObjectTag(floraSapling.blockID, 6, new ObjectTags().add(EnumTag.WOOD, 2).add(EnumTag.PLANT, 2));
+			ThaumcraftApi.registerObjectTag(floraSapling.blockID, 7, new ObjectTags().add(EnumTag.WOOD, 2).add(EnumTag.PLANT, 2).add(EnumTag.DESTRUCTION, 2));
 
 			/* Nether blocks */
 			ThaumcraftApi.registerObjectTag(heatSand.blockID, 0, new ObjectTags().add(EnumTag.FIRE, 2).add(EnumTag.ROCK, 1));
 			ThaumcraftApi.registerObjectTag(taintedSoil.blockID, 0, new ObjectTags().add(EnumTag.ROCK, 2));
 
 			/* Nether trees and leaves */
+                        ThaumcraftApi.registerObjectTag(tree.blockID, 2, new ObjectTags().add(EnumTag.WOOD, 3).add(EnumTag.SPIRIT, 1));
+                        ThaumcraftApi.registerObjectTag(planks.blockID, 2, new ObjectTags().add(EnumTag.WOOD, 1));
+                        ThaumcraftApi.registerObjectTag(planks.blockID, 4, new ObjectTags().add(EnumTag.WOOD, 1).add(EnumTag.METAL, 1));
 			ThaumcraftApi.registerObjectTag(darkTree.blockID, 0, new ObjectTags().add(EnumTag.WOOD, 4));
 			ThaumcraftApi.registerObjectTag(darkTree.blockID, 1, new ObjectTags().add(EnumTag.WOOD, 4).add(EnumTag.DESTRUCTION, 2));
 			ThaumcraftApi.registerObjectTag(bloodwood.blockID, 0, new ObjectTags().add(EnumTag.WOOD, 2).add(EnumTag.POWER, 2).add(EnumTag.METAL, 1));
@@ -867,7 +884,12 @@ public class NContent
 			ThaumcraftApi.registerObjectTag(netherBerryBush.blockID, 3, new ObjectTags().add(EnumTag.EVIL, 4).add(EnumTag.DESTRUCTION, 4).add(EnumTag.PLANT, 1));
 			ThaumcraftApi.registerObjectTag(thornVines.blockID, 0, new ObjectTags().add(EnumTag.FIRE, 1).add(EnumTag.PLANT, 1));
 
-			/*Other nether items/plants */
+                        /* Nether and End clouds */
+                        ThaumcraftApi.registerObjectTag(cloud.blockID, 2, new ObjectTags().add(EnumTag.WIND, 1).add(EnumTag.FLIGHT, 1).add(EnumTag.FIRE, 1));
+                        ThaumcraftApi.registerObjectTag(cloud.blockID, 3, new ObjectTags().add(EnumTag.WIND, 1).add(EnumTag.FLIGHT, 1).add(EnumTag.DESTRUCTION, 1));
+                        ThaumcraftApi.registerObjectTag(cloud.blockID, 1, new ObjectTags().add(EnumTag.WIND, 1).add(EnumTag.FLIGHT, 1).add(EnumTag.ELDRITCH, 1));
+			
+                        /*Other nether items/plants */
 			ThaumcraftApi.registerObjectTag(potashApple.itemID, 0, new ObjectTags().add(EnumTag.CROP, 2).add(EnumTag.POISON, 2));
 			ThaumcraftApi.registerObjectTag(netherBerryItem.itemID, 0, new ObjectTags().add(EnumTag.EVIL, 4).add(EnumTag.POISON, 4).add(EnumTag.LIFE, 1).add(EnumTag.CROP, 1));
 			ThaumcraftApi.registerObjectTag(netherBerryItem.itemID, 1, new ObjectTags().add(EnumTag.EVIL, 4).add(EnumTag.DARK, 4).add(EnumTag.LIFE, 1).add(EnumTag.CROP, 1));
