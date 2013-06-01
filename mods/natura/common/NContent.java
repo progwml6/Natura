@@ -786,9 +786,7 @@ public class NContent
 			shroomTag.add(EnumTag.FUNGUS, 4);
 			shroomTag.add(EnumTag.LIGHT, 1);
 			shroomTag.add(EnumTag.SPIRIT, 1);
-			for (int i = 0; i < 3; i++)
-			{
-				ThaumcraftApi.registerObjectTag(floraLeaves.blockID, i, leafTags);
+			for (int i = 0; i < 3; i++) {
 				ThaumcraftApi.registerObjectTag(glowshroom.blockID, i, shroomTag);
 			}
 
