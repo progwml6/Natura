@@ -19,157 +19,157 @@ import cpw.mods.fml.common.IWorldGenerator;
 public class BaseCloudWorldgen implements IWorldGenerator
 {
 
-    public BaseCloudWorldgen()
-    {
-        smallcloud = new CloudGen(NContent.cloud.blockID, 0, 10, false);
-        mediumcloud = new CloudGen(NContent.cloud.blockID, 0, 20, false);
-        largecloud = new CloudGen(NContent.cloud.blockID, 0, 30, false);
-        hugecloud = new CloudGen(NContent.cloud.blockID, 0, 40, false);
-        smalldarkcloud = new CloudGen(NContent.cloud.blockID, 1, 10, false);
-        mediumdarkcloud = new CloudGen(NContent.cloud.blockID, 1, 20, false);
-        largedarkcloud = new CloudGen(NContent.cloud.blockID, 1, 30, false);
-        hugedarkcloud = new CloudGen(NContent.cloud.blockID, 1, 40, false);
-        tinyashcloud = new CloudGen(NContent.cloud.blockID, 2, 3, false);
-        smallashcloud = new CloudGen(NContent.cloud.blockID, 2, 10, false);
-        mediumashcloud = new CloudGen(NContent.cloud.blockID, 2, 18, false);
-        largeashcloud = new CloudGen(NContent.cloud.blockID, 2, 27, false);
-        hugeashcloud = new CloudGen(NContent.cloud.blockID, 2, 37, false);
-        tinysulfurcloud = new CloudGen(NContent.cloud.blockID, 3, 3, false);
-        smallsulfurcloud = new CloudGen(NContent.cloud.blockID, 3, 10, false);
-        mediumsulfurcloud = new CloudGen(NContent.cloud.blockID, 3, 18, false);
-        largesulfurcloud = new CloudGen(NContent.cloud.blockID, 3, 27, false);
-        hugesulfurcloud = new CloudGen(NContent.cloud.blockID, 3, 37, false);
-    }
+	public BaseCloudWorldgen()
+	{
+		smallcloud = new CloudGen(NContent.cloud.blockID, 0, 10, false);
+		mediumcloud = new CloudGen(NContent.cloud.blockID, 0, 20, false);
+		largecloud = new CloudGen(NContent.cloud.blockID, 0, 30, false);
+		hugecloud = new CloudGen(NContent.cloud.blockID, 0, 40, false);
+		smalldarkcloud = new CloudGen(NContent.cloud.blockID, 1, 10, false);
+		mediumdarkcloud = new CloudGen(NContent.cloud.blockID, 1, 20, false);
+		largedarkcloud = new CloudGen(NContent.cloud.blockID, 1, 30, false);
+		hugedarkcloud = new CloudGen(NContent.cloud.blockID, 1, 40, false);
+		tinyashcloud = new CloudGen(NContent.cloud.blockID, 2, 3, false);
+		smallashcloud = new CloudGen(NContent.cloud.blockID, 2, 10, false);
+		mediumashcloud = new CloudGen(NContent.cloud.blockID, 2, 18, false);
+		largeashcloud = new CloudGen(NContent.cloud.blockID, 2, 27, false);
+		hugeashcloud = new CloudGen(NContent.cloud.blockID, 2, 37, false);
+		tinysulfurcloud = new CloudGen(NContent.cloud.blockID, 3, 3, false);
+		smallsulfurcloud = new CloudGen(NContent.cloud.blockID, 3, 10, false);
+		mediumsulfurcloud = new CloudGen(NContent.cloud.blockID, 3, 18, false);
+		largesulfurcloud = new CloudGen(NContent.cloud.blockID, 3, 27, false);
+		hugesulfurcloud = new CloudGen(NContent.cloud.blockID, 3, 37, false);
+	}
 
-    @Override
-    public void generate (Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider)
-    {
-        //Overworld
-        int xCh, yCh, zCh;
-        int xChunk = chunkX * 16, zChunk = chunkZ * 16;
-        BiomeGenBase biome = world.getWorldChunkManager().getBiomeGenAt(xChunk + 16, zChunk + 16);
+	@Override
+	public void generate (Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider)
+	{
+		//Overworld
+		int xCh, yCh, zCh;
+		int xChunk = chunkX * 16 + 8, zChunk = chunkZ * 16 + 8;
+		BiomeGenBase biome = world.getWorldChunkManager().getBiomeGenAt(xChunk + 16, zChunk + 16);
 
-        if (PHNatura.generateOverworldClouds && biome.rainfall > 0.15f && random.nextInt(PHNatura.cloudSpawnRarity) == 0)
-        {
-            xCh = xChunk + random.nextInt(16);
-            zCh = zChunk + random.nextInt(16);
-            yCh = random.nextInt(PHNatura.cloudSpawnRange) + PHNatura.cloudSpawnHeight;
-            int size = random.nextInt(12);
-            if (size < 5)
-            {
-                smallcloud.generate(world, random, xCh, yCh, zCh);
-            }
-            else if (size < 9)
-            {
-                mediumcloud.generate(world, random, xCh, yCh, zCh);
-            }
-            else if (size < 11)
-            {
-                largecloud.generate(world, random, xCh, yCh, zCh);
-            }
-            else
-            {
-                hugecloud.generate(world, random, xCh, yCh, zCh);
-            }
-        }
+		if (PHNatura.generateOverworldClouds && biome.rainfall > 0.15f && random.nextInt(PHNatura.cloudSpawnRarity) == 0 && world.provider.dimensionId != 1)
+		{
+			xCh = xChunk + random.nextInt(16);
+			zCh = zChunk + random.nextInt(16);
+			yCh = random.nextInt(PHNatura.cloudSpawnRange) + PHNatura.cloudSpawnHeight;
+			int size = random.nextInt(12);
+			if (size < 5)
+			{
+				smallcloud.generate(world, random, xCh, yCh, zCh);
+			}
+			else if (size < 9)
+			{
+				mediumcloud.generate(world, random, xCh, yCh, zCh);
+			}
+			else if (size < 11)
+			{
+				largecloud.generate(world, random, xCh, yCh, zCh);
+			}
+			else
+			{
+				hugecloud.generate(world, random, xCh, yCh, zCh);
+			}
+		}
 
-        //End Generation
-        if (PHNatura.generateDarkClouds && biome == BiomeGenBase.sky && random.nextInt(4) == 0)
-        {
-            xCh = xChunk * 16 + random.nextInt(16);
-            zCh = zChunk * 16 + random.nextInt(16);
-            for(int iter = 0; iter < PHNatura.darkCloudSpawnRarity; iter++)
-            {
-            int height = random.nextInt(PHNatura.darkCloudSpawnRange);
-            if (random.nextInt(5) == 0)
-            {
-                smalldarkcloud.generate(world, random, xCh, height + PHNatura.darkCloudSpawnHeight, zCh);
-            }
-            else if (random.nextInt(4) == 0)
-            {
-                mediumcloud.generate(world, random, xCh, height + PHNatura.darkCloudSpawnHeight, zCh);
-            }
-            else if (random.nextInt(3) == 0)
-            {
-                largedarkcloud.generate(world, random, xCh, height + PHNatura.darkCloudSpawnHeight, zCh);
-            }
-            if (random.nextInt(2) == 0)
-            {
-                hugedarkcloud.generate(world, random, xCh, height + PHNatura.darkCloudSpawnHeight, zCh);
-            }
-            }
-        }
+		//End Generation
+		if (PHNatura.generateDarkClouds && biome == BiomeGenBase.sky && random.nextInt(4) == 0)
+		{
+			xCh = xChunk + random.nextInt(16);
+			zCh = zChunk +  random.nextInt(16);
+			for (int iter = 0; iter < PHNatura.darkCloudSpawnRarity; iter++)
+			{
+				int height = random.nextInt(PHNatura.darkCloudSpawnRange);
+				if (random.nextInt(5) == 0)
+				{
+					smalldarkcloud.generate(world, random, xCh, height + PHNatura.darkCloudSpawnHeight, zCh);
+				}
+				else if (random.nextInt(7) == 0)
+				{
+					mediumcloud.generate(world, random, xCh, height + PHNatura.darkCloudSpawnHeight, zCh);
+				}
+				else if (random.nextInt(9) == 0)
+				{
+					largedarkcloud.generate(world, random, xCh, height + PHNatura.darkCloudSpawnHeight, zCh);
+				}
+				if (random.nextInt(12) == 0)
+				{
+					hugedarkcloud.generate(world, random, xCh, height + PHNatura.darkCloudSpawnHeight, zCh);
+				}
+			}
+		}
 
-        //Nether
-        if (biome == BiomeGenBase.hell)
-        {
-            if (PHNatura.generateAshClouds && random.nextInt(PHNatura.ashSpawnRarity) == 0)
-            {
-                xCh = xChunk + random.nextInt(16);
-                yCh = random.nextInt(PHNatura.ashSpawnRange) + PHNatura.ashSpawnHeight;
-                zCh = zChunk + random.nextInt(16);
-                int size = random.nextInt(12);
-                if (size < 5)
-                {
-                    tinyashcloud.generate(world, random, xCh, yCh, zCh);
-                }
-                else if (size < 9)
-                {
-                    smallashcloud.generate(world, random, xCh, yCh, zCh);
-                }
-                else if (size < 11)
-                {
-                    largeashcloud.generate(world, random, xCh, yCh, zCh);
-                }
-                else
-                {
-                    hugeashcloud.generate(world, random, xCh, yCh, zCh);
-                }
-            }
+		//Nether
+		if (biome == BiomeGenBase.hell)
+		{
+			if (PHNatura.generateAshClouds && random.nextInt(PHNatura.ashSpawnRarity) == 0)
+			{
+				xCh = xChunk + random.nextInt(16);
+				yCh = random.nextInt(PHNatura.ashSpawnRange) + PHNatura.ashSpawnHeight;
+				zCh = zChunk + random.nextInt(16);
+				int size = random.nextInt(12);
+				if (size < 5)
+				{
+					tinyashcloud.generate(world, random, xCh, yCh, zCh);
+				}
+				else if (size < 9)
+				{
+					smallashcloud.generate(world, random, xCh, yCh, zCh);
+				}
+				else if (size < 11)
+				{
+					largeashcloud.generate(world, random, xCh, yCh, zCh);
+				}
+				else
+				{
+					hugeashcloud.generate(world, random, xCh, yCh, zCh);
+				}
+			}
 
-            if (PHNatura.generateSulfurClouds && random.nextInt(PHNatura.sulfurSpawnRarity) == 0)
-            {
-                xCh = xChunk + random.nextInt(16);
-                yCh = random.nextInt(PHNatura.sulfurSpawnRange) + PHNatura.sulfurSpawnHeight;
-                zCh = zChunk + random.nextInt(16);
-                int size = random.nextInt(12);
-                if (size < 5)
-                {
-                    tinysulfurcloud.generate(world, random, xCh, yCh, zCh);
-                }
-                else if (size < 9)
-                {
-                    smallsulfurcloud.generate(world, random, xCh, yCh, zCh);
-                }
-                else if (size < 11)
-                {
-                    largesulfurcloud.generate(world, random, xCh, yCh, zCh);
-                }
-                else
-                {
-                    hugesulfurcloud.generate(world, random, xCh, yCh, zCh);
-                }
-            }
-        }
-    }
+			if (PHNatura.generateSulfurClouds && random.nextInt(PHNatura.sulfurSpawnRarity) == 0)
+			{
+				xCh = xChunk + random.nextInt(16);
+				yCh = random.nextInt(PHNatura.sulfurSpawnRange) + PHNatura.sulfurSpawnHeight;
+				zCh = zChunk + random.nextInt(16);
+				int size = random.nextInt(12);
+				if (size < 5)
+				{
+					tinysulfurcloud.generate(world, random, xCh, yCh, zCh);
+				}
+				else if (size < 9)
+				{
+					smallsulfurcloud.generate(world, random, xCh, yCh, zCh);
+				}
+				else if (size < 11)
+				{
+					largesulfurcloud.generate(world, random, xCh, yCh, zCh);
+				}
+				else
+				{
+					hugesulfurcloud.generate(world, random, xCh, yCh, zCh);
+				}
+			}
+		}
+	}
 
-    CloudGen smallcloud;
-    CloudGen mediumcloud;
-    CloudGen largecloud;
-    CloudGen hugecloud;
-    CloudGen smalldarkcloud;
-    CloudGen mediumdarkcloud;
-    CloudGen largedarkcloud;
-    CloudGen hugedarkcloud;
-    CloudGen tinyashcloud;
-    CloudGen smallashcloud;
-    CloudGen mediumashcloud;
-    CloudGen largeashcloud;
-    CloudGen hugeashcloud;
-    CloudGen tinysulfurcloud;
-    CloudGen smallsulfurcloud;
-    CloudGen mediumsulfurcloud;
-    CloudGen largesulfurcloud;
-    CloudGen hugesulfurcloud;
+	CloudGen smallcloud;
+	CloudGen mediumcloud;
+	CloudGen largecloud;
+	CloudGen hugecloud;
+	CloudGen smalldarkcloud;
+	CloudGen mediumdarkcloud;
+	CloudGen largedarkcloud;
+	CloudGen hugedarkcloud;
+	CloudGen tinyashcloud;
+	CloudGen smallashcloud;
+	CloudGen mediumashcloud;
+	CloudGen largeashcloud;
+	CloudGen hugeashcloud;
+	CloudGen tinysulfurcloud;
+	CloudGen smallsulfurcloud;
+	CloudGen mediumsulfurcloud;
+	CloudGen largesulfurcloud;
+	CloudGen hugesulfurcloud;
 
 }

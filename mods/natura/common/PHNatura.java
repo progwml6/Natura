@@ -241,7 +241,7 @@ public class PHNatura
 		cloudSpawnRange = config.get("Worldgen", "Cloud Spawn Range", 48).getInt(48);
 		darkCloudSpawnRarity = config.get("Worldgen", "Dark Cloud Spawn Density", 10).getInt(10);
 		darkCloudSpawnHeight = config.get("Worldgen", "Dark Cloud Spawn MinX", 0).getInt(64);
-		darkCloudSpawnRange = config.get("Worldgen", "Dark Cloud Spawn Range", 128).getInt(128);
+		darkCloudSpawnRange = config.get("Worldgen", "Dark Cloud Spawn Range", 256).getInt(256);
 		sulfurSpawnRarity = config.get("Worldgen", "Sulfur Cloud Spawn Rarity", 8).getInt(8);
 		sulfurSpawnHeight = config.get("Worldgen", "Sulfur Cloud Spawn Height", 40).getInt(40);
 		sulfurSpawnRange = config.get("Worldgen", "Sulfur Cloud Spawn Range", 78).getInt(78);

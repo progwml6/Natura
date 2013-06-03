@@ -12,6 +12,7 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.Icon;
 import net.minecraft.world.World;
+import net.minecraftforge.common.MinecraftForge;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -24,6 +25,7 @@ public class HeatSand extends BlockSand
         this.setHardness(3f);
         this.setStepSound(Block.soundSandFootstep);
         this.setCreativeTab(NaturaTab.tab);
+        MinecraftForge.setBlockHarvestLevel(this, "shovel", 0);
     }
     
     @Override

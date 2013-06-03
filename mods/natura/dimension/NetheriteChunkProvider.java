@@ -197,8 +197,6 @@ public class NetheriteChunkProvider implements IChunkProvider
         }
     }
 
-    private double[] stoneNoise = new double[256];
-
     public void replaceBlocksForBiome (int par1, int par2, byte[] lowerIDs)
     {
         //Lower nether

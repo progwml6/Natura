@@ -34,12 +34,12 @@ public class BaseCropWorldgen implements IWorldGenerator
 	@Override
 	public void generate (Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider)
 	{
-		final int xChunk = chunkX * 16, zChunk = chunkZ * 16;
+		final int xChunk = chunkX * 16 + 8, zChunk = chunkZ * 16 + 8;
 		int xCh = chunkX * 16 + random.nextInt(16);
 		int yCh = random.nextInt(128);
 		int zCh = chunkZ * 16 + random.nextInt(16);
 
-		BiomeGenBase biome = world.getWorldChunkManager().getBiomeGenAt(chunkX * 16 + 16, chunkZ * 16 + 16);
+		BiomeGenBase biome = world.getWorldChunkManager().getBiomeGenAt(chunkX * 16, chunkZ * 16);
 
 		//Barley
 		if (PHNatura.generateBarley && random.nextInt(5) == 0 && goodClimate(biome, 0.11f, 1.0f, 0.11f, 2f))
