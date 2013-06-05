@@ -44,7 +44,7 @@ public class AlternateBookshelf extends BlockBookshelf
     @Override
     public int damageDropped (int meta)
     {
-        return meta;
+        return 0;
     }
     
     public boolean renderAsNormalBlock()

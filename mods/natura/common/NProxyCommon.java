@@ -22,6 +22,7 @@ public class NProxyCommon
 		LanguageRegistry.instance().addStringLocalization("entity.Natura.Imp.name", "en_US", "Imp");
 		LanguageRegistry.instance().addStringLocalization("entity.Natura.FlameSpider.name", "en_US", "Heatscar Spider");
 		LanguageRegistry.instance().addStringLocalization("entity.Natura.NitroCreeper.name", "en_US", "Nitro Creeper");
+		LanguageRegistry.instance().addStringLocalization("entity.Natura.FlameSpiderBaby.name", "en_US", "Baby Heatscar Spider");
 		
 	}
 

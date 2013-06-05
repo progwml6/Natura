@@ -7,10 +7,13 @@ import mods.natura.client.entity.ImpModel;
 import mods.natura.common.NContent;
 import mods.natura.common.NProxyCommon;
 import mods.natura.entity.FlameSpider;
+import mods.natura.entity.FlameSpiderBaby;
 import mods.natura.entity.FusewoodArrow;
 import mods.natura.entity.ImpEntity;
 import mods.natura.entity.NitroCreeper;
+import mods.natura.util.DispenserBehaviorSpawnEgg;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockDispenser;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.Tessellator;
@@ -33,12 +36,14 @@ public class NProxyClient extends NProxyCommon
 		RenderingRegistry.registerBlockHandler(new BerryRender());
 		RenderingRegistry.registerBlockHandler(new SaguaroRenderer());
 		RenderingRegistry.registerBlockHandler(new CropRender());
+		RenderingRegistry.registerBlockHandler(new FenceRender());
 		TickRegistry.registerTickHandler(new NCropsTickHandler(), Side.CLIENT);
 		
         RenderingRegistry.registerEntityRenderingHandler(ImpEntity.class, new RenderLiving(new ImpModel(), 0f));
         RenderingRegistry.registerEntityRenderingHandler(FlameSpider.class, new RenderSpider());
         RenderingRegistry.registerEntityRenderingHandler(NitroCreeper.class, new RenderCreeper());
         RenderingRegistry.registerEntityRenderingHandler(FusewoodArrow.class, new FusewoodArrowRender());
+        RenderingRegistry.registerEntityRenderingHandler(FlameSpiderBaby.class, new RenderSpider());
 	}
 
 	@Override

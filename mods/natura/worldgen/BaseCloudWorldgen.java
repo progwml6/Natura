@@ -101,7 +101,7 @@ public class BaseCloudWorldgen implements IWorldGenerator
 		}
 
 		//Nether
-		if (biome == BiomeGenBase.hell)
+		if (world.provider.isHellWorld)
 		{
 			if (PHNatura.generateAshClouds && random.nextInt(PHNatura.ashSpawnRarity) == 0)
 			{

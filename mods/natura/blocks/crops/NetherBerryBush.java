@@ -192,12 +192,16 @@ public class NetherBerryBush extends BlockLeavesBase implements IPlantable
 		int meta = world.getBlockMetadata(x, y, z);
 		if (meta >= 12)
 		{
+			if (world.isRemote)
+				return true;
+			
 			world.setBlock(x, y, z, blockID, meta - 4, 3);
 			EntityItem entityitem = new EntityItem(world, player.posX, player.posY - 1.0D, player.posZ, new ItemStack(NContent.netherBerryItem.itemID, 1, meta - 12));
 			world.spawnEntityInWorld(entityitem);
 			entityitem.onCollideWithPlayer(player);
+			return true;
 		}
-		return true;
+		return false;
 	}
 
 	/* Render logic */
@@ -322,7 +326,6 @@ public class NetherBerryBush extends BlockLeavesBase implements IPlantable
 	{
 
 		int meta = world.getBlockMetadata(x, y, z);
-
 		if (meta / 4 < 2)
 		{
 			if (random.nextBoolean())

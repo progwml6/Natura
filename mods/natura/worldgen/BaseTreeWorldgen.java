@@ -195,7 +195,7 @@ public class BaseTreeWorldgen implements IWorldGenerator
 		}
 
 		//Nether trees
-		if (biomeName.equals("Hell"))
+		if (biomeName.equals("Hell") || biomeName.equals("Boneyard") || biomeName.equals("Phantasmagoric Inferno") || biomeName.equals("Corrupted Sands") || biomeName.equals("Corrupted Sands"))
 		{
 			if (PHNatura.generateBloodwood && random.nextInt(PHNatura.bloodSpawnRarity) == 0)
 			{

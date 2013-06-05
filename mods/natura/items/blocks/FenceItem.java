@@ -21,12 +21,9 @@ public class FenceItem extends ItemBlock
     {
         return meta;
     }
-    
-    @SideOnly(Side.CLIENT)
 
-    /**
-     * Gets an icon index based on an item's damage value
-     */
+    @Override
+    @SideOnly(Side.CLIENT)
     public Icon getIconFromDamage(int meta)
     {
         return NContent.planks.getIcon(0, meta);
