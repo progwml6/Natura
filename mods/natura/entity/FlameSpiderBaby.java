@@ -22,9 +22,8 @@ public class FlameSpiderBaby extends EntitySpider
 	{
 		super(par1World);
 		this.texture = "/mods/natura/textures/mob/flamespider.png";
-		this.setSize(0.5F, 0.35F);
+        this.setSize(1.2F, 0.8F);
 		this.isImmuneToFire = true;
-		this.moveSpeed = 1.0F;
 	}
 
 	public int getMaxHealth ()
@@ -38,7 +37,7 @@ public class FlameSpiderBaby extends EntitySpider
 	 */
 	public float spiderScaleAmount ()
 	{
-		return 0.5F;
+		return 0.85F;
 	}
 
 	protected Entity findPlayerToAttack ()
@@ -79,15 +78,15 @@ public class FlameSpiderBaby extends EntitySpider
 				{
 					if (this.worldObj.difficultySetting == 2)
 					{
-						b0 = 5;
+						b0 = 2;
 					}
 					else if (this.worldObj.difficultySetting == 3)
 					{
-						b0 = 10;
+						b0 = 4;
 					}
 				}
 
-				if (b0 > 0)
+				if (b0 > 0 && rand.nextInt(3) == 0)
 				{
 					par1Entity.setFire(b0);
 				}

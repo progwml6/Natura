@@ -367,29 +367,25 @@ public class FlameSpider extends EntitySpider
 	 */
 	public void initCreature ()
 	{
-		if (this.worldObj.rand.nextInt(25) == 0)
+		/*if (this.worldObj.rand.nextInt(100) == 0)
 		{
 			NitroCreeper creeper = new NitroCreeper(this.worldObj);
 			creeper.setLocationAndAngles(this.posX, this.posY, this.posZ, this.rotationYaw, 0.0F);
 			creeper.initCreature();
 			this.worldObj.spawnEntityInWorld(creeper);
 			creeper.mountEntity(this);
-		}
+		}*/
 		if (this.worldObj.rand.nextInt(10) == 0)
 		{
 			EntitySkeleton skeleton = new EntitySkeleton(this.worldObj);
 			skeleton.setLocationAndAngles(this.posX, this.posY, this.posZ, this.rotationYaw, 0.0F);
 			skeleton.initCreature();
 			skeleton.setCurrentItemOrArmor(0, new ItemStack(Item.bow));
-			this.worldObj.spawnEntityInWorld(skeleton);
-			if (this.ridingEntity != null)
-				skeleton.mountEntity(this.ridingEntity);
-			else
 				skeleton.mountEntity(this);
 		}
 	}
 
-	protected FlameSpiderBaby createBabyInstance ()
+	/*protected FlameSpiderBaby createBabyInstance ()
 	{
 		return new FlameSpiderBaby(this.worldObj);
 	}
@@ -411,5 +407,5 @@ public class FlameSpider extends EntitySpider
 		}
 
 		super.setDead();
-	}
+	}*/
 }

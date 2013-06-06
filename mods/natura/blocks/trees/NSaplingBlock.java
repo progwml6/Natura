@@ -67,6 +67,8 @@ public class NSaplingBlock extends BlockSapling
 				int upperID = world.getBlockId(x, y + 1, z);
 				return canThisPlantGrowOnThisBlockID(upperID);
 			}
+			else
+				return true;
 		}
 		return false;
 	}
