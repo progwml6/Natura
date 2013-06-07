@@ -96,6 +96,8 @@ import net.minecraft.item.crafting.CraftingManager;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.item.crafting.ShapedRecipes;
 import net.minecraft.item.crafting.ShapelessRecipes;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.EnumHelper;
@@ -106,6 +108,7 @@ import net.minecraftforge.oredict.ShapelessOreRecipe;
 import thaumcraft.api.EnumTag;
 import thaumcraft.api.ObjectTags;
 import thaumcraft.api.ThaumcraftApi;
+import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.event.FMLInterModComms;
 import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -662,6 +665,97 @@ public class NContent
 		FMLInterModComms.sendMessage("Forestry", "add-farmable-crop", string);
 		string = builder.append("farmWheat@").append(seeds.itemID).append(".1.").append(crops.blockID).append(".8").toString();
 		FMLInterModComms.sendMessage("Forestry", "add-farmable-crop", string);
+		
+		//TreeCapitator
+        if (Loader.isModLoaded("TreeCapitator"))
+        {
+            NBTTagCompound tpModCfg = new NBTTagCompound();
+            tpModCfg.setString("modID", "Natura");
+            tpModCfg.setString("axeIDList", String.format("%d; %d; %d; %d; %d", 
+                    ghostwoodAxe.itemID, bloodwoodAxe.itemID, darkwoodAxe.itemID, fusewoodAxe.itemID, netherquartzAxe.itemID));
+            tpModCfg.setBoolean("useShiftedItemID", false);
+            
+            NBTTagList treeList = new NBTTagList();
+
+            // amaranth
+            NBTTagCompound treeDef = new NBTTagCompound();
+            treeDef.setString("treeName", "amaranth");
+            treeDef.setString("logs", String.format("%d,2; %d,6; %d,10", rareTree.blockID, rareTree.blockID, rareTree.blockID));
+            treeDef.setString("leaves", String.format("%d,2; %d,10", rareLeaves.blockID, rareLeaves.blockID));
+            treeList.appendTag(treeDef);
+            // bloodwood
+            treeDef = new NBTTagCompound();
+            treeDef.setString("treeName", "bloodwood");
+            treeDef.setString("logs", String.format("%d", bloodwood.blockID));
+            treeDef.setString("leaves", String.format("%d,2; %d,10", floraLeavesNoColor.blockID,floraLeavesNoColor.blockID) );
+            treeList.appendTag(treeDef);
+            // darkwood
+            treeDef = new NBTTagCompound();
+            treeDef.setString("treeName", "darkwood");
+            treeDef.setString("logs", String.format("%d,0; %d,4; %d,8", darkTree.blockID, darkTree.blockID, darkTree.blockID));
+            treeDef.setString("leaves", String.format("%d", darkLeaves.blockID) );
+            treeList.appendTag(treeDef);
+            // eucalyptus
+            treeDef = new NBTTagCompound();
+            treeDef.setString("treeName", "eucalyptus");
+            treeDef.setString("logs", String.format("%d,0; %d,4; %d,8", tree.blockID, tree.blockID, tree.blockID));
+            treeDef.setString("leaves", String.format("%d,1; %d,9", floraLeaves.blockID, floraLeaves.blockID));
+            treeList.appendTag(treeDef);
+            // ghostwood
+            treeDef = new NBTTagCompound();
+            treeDef.setString("treeName", "ghostwood");
+            treeDef.setString("logs", String.format("%d,2; %d,6; %d,10", tree.blockID, tree.blockID, tree.blockID));
+            treeDef.setString("leaves", String.format("%d,1; %d,9", floraLeavesNoColor.blockID, floraLeavesNoColor.blockID));
+            treeList.appendTag(treeDef);
+            // hopseed
+            treeDef = new NBTTagCompound();
+            treeDef.setString("treeName", "hopseed");
+            treeDef.setString("logs", String.format("%d,3; %d,7; %d,11", tree.blockID, tree.blockID, tree.blockID));
+            treeDef.setString("leaves", String.format("%d,2; %d,10", floraLeaves.blockID, floraLeaves.blockID));
+            treeList.appendTag(treeDef);
+            // maple
+            treeDef = new NBTTagCompound();
+            treeDef.setString("treeName", "maple");
+            treeDef.setString("logs", String.format("%d,0; %d,4; %d,8", rareTree.blockID, rareTree.blockID, rareTree.blockID));
+            treeDef.setString("leaves", String.format("%d,0; %d,8", rareLeaves.blockID, rareLeaves.blockID));
+            treeList.appendTag(treeDef);
+            // redwood
+            treeDef = new NBTTagCompound();
+            treeDef.setString("treeName", "redwood");
+            treeDef.setString("logs", String.format("%d", redwood.blockID));
+            treeDef.setString("leaves", String.format("%d,0; %d,8", floraLeaves.blockID, floraLeaves.blockID));
+            treeList.appendTag(treeDef);
+            // sakura
+            treeDef = new NBTTagCompound();
+            treeDef.setString("treeName", "sakura");
+            treeDef.setString("logs", String.format("%d,1; %d,5; %d,9", tree.blockID, tree.blockID, tree.blockID));
+            treeDef.setString("leaves", String.format("%d,0; %d,8", floraLeavesNoColor.blockID, floraLeavesNoColor.blockID));
+            treeList.appendTag(treeDef);
+            // siverbell
+            treeDef = new NBTTagCompound();
+            treeDef.setString("treeName", "siverbell");
+            treeDef.setString("logs", String.format("%d,1; %d,5; %d,9", rareTree.blockID, rareTree.blockID, rareTree.blockID));
+            treeDef.setString("leaves", String.format("%d,1; %d,9", rareLeaves.blockID, rareLeaves.blockID));
+            treeList.appendTag(treeDef);
+            // tigerwood
+            treeDef = new NBTTagCompound();
+            treeDef.setString("treeName", "tigerwood");
+            treeDef.setString("logs", String.format("%d,3; %d,7; %d,11", rareTree.blockID, rareTree.blockID, rareTree.blockID));
+            treeDef.setString("leaves", String.format("%d,3; %d,11", rareLeaves.blockID, rareLeaves.blockID));
+            treeList.appendTag(treeDef);
+            // willow
+            treeDef = new NBTTagCompound();
+            treeDef.setString("treeName", "willow");
+            treeDef.setString("logs", String.format("%d", willow.blockID));
+            treeDef.setString("leaves", String.format("%d,3; %d,7; %d,11; %d,15", 
+                    floraLeavesNoColor.blockID, floraLeavesNoColor.blockID, floraLeavesNoColor.blockID, floraLeavesNoColor.blockID));
+            treeDef.setInteger("maxHorLeafBreakDist", 5);
+            treeList.appendTag(treeDef);
+            
+            tpModCfg.setTag("trees", treeList);
+            
+            FMLInterModComms.sendMessage("TreeCapitator", "ThirdPartyModConfig", tpModCfg);
+        }
 	}
 
 	public void postIntermodCommunication ()
