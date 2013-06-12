@@ -18,7 +18,8 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class BowlStew extends ItemFood
-{
+{   
+    World world = entityPlayer.worldObj;
     Icon[] icons;
     public static String[] textureNames = new String[] { "mushroom", "glowshroom" };
 
