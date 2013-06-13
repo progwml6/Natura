@@ -1,7 +1,7 @@
 package mods.natura.items;
 
 import java.util.List;
-
+import java.util.ArrayList;
 import mods.natura.common.NContent;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
@@ -18,7 +18,8 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class BowlStew extends ItemFood
-{
+{   
+    World world = entityPlayer.worldObj;
     Icon[] icons;
     public static String[] textureNames = new String[] { "mushroom", "glowshroom" };
 
@@ -93,6 +94,8 @@ public class BowlStew extends ItemFood
     {
         if (!world.isRemote && stack.getItemDamage() / 14 == 1)
         {
+            cureAllPotions(world, entityPlayer);
+            
             int duration = 0;
             PotionEffect potion;
             
@@ -114,7 +117,7 @@ public class BowlStew extends ItemFood
             if (potion != null)
                 duration = potion.duration;
             else
-                duration = 0;
+            duration = 0;
             player.addPotionEffect(new PotionEffect(Potion.digSlowdown.id, duration + 8*25, 0));
         }
     }
@@ -132,6 +135,13 @@ public class BowlStew extends ItemFood
         for (int iter = 1; iter < textureNames.length; iter++)
         {
             par3List.add(new ItemStack(par1, 1, iter * 14));
+        }
+    }
+ 
+    public static void cureAllPotions(World world, EntityPlayer entityPlayer) {
+        List<PotionEffect> activePotions = new ArrayList<PotionEffect>(entityPlayer.getActivePotionEffects());
+        for (PotionEffect potionEffect : activePotions) {
+            entityPlayer.removePotionEffect(potionEffect.getPotionID());
         }
     }
 }
