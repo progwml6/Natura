@@ -71,6 +71,18 @@ public class OverworldLeaves extends NLeaves
 
         return 0xffffff;
     }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public Icon getIcon(int side, int metadata)
+    {
+        int meta = metadata % 4;
+        
+        if (graphicsLevel)
+            return fancyIcons[meta];
+        else
+            return fastIcons[meta];
+    }
     
     @Override
     public int idDropped(int var1, Random var2, int var3)

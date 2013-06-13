@@ -109,10 +109,10 @@ public class MineFactoryReloaded
 			FarmingRegistry.registerSludgeDrop(5, new ItemStack(NContent.heatSand));
 			FarmingRegistry.registerSludgeDrop(5, new ItemStack(NContent.taintedSoil));
 		}
-		catch(Exception e)
+		catch(Throwable pikachu)
 		{
 			System.err.println("Something went wrong in Natura plugin: MineFactoryReloaded.");
-			e.printStackTrace();
+			pikachu.printStackTrace();
 		}
 	}
 }

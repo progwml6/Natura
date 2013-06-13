@@ -108,12 +108,13 @@ import net.minecraftforge.oredict.ShapelessOreRecipe;
 import thaumcraft.api.EnumTag;
 import thaumcraft.api.ObjectTags;
 import thaumcraft.api.ThaumcraftApi;
+import cpw.mods.fml.common.IFuelHandler;
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.event.FMLInterModComms;
 import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 
-public class NContent
+public class NContent implements IFuelHandler
 {
 
 	public void preInit ()
@@ -320,6 +321,12 @@ public class NContent
 
 		MinecraftForge.setBlockHarvestLevel(bloodwood, "axe", 2);
 		MinecraftForge.setBlockHarvestLevel(darkTree, 1, "axe", 1);
+        MinecraftForge.setBlockHarvestLevel(darkTree, 0, "axe", -1);
+        MinecraftForge.setBlockHarvestLevel(tree, "axe", -1);
+        MinecraftForge.setBlockHarvestLevel(redwood, "axe", -1);
+        
+        MinecraftForge.setBlockHarvestLevel(taintedSoil, "shovel", 0);
+        MinecraftForge.setBlockHarvestLevel(heatSand, "shovel", 0);
 
 		bowlEmpty = new BowlEmpty(PHNatura.bowlEmpty).setUnlocalizedName("natura.emptybowl");
 		bowlStew = new BowlStew(PHNatura.bowlStew).setUnlocalizedName("natura.stewbowl");
@@ -1140,4 +1147,12 @@ public class NContent
 	public static Block alternateWorkbench;
 	public static Block alternateBookshelf;
 	public static Block alternateFence;
+	
+    @Override
+    public int getBurnTime (ItemStack fuel)
+    {
+        if (fuel.itemID == floraSapling.blockID || fuel.itemID == rareSapling.blockID)
+            return 100;
+        return 0;
+    }
 }

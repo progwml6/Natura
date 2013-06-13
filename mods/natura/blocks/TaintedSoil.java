@@ -23,7 +23,6 @@ public class TaintedSoil extends NBlock
         super(id, Material.ground, 2.2f, new String[] { "tainted_soil", "tainted_farmland_dry", "tainted_farmland_heated" });
         this.setStepSound(Block.soundGravelFootstep);
         this.setResistance(25f);
-        MinecraftForge.setBlockHarvestLevel(this, "shovel", 0);
     }
 
     public boolean isFertile (World world, int x, int y, int z)

@@ -3,11 +3,11 @@ package mods.natura.blocks.crops;
 import java.util.ArrayList;
 import java.util.Random;
 
+import mods.natura.Natura;
 import mods.natura.client.CropRender;
 import mods.natura.common.NContent;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockCrops;
-import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.item.EntityItem;
@@ -61,21 +61,22 @@ public class CropBlock extends BlockCrops
     /**
      * Apply bonemeal to the crops.
      */
-    public void fertilize (World world, int x, int y, int z, Random random)
+    @Override
+    public void fertilize (World world, int x, int y, int z)
     {
         int meta = world.getBlockMetadata(x, y, z);
         if (meta != 3 && meta != 8)
         {
         	if (meta < 3)
         	{
-        		int output = random.nextInt(3) + 1 + meta;
+        		int output = Natura.random.nextInt(3) + 1 + meta;
         		if (output > 3)
         			output = 3;
         		world.setBlockMetadataWithNotify(x, y, z, output, 3);
         	}
         	else
         	{
-        		int output = random.nextInt(4) + 1 + meta;
+        		int output = Natura.random.nextInt(4) + 1 + meta;
         		if (output > 8)
         			output = 8;
         		world.setBlockMetadataWithNotify(x, y, z, output, 3);
@@ -83,11 +84,12 @@ public class CropBlock extends BlockCrops
         }
     }
     
-    public boolean boneFertilize (World world, int x, int y, int z, Random random)
+    /*public boolean boneFertilize (World world, int x, int y, int z, Random random)
     {
         int meta = world.getBlockMetadata(x, y, z);
-        if (meta != 3 && meta < 7)
+        if (meta != 3 && meta != 8)
         {
+            System.out.println("Meta: "+meta);
         	if (meta < 3)
         	{
         		int output = random.nextInt(3) + 1 + meta;
@@ -105,7 +107,7 @@ public class CropBlock extends BlockCrops
             return true;
         }
         return false;
-    }
+    }*/
 
     protected float getGrowthRate (World world, int x, int y, int z, int meta, int light)
     {

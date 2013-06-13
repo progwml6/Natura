@@ -40,7 +40,7 @@ import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 
-@Mod(modid = "Natura", name = "Natura", version = "1.5.1_2.1.RC2")
+@Mod(modid = "Natura", name = "Natura", version = "1.5.1_2.1")
 @NetworkMod(serverSideRequired = false, clientSideRequired = true)
 public class Natura
 {
@@ -77,6 +77,7 @@ public class Natura
 		NetworkRegistry.instance().registerGuiHandler(instance, new NGuiHandler());
 
 		content.intermodCommunication();
+        GameRegistry.registerFuelHandler(content);
 
 		if (PHNatura.overrideNether)
 		{
@@ -97,11 +98,11 @@ public class Natura
 	{
 		if (!event.world.isRemote)
 		{
-			if (event.ID == content.crops.blockID)
+			/*if (event.ID == content.crops.blockID)
 			{
 				if (content.crops.boneFertilize(event.world, event.X, event.Y, event.Z, event.world.rand))
 					event.setResult(Event.Result.ALLOW);
-			}
+			}*/
 			if (event.ID == content.floraSapling.blockID)
 			{
 				if (content.floraSapling.boneFertilize(event.world, event.X, event.Y, event.Z, event.world.rand))

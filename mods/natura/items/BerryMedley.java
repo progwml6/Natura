@@ -29,6 +29,17 @@ public class BerryMedley extends ItemFood
     }
     
     @Override
+    public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer player)
+    {
+        if (player.canEat(true) && player.getFoodStats().getSaturationLevel() < 18F)
+        {
+            player.setItemInUse(par1ItemStack, this.getMaxItemUseDuration(par1ItemStack));
+        }
+
+        return par1ItemStack;
+    }
+    
+    @Override
     public ItemStack onEaten(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
     {
         ItemStack stack = super.onEaten(par1ItemStack, par2World, par3EntityPlayer);
