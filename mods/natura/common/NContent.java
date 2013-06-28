@@ -818,6 +818,8 @@ public class NContent implements IFuelHandler
 		OreDictionary.registerOre("cropDuskberry", new ItemStack(netherBerryItem, 1, 1));
 		OreDictionary.registerOre("cropSkyberry", new ItemStack(netherBerryItem, 1, 2));
 		OreDictionary.registerOre("cropStingberry", new ItemStack(netherBerryItem, 1, 3));
+		
+		OreDictionary.registerOre("taintedSoil", new ItemStack(taintedSoil, 1));
 	}
 
 	public void createEntities ()
