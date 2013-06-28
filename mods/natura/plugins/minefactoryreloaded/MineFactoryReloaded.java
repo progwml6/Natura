@@ -67,8 +67,8 @@ public class MineFactoryReloaded
 			int thornVinesId = NContent.thornVines.blockID;
 			
 			FarmingRegistry.registerPlantable(new PlantableNaturaCrop(seedsId, cropsId));
-			FarmingRegistry.registerPlantable(new PlantableStandard(berryBushId, berryBushId));
-			FarmingRegistry.registerPlantable(new PlantableStandard(netherBerryBushId, netherBerryBushId));
+			FarmingRegistry.registerPlantable(new PlantableNaturaBerry(berryBushId, berryBushId));
+			FarmingRegistry.registerPlantable(new PlantableNaturaNetherBerry(netherBerryBushId, netherBerryBushId));
 			FarmingRegistry.registerPlantable(new PlantableStandard(saguaroFruitId, saguaroId));
 			FarmingRegistry.registerPlantable(new PlantableStandard(floraSaplingId, floraSaplingId));
 			

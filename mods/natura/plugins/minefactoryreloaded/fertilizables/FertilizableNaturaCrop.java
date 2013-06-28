@@ -31,9 +31,22 @@ public class FertilizableNaturaCrop implements IFactoryFertilizable
 	public boolean fertilize(World world, Random rand, int x, int y, int z, FertilizerType fertilizerType)
 	{
 		int meta = world.getBlockMetadata(x, y, z);
-		if (meta != 3 && meta >= 8)
-		{
-			world.setBlockMetadataWithNotify(x, y, z, meta + 1, 3);
+		if (meta != 3 && meta != 8)
+        {
+			if (meta < 3)
+        	{
+        		int output = rand.nextInt(3) + 1 + meta;
+        		if (output > 3)
+        			output = 3;
+        		world.setBlockMetadataWithNotify(x, y, z, output, 3);
+        	}
+        	else
+        	{
+        		int output = rand.nextInt(4) + 1 + meta;
+        		if (output > 8)
+        			output = 8;
+        		world.setBlockMetadataWithNotify(x, y, z, output, 3);
+        	}
 			return true;
 		}
 		return false;
