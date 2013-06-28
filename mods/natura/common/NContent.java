@@ -182,12 +182,20 @@ public class NContent implements IFuelHandler
 		GameRegistry.registerBlock(floraLeaves, NLeavesItem.class, "floraleaves");
 		GameRegistry.registerBlock(floraLeavesNoColor, NoColorLeavesItem.class, "floraleavesnocolor");
 		GameRegistry.registerBlock(floraSapling, NSaplingItem.class, "florasapling");
-		GameRegistry.registerBlock(redwoodDoor, "Redwood Door");
+		//GameRegistry.registerBlock(redwoodDoor, "Redwood Door");
 		GameRegistry.registerBlock(saguaro, SaguaroItem.class, "Saguaro");
 		GameRegistry.registerBlock(willow, WillowItem.class, "willow");
+		
+        GameRegistry.registerBlock(redwoodDoor, "door.redwood");
+        GameRegistry.registerBlock(eucalyptusDoor, "door.eucalyptus");
+        GameRegistry.registerBlock(hopseedDoor, "door.hopseed");
+        GameRegistry.registerBlock(sakuraDoor, "door.sakura");
+        GameRegistry.registerBlock(ghostDoor, "door.ghostwood");
+        GameRegistry.registerBlock(bloodDoor, "door.bloodwood");
+        GameRegistry.registerBlock(redwoodBarkDoor, "door.redwoodbark");
 
 		//Nether
-		bloodwood = new LogTwoxTwo(PHNatura.bloodwoodID, 8f, Material.vine).setUnlocalizedName("bloodwood");
+		bloodwood = new LogTwoxTwo(PHNatura.bloodwoodID, 8f, Material.wood).setUnlocalizedName("bloodwood");
 		GameRegistry.registerBlock(bloodwood, LogTwoxTwoItem.class, "bloodwood");
 		taintedSoil = new TaintedSoil(PHNatura.taintedSoil).setUnlocalizedName("TaintedSoil");
 		GameRegistry.registerBlock(taintedSoil, "soil.tainted");

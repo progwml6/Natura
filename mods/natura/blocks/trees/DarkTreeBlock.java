@@ -25,7 +25,7 @@ public class DarkTreeBlock extends Block
 
     public DarkTreeBlock(int id)
     {
-        super(id, Material.vine);
+        super(id, Material.wood);
         this.setHardness(3.5F);
         this.setResistance(40F);
         this.setStepSound(Block.soundWoodFootstep);

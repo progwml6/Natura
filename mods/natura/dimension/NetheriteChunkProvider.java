@@ -221,7 +221,7 @@ public class NetheriteChunkProvider implements IChunkProvider
                 {
                     int l1 = (iterZ * 16 + iterX) * 128 + k1;
 
-                    if (k1 > 0 + this.hellRNG.nextInt(5))
+                    if (k1 < 127 - this.hellRNG.nextInt(5) && k1 > 0 + this.hellRNG.nextInt(5))
                     {
                         short b3 = lowerIDs[l1];
 
