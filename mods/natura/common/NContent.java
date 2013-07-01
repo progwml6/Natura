@@ -172,7 +172,7 @@ public class NContent implements IFuelHandler
 
 		MinecraftForge.addGrassSeed(new ItemStack(seeds, 1, 0), 3);
 		MinecraftForge.addGrassSeed(new ItemStack(seeds, 1, 1), 3);
-		MinecraftForge.addGrassPlant(bluebells, 0, 8);
+		MinecraftForge.addGrassPlant(bluebells, 0, 18);
 
 		//floraBoat = new NBoat(PHNatura.boatItemID).setIconCoord(0, 3).setUnlocalizedName("floraBoat");
 
