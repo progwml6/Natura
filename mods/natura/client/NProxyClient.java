@@ -50,6 +50,8 @@ public class NProxyClient extends NProxyCommon
 	public void addNames ()
 	{
 		super.addNames();
+		LanguageRegistry.instance().addStringLocalization("natura.potion.poison", "en_US", "Natura Poison");
+		
 		LanguageRegistry.instance().addStringLocalization("item.natura.spawnegg.name", "en_US", "Spawn ");
 		
 		LanguageRegistry.instance().addStringLocalization("item.wheatBag.name", "en_US", "Wheat Seed Bag");
@@ -79,6 +81,10 @@ public class NProxyClient extends NProxyCommon
 		LanguageRegistry.instance().addStringLocalization("item.berry.blue.name", "en_US", "Blueberry");
 		LanguageRegistry.instance().addStringLocalization("item.berry.black.name", "en_US", "Blackberry");
 		LanguageRegistry.instance().addStringLocalization("item.berry.geo.name", "en_US", "Maloberry");
+		LanguageRegistry.instance().addStringLocalization("item.berry.straw.name", "en_US", "Strawberry");
+		LanguageRegistry.instance().addStringLocalization("item.berry.cran.name", "en_US", "Cranberry");
+		LanguageRegistry.instance().addStringLocalization("item.berry.lingon.name", "en_US", "Lingonberry");
+		LanguageRegistry.instance().addStringLocalization("item.berry.belladonna.name", "en_US", "Belladonna");
 		LanguageRegistry.instance().addStringLocalization("item.berry.medley.name", "en_US", "Berry Medley");
 		LanguageRegistry.instance().addStringLocalization("item.berry.blight.name", "en_US", "Blightberry");
 		LanguageRegistry.instance().addStringLocalization("item.berry.dusk.name", "en_US", "Duskberry");
