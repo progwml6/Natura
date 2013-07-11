@@ -10,13 +10,11 @@ public interface ICrop
 {
     public enum HarvestType
     {
-    	BREAK,
-    	USE,
-    	MACHINE
+        BREAK, USE, MACHINE
     }
-    
-    public static final List<ItemStack> NO_YIELD = Collections.<ItemStack>emptyList();
-    
+
+    public static final List<ItemStack> NO_YIELD = Collections.<ItemStack> emptyList();
+
     /** 
      * 
      * @param world
@@ -26,8 +24,11 @@ public interface ICrop
      * @param type
      * @return A list of items harvested. If no items are returned, NO_YIELD should be passed.
      */
-    public List<ItemStack> harvestCrop(IBlockAccess world, int x, int y, int z, HarvestType type);
-    public boolean isFullyGrown(IBlockAccess world, int x, int y, int z);
-    public boolean hasYield(IBlockAccess world, int x, int y, int z);
-    public void growthTick(IBlockAccess world, int x, int y, int z);
+    public List<ItemStack> harvestCrop (IBlockAccess world, int x, int y, int z, HarvestType type);
+
+    public boolean isFullyGrown (IBlockAccess world, int x, int y, int z);
+
+    public boolean hasYield (IBlockAccess world, int x, int y, int z);
+
+    public void growthTick (IBlockAccess world, int x, int y, int z);
 }

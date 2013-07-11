@@ -16,17 +16,17 @@ public class LogTwoxTwoItem extends ItemBlock
         setMaxDamage(0);
         setHasSubtypes(true);
     }
-    
+
     @Override
-    public int getMetadata(int meta)
+    public int getMetadata (int meta)
     {
         return meta;
     }
-    
+
     @Override
-	@SideOnly(Side.CLIENT)
+    @SideOnly(Side.CLIENT)
     public void addInformation (ItemStack stack, EntityPlayer player, List list, boolean par4)
-	{
-		list.add("Fire-resistant tree");
-	}
+    {
+        list.add("Fire-resistant tree");
+    }
 }

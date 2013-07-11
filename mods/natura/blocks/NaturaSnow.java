@@ -10,12 +10,12 @@ import net.minecraft.world.World;
 public class NaturaSnow extends BlockSnow
 {
 
-	public NaturaSnow()
-	{
-		super(78);
-	}
+    public NaturaSnow()
+    {
+        super(78);
+    }
 
-	public void updateTick(World world, int x, int y, int z, Random random)
+    public void updateTick (World world, int x, int y, int z, Random random)
     {
         int meta;
 
@@ -47,8 +47,8 @@ public class NaturaSnow extends BlockSnow
             }
         }
     }
-	
-	void scanHeight(World world, int x, int y, int z, Random random)
+
+    void scanHeight (World world, int x, int y, int z, Random random)
     {
         if (world.isAirBlock(x, y + 1, z))
         {

@@ -19,9 +19,9 @@ public class NOverrideItem extends ItemBlock
     {
         return meta;
     }
-    
-    public CreativeTabs[] getCreativeTabs()
+
+    public CreativeTabs[] getCreativeTabs ()
     {
-        return new CreativeTabs[]{ getCreativeTab(), NaturaTab.tab };
+        return new CreativeTabs[] { getCreativeTab(), NaturaTab.tab };
     }
 }

@@ -23,7 +23,7 @@ public class BloodTreeLargeGen extends WorldGenerator
         int height = findCeiling(world, x, y, z);
         if (height == -1)
             return false;
-        
+
         return generateRandomTree(world, random, x, height, z);
     }
 
@@ -47,7 +47,7 @@ public class BloodTreeLargeGen extends WorldGenerator
     public boolean generateRandomTree (World world, Random random, int x, int y, int z)
     {
         int treeHeight = random.nextInt(8) + 8;
-        
+
         /*boolean valid = true;
         for (int yPos = 0; yPos < treeHeight+2; yPos++)
         {
@@ -70,26 +70,26 @@ public class BloodTreeLargeGen extends WorldGenerator
             if (!valid)
                 return false;
         }*/
-        
+
         for (int heightIter = 0; heightIter < treeHeight; heightIter++)
         {
             int localID = world.getBlockId(x, y - heightIter, z);
             if (localID == 0 || localID == NContent.floraLeaves.blockID)
             {
-                setBlockAndMetadata(world, x,     y - heightIter, z,     NContent.bloodwood.blockID, 0);
-                setBlockAndMetadata(world, x + 1, y - heightIter, z,     NContent.bloodwood.blockID, 1);
-                setBlockAndMetadata(world, x,     y - heightIter, z + 1, NContent.bloodwood.blockID, 2);
+                setBlockAndMetadata(world, x, y - heightIter, z, NContent.bloodwood.blockID, 0);
+                setBlockAndMetadata(world, x + 1, y - heightIter, z, NContent.bloodwood.blockID, 1);
+                setBlockAndMetadata(world, x, y - heightIter, z + 1, NContent.bloodwood.blockID, 2);
                 setBlockAndMetadata(world, x + 1, y - heightIter, z + 1, NContent.bloodwood.blockID, 3);
             }
         }
 
-        genBranch(world, random, x,     y, z,     -treeHeight, 1);
-        genBranch(world, random, x + 1, y, z,     -treeHeight, 2);
-        genBranch(world, random, x,     y, z + 1, -treeHeight, 3);
+        genBranch(world, random, x, y, z, -treeHeight, 1);
+        genBranch(world, random, x + 1, y, z, -treeHeight, 2);
+        genBranch(world, random, x, y, z + 1, -treeHeight, 3);
         genBranch(world, random, x + 1, y, z + 1, -treeHeight, 4);
-        genStraightBranch(world, random, x    , y, z,     -treeHeight, 1);
-        genStraightBranch(world, random, x + 1, y, z,     -treeHeight, 2);
-        genStraightBranch(world, random, x,     y, z + 1, -treeHeight, 3);
+        genStraightBranch(world, random, x, y, z, -treeHeight, 1);
+        genStraightBranch(world, random, x + 1, y, z, -treeHeight, 2);
+        genStraightBranch(world, random, x, y, z + 1, -treeHeight, 3);
         genStraightBranch(world, random, x + 1, y, z + 1, -treeHeight, 4);
         return true;
     }

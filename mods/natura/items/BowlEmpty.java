@@ -33,11 +33,11 @@ public class BowlEmpty extends Item
         for (int i = 0; i < this.textureNames.length; ++i)
         {
             //if (!textureNames[i].equals(""))
-                this.icons[i] = iconRegister.registerIcon("natura:" + textureNames[i] + "_bowl");
+            this.icons[i] = iconRegister.registerIcon("natura:" + textureNames[i] + "_bowl");
         }
     }
-    
-    public String getUnlocalizedName(ItemStack stack)
+
+    public String getUnlocalizedName (ItemStack stack)
     {
         return Item.bowlEmpty.getUnlocalizedName(stack);
         /*int arr = MathHelper.clamp_int(stack.getItemDamage(), 0, textureNames.length);

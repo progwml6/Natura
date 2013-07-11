@@ -10,10 +10,7 @@ import net.minecraft.item.ItemStack;
 
 public class DarkTreeItem extends ItemBlock
 {
-    public static final String blockType[] =
-    {
-        "darkwood", "fusewood"
-    };
+    public static final String blockType[] = { "darkwood", "fusewood" };
 
     public DarkTreeItem(int i)
     {
@@ -23,16 +20,16 @@ public class DarkTreeItem extends ItemBlock
     }
 
     @Override
-    public int getMetadata(int meta)
+    public int getMetadata (int meta)
     {
         return meta;
     }
 
-    public String getUnlocalizedName(ItemStack itemstack)
+    public String getUnlocalizedName (ItemStack itemstack)
     {
         return (new StringBuilder()).append("block.log.").append(blockType[itemstack.getItemDamage()]).toString();
     }
-    
+
     @Override
     @SideOnly(Side.CLIENT)
     public void addInformation (ItemStack stack, EntityPlayer player, List list, boolean par4)

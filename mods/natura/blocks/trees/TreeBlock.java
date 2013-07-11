@@ -18,9 +18,9 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class TreeBlock extends BlockLog
 {
-	public Icon[] icons;
-	public String[] textureNames = new String[] { "eucalyptus_bark", "sakura_bark", "ghostwood_bark", "hopseed_bark", "eucalyptus_heart", "sakura_heart", "ghostwood_heart", "hopseed_heart" };
-	
+    public Icon[] icons;
+    public String[] textureNames = new String[] { "eucalyptus_bark", "sakura_bark", "ghostwood_bark", "hopseed_bark", "eucalyptus_heart", "sakura_heart", "ghostwood_heart", "hopseed_heart" };
+
     public TreeBlock(int id)
     {
         super(id);
@@ -33,68 +33,69 @@ public class TreeBlock extends BlockLog
 
     @Override
     @SideOnly(Side.CLIENT)
-    public Icon getIcon(int side, int metadata)
+    public Icon getIcon (int side, int metadata)
     {
-    	int tex = (metadata % 4);
-    	int orientation = metadata / 4;
-    	
-    	switch (orientation) //Ends of logs
-    	{
-    	case 0:
-    		if (side == 0 || side == 1)
-    			return icons[tex + 4];
-    		break;
-    	case 1:
-    		if (side == 4 || side == 5)
-    			return icons[tex + 4];
-    		break;
-    	case 2:
-    		if (side == 2 || side == 3)
-    			return icons[tex + 4];
-    		break;
-    	}
-    	
-		return icons[tex];
+        int tex = (metadata % 4);
+        int orientation = metadata / 4;
+
+        switch (orientation)
+        //Ends of logs
+        {
+        case 0:
+            if (side == 0 || side == 1)
+                return icons[tex + 4];
+            break;
+        case 1:
+            if (side == 4 || side == 5)
+                return icons[tex + 4];
+            break;
+        case 2:
+            if (side == 2 || side == 3)
+                return icons[tex + 4];
+            break;
+        }
+
+        return icons[tex];
     }
-    
+
     @Override
     @SideOnly(Side.CLIENT)
-    public void registerIcons(IconRegister iconRegister)
+    public void registerIcons (IconRegister iconRegister)
     {
-		this.icons = new Icon[textureNames.length];
+        this.icons = new Icon[textureNames.length];
 
         for (int i = 0; i < this.icons.length; ++i)
         {
-            this.icons[i] = iconRegister.registerIcon("natura:"+textureNames[i]);
+            this.icons[i] = iconRegister.registerIcon("natura:" + textureNames[i]);
         }
     }
-    
-    public int idDropped(int par1, Random par2Random, int par3)
+
+    public int idDropped (int par1, Random par2Random, int par3)
     {
         return this.blockID;
     }
 
     @Override
-    public int damageDropped(int meta)
+    public int damageDropped (int meta)
     {
         return meta % 4;
     }
 
-    public int getFlammability(IBlockAccess world, int x, int y, int z, int metadata, ForgeDirection face)
+    public int getFlammability (IBlockAccess world, int x, int y, int z, int metadata, ForgeDirection face)
     {
         return metadata % 4 != 2 ? blockFlammability[blockID] : 0;
     }
 
-    public int getFireSpreadSpeed(World world, int x, int y, int z, int metadata, ForgeDirection face)
+    public int getFireSpreadSpeed (World world, int x, int y, int z, int metadata, ForgeDirection face)
     {
         return metadata % 4 != 2 ? blockFireSpreadSpeed[blockID] : 0;
     }
 
     @SideOnly(Side.CLIENT)
-	@Override
-    public void getSubBlocks(int par1, CreativeTabs par2CreativeTabs, List par3List)
+    @Override
+    public void getSubBlocks (int par1, CreativeTabs par2CreativeTabs, List par3List)
     {
-		for (int i = 0; i < 4; i++)
-        par3List.add(new ItemStack(par1, 1, i));
+        for (int i = 0; i < 4; i++)
+            par3List.add(new ItemStack(par1, 1, i));
     }
 }

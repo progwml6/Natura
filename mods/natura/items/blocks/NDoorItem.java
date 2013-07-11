@@ -1,4 +1,5 @@
 package mods.natura.items.blocks;
+
 import java.util.List;
 
 import mods.natura.common.NContent;
@@ -17,9 +18,9 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class NDoorItem extends Item
 {
-	public Icon[] icons;
-	public String[] textureNames = new String[] { "redwood", "eucalyptus", "hopseed", "sakura", "ghostwood", "bloodwood", "redwoodbark" };
-	
+    public Icon[] icons;
+    public String[] textureNames = new String[] { "redwood", "eucalyptus", "hopseed", "sakura", "ghostwood", "bloodwood", "redwoodbark" };
+
     public NDoorItem(int id)
     {
         super(id);
@@ -27,18 +28,16 @@ public class NDoorItem extends Item
         setCreativeTab(NaturaTab.tab);
         setHasSubtypes(true);
     }
-    
-    public static final String unlocalizedNames[] = {
-    	"redwood", "eucalyptus", "hopseed", "sakura", "ghost", "blood", "redwoodBark"
-    };
-    
-    public String getUnlocalizedName(ItemStack itemstack)
+
+    public static final String unlocalizedNames[] = { "redwood", "eucalyptus", "hopseed", "sakura", "ghost", "blood", "redwoodBark" };
+
+    public String getUnlocalizedName (ItemStack itemstack)
     {
         return (new StringBuilder()).append(unlocalizedNames[itemstack.getItemDamage()]).append("NDoor").toString();
     }
 
     @Override
-    public boolean onItemUse(ItemStack itemstack, EntityPlayer player, World world, int x, int y, int z, int side, float clickX, float clickY, float clickZ)
+    public boolean onItemUse (ItemStack itemstack, EntityPlayer player, World world, int x, int y, int z, int side, float clickX, float clickY, float clickZ)
     {
         if (side != 1)
         {
@@ -49,14 +48,30 @@ public class NDoorItem extends Item
         Block block;
         switch (itemstack.getItemDamage())
         {
-        case 0: block = NContent.redwoodDoor; break;
-        case 1: block = NContent.eucalyptusDoor; break;
-        case 2: block = NContent.hopseedDoor; break;
-        case 3: block = NContent.sakuraDoor; break;
-        case 4: block = NContent.ghostDoor; break;
-        case 5: block = NContent.bloodDoor; break;
-        case 6: block = NContent.redwoodBarkDoor; break;
-        default: block = Block.doorWood; break;
+        case 0:
+            block = NContent.redwoodDoor;
+            break;
+        case 1:
+            block = NContent.eucalyptusDoor;
+            break;
+        case 2:
+            block = NContent.hopseedDoor;
+            break;
+        case 3:
+            block = NContent.sakuraDoor;
+            break;
+        case 4:
+            block = NContent.ghostDoor;
+            break;
+        case 5:
+            block = NContent.bloodDoor;
+            break;
+        case 6:
+            block = NContent.redwoodBarkDoor;
+            break;
+        default:
+            block = Block.doorWood;
+            break;
         }
         if (!player.canPlayerEdit(x, y, z, side, itemstack) || !player.canPlayerEdit(x, y + 1, z, side, itemstack))
         {
@@ -68,14 +83,14 @@ public class NDoorItem extends Item
         }
         else
         {
-            int rotate = MathHelper.floor_double((double)(((player.rotationYaw + 180F) * 4F) / 360F) - 0.5D) & 3;
+            int rotate = MathHelper.floor_double((double) (((player.rotationYaw + 180F) * 4F) / 360F) - 0.5D) & 3;
             placeDoorBlock(world, x, y, z, rotate, block);
             itemstack.stackSize--;
             return true;
         }
     }
 
-    public static void placeDoorBlock(World world, int x, int y, int z, int rotate, Block block)
+    public static void placeDoorBlock (World world, int x, int y, int z, int rotate, Block block)
     {
         byte var6 = 0;
         byte var7 = 0;
@@ -120,59 +135,59 @@ public class NDoorItem extends Item
         world.notifyBlocksOfNeighborChange(x, y, z, block.blockID);
         world.notifyBlocksOfNeighborChange(x, y + 1, z, block.blockID);
     }
-    
+
     @SideOnly(Side.CLIENT)
-	@Override
-	public Icon getIconFromDamage(int meta)
-	{
-		return icons[meta];
-	}
-	
-	@SideOnly(Side.CLIENT)
-	@Override
-    public void registerIcons(IconRegister iconRegister)
+    @Override
+    public Icon getIconFromDamage (int meta)
     {
-		this.icons = new Icon[textureNames.length];
+        return icons[meta];
+    }
+
+    @SideOnly(Side.CLIENT)
+    @Override
+    public void registerIcons (IconRegister iconRegister)
+    {
+        this.icons = new Icon[textureNames.length];
 
         for (int i = 0; i < this.icons.length; ++i)
         {
-            this.icons[i] = iconRegister.registerIcon("natura:"+textureNames[i]+"_door_item");
+            this.icons[i] = iconRegister.registerIcon("natura:" + textureNames[i] + "_door_item");
         }
     }
-    
+
     public void getSubItems (int id, CreativeTabs tab, List list)
-	{
-		for (int i = 0; i < unlocalizedNames.length; i++)
-			list.add(new ItemStack(id, 1, i));
-	}
-    
+    {
+        for (int i = 0; i < unlocalizedNames.length; i++)
+            list.add(new ItemStack(id, 1, i));
+    }
+
     @Override
-	@SideOnly(Side.CLIENT)
+    @SideOnly(Side.CLIENT)
     public void addInformation (ItemStack stack, EntityPlayer player, List list, boolean par4)
-	{
-    	switch (stack.getItemDamage())
-    	{
-    	case 0: 
-    		list.add("Giant Sequoia");
-    		break;
-    	case 1:
-    		list.add("The pink wood");
-    		break;
-    	case 2:
-    		list.add("Ascended Glitch");
-    		break;
-    	case 3:
-    		list.add("Flowering Cherry");
-    		break;
-    	case 4:
-    		list.add("Pale as a ghost");
-    		break;
-    	case 5:
-    		list.add("Fire-resistant door");
-    		break;
-    	case 6:
-    		list.add("Secret Tunnel");
-    		break;
-    	}
-	}
+    {
+        switch (stack.getItemDamage())
+        {
+        case 0:
+            list.add("Giant Sequoia");
+            break;
+        case 1:
+            list.add("The pink wood");
+            break;
+        case 2:
+            list.add("Ascended Glitch");
+            break;
+        case 3:
+            list.add("Flowering Cherry");
+            break;
+        case 4:
+            list.add("Pale as a ghost");
+            break;
+        case 5:
+            list.add("Fire-resistant door");
+            break;
+        case 6:
+            list.add("Secret Tunnel");
+            break;
+        }
+    }
 }

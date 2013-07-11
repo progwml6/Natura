@@ -12,10 +12,7 @@ import net.minecraft.util.MathHelper;
 
 public class WillowItem extends ItemBlock
 {
-    public static final String blockType[] =
-    {
-    	 "willow", "sakura", "ghost", "hopseed"
-    };
+    public static final String blockType[] = { "willow", "sakura", "ghost", "hopseed" };
 
     public WillowItem(int i)
     {
@@ -23,29 +20,29 @@ public class WillowItem extends ItemBlock
         setMaxDamage(0);
         setHasSubtypes(true);
     }
-    
+
     @Override
-    public int getMetadata(int md)
+    public int getMetadata (int md)
     {
         return md;
     }
 
     @Override
-    public String getUnlocalizedName(ItemStack itemstack)
+    public String getUnlocalizedName (ItemStack itemstack)
     {
         int i = MathHelper.clamp_int(itemstack.getItemDamage(), 0, 3);
         return (new StringBuilder()).append("block.log.").append(blockType[i]).toString();
     }
-    
+
     @Override
-	@SideOnly(Side.CLIENT)
+    @SideOnly(Side.CLIENT)
     public void addInformation (ItemStack stack, EntityPlayer player, List list, boolean par4)
-	{
-    	switch (stack.getItemDamage() % 4)
-    	{
-    	case 0: 
-    		list.add("The weeper");
-    		break;
-    	}
-	}
+    {
+        switch (stack.getItemDamage() % 4)
+        {
+        case 0:
+            list.add("The weeper");
+            break;
+        }
+    }
 }

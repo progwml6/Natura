@@ -10,6 +10,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class NaturaShovel extends ItemSpade
 {
     String texture;
+
     public NaturaShovel(int id, EnumToolMaterial toolmaterial, String texture)
     {
         super(id, toolmaterial);
@@ -19,8 +20,8 @@ public class NaturaShovel extends ItemSpade
 
     @SideOnly(Side.CLIENT)
     @Override
-    public void registerIcons(IconRegister par1IconRegister)
+    public void registerIcons (IconRegister par1IconRegister)
     {
-        this.itemIcon = par1IconRegister.registerIcon("natura:"+texture+"_shovel");
+        this.itemIcon = par1IconRegister.registerIcon("natura:" + texture + "_shovel");
     }
 }

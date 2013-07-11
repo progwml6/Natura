@@ -67,23 +67,23 @@ public class CropBlock extends BlockCrops
         int meta = world.getBlockMetadata(x, y, z);
         if (meta != 3 && meta != 8)
         {
-        	if (meta < 3)
-        	{
-        		int output = Natura.random.nextInt(3) + 1 + meta;
-        		if (output > 3)
-        			output = 3;
-        		world.setBlockMetadataWithNotify(x, y, z, output, 3);
-        	}
-        	else
-        	{
-        		int output = Natura.random.nextInt(4) + 1 + meta;
-        		if (output > 8)
-        			output = 8;
-        		world.setBlockMetadataWithNotify(x, y, z, output, 3);
-        	}
+            if (meta < 3)
+            {
+                int output = Natura.random.nextInt(3) + 1 + meta;
+                if (output > 3)
+                    output = 3;
+                world.setBlockMetadataWithNotify(x, y, z, output, 3);
+            }
+            else
+            {
+                int output = Natura.random.nextInt(4) + 1 + meta;
+                if (output > 8)
+                    output = 8;
+                world.setBlockMetadataWithNotify(x, y, z, output, 3);
+            }
         }
     }
-    
+
     /*public boolean boneFertilize (World world, int x, int y, int z, Random random)
     {
         int meta = world.getBlockMetadata(x, y, z);
@@ -117,7 +117,7 @@ public class CropBlock extends BlockCrops
         if (world.canBlockSeeTheSky(x, y, z) || !requiresSun(meta))
             growth += 2f;
 
-        if (soil != null && soil.isFertile(world, x, y-1, z))
+        if (soil != null && soil.isFertile(world, x, y - 1, z))
             growth *= 2f;
 
         return 1f + growth;
@@ -127,12 +127,12 @@ public class CropBlock extends BlockCrops
     {
         return true;
     }
-    
-    protected boolean canThisPlantGrowOnThisBlockID(int par1)
+
+    protected boolean canThisPlantGrowOnThisBlockID (int par1)
     {
         return par1 == Block.tilledField.blockID;
     }
-    
+
     /* Left-click harvests berries */
     @Override
     public void onBlockClicked (World world, int x, int y, int z, EntityPlayer player)
@@ -162,7 +162,7 @@ public class CropBlock extends BlockCrops
         {
             if (world.isRemote)
                 return true;
-            
+
             world.setBlock(x, y, z, blockID, 6, 3);
             EntityItem entityitem = new EntityItem(world, player.posX, player.posY - 1.0D, player.posZ, new ItemStack(NContent.plantItem.itemID, 1, 3));
             world.spawnEntityInWorld(entityitem);
@@ -171,8 +171,8 @@ public class CropBlock extends BlockCrops
         }
         return false;
     }
-    
-    public float getBlockHardness(World world, int x, int y, int z)
+
+    public float getBlockHardness (World world, int x, int y, int z)
     {
         if (world.getBlockMetadata(x, y, z) > 3)
             return 0.5f;
@@ -267,7 +267,7 @@ public class CropBlock extends BlockCrops
         }
         if (metadata >= 4)
         {
-        	ret.add(new ItemStack(this.getSeedItem(metadata), 1, seedDamageDropped(metadata)));
+            ret.add(new ItemStack(this.getSeedItem(metadata), 1, seedDamageDropped(metadata)));
             if (metadata >= 5 && world.rand.nextBoolean())
                 ret.add(new ItemStack(this.getSeedItem(metadata), 1, seedDamageDropped(metadata)));
             if (metadata >= 7 && world.rand.nextBoolean())
@@ -275,11 +275,11 @@ public class CropBlock extends BlockCrops
         }
         else
         {
-        ret.add(new ItemStack(this.getSeedItem(metadata), 1, seedDamageDropped(metadata)));
-        if (metadata >= 2 && world.rand.nextInt(3) == 0)
             ret.add(new ItemStack(this.getSeedItem(metadata), 1, seedDamageDropped(metadata)));
-        if (metadata >= 3 && world.rand.nextInt(4) == 0)
-            ret.add(new ItemStack(this.getSeedItem(metadata), 1, seedDamageDropped(metadata)));
+            if (metadata >= 2 && world.rand.nextInt(3) == 0)
+                ret.add(new ItemStack(this.getSeedItem(metadata), 1, seedDamageDropped(metadata)));
+            if (metadata >= 3 && world.rand.nextInt(4) == 0)
+                ret.add(new ItemStack(this.getSeedItem(metadata), 1, seedDamageDropped(metadata)));
         }
 
         return ret;
@@ -325,7 +325,7 @@ public class CropBlock extends BlockCrops
     {
         int meta = world.getBlockMetadata(x, y, z); //Wild crops can stay
         if (meta == 3 || meta == 8)
-            return world.getBlockId(x, y-1, z) != 0;
+            return world.getBlockId(x, y - 1, z) != 0;
 
         return super.canBlockStay(world, x, y, z);
     }

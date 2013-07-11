@@ -16,9 +16,9 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class BerryMedley extends ItemFood
 {
-	public Icon[] icons;
-	public String[] textureNames = new String[] { "medley" };
-	
+    public Icon[] icons;
+    public String[] textureNames = new String[] { "medley" };
+
     public BerryMedley(int id, int heal)
     {
         super(id, heal, 1.4F, false);
@@ -27,9 +27,9 @@ public class BerryMedley extends ItemFood
         this.setCreativeTab(NaturaTab.tab);
         this.setAlwaysEdible();
     }
-    
+
     @Override
-    public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer player)
+    public ItemStack onItemRightClick (ItemStack par1ItemStack, World par2World, EntityPlayer player)
     {
         if (player.canEat(true) && player.getFoodStats().getSaturationLevel() < 18F)
         {
@@ -38,12 +38,12 @@ public class BerryMedley extends ItemFood
 
         return par1ItemStack;
     }
-    
+
     @Override
-    public ItemStack onEaten(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
+    public ItemStack onEaten (ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
     {
         ItemStack stack = super.onEaten(par1ItemStack, par2World, par3EntityPlayer);
-        
+
         if (!par3EntityPlayer.capabilities.isCreativeMode)
         {
             if (par1ItemStack.stackSize <= 0)
@@ -53,45 +53,45 @@ public class BerryMedley extends ItemFood
 
             par3EntityPlayer.inventory.addItemStackToInventory(new ItemStack(Item.bowlEmpty));
         }
-        
+
         return stack;
     }
 
     @Override
-    public int getMaxItemUseDuration(ItemStack itemstack)
+    public int getMaxItemUseDuration (ItemStack itemstack)
     {
         return 32;
     }
 
     @SideOnly(Side.CLIENT)
-	@Override
-	public Icon getIconFromDamage(int meta)
-	{
-		return icons[meta];
-	}
-	
-	@SideOnly(Side.CLIENT)
-	@Override
-    public void registerIcons(IconRegister iconRegister)
+    @Override
+    public Icon getIconFromDamage (int meta)
     {
-		this.icons = new Icon[textureNames.length];
+        return icons[meta];
+    }
+
+    @SideOnly(Side.CLIENT)
+    @Override
+    public void registerIcons (IconRegister iconRegister)
+    {
+        this.icons = new Icon[textureNames.length];
 
         for (int i = 0; i < this.icons.length; ++i)
         {
-            this.icons[i] = iconRegister.registerIcon("natura:berry_"+textureNames[i]);
+            this.icons[i] = iconRegister.registerIcon("natura:berry_" + textureNames[i]);
         }
     }
-	
-	@Override
-	@SideOnly(Side.CLIENT)
-	public void addInformation (ItemStack stack, EntityPlayer player, List list, boolean par4)
-	{
-		list.add("An irresistable combination of berries");
-	}
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void addInformation (ItemStack stack, EntityPlayer player, List list, boolean par4)
+    {
+        list.add("An irresistable combination of berries");
+    }
 
     /* Name override */
     @Override
-    public String getUnlocalizedName(ItemStack itemstack)
+    public String getUnlocalizedName (ItemStack itemstack)
     {
         return (new StringBuilder()).append("item.berry.").append(textureNames[itemstack.getItemDamage()]).toString();
     }

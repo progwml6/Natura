@@ -32,7 +32,7 @@ public class NetheriteWorldProvider extends WorldProviderHell
         return false;
     }
 
-    public boolean doesXZShowFog(int par1, int par2)
+    public boolean doesXZShowFog (int par1, int par2)
     {
         return false;
     }

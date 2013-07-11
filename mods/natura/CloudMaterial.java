@@ -15,7 +15,7 @@ public class CloudMaterial extends Material
     /**
      * Returns if blocks of these materials are liquids.
      */
-    public boolean isLiquid()
+    public boolean isLiquid ()
     {
         return false;
     }
@@ -23,18 +23,18 @@ public class CloudMaterial extends Material
     /**
      * Returns if this material is considered solid or not
      */
-    public boolean blocksMovement()
+    public boolean blocksMovement ()
     {
         return false;
     }
 
-    public boolean isSolid()
+    public boolean isSolid ()
     {
         return false;
     }
-    
-    public boolean getCanBlockGrass()
+
+    public boolean getCanBlockGrass ()
     {
-    	return false;
+        return false;
     }
 }

@@ -48,12 +48,12 @@ public class WorkbenchContainer extends Container
         onCraftMatrixChanged(craftMatrix);
     }
 
-    public void onCraftMatrixChanged(IInventory iinventory)
+    public void onCraftMatrixChanged (IInventory iinventory)
     {
         craftResult.setInventorySlotContents(0, CraftingManager.getInstance().findMatchingRecipe(craftMatrix, worldObj));
     }
 
-    public void onCraftGuiClosed(EntityPlayer entityplayer)
+    public void onCraftGuiClosed (EntityPlayer entityplayer)
     {
         super.onCraftGuiClosed(entityplayer);
         if (worldObj.isRemote)
@@ -70,16 +70,16 @@ public class WorkbenchContainer extends Container
         }
     }
 
-    public boolean canInteractWith(EntityPlayer entityplayer)
+    public boolean canInteractWith (EntityPlayer entityplayer)
     {
         return true;
     }
 
     @Override
-    public ItemStack transferStackInSlot(EntityPlayer entityplayer, int i)
+    public ItemStack transferStackInSlot (EntityPlayer entityplayer, int i)
     {
         ItemStack itemstack = null;
-        Slot slot = (Slot)inventorySlots.get(i);
+        Slot slot = (Slot) inventorySlots.get(i);
         if (slot != null && slot.getHasStack())
         {
             ItemStack itemstack1 = slot.getStack();

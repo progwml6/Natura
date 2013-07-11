@@ -27,27 +27,26 @@ public class BushTreeGen extends WorldGenerator
         this.woodMetadata = mdwood;
         this.leavesMetadata = mdleaves;
     }
-    
-    int findGround(World world, int x, int y, int z)
-	{
-		boolean foundGround = false;
-		int height = PHNatura.seaLevel + 64;
-		do
-		{
-			height--;
-			int underID = world.getBlockId(x, height, z);
-			if (underID == Block.dirt.blockID || underID == Block.grass.blockID || height < PHNatura.seaLevel)
-				foundGround = true;		
-		}
-		while (!foundGround);
-		return height + 1;
-	}
 
-    public boolean generate(World world, Random random, int x, int y, int z)
+    int findGround (World world, int x, int y, int z)
+    {
+        boolean foundGround = false;
+        int height = PHNatura.seaLevel + 64;
+        do
+        {
+            height--;
+            int underID = world.getBlockId(x, height, z);
+            if (underID == Block.dirt.blockID || underID == Block.grass.blockID || height < PHNatura.seaLevel)
+                foundGround = true;
+        } while (!foundGround);
+        return height + 1;
+    }
+
+    public boolean generate (World world, Random random, int x, int y, int z)
     {
         int var6 = random.nextInt(3) + this.baseHeight;
         boolean var7 = true;
-        
+
         y = findGround(world, x, y, z);
 
         if (y >= 1 && y + var6 + 1 <= 256)
@@ -79,12 +78,8 @@ public class BushTreeGen extends WorldGenerator
                         {
                             var12 = world.getBlockId(var10, var8, var11);
 
-                            if (var12 != 0 && 
-                               (Block.blocksList[var12] != null && !Block.blocksList[var12].isLeaves(world, var10, var8, var11)) && 
-                               var12 != Block.grass.blockID && 
-                               var12 != Block.dirt.blockID && 
-                               (Block.blocksList[var12] != null && !Block.blocksList[var12].isWood(world, var10, var8, var11)) &&
-                               var12 != Block.sapling.blockID)
+                            if (var12 != 0 && (Block.blocksList[var12] != null && !Block.blocksList[var12].isLeaves(world, var10, var8, var11)) && var12 != Block.grass.blockID
+                                    && var12 != Block.dirt.blockID && (Block.blocksList[var12] != null && !Block.blocksList[var12].isWood(world, var10, var8, var11)) && var12 != Block.sapling.blockID)
                             {
                                 var7 = false;
                             }
@@ -115,15 +110,15 @@ public class BushTreeGen extends WorldGenerator
 
                     for (int var14 = y + var6 - 2 - random.nextInt(4); var14 > y + var6 / 2; var14 -= 2 + random.nextInt(4))
                     {
-                        float var15 = random.nextFloat() * (float)Math.PI * 2.0F;
-                        var11 = x + (int)(0.5F + MathHelper.cos(var15) * 4.0F);
-                        var12 = z + (int)(0.5F + MathHelper.sin(var15) * 4.0F);
+                        float var15 = random.nextFloat() * (float) Math.PI * 2.0F;
+                        var11 = x + (int) (0.5F + MathHelper.cos(var15) * 4.0F);
+                        var12 = z + (int) (0.5F + MathHelper.sin(var15) * 4.0F);
                         this.growLeaves(world, var11, var12, var14, 0, random);
 
                         for (int var13 = 0; var13 < 5; ++var13)
                         {
-                            var11 = x + (int)(1.5F + MathHelper.cos(var15) * (float)var13);
-                            var12 = z + (int)(1.5F + MathHelper.sin(var15) * (float)var13);
+                            var11 = x + (int) (1.5F + MathHelper.cos(var15) * (float) var13);
+                            var12 = z + (int) (1.5F + MathHelper.sin(var15) * (float) var13);
                             this.setBlockAndMetadata(world, var11, var14 - 3 + var13 / 2, var12, NContent.tree.blockID, this.woodMetadata);
                         }
                     }
@@ -228,7 +223,7 @@ public class BushTreeGen extends WorldGenerator
         }
     }
 
-    private void growLeaves(World par1World, int par2, int par3, int par4, int par5, Random par6Random)
+    private void growLeaves (World par1World, int par2, int par3, int par4, int par5, Random par6Random)
     {
         byte var7 = 2;
 
@@ -247,10 +242,9 @@ public class BushTreeGen extends WorldGenerator
 
                     Block block = Block.blocksList[par1World.getBlockId(var11, var8, var13)];
 
-                    if ((var12 >= 0 || var14 >= 0 || var12 * var12 + var14 * var14 <= var10 * var10) && 
-                        (var12 <= 0 && var14 <= 0 || var12 * var12 + var14 * var14 <= (var10 + 1) * (var10 + 1)) && 
-                        (par6Random.nextInt(4) != 0 || var12 * var12 + var14 * var14 <= (var10 - 1) * (var10 - 1)) && 
-                        (block == null || block.canBeReplacedByLeaves(par1World, var11, var8, var13)))
+                    if ((var12 >= 0 || var14 >= 0 || var12 * var12 + var14 * var14 <= var10 * var10) && (var12 <= 0 && var14 <= 0 || var12 * var12 + var14 * var14 <= (var10 + 1) * (var10 + 1))
+                            && (par6Random.nextInt(4) != 0 || var12 * var12 + var14 * var14 <= (var10 - 1) * (var10 - 1))
+                            && (block == null || block.canBeReplacedByLeaves(par1World, var11, var8, var13)))
                     {
                         this.setBlockAndMetadata(par1World, var11, var8, var13, NContent.floraLeaves.blockID, this.leavesMetadata);
                     }

@@ -17,16 +17,17 @@ import net.minecraftforge.common.IPlantable;
 
 public class SeedFood extends ItemSeedFood
 {
-	public int crop;
-	public SeedFood(int itemID, int hunger, float saturation, int cropID)
-	{
-		super(itemID, hunger, saturation, cropID, 0);
-		crop = cropID;
-        this.setCreativeTab(NaturaTab.tab);
-	}
+    public int crop;
 
-	@Override
-	public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side, float clickX, float clickY, float clickZ)
+    public SeedFood(int itemID, int hunger, float saturation, int cropID)
+    {
+        super(itemID, hunger, saturation, cropID, 0);
+        crop = cropID;
+        this.setCreativeTab(NaturaTab.tab);
+    }
+
+    @Override
+    public boolean onItemUse (ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side, float clickX, float clickY, float clickZ)
     {
         if (side != 1)
         {
@@ -42,7 +43,7 @@ public class SeedFood extends ItemSeedFood
                 world.setBlock(x, y + 1, z, this.crop, 1, 3);
                 --stack.stackSize;
                 if (!world.isRemote)
-                	world.playAuxSFX(2001, x, y, z, crop);
+                    world.playAuxSFX(2001, x, y, z, crop);
                 return true;
             }
             else
@@ -55,18 +56,18 @@ public class SeedFood extends ItemSeedFood
             return false;
         }
     }
-	
-	@SideOnly(Side.CLIENT)
+
+    @SideOnly(Side.CLIENT)
     @Override
-    public void registerIcons(IconRegister par1IconRegister)
+    public void registerIcons (IconRegister par1IconRegister)
     {
         this.itemIcon = par1IconRegister.registerIcon("natura:saguaro_fruit_item");
     }
-	
-	@Override
-	@SideOnly(Side.CLIENT)
-	public void addInformation (ItemStack stack, EntityPlayer player, List list, boolean par4)
-	{
-		list.add("Usable as food or seeds");
-	}
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void addInformation (ItemStack stack, EntityPlayer player, List list, boolean par4)
+    {
+        list.add("Usable as food or seeds");
+    }
 }

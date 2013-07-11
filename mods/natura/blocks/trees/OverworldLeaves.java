@@ -48,7 +48,7 @@ public class OverworldLeaves extends NLeaves
         {
             return 0x451941;
         }*/
-        
+
         if (meta == 2)
         {
             int i1 = 0;
@@ -74,18 +74,18 @@ public class OverworldLeaves extends NLeaves
 
     @Override
     @SideOnly(Side.CLIENT)
-    public Icon getIcon(int side, int metadata)
+    public Icon getIcon (int side, int metadata)
     {
         int meta = metadata % 4;
-        
+
         if (graphicsLevel)
             return fancyIcons[meta];
         else
             return fastIcons[meta];
     }
-    
+
     @Override
-    public int idDropped(int var1, Random var2, int var3)
+    public int idDropped (int var1, Random var2, int var3)
     {
         return NContent.rareSapling.blockID;
     }

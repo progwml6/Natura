@@ -22,6 +22,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class NLeaves extends BlockLeaves
 {
     int[] adjacentTreeBlocks;
+
     public NLeaves(int id)
     {
         super(id);
@@ -31,11 +32,11 @@ public class NLeaves extends BlockLeaves
         this.setStepSound(Block.soundGrassFootstep);
         this.setUnlocalizedName("floraLeaves");
         setCreativeTab(CreativeTabs.tabDecorations);
-		setBurnProperties(this.blockID, 30, 60);
-		this.setCreativeTab(NaturaTab.tab);
+        setBurnProperties(this.blockID, 30, 60);
+        this.setCreativeTab(NaturaTab.tab);
     }
 
-    public int getBlockColor()
+    public int getBlockColor ()
     {
         double var1 = 0.5D;
         double var3 = 1.0D;
@@ -45,7 +46,7 @@ public class NLeaves extends BlockLeaves
     /**
      * Returns the color this block should be rendered. Used by leaves.
      */
-    public int getRenderColor(int var1)
+    public int getRenderColor (int var1)
     {
         return ColorizerFoliage.getFoliageColorBasic();
     }
@@ -54,7 +55,7 @@ public class NLeaves extends BlockLeaves
      * Returns a integer with hex for 0xrrggbb with this color multiplied against the blocks color. Note only called
      * when first determining what to render.
      */
-    public int colorMultiplier(IBlockAccess var1, int x, int y, int z)
+    public int colorMultiplier (IBlockAccess var1, int x, int y, int z)
     {
         //int meta = var1.getBlockMetadata(x, y, z);
 
@@ -68,26 +69,26 @@ public class NLeaves extends BlockLeaves
         }
         else
         {*/
-            int var6 = 0;
-            int var7 = 0;
-            int var8 = 0;
+        int var6 = 0;
+        int var7 = 0;
+        int var8 = 0;
 
-            for (int var9 = -1; var9 <= 1; ++var9)
+        for (int var9 = -1; var9 <= 1; ++var9)
+        {
+            for (int var10 = -1; var10 <= 1; ++var10)
             {
-                for (int var10 = -1; var10 <= 1; ++var10)
-                {
-                    int var11 = var1.getBiomeGenForCoords(x + var10, z + var9).getBiomeFoliageColor();
-                    var6 += (var11 & 16711680) >> 16;
-                    var7 += (var11 & 65280) >> 8;
-                    var8 += var11 & 255;
-                }
+                int var11 = var1.getBiomeGenForCoords(x + var10, z + var9).getBiomeFoliageColor();
+                var6 += (var11 & 16711680) >> 16;
+                var7 += (var11 & 65280) >> 8;
+                var8 += var11 & 255;
             }
+        }
 
-            return (var6 / 9 & 255) << 16 | (var7 / 9 & 255) << 8 | var8 / 9 & 255;
+        return (var6 / 9 & 255) << 16 | (var7 / 9 & 255) << 8 | var8 / 9 & 255;
         //}
     }
-    
-    public void updateTick(World world, int x, int y, int z, Random random)
+
+    public void updateTick (World world, int x, int y, int z, Random random)
     {
         if (!world.isRemote)
         {
@@ -109,14 +110,14 @@ public class NLeaves extends BlockLeaves
                         }
                     }
                 }
-                
+
                 if (!nearbyTree)
                     this.removeLeaves(world, x, y, z);
             }
         }
     }
-    
-    public void removeLeaves(World world, int x, int y, int z)
+
+    public void removeLeaves (World world, int x, int y, int z)
     {
         this.dropBlockAsItem(world, x, y, z, world.getBlockMetadata(x, y, z), 0);
         world.setBlock(x, y, z, 0, 0, 7);
@@ -126,7 +127,7 @@ public class NLeaves extends BlockLeaves
      * Returns the quantity of items to drop on block destruction.
      */
     @Override
-    public int quantityDropped(Random var1)
+    public int quantityDropped (Random var1)
     {
         return var1.nextInt(20) == 0 ? 1 : 0;
     }
@@ -135,15 +136,15 @@ public class NLeaves extends BlockLeaves
      * Returns the ID of the items to drop on destruction.
      */
     @Override
-    public int idDropped(int var1, Random var2, int var3)
+    public int idDropped (int var1, Random var2, int var3)
     {
         return NContent.floraSapling.blockID;
     }
-    
+
     @Override
-    public void dropBlockAsItemWithChance(World par1World, int par2, int par3, int par4, int par5, float par6, int par7)
+    public void dropBlockAsItemWithChance (World par1World, int par2, int par3, int par4, int par5, float par6, int par7)
     {
-    	if (!par1World.isRemote)
+        if (!par1World.isRemote)
         {
             ArrayList<ItemStack> items = getBlockDropped(par1World, par2, par3, par4, par5, par7);
 
@@ -156,62 +157,62 @@ public class NLeaves extends BlockLeaves
             }
         }
     }
-	public Icon[] fastIcons;
-	public Icon[] fancyIcons;
-	
-	@Override
-    @SideOnly(Side.CLIENT)
-    public Icon getIcon(int side, int metadata)
-    {
-		int meta = metadata % 4;
-		if (metadata == 3)
-			meta = 0;
-		
-    	if (graphicsLevel)
-    		return fancyIcons[meta];
-    	else
-    		return fastIcons[meta];
-    }
-    
-    @SideOnly(Side.CLIENT)
-	@Override
-	public void registerIcons (IconRegister iconRegister)
-	{
-        String[] textureNames = new String[] { "redwood", "eucalyptus", "hopseed" };
-		this.fastIcons = new Icon[textureNames.length];
-		this.fancyIcons = new Icon[textureNames.length];
 
-		for (int i = 0; i < this.fastIcons.length; i++)
-		{
-			this.fastIcons[i] = iconRegister.registerIcon("natura:" + textureNames[i]+"_leaves_fast");
-			this.fancyIcons[i] = iconRegister.registerIcon("natura:" + textureNames[i]+"_leaves_fancy");
-		}
-	}
+    public Icon[] fastIcons;
+    public Icon[] fancyIcons;
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public Icon getIcon (int side, int metadata)
+    {
+        int meta = metadata % 4;
+        if (metadata == 3)
+            meta = 0;
+
+        if (graphicsLevel)
+            return fancyIcons[meta];
+        else
+            return fastIcons[meta];
+    }
+
+    @SideOnly(Side.CLIENT)
+    @Override
+    public void registerIcons (IconRegister iconRegister)
+    {
+        String[] textureNames = new String[] { "redwood", "eucalyptus", "hopseed" };
+        this.fastIcons = new Icon[textureNames.length];
+        this.fancyIcons = new Icon[textureNames.length];
+
+        for (int i = 0; i < this.fastIcons.length; i++)
+        {
+            this.fastIcons[i] = iconRegister.registerIcon("natura:" + textureNames[i] + "_leaves_fast");
+            this.fancyIcons[i] = iconRegister.registerIcon("natura:" + textureNames[i] + "_leaves_fancy");
+        }
+    }
 
     /**
      * Returns true if the given side of this block type should be rendered, if the adjacent block is at the given
      * coordinates.  Args: blockAccess, x, y, z, side
      */
-    
+
     @Override
-    public boolean shouldSideBeRendered(IBlockAccess var1, int var2, int var3, int var4, int var5)
+    public boolean shouldSideBeRendered (IBlockAccess var1, int var2, int var3, int var4, int var5)
     {
         return this.graphicsLevel ? super.shouldSideBeRendered(var1, var2, var3, var4, var5) : true;
     }
 
     @SideOnly(Side.CLIENT)
-
     /**
      * returns a list of blocks with the same ID, but different meta (eg: wood returns 4 blocks)
      */
-    public void getSubBlocks(int par1, CreativeTabs par2CreativeTabs, List par3List)
+    public void getSubBlocks (int par1, CreativeTabs par2CreativeTabs, List par3List)
     {
         par3List.add(new ItemStack(par1, 1, 0));
         par3List.add(new ItemStack(par1, 1, 1));
         par3List.add(new ItemStack(par1, 1, 2));
     }
-    
-    public int getDamageValue(World par1World, int par2, int par3, int par4)
+
+    public int getDamageValue (World par1World, int par2, int par3, int par4)
     {
         return this.damageDropped(par1World.getBlockMetadata(par2, par3, par4)) % 3;
     }

@@ -25,29 +25,29 @@ public class ThornVines extends BlockVine
     }
 
     @SideOnly(Side.CLIENT)
-    public int getBlockColor()
+    public int getBlockColor ()
     {
         return 0xFFFFFF;
     }
-    
+
     @SideOnly(Side.CLIENT)
-    public int getRenderColor(int par1)
+    public int getRenderColor (int par1)
     {
         return 0xFFFFFF;
     }
-    
-    public int colorMultiplier(IBlockAccess par1IBlockAccess, int par2, int par3, int par4)
+
+    public int colorMultiplier (IBlockAccess par1IBlockAccess, int par2, int par3, int par4)
     {
         return 0xFFFFFF;
     }
-    
+
     @Override
     @SideOnly(Side.CLIENT)
-    public void registerIcons(IconRegister iconRegister)
+    public void registerIcons (IconRegister iconRegister)
     {
         this.blockIcon = iconRegister.registerIcon("natura:thornvine");
     }
-    
+
     public void onEntityCollidedWithBlock (World par1World, int x, int y, int z, Entity entity)
     {
         //entity.motionY *= 1.5D;
@@ -57,7 +57,7 @@ public class ThornVines extends BlockVine
             entity.attackEntityFrom(source, 1);
         }
     }
-    
+
     /*public int onBlockPlaced(World par1World, int par2, int par3, int par4, int par5, float par6, float par7, float par8, int par9)
     {
         return 15;

@@ -1,4 +1,5 @@
 package mods.natura.entity.boats;
+
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
@@ -9,22 +10,19 @@ public class NBoat extends Item
         super(i);
         //maxStackSize = 1;
     }
-    
-    public int getMetadata(int md)
+
+    public int getMetadata (int md)
     {
         return md;
     }
-    
-    public String getItemNameIS(ItemStack itemstack)
+
+    public String getItemNameIS (ItemStack itemstack)
     {
         return (new StringBuilder()).append(itemType[itemstack.getItemDamage()]).append("Boat").toString();
     }
-    
-    public static final String itemType[] =
-    {
-        "redwood", "blood", "white", "eucalyptus"
-    };
-    
+
+    public static final String itemType[] = { "redwood", "blood", "white", "eucalyptus" };
+
     /*public int getIconFromDamage(int md)
     {
         return iconIndex + md;

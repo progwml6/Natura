@@ -20,7 +20,7 @@ public class WillowBlock extends BlockLog
 {
     public Icon[] icons;
     public String[] textureNames = new String[] { "willow_bark", "willow_heart" };
-    
+
     public WillowBlock(int id)
     {
         super(id);
@@ -32,12 +32,13 @@ public class WillowBlock extends BlockLog
 
     @Override
     @SideOnly(Side.CLIENT)
-    public Icon getIcon(int side, int metadata)
+    public Icon getIcon (int side, int metadata)
     {
-        int tex = (metadata % 4)*2;
+        int tex = (metadata % 4) * 2;
         int orientation = metadata / 4;
-        
-        switch (orientation) //Ends of logs
+
+        switch (orientation)
+        //Ends of logs
         {
         case 0:
             if (side == 0 || side == 1)
@@ -52,23 +53,23 @@ public class WillowBlock extends BlockLog
                 return icons[tex + 1];
             break;
         }
-        
+
         return icons[tex];
     }
-    
+
     @Override
     @SideOnly(Side.CLIENT)
-    public void registerIcons(IconRegister iconRegister)
+    public void registerIcons (IconRegister iconRegister)
     {
         this.icons = new Icon[textureNames.length];
 
         for (int i = 0; i < this.icons.length; ++i)
         {
-            this.icons[i] = iconRegister.registerIcon("natura:"+textureNames[i]);
+            this.icons[i] = iconRegister.registerIcon("natura:" + textureNames[i]);
         }
     }
-    
-    public int idDropped(int par1, Random par2Random, int par3)
+
+    public int idDropped (int par1, Random par2Random, int par3)
     {
         return this.blockID;
     }
@@ -91,9 +92,9 @@ public class WillowBlock extends BlockLog
 
     @SideOnly(Side.CLIENT)
     @Override
-    public void getSubBlocks(int par1, CreativeTabs par2CreativeTabs, List par3List)
+    public void getSubBlocks (int par1, CreativeTabs par2CreativeTabs, List par3List)
     {
-        for (int i = 0; i < icons.length/2; i++)
-        par3List.add(new ItemStack(par1, 1, i));
+        for (int i = 0; i < icons.length / 2; i++)
+            par3List.add(new ItemStack(par1, 1, i));
     }
 }

@@ -7,8 +7,9 @@ import cpw.mods.fml.common.network.IGuiHandler;
 public class NGuiHandler implements IGuiHandler
 {
     public static final int craftingGui = 1;
+
     @Override
-    public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z)
+    public Object getClientGuiElement (int ID, EntityPlayer player, World world, int x, int y, int z)
     {
         if (ID == craftingGui)
         {
@@ -22,7 +23,7 @@ public class NGuiHandler implements IGuiHandler
     }
 
     @Override
-    public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) 
+    public Object getServerGuiElement (int ID, EntityPlayer player, World world, int x, int y, int z)
     {
         if (ID == craftingGui)
         {

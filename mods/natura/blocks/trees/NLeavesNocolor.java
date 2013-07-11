@@ -37,17 +37,17 @@ public class NLeavesNocolor extends NLeaves
             this.fancyIcons[i] = iconRegister.registerIcon("natura:" + textureNames[i] + "_leaves_fancy");
         }
     }
-    
+
     @Override
     @SideOnly(Side.CLIENT)
-    public Icon getIcon(int side, int metadata)
+    public Icon getIcon (int side, int metadata)
     {
-		int meta = metadata % 4;
-		
-    	if (graphicsLevel)
-    		return fancyIcons[meta];
-    	else
-    		return fastIcons[meta];
+        int meta = metadata % 4;
+
+        if (graphicsLevel)
+            return fancyIcons[meta];
+        else
+            return fastIcons[meta];
     }
 
     @SideOnly(Side.CLIENT)
@@ -87,20 +87,20 @@ public class NLeavesNocolor extends NLeaves
 
     public int damageDropped (int meta)
     {
-    	if (meta % 4 == 3)
-    		return 4;
+        if (meta % 4 == 3)
+            return 4;
         return (meta & 3) + 3;
     }
-    
+
     @Override
-    public int idDropped(int meta, Random random, int fortune)
+    public int idDropped (int meta, Random random, int fortune)
     {
-    	if (meta % 4 == 3)
-    		return NContent.rareSapling.blockID;
+        if (meta % 4 == 3)
+            return NContent.rareSapling.blockID;
         return NContent.floraSapling.blockID;
     }
-    
-    public void getSubBlocks(int par1, CreativeTabs par2CreativeTabs, List par3List)
+
+    public void getSubBlocks (int par1, CreativeTabs par2CreativeTabs, List par3List)
     {
         par3List.add(new ItemStack(par1, 1, 0));
         par3List.add(new ItemStack(par1, 1, 1));

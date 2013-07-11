@@ -24,7 +24,7 @@ public class FenceItem extends ItemBlock
 
     @Override
     @SideOnly(Side.CLIENT)
-    public Icon getIconFromDamage(int meta)
+    public Icon getIconFromDamage (int meta)
     {
         return NContent.planks.getIcon(0, meta);
     }

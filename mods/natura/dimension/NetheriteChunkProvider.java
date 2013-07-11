@@ -80,7 +80,7 @@ public class NetheriteChunkProvider implements IChunkProvider
     double[] noiseData3;
     double[] noiseData4;
     double[] noiseData5;
-    
+
     double[] secondNoiseData1;
     double[] secondNoiseData2;
     double[] secondNoiseData3;
@@ -289,7 +289,7 @@ public class NetheriteChunkProvider implements IChunkProvider
                     }
                     else
                     {
-                        lowerIDs[l1] = (byte)Block.bedrock.blockID;
+                        lowerIDs[l1] = (byte) Block.bedrock.blockID;
                     }
                 }
             }
@@ -579,7 +579,7 @@ public class NetheriteChunkProvider implements IChunkProvider
             zPos = blockZ + this.hellRNG.nextInt(16) + 8;
             (new WorldGenFlowers(Block.mushroomRed.blockID)).generate(this.worldObj, this.hellRNG, xPos, yPos, zPos);
         }*/
-        
+
         if (doGen && hellRNG.nextInt(7) == 0)
         {
             int l2 = blockX + hellRNG.nextInt(16) + 8;
@@ -675,9 +675,10 @@ public class NetheriteChunkProvider implements IChunkProvider
         this.genNetherBridge.generate(this, this.worldObj, par1, par2, (byte[]) null);
     }
 
-	@Override
-	public void func_104112_b() {
-		// TODO Auto-generated method stub
-		
-	}
+    @Override
+    public void func_104112_b ()
+    {
+        // TODO Auto-generated method stub
+
+    }
 }

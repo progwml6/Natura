@@ -17,7 +17,7 @@ public class FlowerGen extends WorldGenerator
     {
         this.plantID = id;
         this.metadata = meta;
-    }    
+    }
 
     public FlowerGen(int id, int meta, int count)
     {
@@ -26,7 +26,7 @@ public class FlowerGen extends WorldGenerator
         this.chances = count;
     }
 
-    public boolean generate(World world, Random random, int x, int y, int z)
+    public boolean generate (World world, Random random, int x, int y, int z)
     {
         for (int iter = 0; iter < chances; ++iter)
         {

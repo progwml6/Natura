@@ -12,10 +12,7 @@ import net.minecraft.util.Icon;
 
 public class GlowshroomItem extends ItemBlock
 {
-    public static final String blockType[] =
-    {
-        "green", "purple", "blue"
-    };
+    public static final String blockType[] = { "green", "purple", "blue" };
 
     public GlowshroomItem(int i)
     {
@@ -25,25 +22,25 @@ public class GlowshroomItem extends ItemBlock
     }
 
     @Override
-    public int getMetadata(int meta)
+    public int getMetadata (int meta)
     {
         return meta;
     }
-    
+
     public Icon getIconFromDamage (int i)
     {
         return NContent.glowshroom.getIcon(0, i);
     }
 
-    public String getUnlocalizedName(ItemStack itemstack)
+    public String getUnlocalizedName (ItemStack itemstack)
     {
         return (new StringBuilder()).append("block.glowshroom.").append(blockType[itemstack.getItemDamage()]).toString();
     }
-    
+
     @Override
-	@SideOnly(Side.CLIENT)
+    @SideOnly(Side.CLIENT)
     public void addInformation (ItemStack stack, EntityPlayer player, List list, boolean par4)
-	{
-		list.add("Neon juice");
-	}
+    {
+        list.add("Neon juice");
+    }
 }

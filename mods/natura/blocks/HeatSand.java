@@ -19,6 +19,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class HeatSand extends BlockSand
 {
     Icon[] icons;
+
     public HeatSand(int par1)
     {
         super(par1);
@@ -27,25 +28,25 @@ public class HeatSand extends BlockSand
         this.setCreativeTab(NaturaTab.tab);
         MinecraftForge.setBlockHarvestLevel(this, "shovel", 0);
     }
-    
+
     @Override
     @SideOnly(Side.CLIENT)
-    public void registerIcons(IconRegister iconRegister)
+    public void registerIcons (IconRegister iconRegister)
     {
         this.blockIcon = iconRegister.registerIcon("natura:heatsand");
     }
 
-    public AxisAlignedBB getCollisionBoundingBoxFromPool(World par1World, int par2, int par3, int par4)
+    public AxisAlignedBB getCollisionBoundingBoxFromPool (World par1World, int par2, int par3, int par4)
     {
         float f = 0.125F;
-        return AxisAlignedBB.getAABBPool().getAABB((double)par2, (double)par3, (double)par4, (double)(par2 + 1), (double)((float)(par3 + 1) - f), (double)(par4 + 1));
+        return AxisAlignedBB.getAABBPool().getAABB((double) par2, (double) par3, (double) par4, (double) (par2 + 1), (double) ((float) (par3 + 1) - f), (double) (par4 + 1));
     }
-    
-    public void onEntityCollidedWithBlock(World par1World, int x, int y, int z, Entity entity)
+
+    public void onEntityCollidedWithBlock (World par1World, int x, int y, int z, Entity entity)
     {
         if (entity instanceof EntityPlayer)
         {
-            ItemStack stack = ((EntityPlayer)entity).inventory.getStackInSlot(36);
+            ItemStack stack = ((EntityPlayer) entity).inventory.getStackInSlot(36);
             if (stack == null)
                 entity.attackEntityFrom(DamageSource.inFire, 1);
         }

@@ -14,11 +14,12 @@ import net.minecraftforge.event.entity.player.ArrowLooseEvent;
 public class FusewoodBow extends NaturaBow
 {
 
-	public FusewoodBow(int id, int damage, String type)
-	{
-		super(id, damage, type);
-	}
-	public void onPlayerStoppedUsing(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer, int par4)
+    public FusewoodBow(int id, int damage, String type)
+    {
+        super(id, damage, type);
+    }
+
+    public void onPlayerStoppedUsing (ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer, int par4)
     {
         int j = this.getMaxItemUseDuration(par1ItemStack) - par4;
 
@@ -34,10 +35,10 @@ public class FusewoodBow extends NaturaBow
 
         if (flag || par3EntityPlayer.inventory.hasItem(Item.arrow.itemID))
         {
-            float f = (float)j / 20.0F;
+            float f = (float) j / 20.0F;
             f = (f * f + f * 2.0F) / 3.0F;
 
-            if ((double)f < 0.1D)
+            if ((double) f < 0.1D)
             {
                 return;
             }
@@ -59,7 +60,7 @@ public class FusewoodBow extends NaturaBow
 
             if (k > 0)
             {
-                entityarrow.setDamage(entityarrow.getDamage() + (double)k * 0.5D + 0.5D);
+                entityarrow.setDamage(entityarrow.getDamage() + (double) k * 0.5D + 0.5D);
             }
 
             int l = EnchantmentHelper.getEnchantmentLevel(Enchantment.punch.effectId, par1ItemStack);

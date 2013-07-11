@@ -13,11 +13,11 @@ public class FruitTreeBlock extends BlockLog
         super(id);
         this.setHardness(1.5F);
         this.setResistance(5F);
-        this.setStepSound(Block.soundWoodFootstep);     
+        this.setStepSound(Block.soundWoodFootstep);
         setBurnProperties(this.blockID, 5, 20);
         this.setCreativeTab(NaturaTab.tab);
     }
-    
+
     /*public int getIcon(int side, int metadata)
     {
     	int tex = blockIndexInTexture + (metadata % 4);
@@ -41,14 +41,14 @@ public class FruitTreeBlock extends BlockLog
     	
     	return tex;
     }*/
-    
-    public int idDropped(int par1, Random par2Random, int par3)
+
+    public int idDropped (int par1, Random par2Random, int par3)
     {
         return this.blockID;
     }
 
     @Override
-    public int damageDropped(int meta)
+    public int damageDropped (int meta)
     {
         return meta % 4;
     }
@@ -64,10 +64,10 @@ public class FruitTreeBlock extends BlockLog
     }
 
     @SideOnly(Side.CLIENT)
-	@Override
+    @Override
     public void getSubBlocks(int par1, CreativeTabs par2CreativeTabs, List par3List)
     {
-		for (int i = 0; i < 4; i++)
+    	for (int i = 0; i < 4; i++)
         par3List.add(new ItemStack(par1, 1, i));
     }*/
 }

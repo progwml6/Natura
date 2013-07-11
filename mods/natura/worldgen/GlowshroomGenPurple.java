@@ -186,11 +186,11 @@ public class GlowshroomGenPurple extends WorldGenerator
                             }
                         }
                     }
-                    
-                    this.setBlockAndMetadata(world, x-2, y+height-1, z-2, NContent.glowshroomPurple.blockID, 1);
-                    this.setBlockAndMetadata(world, x+2, y+height-1, z-2, NContent.glowshroomPurple.blockID, 3);
-                    this.setBlockAndMetadata(world, x-2, y+height-1, z+2, NContent.glowshroomPurple.blockID, 7);
-                    this.setBlockAndMetadata(world, x+2, y+height-1, z+2, NContent.glowshroomPurple.blockID, 9);
+
+                    this.setBlockAndMetadata(world, x - 2, y + height - 1, z - 2, NContent.glowshroomPurple.blockID, 1);
+                    this.setBlockAndMetadata(world, x + 2, y + height - 1, z - 2, NContent.glowshroomPurple.blockID, 3);
+                    this.setBlockAndMetadata(world, x - 2, y + height - 1, z + 2, NContent.glowshroomPurple.blockID, 7);
+                    this.setBlockAndMetadata(world, x + 2, y + height - 1, z + 2, NContent.glowshroomPurple.blockID, 9);
 
                     for (posY = 0; posY < height; ++posY)
                     {

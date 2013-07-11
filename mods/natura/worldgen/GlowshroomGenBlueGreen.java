@@ -10,19 +10,19 @@ import net.minecraft.world.gen.feature.WorldGenerator;
 public class GlowshroomGenBlueGreen extends WorldGenerator
 {
     int mushroomType = -1;
-    
+
     public GlowshroomGenBlueGreen(boolean flag)
     {
         super(flag);
     }
-    
+
     public GlowshroomGenBlueGreen(boolean flag, int type)
     {
         super(flag);
         mushroomType = type;
     }
 
-    public boolean generate(World world, Random random, int x, int y, int z)
+    public boolean generate (World world, Random random, int x, int y, int z)
     {
         int type;
 
@@ -63,7 +63,7 @@ public class GlowshroomGenBlueGreen extends WorldGenerator
                             posX = world.getBlockId(posY, blockID, l1);
 
                             Block block = Block.blocksList[posX];
-                            
+
                             if (posX != 0 && block != null && !block.isLeaves(world, posY, blockID, l1) && posX != NContent.glowshroom.blockID)
                             {
                                 flag = false;

@@ -26,7 +26,7 @@ public class NitroCreeper extends EntityCreeper
         this.texture = "/mods/natura/textures/mob/creeperunstable.png";
         this.isImmuneToFire = true;
     }
-    
+
     /*@Override
     public void initCreature ()
     {
@@ -101,7 +101,7 @@ public class NitroCreeper extends EntityCreeper
             int difficulty = worldObj.difficultySetting;
             int lengthBoost = 4 * (3 - difficulty);
             int powered = this.getPowered() ? 12 : 0;
-            
+
             if (this.timeSinceIgnited >= this.fuseTime + difficulty + powered)
             {
                 this.timeSinceIgnited = this.fuseTime;
@@ -150,7 +150,7 @@ public class NitroCreeper extends EntityCreeper
                 this.dropItem(j, 1);
             }
         }
-        
+
         if (this.getPowered())
         {
             if (j > 0)
@@ -159,7 +159,7 @@ public class NitroCreeper extends EntityCreeper
 
                 if (par2 > 0)
                 {
-                    k += this.rand.nextInt(par2*6 + 1);
+                    k += this.rand.nextInt(par2 * 6 + 1);
                 }
 
                 for (int l = 0; l < k; ++l)
@@ -167,7 +167,7 @@ public class NitroCreeper extends EntityCreeper
                     this.dropItem(j, 1);
                 }
             }
-            
+
             /*j = Block.tnt.blockID;
             int k = this.rand.nextInt(5) + 2;
 
@@ -182,16 +182,16 @@ public class NitroCreeper extends EntityCreeper
             }*/
         }
     }
-    
-    public boolean attackEntityFrom(DamageSource source, int damage)
+
+    public boolean attackEntityFrom (DamageSource source, int damage)
     {
-        if (source instanceof EntityDamageSource && ((EntityDamageSource)source).getEntity() instanceof EntityIronGolem)
+        if (source instanceof EntityDamageSource && ((EntityDamageSource) source).getEntity() instanceof EntityIronGolem)
         {
-            damage = 1000; 
+            damage = 1000;
         }
         return super.attackEntityFrom(source, damage);
     }
-    
+
     /*public boolean getCanSpawnHere()
     {
         int i = MathHelper.floor_double(this.posX);

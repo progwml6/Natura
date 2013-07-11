@@ -14,12 +14,9 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class NSaplingItem extends ItemBlock
 {
-	public static final String blockType[] =
-	{
-	    "redwood", "eucalyptus", "bush", "sakura", "ghost", "blood", "darkwood", "fusewood", "", "", "", "", "", "", "", "", ""
-	};
-	private int bID;
-	
+    public static final String blockType[] = { "redwood", "eucalyptus", "bush", "sakura", "ghost", "blood", "darkwood", "fusewood", "", "", "", "", "", "", "", "", "" };
+    private int bID;
+
     public NSaplingItem(int id)
     {
         super(id);
@@ -29,59 +26,59 @@ public class NSaplingItem extends ItemBlock
     }
 
     @Override
-    public int getMetadata(int md)
+    public int getMetadata (int md)
     {
         return md;
     }
 
-    public Icon getIconFromDamage(int i)
+    public Icon getIconFromDamage (int i)
     {
         return NContent.floraSapling.getIcon(0, i);
     }
-    
+
     @Override
-    public String getUnlocalizedName(ItemStack itemstack)
+    public String getUnlocalizedName (ItemStack itemstack)
     {
         return (new StringBuilder()).append("block.sapling.").append(blockType[itemstack.getItemDamage()]).toString();
     }
-    
+
     @Override
-	@SideOnly(Side.CLIENT)
+    @SideOnly(Side.CLIENT)
     public void addInformation (ItemStack stack, EntityPlayer player, List list, boolean par4)
-	{
-    	switch (stack.getItemDamage())
-    	{
-    	case 0: 
-    		list.add("Plant these in a 7x7");
-    		list.add("It takes days to grow");
-    		break;
-    	case 1:
-    		list.add("The pink wood");
-    		break;
-    	case 2:
-    		list.add("Ascended Glitch");
-    		break;
-    	case 3:
-    		list.add("Flowering Cherry");
-    		break;
-    	case 4:
-    		list.add("Pale as a ghost");
-    		break;
-    	case 5:
-    		list.add("Lava-resistant");
+    {
+        switch (stack.getItemDamage())
+        {
+        case 0:
+            list.add("Plant these in a 7x7");
+            list.add("It takes days to grow");
+            break;
+        case 1:
+            list.add("The pink wood");
+            break;
+        case 2:
+            list.add("Ascended Glitch");
+            break;
+        case 3:
+            list.add("Flowering Cherry");
+            break;
+        case 4:
+            list.add("Pale as a ghost");
+            break;
+        case 5:
+            list.add("Lava-resistant");
             list.add("Grows on the ceiling");
-    		break;
-    	case 6:
+            break;
+        case 6:
             list.add("Produces chalky apples");
             break;
         case 7:
             list.add("Explosive personality");
             break;
-    	}
-	}
-    
+        }
+    }
+
     @Override
-    public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side, float par8, float par9, float par10)
+    public boolean onItemUse (ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side, float par8, float par9, float par10)
     {
         int blockID = world.getBlockId(x, y, z);
 
@@ -122,18 +119,18 @@ public class NSaplingItem extends ItemBlock
                 ++x;
             }
         }
-        
+
         if (stack.getItemDamage() == 5)
         {
-        	Block block = Block.blocksList[world.getBlockId(x, y+1, z)];
-        	if (block == null || block.isAirBlock(world, x, y+1, z))
-        		return false;
+            Block block = Block.blocksList[world.getBlockId(x, y + 1, z)];
+            if (block == null || block.isAirBlock(world, x, y + 1, z))
+                return false;
         }
         else
         {
-        	Block block = Block.blocksList[world.getBlockId(x, y-1, z)];
-        	if (block == null || block.isAirBlock(world, x, y-1, z))
-        		return false;
+            Block block = Block.blocksList[world.getBlockId(x, y - 1, z)];
+            if (block == null || block.isAirBlock(world, x, y - 1, z))
+                return false;
         }
 
         if (stack.stackSize == 0)
@@ -156,7 +153,8 @@ public class NSaplingItem extends ItemBlock
 
             if (placeBlockAt(stack, player, world, x, y, z, side, par8, par9, par10, k1))
             {
-                world.playSoundEffect((double)((float)x + 0.5F), (double)((float)y + 0.5F), (double)((float)z + 0.5F), block.stepSound.getPlaceSound(), (block.stepSound.getVolume() + 1.0F) / 2.0F, block.stepSound.getPitch() * 0.8F);
+                world.playSoundEffect((double) ((float) x + 0.5F), (double) ((float) y + 0.5F), (double) ((float) z + 0.5F), block.stepSound.getPlaceSound(),
+                        (block.stepSound.getVolume() + 1.0F) / 2.0F, block.stepSound.getPitch() * 0.8F);
                 --stack.stackSize;
             }
 

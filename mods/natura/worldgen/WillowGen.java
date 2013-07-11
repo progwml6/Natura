@@ -12,13 +12,13 @@ import net.minecraft.world.gen.feature.WorldGenerator;
 public class WillowGen extends WorldGenerator
 {
     public final boolean seekHeight;
-    
+
     public WillowGen(boolean notify)
     {
         super(notify);
         seekHeight = !notify;
     }
-    
+
     int findGround (World world, int x, int y, int z)
     {
         int ret = -1;
@@ -35,8 +35,8 @@ public class WillowGen extends WorldGenerator
         } while (height > PHNatura.seaLevel);
         return ret;
     }
-    
-    public boolean generate(World world, Random par2Random, int x, int y, int z)
+
+    public boolean generate (World world, Random par2Random, int x, int y, int z)
     {
         if (seekHeight)
         {
@@ -131,8 +131,7 @@ public class WillowGen extends WorldGenerator
 
                                 Block block = Block.blocksList[world.getBlockId(l1, j2, k2)];
 
-                                if ((Math.abs(i2) != k1 || Math.abs(l2) != k1 || par2Random.nextInt(2) != 0 && j1 != 0) && 
-                                    (block == null || block.canBeReplacedByLeaves(world, l1, j2, k2)))
+                                if ((Math.abs(i2) != k1 || Math.abs(l2) != k1 || par2Random.nextInt(2) != 0 && j1 != 0) && (block == null || block.canBeReplacedByLeaves(world, l1, j2, k2)))
                                 {
                                     this.setBlockAndMetadata(world, l1, j2, k2, NContent.floraLeavesNoColor.blockID, 3);
                                 }
@@ -205,7 +204,7 @@ public class WillowGen extends WorldGenerator
     /**
      * Generates vines at the given position until it hits a block.
      */
-    private void generateVines(World par1World, int par2, int par3, int par4, int par5)
+    private void generateVines (World par1World, int par2, int par3, int par4, int par5)
     {
         this.setBlockAndMetadata(par1World, par2, par3, par4, NContent.floraLeavesNoColor.blockID, par5);
         int i1 = 4;

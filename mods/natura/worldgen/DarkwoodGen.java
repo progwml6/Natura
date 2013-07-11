@@ -16,7 +16,7 @@ public class DarkwoodGen extends WorldGenerator
 
     /** The metadata value of the wood to use in tree generation. */
     private final int metaWood;
-    
+
     private final boolean seekGround;
 
     public DarkwoodGen(boolean par1)
@@ -31,7 +31,7 @@ public class DarkwoodGen extends WorldGenerator
         this.metaWood = par3;
         seekGround = !par1;
     }
-    
+
     int findGround (World world, int x, int y, int z)
     {
         boolean foundGround = false;
@@ -46,13 +46,13 @@ public class DarkwoodGen extends WorldGenerator
         return height + 1;
     }
 
-    public boolean generate(World world, Random random, int xPos, int yPos, int zPos)
+    public boolean generate (World world, Random random, int xPos, int yPos, int zPos)
     {
         int treeHeight = random.nextInt(3) + this.minTreeHeight;
         if (treeHeight < 4)
             treeHeight = 4;
         boolean flag = true;
-        
+
         if (this.seekGround)
             yPos = findGround(world, xPos, yPos, zPos);
 
@@ -87,12 +87,8 @@ public class DarkwoodGen extends WorldGenerator
 
                             Block block = Block.blocksList[k1];
 
-                            if (k1 != 0 &&
-                               !block.isLeaves(world, l1, i1, j1) &&
-                                k1 != Block.netherrack.blockID &&
-                                k1 != Block.slowSand.blockID &&
-                                k1 != NContent.taintedSoil.blockID &&
-                               !block.isWood(world, l1, i1, j1))
+                            if (k1 != 0 && !block.isLeaves(world, l1, i1, j1) && k1 != Block.netherrack.blockID && k1 != Block.slowSand.blockID && k1 != NContent.taintedSoil.blockID
+                                    && !block.isWood(world, l1, i1, j1))
                             {
                                 flag = false;
                             }
@@ -113,7 +109,7 @@ public class DarkwoodGen extends WorldGenerator
             {
                 i1 = world.getBlockId(xPos, yPos - 1, zPos);
                 Block soil = Block.blocksList[i1];
-                boolean isSoil = (soil != null && soil.canSustainPlant(world, xPos, yPos - 1, zPos, ForgeDirection.UP, (NSaplingBlock)NContent.floraSapling)) || soil == Block.netherrack;
+                boolean isSoil = (soil != null && soil.canSustainPlant(world, xPos, yPos - 1, zPos, ForgeDirection.UP, (NSaplingBlock) NContent.floraSapling)) || soil == Block.netherrack;
 
                 if (isSoil && yPos < 256 - treeHeight - 1)
                 {
@@ -161,7 +157,6 @@ public class DarkwoodGen extends WorldGenerator
                         {
                             this.setBlockAndMetadata(world, xPos, yPos + j1, zPos, NContent.darkTree.blockID, this.metaWood);
 
-                            
                         }
                     }
 

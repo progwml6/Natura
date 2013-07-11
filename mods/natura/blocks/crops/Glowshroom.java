@@ -20,14 +20,15 @@ public class Glowshroom extends BlockMushroom
 {
     Icon[] icons;
     String[] textureNames = { "green", "purple", "blue" };
+
     public Glowshroom(int par1)
     {
         super(par1, "");
         this.setStepSound(soundGrassFootstep);
         this.setCreativeTab(NaturaTab.tab);
     }
-    
-    public void updateTick(World world, int x, int y, int z, Random random)
+
+    public void updateTick (World world, int x, int y, int z, Random random)
     {
         if (random.nextInt(25) == 0)
         {
@@ -81,12 +82,12 @@ public class Glowshroom extends BlockMushroom
             }
         }
     }
-    
-    public boolean fertilizeMushroom(World world, int x, int y, int z, Random random)
+
+    public boolean fertilizeMushroom (World world, int x, int y, int z, Random random)
     {
         if (world.isRemote)
             return false;
-        
+
         int meta = world.getBlockMetadata(x, y, z);
         world.setBlockToAir(x, y, z);
         WorldGenerator obj = null;
@@ -123,19 +124,19 @@ public class Glowshroom extends BlockMushroom
             return false;
         }
     }
-    
+
     @Override
     @SideOnly(Side.CLIENT)
-    public void registerIcons(IconRegister iconRegister)
+    public void registerIcons (IconRegister iconRegister)
     {
         this.icons = new Icon[textureNames.length];
 
         for (int i = 0; i < this.icons.length; ++i)
         {
-            this.icons[i] = iconRegister.registerIcon("natura:mushroom_"+textureNames[i]);
+            this.icons[i] = iconRegister.registerIcon("natura:mushroom_" + textureNames[i]);
         }
     }
-    
+
     @Override
     @SideOnly(Side.CLIENT)
     public Icon getIcon (int side, int meta)
@@ -148,12 +149,12 @@ public class Glowshroom extends BlockMushroom
     {
         return meta;
     }
-    
+
     @SideOnly(Side.CLIENT)
     @Override
-    public void getSubBlocks(int par1, CreativeTabs par2CreativeTabs, List par3List)
+    public void getSubBlocks (int par1, CreativeTabs par2CreativeTabs, List par3List)
     {
         for (int i = 0; i < icons.length; i++)
-        par3List.add(new ItemStack(par1, 1, i));
+            par3List.add(new ItemStack(par1, 1, i));
     }
 }

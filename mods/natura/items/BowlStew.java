@@ -60,12 +60,12 @@ public class BowlStew extends ItemFood
         }
     }
 
-    public ItemStack onEaten(ItemStack stack, World world, EntityPlayer player)
+    public ItemStack onEaten (ItemStack stack, World world, EntityPlayer player)
     {
         player.getFoodStats().addStats(this);
         world.playSoundAtEntity(player, "random.burp", 0.5F, world.rand.nextFloat() * 0.1F + 0.9F);
         this.onFoodEaten(stack, world, player);
-        
+
         if (!player.capabilities.isCreativeMode)
         {
             --stack.stackSize;
@@ -74,60 +74,60 @@ public class BowlStew extends ItemFood
                 int stackDamage = stack.getItemDamage() % 14;
                 if (stackDamage == 0)
                     return new ItemStack(Item.bowlEmpty);
-                
+
                 return new ItemStack(NContent.bowlEmpty, 1, stackDamage - 1);
             }
-            
+
             ItemStack returnStack = new ItemStack(Item.bowlEmpty);
             int stackDamage = stack.getItemDamage() % 14;
             if (stackDamage != 0)
                 returnStack = new ItemStack(NContent.bowlEmpty, 1, stackDamage - 1);
-            
+
             player.inventory.addItemStackToInventory(returnStack);
         }
 
         return stack;
     }
-    
-    protected void onFoodEaten(ItemStack stack, World world, EntityPlayer player)
+
+    protected void onFoodEaten (ItemStack stack, World world, EntityPlayer player)
     {
         if (!world.isRemote && stack.getItemDamage() / 14 == 1)
         {
             int duration = 0;
             PotionEffect potion;
-            
+
             potion = player.getActivePotionEffect(Potion.nightVision);
             if (potion != null)
                 duration = potion.duration;
             else
                 duration = 0;
-            player.addPotionEffect(new PotionEffect(Potion.nightVision.id, duration + 45*25, 0));
-            
+            player.addPotionEffect(new PotionEffect(Potion.nightVision.id, duration + 45 * 25, 0));
+
             potion = player.getActivePotionEffect(Potion.weakness);
             if (potion != null)
                 duration = potion.duration;
             else
                 duration = 0;
-            player.addPotionEffect(new PotionEffect(Potion.weakness.id, duration + 16*25, 0));
-            
+            player.addPotionEffect(new PotionEffect(Potion.weakness.id, duration + 16 * 25, 0));
+
             potion = player.getActivePotionEffect(Potion.weakness);
             if (potion != null)
                 duration = potion.duration;
             else
                 duration = 0;
-            player.addPotionEffect(new PotionEffect(Potion.digSlowdown.id, duration + 8*25, 0));
+            player.addPotionEffect(new PotionEffect(Potion.digSlowdown.id, duration + 8 * 25, 0));
         }
     }
-    
-    public String getUnlocalizedName(ItemStack stack)
+
+    public String getUnlocalizedName (ItemStack stack)
     {
-        int arr = MathHelper.clamp_int(stack.getItemDamage()/14, 0, textureNames.length);
-        return "item.bowl." +textureNames[arr];
+        int arr = MathHelper.clamp_int(stack.getItemDamage() / 14, 0, textureNames.length);
+        return "item.bowl." + textureNames[arr];
     }
-    
+
     @SideOnly(Side.CLIENT)
     @Override
-    public void getSubItems(int par1, CreativeTabs par2CreativeTabs, List par3List)
+    public void getSubItems (int par1, CreativeTabs par2CreativeTabs, List par3List)
     {
         for (int iter = 1; iter < textureNames.length; iter++)
         {

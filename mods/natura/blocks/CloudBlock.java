@@ -26,31 +26,31 @@ public class CloudBlock extends NBlock
     }
 
     @Override
-    public void onEntityCollidedWithBlock(World world, int x, int y, int z, Entity entity)
+    public void onEntityCollidedWithBlock (World world, int x, int y, int z, Entity entity)
     {
-    	int meta = world.getBlockMetadata(x, y, z);
-    	if (meta == 3 && entity instanceof EntityArrow && !world.isRemote)
+        int meta = world.getBlockMetadata(x, y, z);
+        if (meta == 3 && entity instanceof EntityArrow && !world.isRemote)
         {
-            EntityArrow entityarrow = (EntityArrow)entity;
+            EntityArrow entityarrow = (EntityArrow) entity;
 
             if (entityarrow.isBurning())
             {
-                this.explode(world, x, y, z, 1, entityarrow.shootingEntity instanceof EntityLiving ? (EntityLiving)entityarrow.shootingEntity : null);
+                this.explode(world, x, y, z, 1, entityarrow.shootingEntity instanceof EntityLiving ? (EntityLiving) entityarrow.shootingEntity : null);
                 world.setBlockToAir(x, y, z);
                 return;
             }
         }
-    	
+
         if (entity.motionY < 0.0D)
         {
             entity.motionY *= 0.005D;
         }
         entity.fallDistance = 0.0F;
     }
-    
-    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int par6, float par7, float par8, float par9)
+
+    public boolean onBlockActivated (World world, int x, int y, int z, EntityPlayer player, int par6, float par7, float par8, float par9)
     {
-    	int meta = world.getBlockMetadata(x, y, z);
+        int meta = world.getBlockMetadata(x, y, z);
         if (meta == 3 && player.getCurrentEquippedItem() != null && player.getCurrentEquippedItem().itemID == Item.flintAndSteel.itemID)
         {
             world.setBlockToAir(x, y, z);
@@ -59,34 +59,34 @@ public class CloudBlock extends NBlock
         }
         return super.onBlockActivated(world, x, y, z, player, par6, par7, par8, par9);
     }
-    
-    public void onBlockDestroyedByExplosion(World world, int x, int y, int z, Explosion par5Explosion) 
+
+    public void onBlockDestroyedByExplosion (World world, int x, int y, int z, Explosion par5Explosion)
     {
-    	/*int meta = world.getBlockMetadata(x, y, z);
+        /*int meta = world.getBlockMetadata(x, y, z);
         if (meta == 3)
         {
             this.explode(world, x, y, z, 1, null);
         }*/
     }
-    
-    public void explode(World world, int x, int y, int z, int size, EntityLiving living)
+
+    public void explode (World world, int x, int y, int z, int size, EntityLiving living)
     {
         world.createExplosion(living, x, y, z, size, true);
     }
-    
-    public boolean canDropFromExplosion(Explosion par1Explosion)
+
+    public boolean canDropFromExplosion (Explosion par1Explosion)
     {
         return false;
     }
 
     @Override
-    public int getRenderBlockPass()
+    public int getRenderBlockPass ()
     {
         return 1;
     }
 
     @Override
-    public boolean shouldSideBeRendered(IBlockAccess iblockaccess, int x, int y, int z, int side)
+    public boolean shouldSideBeRendered (IBlockAccess iblockaccess, int x, int y, int z, int side)
     {
         int blockID = iblockaccess.getBlockId(x, y, z);
         if (blockID == NContent.cloud.blockID)
@@ -100,25 +100,25 @@ public class CloudBlock extends NBlock
     }
 
     @Override
-    public boolean renderAsNormalBlock()
+    public boolean renderAsNormalBlock ()
     {
         return false;
     }
 
     @Override
-    public boolean isOpaqueCube()
+    public boolean isOpaqueCube ()
     {
         return false;
     }
 
     @Override
-    public int damageDropped(int meta)
+    public int damageDropped (int meta)
     {
         return meta;
     }
 
     @Override
-    public boolean isBlockSolid(IBlockAccess iblockaccess, int x, int y, int z, int l)
+    public boolean isBlockSolid (IBlockAccess iblockaccess, int x, int y, int z, int l)
     {
         int blockID = iblockaccess.getBlockId(x, y, z);
         if (blockID == NContent.cloud.blockID)
@@ -132,7 +132,7 @@ public class CloudBlock extends NBlock
     }
 
     @Override
-    public AxisAlignedBB getCollisionBoundingBoxFromPool(World world, int x, int y, int z)
+    public AxisAlignedBB getCollisionBoundingBoxFromPool (World world, int x, int y, int z)
     {
         if (world.getBlockId(x, y - 1, z) == NContent.cloud.blockID)
         {
@@ -140,9 +140,9 @@ public class CloudBlock extends NBlock
         }
         else
         {
-            return AxisAlignedBB.getBoundingBox(x, y, z, (double)x + 1.0D, (double)y + 0.0625D, (double)z + 1.0D);
+            return AxisAlignedBB.getBoundingBox(x, y, z, (double) x + 1.0D, (double) y + 0.0625D, (double) z + 1.0D);
         }
     }
-    
+
     /* Explosions! */
 }

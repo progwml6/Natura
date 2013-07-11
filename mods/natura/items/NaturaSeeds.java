@@ -18,11 +18,11 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class NaturaSeeds extends ItemSeeds
 {
-	public String[] textureNames = new String[] { "barley", "cotton" };
-	public Icon[] icons;
+    public String[] textureNames = new String[] { "barley", "cotton" };
+    public Icon[] icons;
 
     public int blockType;
-	
+
     public NaturaSeeds(int id, int cropID, int soilID)
     {
         super(id, cropID, soilID);
@@ -30,34 +30,34 @@ public class NaturaSeeds extends ItemSeeds
         this.setCreativeTab(NaturaTab.tab);
         this.setHasSubtypes(true);
     }
-    
+
     @SideOnly(Side.CLIENT)
-	@Override
-    public void registerIcons(IconRegister iconRegister)
+    @Override
+    public void registerIcons (IconRegister iconRegister)
     {
-		this.icons = new Icon[textureNames.length];
+        this.icons = new Icon[textureNames.length];
 
         for (int i = 0; i < this.icons.length; ++i)
         {
-            this.icons[i] = iconRegister.registerIcon("natura:"+textureNames[i]+"_seeds");
+            this.icons[i] = iconRegister.registerIcon("natura:" + textureNames[i] + "_seeds");
         }
     }
-    
-    public void getSubItems(int id, CreativeTabs tab, List list)
+
+    public void getSubItems (int id, CreativeTabs tab, List list)
     {
-		for (int i = 0; i < textureNames.length; i++)
-			list.add(new ItemStack(id, 1, i));
+        for (int i = 0; i < textureNames.length; i++)
+            list.add(new ItemStack(id, 1, i));
     }
-    
+
     @SideOnly(Side.CLIENT)
-	@Override
-	public Icon getIconFromDamage(int meta)
-	{
-		return icons[meta];
-	}
-    
     @Override
-    public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int xPos, int yPos, int zPos, int side, float xClick, float yClick, float zClick)
+    public Icon getIconFromDamage (int meta)
+    {
+        return icons[meta];
+    }
+
+    @Override
+    public boolean onItemUse (ItemStack stack, EntityPlayer player, World world, int xPos, int yPos, int zPos, int side, float xClick, float yClick, float zClick)
     {
         if (side != 1)
         {
@@ -70,7 +70,7 @@ public class NaturaSeeds extends ItemSeeds
 
             if (soil != null && soil.canSustainPlant(world, xPos, yPos, zPos, ForgeDirection.UP, this) && world.isAirBlock(xPos, yPos + 1, zPos))
             {
-                world.setBlock(xPos, yPos + 1, zPos, this.blockType, stack.getItemDamage()*4, 3);
+                world.setBlock(xPos, yPos + 1, zPos, this.blockType, stack.getItemDamage() * 4, 3);
                 --stack.stackSize;
                 return true;
             }
@@ -84,25 +84,25 @@ public class NaturaSeeds extends ItemSeeds
             return false;
         }
     }
-    
-    public String getUnlocalizedName(ItemStack stack)
-	{
-		int arr = MathHelper.clamp_int(stack.getItemDamage(), 0, textureNames.length);
-		return "item." +textureNames[arr]+".seed";
-	}
-    
+
+    public String getUnlocalizedName (ItemStack stack)
+    {
+        int arr = MathHelper.clamp_int(stack.getItemDamage(), 0, textureNames.length);
+        return "item." + textureNames[arr] + ".seed";
+    }
+
     @Override
-	@SideOnly(Side.CLIENT)
-	public void addInformation (ItemStack stack, EntityPlayer player, List list, boolean par4)
-	{
-    	switch (stack.getItemDamage())
-    	{
-    	case 0: 
-    		list.add("Similar to wheat, it grows in the wild");
-    		break;
-    	case 1: 
-    		list.add("A great source of string and wool");
-    		break;
-    	}
-	}
+    @SideOnly(Side.CLIENT)
+    public void addInformation (ItemStack stack, EntityPlayer player, List list, boolean par4)
+    {
+        switch (stack.getItemDamage())
+        {
+        case 0:
+            list.add("Similar to wheat, it grows in the wild");
+            break;
+        case 1:
+            list.add("A great source of string and wool");
+            break;
+        }
+    }
 }

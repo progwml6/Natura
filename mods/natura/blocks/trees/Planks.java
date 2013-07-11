@@ -18,7 +18,8 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class Planks extends Block
 {
     public Icon[] icons;
-    public static String[] textureNames = new String[] { "eucalyptus", "sakura", "ghostwood", "redwood", "bloodwood", "hopseed", "maple", "silverbell", "purpleheart", "tiger", "willow", "darkwood", "fusewood" };
+    public static String[] textureNames = new String[] { "eucalyptus", "sakura", "ghostwood", "redwood", "bloodwood", "hopseed", "maple", "silverbell", "purpleheart", "tiger", "willow", "darkwood",
+            "fusewood" };
 
     public Planks(int id)
     {
@@ -47,7 +48,7 @@ public class Planks extends Block
             this.icons[i] = iconRegister.registerIcon("natura:" + textureNames[i] + "_planks");
         }
     }
-    
+
     /*public boolean renderAsNormalBlock()
     {
         return false;

@@ -449,7 +449,7 @@ public class WhiteTreeGen extends WorldGenerator
         int[] var2 = new int[] { this.basePos[0], this.basePos[1] + this.heightLimit - 1, this.basePos[2] };
         int blockID = world.getBlockId(this.basePos[0], this.basePos[1] - 1, this.basePos[2]);
 
-        if (blockID != Block.netherrack.blockID && blockID != Block.slowSand.blockID && blockID != NContent.taintedSoil.blockID )
+        if (blockID != Block.netherrack.blockID && blockID != Block.slowSand.blockID && blockID != NContent.taintedSoil.blockID)
         {
             return false;
         }

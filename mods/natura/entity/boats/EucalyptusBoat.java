@@ -1,4 +1,5 @@
 package mods.natura.entity.boats;
+
 import java.util.List;
 
 import mods.natura.common.NContent;
@@ -30,7 +31,7 @@ public class EucalyptusBoat extends Entity
     {
         this(world, 0);
     }
-    
+
     public EucalyptusBoat(World world, int metadata)
     {
         super(world);
@@ -40,29 +41,29 @@ public class EucalyptusBoat extends Entity
         md = metadata;
     }
 
-    protected boolean canTriggerWalking()
+    protected boolean canTriggerWalking ()
     {
         return false;
     }
 
-    protected void entityInit()
+    protected void entityInit ()
     {
         dataWatcher.addObject(17, new Integer(0));
         dataWatcher.addObject(18, new Integer(1));
         dataWatcher.addObject(19, new Integer(0));
     }
 
-    public AxisAlignedBB getCollisionBox(Entity entity)
+    public AxisAlignedBB getCollisionBox (Entity entity)
     {
         return entity.boundingBox;
     }
 
-    public AxisAlignedBB getBoundingBox()
+    public AxisAlignedBB getBoundingBox ()
     {
         return boundingBox;
     }
 
-    public boolean canBePushed()
+    public boolean canBePushed ()
     {
         return true;
     }
@@ -70,7 +71,7 @@ public class EucalyptusBoat extends Entity
     public EucalyptusBoat(World world, double d, double d1, double d2)
     {
         this(world);
-        setPosition(d, d1 + (double)yOffset, d2);
+        setPosition(d, d1 + (double) yOffset, d2);
         motionX = 0.0D;
         motionY = 0.0D;
         motionZ = 0.0D;
@@ -79,12 +80,12 @@ public class EucalyptusBoat extends Entity
         prevPosZ = d2;
     }
 
-    public double getMountedYOffset()
+    public double getMountedYOffset ()
     {
-        return (double)height * 0.0D - 0.30000001192092896D;
+        return (double) height * 0.0D - 0.30000001192092896D;
     }
 
-    public boolean attackEntityFrom(DamageSource damagesource, int i)
+    public boolean attackEntityFrom (DamageSource damagesource, int i)
     {
         if (worldObj.isRemote || isDead)
         {
@@ -102,7 +103,7 @@ public class EucalyptusBoat extends Entity
             }
             for (int j = 0; j < 5; j++)
             {
-            	entityDropItem(new ItemStack(NContent.tree, 1, 8), 0F);
+                entityDropItem(new ItemStack(NContent.tree, 1, 8), 0F);
             }
 
             setDead();
@@ -110,20 +111,19 @@ public class EucalyptusBoat extends Entity
         return true;
     }
 
-    public void performHurtAnimation()
+    public void performHurtAnimation ()
     {
         setForwardDirection(-getForwardDirection());
         setTimeSinceHit(10);
         setDamageTaken(getDamageTaken() * 11);
     }
 
-    public boolean canBeCollidedWith()
+    public boolean canBeCollidedWith ()
     {
         return !isDead;
     }
 
-    public void setPositionAndRotation2(double d, double d1, double d2, float f,
-            float f1, int i)
+    public void setPositionAndRotation2 (double d, double d1, double d2, float f, float f1, int i)
     {
         boatX = d;
         boatY = d1;
@@ -136,14 +136,14 @@ public class EucalyptusBoat extends Entity
         motionZ = velocityZ;
     }
 
-    public void setVelocity(double d, double d1, double d2)
+    public void setVelocity (double d, double d1, double d2)
     {
         velocityX = motionX = d;
         velocityY = motionY = d1;
         velocityZ = motionZ = d2;
     }
 
-    public void onUpdate()
+    public void onUpdate ()
     {
         super.onUpdate();
         if (getTimeSinceHit() > 0)
@@ -161,24 +161,24 @@ public class EucalyptusBoat extends Entity
         double d = 0.0D;
         for (int j = 0; j < i; j++)
         {
-            double d2 = (boundingBox.minY + ((boundingBox.maxY - boundingBox.minY) * (double)(j + 0)) / (double)i) - 0.125D;
-            double d8 = (boundingBox.minY + ((boundingBox.maxY - boundingBox.minY) * (double)(j + 1)) / (double)i) - 0.125D;
+            double d2 = (boundingBox.minY + ((boundingBox.maxY - boundingBox.minY) * (double) (j + 0)) / (double) i) - 0.125D;
+            double d8 = (boundingBox.minY + ((boundingBox.maxY - boundingBox.minY) * (double) (j + 1)) / (double) i) - 0.125D;
             AxisAlignedBB axisalignedbb = AxisAlignedBB.getBoundingBox(boundingBox.minX, d2, boundingBox.minZ, boundingBox.maxX, d8, boundingBox.maxZ);
             if (worldObj.isAABBInMaterial(axisalignedbb, Material.water))
             {
-                d += 1.0D / (double)i;
+                d += 1.0D / (double) i;
             }
         }
 
         double d1 = Math.sqrt(motionX * motionX + motionZ * motionZ);
         if (d1 > 0.14999999999999999D)
         {
-            double d3 = Math.cos(((double)rotationYaw * 3.1415926535897931D) / 180D);
-            double d9 = Math.sin(((double)rotationYaw * 3.1415926535897931D) / 180D);
-            for (int i1 = 0; (double)i1 < 1.0D + d1 * 60D; i1++)
+            double d3 = Math.cos(((double) rotationYaw * 3.1415926535897931D) / 180D);
+            double d9 = Math.sin(((double) rotationYaw * 3.1415926535897931D) / 180D);
+            for (int i1 = 0; (double) i1 < 1.0D + d1 * 60D; i1++)
             {
                 double d16 = rand.nextFloat() * 2.0F - 1.0F;
-                double d19 = (double)(rand.nextInt(2) * 2 - 1) * 0.69999999999999996D;
+                double d19 = (double) (rand.nextInt(2) * 2 - 1) * 0.69999999999999996D;
                 if (rand.nextBoolean())
                 {
                     double d21 = (posX - d3 * d16 * 0.80000000000000004D) + d9 * d19;
@@ -197,14 +197,18 @@ public class EucalyptusBoat extends Entity
         {
             if (boatPosRotationIncrements > 0)
             {
-                double d4 = posX + (boatX - posX) / (double)boatPosRotationIncrements;
-                double d10 = posY + (boatY - posY) / (double)boatPosRotationIncrements;
-                double d13 = posZ + (boatZ - posZ) / (double)boatPosRotationIncrements;
+                double d4 = posX + (boatX - posX) / (double) boatPosRotationIncrements;
+                double d10 = posY + (boatY - posY) / (double) boatPosRotationIncrements;
+                double d13 = posZ + (boatZ - posZ) / (double) boatPosRotationIncrements;
                 double d17;
-                for (d17 = boatYaw - (double)rotationYaw; d17 < -180D; d17 += 360D) { }
-                for (; d17 >= 180D; d17 -= 360D) { }
-                rotationYaw += d17 / (double)boatPosRotationIncrements;
-                rotationPitch += (boatPitch - (double)rotationPitch) / (double)boatPosRotationIncrements;
+                for (d17 = boatYaw - (double) rotationYaw; d17 < -180D; d17 += 360D)
+                {
+                }
+                for (; d17 >= 180D; d17 -= 360D)
+                {
+                }
+                rotationYaw += d17 / (double) boatPosRotationIncrements;
+                rotationPitch += (boatPitch - (double) rotationPitch) / (double) boatPosRotationIncrements;
                 boatPosRotationIncrements--;
                 setPosition(d4, d10, d13);
                 setRotation(rotationYaw, rotationPitch);
@@ -273,10 +277,10 @@ public class EucalyptusBoat extends Entity
         {
             if (!worldObj.isRemote)
             {
-            	setDead();
+                setDead();
                 for (int j = 0; j < 5; j++)
                 {
-                	entityDropItem(new ItemStack(NContent.tree, 1, 8), 0F);
+                    entityDropItem(new ItemStack(NContent.tree, 1, 8), 0F);
                 }
             }
         }
@@ -292,11 +296,15 @@ public class EucalyptusBoat extends Entity
         double d18 = prevPosZ - posZ;
         if (d15 * d15 + d18 * d18 > 0.001D)
         {
-            d12 = (float)((Math.atan2(d18, d15) * 180D) / 3.1415926535897931D);
+            d12 = (float) ((Math.atan2(d18, d15) * 180D) / 3.1415926535897931D);
         }
         double d20;
-        for (d20 = d12 - (double)rotationYaw; d20 >= 180D; d20 -= 360D) { }
-        for (; d20 < -180D; d20 += 360D) { }
+        for (d20 = d12 - (double) rotationYaw; d20 >= 180D; d20 -= 360D)
+        {
+        }
+        for (; d20 < -180D; d20 += 360D)
+        {
+        }
         if (d20 > 20D)
         {
             d20 = 20D;
@@ -312,7 +320,7 @@ public class EucalyptusBoat extends Entity
         {
             for (int j1 = 0; j1 < list.size(); j1++)
             {
-                Entity entity = (Entity)list.get(j1);
+                Entity entity = (Entity) list.get(j1);
                 if (entity != riddenByEntity && entity.canBePushed() && (entity instanceof EucalyptusBoat))
                 {
                     entity.applyEntityCollision(this);
@@ -321,9 +329,9 @@ public class EucalyptusBoat extends Entity
         }
         for (int k1 = 0; k1 < 4; k1++)
         {
-            int l1 = MathHelper.floor_double(posX + ((double)(k1 % 2) - 0.5D) * 0.80000000000000004D);
+            int l1 = MathHelper.floor_double(posX + ((double) (k1 % 2) - 0.5D) * 0.80000000000000004D);
             int i2 = MathHelper.floor_double(posY);
-            int j2 = MathHelper.floor_double(posZ + ((double)(k1 / 2) - 0.5D) * 0.80000000000000004D);
+            int j2 = MathHelper.floor_double(posZ + ((double) (k1 / 2) - 0.5D) * 0.80000000000000004D);
             if (worldObj.getBlockId(l1, i2, j2) == Block.snow.blockID)
             {
                 worldObj.setBlockToAir(l1, i2, j2);
@@ -336,7 +344,7 @@ public class EucalyptusBoat extends Entity
         }
     }
 
-    public void updateRiderPosition()
+    public void updateRiderPosition ()
     {
         if (riddenByEntity == null)
         {
@@ -344,27 +352,27 @@ public class EucalyptusBoat extends Entity
         }
         else
         {
-            double d = Math.cos(((double)rotationYaw * 3.1415926535897931D) / 180D) * 0.40000000000000002D;
-            double d1 = Math.sin(((double)rotationYaw * 3.1415926535897931D) / 180D) * 0.40000000000000002D;
+            double d = Math.cos(((double) rotationYaw * 3.1415926535897931D) / 180D) * 0.40000000000000002D;
+            double d1 = Math.sin(((double) rotationYaw * 3.1415926535897931D) / 180D) * 0.40000000000000002D;
             riddenByEntity.setPosition(posX + d, posY + getMountedYOffset() + riddenByEntity.getYOffset(), posZ + d1);
             return;
         }
     }
 
-    protected void writeEntityToNBT(NBTTagCompound nbttagcompound)
+    protected void writeEntityToNBT (NBTTagCompound nbttagcompound)
     {
     }
 
-    protected void readEntityFromNBT(NBTTagCompound nbttagcompound)
+    protected void readEntityFromNBT (NBTTagCompound nbttagcompound)
     {
     }
 
-    public float getShadowSize()
+    public float getShadowSize ()
     {
         return 0.0F;
     }
 
-    public boolean interact(EntityPlayer entityplayer)
+    public boolean interact (EntityPlayer entityplayer)
     {
         if (riddenByEntity != null && (riddenByEntity instanceof EntityPlayer) && riddenByEntity != entityplayer)
         {
@@ -377,32 +385,32 @@ public class EucalyptusBoat extends Entity
         return true;
     }
 
-    public void setDamageTaken(int i)
+    public void setDamageTaken (int i)
     {
         dataWatcher.updateObject(19, Integer.valueOf(i));
     }
 
-    public int getDamageTaken()
+    public int getDamageTaken ()
     {
         return dataWatcher.getWatchableObjectInt(19);
     }
 
-    public void setTimeSinceHit(int i)
+    public void setTimeSinceHit (int i)
     {
         dataWatcher.updateObject(17, Integer.valueOf(i));
     }
 
-    public int getTimeSinceHit()
+    public int getTimeSinceHit ()
     {
         return dataWatcher.getWatchableObjectInt(17);
     }
 
-    public void setForwardDirection(int i)
+    public void setForwardDirection (int i)
     {
         dataWatcher.updateObject(18, Integer.valueOf(i));
     }
 
-    public int getForwardDirection()
+    public int getForwardDirection ()
     {
         return dataWatcher.getWatchableObjectInt(18);
     }

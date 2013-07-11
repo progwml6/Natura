@@ -41,8 +41,8 @@ public class AlternateFence extends BlockFence
     {
         return meta;
     }
-    
-    public static boolean isIdAFence(int par0)
+
+    public static boolean isIdAFence (int par0)
     {
         return true;
     }
@@ -54,13 +54,13 @@ public class AlternateFence extends BlockFence
         for (int i = 0; i < NContent.woodTextureNames.length; i++)
             list.add(new ItemStack(par1, 1, i));
     }
-    
-    public boolean canPlaceTorchOnTop(World world, int x, int y, int z)
+
+    public boolean canPlaceTorchOnTop (World world, int x, int y, int z)
     {
         return true;
     }
-    
-    public int getRenderType()
+
+    public int getRenderType ()
     {
         return FenceRender.model;
     }

@@ -13,50 +13,50 @@ import cpw.mods.fml.client.registry.RenderingRegistry;
 
 public class FenceRender implements ISimpleBlockRenderingHandler
 {
-	public static int model = RenderingRegistry.getNextAvailableRenderId();
+    public static int model = RenderingRegistry.getNextAvailableRenderId();
 
-	@Override
-	public boolean renderWorldBlock (IBlockAccess world, int x, int y, int z, Block block, int modelId, RenderBlocks renderer)
-	{
+    @Override
+    public boolean renderWorldBlock (IBlockAccess world, int x, int y, int z, Block block, int modelId, RenderBlocks renderer)
+    {
 
-		if (modelId == model)
-		{
-			return renderer.renderBlockFence((BlockFence) block, x, y, z);
-		}
-		return true;
-	}
+        if (modelId == model)
+        {
+            return renderer.renderBlockFence((BlockFence) block, x, y, z);
+        }
+        return true;
+    }
 
-	@Override
-	public void renderInventoryBlock (Block block, int metadata, int modelID, RenderBlocks renderer)
-	{
-		if (modelID == model)
-		{
-			Tessellator tessellator = Tessellator.instance;
-			
-			for (int k = 0; k < 4; ++k)
+    @Override
+    public void renderInventoryBlock (Block block, int metadata, int modelID, RenderBlocks renderer)
+    {
+        if (modelID == model)
+        {
+            Tessellator tessellator = Tessellator.instance;
+
+            for (int k = 0; k < 4; ++k)
             {
                 float f2 = 0.125F;
 
                 if (k == 0)
                 {
-                	renderer.setRenderBounds((double)(0.5F - f2), 0.0D, 0.0D, (double)(0.5F + f2), 1.0D, (double)(f2 * 2.0F));
+                    renderer.setRenderBounds((double) (0.5F - f2), 0.0D, 0.0D, (double) (0.5F + f2), 1.0D, (double) (f2 * 2.0F));
                 }
 
                 if (k == 1)
                 {
-                	renderer.setRenderBounds((double)(0.5F - f2), 0.0D, (double)(1.0F - f2 * 2.0F), (double)(0.5F + f2), 1.0D, 1.0D);
+                    renderer.setRenderBounds((double) (0.5F - f2), 0.0D, (double) (1.0F - f2 * 2.0F), (double) (0.5F + f2), 1.0D, 1.0D);
                 }
 
                 f2 = 0.0625F;
 
                 if (k == 2)
                 {
-                	renderer.setRenderBounds((double)(0.5F - f2), (double)(1.0F - f2 * 3.0F), (double)(-f2 * 2.0F), (double)(0.5F + f2), (double)(1.0F - f2), (double)(1.0F + f2 * 2.0F));
+                    renderer.setRenderBounds((double) (0.5F - f2), (double) (1.0F - f2 * 3.0F), (double) (-f2 * 2.0F), (double) (0.5F + f2), (double) (1.0F - f2), (double) (1.0F + f2 * 2.0F));
                 }
 
                 if (k == 3)
                 {
-                	renderer.setRenderBounds((double)(0.5F - f2), (double)(0.5F - f2 * 3.0F), (double)(-f2 * 2.0F), (double)(0.5F + f2), (double)(0.5F - f2), (double)(1.0F + f2 * 2.0F));
+                    renderer.setRenderBounds((double) (0.5F - f2), (double) (0.5F - f2 * 3.0F), (double) (-f2 * 2.0F), (double) (0.5F + f2), (double) (0.5F - f2), (double) (1.0F + f2 * 2.0F));
                 }
 
                 GL11.glTranslatef(-0.5F, -0.5F, -0.5F);
@@ -89,17 +89,17 @@ public class FenceRender implements ISimpleBlockRenderingHandler
 
             renderer.setRenderBounds(0.0D, 0.0D, 0.0D, 1.0D, 1.0D, 1.0D);
         }
-	}
+    }
 
-	@Override
-	public boolean shouldRender3DInInventory ()
-	{
-		return true;
-	}
+    @Override
+    public boolean shouldRender3DInInventory ()
+    {
+        return true;
+    }
 
-	@Override
-	public int getRenderId ()
-	{
-		return model;
-	}
+    @Override
+    public int getRenderId ()
+    {
+        return model;
+    }
 }

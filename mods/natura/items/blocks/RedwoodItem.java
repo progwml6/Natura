@@ -10,10 +10,7 @@ import net.minecraft.item.ItemStack;
 
 public class RedwoodItem extends ItemBlock
 {
-    public static final String blockType[] =
-    {
-        "bark", "heart", "root", "", "", "", "", "", "", "", "", "", "", "", "", ""
-    };
+    public static final String blockType[] = { "bark", "heart", "root", "", "", "", "", "", "", "", "", "", "", "", "", "" };
 
     public RedwoodItem(int i)
     {
@@ -23,33 +20,33 @@ public class RedwoodItem extends ItemBlock
     }
 
     @Override
-    public int getMetadata(int md)
+    public int getMetadata (int md)
     {
         return md;
     }
 
     @Override
-    public String getUnlocalizedName(ItemStack itemstack)
+    public String getUnlocalizedName (ItemStack itemstack)
     {
         return (new StringBuilder()).append(blockType[itemstack.getItemDamage()]).append("Redwood").toString();
     }
-    
+
     @Override
-	@SideOnly(Side.CLIENT)
+    @SideOnly(Side.CLIENT)
     public void addInformation (ItemStack stack, EntityPlayer player, List list, boolean par4)
-	{
-    	switch (stack.getItemDamage())
-    	{
-    	case 0: 
-    		list.add("Burn it for charcoal");
-    		list.add("or make a hidden tree door");
-    		break;
-    	case 1:
-    		list.add("Heart of the tree");
-    		break;
-    	case 2:
-    		list.add("Root of the tree");
-    		break;
-    	}
-	}
+    {
+        switch (stack.getItemDamage())
+        {
+        case 0:
+            list.add("Burn it for charcoal");
+            list.add("or make a hidden tree door");
+            break;
+        case 1:
+            list.add("Heart of the tree");
+            break;
+        case 2:
+            list.add("Root of the tree");
+            break;
+        }
+    }
 }

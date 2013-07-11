@@ -1,4 +1,5 @@
 package mods.natura.blocks.trees;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -23,8 +24,8 @@ public class NDoor extends BlockDoor
     private int meta;
     public Icon[] icons;
     public final String doorName;
-	
-	public NDoor(int id, Material material, int md, String doorName)
+
+    public NDoor(int id, Material material, int md, String doorName)
     {
         super(id, material);
         this.doorName = doorName;
@@ -37,30 +38,29 @@ public class NDoor extends BlockDoor
         this.disableStats();
     }
 
-    public int idDropped(int i, Random random, int j)
+    public int idDropped (int i, Random random, int j)
     {
-    	return (i & 8) != 0 ? 0 : NContent.doorItem.itemID;
+        return (i & 8) != 0 ? 0 : NContent.doorItem.itemID;
     }
-    
-    public int damageDropped(int par1)
+
+    public int damageDropped (int par1)
     {
         return meta;
     }
-    
-    public void registerIcons(IconRegister iconRegister)
+
+    public void registerIcons (IconRegister iconRegister)
     {
-		this.icons = new Icon[2];
+        this.icons = new Icon[2];
 
-		this.icons[0] = iconRegister.registerIcon("natura:"+doorName+"_door_bottom");
-		this.icons[1] = iconRegister.registerIcon("natura:"+doorName+"_door_top");
+        this.icons[0] = iconRegister.registerIcon("natura:" + doorName + "_door_bottom");
+        this.icons[1] = iconRegister.registerIcon("natura:" + doorName + "_door_top");
     }
-    
-    @SideOnly(Side.CLIENT)
 
+    @SideOnly(Side.CLIENT)
     /**
      * Retrieves the block texture to use based on the display side. Args: iBlockAccess, x, y, z, side
      */
-    public Icon getBlockTexture(IBlockAccess par1IBlockAccess, int par2, int par3, int par4, int par5)
+    public Icon getBlockTexture (IBlockAccess par1IBlockAccess, int par2, int par3, int par4, int par5)
     {
         if (par5 != 1 && par5 != 0)
         {
@@ -75,24 +75,24 @@ public class NDoor extends BlockDoor
             return this.icons[0];
         }
     }
-    
+
     @Override
     @SideOnly(Side.CLIENT)
-    public Icon getIcon(int par1, int par2)
+    public Icon getIcon (int par1, int par2)
     {
         return this.icons[0];
     }
-    
-    public ItemStack getPickBlock(MovingObjectPosition target, World world, int x, int y, int z)
+
+    public ItemStack getPickBlock (MovingObjectPosition target, World world, int x, int y, int z)
     {
-    	return new ItemStack(NContent.doorItem, 1, meta);
+        return new ItemStack(NContent.doorItem, 1, meta);
     }
-    
-    public void getSubBlocks(int par1, CreativeTabs par2CreativeTabs, List par3List)
+
+    public void getSubBlocks (int par1, CreativeTabs par2CreativeTabs, List par3List)
     {
     }
-    
-    public int getRenderType()
+
+    public int getRenderType ()
     {
         return 7;
     }
