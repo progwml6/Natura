@@ -88,6 +88,9 @@ public class PHNatura
         alternateWorkbench = config.getBlock("Crafting Table", 3283).getInt(3283);
         alternateBookshelf = config.getBlock("Bookshelf", 3284).getInt(3284);
         alternateFence = config.getBlock("Fence", 3285).getInt(3285);
+        
+        grassBlock = config.getBlock("Topiary Grass Block", 3286).getInt(3286);
+        grassSlab = config.getBlock("Topiary Grass Slab", 3287).getInt(3287);
 
         netherBerryItem = config.getItem("Nether Berry Food", 12401).getInt(12401);
         berryItemID = config.getItem("Berry Food", 12402).getInt(12402);
@@ -456,12 +459,9 @@ public class PHNatura
     public static int alternateBookshelf;
     public static int alternateFence;
 
-    public static int omniRedwood;
-    public static int omniEucalyptus;
-    public static int omniHopseed;
-    public static int omniSakura;
-    public static int omniGhostwood;
-    public static int omniBloodwood;
+    public static int grassBlock;
+    public static int grassSlab;
+    public static int miniDoor;
 
     public static boolean generateRedwood;
     public static boolean generateSakura;

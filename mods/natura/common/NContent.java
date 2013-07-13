@@ -5,83 +5,16 @@ import java.util.HashMap;
 import java.util.List;
 
 import mods.natura.Natura;
-import mods.natura.blocks.CloudBlock;
-import mods.natura.blocks.HeatSand;
-import mods.natura.blocks.TaintedSoil;
-import mods.natura.blocks.crops.BerryBush;
-import mods.natura.blocks.crops.CropBlock;
-import mods.natura.blocks.crops.FlowerBlock;
-import mods.natura.blocks.crops.Glowshroom;
-import mods.natura.blocks.crops.LargeGlowshroom;
-import mods.natura.blocks.crops.NetherBerryBush;
-import mods.natura.blocks.crops.ThornVines;
-import mods.natura.blocks.overrides.AlternateBookshelf;
-import mods.natura.blocks.overrides.AlternateFence;
-import mods.natura.blocks.overrides.AlternateWorkbench;
-import mods.natura.blocks.trees.DarkTreeBlock;
-import mods.natura.blocks.trees.LogTwoxTwo;
-import mods.natura.blocks.trees.NDoor;
-import mods.natura.blocks.trees.NLeaves;
-import mods.natura.blocks.trees.NLeavesDark;
-import mods.natura.blocks.trees.NLeavesNocolor;
-import mods.natura.blocks.trees.NSaplingBlock;
-import mods.natura.blocks.trees.OverworldLeaves;
-import mods.natura.blocks.trees.OverworldSapling;
-import mods.natura.blocks.trees.OverworldTreeBlock;
-import mods.natura.blocks.trees.Planks;
-import mods.natura.blocks.trees.SaguaroBlock;
-import mods.natura.blocks.trees.SimpleLog;
-import mods.natura.blocks.trees.TreeBlock;
-import mods.natura.blocks.trees.WillowBlock;
-import mods.natura.entity.FlameSpider;
-import mods.natura.entity.FlameSpiderBaby;
-import mods.natura.entity.FusewoodArrow;
-import mods.natura.entity.ImpEntity;
-import mods.natura.entity.NitroCreeper;
-import mods.natura.items.BerryItem;
-import mods.natura.items.BerryMedley;
-import mods.natura.items.BoneBag;
-import mods.natura.items.BowlEmpty;
-import mods.natura.items.BowlStew;
-import mods.natura.items.CactusJuice;
-import mods.natura.items.ImpMeat;
-import mods.natura.items.NaturaSeeds;
-import mods.natura.items.NetherBerryItem;
-import mods.natura.items.NetherFoodItem;
-import mods.natura.items.PlantItem;
-import mods.natura.items.SeedBag;
-import mods.natura.items.SeedFood;
-import mods.natura.items.SpawnEgg;
-import mods.natura.items.StickItem;
-import mods.natura.items.blocks.BerryBushItem;
-import mods.natura.items.blocks.CloudItem;
-import mods.natura.items.blocks.DarkTreeItem;
-import mods.natura.items.blocks.FenceItem;
-import mods.natura.items.blocks.GlowshroomItem;
-import mods.natura.items.blocks.LogTwoxTwoItem;
-import mods.natura.items.blocks.NAlternateItem;
-import mods.natura.items.blocks.NDoorItem;
-import mods.natura.items.blocks.NLeavesDarkItem;
-import mods.natura.items.blocks.NLeavesItem;
-import mods.natura.items.blocks.NSaplingItem;
-import mods.natura.items.blocks.NetherBerryBushItem;
-import mods.natura.items.blocks.NoColorLeavesItem;
-import mods.natura.items.blocks.OverworldLeavesItem;
-import mods.natura.items.blocks.OverworldSaplingItem;
-import mods.natura.items.blocks.OverworldTreeItem;
-import mods.natura.items.blocks.PlanksItem;
-import mods.natura.items.blocks.RedwoodItem;
-import mods.natura.items.blocks.SaguaroItem;
-import mods.natura.items.blocks.TreeItem;
-import mods.natura.items.blocks.WillowItem;
-import mods.natura.items.tools.NaturaArmor;
-import mods.natura.items.tools.NaturaBow;
-import mods.natura.items.tools.NaturaHatchet;
-import mods.natura.items.tools.NaturaKama;
-import mods.natura.items.tools.NaturaPickaxe;
-import mods.natura.items.tools.NaturaShovel;
-import mods.natura.items.tools.NaturaSword;
+import mods.natura.blocks.*;
+import mods.natura.blocks.crops.*;
+import mods.natura.blocks.overrides.*;
+import mods.natura.blocks.trees.*;
+import mods.natura.entity.*;
+import mods.natura.items.*;
+import mods.natura.items.blocks.*;
+import mods.natura.items.tools.*;
 import mods.natura.util.DispenserBehaviorSpawnEgg;
+
 import mods.tinker.tconstruct.library.crafting.PatternBuilder;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDispenser;
@@ -254,6 +187,14 @@ public class NContent implements IFuelHandler
         alternateFence = new AlternateFence(PHNatura.alternateFence, Material.wood).setHardness(2.0F).setResistance(5.0F).setStepSound(Block.soundWoodFootstep).setUnlocalizedName("fence")
                 .setCreativeTab(NaturaTab.tab);
         GameRegistry.registerBlock(alternateFence, FenceItem.class, "Natura.fence");
+        
+        grassBlock = new GrassBlock(PHNatura.grassBlock).setUnlocalizedName("GrassBlock");
+        grassBlock.stepSound = Block.soundGrassFootstep;
+        GameRegistry.registerBlock(grassBlock, GrassBlockItem.class, "GrassBlock");
+        
+        grassSlab = new GrassSlab(PHNatura.grassSlab).setUnlocalizedName("GrassSlab");
+        grassSlab.stepSound = Block.soundGrassFootstep;
+        GameRegistry.registerBlock(grassSlab, GrassSlabItem.class, "GrassSlab");
 
         //Item.itemsList[24] = null;
         //Item.stick = null;
@@ -459,6 +400,8 @@ public class NContent implements IFuelHandler
         int meta = 0;
         for (int i = 0; i < logStacks.length; i++)
         {
+            OreDictionary.registerOre("crafterWood", new ItemStack(alternateWorkbench, 1, meta));
+            OreDictionary.registerOre("craftingTableWood", new ItemStack(alternateWorkbench, 1, meta));
             for (int e = 0; e < exclusions.length; e++)
             {
                 if (exclusions[e] == i)
@@ -549,6 +492,23 @@ public class NContent implements IFuelHandler
         FurnaceRecipes.smelting().addSmelting(redwood.blockID, 0, new ItemStack(Item.coal, 1, 1), 0.15f);
         FurnaceRecipes.smelting().addSmelting(redwood.blockID, 1, new ItemStack(Item.coal, 1, 1), 0.15f);
         FurnaceRecipes.smelting().addSmelting(redwood.blockID, 2, new ItemStack(Item.coal, 1, 1), 0.15f);
+        
+        GameRegistry.addRecipe(new ItemStack(grassBlock, 1, 0), " s ", "s#s", " s ", 's', new ItemStack(Item.seeds), '#', new ItemStack(Block.dirt));
+        GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(grassBlock, 1, 1), new ItemStack(grassBlock, 1, 0), "dyeBlue"));
+        GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(grassBlock, 1, 2), new ItemStack(grassBlock, 1, 0), "dyeRed"));
+        
+        for (int i = 0; i < 3; i++)
+        {
+            GameRegistry.addRecipe(new ItemStack(grassSlab, 6, i), "bbb", 'b', new ItemStack(grassBlock, 1, i));
+        }
+        
+        /*grassBlock = new GrassBlock(PHNatura.grassBlock).setUnlocalizedName("GrassBlock");
+        grassBlock.stepSound = Block.soundGrassFootstep;
+        GameRegistry.registerBlock(grassBlock, GrassBlockItem.class, "GrassBlock");
+        
+        grassSlab = new GrassSlab(PHNatura.grassSlab).setUnlocalizedName("GrassSlab");
+        grassSlab.stepSound = Block.soundGrassFootstep;
+        GameRegistry.registerBlock(grassSlab, GrassSlabItem.class, "GrassSlab");*/
     }
 
     public void addShapedRecipeFirst (List recipeList, ItemStack itemstack, Object... objArray)
@@ -1156,6 +1116,11 @@ public class NContent implements IFuelHandler
     public static Block alternateWorkbench;
     public static Block alternateBookshelf;
     public static Block alternateFence;
+    
+    //Golem type things
+    public static Block grassBlock;
+    public static Block grassSlab;
+    public static Block miniDoor;
 
     @Override
     public int getBurnTime (ItemStack fuel)

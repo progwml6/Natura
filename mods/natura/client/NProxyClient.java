@@ -44,6 +44,10 @@ public class NProxyClient extends NProxyCommon
         RenderingRegistry.registerEntityRenderingHandler(NitroCreeper.class, new RenderCreeper());
         RenderingRegistry.registerEntityRenderingHandler(FusewoodArrow.class, new FusewoodArrowRender());
         RenderingRegistry.registerEntityRenderingHandler(FlameSpiderBaby.class, new RenderSpider());
+
+        Minecraft mc = Minecraft.getMinecraft();
+        GrassColorizerAlternate.setBlueGrassBiomeColorizer(mc.renderEngine.getTextureContents("/mods/tinker/textures/misc/bluegrasscolor.png"));
+        GrassColorizerAlternate.setOrangeGrassBiomeColorizer(mc.renderEngine.getTextureContents("/mods/tinker/textures/misc/orangegrasscolor.png"));
     }
 
     @Override
@@ -192,6 +196,13 @@ public class NProxyClient extends NProxyCommon
 
         LanguageRegistry.instance().addStringLocalization("item.impmeat.raw.name", "en_US", "Raw Imphide");
         LanguageRegistry.instance().addStringLocalization("item.impmeat.cooked.name", "en_US", "Cooked Imphide");
+        
+        LanguageRegistry.instance().addStringLocalization("block.soil.grass.name", "en_US", "Topiary Grass");
+        LanguageRegistry.instance().addStringLocalization("block.soil.bluegrass.name", "en_US", "Bluegrass");
+        LanguageRegistry.instance().addStringLocalization("block.soil.autumngrass.name", "en_US", "Autumnal Grass");
+        LanguageRegistry.instance().addStringLocalization("block.soil.grass.slab.name", "en_US", "Topiary Grass Slab");
+        LanguageRegistry.instance().addStringLocalization("block.soil.bluegrass.slab.name", "en_US", "Bluegrass Slab");
+        LanguageRegistry.instance().addStringLocalization("block.soil.autumngrass.slab.name", "en_US", "Autumnal Grass Slab");
 
         LanguageRegistry.addName(NContent.taintedSoil, "Tainted Soil");
         LanguageRegistry.addName(NContent.heatSand, "Heat Sand");
