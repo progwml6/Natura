@@ -5,7 +5,7 @@ import java.util.List;
 import net.minecraft.block.Block;
 import net.minecraft.enchantment.EnchantmentThorns;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.monster.EntityEnderman;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -63,7 +63,7 @@ public class FusewoodArrow extends EntityArrow
         this.yOffset = 0.0F;
     }
 
-    public FusewoodArrow(World par1World, EntityLiving par2EntityLiving, EntityLiving par3EntityLiving, float par4, float par5)
+    public FusewoodArrow(World par1World, EntityLivingBase par2EntityLiving, EntityLivingBase par3EntityLiving, float par4, float par5)
     {
         super(par1World);
         this.renderDistanceWeight = 10.0D;
@@ -93,7 +93,7 @@ public class FusewoodArrow extends EntityArrow
         }
     }
 
-    public FusewoodArrow(World par1World, EntityLiving par2EntityLiving, float par3)
+    public FusewoodArrow(World par1World, EntityLivingBase par2EntityLiving, float par3)
     {
         super(par1World);
         this.renderDistanceWeight = 10.0D;
@@ -331,9 +331,9 @@ public class FusewoodArrow extends EntityArrow
 
                         if (movingobjectposition.entityHit.attackEntityFrom(damagesource, i1))
                         {
-                            if (movingobjectposition.entityHit instanceof EntityLiving)
+                            if (movingobjectposition.entityHit instanceof EntityLivingBase)
                             {
-                                EntityLiving entityliving = (EntityLiving) movingobjectposition.entityHit;
+                                EntityLivingBase entityliving = (EntityLivingBase) movingobjectposition.entityHit;
 
                                 if (!this.worldObj.isRemote)
                                 {

@@ -3,9 +3,6 @@ package mods.natura.common;
 import java.io.File;
 import java.io.IOException;
 
-import mods.natura.Natura;
-import mods.natura.items.BowlEmpty;
-import net.minecraft.item.Item;
 import net.minecraftforge.common.Configuration;
 
 public class PHNatura

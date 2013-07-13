@@ -2,10 +2,8 @@ package mods.natura.blocks.overrides;
 
 import java.util.List;
 
-import mods.natura.blocks.trees.Planks;
 import mods.natura.client.FenceRender;
 import mods.natura.common.NContent;
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockFence;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;

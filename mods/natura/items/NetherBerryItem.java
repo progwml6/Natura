@@ -1,6 +1,5 @@
 package mods.natura.items;
 
-import java.util.Collection;
 import java.util.List;
 
 import mods.natura.Natura;

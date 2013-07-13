@@ -1,13 +1,8 @@
 package mods.natura.dimension;
 
-import net.minecraft.util.Vec3;
-import net.minecraft.world.WorldProvider;
 import net.minecraft.world.WorldProviderHell;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.chunk.IChunkProvider;
-import net.minecraft.world.gen.ChunkProviderHell;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 public class NetheriteWorldProvider extends WorldProviderHell
 {

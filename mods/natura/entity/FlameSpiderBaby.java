@@ -1,16 +1,17 @@
 package mods.natura.entity;
 
 import mods.natura.common.NContent;
+import net.minecraft.block.Block;
+import net.minecraft.block.StepSound;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.item.EntityItem;
-import net.minecraft.entity.monster.EntitySkeleton;
 import net.minecraft.entity.monster.EntitySpider;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
-import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeHooks;
 import cpw.mods.fml.relauncher.Side;
@@ -21,29 +22,14 @@ public class FlameSpiderBaby extends EntitySpider
     public FlameSpiderBaby(World par1World)
     {
         super(par1World);
-        this.texture = "/mods/natura/textures/mob/flamespider.png";
+        //this.texture = "/mods/natura/textures/mob/flamespider.png";
         this.setSize(1.2F, 0.8F);
         this.isImmuneToFire = true;
     }
 
-    public int getMaxHealth ()
-    {
-        return 10;
-    }
-
-    @SideOnly(Side.CLIENT)
-    /**
-     * How large the spider should be scaled.
-     */
     public float spiderScaleAmount ()
     {
         return 0.85F;
-    }
-
-    protected Entity findPlayerToAttack ()
-    {
-        double d0 = 16.0D;
-        return this.worldObj.getClosestVulnerablePlayerToEntity(this, d0);
     }
 
     protected void attackEntity (Entity par1Entity, float par2)
@@ -64,6 +50,61 @@ public class FlameSpiderBaby extends EntitySpider
         {
             super.attackEntity(par1Entity, par2);
         }
+
+    }
+
+    protected void jump ()
+    {
+        this.motionY = 0.62D;
+
+        if (this.isPotionActive(Potion.jump))
+        {
+            this.motionY += (double) ((float) (this.getActivePotionEffect(Potion.jump).getAmplifier() + 1) * 0.1F);
+        }
+
+        if (this.isSprinting())
+        {
+            float f = this.rotationYaw * 0.017453292F;
+            this.motionX -= (double) (MathHelper.sin(f) * 0.2F);
+            this.motionZ += (double) (MathHelper.cos(f) * 0.2F);
+        }
+
+        this.isAirBorne = true;
+        ForgeHooks.onLivingJump(this);
+    }
+
+    @Override
+    protected void fall (float par1)
+    {
+        par1 = ForgeHooks.onLivingFall(this, par1);
+        if (par1 <= 0)
+        {
+            return;
+        }
+
+        super.fall(par1);
+        int i = MathHelper.ceiling_float_int(par1 - 5.0F);
+
+        if (i > 0)
+        {
+            if (i > 4)
+            {
+                this.playSound("damage.fallbig", 1.0F, 1.0F);
+            }
+            else
+            {
+                this.playSound("damage.fallsmall", 1.0F, 1.0F);
+            }
+
+            this.attackEntityFrom(DamageSource.fall, i);
+            int j = this.worldObj.getBlockId(MathHelper.floor_double(this.posX), MathHelper.floor_double(this.posY - 0.20000000298023224D - (double) this.yOffset), MathHelper.floor_double(this.posZ));
+
+            if (j > 0)
+            {
+                StepSound stepsound = Block.blocksList[j].stepSound;
+                this.playSound(stepsound.getStepSound(), stepsound.getVolume() * 0.5F, stepsound.getPitch() * 0.75F);
+            }
+        }
     }
 
     public boolean attackEntityAsMob (Entity par1Entity)
@@ -78,15 +119,15 @@ public class FlameSpiderBaby extends EntitySpider
                 {
                     if (this.worldObj.difficultySetting == 2)
                     {
-                        b0 = 2;
+                        b0 = 5;
                     }
                     else if (this.worldObj.difficultySetting == 3)
                     {
-                        b0 = 4;
+                        b0 = 10;
                     }
                 }
 
-                if (b0 > 0 && rand.nextInt(3) == 0)
+                if (b0 > 0)
                 {
                     par1Entity.setFire(b0);
                 }
@@ -98,6 +139,11 @@ public class FlameSpiderBaby extends EntitySpider
         {
             return false;
         }
+    }
+
+    public int getAttackStrength (Entity par1Entity)
+    {
+        return 4;
     }
 
     protected int getDropItemId ()
@@ -116,7 +162,7 @@ public class FlameSpiderBaby extends EntitySpider
 
         if (j > 0)
         {
-            int k = this.rand.nextInt(2);
+            int k = this.rand.nextInt(3) + 2;
 
             if (par2 > 0)
             {
@@ -134,12 +180,5 @@ public class FlameSpiderBaby extends EntitySpider
     {
         return this.worldObj.difficultySetting > 0 && this.worldObj.checkNoEntityCollision(this.boundingBox) && this.worldObj.getCollidingBoundingBoxes(this, this.boundingBox).isEmpty()
                 && !this.worldObj.isAnyLiquid(this.boundingBox);
-    }
-
-    /**
-     * Initialize this creature.
-     */
-    public void initCreature ()
-    {
     }
 }

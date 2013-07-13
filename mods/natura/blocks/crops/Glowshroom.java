@@ -23,7 +23,7 @@ public class Glowshroom extends BlockMushroom
 
     public Glowshroom(int par1)
     {
-        super(par1, "");
+        super(par1);
         this.setStepSound(soundGrassFootstep);
         this.setCreativeTab(NaturaTab.tab);
     }

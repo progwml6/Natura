@@ -53,9 +53,9 @@ public class WorkbenchContainer extends Container
         craftResult.setInventorySlotContents(0, CraftingManager.getInstance().findMatchingRecipe(craftMatrix, worldObj));
     }
 
-    public void onCraftGuiClosed (EntityPlayer entityplayer)
+    public void onContainerClosed (EntityPlayer entityplayer)
     {
-        super.onCraftGuiClosed(entityplayer);
+        super.onContainerClosed(entityplayer);
         if (worldObj.isRemote)
         {
             return;

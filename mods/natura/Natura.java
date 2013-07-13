@@ -2,8 +2,8 @@ package mods.natura;
 
 import java.util.Random;
 
-import mods.natura.common.NProxyCommon;
 import mods.natura.common.NContent;
+import mods.natura.common.NProxyCommon;
 import mods.natura.common.NaturaTab;
 import mods.natura.common.PHNatura;
 import mods.natura.dimension.NetheriteWorldProvider;
@@ -13,6 +13,7 @@ import mods.natura.worldgen.BaseCropWorldgen;
 import mods.natura.worldgen.BaseTreeWorldgen;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.EntityCreature;
+import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.ai.EntityAITempt;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.passive.EntityChicken;
@@ -173,12 +174,12 @@ public class Natura
     {
         if (event.entityLiving instanceof EntityCow || event.entityLiving instanceof EntitySheep)
         {
-            event.entityLiving.tasks.addTask(3, new EntityAITempt((EntityCreature) event.entityLiving, 0.25F, NContent.plantItem.itemID, false));
+            ((EntityLiving)event.entityLiving).tasks.addTask(3, new EntityAITempt((EntityCreature) event.entityLiving, 0.25F, NContent.plantItem.itemID, false));
         }
 
         if (event.entityLiving instanceof EntityChicken)
         {
-            event.entityLiving.tasks.addTask(3, new EntityAITempt((EntityCreature) event.entityLiving, 0.25F, NContent.seeds.itemID, false));
+        	((EntityLiving)event.entityLiving).tasks.addTask(3, new EntityAITempt((EntityCreature) event.entityLiving, 0.25F, NContent.seeds.itemID, false));
         }
     }
 

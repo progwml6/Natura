@@ -1,9 +1,10 @@
 package mods.natura.client;
 
-import java.io.File;
+import java.io.IOException;
 
 import mods.natura.client.entity.FusewoodArrowRender;
 import mods.natura.client.entity.ImpModel;
+import mods.natura.client.entity.ImpRender;
 import mods.natura.common.NContent;
 import mods.natura.common.NProxyCommon;
 import mods.natura.entity.FlameSpider;
@@ -11,15 +12,14 @@ import mods.natura.entity.FlameSpiderBaby;
 import mods.natura.entity.FusewoodArrow;
 import mods.natura.entity.ImpEntity;
 import mods.natura.entity.NitroCreeper;
-import mods.natura.util.DispenserBehaviorSpawnEgg;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockDispenser;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.entity.RenderCreeper;
-import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.RenderSpider;
+import net.minecraft.client.renderer.texture.TextureUtil;
+import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
 
@@ -39,16 +39,26 @@ public class NProxyClient extends NProxyCommon
         RenderingRegistry.registerBlockHandler(new FenceRender());
         TickRegistry.registerTickHandler(new NCropsTickHandler(), Side.CLIENT);
 
-        RenderingRegistry.registerEntityRenderingHandler(ImpEntity.class, new RenderLiving(new ImpModel(), 0f));
+        RenderingRegistry.registerEntityRenderingHandler(ImpEntity.class, new ImpRender(new ImpModel(), 0f));
         RenderingRegistry.registerEntityRenderingHandler(FlameSpider.class, new RenderSpider());
         RenderingRegistry.registerEntityRenderingHandler(NitroCreeper.class, new RenderCreeper());
         RenderingRegistry.registerEntityRenderingHandler(FusewoodArrow.class, new FusewoodArrowRender());
         RenderingRegistry.registerEntityRenderingHandler(FlameSpiderBaby.class, new RenderSpider());
 
         Minecraft mc = Minecraft.getMinecraft();
-        GrassColorizerAlternate.setBlueGrassBiomeColorizer(mc.renderEngine.getTextureContents("/mods/tinker/textures/misc/bluegrasscolor.png"));
-        GrassColorizerAlternate.setOrangeGrassBiomeColorizer(mc.renderEngine.getTextureContents("/mods/tinker/textures/misc/orangegrasscolor.png"));
+        try
+        {
+            GrassColorizerAlternate.setBlueGrassBiomeColorizer(TextureUtil.func_110986_a(mc.func_110442_L(), bluegrass));
+            GrassColorizerAlternate.setOrangeGrassBiomeColorizer(TextureUtil.func_110986_a(mc.func_110442_L(), bluegrass));
+        }
+        catch (IOException ioexception)
+        {
+            ;
+        }
     }
+
+    private static final ResourceLocation bluegrass = new ResourceLocation("assets/natura/textures/misc/bluegrasscolor.png");
+    private static final ResourceLocation orangegrass = new ResourceLocation("assets/natura/textures/misc/orangegrasscolor.png");
 
     @Override
     public void addNames ()
@@ -196,7 +206,7 @@ public class NProxyClient extends NProxyCommon
 
         LanguageRegistry.instance().addStringLocalization("item.impmeat.raw.name", "en_US", "Raw Imphide");
         LanguageRegistry.instance().addStringLocalization("item.impmeat.cooked.name", "en_US", "Cooked Imphide");
-        
+
         LanguageRegistry.instance().addStringLocalization("block.soil.grass.name", "en_US", "Topiary Grass");
         LanguageRegistry.instance().addStringLocalization("block.soil.bluegrass.name", "en_US", "Bluegrass");
         LanguageRegistry.instance().addStringLocalization("block.soil.autumngrass.name", "en_US", "Autumnal Grass");
@@ -281,8 +291,8 @@ public class NProxyClient extends NProxyCommon
         GL11.glTranslatef(0.5F, 0.5F, 0.5F);
     }
 
-    public File getMinecraftDir ()
+    /*public File getMinecraftDir ()
     {
         return Minecraft.getMinecraftDir();
-    }
+    }*/
 }

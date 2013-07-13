@@ -1,12 +1,19 @@
 package mods.natura.plugins.minefactoryreloaded;
 
+import mods.natura.common.NContent;
+import mods.natura.plugins.minefactoryreloaded.fertilizables.FertilizableNaturaCrop;
+import mods.natura.plugins.minefactoryreloaded.fertilizables.FertilizableSapling;
+import mods.natura.plugins.minefactoryreloaded.harvestables.HarvestableNaturaBerry;
+import mods.natura.plugins.minefactoryreloaded.harvestables.HarvestableNaturaCropPlant;
+import mods.natura.plugins.minefactoryreloaded.harvestables.HarvestableNaturaTreeLeaves;
+import mods.natura.plugins.minefactoryreloaded.harvestables.HarvestableStandard;
+import mods.natura.plugins.minefactoryreloaded.plantables.PlantableNaturaBerry;
+import mods.natura.plugins.minefactoryreloaded.plantables.PlantableNaturaCrop;
+import mods.natura.plugins.minefactoryreloaded.plantables.PlantableNaturaNetherBerry;
+import mods.natura.plugins.minefactoryreloaded.plantables.PlantableStandard;
 import net.minecraft.item.ItemStack;
 import powercrystals.minefactoryreloaded.api.FarmingRegistry;
 import powercrystals.minefactoryreloaded.api.HarvestType;
-import mods.natura.common.NContent;
-import mods.natura.plugins.minefactoryreloaded.plantables.*;
-import mods.natura.plugins.minefactoryreloaded.harvestables.*;
-import mods.natura.plugins.minefactoryreloaded.fertilizables.*;
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.Mod;

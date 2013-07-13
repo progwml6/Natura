@@ -1,11 +1,9 @@
 package mods.natura.blocks.trees;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 import mods.natura.common.NContent;
-import mods.natura.common.PHNatura;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDoor;
 import net.minecraft.block.material.Material;

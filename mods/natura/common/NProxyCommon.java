@@ -1,7 +1,5 @@
 package mods.natura.common;
 
-import java.io.File;
-
 import cpw.mods.fml.common.registry.LanguageRegistry;
 
 public class NProxyCommon

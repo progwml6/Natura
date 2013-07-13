@@ -6,7 +6,7 @@ import mods.natura.common.NaturaTab;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
-import net.minecraft.entity.item.EntityTNTPrimed;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.item.Item;
@@ -69,7 +69,7 @@ public class CloudBlock extends NBlock
         }*/
     }
 
-    public void explode (World world, int x, int y, int z, int size, EntityLiving living)
+    public void explode (World world, int x, int y, int z, int size, EntityLivingBase living)
     {
         world.createExplosion(living, x, y, z, size, true);
     }

@@ -2,7 +2,6 @@ package mods.natura.items;
 
 import java.util.List;
 
-import mods.natura.common.NaturaTab;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;

@@ -3,7 +3,6 @@ package mods.natura.entity;
 import mods.natura.common.NContent;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.ai.EntityAIAvoidEntity;
-import net.minecraft.entity.ai.EntityAIControlledByPlayer;
 import net.minecraft.entity.ai.EntityAIFollowParent;
 import net.minecraft.entity.ai.EntityAILookIdle;
 import net.minecraft.entity.ai.EntityAIMate;
@@ -12,16 +11,9 @@ import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.ai.EntityAITempt;
 import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
-import net.minecraft.entity.effect.EntityLightningBolt;
-import net.minecraft.entity.monster.EntityPigZombie;
-import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.passive.EntityAnimal;
-import net.minecraft.entity.passive.EntityOcelot;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.stats.AchievementList;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldProviderHell;
 
@@ -30,7 +22,7 @@ public class ImpEntity extends EntityAnimal
     public ImpEntity(World par1World)
     {
         super(par1World);
-        this.texture = "/mods/natura/textures/mob/imp.png";
+        //this.texture = "/mods/natura/textures/mob/imp.png";
         this.setSize(0.9F, 0.9F);
         this.getNavigator().setAvoidsWater(true);
         this.isImmuneToFire = true;

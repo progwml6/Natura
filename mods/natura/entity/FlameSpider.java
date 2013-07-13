@@ -1,11 +1,12 @@
 package mods.natura.entity;
 
 import mods.natura.common.NContent;
-import mods.tinker.tconstruct.entity.BlueSlime;
 import net.minecraft.block.Block;
 import net.minecraft.block.StepSound;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.EntityLivingData;
+import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.monster.EntitySkeleton;
 import net.minecraft.entity.monster.EntitySpider;
@@ -25,16 +26,10 @@ public class FlameSpider extends EntitySpider
     public FlameSpider(World par1World)
     {
         super(par1World);
-        this.texture = "/mods/natura/textures/mob/flamespider.png";
+        //this.texture = "/mods/natura/textures/mob/flamespider.png";
         this.setSize(2.7F, 1.9F);
         this.isImmuneToFire = true;
-        this.moveSpeed = 1.35F;
         this.experienceValue = 25;
-    }
-
-    public int getMaxHealth ()
-    {
-        return 50;
     }
 
     @SideOnly(Side.CLIENT)
@@ -45,147 +40,15 @@ public class FlameSpider extends EntitySpider
     {
         return 2.0F;
     }
-
-    protected Entity findPlayerToAttack ()
+    
+    @Override
+    protected void func_110147_ax()
     {
-        double d0 = 24.0D;
-        return this.worldObj.getClosestVulnerablePlayerToEntity(this, d0);
-    }
-
-    protected void updateEntityActionState ()
-    {
-        this.worldObj.theProfiler.startSection("ai");
-
-        if (this.fleeingTick > 0)
-        {
-            --this.fleeingTick;
-        }
-
-        this.hasAttacked = this.isMovementCeased();
-        float f = 24.0F;
-
-        if (this.entityToAttack == null)
-        {
-            this.entityToAttack = this.findPlayerToAttack();
-
-            if (this.entityToAttack != null)
-            {
-                this.pathToEntity = this.worldObj.getPathEntityToEntity(this, this.entityToAttack, f, true, false, false, true);
-            }
-        }
-        else if (this.entityToAttack.isEntityAlive())
-        {
-            float f1 = this.entityToAttack.getDistanceToEntity(this);
-
-            if (this.canEntityBeSeen(this.entityToAttack))
-            {
-                this.attackEntity(this.entityToAttack, f1);
-            }
-        }
-        else
-        {
-            this.entityToAttack = null;
-        }
-
-        this.worldObj.theProfiler.endSection();
-
-        if (!this.hasAttacked && this.entityToAttack != null && (this.pathToEntity == null || this.rand.nextInt(20) == 0))
-        {
-            this.pathToEntity = this.worldObj.getPathEntityToEntity(this, this.entityToAttack, f, true, false, false, true);
-        }
-        else if (!this.hasAttacked && (this.pathToEntity == null && this.rand.nextInt(180) == 0 || this.rand.nextInt(120) == 0 || this.fleeingTick > 0) && this.entityAge < 100)
-        {
-            this.updateWanderPath();
-        }
-
-        int i = MathHelper.floor_double(this.boundingBox.minY + 0.5D);
-        boolean flag = this.isInWater();
-        boolean flag1 = this.handleLavaMovement();
-        this.rotationPitch = 0.0F;
-
-        if (this.pathToEntity != null && this.rand.nextInt(100) != 0)
-        {
-            this.worldObj.theProfiler.startSection("followpath");
-            Vec3 vec3 = this.pathToEntity.getPosition(this);
-            double d0 = (double) (this.width * 2.0F);
-
-            while (vec3 != null && vec3.squareDistanceTo(this.posX, vec3.yCoord, this.posZ) < d0 * d0)
-            {
-                this.pathToEntity.incrementPathIndex();
-
-                if (this.pathToEntity.isFinished())
-                {
-                    vec3 = null;
-                    this.pathToEntity = null;
-                }
-                else
-                {
-                    vec3 = this.pathToEntity.getPosition(this);
-                }
-            }
-
-            this.isJumping = false;
-
-            if (vec3 != null)
-            {
-                double d1 = vec3.xCoord - this.posX;
-                double d2 = vec3.zCoord - this.posZ;
-                double d3 = vec3.yCoord - (double) i;
-                float f2 = (float) (Math.atan2(d2, d1) * 180.0D / Math.PI) - 90.0F;
-                float f3 = MathHelper.wrapAngleTo180_float(f2 - this.rotationYaw);
-                this.moveForward = this.moveSpeed;
-
-                if (f3 > 30.0F)
-                {
-                    f3 = 30.0F;
-                }
-
-                if (f3 < -30.0F)
-                {
-                    f3 = -30.0F;
-                }
-
-                this.rotationYaw += f3;
-
-                if (this.hasAttacked && this.entityToAttack != null)
-                {
-                    double d4 = this.entityToAttack.posX - this.posX;
-                    double d5 = this.entityToAttack.posZ - this.posZ;
-                    float f4 = this.rotationYaw;
-                    this.rotationYaw = (float) (Math.atan2(d5, d4) * 180.0D / Math.PI) - 90.0F;
-                    f3 = (f4 - this.rotationYaw + 90.0F) * (float) Math.PI / 180.0F;
-                    this.moveStrafing = -MathHelper.sin(f3) * this.moveForward * 1.0F;
-                    this.moveForward = MathHelper.cos(f3) * this.moveForward * 1.0F;
-                }
-
-                if (d3 > 0.0D)
-                {
-                    this.isJumping = true;
-                }
-            }
-
-            if (this.entityToAttack != null)
-            {
-                this.faceEntity(this.entityToAttack, 30.0F, 30.0F);
-            }
-
-            if (this.isCollidedHorizontally && !this.hasPath())
-            {
-                this.isJumping = true;
-            }
-
-            if (this.rand.nextFloat() < 0.8F && (flag || flag1))
-            {
-                this.isJumping = true;
-            }
-
-            this.worldObj.theProfiler.endSection();
-        }
-        else
-        {
-            super.updateEntityActionState();
-            this.pathToEntity = null;
-        }
+        super.func_110147_ax();
+        this.func_110148_a(SharedMonsterAttributes.field_111267_a).func_111128_a(50.0D); //Health
+        this.func_110148_a(SharedMonsterAttributes.field_111265_b).func_111128_a(24D); //Detection range
+        this.func_110148_a(SharedMonsterAttributes.field_111263_d).func_111128_a(1.35); //Movespeed
+        this.func_110148_a(SharedMonsterAttributes.field_111264_e).func_111128_a(4.0); //Base damage
     }
 
     protected void attackEntity (Entity par1Entity, float par2)
@@ -297,30 +160,6 @@ public class FlameSpider extends EntitySpider
         }
     }
 
-    /*public float getSpeedModifier()
-    {
-        float f = 1.0F;
-
-        if (this.isPotionActive(Potion.moveSpeed))
-        {
-            f *= 1.0F + 0.2F * (float)(this.getActivePotionEffect(Potion.moveSpeed).getAmplifier() + 1);
-        }
-
-        if (this.isPotionActive(Potion.moveSlowdown))
-        {
-            f *= 1.0F - 0.15F * (float)(this.getActivePotionEffect(Potion.moveSlowdown).getAmplifier() + 1);
-        }
-
-        if (f < 0.0F)
-        {
-            f = 0.0F;
-        }
-        
-        f *= 1.5f;
-
-        return f;
-    }*/
-
     public int getAttackStrength (Entity par1Entity)
     {
         return 4;
@@ -361,51 +200,4 @@ public class FlameSpider extends EntitySpider
         return this.worldObj.difficultySetting > 0 && this.worldObj.checkNoEntityCollision(this.boundingBox) && this.worldObj.getCollidingBoundingBoxes(this, this.boundingBox).isEmpty()
                 && !this.worldObj.isAnyLiquid(this.boundingBox);
     }
-
-    /**
-     * Initialize this creature.
-     */
-    public void initCreature ()
-    {
-        /*if (this.worldObj.rand.nextInt(100) == 0)
-        {
-        	NitroCreeper creeper = new NitroCreeper(this.worldObj);
-        	creeper.setLocationAndAngles(this.posX, this.posY, this.posZ, this.rotationYaw, 0.0F);
-        	creeper.initCreature();
-        	this.worldObj.spawnEntityInWorld(creeper);
-        	creeper.mountEntity(this);
-        }*/
-        if (this.worldObj.rand.nextInt(10) == 0)
-        {
-            EntitySkeleton skeleton = new EntitySkeleton(this.worldObj);
-            skeleton.setLocationAndAngles(this.posX, this.posY, this.posZ, this.rotationYaw, 0.0F);
-            skeleton.initCreature();
-            skeleton.setCurrentItemOrArmor(0, new ItemStack(Item.bow));
-            skeleton.mountEntity(this);
-        }
-    }
-
-    /*protected FlameSpiderBaby createBabyInstance ()
-    {
-    	return new FlameSpiderBaby(this.worldObj);
-    }
-
-    public void setDead ()
-    {
-
-    	if (!this.worldObj.isRemote)
-    	{
-    		int amount = rand.nextInt(6) + 5;
-    		for (int i = 0; i < amount; i++)
-    		{
-    			double f = rand.nextDouble() * 2;
-    			double f1 = rand.nextDouble() * 2;
-    			FlameSpiderBaby babyspider = this.createBabyInstance();
-    			babyspider.setLocationAndAngles(this.posX + (double) f, this.posY + 0.5D, this.posZ + (double) f1, this.rand.nextFloat() * 360.0F, 0.0F);
-    			this.worldObj.spawnEntityInWorld(babyspider);
-    		}
-    	}
-
-    	super.setDead();
-    }*/
 }

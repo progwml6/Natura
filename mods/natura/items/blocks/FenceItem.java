@@ -1,6 +1,5 @@
 package mods.natura.items.blocks;
 
-import mods.natura.blocks.overrides.AlternateFence;
 import mods.natura.common.NContent;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.util.Icon;

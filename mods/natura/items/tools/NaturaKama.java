@@ -10,6 +10,7 @@ import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumToolMaterial;
@@ -18,9 +19,6 @@ import net.minecraft.item.ItemSword;
 import net.minecraft.stats.StatList;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IShearable;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.Event.Result;
-import net.minecraftforge.event.entity.player.UseHoeEvent;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -62,9 +60,9 @@ public class NaturaKama extends ItemSword
         return par2Block.blockID != Block.web.blockID && par2Block.blockID != Block.leaves.blockID ? (par2Block.blockID == Block.cloth.blockID ? 5.0F : super.getStrVsBlock(par1ItemStack, par2Block))
                 : 15.0F;
     }
-
+    
     @Override
-    public boolean itemInteractionForEntity (ItemStack itemstack, EntityLiving entity)
+    public boolean func_111207_a(ItemStack itemstack, EntityPlayer player, EntityLivingBase entity)
     {
         if (entity.worldObj.isRemote)
         {
@@ -72,14 +70,14 @@ public class NaturaKama extends ItemSword
         }
         if (entity instanceof IShearable)
         {
-            IShearable target = (IShearable) entity;
-            if (target.isShearable(itemstack, entity.worldObj, (int) entity.posX, (int) entity.posY, (int) entity.posZ))
+            IShearable target = (IShearable)entity;
+            if (target.isShearable(itemstack, entity.worldObj, (int)entity.posX, (int)entity.posY, (int)entity.posZ))
             {
-                ArrayList<ItemStack> drops = target.onSheared(itemstack, entity.worldObj, (int) entity.posX, (int) entity.posY, (int) entity.posZ,
+                ArrayList<ItemStack> drops = target.onSheared(itemstack, entity.worldObj, (int)entity.posX, (int)entity.posY, (int)entity.posZ,
                         EnchantmentHelper.getEnchantmentLevel(Enchantment.fortune.effectId, itemstack));
 
                 Random rand = new Random();
-                for (ItemStack stack : drops)
+                for(ItemStack stack : drops)
                 {
                     EntityItem ent = entity.entityDropItem(stack, 1.0F);
                     ent.motionY += rand.nextFloat() * 0.05F;

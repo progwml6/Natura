@@ -2,8 +2,6 @@ package mods.natura.blocks.overrides;
 
 import java.util.List;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import mods.natura.common.NContent;
 import net.minecraft.block.BlockBookshelf;
 import net.minecraft.client.renderer.texture.IconRegister;
@@ -11,6 +9,8 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
 import net.minecraft.world.World;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class AlternateBookshelf extends BlockBookshelf
 {

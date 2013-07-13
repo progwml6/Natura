@@ -1,14 +1,11 @@
 package mods.natura.entity;
 
-import net.minecraft.block.Block;
 import net.minecraft.entity.ai.EntityAIAttackOnCollide;
 import net.minecraft.entity.monster.EntityCreeper;
 import net.minecraft.entity.monster.EntityIronGolem;
-import net.minecraft.entity.monster.EntitySkeleton;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EntityDamageSource;
-import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
 public class NitroCreeper extends EntityCreeper
@@ -23,7 +20,7 @@ public class NitroCreeper extends EntityCreeper
     {
         super(world);
         this.tasks.addTask(4, new EntityAIAttackOnCollide(this, 1.0F, false));
-        this.texture = "/mods/natura/textures/mob/creeperunstable.png";
+        //this.texture = "/mods/natura/textures/mob/creeperunstable.png";
         this.isImmuneToFire = true;
     }
 
