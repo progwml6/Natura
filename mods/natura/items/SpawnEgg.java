@@ -133,7 +133,7 @@ public class SpawnEgg extends Item
         if (!world.isRemote)
         {
             entity.setPosition(x, y, z);
-            entity.initCreature();
+            //entity.initCreature();
             world.spawnEntityInWorld(entity);
         }
     }
