@@ -22,7 +22,6 @@ public class FlameSpiderBaby extends EntitySpider
     public FlameSpiderBaby(World par1World)
     {
         super(par1World);
-        //this.texture = "/mods/natura/textures/mob/flamespider.png";
         this.setSize(1.2F, 0.8F);
         this.isImmuneToFire = true;
     }

@@ -1,16 +1,16 @@
 package mods.natura.client.entity;
 
 import net.minecraft.client.model.ModelBase;
-import net.minecraft.client.renderer.entity.RenderLiving;
+import net.minecraft.client.renderer.entity.RenderSpider;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 
-public class ImpRender extends RenderLiving
+public class FlameSpiderRender extends RenderSpider
 {
 
-    public ImpRender(ModelBase par1ModelBase, float par2)
+    public FlameSpiderRender()
     {
-        super(par1ModelBase, par2);
+        super();
     }
 
     @Override
@@ -19,6 +19,6 @@ public class ImpRender extends RenderLiving
         return texture;
     }
     
-    static final ResourceLocation texture = new ResourceLocation("natura", "/textures/mob/imp.png");
+    static final ResourceLocation texture = new ResourceLocation("natura", "/textures/mob/flamespider.png");
 
 }
