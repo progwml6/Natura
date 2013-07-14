@@ -50,6 +50,8 @@ import mods.natura.items.ImpMeat;
 import mods.natura.items.NaturaSeeds;
 import mods.natura.items.NetherBerryItem;
 import mods.natura.items.NetherFoodItem;
+import mods.natura.items.NetherPieItem;
+import mods.natura.items.PieItem;
 import mods.natura.items.PlantItem;
 import mods.natura.items.SeedBag;
 import mods.natura.items.SeedFood;
@@ -142,6 +144,10 @@ public class NContent implements IFuelHandler
 
         netherBerryItem = new NetherBerryItem(PHNatura.netherBerryItem, 1).setUnlocalizedName("berry.nether");
         berryItem = new BerryItem(PHNatura.berryItemID, 1).setUnlocalizedName("berry");
+        
+        netherPieItem = new NetherPieItem(PHNatura.netherPieItemID, 3).setUnlocalizedName("pie.nether");
+        pieItem = new PieItem(PHNatura.pieItemID, 3).setUnlocalizedName("pie");
+        
         berryMedley = new BerryMedley(PHNatura.berryMedley, 5).setUnlocalizedName("berryMedley");
 
         berryBush = new BerryBush(PHNatura.berryBlockID);
@@ -395,7 +401,18 @@ public class NContent implements IFuelHandler
         }
 
         String[] berryTypes = new String[] { "cropRaspberry", "cropBlueberry", "cropBlackberry", "cropMaloberry", "cropStrawberry", "cropCranberry" };
-
+        String[] netherBerryTypes = new String[] { "cropBlightberry", "cropDuskberry", "cropSkyberry", "cropStingberry" };
+        
+        for (int i = 0; i < berryTypes.length; i++)
+        {
+        	GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(pieItem, 2, i), "AAA", "BBB", "CCC", 'A', berryTypes[i], 'B', Item.sugar, 'C', Item.wheat));        
+        }
+        
+        for (int i = 0; i < netherBerryTypes.length; i++)
+        {
+        	GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(netherPieItem, 2, i), "AAA", "BBB", "CCC", 'A', netherBerryTypes[i], 'B', Item.sugar, 'C', Item.wheat));        
+        }
+        
         for (int iter1 = 0; iter1 < berryTypes.length - 2; iter1++)
             for (int iter2 = iter1 + 1; iter2 < berryTypes.length - 1; iter2++)
                 for (int iter3 = iter2 + 1; iter3 < berryTypes.length; iter3++)
@@ -1044,6 +1061,11 @@ public class NContent implements IFuelHandler
             ThaumcraftApi.registerObjectTag(netherBerryItem.itemID, 1, new ObjectTags().add(EnumTag.EVIL, 4).add(EnumTag.DARK, 4).add(EnumTag.LIFE, 1).add(EnumTag.CROP, 1));
             ThaumcraftApi.registerObjectTag(netherBerryItem.itemID, 2, new ObjectTags().add(EnumTag.EVIL, 4).add(EnumTag.FLIGHT, 4).add(EnumTag.LIFE, 1).add(EnumTag.CROP, 1));
             ThaumcraftApi.registerObjectTag(netherBerryItem.itemID, 3, new ObjectTags().add(EnumTag.EVIL, 4).add(EnumTag.DESTRUCTION, 4).add(EnumTag.LIFE, 1).add(EnumTag.CROP, 1));
+            
+            ThaumcraftApi.registerObjectTag(netherBerryItem.itemID, 0, new ObjectTags().add(EnumTag.EVIL, 4).add(EnumTag.POISON, 4).add(EnumTag.LIFE, 1).add(EnumTag.CROP, 1));
+            ThaumcraftApi.registerObjectTag(netherBerryItem.itemID, 1, new ObjectTags().add(EnumTag.EVIL, 4).add(EnumTag.DARK, 4).add(EnumTag.LIFE, 1).add(EnumTag.CROP, 1));
+            ThaumcraftApi.registerObjectTag(netherBerryItem.itemID, 2, new ObjectTags().add(EnumTag.EVIL, 4).add(EnumTag.FLIGHT, 4).add(EnumTag.LIFE, 1).add(EnumTag.CROP, 1));
+            ThaumcraftApi.registerObjectTag(netherBerryItem.itemID, 3, new ObjectTags().add(EnumTag.EVIL, 4).add(EnumTag.DESTRUCTION, 4).add(EnumTag.LIFE, 1).add(EnumTag.CROP, 1));
         }
         catch (Exception e)
         {
@@ -1066,6 +1088,8 @@ public class NContent implements IFuelHandler
     public static Item plantItem;
     public static Item netherBerryItem;
     public static Item berryItem;
+    public static Item netherPieItem;
+    public static Item pieItem;
     public static Item berryMedley;
     public static Item seedFood;
 

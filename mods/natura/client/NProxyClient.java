@@ -100,6 +100,15 @@ public class NProxyClient extends NProxyCommon
         LanguageRegistry.instance().addStringLocalization("item.berry.dusk.name", "en_US", "Duskberry");
         LanguageRegistry.instance().addStringLocalization("item.berry.sky.name", "en_US", "Skyberry");
         LanguageRegistry.instance().addStringLocalization("item.berry.sting.name", "en_US", "Stingberry");
+        
+        LanguageRegistry.instance().addStringLocalization("item.pie.rasp.name", "en_US", "Raspberry Pie");
+        LanguageRegistry.instance().addStringLocalization("item.pie.blue.name", "en_US", "Blueberry Pie");
+        LanguageRegistry.instance().addStringLocalization("item.pie.black.name", "en_US", "Blackberry Pie");
+        LanguageRegistry.instance().addStringLocalization("item.pie.geo.name", "en_US", "Maloberry Pie");
+        LanguageRegistry.instance().addStringLocalization("item.pie.blight.name", "en_US", "Blightberry Pie");
+        LanguageRegistry.instance().addStringLocalization("item.pie.dusk.name", "en_US", "Duskberry Pie");
+        LanguageRegistry.instance().addStringLocalization("item.pie.sky.name", "en_US", "Skyberry Pie");
+        LanguageRegistry.instance().addStringLocalization("item.pie.sting.name", "en_US", "Stingberry Pie");
 
         LanguageRegistry.instance().addStringLocalization("block.raspberryBush.name", "en_US", "Raspberry Bush");
         LanguageRegistry.instance().addStringLocalization("block.blueberryBush.name", "en_US", "Blueberry Bush");
