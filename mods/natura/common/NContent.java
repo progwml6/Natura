@@ -88,7 +88,7 @@ import mods.natura.items.tools.NaturaPickaxe;
 import mods.natura.items.tools.NaturaShovel;
 import mods.natura.items.tools.NaturaSword;
 import mods.natura.util.DispenserBehaviorSpawnEgg;
-// import mods.tinker.tconstruct.library.crafting.PatternBuilder;
+import mods.tinker.tconstruct.library.crafting.PatternBuilder;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDispenser;
 import net.minecraft.block.material.Material;
@@ -890,9 +890,9 @@ public class NContent implements IFuelHandler
     {
         try
         {
-            // Class.forName("mods.tinker.tconstruct.TConstruct");
-            // PatternBuilder pb = PatternBuilder.instance;
-            // pb.registerMaterial(new ItemStack(saguaro), 2, "Cactus");
+            Class.forName("mods.tinker.tconstruct.TConstruct");
+            PatternBuilder pb = PatternBuilder.instance;
+            pb.registerMaterial(new ItemStack(saguaro), 2, "Cactus");
         }
         catch (Exception e)
         {
