@@ -96,6 +96,8 @@ public class PHNatura
         boatItemID = config.getItem("Boat Item", "item", 12405).getInt(12405);
         doorItemID = config.getItem("Door Item", 12406).getInt(12406);
         cactusJuice = config.getItem("Cactus Juice", 12407).getInt(12407);
+        netherPieItemID = config.getItem("Nether Berry Pie", 12408).getInt(12408);
+        pieItemID = config.getItem("Berry Pie", 12409).getInt(12409);
 
         wheatBagID = config.getItem("Wheat Seed Bag", 12411).getInt(12411);
         barleyBagID = config.getItem("Barley Seed Bag", 12412).getInt(12412);
@@ -406,6 +408,9 @@ public class PHNatura
     public static int berryMedley;
     public static int berryBlockID;
     public static int netherBerryBlock;
+    
+    public static int netherPieItemID;
+    public static int pieItemID;
 
     public static int thornSpawnRarity;
 
