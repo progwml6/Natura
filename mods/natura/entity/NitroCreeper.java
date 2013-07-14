@@ -20,7 +20,6 @@ public class NitroCreeper extends EntityCreeper
     {
         super(world);
         this.tasks.addTask(4, new EntityAIAttackOnCollide(this, 1.0F, false));
-        //this.texture = "/mods/natura/textures/mob/creeperunstable.png";
         this.isImmuneToFire = true;
     }
 

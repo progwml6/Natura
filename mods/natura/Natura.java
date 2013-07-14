@@ -29,10 +29,8 @@ import net.minecraftforge.event.entity.living.LivingSpawnEvent;
 import net.minecraftforge.event.entity.player.BonemealEvent;
 import net.minecraftforge.event.entity.player.EntityInteractEvent;
 import cpw.mods.fml.common.Mod;
-import cpw.mods.fml.common.Mod.Init;
+import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
-import cpw.mods.fml.common.Mod.PostInit;
-import cpw.mods.fml.common.Mod.PreInit;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
@@ -54,7 +52,7 @@ public class Natura
     public static Natura instance;
     public static Material cloud = new CloudMaterial();
 
-    @PreInit
+    @EventHandler
     public void preInit (FMLPreInitializationEvent evt)
     {
         MinecraftForge.EVENT_BUS.register(this);
@@ -66,7 +64,7 @@ public class Natura
         content.postIntermodCommunication();
     }
 
-    @Init
+    @EventHandler
     public void init (FMLInitializationEvent evt)
     {
         GameRegistry.registerWorldGenerator(new BaseCropWorldgen());
@@ -87,7 +85,7 @@ public class Natura
         }
     }
 
-    @PostInit
+    @EventHandler
     public void postInit (FMLPostInitializationEvent evt)
     {
         content.createEntities();
