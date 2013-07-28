@@ -2,9 +2,11 @@ package mods.natura.client;
 
 import java.io.IOException;
 
+import mods.natura.client.entity.FlameSpiderRender;
 import mods.natura.client.entity.FusewoodArrowRender;
 import mods.natura.client.entity.ImpModel;
 import mods.natura.client.entity.ImpRender;
+import mods.natura.client.entity.NitroCreeperRender;
 import mods.natura.common.NContent;
 import mods.natura.common.NProxyCommon;
 import mods.natura.entity.FlameSpider;
@@ -16,8 +18,6 @@ import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.entity.RenderCreeper;
-import net.minecraft.client.renderer.entity.RenderSpider;
 import net.minecraft.client.renderer.texture.TextureUtil;
 import net.minecraft.util.ResourceLocation;
 
@@ -40,10 +40,10 @@ public class NProxyClient extends NProxyCommon
         TickRegistry.registerTickHandler(new NCropsTickHandler(), Side.CLIENT);
 
         RenderingRegistry.registerEntityRenderingHandler(ImpEntity.class, new ImpRender(new ImpModel(), 0f));
-        RenderingRegistry.registerEntityRenderingHandler(FlameSpider.class, new RenderSpider());
-        RenderingRegistry.registerEntityRenderingHandler(NitroCreeper.class, new RenderCreeper());
+        RenderingRegistry.registerEntityRenderingHandler(FlameSpider.class, new FlameSpiderRender());
+        RenderingRegistry.registerEntityRenderingHandler(NitroCreeper.class, new NitroCreeperRender());
         RenderingRegistry.registerEntityRenderingHandler(FusewoodArrow.class, new FusewoodArrowRender());
-        RenderingRegistry.registerEntityRenderingHandler(FlameSpiderBaby.class, new RenderSpider());
+        RenderingRegistry.registerEntityRenderingHandler(FlameSpiderBaby.class, new FlameSpiderRender());
 
         Minecraft mc = Minecraft.getMinecraft();
         try

@@ -5,7 +5,6 @@ import net.minecraft.block.Block;
 import net.minecraft.block.StepSound;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
-import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.monster.EntitySpider;
 import net.minecraft.item.ItemStack;
@@ -14,15 +13,12 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeHooks;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 public class FlameSpiderBaby extends EntitySpider
 {
     public FlameSpiderBaby(World par1World)
     {
         super(par1World);
-        //this.texture = "/mods/natura/textures/mob/flamespider.png";
         this.setSize(1.2F, 0.8F);
         this.isImmuneToFire = true;
     }
