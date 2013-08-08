@@ -182,6 +182,76 @@ public class NProxyClient extends NProxyCommon
         LanguageRegistry.instance().addStringLocalization("block.sapling.maple.name", "en_US", "Maple Sapling");
         LanguageRegistry.instance().addStringLocalization("block.sapling.purpleheart.name", "en_US", "Amaranth Sapling");
         LanguageRegistry.instance().addStringLocalization("block.sapling.silverbell.name", "en_US", "Silverbell Sapling");
+        
+        LanguageRegistry.instance().addStringLocalization("tile.pressureplate.eucalyptus.name", "en_US", "Eucalyptus Pressure Plate");
+        LanguageRegistry.instance().addStringLocalization("tile.pressureplate.sakura.name", "en_US", "Sakura Pressure Plate");
+        LanguageRegistry.instance().addStringLocalization("tile.pressureplate.ghostwood.name", "en_US", "Ghostwood Pressure Plate");
+        LanguageRegistry.instance().addStringLocalization("tile.pressureplate.hopseed.name", "en_US", "Hopseed Pressure Plate");
+        LanguageRegistry.instance().addStringLocalization("tile.pressureplate.redwood.name", "en_US", "Redwood Pressure Plate");
+        LanguageRegistry.instance().addStringLocalization("tile.pressureplate.bloodwood.name", "en_US", "Blood Pressure Plate");
+        LanguageRegistry.instance().addStringLocalization("tile.pressureplate.darkwood.name", "en_US", "Darkwood Pressure Plate");
+        LanguageRegistry.instance().addStringLocalization("tile.pressureplate.fusewood.name", "en_US", "Fusewood Pressure Plate");
+        LanguageRegistry.instance().addStringLocalization("tile.pressureplate.willow.name", "en_US", "Willow Pressure Plate");
+        LanguageRegistry.instance().addStringLocalization("tile.pressureplate.tiger.name", "en_US", "Tigerwood Pressure Plate");
+        LanguageRegistry.instance().addStringLocalization("tile.pressureplate.maple.name", "en_US", "Maple Pressure Plate");
+        LanguageRegistry.instance().addStringLocalization("tile.pressureplate.amaranth.name", "en_US", "Amaranth Pressure Plate");
+        LanguageRegistry.instance().addStringLocalization("tile.pressureplate.silverbell.name", "en_US", "Silverbell Pressure Plate");
+        
+        LanguageRegistry.instance().addStringLocalization("tile.fenceGate.eucalyptus.name", "en_US", "Eucalyptus Fence Gate");
+        LanguageRegistry.instance().addStringLocalization("tile.fenceGate.sakura.name", "en_US", "Sakura Fence Gate");
+        LanguageRegistry.instance().addStringLocalization("tile.fenceGate.ghostwood.name", "en_US", "Ghostwood Fence Gate");
+        LanguageRegistry.instance().addStringLocalization("tile.fenceGate.hopseed.name", "en_US", "Hopseed Fence Gate");
+        LanguageRegistry.instance().addStringLocalization("tile.fenceGate.redwood.name", "en_US", "Redwood Fence Gate");
+        LanguageRegistry.instance().addStringLocalization("tile.fenceGate.bloodwood.name", "en_US", "Blood Fence Gate");
+        LanguageRegistry.instance().addStringLocalization("tile.fenceGate.darkwood.name", "en_US", "Darkwood Fence Gate");
+        LanguageRegistry.instance().addStringLocalization("tile.fenceGate.fusewood.name", "en_US", "Fusewood Fence Gate");
+        LanguageRegistry.instance().addStringLocalization("tile.fenceGate.willow.name", "en_US", "Willow Fence Gate");
+        LanguageRegistry.instance().addStringLocalization("tile.fenceGate.tiger.name", "en_US", "Tigerwood Fence Gate");
+        LanguageRegistry.instance().addStringLocalization("tile.fenceGate.maple.name", "en_US", "Maple Fence Gate");
+        LanguageRegistry.instance().addStringLocalization("tile.fenceGate.amaranth.name", "en_US", "Amaranth Fence Gate");
+        LanguageRegistry.instance().addStringLocalization("tile.fenceGate.silverbell.name", "en_US", "Silverbell Fence Gate");
+        
+        LanguageRegistry.instance().addStringLocalization("tile.stair.eucalyptus.name", "en_US", "Eucalyptus Stairs");
+        LanguageRegistry.instance().addStringLocalization("tile.stair.sakura.name", "en_US", "Sakura Stairs");
+        LanguageRegistry.instance().addStringLocalization("tile.stair.ghostwood.name", "en_US", "Ghostwood Stairs");
+        LanguageRegistry.instance().addStringLocalization("tile.stair.hopseed.name", "en_US", "Hopseed Stairs");
+        LanguageRegistry.instance().addStringLocalization("tile.stair.redwood.name", "en_US", "Redwood Stairs");
+        LanguageRegistry.instance().addStringLocalization("tile.stair.bloodwood.name", "en_US", "Blood Stairs");
+        LanguageRegistry.instance().addStringLocalization("tile.stair.darkwood.name", "en_US", "Darkwood Stairs");
+        LanguageRegistry.instance().addStringLocalization("tile.stair.fusewood.name", "en_US", "Fusewood Stairs");
+        LanguageRegistry.instance().addStringLocalization("tile.stair.willow.name", "en_US", "Willow Stairs");
+        LanguageRegistry.instance().addStringLocalization("tile.stair.tiger.name", "en_US", "Tigerwood Stairs");
+        LanguageRegistry.instance().addStringLocalization("tile.stair.maple.name", "en_US", "Maple Stairs");
+        LanguageRegistry.instance().addStringLocalization("tile.stair.amaranth.name", "en_US", "Amaranth Stairs");
+        LanguageRegistry.instance().addStringLocalization("tile.stair.silverbell.name", "en_US", "Silverbell Stairs");
+        
+        LanguageRegistry.instance().addStringLocalization("tile.button.eucalyptus.name", "en_US", "Eucalyptus Button");
+        LanguageRegistry.instance().addStringLocalization("tile.button.sakura.name", "en_US", "Sakura Button");
+        LanguageRegistry.instance().addStringLocalization("tile.button.ghostwood.name", "en_US", "Ghostwood Button");
+        LanguageRegistry.instance().addStringLocalization("tile.button.hopseed.name", "en_US", "Hopseed Button");
+        LanguageRegistry.instance().addStringLocalization("tile.button.redwood.name", "en_US", "Redwood Button");
+        LanguageRegistry.instance().addStringLocalization("tile.button.bloodwood.name", "en_US", "Blood Button");
+        LanguageRegistry.instance().addStringLocalization("tile.button.darkwood.name", "en_US", "Darkwood Button");
+        LanguageRegistry.instance().addStringLocalization("tile.button.fusewood.name", "en_US", "Fusewood Button");
+        LanguageRegistry.instance().addStringLocalization("tile.button.willow.name", "en_US", "Willow Button");
+        LanguageRegistry.instance().addStringLocalization("tile.button.tiger.name", "en_US", "Tigerwood Button");
+        LanguageRegistry.instance().addStringLocalization("tile.button.maple.name", "en_US", "Maple Button");
+        LanguageRegistry.instance().addStringLocalization("tile.button.amaranth.name", "en_US", "Amaranth Button");
+        LanguageRegistry.instance().addStringLocalization("tile.button.silverbell.name", "en_US", "Silverbell Button");
+        
+        LanguageRegistry.instance().addStringLocalization("tile.trapdoor.eucalyptus.name", "en_US", "Eucalyptus Trapdoor");
+        LanguageRegistry.instance().addStringLocalization("tile.trapdoor.sakura.name", "en_US", "Sakura Trapdoor");
+        LanguageRegistry.instance().addStringLocalization("tile.trapdoor.ghostwood.name", "en_US", "Ghostwood Trapdoor");
+        LanguageRegistry.instance().addStringLocalization("tile.trapdoor.hopseed.name", "en_US", "Hopseed Trapdoor");
+        LanguageRegistry.instance().addStringLocalization("tile.trapdoor.redwood.name", "en_US", "Redwood Trapdoor");
+        LanguageRegistry.instance().addStringLocalization("tile.trapdoor.bloodwood.name", "en_US", "Blood Trapdoor");
+        LanguageRegistry.instance().addStringLocalization("tile.trapdoor.darkwood.name", "en_US", "Darkwood Trapdoor");
+        LanguageRegistry.instance().addStringLocalization("tile.trapdoor.fusewood.name", "en_US", "Fusewood Trapdoor");
+        LanguageRegistry.instance().addStringLocalization("tile.trapdoor.willow.name", "en_US", "Willow Trapdoor");
+        LanguageRegistry.instance().addStringLocalization("tile.trapdoor.tiger.name", "en_US", "Tigerwood Trapdoor");
+        LanguageRegistry.instance().addStringLocalization("tile.trapdoor.maple.name", "en_US", "Maple Trapdoor");
+        LanguageRegistry.instance().addStringLocalization("tile.trapdoor.amaranth.name", "en_US", "Amaranth Trapdoor");
+        LanguageRegistry.instance().addStringLocalization("tile.trapdoor.silverbell.name", "en_US", "Silverbell Trapdoor");
 
         LanguageRegistry.instance().addStringLocalization("block.glowshroom.green.name", "en_US", "Green Glowshroom");
         LanguageRegistry.instance().addStringLocalization("block.glowshroom.purple.name", "en_US", "Purple Glowshroom");

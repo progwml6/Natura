@@ -88,6 +88,80 @@ public class PHNatura
         
         grassBlock = config.getBlock("Topiary Grass Block", 3286).getInt(3286);
         grassSlab = config.getBlock("Topiary Grass Slab", 3287).getInt(3287);
+        
+        plankSlab1 = config.getBlock("Plank Slab One", 3288).getInt(3288);
+        plankSlab2 = config.getBlock("Plank Slab Two", 3289).getInt(3289);
+        logSlab = config.getBlock("Log Slab", 3290).getInt(3290);
+        
+        stairEucalyptus = config.getBlock("Eucalyputus Stairs", 3291).getInt(3291);
+        stairSakura = config.getBlock("Sakura Stairs", 3292).getInt(3292);
+        stairGhostwood = config.getBlock("Ghostwood Stairs", 3293).getInt(3293);
+        stairRedwood = config.getBlock("Redwood Stairs", 3294).getInt(3294);
+        stairBloodwood = config.getBlock("Bloodwood Stairs", 3295).getInt(3295);
+        stairHopseed = config.getBlock("Hopseed Stairs", 3296).getInt(3296);
+        stairMaple = config.getBlock("Maple Stairs", 3297).getInt(3297);
+        stairAmaranth = config.getBlock("Amaranth Stairs", 3298).getInt(3298);
+        stairSilverbell = config.getBlock("Silverbell Stairs", 3299).getInt(3299);
+        stairTiger = config.getBlock("Tigerwood Stairs", 3300).getInt(3300);
+        stairWillow = config.getBlock("Willow Stairs", 3301).getInt(3301);
+        stairDarkwood = config.getBlock("Darkwood Stairs", 3302).getInt(3302);
+        stairFusewood = config.getBlock("Fusewood Stairs", 3303).getInt(3303);
+
+        pressurePlateEucalyptus = config.getBlock("Eucalyputus Pressure Plate", 3304).getInt(3304);
+        pressurePlateSakura = config.getBlock("Sakura Pressure Plate", 3305).getInt(3305);
+        pressurePlateGhostwood = config.getBlock("Ghostwood Pressure Plate", 3306).getInt(3306);
+        pressurePlateRedwood = config.getBlock("Redwood Pressure Plate", 3307).getInt(3307);
+        pressurePlateBloodwood = config.getBlock("Bloodwood Pressure Plate", 3308).getInt(3308);
+        pressurePlateHopseed = config.getBlock("Hopseed Pressure Plate", 3309).getInt(3309);
+        pressurePlateMaple = config.getBlock("Maple Pressure Plate", 3310).getInt(3310);
+        pressurePlateAmaranth = config.getBlock("Amaranth Pressure Plate", 3311).getInt(3311);
+        pressurePlateSilverbell = config.getBlock("Silverbell Pressure Plate", 3312).getInt(3312);
+        pressurePlateTiger = config.getBlock("Tigerwood Pressure Plate", 3313).getInt(3313);
+        pressurePlateWillow = config.getBlock("Willow Pressure Plate", 3314).getInt(3314);
+        pressurePlateDarkwood = config.getBlock("Darkwood Pressure Plate", 3315).getInt(3315);
+        pressurePlateFusewood = config.getBlock("Fusewood Pressure Plate", 3316).getInt(3316);
+
+        trapdoorEucalyptus = config.getBlock("Eucalyputus Trapdoor", 3317).getInt(3317);
+        trapdoorSakura = config.getBlock("Sakura Trapdoor", 3318).getInt(3318);
+        trapdoorGhostwood = config.getBlock("Ghostwood Trapdoor", 3319).getInt(3319);
+        trapdoorRedwood = config.getBlock("Redwood Trapdoor", 3320).getInt(3320);
+        trapdoorBloodwood = config.getBlock("Bloodwood Trapdoor", 3321).getInt(3321);
+        trapdoorHopseed = config.getBlock("Hopseed Trapdoor", 3322).getInt(3322);
+        trapdoorMaple = config.getBlock("Maple Trapdoor", 3323).getInt(3323);
+        trapdoorAmaranth = config.getBlock("Amaranth Trapdoor", 3324).getInt(3324);
+        trapdoorSilverbell = config.getBlock("Silverbell Trapdoor", 3325).getInt(3325);
+        trapdoorTiger = config.getBlock("Tigerwood Trapdoor", 3326).getInt(3326);
+        trapdoorWillow = config.getBlock("Willow Trapdoor", 3327).getInt(3327);
+        trapdoorDarkwood = config.getBlock("Darkwood Trapdoor", 3328).getInt(3328);
+        trapdoorFusewood = config.getBlock("Fusewood Trapdoor", 3329).getInt(3329);
+        
+        buttonEucalyptus = config.getBlock("Eucalyputus Button", 3330).getInt(3330);
+        buttonSakura = config.getBlock("Sakura Button", 3331).getInt(3331);
+        buttonGhostwood = config.getBlock("Ghostwood Button", 3332).getInt(3332);
+        buttonRedwood = config.getBlock("Redwood Button", 3333).getInt(3333);
+        buttonBloodwood = config.getBlock("Bloodwood Button", 3334).getInt(3334);
+        buttonHopseed = config.getBlock("Hopseed Button", 3335).getInt(3335);
+        buttonMaple = config.getBlock("Maple Button", 3336).getInt(3336);
+        buttonSilverbell = config.getBlock("Silverbell Button", 3337).getInt(3337);
+        buttonAmaranth = config.getBlock("Amaranth Button", 3338).getInt(3338);
+        buttonTiger = config.getBlock("Tigerwood Button", 3339).getInt(3339);
+        buttonWillow = config.getBlock("Willow Button", 3340).getInt(3340);
+        buttonDarkwood = config.getBlock("Darkwood Button", 3341).getInt(3341);
+        buttonFusewood = config.getBlock("Fusewood Button", 3342).getInt(3342);
+        
+        fenceGateEucalyptus = config.getBlock("Eucalyputus Fence Gate", 3343).getInt(3343);
+        fenceGateSakura = config.getBlock("Sakura Fence Gate", 3344).getInt(3344);
+        fenceGateGhostwood = config.getBlock("Ghostwood Fence Gate", 3345).getInt(3345);
+        fenceGateRedwood = config.getBlock("Redwood Fence Gate", 3346).getInt(3346);
+        fenceGateBloodwood = config.getBlock("Bloodwood Fence Gate", 3347).getInt(3347);
+        fenceGateHopseed = config.getBlock("Hopseed Fence Gate", 3348).getInt(3348);
+        fenceGateMaple = config.getBlock("Maple Fence Gate", 3349).getInt(3349);
+        fenceGateSilverbell = config.getBlock("Silverbell Fence Gate", 3350).getInt(3350);
+        fenceGateAmaranth = config.getBlock("Amaranth Fence Gate", 3351).getInt(3351);
+        fenceGateTiger = config.getBlock("Tigerwood Fence Gate", 3352).getInt(3352);
+        fenceGateWillow = config.getBlock("Willow Fence Gate", 3353).getInt(3353);
+        fenceGateDarkwood = config.getBlock("Darkwood Fence Gate", 3354).getInt(3354);
+        fenceGateFusewood = config.getBlock("Fusewood Fence Gate", 3355).getInt(3355);
 
         netherBerryItem = config.getItem("Nether Berry Food", 12401).getInt(12401);
         berryItemID = config.getItem("Berry Food", 12402).getInt(12402);
@@ -459,6 +533,82 @@ public class PHNatura
     public static int grassBlock;
     public static int grassSlab;
     public static int miniDoor;
+    
+    public static int plankSlab1;
+    public static int plankSlab2;
+    
+    public static int logSlab;
+    
+
+    public static int stairEucalyptus;
+    public static int stairSakura;
+    public static int stairGhostwood;
+    public static int stairRedwood;
+    public static int stairBloodwood;
+    public static int stairHopseed;
+    public static int stairMaple;
+    public static int stairAmaranth;
+    public static int stairSilverbell;
+    public static int stairTiger;
+    public static int stairWillow;
+    public static int stairDarkwood;
+    public static int stairFusewood;
+
+    public static int pressurePlateEucalyptus;
+    public static int pressurePlateSakura;
+    public static int pressurePlateGhostwood;
+    public static int pressurePlateRedwood;
+    public static int pressurePlateBloodwood;
+    public static int pressurePlateHopseed;
+    public static int pressurePlateMaple;
+    public static int pressurePlateAmaranth;
+    public static int pressurePlateSilverbell;
+    public static int pressurePlateTiger;
+    public static int pressurePlateWillow;
+    public static int pressurePlateDarkwood;
+    public static int pressurePlateFusewood;
+
+    public static int trapdoorEucalyptus;
+    public static int trapdoorSakura;
+    public static int trapdoorGhostwood;
+    public static int trapdoorRedwood;
+    public static int trapdoorBloodwood;
+    public static int trapdoorHopseed;
+    public static int trapdoorMaple;
+    public static int trapdoorAmaranth;
+    public static int trapdoorSilverbell;
+    public static int trapdoorTiger;
+    public static int trapdoorWillow;
+    public static int trapdoorDarkwood;
+    public static int trapdoorFusewood;
+
+    public static int buttonEucalyptus;
+    public static int buttonSakura;
+    public static int buttonGhostwood;
+    public static int buttonRedwood;
+    public static int buttonBloodwood;
+    public static int buttonHopseed;
+    public static int buttonMaple;
+    public static int buttonAmaranth;
+    public static int buttonSilverbell;
+    public static int buttonTiger;
+    public static int buttonWillow;
+    public static int buttonDarkwood;
+    public static int buttonFusewood;
+
+    public static int fenceGateEucalyptus;
+    public static int fenceGateSakura;
+    public static int fenceGateGhostwood;
+    public static int fenceGateRedwood;
+    public static int fenceGateBloodwood;
+    public static int fenceGateHopseed;
+    public static int fenceGateMaple;
+    public static int fenceGateAmaranth;
+    public static int fenceGateSilverbell;
+    public static int fenceGateTiger;
+    public static int fenceGateWillow;
+    public static int fenceGateDarkwood;
+    public static int fenceGateFusewood;
 
     public static boolean generateRedwood;
     public static boolean generateSakura;

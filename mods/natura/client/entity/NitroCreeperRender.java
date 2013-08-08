@@ -18,6 +18,6 @@ public class NitroCreeperRender extends RenderCreeper
         return texture;
     }
     
-    static final ResourceLocation texture = new ResourceLocation("natura", "/textures/mob/creeperunstable.png");
+    static final ResourceLocation texture = new ResourceLocation("natura", "textures/mob/creeperunstable.png");
 
 }

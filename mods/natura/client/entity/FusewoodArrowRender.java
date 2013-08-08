@@ -16,7 +16,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class FusewoodArrowRender extends Render
 {
-    private static final ResourceLocation field_110780_a = new ResourceLocation("minecraft", "/textures/entity/arrow.png");
+    private static final ResourceLocation field_110780_a = new ResourceLocation("textures/entity/arrow.png");
 
     public void renderArrow(FusewoodArrow par1EntityArrow, double par2, double par4, double par6, float par8, float par9)
     {

@@ -9,6 +9,12 @@ import mods.natura.blocks.CloudBlock;
 import mods.natura.blocks.GrassBlock;
 import mods.natura.blocks.GrassSlab;
 import mods.natura.blocks.HeatSand;
+import mods.natura.blocks.NButton;
+import mods.natura.blocks.NFenceGate;
+import mods.natura.blocks.NPressurePlate;
+import mods.natura.blocks.NSlabBase;
+import mods.natura.blocks.NStairs;
+import mods.natura.blocks.NTrapdoor;
 import mods.natura.blocks.TaintedSoil;
 import mods.natura.blocks.crops.BerryBush;
 import mods.natura.blocks.crops.CropBlock;
@@ -35,6 +41,7 @@ import mods.natura.blocks.trees.SaguaroBlock;
 import mods.natura.blocks.trees.SimpleLog;
 import mods.natura.blocks.trees.TreeBlock;
 import mods.natura.blocks.trees.WillowBlock;
+import mods.natura.client.NProxyClient;
 import mods.natura.entity.FlameSpider;
 import mods.natura.entity.FlameSpiderBaby;
 import mods.natura.entity.FusewoodArrow;
@@ -73,6 +80,8 @@ import mods.natura.items.blocks.NoColorLeavesItem;
 import mods.natura.items.blocks.OverworldLeavesItem;
 import mods.natura.items.blocks.OverworldSaplingItem;
 import mods.natura.items.blocks.OverworldTreeItem;
+import mods.natura.items.blocks.PlankSlab1Item;
+import mods.natura.items.blocks.PlankSlab2Item;
 import mods.natura.items.blocks.PlanksItem;
 import mods.natura.items.blocks.RedwoodItem;
 import mods.natura.items.blocks.SaguaroItem;
@@ -88,6 +97,7 @@ import mods.natura.items.tools.NaturaSword;
 import mods.natura.util.DispenserBehaviorSpawnEgg;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDispenser;
+import net.minecraft.block.EnumMobType;
 import net.minecraft.block.material.Material;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.EnumCreatureType;
@@ -266,6 +276,288 @@ public class NContent implements IFuelHandler
         grassSlab = new GrassSlab(PHNatura.grassSlab).setUnlocalizedName("GrassSlab");
         grassSlab.stepSound = Block.soundGrassFootstep;
         GameRegistry.registerBlock(grassSlab, GrassSlabItem.class, "GrassSlab");
+        
+        plankSlab1 = new NSlabBase(PHNatura.plankSlab1, Material.wood, planks, 0, 8).setHardness(2.0f).setUnlocalizedName("plankSlab1");
+        plankSlab1.stepSound = Block.soundWoodFootstep;
+        GameRegistry.registerBlock(plankSlab1, PlankSlab1Item.class, "plankSlab1");
+        
+        plankSlab2 = new NSlabBase(PHNatura.plankSlab2, Material.wood, planks, 8, 5).setHardness(2.0f).setUnlocalizedName("plankSlab2");
+        plankSlab2.stepSound = Block.soundWoodFootstep;
+        GameRegistry.registerBlock(plankSlab2, PlankSlab2Item.class, "plankSlab2");
+        
+      //Stairs
+        stairEucalyptus = new NStairs(PHNatura.stairEucalyptus, planks, 0).setUnlocalizedName("stair.eucalyptus");
+        stairEucalyptus.stepSound = Block.soundWoodFootstep;
+        GameRegistry.registerBlock(stairEucalyptus, "stair.eucalyptus");
+
+        stairSakura = new NStairs(PHNatura.stairSakura, planks, 1).setUnlocalizedName("stair.sakura");
+        stairSakura.stepSound = Block.soundWoodFootstep;
+        GameRegistry.registerBlock(stairSakura, "stair.sakura");
+
+        stairGhostwood = new NStairs(PHNatura.stairGhostwood, planks, 2).setUnlocalizedName("stair.ghostwood");
+        stairGhostwood.stepSound = Block.soundWoodFootstep;
+        GameRegistry.registerBlock(stairGhostwood, "stair.ghostwood");
+
+        stairRedwood = new NStairs(PHNatura.stairRedwood, planks, 3).setUnlocalizedName("stair.redwood");
+        stairRedwood.stepSound = Block.soundWoodFootstep;
+        GameRegistry.registerBlock(stairRedwood, "stair.redwood");
+
+        stairBloodwood = new NStairs(PHNatura.stairBloodwood, planks, 4).setUnlocalizedName("stair.bloodwood");
+        stairBloodwood.stepSound = Block.soundWoodFootstep;
+        GameRegistry.registerBlock(stairBloodwood, "stair.bloodwood");
+
+        stairHopseed = new NStairs(PHNatura.stairHopseed, planks, 5).setUnlocalizedName("stair.hopseed");
+        stairHopseed.stepSound = Block.soundWoodFootstep;
+        GameRegistry.registerBlock(stairHopseed, "stair.hopseed");
+
+        stairMaple = new NStairs(PHNatura.stairMaple, planks, 6).setUnlocalizedName("stair.maple");
+        stairMaple.stepSound = Block.soundWoodFootstep;
+        GameRegistry.registerBlock(stairMaple, "stair.maple");
+
+        stairSilverbell = new NStairs(PHNatura.stairSilverbell, planks, 7).setUnlocalizedName("stair.silverbell");
+        stairSilverbell.stepSound = Block.soundWoodFootstep;
+        GameRegistry.registerBlock(stairSilverbell, "stair.silverbell");
+
+        stairAmaranth = new NStairs(PHNatura.stairAmaranth, planks, 8).setUnlocalizedName("stair.amaranth");
+        stairAmaranth.stepSound = Block.soundWoodFootstep;
+        GameRegistry.registerBlock(stairAmaranth, "stair.amaranth");
+
+        stairTiger = new NStairs(PHNatura.stairTiger, planks, 9).setUnlocalizedName("stair.tiger");
+        stairTiger.stepSound = Block.soundWoodFootstep;
+        GameRegistry.registerBlock(stairTiger, "stair.tiger");
+
+        stairWillow = new NStairs(PHNatura.stairWillow, planks, 10).setUnlocalizedName("stair.willow");
+        stairWillow.stepSound = Block.soundWoodFootstep;
+        GameRegistry.registerBlock(stairWillow, "stair.willow");
+
+        stairDarkwood = new NStairs(PHNatura.stairDarkwood, planks, 11).setUnlocalizedName("stair.darkwood");
+        stairDarkwood.stepSound = Block.soundWoodFootstep;
+        GameRegistry.registerBlock(stairDarkwood, "stair.darkwood");
+
+        stairFusewood = new NStairs(PHNatura.stairFusewood, planks, 12).setUnlocalizedName("stair.fusewood");
+        stairFusewood.stepSound = Block.soundWoodFootstep;
+        GameRegistry.registerBlock(stairFusewood, "stair.fusewood");
+
+        //Eucalyptus
+        pressurePlateEucalyptus = new NPressurePlate(PHNatura.pressurePlateEucalyptus, Material.wood, EnumMobType.everything, planks, 0);
+        pressurePlateEucalyptus.setHardness(0.5F).setStepSound(Block.soundWoodFootstep).setUnlocalizedName("pressureplate.eucalyptus");
+        GameRegistry.registerBlock(pressurePlateEucalyptus, "pressureplate.eucalyptus");
+
+        trapdoorEucalyptus = new NTrapdoor(PHNatura.trapdoorEucalyptus, Material.wood, "eucalyptus_trapdoor");
+        trapdoorEucalyptus.setHardness(3.0F).setStepSound(Block.soundWoodFootstep).setUnlocalizedName("trapdoor.eucalyptus");
+        GameRegistry.registerBlock(trapdoorEucalyptus, "trapdoor.eucalyptus");
+
+        buttonEucalyptus = new NButton(PHNatura.buttonEucalyptus, planks, 0);
+        buttonEucalyptus.setHardness(0.5F).setStepSound(Block.soundWoodFootstep).setUnlocalizedName("button.eucalyptus");
+        GameRegistry.registerBlock(buttonEucalyptus, "button.eucalyptus");
+
+        fenceGateEucalyptus = new NFenceGate(PHNatura.fenceGateEucalyptus, planks, 0);
+        fenceGateEucalyptus.setHardness(2.0F).setResistance(5.0F).setStepSound(Block.soundWoodFootstep).setUnlocalizedName("fenceGate.eucalyptus");
+        GameRegistry.registerBlock(fenceGateEucalyptus, "fenceGate.eucalyptus");
+
+        //Sakura
+        pressurePlateSakura = new NPressurePlate(PHNatura.pressurePlateSakura, Material.wood, EnumMobType.everything, planks, 1);
+        pressurePlateSakura.setHardness(0.5F).setStepSound(Block.soundWoodFootstep).setUnlocalizedName("pressureplate.sakura");
+        GameRegistry.registerBlock(pressurePlateSakura, "pressureplate.sakura");
+
+        trapdoorSakura = new NTrapdoor(PHNatura.trapdoorSakura, Material.wood, "sakura_trapdoor");
+        trapdoorSakura.setHardness(3.0F).setStepSound(Block.soundWoodFootstep).setUnlocalizedName("trapdoor.sakura");
+        GameRegistry.registerBlock(trapdoorSakura, "trapdoor.sakura");
+
+        buttonSakura = new NButton(PHNatura.buttonSakura, planks, 1);
+        buttonSakura.setHardness(0.5F).setStepSound(Block.soundWoodFootstep).setUnlocalizedName("button.sakura");
+        GameRegistry.registerBlock(buttonSakura, "button.sakura");
+
+        fenceGateSakura = new NFenceGate(PHNatura.fenceGateSakura, planks, 1);
+        fenceGateSakura.setHardness(2.0F).setResistance(5.0F).setStepSound(Block.soundWoodFootstep).setUnlocalizedName("fenceGate.sakura");
+        GameRegistry.registerBlock(fenceGateSakura, "fenceGate.sakura");
+
+        //Ghostwood
+        pressurePlateGhostwood = new NPressurePlate(PHNatura.pressurePlateGhostwood, Material.wood, EnumMobType.everything, planks, 2);
+        pressurePlateGhostwood.setHardness(0.5F).setStepSound(Block.soundWoodFootstep).setUnlocalizedName("pressureplate.ghostwood");
+        GameRegistry.registerBlock(pressurePlateGhostwood, "pressureplate.ghostwood");
+
+        trapdoorGhostwood = new NTrapdoor(PHNatura.trapdoorGhostwood, Material.wood, "ghostwood_trapdoor");
+        trapdoorGhostwood.setHardness(3.0F).setStepSound(Block.soundWoodFootstep).setUnlocalizedName("trapdoor.ghostwood");
+        GameRegistry.registerBlock(trapdoorGhostwood, "trapdoor.ghostwood");
+
+        buttonGhostwood = new NButton(PHNatura.buttonGhostwood, planks, 2);
+        buttonGhostwood.setHardness(0.5F).setStepSound(Block.soundWoodFootstep).setUnlocalizedName("button.ghostwood");
+        GameRegistry.registerBlock(buttonGhostwood, "button.ghostwood");
+
+        fenceGateGhostwood = new NFenceGate(PHNatura.fenceGateGhostwood, planks, 2);
+        fenceGateGhostwood.setHardness(2.0F).setResistance(5.0F).setStepSound(Block.soundWoodFootstep).setUnlocalizedName("fenceGate.ghostwood");
+        GameRegistry.registerBlock(fenceGateGhostwood, "fenceGate.ghostwood");
+
+        //Redwood
+        pressurePlateRedwood = new NPressurePlate(PHNatura.pressurePlateRedwood, Material.wood, EnumMobType.everything, planks, 3);
+        pressurePlateRedwood.setHardness(0.5F).setStepSound(Block.soundWoodFootstep).setUnlocalizedName("pressureplate.redwood");
+        GameRegistry.registerBlock(pressurePlateRedwood, "pressureplate.redwood");
+
+        trapdoorRedwood = new NTrapdoor(PHNatura.trapdoorRedwood, Material.wood, "redwood_trapdoor");
+        trapdoorRedwood.setHardness(3.0F).setStepSound(Block.soundWoodFootstep).setUnlocalizedName("trapdoor.redwood");
+        GameRegistry.registerBlock(trapdoorRedwood, "trapdoor.redwood");
+
+        buttonRedwood = new NButton(PHNatura.buttonRedwood, planks, 3);
+        buttonRedwood.setHardness(0.5F).setStepSound(Block.soundWoodFootstep).setUnlocalizedName("button.redwood");
+        GameRegistry.registerBlock(buttonRedwood, "button.redwood");
+
+        fenceGateRedwood = new NFenceGate(PHNatura.fenceGateRedwood, planks, 3);
+        fenceGateRedwood.setHardness(2.0F).setResistance(5.0F).setStepSound(Block.soundWoodFootstep).setUnlocalizedName("fenceGate.redwood");
+        GameRegistry.registerBlock(fenceGateRedwood, "fenceGate.redwood");
+
+        //Bloodwood
+        pressurePlateBloodwood = new NPressurePlate(PHNatura.pressurePlateBloodwood, Material.wood, EnumMobType.everything, planks, 4);
+        pressurePlateBloodwood.setHardness(0.5F).setStepSound(Block.soundWoodFootstep).setUnlocalizedName("pressureplate.bloodwood");
+        GameRegistry.registerBlock(pressurePlateBloodwood, "pressureplate.bloodwood");
+
+        trapdoorBloodwood = new NTrapdoor(PHNatura.trapdoorBloodwood, Material.wood, "bloodwood_trapdoor");
+        trapdoorBloodwood.setHardness(3.0F).setStepSound(Block.soundWoodFootstep).setUnlocalizedName("trapdoor.bloodwood");
+        GameRegistry.registerBlock(trapdoorBloodwood, "trapdoor.bloodwood");
+
+        buttonBloodwood = new NButton(PHNatura.buttonBloodwood, planks, 4);
+        buttonBloodwood.setHardness(0.5F).setStepSound(Block.soundWoodFootstep).setUnlocalizedName("button.bloodwood");
+        GameRegistry.registerBlock(buttonBloodwood, "button.bloodwood");
+
+        fenceGateBloodwood = new NFenceGate(PHNatura.fenceGateBloodwood, planks, 4);
+        fenceGateBloodwood.setHardness(2.0F).setResistance(5.0F).setStepSound(Block.soundWoodFootstep).setUnlocalizedName("fenceGate.bloodwood");
+        GameRegistry.registerBlock(fenceGateBloodwood, "fenceGate.bloodwood");
+
+        //Hopseed
+        pressurePlateHopseed = new NPressurePlate(PHNatura.pressurePlateHopseed, Material.wood, EnumMobType.everything, planks, 5);
+        pressurePlateHopseed.setHardness(0.5F).setStepSound(Block.soundWoodFootstep).setUnlocalizedName("pressureplate.hopseed");
+        GameRegistry.registerBlock(pressurePlateHopseed, "pressureplate.hopseed");
+
+        trapdoorHopseed = new NTrapdoor(PHNatura.trapdoorHopseed, Material.wood, "hopseed_trapdoor");
+        trapdoorHopseed.setHardness(3.0F).setStepSound(Block.soundWoodFootstep).setUnlocalizedName("trapdoor.hopseed");
+        GameRegistry.registerBlock(trapdoorHopseed, "trapdoor.hopseed");
+
+        buttonHopseed = new NButton(PHNatura.buttonHopseed, planks, 5);
+        buttonHopseed.setHardness(0.5F).setStepSound(Block.soundWoodFootstep).setUnlocalizedName("button.hopseed");
+        GameRegistry.registerBlock(buttonHopseed, "button.hopseed");
+
+        fenceGateHopseed = new NFenceGate(PHNatura.fenceGateHopseed, planks, 5);
+        fenceGateHopseed.setHardness(2.0F).setResistance(5.0F).setStepSound(Block.soundWoodFootstep).setUnlocalizedName("fenceGate.hopseed");
+        GameRegistry.registerBlock(fenceGateHopseed, "fenceGate.hopseed");
+
+        //Maple
+        pressurePlateMaple = new NPressurePlate(PHNatura.pressurePlateMaple, Material.wood, EnumMobType.everything, planks, 6);
+        pressurePlateMaple.setHardness(0.5F).setStepSound(Block.soundWoodFootstep).setUnlocalizedName("pressureplate.maple");
+        GameRegistry.registerBlock(pressurePlateMaple, "pressureplate.maple");
+
+        trapdoorMaple = new NTrapdoor(PHNatura.trapdoorMaple, Material.wood, "maple_trapdoor");
+        trapdoorMaple.setHardness(3.0F).setStepSound(Block.soundWoodFootstep).setUnlocalizedName("trapdoor.maple");
+        GameRegistry.registerBlock(trapdoorMaple, "trapdoor.maple");
+
+        buttonMaple = new NButton(PHNatura.buttonMaple, planks, 6);
+        buttonMaple.setHardness(0.5F).setStepSound(Block.soundWoodFootstep).setUnlocalizedName("button.maple");
+        GameRegistry.registerBlock(buttonMaple, "button.maple");
+
+        fenceGateMaple = new NFenceGate(PHNatura.fenceGateMaple, planks, 6);
+        fenceGateMaple.setHardness(2.0F).setResistance(5.0F).setStepSound(Block.soundWoodFootstep).setUnlocalizedName("fenceGate.maple");
+        GameRegistry.registerBlock(fenceGateMaple, "fenceGate.maple");
+
+        //Amaranth
+        pressurePlateAmaranth = new NPressurePlate(PHNatura.pressurePlateAmaranth, Material.wood, EnumMobType.everything, planks, 7);
+        pressurePlateAmaranth.setHardness(0.5F).setStepSound(Block.soundWoodFootstep).setUnlocalizedName("pressureplate.amaranth");
+        GameRegistry.registerBlock(pressurePlateAmaranth, "pressureplate.amaranth");
+
+        trapdoorAmaranth = new NTrapdoor(PHNatura.trapdoorAmaranth, Material.wood, "amaranth_trapdoor");
+        trapdoorAmaranth.setHardness(3.0F).setStepSound(Block.soundWoodFootstep).setUnlocalizedName("trapdoor.amaranth");
+        GameRegistry.registerBlock(trapdoorAmaranth, "trapdoor.amaranth");
+
+        buttonAmaranth = new NButton(PHNatura.buttonAmaranth, planks, 7);
+        buttonAmaranth.setHardness(0.5F).setStepSound(Block.soundWoodFootstep).setUnlocalizedName("button.amaranth");
+        GameRegistry.registerBlock(buttonAmaranth, "button.amaranth");
+
+        fenceGateAmaranth = new NFenceGate(PHNatura.fenceGateAmaranth, planks, 7);
+        fenceGateAmaranth.setHardness(2.0F).setResistance(5.0F).setStepSound(Block.soundWoodFootstep).setUnlocalizedName("fenceGate.amaranth");
+        GameRegistry.registerBlock(fenceGateAmaranth, "fenceGate.amaranth");
+
+        //Silverbell
+        pressurePlateSilverbell = new NPressurePlate(PHNatura.pressurePlateSilverbell, Material.wood, EnumMobType.everything, planks, 8);
+        pressurePlateSilverbell.setHardness(0.5F).setStepSound(Block.soundWoodFootstep).setUnlocalizedName("pressureplate.silverbell");
+        GameRegistry.registerBlock(pressurePlateSilverbell, "pressureplate.silverbell");
+
+        trapdoorSilverbell = new NTrapdoor(PHNatura.trapdoorSilverbell, Material.wood, "silverbell_trapdoor");
+        trapdoorSilverbell.setHardness(3.0F).setStepSound(Block.soundWoodFootstep).setUnlocalizedName("trapdoor.silverbell");
+        GameRegistry.registerBlock(trapdoorSilverbell, "trapdoor.silverbell");
+
+        buttonSilverbell = new NButton(PHNatura.buttonSilverbell, planks, 8);
+        buttonSilverbell.setHardness(0.5F).setStepSound(Block.soundWoodFootstep).setUnlocalizedName("button.silverbell");
+        GameRegistry.registerBlock(buttonSilverbell, "button.silverbell");
+
+        fenceGateSilverbell = new NFenceGate(PHNatura.fenceGateSilverbell, planks, 8);
+        fenceGateSilverbell.setHardness(2.0F).setResistance(5.0F).setStepSound(Block.soundWoodFootstep).setUnlocalizedName("fenceGate.silverbell");
+        GameRegistry.registerBlock(fenceGateSilverbell, "fenceGate.silverbell");
+
+        //Tigerwood
+        pressurePlateTiger = new NPressurePlate(PHNatura.pressurePlateTiger, Material.wood, EnumMobType.everything, planks, 9);
+        pressurePlateTiger.setHardness(0.5F).setStepSound(Block.soundWoodFootstep).setUnlocalizedName("pressureplate.tiger");
+        GameRegistry.registerBlock(pressurePlateTiger, "pressureplate.tiger");
+
+        trapdoorTiger = new NTrapdoor(PHNatura.trapdoorTiger, Material.wood, "tiger_trapdoor");
+        trapdoorTiger.setHardness(3.0F).setStepSound(Block.soundWoodFootstep).setUnlocalizedName("trapdoor.tiger");
+        GameRegistry.registerBlock(trapdoorTiger, "trapdoor.tiger");
+
+        buttonTiger = new NButton(PHNatura.buttonTiger, planks, 9);
+        buttonTiger.setHardness(0.5F).setStepSound(Block.soundWoodFootstep).setUnlocalizedName("button.tiger");
+        GameRegistry.registerBlock(buttonTiger, "button.tiger");
+
+        fenceGateTiger = new NFenceGate(PHNatura.fenceGateTiger, planks, 9);
+        fenceGateTiger.setHardness(2.0F).setResistance(5.0F).setStepSound(Block.soundWoodFootstep).setUnlocalizedName("fenceGate.tiger");
+        GameRegistry.registerBlock(fenceGateTiger, "fenceGate.tiger");
+
+        //Willow
+        pressurePlateWillow = new NPressurePlate(PHNatura.pressurePlateWillow, Material.wood, EnumMobType.everything, planks, 10);
+        pressurePlateWillow.setHardness(0.5F).setStepSound(Block.soundWoodFootstep).setUnlocalizedName("pressureplate.willow");
+        GameRegistry.registerBlock(pressurePlateWillow, "pressureplate.willow");
+
+        trapdoorWillow = new NTrapdoor(PHNatura.trapdoorWillow, Material.wood, "willow_trapdoor");
+        trapdoorWillow.setHardness(3.0F).setStepSound(Block.soundWoodFootstep).setUnlocalizedName("trapdoor.willow");
+        GameRegistry.registerBlock(trapdoorWillow, "trapdoor.willow");
+
+        buttonWillow = new NButton(PHNatura.buttonWillow, planks, 10);
+        buttonWillow.setHardness(0.5F).setStepSound(Block.soundWoodFootstep).setUnlocalizedName("button.willow");
+        GameRegistry.registerBlock(buttonWillow, "button.willow");
+
+        fenceGateWillow = new NFenceGate(PHNatura.fenceGateWillow, planks, 10);
+        fenceGateWillow.setHardness(2.0F).setResistance(5.0F).setStepSound(Block.soundWoodFootstep).setUnlocalizedName("fenceGate.willow");
+        GameRegistry.registerBlock(fenceGateWillow, "fenceGate.willow");
+
+        //Darkwood
+        pressurePlateDarkwood = new NPressurePlate(PHNatura.pressurePlateDarkwood, Material.wood, EnumMobType.everything, planks, 11);
+        pressurePlateDarkwood.setHardness(0.5F).setStepSound(Block.soundWoodFootstep).setUnlocalizedName("pressureplate.darkwood");
+        GameRegistry.registerBlock(pressurePlateDarkwood, "pressureplate.darkwood");
+
+        trapdoorDarkwood = new NTrapdoor(PHNatura.trapdoorDarkwood, Material.wood, "darkwood_trapdoor");
+        trapdoorDarkwood.setHardness(3.0F).setStepSound(Block.soundWoodFootstep).setUnlocalizedName("trapdoor.darkwood");
+        GameRegistry.registerBlock(trapdoorDarkwood, "trapdoor.darkwood");
+
+        buttonDarkwood = new NButton(PHNatura.buttonDarkwood, planks, 11);
+        buttonDarkwood.setHardness(0.5F).setStepSound(Block.soundWoodFootstep).setUnlocalizedName("button.darkwood");
+        GameRegistry.registerBlock(buttonDarkwood, "button.darkwood");
+
+        fenceGateDarkwood = new NFenceGate(PHNatura.fenceGateDarkwood, planks, 11);
+        fenceGateDarkwood.setHardness(2.0F).setResistance(5.0F).setStepSound(Block.soundWoodFootstep).setUnlocalizedName("fenceGate.darkwood");
+        GameRegistry.registerBlock(fenceGateDarkwood, "fenceGate.darkwood");
+
+        //Fusewood
+        pressurePlateFusewood = new NPressurePlate(PHNatura.pressurePlateFusewood, Material.wood, EnumMobType.everything, planks, 12);
+        pressurePlateFusewood.setHardness(0.5F).setStepSound(Block.soundWoodFootstep).setUnlocalizedName("pressureplate.fusewood");
+        GameRegistry.registerBlock(pressurePlateFusewood, "pressureplate.fusewood");
+
+        trapdoorFusewood = new NTrapdoor(PHNatura.trapdoorFusewood, Material.wood, "fusewood_trapdoor");
+        trapdoorFusewood.setHardness(3.0F).setStepSound(Block.soundWoodFootstep).setUnlocalizedName("trapdoor.fusewood");
+        GameRegistry.registerBlock(trapdoorFusewood, "trapdoor.fusewood");
+
+        buttonFusewood = new NButton(PHNatura.buttonFusewood, planks, 12);
+        buttonFusewood.setHardness(0.5F).setStepSound(Block.soundWoodFootstep).setUnlocalizedName("button.fusewood");
+        GameRegistry.registerBlock(buttonFusewood, "button.fusewood");
+
+        fenceGateFusewood = new NFenceGate(PHNatura.fenceGateFusewood, planks, 12);
+        fenceGateFusewood.setHardness(2.0F).setResistance(5.0F).setStepSound(Block.soundWoodFootstep).setUnlocalizedName("fenceGate.fusewood");
+        GameRegistry.registerBlock(fenceGateFusewood, "fenceGate.fusewood");
 
         //Item.itemsList[24] = null;
         //Item.stick = null;
@@ -573,13 +865,26 @@ public class NContent implements IFuelHandler
             GameRegistry.addRecipe(new ItemStack(grassSlab, 6, i), "bbb", 'b', new ItemStack(grassBlock, 1, i));
         }
         
-        /*grassBlock = new GrassBlock(PHNatura.grassBlock).setUnlocalizedName("GrassBlock");
-        grassBlock.stepSound = Block.soundGrassFootstep;
-        GameRegistry.registerBlock(grassBlock, GrassBlockItem.class, "GrassBlock");
+        //Extra wood things
+        Block[] fenceGates = new Block[] { fenceGateEucalyptus, fenceGateSakura, fenceGateGhostwood, fenceGateRedwood, fenceGateBloodwood, fenceGateHopseed, fenceGateMaple,
+                fenceGateSilverbell, fenceGateAmaranth, fenceGateTiger, fenceGateWillow, fenceGateDarkwood, fenceGateFusewood };
+        Block[] buttons = new Block[] { buttonEucalyptus, buttonSakura, buttonGhostwood, buttonRedwood, buttonBloodwood, buttonHopseed, buttonMaple,
+                buttonSilverbell, buttonAmaranth, buttonTiger, buttonWillow, buttonDarkwood, buttonFusewood };
+        Block[] pressurePlates = new Block[] { pressurePlateEucalyptus, pressurePlateSakura, pressurePlateGhostwood, pressurePlateRedwood, pressurePlateBloodwood, pressurePlateHopseed, pressurePlateMaple,
+                pressurePlateSilverbell, pressurePlateAmaranth, pressurePlateTiger, pressurePlateWillow, pressurePlateDarkwood, pressurePlateFusewood };
+        Block[] stairs = new Block[] { stairEucalyptus, stairSakura, stairGhostwood, stairRedwood, stairBloodwood, stairHopseed, stairMaple,
+                stairSilverbell, stairAmaranth, stairTiger, stairWillow, stairDarkwood, stairFusewood };
+        Block[] trapdoors = new Block[] { trapdoorEucalyptus, trapdoorSakura, trapdoorGhostwood, trapdoorRedwood, trapdoorBloodwood, trapdoorHopseed, trapdoorMaple,
+                trapdoorSilverbell, trapdoorAmaranth, trapdoorTiger, trapdoorWillow, trapdoorDarkwood, trapdoorFusewood };
         
-        grassSlab = new GrassSlab(PHNatura.grassSlab).setUnlocalizedName("GrassSlab");
-        grassSlab.stepSound = Block.soundGrassFootstep;
-        GameRegistry.registerBlock(grassSlab, GrassSlabItem.class, "GrassSlab");*/
+        for (int i = 0; i < 13; i++)
+        {
+            addShapedRecipeFirst(recipes, new ItemStack(fenceGates[i], 1, i), "s#s", "s#s", '#', new ItemStack(planks, 1, i), 's', new ItemStack(stickItem, 1, i));
+            addShapedRecipeFirst(recipes, new ItemStack(buttons[i], 1, i), "#", '#', new ItemStack(planks, 1, i));
+            addShapedRecipeFirst(recipes, new ItemStack(pressurePlates[i], 1, i), "##", '#', new ItemStack(planks, 1, i));
+            addShapedRecipeFirst(recipes, new ItemStack(stairs[i], 1, i), "#  ", "## ", "###", '#', new ItemStack(planks, 1, i));
+            addShapedRecipeFirst(recipes, new ItemStack(trapdoors[i], 1, i), "###", "###", '#', new ItemStack(planks, 1, i));
+        }
     }
 
     public void addShapedRecipeFirst (List recipeList, ItemStack itemstack, Object... objArray)
@@ -1192,6 +1497,81 @@ public class NContent implements IFuelHandler
     public static Block grassBlock;
     public static Block grassSlab;
     public static Block miniDoor;
+    
+    public static Block plankSlab1;
+    public static Block plankSlab2;
+    
+    public static Block logSlab;
+
+    public static Block stairEucalyptus;
+    public static Block stairSakura;
+    public static Block stairGhostwood;
+    public static Block stairRedwood;
+    public static Block stairBloodwood;
+    public static Block stairHopseed;
+    public static Block stairMaple;
+    public static Block stairSilverbell;
+    public static Block stairAmaranth;
+    public static Block stairTiger;
+    public static Block stairWillow;
+    public static Block stairDarkwood;
+    public static Block stairFusewood;
+
+    public static Block pressurePlateEucalyptus;
+    public static Block pressurePlateSakura;
+    public static Block pressurePlateGhostwood;
+    public static Block pressurePlateRedwood;
+    public static Block pressurePlateBloodwood;
+    public static Block pressurePlateHopseed;
+    public static Block pressurePlateMaple;
+    public static Block pressurePlateAmaranth;
+    public static Block pressurePlateSilverbell;
+    public static Block pressurePlateTiger;
+    public static Block pressurePlateWillow;
+    public static Block pressurePlateDarkwood;
+    public static Block pressurePlateFusewood;
+
+    public static Block trapdoorEucalyptus;
+    public static Block trapdoorSakura;
+    public static Block trapdoorGhostwood;
+    public static Block trapdoorRedwood;
+    public static Block trapdoorBloodwood;
+    public static Block trapdoorHopseed;
+    public static Block trapdoorMaple;
+    public static Block trapdoorAmaranth;
+    public static Block trapdoorSilverbell;
+    public static Block trapdoorTiger;
+    public static Block trapdoorWillow;
+    public static Block trapdoorDarkwood;
+    public static Block trapdoorFusewood;
+
+    public static Block buttonEucalyptus;
+    public static Block buttonSakura;
+    public static Block buttonGhostwood;
+    public static Block buttonRedwood;
+    public static Block buttonBloodwood;
+    public static Block buttonHopseed;
+    public static Block buttonMaple;
+    public static Block buttonAmaranth;
+    public static Block buttonSilverbell;
+    public static Block buttonTiger;
+    public static Block buttonWillow;
+    public static Block buttonDarkwood;
+    public static Block buttonFusewood;
+
+    public static Block fenceGateEucalyptus;
+    public static Block fenceGateSakura;
+    public static Block fenceGateGhostwood;
+    public static Block fenceGateRedwood;
+    public static Block fenceGateBloodwood;
+    public static Block fenceGateHopseed;
+    public static Block fenceGateMaple;
+    public static Block fenceGateAmaranth;
+    public static Block fenceGateSilverbell;
+    public static Block fenceGateTiger;
+    public static Block fenceGateWillow;
+    public static Block fenceGateDarkwood;
+    public static Block fenceGateFusewood;
 
     @Override
     public int getBurnTime (ItemStack fuel)
