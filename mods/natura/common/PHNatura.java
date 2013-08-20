@@ -240,6 +240,13 @@ public class PHNatura
         catch (Exception e)
         {
         }
+
+        babyHeatscarMinimum = config.get("Mob Changes", "Minimum Baby Heatscar Spiders on Spider Death", 2).getInt(2);
+        if (babyHeatscarMinimum < 0)
+            babyHeatscarMinimum = 0;
+        babyHeatscarMaximum = config.get("Mob Changes", "Maximum Baby Heatscar Spiders on Spider Death", 4).getInt(4);
+        if (babyHeatscarMaximum < 0)
+            babyHeatscarMaximum = 0;
         overrideNether = config.get("Disabler", "Override Nether", !BoP).getBoolean(!BoP);
 
         generateRedwood = config.get("Disabler", "Generate Redwood Trees", true).getBoolean(true);
@@ -654,4 +661,7 @@ public class PHNatura
     public static int willowRarity;
     public static int tigerRarity;
     public static int silverbellRarity;
+
+    public static int babyHeatscarMinimum;
+    public static int babyHeatscarMaximum;
 }

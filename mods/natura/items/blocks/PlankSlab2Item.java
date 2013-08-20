@@ -35,7 +35,7 @@ public class PlankSlab2Item extends ItemBlock
     @Override
     public String getUnlocalizedName (ItemStack itemstack)
     {
-        return (new StringBuilder()).append(blockType[itemstack.getItemDamage()]).append("NPlanks").toString();
+        return (new StringBuilder()).append("block.wood.").append(blockType[itemstack.getItemDamage()]).append(".slab").toString();
     }
 
     @Override

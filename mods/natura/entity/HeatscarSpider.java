@@ -1,10 +1,12 @@
 package mods.natura.entity;
 
 import mods.natura.common.NContent;
+import mods.natura.common.PHNatura;
 import net.minecraft.block.Block;
 import net.minecraft.block.StepSound;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.monster.EntitySpider;
 import net.minecraft.item.ItemStack;
@@ -13,19 +15,36 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeHooks;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
-public class FlameSpiderBaby extends EntitySpider
+public class HeatscarSpider extends EntitySpider
 {
-    public FlameSpiderBaby(World par1World)
+    public HeatscarSpider(World par1World)
     {
         super(par1World);
-        this.setSize(1.2F, 0.8F);
+        this.setSize(2.7F, 1.9F);
         this.isImmuneToFire = true;
+        this.experienceValue = 25;
     }
 
+    @SideOnly(Side.CLIENT)
+    /**
+     * How large the spider should be scaled.
+     */
     public float spiderScaleAmount ()
     {
-        return 0.85F;
+        return 2.0F;
+    }
+    
+    @Override
+    protected void func_110147_ax()
+    {
+        super.func_110147_ax();
+        this.func_110148_a(SharedMonsterAttributes.field_111267_a).func_111128_a(50.0D); //Health
+        this.func_110148_a(SharedMonsterAttributes.field_111265_b).func_111128_a(24D); //Detection range
+        this.func_110148_a(SharedMonsterAttributes.field_111263_d).func_111128_a(1.35); //Movespeed
+        this.func_110148_a(SharedMonsterAttributes.field_111264_e).func_111128_a(4.0); //Base damage
     }
 
     protected void attackEntity (Entity par1Entity, float par2)
@@ -176,5 +195,30 @@ public class FlameSpiderBaby extends EntitySpider
     {
         return this.worldObj.difficultySetting > 0 && this.worldObj.checkNoEntityCollision(this.boundingBox) && this.worldObj.getCollidingBoundingBoxes(this, this.boundingBox).isEmpty()
                 && !this.worldObj.isAnyLiquid(this.boundingBox);
+    }
+
+    protected BabyHeatscarSpider createBabyInstance ()
+    {
+        return new BabyHeatscarSpider(this.worldObj);
+    }
+
+    public void setDead ()
+    {
+
+        if (!this.worldObj.isRemote)
+        {
+            int num = PHNatura.babyHeatscarMaximum - PHNatura.babyHeatscarMinimum + 1;
+            int amount = rand.nextInt(num) + PHNatura.babyHeatscarMinimum;
+            for (int i = 0; i < amount; i++)
+            {
+                double f = rand.nextDouble() * 2;
+                double f1 = rand.nextDouble() * 2;
+                BabyHeatscarSpider babyspider = this.createBabyInstance();
+                babyspider.setLocationAndAngles(this.posX + (double) f, this.posY + 0.5D, this.posZ + (double) f1, this.rand.nextFloat() * 360.0F, 0.0F);
+                this.worldObj.spawnEntityInWorld(babyspider);
+            }
+        }
+
+        super.setDead();
     }
 }

@@ -9,8 +9,8 @@ import mods.natura.client.entity.ImpRender;
 import mods.natura.client.entity.NitroCreeperRender;
 import mods.natura.common.NContent;
 import mods.natura.common.NProxyCommon;
-import mods.natura.entity.FlameSpider;
-import mods.natura.entity.FlameSpiderBaby;
+import mods.natura.entity.HeatscarSpider;
+import mods.natura.entity.BabyHeatscarSpider;
 import mods.natura.entity.FusewoodArrow;
 import mods.natura.entity.ImpEntity;
 import mods.natura.entity.NitroCreeper;
@@ -40,27 +40,27 @@ public class NProxyClient extends NProxyCommon
         TickRegistry.registerTickHandler(new NCropsTickHandler(), Side.CLIENT);
 
         RenderingRegistry.registerEntityRenderingHandler(ImpEntity.class, new ImpRender(new ImpModel(), 0f));
-        RenderingRegistry.registerEntityRenderingHandler(FlameSpider.class, new FlameSpiderRender());
+        RenderingRegistry.registerEntityRenderingHandler(HeatscarSpider.class, new FlameSpiderRender());
         RenderingRegistry.registerEntityRenderingHandler(NitroCreeper.class, new NitroCreeperRender());
         RenderingRegistry.registerEntityRenderingHandler(FusewoodArrow.class, new FusewoodArrowRender());
-        RenderingRegistry.registerEntityRenderingHandler(FlameSpiderBaby.class, new FlameSpiderRender());
+        RenderingRegistry.registerEntityRenderingHandler(BabyHeatscarSpider.class, new FlameSpiderRender());
 
         Minecraft mc = Minecraft.getMinecraft();
         try
         {
             GrassColorizerAlternate.setBlueGrassBiomeColorizer(TextureUtil.func_110986_a(mc.func_110442_L(), bluegrass));
-            GrassColorizerAlternate.setOrangeGrassBiomeColorizer(TextureUtil.func_110986_a(mc.func_110442_L(), bluegrass));
+            GrassColorizerAlternate.setOrangeGrassBiomeColorizer(TextureUtil.func_110986_a(mc.func_110442_L(), orangegrass));
         }
-        catch (IOException ioexception)
+        catch (IOException e)
         {
-            ;
+            e.printStackTrace();
         }
     }
 
-    private static final ResourceLocation bluegrass = new ResourceLocation("assets/natura/textures/misc/bluegrasscolor.png");
-    private static final ResourceLocation orangegrass = new ResourceLocation("assets/natura/textures/misc/orangegrasscolor.png");
+    private static final ResourceLocation bluegrass = new ResourceLocation("natura", "textures/misc/bluegrasscolor.png");
+    private static final ResourceLocation orangegrass = new ResourceLocation("natura", "textures/misc/orangegrasscolor.png");
 
-    @Override
+    /*@Override
     public void addNames ()
     {
         super.addNames();
@@ -328,7 +328,7 @@ public class NProxyClient extends NProxyCommon
         LanguageRegistry.addName(NContent.impJerkin, "Impskin Jerkin");
         LanguageRegistry.addName(NContent.impLeggings, "Impskin Leggings");
         LanguageRegistry.addName(NContent.impBoots, "Impskin Boots");
-    }
+    }*/
 
     public static void renderStandardInvBlock (RenderBlocks renderblocks, Block block, int meta)
     {

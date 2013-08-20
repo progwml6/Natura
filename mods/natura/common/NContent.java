@@ -42,8 +42,8 @@ import mods.natura.blocks.trees.SimpleLog;
 import mods.natura.blocks.trees.TreeBlock;
 import mods.natura.blocks.trees.WillowBlock;
 import mods.natura.client.NProxyClient;
-import mods.natura.entity.FlameSpider;
-import mods.natura.entity.FlameSpiderBaby;
+import mods.natura.entity.HeatscarSpider;
+import mods.natura.entity.BabyHeatscarSpider;
 import mods.natura.entity.FusewoodArrow;
 import mods.natura.entity.ImpEntity;
 import mods.natura.entity.NitroCreeper;
@@ -882,8 +882,8 @@ public class NContent implements IFuelHandler
             addShapedRecipeFirst(recipes, new ItemStack(fenceGates[i], 1, i), "s#s", "s#s", '#', new ItemStack(planks, 1, i), 's', new ItemStack(stickItem, 1, i));
             addShapedRecipeFirst(recipes, new ItemStack(buttons[i], 1, i), "#", '#', new ItemStack(planks, 1, i));
             addShapedRecipeFirst(recipes, new ItemStack(pressurePlates[i], 1, i), "##", '#', new ItemStack(planks, 1, i));
-            addShapedRecipeFirst(recipes, new ItemStack(stairs[i], 1, i), "#  ", "## ", "###", '#', new ItemStack(planks, 1, i));
-            addShapedRecipeFirst(recipes, new ItemStack(trapdoors[i], 1, i), "###", "###", '#', new ItemStack(planks, 1, i));
+            addShapedRecipeFirst(recipes, new ItemStack(stairs[i], 4, i), "#  ", "## ", "###", '#', new ItemStack(planks, 1, i));
+            addShapedRecipeFirst(recipes, new ItemStack(trapdoors[i], 2, i), "###", "###", '#', new ItemStack(planks, 1, i));
         }
     }
 
@@ -1159,17 +1159,17 @@ public class NContent implements IFuelHandler
     public void createEntities ()
     {
         EntityRegistry.registerModEntity(ImpEntity.class, "Imp", 0, Natura.instance, 32, 5, true);
-        EntityRegistry.registerModEntity(FlameSpider.class, "FlameSpider", 1, Natura.instance, 32, 5, true);
+        EntityRegistry.registerModEntity(HeatscarSpider.class, "FlameSpider", 1, Natura.instance, 32, 5, true);
         EntityRegistry.registerModEntity(NitroCreeper.class, "NitroCreeper", 2, Natura.instance, 64, 5, true);
         EntityRegistry.registerModEntity(FusewoodArrow.class, "FusewoodArrow", 3, Natura.instance, 64, 3, true);
-        EntityRegistry.registerModEntity(FlameSpiderBaby.class, "FlameSpiderBaby", 4, Natura.instance, 32, 5, true);
+        EntityRegistry.registerModEntity(BabyHeatscarSpider.class, "FlameSpiderBaby", 4, Natura.instance, 32, 5, true);
 
         BiomeGenBase[] nether = BiomeDictionary.getBiomesForType(BiomeDictionary.Type.NETHER);
 
         EntityRegistry.addSpawn(ImpEntity.class, 10, 8, 12, EnumCreatureType.creature, nether);
-        EntityRegistry.addSpawn(FlameSpider.class, 10, 4, 4, EnumCreatureType.monster, nether);
+        EntityRegistry.addSpawn(HeatscarSpider.class, 10, 4, 4, EnumCreatureType.monster, nether);
         EntityRegistry.addSpawn(NitroCreeper.class, 8, 4, 6, EnumCreatureType.monster, nether);
-        EntityRegistry.addSpawn(FlameSpiderBaby.class, 7, 4, 4, EnumCreatureType.monster, nether);
+        EntityRegistry.addSpawn(BabyHeatscarSpider.class, 7, 4, 4, EnumCreatureType.monster, nether);
 
         BlockDispenser.dispenseBehaviorRegistry.putObject(spawnEgg, new DispenserBehaviorSpawnEgg());
     }

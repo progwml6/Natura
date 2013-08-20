@@ -2,8 +2,8 @@ package mods.natura.items;
 
 import java.util.List;
 
-import mods.natura.entity.FlameSpider;
-import mods.natura.entity.FlameSpiderBaby;
+import mods.natura.entity.HeatscarSpider;
+import mods.natura.entity.BabyHeatscarSpider;
 import mods.natura.entity.ImpEntity;
 import mods.natura.entity.NitroCreeper;
 import net.minecraft.block.Block;
@@ -113,7 +113,7 @@ public class SpawnEgg extends Item
             spawnEntity(posX, posY, posZ, entity, world);
             break;
         case 1:
-            entity = new FlameSpider(world);
+            entity = new HeatscarSpider(world);
             spawnEntity(posX, posY, posZ, entity, world);
             break;
         case 2:
@@ -121,7 +121,7 @@ public class SpawnEgg extends Item
             spawnEntity(posX, posY, posZ, entity, world);
             break;
         case 3:
-            entity = new FlameSpiderBaby(world);
+            entity = new BabyHeatscarSpider(world);
             spawnEntity(posX, posY, posZ, entity, world);
             break;
         }

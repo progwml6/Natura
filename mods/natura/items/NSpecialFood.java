@@ -28,6 +28,7 @@ public class NSpecialFood extends ItemFood
         this.saturation = saturation;
         this.unlocalizedNames = textureNames;
         this.iconNames = iconNames;
+        this.setHasSubtypes(true);
     }
 
     @Override

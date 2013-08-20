@@ -1,0 +1,290 @@
+<?xml version="1.0"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties version="1.0">
+  <entry key="item.natura.spawnegg.name">Spawn </entry>
+
+  <entry key="item.wheatBag.name">Wheat Seed Bag</entry>
+  <entry key="item.barleyBag.name">Barley Seed Bag</entry>
+  <entry key="item.potatoBag.name">Potato Bag</entry>
+  <entry key="item.carrotBag.name">Carrot Bag</entry>
+  <entry key="item.wartBag.name">Nether Wart Bag</entry>
+  <entry key="item.cottonBag.name">Cotton Seed Bag</entry>
+  <entry key="item.boneBag.name">Bonemeal Bag</entry>
+
+  <entry key="item.barley.seed.name">Barley Seeds</entry>
+  <entry key="item.barley.plant.name">Barley</entry>
+  <entry key="item.barley.flour.name">Barley Flour</entry>
+  <entry key="item.wheat.flour.name">Wheat Flour</entry>
+  <entry key="item.cotton.plant.name">Cotton</entry>
+  <entry key="item.fletching.ghostwood.name">Ghostwood Fletching</entry>
+  <entry key="item.leather.imp.name">Imp Leather</entry>
+  <entry key="item.string.flame.name">Flamestring</entry>
+  <entry key="item.dye.blue.name">Blue Dye</entry>
+
+  <entry key="item.cotton.seed.name">Cotton Seeds</entry>
+  <entry key="item.powder.sulfur.name">Sulfur</entry>
+  <entry key="item.waterdrop.name">Cactus Juice</entry>
+  <entry key="item.saguaro.fruit.name">Saguaro Fruit</entry>
+
+  <entry key="item.berry.rasp.name">Raspberry</entry>
+  <entry key="item.berry.blue.name">Blueberry</entry>
+  <entry key="item.berry.black.name">Blackberry</entry>
+  <entry key="item.berry.geo.name">Maloberry</entry>
+  <entry key="item.berry.medley.name">Berry Medley</entry>
+  <entry key="item.berry.blight.name">Blightberry</entry>
+  <entry key="item.berry.dusk.name">Duskberry</entry>
+  <entry key="item.berry.sky.name">Skyberry</entry>
+  <entry key="item.berry.sting.name">Stingberry</entry>
+
+  <entry key="block.raspberryBush.name">Raspberry Bush</entry>
+  <entry key="block.blueberryBush.name">Blueberry Bush</entry>
+  <entry key="block.blackberryBush.name">Blackberry Bush</entry>
+  <entry key="block.geoberryBush.name">Maloberry Bush</entry>
+
+  <entry key="block.bush.berry.blight.name">Blightberry Bush</entry>
+  <entry key="block.bush.berry.dusk.name">Duskberry Bush</entry>
+  <entry key="block.bush.berry.sky.name">Skyberry Bush</entry>
+  <entry key="block.bush.berry.sting.name">Stingberry Bush</entry>
+
+  <entry key="block.log.maple.name">Maple Wood</entry>
+  <entry key="block.log.silverbell.name">Silverbell Wood</entry>
+  <entry key="block.log.purpleheart.name">Amaranth Wood</entry>
+  <entry key="block.log.tiger.name">Tiger Wood</entry>
+  <entry key="block.log.willow.name">Willow Wood</entry>
+
+  <entry key="block.log.darkwood.name">Darkwood</entry>
+  <entry key="block.log.fusewood.name">Fusewood</entry>
+
+  <entry key="item.bowl.mushroom.name">Mushroom Stew</entry>
+  <entry key="item.bowl.glowshroom.name">Glowshroom Stew</entry>
+
+  <entry key="block.leaves.darkwood.name">Darkwood Leaves</entry>
+  <entry key="block.leaves.darkwood.flowering.name">Darkwood Leaves</entry>
+  <entry key="block.leaves.darkwood.fruit.name">Darkwood Leaves</entry>
+  <entry key="block.leaves.fusewood.name">Fusewood Leaves</entry>
+
+  <entry key="item.food.nether.potashapple.name">Potash Apple</entry>
+
+  <entry key="block.leaves.maple.name">Maple Leaves</entry>
+  <entry key="block.leaves.silverbell.name">Silverbell Leaves</entry>
+  <entry key="block.leaves.purpleheart.name">Amaranth Leaves</entry>
+  <entry key="block.leaves.tiger.name">Tiger Leaves</entry>
+  <entry key="block.leaves.willow.name">Willow Leaves</entry>
+
+  <entry key="normalcloud.name">Cloud</entry>
+  <entry key="darkcloud.name">Dark Cloud</entry>
+  <entry key="ashcloud.name">Ash Cloud</entry>
+  <entry key="sulfurcloud.name">Sulfur Cloud</entry>
+
+  <entry key="redwoodNDoor.name">Redwood Door</entry>
+  <entry key="eucalyptusNDoor.name">Eucalyptus Door</entry>
+  <entry key="hopseedNDoor.name">Hopseed Door</entry>
+  <entry key="sakuraNDoor.name">Sakura Door</entry>
+  <entry key="ghostNDoor.name">Ghostwood Door</entry>
+  <entry key="bloodNDoor.name">Bloodwood Door</entry>
+  <entry key="redwoodBarkNDoor.name">Redwood Bark Door</entry>
+
+  <entry key="barkRedwood.name">Redwood Bark</entry>
+  <entry key="heartRedwood.name">Redwood</entry>
+  <entry key="rootRedwood.name">Redwood Root</entry>
+
+  <entry key="eucalyptusNPlanks.name">Eucalyptus Planks</entry>
+  <entry key="sakuraNPlanks.name">Sakura Planks</entry>
+  <entry key="ghostNPlanks.name">Ghostwood Planks</entry>
+  <entry key="bushNPlanks.name">Hopseed Planks</entry>
+  <entry key="bloodNPlanks.name">Bloodwood Planks</entry>
+  <entry key="redwoodNPlanks.name">Redwood Planks</entry>
+  <entry key="mapleNPlanks.name">Maple Planks</entry>
+  <entry key="silverbellNPlanks.name">Silverbell Planks</entry>
+  <entry key="tigerNPlanks.name">Tigerwood Planks</entry>
+  <entry key="purpleheartNPlanks.name">Amaranth Planks</entry>
+  <entry key="willowNPlanks.name">Willow Planks</entry>
+  <entry key="darkwoodNPlanks.name">Darkwood Planks</entry>
+  <entry key="fusewoodNPlanks.name">Fusewood Planks</entry>
+
+  <entry key="block.sapling.eucalyptus.name">Eucalyptus Sapling</entry>
+  <entry key="block.sapling.sakura.name">Sakura Sapling</entry>
+  <entry key="block.sapling.ghost.name">Ghostwood Sapling</entry>
+  <entry key="block.sapling.bush.name">Hopseed Sapling</entry>
+  <entry key="block.sapling.redwood.name">Redwood Sapling</entry>
+  <entry key="block.sapling.blood.name">Blood Sapling</entry>
+  <entry key="block.sapling.darkwood.name">Darkwood Sapling</entry>
+  <entry key="block.sapling.fusewood.name">Fusewood Sapling</entry>
+  <entry key="block.sapling.willow.name">Willow Sapling</entry>
+  <entry key="block.sapling.tiger.name">Tigerwood Sapling</entry>
+  <entry key="block.sapling.maple.name">Maple Sapling</entry>
+  <entry key="block.sapling.purpleheart.name">Amaranth Sapling</entry>
+  <entry key="block.sapling.silverbell.name">Silverbell Sapling</entry>
+
+  <entry key="block.wood.eucalyptus.slab.name">Eucalyptus Slab</entry>
+  <entry key="block.wood.sakura.slab.name">Sakura Slab</entry>
+  <entry key="block.wood.ghostwood.slab.name">Ghostwood Slab</entry>
+  <entry key="block.wood.hopseed.slab.name">Hopseed Slab</entry>
+  <entry key="block.wood.redwood.slab.name">Redwood Slab</entry>
+  <entry key="block.wood.bloodwood.slab.name">Blood Slab</entry>
+  <entry key="block.wood.darkwood.slab.name">Darkwood Slab</entry>
+  <entry key="block.wood.fusewood.slab.name">Fusewood Slab</entry>
+  <entry key="block.wood.willow.slab.name">Willow Slab</entry>
+  <entry key="block.wood.tiger.slab.name">Tigerwood Slab</entry>
+  <entry key="block.wood.maple.slab.name">Maple Slab</entry>
+  <entry key="block.wood.amaranth.slab.name">Amaranth Slab</entry>
+  <entry key="block.wood.silverbell.slab.name">Silverbell Slab</entry>
+
+  <entry key="tile.pressureplate.eucalyptus.name">Eucalyptus Pressure Plate</entry>
+  <entry key="tile.pressureplate.sakura.name">Sakura Pressure Plate</entry>
+  <entry key="tile.pressureplate.ghostwood.name">Ghostwood Pressure Plate</entry>
+  <entry key="tile.pressureplate.hopseed.name">Hopseed Pressure Plate</entry>
+  <entry key="tile.pressureplate.redwood.name">Redwood Pressure Plate</entry>
+  <entry key="tile.pressureplate.bloodwood.name">Blood Pressure Plate</entry>
+  <entry key="tile.pressureplate.darkwood.name">Darkwood Pressure Plate</entry>
+  <entry key="tile.pressureplate.fusewood.name">Fusewood Pressure Plate</entry>
+  <entry key="tile.pressureplate.willow.name">Willow Pressure Plate</entry>
+  <entry key="tile.pressureplate.tiger.name">Tigerwood Pressure Plate</entry>
+  <entry key="tile.pressureplate.maple.name">Maple Pressure Plate</entry>
+  <entry key="tile.pressureplate.amaranth.name">Amaranth Pressure Plate</entry>
+  <entry key="tile.pressureplate.silverbell.name">Silverbell Pressure Plate</entry>
+  
+  <entry key="tile.fenceGate.eucalyptus.name">Eucalyptus Fence Gate</entry>
+  <entry key="tile.fenceGate.sakura.name">Sakura Fence Gate</entry>
+  <entry key="tile.fenceGate.ghostwood.name">Ghostwood Fence Gate</entry>
+  <entry key="tile.fenceGate.hopseed.name">Hopseed Fence Gate</entry>
+  <entry key="tile.fenceGate.redwood.name">Redwood Fence Gate</entry>
+  <entry key="tile.fenceGate.bloodwood.name">Blood Fence Gate</entry>
+  <entry key="tile.fenceGate.darkwood.name">Darkwood Fence Gate</entry>
+  <entry key="tile.fenceGate.fusewood.name">Fusewood Fence Gate</entry>
+  <entry key="tile.fenceGate.willow.name">Willow Fence Gate</entry>
+  <entry key="tile.fenceGate.tiger.name">Tigerwood Fence Gate</entry>
+  <entry key="tile.fenceGate.maple.name">Maple Fence Gate</entry>
+  <entry key="tile.fenceGate.amaranth.name">Amaranth Fence Gate</entry>
+  <entry key="tile.fenceGate.silverbell.name">Silverbell Fence Gate</entry>
+
+  <entry key="tile.stair.eucalyptus.name">Eucalyptus Stairs</entry>
+  <entry key="tile.stair.sakura.name">Sakura Stairs</entry>
+  <entry key="tile.stair.ghostwood.name">Ghostwood Stairs</entry>
+  <entry key="tile.stair.hopseed.name">Hopseed Stairs</entry>
+  <entry key="tile.stair.redwood.name">Redwood Stairs</entry>
+  <entry key="tile.stair.bloodwood.name">Blood Stairs</entry>
+  <entry key="tile.stair.darkwood.name">Darkwood Stairs</entry>
+  <entry key="tile.stair.fusewood.name">Fusewood Stairs</entry>
+  <entry key="tile.stair.willow.name">Willow Stairs</entry>
+  <entry key="tile.stair.tiger.name">Tigerwood Stairs</entry>
+  <entry key="tile.stair.maple.name">Maple Stairs</entry>
+  <entry key="tile.stair.amaranth.name">Amaranth Stairs</entry>
+  <entry key="tile.stair.silverbell.name">Silverbell Stairs</entry>
+
+  <entry key="tile.button.eucalyptus.name">Eucalyptus Button</entry>
+  <entry key="tile.button.sakura.name">Sakura Button</entry>
+  <entry key="tile.button.ghostwood.name">Ghostwood Button</entry>
+  <entry key="tile.button.hopseed.name">Hopseed Button</entry>
+  <entry key="tile.button.redwood.name">Redwood Button</entry>
+  <entry key="tile.button.bloodwood.name">Blood Button</entry>
+  <entry key="tile.button.darkwood.name">Darkwood Button</entry>
+  <entry key="tile.button.fusewood.name">Fusewood Button</entry>
+  <entry key="tile.button.willow.name">Willow Button</entry>
+  <entry key="tile.button.tiger.name">Tigerwood Button</entry>
+  <entry key="tile.button.maple.name">Maple Button</entry>
+  <entry key="tile.button.amaranth.name">Amaranth Button</entry>
+  <entry key="tile.button.silverbell.name">Silverbell Button</entry>
+
+  <entry key="tile.trapdoor.eucalyptus.name">Eucalyptus Trapdoor</entry>
+  <entry key="tile.trapdoor.sakura.name">Sakura Trapdoor</entry>
+  <entry key="tile.trapdoor.ghostwood.name">Ghostwood Trapdoor</entry>
+  <entry key="tile.trapdoor.hopseed.name">Hopseed Trapdoor</entry>
+  <entry key="tile.trapdoor.redwood.name">Redwood Trapdoor</entry>
+  <entry key="tile.trapdoor.bloodwood.name">Blood Trapdoor</entry>
+  <entry key="tile.trapdoor.darkwood.name">Darkwood Trapdoor</entry>
+  <entry key="tile.trapdoor.fusewood.name">Fusewood Trapdoor</entry>
+  <entry key="tile.trapdoor.willow.name">Willow Trapdoor</entry>
+  <entry key="tile.trapdoor.tiger.name">Tigerwood Trapdoor</entry>
+  <entry key="tile.trapdoor.maple.name">Maple Trapdoor</entry>
+  <entry key="tile.trapdoor.amaranth.name">Amaranth Trapdoor</entry>
+  <entry key="tile.trapdoor.silverbell.name">Silverbell Trapdoor</entry>
+
+  <entry key="block.glowshroom.green.name">Green Glowshroom</entry>
+  <entry key="block.glowshroom.purple.name">Purple Glowshroom</entry>
+  <entry key="block.glowshroom.blue.name">Blue Glowshroom</entry>
+
+  <entry key="eucalyptusNLeaves.name">Eucalyptus Leaves</entry>
+  <entry key="block.leaves.sakura.name">Sakura Leaves</entry>
+  <entry key="block.leaves.ghost.name">Ghostwood Leaves</entry>
+  <entry key="bushNLeaves.name">Hopseed Leaves</entry>
+  <entry key="redwoodNLeaves.name">Redwood Leaves</entry>
+  <entry key="block.leaves.blood.name">Bloodleaves</entry>
+
+  <entry key="eucalyptusLog.name">Eucalyptus Wood</entry>
+  <entry key="sakuraLog.name">Sakura Wood</entry>
+  <entry key="ghostLog.name">Ghostwood</entry>
+  <entry key="hopseedLog.name">Hopseed Wood</entry>
+
+  <entry key="redwoodBoat.name">Redwood Boat</entry>
+  <entry key="bloodBoat.name">Bloodwood Boat</entry>
+  <entry key="whiteBoat.name">White Boat</entry>
+  <entry key="eucalyptusBoat.name">Eucalyptus Boat</entry>
+
+  <entry key="item.impmeat.raw.name">Raw Imphide</entry>
+  <entry key="item.impmeat.cooked.name">Cooked Imphide</entry>
+
+  <entry key="block.soil.grass.name">Topiary Grass</entry>
+  <entry key="block.soil.bluegrass.name">Bluegrass</entry>
+  <entry key="block.soil.autumngrass.name">Autumnal Grass</entry>
+  <entry key="block.soil.grass.slab.name">Topiary Grass Slab</entry>
+  <entry key="block.soil.bluegrass.slab.name">Bluegrass Slab</entry>
+  <entry key="block.soil.autumngrass.slab.name">Autumnal Grass Slab</entry>
+  
+  <entry key="tile.bloodwood.name">Bloodwood</entry>
+  <entry key="tile.saguaro.name">Saguaro Cactus</entry>
+  <entry key="tile.bluebells.name">Bluebells</entry>
+
+  <entry key="tile.taintedSoil.name">Tainted Soil</entry>
+  <entry key="tile.heatSand.name">Heat Sand</entry>
+  <entry key="tile.Thornvines.name">Thornvines</entry>
+  <entry key="tile.potashApple.name">Potash Apple</entry>
+  <entry key="item.natura.stick.name">Stick</entry>
+
+  <entry key="item.ghostwoodSword.name">Ghostwood Sword</entry>
+  <entry key="item.ghostwoodPickaxe.name">Ghostwood Pickaxe</entry>
+  <entry key="item.ghostwoodShovel.name">Ghostwood Shovel</entry>
+  <entry key="item.ghostwoodAxe.name">Ghostwood Hatchet</entry>
+  <entry key="item.ghostwoodKama.name">Ghostwood Kama</entry>
+  <entry key="item.ghostwoodBow.name">Ghostwood Bow</entry>
+
+  <entry key="item.bloodwoodSword.name">Bloodwood Sword</entry>
+  <entry key="item.bloodwoodPickaxe.name">Bloodwood Pickaxe</entry>
+  <entry key="item.bloodwoodShovel.name">Bloodwood Shovel</entry>
+  <entry key="item.bloodwoodAxe.name">Bloodwood Hatchet</entry>
+  <entry key="item.bloodwoodKama.name">Bloodwood Kama</entry>
+  <entry key="item.bloodwoodBow.name">Bloodwood Bow</entry>
+
+  <entry key="item.darkwoodSword.name">Darkwood Sword</entry>
+  <entry key="item.darkwoodPickaxe.name">Darkwood Pickaxe</entry>
+  <entry key="item.darkwoodShovel.name">Darkwood Shovel</entry>
+  <entry key="item.darkwoodAxe.name">Darkwood Hatchet</entry>
+  <entry key="item.darkwoodKama.name">Darkwood Kama</entry>
+  <entry key="item.darkwoodBow.name">Darkwood Bow</entry>
+
+  <entry key="item.fusewoodSword.name">Fusewood Sword</entry>
+  <entry key="item.fusewoodPickaxe.name">Fusewood Pickaxe</entry>
+  <entry key="item.fusewoodShovel.name">Fusewood Shovel</entry>
+  <entry key="item.fusewoodAxe.name">Fusewood Hatchet</entry>
+  <entry key="item.fusewoodKama.name">Fusewood Kama</entry>
+  <entry key="item.fusewoodBow.name">Fusewood Bow</entry>
+
+  <entry key="item.netherquartzSword.name">Quartz Sword</entry>
+  <entry key="item.netherquartzPickaxe.name">Quartz Pickaxe</entry>
+  <entry key="item.netherquartzShovel.name">Quartz Shovel</entry>
+  <entry key="item.netherquartzAxe.name">Quartz Hatchet</entry>
+  <entry key="item.netherquartzKama.name">Quartz Kama</entry>
+
+  <entry key="item.impHelmet.name">Impskin Helmet</entry>
+  <entry key="item.impJerkin.name">Impskin Jerkin</entry>
+  <entry key="item.impLeggings.name">Impskin Leggings</entry>
+  <entry key="item.impBoots.name">Impskin Boots</entry>
+  
+  <entry key="entity.Natura.Imp.name">Imp</entry>
+  <entry key="entity.Natura.HeatscarSpider.name">Heatscar Spider</entry>
+  <entry key="entity.Natura.BabyHeatscarSpider.name">Baby Heatscar Spider</entry>
+  <entry key="entity.Natura.FlameSpider.name">Heatscar Spider</entry>
+  <entry key="entity.Natura.FlameSpiderBaby.name">Baby Heatscar Spider</entry>
+  <entry key="entity.Natura.NitroCreeper.name">Nitro Creeper</entry>
+  
+</properties>

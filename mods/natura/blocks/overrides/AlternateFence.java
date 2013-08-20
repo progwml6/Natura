@@ -4,12 +4,15 @@ import java.util.List;
 
 import mods.natura.client.FenceRender;
 import mods.natura.common.NContent;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockFence;
+import net.minecraft.block.BlockFenceGate;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -61,5 +64,25 @@ public class AlternateFence extends BlockFence
     public int getRenderType ()
     {
         return FenceRender.model;
+    }
+    
+
+    public boolean canConnectFenceTo(IBlockAccess par1IBlockAccess, int par2, int par3, int par4)
+    {
+        int l = par1IBlockAccess.getBlockId(par2, par3, par4);
+
+        if (l != this.blockID)
+        {
+            Block block = Block.blocksList[l];
+            if (block == null)
+                return false;
+            if (block.blockMaterial.isOpaque() && block.renderAsNormalBlock())
+                return  block.blockMaterial != Material.pumpkin;
+            return (block instanceof BlockFenceGate);
+        }
+        else
+        {
+            return true;
+        }
     }
 }

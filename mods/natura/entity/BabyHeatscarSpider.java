@@ -5,7 +5,6 @@ import net.minecraft.block.Block;
 import net.minecraft.block.StepSound;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
-import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.monster.EntitySpider;
 import net.minecraft.item.ItemStack;
@@ -14,36 +13,19 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeHooks;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
-public class FlameSpider extends EntitySpider
+public class BabyHeatscarSpider extends EntitySpider
 {
-    public FlameSpider(World par1World)
+    public BabyHeatscarSpider(World par1World)
     {
         super(par1World);
-        this.setSize(2.7F, 1.9F);
+        this.setSize(1.2F, 0.8F);
         this.isImmuneToFire = true;
-        this.experienceValue = 25;
     }
 
-    @SideOnly(Side.CLIENT)
-    /**
-     * How large the spider should be scaled.
-     */
     public float spiderScaleAmount ()
     {
-        return 2.0F;
-    }
-    
-    @Override
-    protected void func_110147_ax()
-    {
-        super.func_110147_ax();
-        this.func_110148_a(SharedMonsterAttributes.field_111267_a).func_111128_a(50.0D); //Health
-        this.func_110148_a(SharedMonsterAttributes.field_111265_b).func_111128_a(24D); //Detection range
-        this.func_110148_a(SharedMonsterAttributes.field_111263_d).func_111128_a(1.35); //Movespeed
-        this.func_110148_a(SharedMonsterAttributes.field_111264_e).func_111128_a(4.0); //Base damage
+        return 0.85F;
     }
 
     protected void attackEntity (Entity par1Entity, float par2)
