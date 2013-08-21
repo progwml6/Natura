@@ -1,0 +1,290 @@
+<?xml version="1.0"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties version="1.0">
+  <entry key="item.natura.spawnegg.name">Erschaffe </entry>
+
+  <entry key="item.wheatBag.name">Weizensamenbeutel</entry>
+  <entry key="item.barleyBag.name">Gerstensamenbeutel</entry>
+  <entry key="item.potatoBag.name">Kartoffelbeutel</entry>
+  <entry key="item.carrotBag.name">Karottenbeutel</entry>
+  <entry key="item.wartBag.name">Netherwarzenbeutel</entry>
+  <entry key="item.cottonBag.name">Baumwollsamenbeutel</entry>
+  <entry key="item.boneBag.name">Knochenmehlbeutel</entry>
+
+  <entry key="item.barley.seed.name">Gerstensamen</entry>
+  <entry key="item.barley.plant.name">Gerste</entry>
+  <entry key="item.barley.flour.name">Gerstenmehl</entry>
+  <entry key="item.wheat.flour.name">Weizenmehl</entry>
+  <entry key="item.cotton.plant.name">Baumwolle</entry>
+  <entry key="item.fletching.ghostwood.name">Geisterholzbefiederung</entry>
+  <entry key="item.leather.imp.name">Kobold-Leder</entry>
+  <entry key="item.string.flame.name">Flammenfaden</entry>
+  <entry key="item.dye.blue.name">Blauer Farbstoff</entry>
+
+  <entry key="item.cotton.seed.name">Baumwollsamen</entry>
+  <entry key="item.powder.sulfur.name">Schwefel</entry>
+  <entry key="item.waterdrop.name">Kaktussaft</entry>
+  <entry key="item.saguaro.fruit.name">Saguaro-Frucht</entry>
+
+  <entry key="item.berry.rasp.name">Himbeere</entry>
+  <entry key="item.berry.blue.name">Blaubeere</entry>
+  <entry key="item.berry.black.name">Brombeere</entry>
+  <entry key="item.berry.geo.name">Maulbeere</entry>
+  <entry key="item.berry.medley.name">Beerenmix</entry>
+  <entry key="item.berry.blight.name">Plagbeere</entry>
+  <entry key="item.berry.dusk.name">Dämmerbeere</entry>
+  <entry key="item.berry.sky.name">Himmelsbeere</entry>
+  <entry key="item.berry.sting.name">Fadenbeere</entry>
+
+  <entry key="block.raspberryBush.name">Himbeerbusch</entry>
+  <entry key="block.blueberryBush.name">Blaubeerbusch</entry>
+  <entry key="block.blackberryBush.name">Brombeerbusch</entry>
+  <entry key="block.geoberryBush.name">Maulbeerbusch</entry>
+
+  <entry key="block.bush.berry.blight.name">Plagbeerenbusch</entry>
+  <entry key="block.bush.berry.dusk.name">Dämmerbeerenbusch</entry>
+  <entry key="block.bush.berry.sky.name">Himmelsbeerenbusch</entry>
+  <entry key="block.bush.berry.sting.name">Fadenbeerenbusch</entry>
+
+  <entry key="block.log.maple.name">Ahornholz</entry>
+  <entry key="block.log.silverbell.name">Halesiaholz</entry>
+  <entry key="block.log.purpleheart.name">Amarantholz</entry>
+  <entry key="block.log.tiger.name">Tigerholz</entry>
+  <entry key="block.log.willow.name">Weidenholz</entry>
+
+  <entry key="block.log.darkwood.name">Dunkelholz</entry>
+  <entry key="block.log.fusewood.name">Zündholz</entry>
+
+  <entry key="item.bowl.mushroom.name">Pilzsuppe</entry>
+  <entry key="item.bowl.glowshroom.name">Leuchtpilzsuppe</entry>
+
+  <entry key="block.leaves.darkwood.name">Dunkelholzblätter</entry>
+  <entry key="block.leaves.darkwood.flowering.name">Dunkelholzblätter</entry>
+  <entry key="block.leaves.darkwood.fruit.name">Dunkelholzblätter</entry>
+  <entry key="block.leaves.fusewood.name">Zündholzblätter</entry>
+
+  <entry key="item.food.nether.potashapple.name">Pottaschapfel</entry>
+
+  <entry key="block.leaves.maple.name">Ahornblätter</entry>
+  <entry key="block.leaves.silverbell.name">Halesiabätter</entry>
+  <entry key="block.leaves.purpleheart.name">Amarantblätter</entry>
+  <entry key="block.leaves.tiger.name">Tigerholzblätter</entry>
+  <entry key="block.leaves.willow.name">Weidenblätter</entry>
+
+  <entry key="normalcloud.name">Wolke</entry>
+  <entry key="darkcloud.name">Dunkle Wolke</entry>
+  <entry key="ashcloud.name">Aschewolke</entry>
+  <entry key="sulfurcloud.name">Schwefelwolke</entry>
+
+  <entry key="redwoodNDoor.name">Mammutbaumtür</entry>
+  <entry key="eucalyptusNDoor.name">Eukalyptustür</entry>
+  <entry key="hopseedNDoor.name">Hopseed-Tür</entry>
+  <entry key="sakuraNDoor.name">Japanische Blütenkirschholztür</entry>
+  <entry key="ghostNDoor.name">Geisterholztür</entry>
+  <entry key="bloodNDoor.name">Blutholztür</entry>
+  <entry key="redwoodBarkNDoor.name">Mammutbaumrindentür</entry>
+
+  <entry key="barkRedwood.name">Mammutbaumrine</entry>
+  <entry key="heartRedwood.name">Mammutbaumstamm</entry>
+  <entry key="rootRedwood.name">Mammutbaumwurzel</entry>
+
+  <entry key="eucalyptusNPlanks.name">Eukalyptusholzplanken</entry>
+  <entry key="sakuraNPlanks.name">Japanische Blütenkirschholzplanken</entry>
+  <entry key="ghostNPlanks.name">Geisterholzplanken</entry>
+  <entry key="bushNPlanks.name">Hopseed-Holzplanken</entry>
+  <entry key="bloodNPlanks.name">Blutholzplanken</entry>
+  <entry key="redwoodNPlanks.name">Mammutbaumholzplanken</entry>
+  <entry key="mapleNPlanks.name">Ahornholzplanken</entry>
+  <entry key="silverbellNPlanks.name">Halesiaholzplanken</entry>
+  <entry key="tigerNPlanks.name">Tigerholzplanken</entry>
+  <entry key="purpleheartNPlanks.name">Amarantholzplanken</entry>
+  <entry key="willowNPlanks.name">Weidenholzplanken</entry>
+  <entry key="darkwoodNPlanks.name">Dunkelholzplanken</entry>
+  <entry key="fusewoodNPlanks.name">Zündholzplanken</entry>
+
+  <entry key="block.sapling.eucalyptus.name">Eukalyptussetzling</entry>
+  <entry key="block.sapling.sakura.name">Japanischer Blütenkirschsetzling</entry>
+  <entry key="block.sapling.ghost.name">Geisterholzsetzling</entry>
+  <entry key="block.sapling.bush.name">Hopseed-Setzling</entry>
+  <entry key="block.sapling.redwood.name">Mammutbaumsetzling</entry>
+  <entry key="block.sapling.blood.name">Blutholzsetzling</entry>
+  <entry key="block.sapling.darkwood.name">Dunkelholzsetzling</entry>
+  <entry key="block.sapling.fusewood.name">Zündholzsetzling</entry>
+  <entry key="block.sapling.willow.name">Weidensetzling</entry>
+  <entry key="block.sapling.tiger.name">Tigerholzsetzling</entry>
+  <entry key="block.sapling.maple.name">Ahornsetzling</entry>
+  <entry key="block.sapling.purpleheart.name">Amarantsetzling</entry>
+  <entry key="block.sapling.silverbell.name">Halesiasetzling</entry>
+
+  <entry key="block.wood.eucalyptus.slab.name">Eukalyptusholzstufe</entry>
+  <entry key="block.wood.sakura.slab.name">Japanische Blütenkirschholzstufe</entry>
+  <entry key="block.wood.ghostwood.slab.name">Geisterholzstufe</entry>
+  <entry key="block.wood.hopseed.slab.name">Hopseed-Holzstufe</entry>
+  <entry key="block.wood.redwood.slab.name">Mammutbaumholzstufe</entry>
+  <entry key="block.wood.bloodwood.slab.name">Blutholzstufe</entry>
+  <entry key="block.wood.darkwood.slab.name">Dunkelholzstufe</entry>
+  <entry key="block.wood.fusewood.slab.name">Zündholzstufe</entry>
+  <entry key="block.wood.willow.slab.name">Weidenholzstufe</entry>
+  <entry key="block.wood.tiger.slab.name">Tigerholzstufe</entry>
+  <entry key="block.wood.maple.slab.name">Ahornholzstufe</entry>
+  <entry key="block.wood.amaranth.slab.name">Amarantholzstufe</entry>
+  <entry key="block.wood.silverbell.slab.name">Halesiaholzstufe</entry>
+
+  <entry key="tile.pressureplate.eucalyptus.name">Eukalyptusdruckplatte</entry>
+  <entry key="tile.pressureplate.sakura.name">Japanische Blütenkirschdruckplatte</entry>
+  <entry key="tile.pressureplate.ghostwood.name">Geisterholzdruckplatte</entry>
+  <entry key="tile.pressureplate.hopseed.name">Hopseed-Druckplatte</entry>
+  <entry key="tile.pressureplate.redwood.name">Mammutbaumdruckplatte</entry>
+  <entry key="tile.pressureplate.bloodwood.name">Blutholzdruckplatte</entry>
+  <entry key="tile.pressureplate.darkwood.name">Dunkelholzdruckplatte</entry>
+  <entry key="tile.pressureplate.fusewood.name">Zündholzdruckplatte</entry>
+  <entry key="tile.pressureplate.willow.name">Weidendruckplatte</entry>
+  <entry key="tile.pressureplate.tiger.name">Tigerholzdruckplatte</entry>
+  <entry key="tile.pressureplate.maple.name">Ahorndruckplatte</entry>
+  <entry key="tile.pressureplate.amaranth.name">Amarantdruckplatte</entry>
+  <entry key="tile.pressureplate.silverbell.name">Halesiadruckplatte</entry>
+  
+  <entry key="tile.fenceGate.eucalyptus.name">Eukalyptuszauntor</entry>
+  <entry key="tile.fenceGate.sakura.name">Japanisches Blütenkirschzauntor</entry>
+  <entry key="tile.fenceGate.ghostwood.name">Geisterholzzauntor</entry>
+  <entry key="tile.fenceGate.hopseed.name">Hopseed-Zauntor</entry>
+  <entry key="tile.fenceGate.redwood.name">Mammutbaumzauntor</entry>
+  <entry key="tile.fenceGate.bloodwood.name">Blutholzzauntor</entry>
+  <entry key="tile.fenceGate.darkwood.name">Dunkelholzzauntor</entry>
+  <entry key="tile.fenceGate.fusewood.name">Zündholzzauntor</entry>
+  <entry key="tile.fenceGate.willow.name">Weidenzauntor</entry>
+  <entry key="tile.fenceGate.tiger.name">Tigerholzzauntor</entry>
+  <entry key="tile.fenceGate.maple.name">Ahornzauntor</entry>
+  <entry key="tile.fenceGate.amaranth.name">Amarantzauntor</entry>
+  <entry key="tile.fenceGate.silverbell.name">Halesiazauntor</entry>
+
+  <entry key="tile.stair.eucalyptus.name">Eukalyptusholztreppe</entry>
+  <entry key="tile.stair.sakura.name">Japanische Blütenkirschholztreppe</entry>
+  <entry key="tile.stair.ghostwood.name">Geisterholztreppe</entry>
+  <entry key="tile.stair.hopseed.name">Hopseed-Holztreppe</entry>
+  <entry key="tile.stair.redwood.name">Mammutbaumholztreppe</entry>
+  <entry key="tile.stair.bloodwood.name">Blutholztreppe</entry>
+  <entry key="tile.stair.darkwood.name">Dunkelholztreppe</entry>
+  <entry key="tile.stair.fusewood.name">Zündholztreppe</entry>
+  <entry key="tile.stair.willow.name">Weidenholztreppe</entry>
+  <entry key="tile.stair.tiger.name">Tigerholztreppe</entry>
+  <entry key="tile.stair.maple.name">Ahornholztreppe</entry>
+  <entry key="tile.stair.amaranth.name">Amarantholztreppe</entry>
+  <entry key="tile.stair.silverbell.name">Halesiaholztreppe</entry>
+
+  <entry key="tile.button.eucalyptus.name">Eukalyptusholzknopf</entry>
+  <entry key="tile.button.sakura.name">Japanischer Blütenkirschholzknopf</entry>
+  <entry key="tile.button.ghostwood.name">Geisterholzknopf</entry>
+  <entry key="tile.button.hopseed.name">Hopseed-Holzknopf</entry>
+  <entry key="tile.button.redwood.name">Mammutbaumholzknopf</entry>
+  <entry key="tile.button.bloodwood.name">Blutholzknopf</entry>
+  <entry key="tile.button.darkwood.name">Dunkelholzknopf</entry>
+  <entry key="tile.button.fusewood.name">Zündholzknopf</entry>
+  <entry key="tile.button.willow.name">Weidenholzknopf</entry>
+  <entry key="tile.button.tiger.name">Tigerholzknopf</entry>
+  <entry key="tile.button.maple.name">Ahornholzknopf</entry>
+  <entry key="tile.button.amaranth.name">Amarantholzknopf</entry>
+  <entry key="tile.button.silverbell.name">Halesiaholzknopf</entry>
+
+  <entry key="tile.trapdoor.eucalyptus.name">Eukalyptusfalltür</entry>
+  <entry key="tile.trapdoor.sakura.name">Japanische Blütenkirschfalltür</entry>
+  <entry key="tile.trapdoor.ghostwood.name">Geisterholzfalltür</entry>
+  <entry key="tile.trapdoor.hopseed.name">Hopseed-Falltür</entry>
+  <entry key="tile.trapdoor.redwood.name">Mammutbaumfalltür</entry>
+  <entry key="tile.trapdoor.bloodwood.name">Blutholzfalltür</entry>
+  <entry key="tile.trapdoor.darkwood.name">Dunkelholzfalltür</entry>
+  <entry key="tile.trapdoor.fusewood.name">Zündholzfalltür</entry>
+  <entry key="tile.trapdoor.willow.name">Weidenfalltür</entry>
+  <entry key="tile.trapdoor.tiger.name">Tigerholzfalltür</entry>
+  <entry key="tile.trapdoor.maple.name">Ahornfalltür</entry>
+  <entry key="tile.trapdoor.amaranth.name">Amarantfalltür</entry>
+  <entry key="tile.trapdoor.silverbell.name">Halesiafalltür</entry>
+
+  <entry key="block.glowshroom.green.name">Grüner Leuchtpilz</entry>
+  <entry key="block.glowshroom.purple.name">Violetter Leuchtpilz</entry>
+  <entry key="block.glowshroom.blue.name">Blauer Leuchtpilz</entry>
+
+  <entry key="eucalyptusNLeaves.name">Eukalyptusblätter</entry>
+  <entry key="block.leaves.sakura.name">Japanische Blütenkirschblätter</entry>
+  <entry key="block.leaves.ghost.name">Geisterholzblätter</entry>
+  <entry key="bushNLeaves.name">Hopseed-Blätter</entry>
+  <entry key="redwoodNLeaves.name">Mammutbaumblätter</entry>
+  <entry key="block.leaves.blood.name">Blutholzblätter</entry>
+
+  <entry key="eucalyptusLog.name">Eukalyptusholz</entry>
+  <entry key="sakuraLog.name">Japanisches Blütenkirschholz</entry>
+  <entry key="ghostLog.name">Geisterholz</entry>
+  <entry key="hopseedLog.name">Hopseed-Holz</entry>
+
+  <entry key="redwoodBoat.name">Mammutbaumboot</entry>
+  <entry key="bloodBoat.name">Blutholzboot</entry>
+  <entry key="whiteBoat.name">Weißes Boot</entry>
+  <entry key="eucalyptusBoat.name">Eukalyptusboot</entry>
+
+  <entry key="item.impmeat.raw.name">Rohe Koboldhaut</entry>
+  <entry key="item.impmeat.cooked.name">Gekochte Koboldhaut</entry>
+
+  <entry key="block.soil.grass.name">Formschnitt-Gras</entry>
+  <entry key="block.soil.bluegrass.name">Blaugras</entry>
+  <entry key="block.soil.autumngrass.name">Herbstliches Gras</entry>
+  <entry key="block.soil.grass.slab.name">Formschnitt-Grasstufe</entry>
+  <entry key="block.soil.bluegrass.slab.name">Blaugrasstufe</entry>
+  <entry key="block.soil.autumngrass.slab.name">Herbstliche Grasstufe</entry>
+  
+  <entry key="tile.bloodwood.name">Blutholz</entry>
+  <entry key="tile.saguaro.name">Saguaro-Kaktus</entry>
+  <entry key="tile.bluebells.name">Hasenglöckchen</entry>
+
+  <entry key="tile.taintedSoil.name">Verdorbene Erde</entry>
+  <entry key="tile.heatSand.name">Hitzsand</entry>
+  <entry key="tile.Thornvines.name">Dornranken</entry>
+  <entry key="tile.potashApple.name">Pottaschapfel</entry>
+  <entry key="item.natura.stick.name">Stock</entry>
+
+  <entry key="item.ghostwoodSword.name">Geisterholzschwert</entry>
+  <entry key="item.ghostwoodPickaxe.name">Geisterholzspitzhacke</entry>
+  <entry key="item.ghostwoodShovel.name">Geisterholzschaufel</entry>
+  <entry key="item.ghostwoodAxe.name">Geisterholzbeil</entry>
+  <entry key="item.ghostwoodKama.name">Geisterholz-Kama</entry>
+  <entry key="item.ghostwoodBow.name">Geisterholzbogen</entry>
+
+  <entry key="item.bloodwoodSword.name">Blutholzschwert</entry>
+  <entry key="item.bloodwoodPickaxe.name">Blutholzspitzhacke</entry>
+  <entry key="item.bloodwoodShovel.name">Blutholzschaufel</entry>
+  <entry key="item.bloodwoodAxe.name">Blutholzbeil</entry>
+  <entry key="item.bloodwoodKama.name">Blutholz-Kama</entry>
+  <entry key="item.bloodwoodBow.name">Blutholzbogen</entry>
+
+  <entry key="item.darkwoodSword.name">Dunkelholzschwert</entry>
+  <entry key="item.darkwoodPickaxe.name">Dunkelholzspitzhacke</entry>
+  <entry key="item.darkwoodShovel.name">Dunkelholzschaufel</entry>
+  <entry key="item.darkwoodAxe.name">Dunkelholzbeil</entry>
+  <entry key="item.darkwoodKama.name">Dunkelholz-Kama</entry>
+  <entry key="item.darkwoodBow.name">Dunkelholzbogen</entry>
+
+  <entry key="item.fusewoodSword.name">Zündholzschwert</entry>
+  <entry key="item.fusewoodPickaxe.name">Zündholzspitzhacke</entry>
+  <entry key="item.fusewoodShovel.name">Zündholzschaufel</entry>
+  <entry key="item.fusewoodAxe.name">Zündholzbeil</entry>
+  <entry key="item.fusewoodKama.name">Zündholz-Kama</entry>
+  <entry key="item.fusewoodBow.name">Zündholzbogen</entry>
+
+  <entry key="item.netherquartzSword.name">Quarzschwert</entry>
+  <entry key="item.netherquartzPickaxe.name">Quarzspitzhacke</entry>
+  <entry key="item.netherquartzShovel.name">Quarzschaufel</entry>
+  <entry key="item.netherquartzAxe.name">Quarzbeil</entry>
+  <entry key="item.netherquartzKama.name">Quarz-Kama</entry>
+
+  <entry key="item.impHelmet.name">Koboldhauthelm</entry>
+  <entry key="item.impJerkin.name">Koboldhautwams</entry>
+  <entry key="item.impLeggings.name">Koboldhauthose</entry>
+  <entry key="item.impBoots.name">Koboldhautstiefel</entry>
+  
+  <entry key="entity.Natura.Imp.name">Kobold</entry>
+  <entry key="entity.Natura.HeatscarSpider.name">Hitznarbenspinne</entry>
+  <entry key="entity.Natura.BabyHeatscarSpider.name">Baby-Hitznarbenspinne</entry>
+  <entry key="entity.Natura.FlameSpider.name">Hitznarbenspinne</entry>
+  <entry key="entity.Natura.FlameSpiderBaby.name">Baby-Hitznarbenspinne</entry>
+  <entry key="entity.Natura.NitroCreeper.name">Nitro-Creeper</entry>
+  
+</properties>
