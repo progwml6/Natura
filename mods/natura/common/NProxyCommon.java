@@ -18,7 +18,7 @@ public class NProxyCommon
 
 
         String langDir = "/assets/natura/lang/";
-        String[] langFiles = { "en_US.xml" };
+        String[] langFiles = { "en_US.xml", "de_DE.xml", "ru_RU.xml" };
 
         for (String langFile : langFiles)
         {

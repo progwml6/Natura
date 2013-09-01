@@ -118,16 +118,16 @@
 
   <entry key="block.wood.eucalyptus.slab.name">Eucalyptus Slab</entry>
   <entry key="block.wood.sakura.slab.name">Sakura Slab</entry>
-  <entry key="block.wood.ghostwood.slab.name">Ghostwood Slab</entry>
-  <entry key="block.wood.hopseed.slab.name">Hopseed Slab</entry>
+  <entry key="block.wood.ghost.slab.name">Ghostwood Slab</entry>
+  <entry key="block.wood.bush.slab.name">Hopseed Slab</entry>
   <entry key="block.wood.redwood.slab.name">Redwood Slab</entry>
-  <entry key="block.wood.bloodwood.slab.name">Blood Slab</entry>
+  <entry key="block.wood.blood.slab.name">Blood Slab</entry>
   <entry key="block.wood.darkwood.slab.name">Darkwood Slab</entry>
   <entry key="block.wood.fusewood.slab.name">Fusewood Slab</entry>
   <entry key="block.wood.willow.slab.name">Willow Slab</entry>
   <entry key="block.wood.tiger.slab.name">Tigerwood Slab</entry>
   <entry key="block.wood.maple.slab.name">Maple Slab</entry>
-  <entry key="block.wood.amaranth.slab.name">Amaranth Slab</entry>
+  <entry key="block.wood.purpleheart.slab.name">Amaranth Slab</entry>
   <entry key="block.wood.silverbell.slab.name">Silverbell Slab</entry>
 
   <entry key="tile.pressureplate.eucalyptus.name">Eucalyptus Pressure Plate</entry>
@@ -232,53 +232,53 @@
   <entry key="block.soil.autumngrass.slab.name">Autumnal Grass Slab</entry>
   
   <entry key="tile.bloodwood.name">Bloodwood</entry>
-  <entry key="tile.saguaro.name">Saguaro Cactus</entry>
+  <entry key="tile.saguaro.block.name">Saguaro Cactus</entry>
   <entry key="tile.bluebells.name">Bluebells</entry>
 
-  <entry key="tile.taintedSoil.name">Tainted Soil</entry>
-  <entry key="tile.heatSand.name">Heat Sand</entry>
+  <entry key="tile.TaintedSoil.name">Tainted Soil</entry>
+  <entry key="tile.HeatSand.name">Heat Sand</entry>
   <entry key="tile.Thornvines.name">Thornvines</entry>
   <entry key="tile.potashApple.name">Potash Apple</entry>
   <entry key="item.natura.stick.name">Stick</entry>
 
-  <entry key="item.ghostwoodSword.name">Ghostwood Sword</entry>
-  <entry key="item.ghostwoodPickaxe.name">Ghostwood Pickaxe</entry>
-  <entry key="item.ghostwoodShovel.name">Ghostwood Shovel</entry>
-  <entry key="item.ghostwoodAxe.name">Ghostwood Hatchet</entry>
-  <entry key="item.ghostwoodKama.name">Ghostwood Kama</entry>
-  <entry key="item.ghostwoodBow.name">Ghostwood Bow</entry>
+  <entry key="item.natura.sword.ghostwood.name">Ghostwood Sword</entry>
+  <entry key="item.natura.pickaxe.ghostwood.name">Ghostwood Pickaxe</entry>
+  <entry key="item.natura.shovel.ghostwood.name">Ghostwood Shovel</entry>
+  <entry key="item.natura.axe.ghostwood.name">Ghostwood Hatchet</entry>
+  <entry key="item.natura.kama.ghostwood.name">Ghostwood Kama</entry>
+  <entry key="item.natura.bow.ghostwood.name">Ghostwood Bow</entry>
 
-  <entry key="item.bloodwoodSword.name">Bloodwood Sword</entry>
-  <entry key="item.bloodwoodPickaxe.name">Bloodwood Pickaxe</entry>
-  <entry key="item.bloodwoodShovel.name">Bloodwood Shovel</entry>
-  <entry key="item.bloodwoodAxe.name">Bloodwood Hatchet</entry>
-  <entry key="item.bloodwoodKama.name">Bloodwood Kama</entry>
-  <entry key="item.bloodwoodBow.name">Bloodwood Bow</entry>
+  <entry key="item.natura.sword.bloodwood.name">Bloodwood Sword</entry>
+  <entry key="item.natura.pickaxe.bloodwood.name">Bloodwood Pickaxe</entry>
+  <entry key="item.natura.shovel.bloodwood.name">Bloodwood Shovel</entry>
+  <entry key="item.natura.axe.bloodwood.name">Bloodwood Hatchet</entry>
+  <entry key="item.natura.kama.bloodwood.name">Bloodwood Kama</entry>
+  <entry key="item.natura.bow.bloodwood.name">Bloodwood Bow</entry>
 
-  <entry key="item.darkwoodSword.name">Darkwood Sword</entry>
-  <entry key="item.darkwoodPickaxe.name">Darkwood Pickaxe</entry>
-  <entry key="item.darkwoodShovel.name">Darkwood Shovel</entry>
-  <entry key="item.darkwoodAxe.name">Darkwood Hatchet</entry>
-  <entry key="item.darkwoodKama.name">Darkwood Kama</entry>
-  <entry key="item.darkwoodBow.name">Darkwood Bow</entry>
+  <entry key="item.natura.sword.darkwood.name">Darkwood Sword</entry>
+  <entry key="item.natura.pickaxe.darkwood.name">Darkwood Pickaxe</entry>
+  <entry key="item.natura.shovel.darkwood.name">Darkwood Shovel</entry>
+  <entry key="item.natura.axe.darkwood.name">Darkwood Hatchet</entry>
+  <entry key="item.natura.kama.darkwood.name">Darkwood Kama</entry>
+  <entry key="item.natura.bow.darkwood.name">Darkwood Bow</entry>
 
-  <entry key="item.fusewoodSword.name">Fusewood Sword</entry>
-  <entry key="item.fusewoodPickaxe.name">Fusewood Pickaxe</entry>
-  <entry key="item.fusewoodShovel.name">Fusewood Shovel</entry>
-  <entry key="item.fusewoodAxe.name">Fusewood Hatchet</entry>
-  <entry key="item.fusewoodKama.name">Fusewood Kama</entry>
-  <entry key="item.fusewoodBow.name">Fusewood Bow</entry>
+  <entry key="item.natura.sword.fusewood.name">Fusewood Sword</entry>
+  <entry key="item.natura.pickaxe.fusewood.name">Fusewood Pickaxe</entry>
+  <entry key="item.natura.shovel.fusewood.name">Fusewood Shovel</entry>
+  <entry key="item.natura.axe.fusewood.name">Fusewood Hatchet</entry>
+  <entry key="item.natura.kama.fusewood.name">Fusewood Kama</entry>
+  <entry key="item.natura.bow.fusewood.name">Fusewood Bow</entry>
 
-  <entry key="item.netherquartzSword.name">Quartz Sword</entry>
-  <entry key="item.netherquartzPickaxe.name">Quartz Pickaxe</entry>
-  <entry key="item.netherquartzShovel.name">Quartz Shovel</entry>
-  <entry key="item.netherquartzAxe.name">Quartz Hatchet</entry>
-  <entry key="item.netherquartzKama.name">Quartz Kama</entry>
+  <entry key="item.natura.sword.netherquartz.name">Quartz Sword</entry>
+  <entry key="item.natura.pickaxe.netherquartz.name">Quartz Pickaxe</entry>
+  <entry key="item.natura.shovel.netherquartz.name">Quartz Shovel</entry>
+  <entry key="item.natura.axe.netherquartz.name">Quartz Hatchet</entry>
+  <entry key="item.natura.kama.netherquartz.name">Quartz Kama</entry>
 
-  <entry key="item.impHelmet.name">Impskin Helmet</entry>
-  <entry key="item.impJerkin.name">Impskin Jerkin</entry>
-  <entry key="item.impLeggings.name">Impskin Leggings</entry>
-  <entry key="item.impBoots.name">Impskin Boots</entry>
+  <entry key="item.natura.armor.imphelmet.name">Impskin Helmet</entry>
+  <entry key="item.natura.armor.impjerkin.name">Impskin Jerkin</entry>
+  <entry key="item.natura.armor.impleggings.name">Impskin Leggings</entry>
+  <entry key="item.natura.armor.impboots.name">Impskin Boots</entry>
   
   <entry key="entity.Natura.Imp.name">Imp</entry>
   <entry key="entity.Natura.HeatscarSpider.name">Heatscar Spider</entry>
