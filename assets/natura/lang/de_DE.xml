@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+﻿<?xml version="1.0"?>
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties version="1.0">
   <entry key="item.natura.spawnegg.name">Erschaffe </entry>
@@ -118,16 +118,16 @@
 
   <entry key="block.wood.eucalyptus.slab.name">Eukalyptusholzstufe</entry>
   <entry key="block.wood.sakura.slab.name">Japanische Blütenkirschholzstufe</entry>
-  <entry key="block.wood.ghostwood.slab.name">Geisterholzstufe</entry>
-  <entry key="block.wood.hopseed.slab.name">Hopseed-Holzstufe</entry>
+  <entry key="block.wood.ghost.slab.name">Geisterholzstufe</entry>
+  <entry key="block.wood.bush.slab.name">Hopseed-Holzstufe</entry>
   <entry key="block.wood.redwood.slab.name">Mammutbaumholzstufe</entry>
-  <entry key="block.wood.bloodwood.slab.name">Blutholzstufe</entry>
+  <entry key="block.wood.blood.slab.name">Blutholzstufe</entry>
   <entry key="block.wood.darkwood.slab.name">Dunkelholzstufe</entry>
   <entry key="block.wood.fusewood.slab.name">Zündholzstufe</entry>
   <entry key="block.wood.willow.slab.name">Weidenholzstufe</entry>
   <entry key="block.wood.tiger.slab.name">Tigerholzstufe</entry>
   <entry key="block.wood.maple.slab.name">Ahornholzstufe</entry>
-  <entry key="block.wood.amaranth.slab.name">Amarantholzstufe</entry>
+  <entry key="block.wood.purpleheart.slab.name">Amarantholzstufe</entry>
   <entry key="block.wood.silverbell.slab.name">Halesiaholzstufe</entry>
 
   <entry key="tile.pressureplate.eucalyptus.name">Eukalyptusdruckplatte</entry>
@@ -232,53 +232,53 @@
   <entry key="block.soil.autumngrass.slab.name">Herbstliche Grasstufe</entry>
   
   <entry key="tile.bloodwood.name">Blutholz</entry>
-  <entry key="tile.saguaro.name">Saguaro-Kaktus</entry>
+  <entry key="tile.saguaro.block.name">Saguaro-Kaktus</entry>
   <entry key="tile.bluebells.name">Hasenglöckchen</entry>
 
-  <entry key="tile.taintedSoil.name">Verdorbene Erde</entry>
-  <entry key="tile.heatSand.name">Hitzsand</entry>
+  <entry key="tile.TaintedSoil.name">Verdorbene Erde</entry>
+  <entry key="tile.HeatSand.name">Hitzsand</entry>
   <entry key="tile.Thornvines.name">Dornranken</entry>
   <entry key="tile.potashApple.name">Pottaschapfel</entry>
   <entry key="item.natura.stick.name">Stock</entry>
 
-  <entry key="item.ghostwoodSword.name">Geisterholzschwert</entry>
-  <entry key="item.ghostwoodPickaxe.name">Geisterholzspitzhacke</entry>
-  <entry key="item.ghostwoodShovel.name">Geisterholzschaufel</entry>
-  <entry key="item.ghostwoodAxe.name">Geisterholzbeil</entry>
-  <entry key="item.ghostwoodKama.name">Geisterholz-Kama</entry>
-  <entry key="item.ghostwoodBow.name">Geisterholzbogen</entry>
+  <entry key="item.natura.sword.ghostwood.name">Geisterholzschwert</entry>
+  <entry key="item.natura.pickaxe.ghostwood.name">Geisterholzspitzhacke</entry>
+  <entry key="item.natura.shovel.ghostwood.name">Geisterholzschaufel</entry>
+  <entry key="item.natura.axe.ghostwood.name">Geisterholzbeil</entry>
+  <entry key="item.natura.kama.ghostwood.name">Geisterholz-Kama</entry>
+  <entry key="item.natura.bow.ghostwood.name">Geisterholzbogen</entry>
 
-  <entry key="item.bloodwoodSword.name">Blutholzschwert</entry>
-  <entry key="item.bloodwoodPickaxe.name">Blutholzspitzhacke</entry>
-  <entry key="item.bloodwoodShovel.name">Blutholzschaufel</entry>
-  <entry key="item.bloodwoodAxe.name">Blutholzbeil</entry>
-  <entry key="item.bloodwoodKama.name">Blutholz-Kama</entry>
-  <entry key="item.bloodwoodBow.name">Blutholzbogen</entry>
+  <entry key="item.natura.sword.bloodwood.name">Blutholzschwert</entry>
+  <entry key="item.natura.pickaxe.bloodwood.name">Blutholzspitzhacke</entry>
+  <entry key="item.natura.shovel.bloodwood.name">Blutholzschaufel</entry>
+  <entry key="item.natura.axe.bloodwood.name">Blutholzbeil</entry>
+  <entry key="item.natura.kama.bloodwood.name">Blutholz-Kama</entry>
+  <entry key="item.natura.bow.bloodwood.name">Blutholzbogen</entry>
 
-  <entry key="item.darkwoodSword.name">Dunkelholzschwert</entry>
-  <entry key="item.darkwoodPickaxe.name">Dunkelholzspitzhacke</entry>
-  <entry key="item.darkwoodShovel.name">Dunkelholzschaufel</entry>
-  <entry key="item.darkwoodAxe.name">Dunkelholzbeil</entry>
-  <entry key="item.darkwoodKama.name">Dunkelholz-Kama</entry>
-  <entry key="item.darkwoodBow.name">Dunkelholzbogen</entry>
+  <entry key="item.natura.sword.darkwood.name">Dunkelholzschwert</entry>
+  <entry key="item.natura.pickaxe.darkwood.name">Dunkelholzspitzhacke</entry>
+  <entry key="item.natura.shovel.darkwood.name">Dunkelholzschaufel</entry>
+  <entry key="item.natura.axe.darkwood.name">Dunkelholzbeil</entry>
+  <entry key="item.natura.kama.darkwood.name">Dunkelholz-Kama</entry>
+  <entry key="item.natura.bow.darkwood.name">Dunkelholzbogen</entry>
 
-  <entry key="item.fusewoodSword.name">Zündholzschwert</entry>
-  <entry key="item.fusewoodPickaxe.name">Zündholzspitzhacke</entry>
-  <entry key="item.fusewoodShovel.name">Zündholzschaufel</entry>
-  <entry key="item.fusewoodAxe.name">Zündholzbeil</entry>
-  <entry key="item.fusewoodKama.name">Zündholz-Kama</entry>
-  <entry key="item.fusewoodBow.name">Zündholzbogen</entry>
+  <entry key="item.natura.sword.fusewood.name">Zündholzschwert</entry>
+  <entry key="item.natura.pickaxe.fusewood.name">Zündholzspitzhacke</entry>
+  <entry key="item.natura.shovel.fusewood.name">Zündholzschaufel</entry>
+  <entry key="item.natura.axe.fusewood.name">Zündholzbeil</entry>
+  <entry key="item.natura.kama.fusewood.name">Zündholz-Kama</entry>
+  <entry key="item.natura.bow.fusewood.name">Zündholzbogen</entry>
 
-  <entry key="item.netherquartzSword.name">Quarzschwert</entry>
-  <entry key="item.netherquartzPickaxe.name">Quarzspitzhacke</entry>
-  <entry key="item.netherquartzShovel.name">Quarzschaufel</entry>
-  <entry key="item.netherquartzAxe.name">Quarzbeil</entry>
-  <entry key="item.netherquartzKama.name">Quarz-Kama</entry>
+  <entry key="item.natura.sword.netherquartz.name">Quarzschwert</entry>
+  <entry key="item.natura.pickaxe.netherquartz.name">Quarzspitzhacke</entry>
+  <entry key="item.natura.shovel.netherquartz.name">Quarzschaufel</entry>
+  <entry key="item.natura.axe.netherquartz.name">Quarzbeil</entry>
+  <entry key="item.natura.kama.netherquartz.name">Quarz-Kama</entry>
 
-  <entry key="item.impHelmet.name">Koboldhauthelm</entry>
-  <entry key="item.impJerkin.name">Koboldhautwams</entry>
-  <entry key="item.impLeggings.name">Koboldhauthose</entry>
-  <entry key="item.impBoots.name">Koboldhautstiefel</entry>
+  <entry key="item.natura.armor.imphelmet.name">Koboldhauthelm</entry>
+  <entry key="item.natura.armor.impjerkin.name">Koboldhautwams</entry>
+  <entry key="item.natura.armor.impleggings.name">Koboldhauthose</entry>
+  <entry key="item.natura.armor.impboots.name">Koboldhautstiefel</entry>
   
   <entry key="entity.Natura.Imp.name">Kobold</entry>
   <entry key="entity.Natura.HeatscarSpider.name">Hitznarbenspinne</entry>
