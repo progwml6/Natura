@@ -21,6 +21,7 @@ public class NitroCreeper extends EntityCreeper
         super(world);
         this.tasks.addTask(4, new EntityAIAttackOnCollide(this, 1.0F, false));
         this.isImmuneToFire = true;
+        this.setHealth((float)20);
     }
 
     /*@Override
@@ -29,11 +30,6 @@ public class NitroCreeper extends EntityCreeper
         //if (this.rand.nextInt(100) == 0)
             this.dataWatcher.updateObject(17, Byte.valueOf((byte)1));
     }*/
-
-    public int getMaxHealth ()
-    {
-        return 20;
-    }
 
     protected void fall (float distance)
     {

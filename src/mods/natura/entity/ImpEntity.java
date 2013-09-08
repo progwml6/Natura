@@ -36,6 +36,7 @@ public class ImpEntity extends EntityAnimal
         this.tasks.addTask(6, new EntityAIWander(this, f));
         this.tasks.addTask(7, new EntityAIWatchClosest(this, EntityPlayer.class, 6.0F));
         this.tasks.addTask(8, new EntityAILookIdle(this));
+        this.setHealth((float)40);
     }
 
     /**
@@ -44,11 +45,6 @@ public class ImpEntity extends EntityAnimal
     public boolean isAIEnabled ()
     {
         return true;
-    }
-
-    public int getMaxHealth ()
-    {
-        return 40;
     }
 
     protected void updateAITasks ()
