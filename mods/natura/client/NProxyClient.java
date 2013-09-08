@@ -1,32 +1,20 @@
 package mods.natura.client;
 
-import java.io.IOException;
-
-import mods.natura.client.entity.FlameSpiderRender;
-import mods.natura.client.entity.FusewoodArrowRender;
-import mods.natura.client.entity.ImpModel;
-import mods.natura.client.entity.ImpRender;
-import mods.natura.client.entity.NitroCreeperRender;
-import mods.natura.common.NContent;
+import cpw.mods.fml.client.registry.RenderingRegistry;
+import cpw.mods.fml.common.registry.TickRegistry;
+import cpw.mods.fml.relauncher.Side;
+import mods.natura.client.entity.*;
 import mods.natura.common.NProxyCommon;
-import mods.natura.entity.HeatscarSpider;
-import mods.natura.entity.BabyHeatscarSpider;
-import mods.natura.entity.FusewoodArrow;
-import mods.natura.entity.ImpEntity;
-import mods.natura.entity.NitroCreeper;
+import mods.natura.entity.*;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.texture.TextureUtil;
 import net.minecraft.util.ResourceLocation;
-
 import org.lwjgl.opengl.GL11;
 
-import cpw.mods.fml.client.registry.RenderingRegistry;
-import cpw.mods.fml.common.registry.LanguageRegistry;
-import cpw.mods.fml.common.registry.TickRegistry;
-import cpw.mods.fml.relauncher.Side;
+import java.io.IOException;
 
 public class NProxyClient extends NProxyCommon
 {
@@ -48,8 +36,8 @@ public class NProxyClient extends NProxyCommon
         Minecraft mc = Minecraft.getMinecraft();
         try
         {
-            GrassColorizerAlternate.setBlueGrassBiomeColorizer(TextureUtil.func_110986_a(mc.func_110442_L(), bluegrass));
-            GrassColorizerAlternate.setOrangeGrassBiomeColorizer(TextureUtil.func_110986_a(mc.func_110442_L(), orangegrass));
+            GrassColorizerAlternate.setBlueGrassBiomeColorizer(TextureUtil.readImageData(mc.getResourceManager(), bluegrass));
+            GrassColorizerAlternate.setOrangeGrassBiomeColorizer(TextureUtil.readImageData(mc.getResourceManager(), orangegrass));
         }
         catch (IOException e)
         {

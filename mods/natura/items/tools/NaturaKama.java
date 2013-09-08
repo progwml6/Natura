@@ -1,9 +1,7 @@
 package mods.natura.items.tools;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import mods.natura.common.NaturaTab;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IconRegister;
@@ -19,8 +17,10 @@ import net.minecraft.item.ItemSword;
 import net.minecraft.stats.StatList;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IShearable;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 public class NaturaKama extends ItemSword
 {
@@ -62,7 +62,7 @@ public class NaturaKama extends ItemSword
     }
     
     @Override
-    public boolean func_111207_a(ItemStack itemstack, EntityPlayer player, EntityLivingBase entity)
+    public boolean itemInteractionForEntity(ItemStack itemstack, EntityPlayer player, EntityLivingBase entity)
     {
         if (entity.worldObj.isRemote)
         {
