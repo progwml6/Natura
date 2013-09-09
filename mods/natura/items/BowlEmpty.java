@@ -19,24 +19,27 @@ public class BowlEmpty extends Item
 
     @SideOnly(Side.CLIENT)
     @Override
-    public Icon getIconFromDamage (int meta)
+    public Icon getIconFromDamage(int meta)
     {
         return icons[meta];
     }
 
     @SideOnly(Side.CLIENT)
     @Override
-    public void registerIcons (IconRegister iconRegister)
+    public void registerIcons(IconRegister iconRegister)
     {
         this.icons = new Icon[textureNames.length];
         for (int i = 0; i < this.textureNames.length; ++i)
         {
-            //if (!textureNames[i].equals(""))
-            this.icons[i] = iconRegister.registerIcon("natura:" + textureNames[i] + "_bowl");
+            if (!textureNames[i].equals(""))
+                this.icons[i] = iconRegister.registerIcon("natura:" + textureNames[i] + "_bowl");
+            else
+                this.icons[i] = iconRegister.registerIcon("bowl");
+
         }
     }
 
-    public String getUnlocalizedName (ItemStack stack)
+    public String getUnlocalizedName(ItemStack stack)
     {
         return Item.bowlEmpty.getUnlocalizedName(stack);
         /*int arr = MathHelper.clamp_int(stack.getItemDamage(), 0, textureNames.length);
