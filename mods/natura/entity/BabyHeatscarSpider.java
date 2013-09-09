@@ -49,7 +49,7 @@ public class BabyHeatscarSpider extends EntitySpider
 
     }
 
-    protected void jump ()
+    public void jump ()
     {
         this.motionY = 0.62D;
 

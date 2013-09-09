@@ -141,6 +141,7 @@ public class Glowshroom extends BlockMushroom
     @SideOnly(Side.CLIENT)
     public Icon getIcon (int side, int meta)
     {
+        meta = meta % 3;
         return icons[meta];
     }
 

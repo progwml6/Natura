@@ -48,8 +48,8 @@ public class NProxyClient extends NProxyCommon
         Minecraft mc = Minecraft.getMinecraft();
         try
         {
-            GrassColorizerAlternate.setBlueGrassBiomeColorizer(TextureUtil.func_110986_a(mc.func_110442_L(), bluegrass));
-            GrassColorizerAlternate.setOrangeGrassBiomeColorizer(TextureUtil.func_110986_a(mc.func_110442_L(), orangegrass));
+            GrassColorizerAlternate.setBlueGrassBiomeColorizer(TextureUtil.readImageData(mc.getResourceManager(), bluegrass));
+            GrassColorizerAlternate.setOrangeGrassBiomeColorizer(TextureUtil.readImageData(mc.getResourceManager(), orangegrass));
         }
         catch (IOException e)
         {

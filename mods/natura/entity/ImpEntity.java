@@ -2,6 +2,7 @@ package mods.natura.entity;
 
 import mods.natura.common.NContent;
 import net.minecraft.entity.EntityAgeable;
+import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIAvoidEntity;
 import net.minecraft.entity.ai.EntityAIFollowParent;
 import net.minecraft.entity.ai.EntityAILookIdle;
@@ -46,9 +47,11 @@ public class ImpEntity extends EntityAnimal
         return true;
     }
 
-    public int getMaxHealth ()
+    @Override
+    protected void applyEntityAttributes()
     {
-        return 40;
+        super.applyEntityAttributes();
+        this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setAttribute(40.0D); //Health
     }
 
     protected void updateAITasks ()

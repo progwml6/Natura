@@ -30,10 +30,10 @@ public class NitroCreeper extends EntityCreeper
             this.dataWatcher.updateObject(17, Byte.valueOf((byte)1));
     }*/
 
-    public int getMaxHealth ()
+    /*public int getMaxHealth ()
     {
         return 20;
-    }
+    }*/
 
     protected void fall (float distance)
     {

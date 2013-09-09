@@ -38,13 +38,13 @@ public class HeatscarSpider extends EntitySpider
     }
     
     @Override
-    protected void func_110147_ax()
+    protected void applyEntityAttributes()
     {
-        super.func_110147_ax();
-        this.func_110148_a(SharedMonsterAttributes.field_111267_a).func_111128_a(50.0D); //Health
-        this.func_110148_a(SharedMonsterAttributes.field_111265_b).func_111128_a(24D); //Detection range
-        this.func_110148_a(SharedMonsterAttributes.field_111263_d).func_111128_a(1.35); //Movespeed
-        this.func_110148_a(SharedMonsterAttributes.field_111264_e).func_111128_a(4.0); //Base damage
+        super.applyEntityAttributes();
+        this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setAttribute(50.0D); //Health
+        this.getEntityAttribute(SharedMonsterAttributes.followRange).setAttribute(24D); //Detection range
+        this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setAttribute(1.35); //Movespeed
+        this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setAttribute(4.0); //Base damage
     }
 
     protected void attackEntity (Entity par1Entity, float par2)
@@ -68,7 +68,7 @@ public class HeatscarSpider extends EntitySpider
 
     }
 
-    protected void jump ()
+    public void jump ()
     {
         this.motionY = 0.62D;
 

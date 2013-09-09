@@ -25,7 +25,7 @@ import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.Event;
 import net.minecraftforge.event.ForgeSubscribe;
-import net.minecraftforge.event.entity.living.LivingSpawnEvent;
+import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.player.BonemealEvent;
 import net.minecraftforge.event.entity.player.EntityInteractEvent;
 import cpw.mods.fml.common.Mod;
@@ -39,7 +39,7 @@ import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 
-@Mod(modid = "Natura", name = "Natura", version = "2.1.7")
+@Mod(modid = "Natura", name = "Natura", version = "2.1.8")
 @NetworkMod(serverSideRequired = false, clientSideRequired = true)
 public class Natura
 {
@@ -168,16 +168,16 @@ public class Natura
     }
 
     @ForgeSubscribe
-    public void spawnEvent (LivingSpawnEvent event)
+    public void spawnEvent (EntityJoinWorldEvent event)
     {
-        if (event.entityLiving instanceof EntityCow || event.entityLiving instanceof EntitySheep)
+        if (event.entity instanceof EntityCow || event.entity instanceof EntitySheep)
         {
-            ((EntityLiving)event.entityLiving).tasks.addTask(3, new EntityAITempt((EntityCreature) event.entityLiving, 0.25F, NContent.plantItem.itemID, false));
+            ((EntityLiving)event.entity).tasks.addTask(3, new EntityAITempt((EntityCreature) event.entity, 0.25F, NContent.plantItem.itemID, false));
         }
 
-        if (event.entityLiving instanceof EntityChicken)
+        if (event.entity instanceof EntityChicken)
         {
-        	((EntityLiving)event.entityLiving).tasks.addTask(3, new EntityAITempt((EntityCreature) event.entityLiving, 0.25F, NContent.seeds.itemID, false));
+        	((EntityLiving)event.entity).tasks.addTask(3, new EntityAITempt((EntityCreature) event.entity, 0.25F, NContent.seeds.itemID, false));
         }
     }
 
