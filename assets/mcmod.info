@@ -1,0 +1,20 @@
+[
+{
+  "modid": "Natura",
+  "name": "Natura",
+  "description": "Heyo, Redwood trees! Chop them all day long!",
+  "version": "@VERSION@",
+    "mcversion": "@MCVERSION@",
+  "url": "www.minecraftforum.net/topic/1753754-natura/",
+  "updateUrl": "",
+  "authors": [
+    "mDiyo"
+  ],
+  "logoFile": "",
+  "screenshots": [
+  ],
+  "parent":"",
+  "dependencies": [
+  ]
+}
+]
