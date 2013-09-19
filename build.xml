@@ -88,10 +88,7 @@
 		<!-- Fix executable permissions -->
 		<chmod dir="${forge.dir}" perm="ugo+rx" includes="**.sh"/>
 
-        <!-- Copy AT -->
-        <mkdir dir="${forge.dir}/accesstransformers"/>
-        <copy todir="${forge.dir}/accesstransformers" file="Natura_AT.cfg"/>
-
+ 
 		<!-- Install forge -->
 		<exec dir="${forge.dir}" executable="${forge.dir}/fml/python/python_fml" osfamily="windows">
 			<arg line="install.py --no-assets"/>
