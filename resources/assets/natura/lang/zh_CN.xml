@@ -39,7 +39,7 @@
   <entry key="block.raspberryBush.name">覆盆子灌木</entry>
   <entry key="block.blueberryBush.name">蓝莓灌木</entry>
   <entry key="block.blackberryBush.name">黑莓灌木</entry>
-  <entry key="block.geoberryBush.name">什锦莓灌木</entry>
+  <entry key="block.geoberryBush.name">桑葚灌木</entry>
 
   <entry key="block.bush.berry.blight.name">枯萎莓灌木</entry>
   <entry key="block.bush.berry.dusk.name">黄昏莓灌木</entry>
@@ -232,7 +232,7 @@
   <entry key="block.soil.autumngrass.slab.name">秋光草地台阶</entry>
   
   <entry key="tile.bloodwood.name">血树</entry>
-  <entry key="tile.saguaro.block.name">巨大仙人掌</entry>
+  <entry key="tile.saguaro.block.name">巨型仙人掌</entry>
   <entry key="tile.bluebells.name">蓝铃草</entry>
 
   <entry key="tile.TaintedSoil.name">腐沙</entry>
