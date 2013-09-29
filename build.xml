@@ -134,8 +134,6 @@
 	</target>
 
 	<target name="reobf" depends="compile">
-		<!-- remove ic2 api to prevent crashes because of old api versions -->
-		<delete dir="${mcpsrc.dir}/minecraft/ic2"/>
 		<!-- Reobfuscate -->
 		<exec dir="${mcp.dir}" executable="cmd" osfamily="windows">
 			<arg line="/c reobfuscate_srg.bat"/>
@@ -149,7 +147,9 @@
 		<copy todir="${classes.dir}">
 			<fileset dir="${mcp.dir}/reobf/minecraft"/>
 		</copy>
-
+		<!-- remove ic2 api to prevent crashes because of old api versions -->
+		<delete dir="${classes.dir}/ic2"/>
+		
 		<!-- Copy resources -->
 		<copy todir="${classes.dir}" outputencoding="UTF-8">
 			<fileset dir="${classes.dir}">
