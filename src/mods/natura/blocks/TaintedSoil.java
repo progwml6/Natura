@@ -22,6 +22,7 @@ public class TaintedSoil extends NBlock
         return world.getBlockMetadata(x, y, z) == 2;
     }
 
+    @Override
     public boolean isGenMineableReplaceable (World world, int x, int y, int z, int target)
     {
         return blockID == target || target == Block.netherrack.blockID;
