@@ -473,7 +473,7 @@ public class NContent implements IFuelHandler
         GameRegistry.registerBlock(fenceGateMaple, "fenceGate.maple");
 
         //Amaranth
-        pressurePlateAmaranth = new NPressurePlate(PHNatura.pressurePlateAmaranth, Material.wood, EnumMobType.everything, planks, 7);
+        pressurePlateAmaranth = new NPressurePlate(PHNatura.pressurePlateAmaranth, Material.wood, EnumMobType.everything, planks, 8);
         pressurePlateAmaranth.setHardness(0.5F).setStepSound(Block.soundWoodFootstep).setUnlocalizedName("pressureplate.amaranth");
         GameRegistry.registerBlock(pressurePlateAmaranth, "pressureplate.amaranth");
 
@@ -481,16 +481,16 @@ public class NContent implements IFuelHandler
         trapdoorAmaranth.setHardness(3.0F).setStepSound(Block.soundWoodFootstep).setUnlocalizedName("trapdoor.amaranth");
         GameRegistry.registerBlock(trapdoorAmaranth, "trapdoor.amaranth");
 
-        buttonAmaranth = new NButton(PHNatura.buttonAmaranth, planks, 7);
+        buttonAmaranth = new NButton(PHNatura.buttonAmaranth, planks, 8);
         buttonAmaranth.setHardness(0.5F).setStepSound(Block.soundWoodFootstep).setUnlocalizedName("button.amaranth");
         GameRegistry.registerBlock(buttonAmaranth, "button.amaranth");
 
-        fenceGateAmaranth = new NFenceGate(PHNatura.fenceGateAmaranth, planks, 7);
+        fenceGateAmaranth = new NFenceGate(PHNatura.fenceGateAmaranth, planks, 8);
         fenceGateAmaranth.setHardness(2.0F).setResistance(5.0F).setStepSound(Block.soundWoodFootstep).setUnlocalizedName("fenceGate.amaranth");
         GameRegistry.registerBlock(fenceGateAmaranth, "fenceGate.amaranth");
 
         //Silverbell
-        pressurePlateSilverbell = new NPressurePlate(PHNatura.pressurePlateSilverbell, Material.wood, EnumMobType.everything, planks, 8);
+        pressurePlateSilverbell = new NPressurePlate(PHNatura.pressurePlateSilverbell, Material.wood, EnumMobType.everything, planks, 7);
         pressurePlateSilverbell.setHardness(0.5F).setStepSound(Block.soundWoodFootstep).setUnlocalizedName("pressureplate.silverbell");
         GameRegistry.registerBlock(pressurePlateSilverbell, "pressureplate.silverbell");
 
@@ -498,11 +498,11 @@ public class NContent implements IFuelHandler
         trapdoorSilverbell.setHardness(3.0F).setStepSound(Block.soundWoodFootstep).setUnlocalizedName("trapdoor.silverbell");
         GameRegistry.registerBlock(trapdoorSilverbell, "trapdoor.silverbell");
 
-        buttonSilverbell = new NButton(PHNatura.buttonSilverbell, planks, 8);
+        buttonSilverbell = new NButton(PHNatura.buttonSilverbell, planks, 7);
         buttonSilverbell.setHardness(0.5F).setStepSound(Block.soundWoodFootstep).setUnlocalizedName("button.silverbell");
         GameRegistry.registerBlock(buttonSilverbell, "button.silverbell");
 
-        fenceGateSilverbell = new NFenceGate(PHNatura.fenceGateSilverbell, planks, 8);
+        fenceGateSilverbell = new NFenceGate(PHNatura.fenceGateSilverbell, planks, 7);
         fenceGateSilverbell.setHardness(2.0F).setResistance(5.0F).setStepSound(Block.soundWoodFootstep).setUnlocalizedName("fenceGate.silverbell");
         GameRegistry.registerBlock(fenceGateSilverbell, "fenceGate.silverbell");
 
