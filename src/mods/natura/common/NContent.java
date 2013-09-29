@@ -133,22 +133,40 @@ public class NContent implements IFuelHandler
         //Crops
         plantItem = new PlantItem(PHNatura.foodID).setUnlocalizedName("barleyFood");
         crops = new CropBlock(PHNatura.floraCropsID);
-        seeds = new NaturaSeeds(PHNatura.barleySeedID, crops.blockID, Block.tilledField.blockID).setUnlocalizedName("barley.seed");
         GameRegistry.registerBlock(crops, "N Crops");
+        seeds = new NaturaSeeds(PHNatura.barleySeedID, crops.blockID, Block.tilledField.blockID).setUnlocalizedName("barley.seed");
+        GameRegistry.registerCustomItemStack("seedBarley", new ItemStack(seeds, 1, 0));
+        GameRegistry.registerCustomItemStack("seedCotton", new ItemStack(seeds, 1, 1));
 
         waterDrop = new CactusJuice(PHNatura.cactusJuice, false).setUnlocalizedName("waterdrop");
 
         wheatBag = new SeedBag(PHNatura.wheatBagID, Block.crops, 0, "wheat").setUnlocalizedName("wheatBag");
+        GameRegistry.registerCustomItemStack("bagWheat", new ItemStack(wheatBag, 1, 0));
         barleyBag = new SeedBag(PHNatura.barleyBagID, crops, 0, "barley").setUnlocalizedName("barleyBag");
+        GameRegistry.registerCustomItemStack("bagBarley", new ItemStack(barleyBag, 1, 0));
         potatoBag = new SeedBag(PHNatura.potatoBagID, Block.potato, 0, "potato").setUnlocalizedName("potatoBag");
+        GameRegistry.registerCustomItemStack("bagPotato", new ItemStack(potatoBag, 1, 0));
         carrotBag = new SeedBag(PHNatura.carrotBagID, Block.carrot, 0, "carrot").setUnlocalizedName("carrotBag");
+        GameRegistry.registerCustomItemStack("bagCarrot", new ItemStack(carrotBag, 1, 0));
         netherWartBag = new SeedBag(PHNatura.netherWartBagID, Block.netherStalk, 0, "netherwart").setUnlocalizedName("wartBag");
+        GameRegistry.registerCustomItemStack("bagNetherWart", new ItemStack(netherWartBag, 1, 0));
         cottonBag = new SeedBag(PHNatura.cottonBagID, crops, 4, "cotton").setUnlocalizedName("cottonBag");
+        GameRegistry.registerCustomItemStack("bagCotton", new ItemStack(cottonBag, 1, 0));
         boneBag = new BoneBag(PHNatura.boneBagID, "bone").setUnlocalizedName("boneBag");
+        GameRegistry.registerCustomItemStack("bagBone", new ItemStack(boneBag, 1, 0));
 
         netherBerryItem = new NetherBerryItem(PHNatura.netherBerryItem, 1).setUnlocalizedName("berry.nether");
+        GameRegistry.registerCustomItemStack("berryBlight", new ItemStack(netherBerryItem, 1, 0));
+        GameRegistry.registerCustomItemStack("berryDusk", new ItemStack(netherBerryItem, 1, 1));
+        GameRegistry.registerCustomItemStack("berrySky", new ItemStack(netherBerryItem, 1, 2));
+        GameRegistry.registerCustomItemStack("berrySting", new ItemStack(netherBerryItem, 1, 3));
         berryItem = new BerryItem(PHNatura.berryItemID, 1).setUnlocalizedName("berry");
+        GameRegistry.registerCustomItemStack("berryRasp", new ItemStack(berryItem, 1, 0));
+        GameRegistry.registerCustomItemStack("berryBlue", new ItemStack(berryItem, 1, 1));
+        GameRegistry.registerCustomItemStack("berryBlack", new ItemStack(berryItem, 1, 2));
+        GameRegistry.registerCustomItemStack("berryMalo", new ItemStack(berryItem, 1, 3));
         berryMedley = new BerryMedley(PHNatura.berryMedley, 5).setUnlocalizedName("berryMedley");
+        GameRegistry.registerCustomItemStack("berryMedley", new ItemStack(berryMedley, 1, 0));
 
         berryBush = new BerryBush(PHNatura.berryBlockID);
         GameRegistry.registerBlock(berryBush, BerryBushItem.class, "BerryBush");
@@ -238,6 +256,7 @@ public class NContent implements IFuelHandler
         public static Block glowshroomPurple;*/
 
         potashApple = new NetherFoodItem(PHNatura.netherFood).setUnlocalizedName("Natura.netherfood");
+        GameRegistry.registerCustomItemStack("applePotash", new ItemStack(potashApple, 1, 0));
 
         //Rare overworld
         rareTree = new OverworldTreeBlock(PHNatura.rareTree).setUnlocalizedName("RareTree");
@@ -454,7 +473,7 @@ public class NContent implements IFuelHandler
         GameRegistry.registerBlock(fenceGateMaple, "fenceGate.maple");
 
         //Amaranth
-        pressurePlateAmaranth = new NPressurePlate(PHNatura.pressurePlateAmaranth, Material.wood, EnumMobType.everything, planks, 7);
+        pressurePlateAmaranth = new NPressurePlate(PHNatura.pressurePlateAmaranth, Material.wood, EnumMobType.everything, planks, 8);
         pressurePlateAmaranth.setHardness(0.5F).setStepSound(Block.soundWoodFootstep).setUnlocalizedName("pressureplate.amaranth");
         GameRegistry.registerBlock(pressurePlateAmaranth, "pressureplate.amaranth");
 
@@ -462,16 +481,16 @@ public class NContent implements IFuelHandler
         trapdoorAmaranth.setHardness(3.0F).setStepSound(Block.soundWoodFootstep).setUnlocalizedName("trapdoor.amaranth");
         GameRegistry.registerBlock(trapdoorAmaranth, "trapdoor.amaranth");
 
-        buttonAmaranth = new NButton(PHNatura.buttonAmaranth, planks, 7);
+        buttonAmaranth = new NButton(PHNatura.buttonAmaranth, planks, 8);
         buttonAmaranth.setHardness(0.5F).setStepSound(Block.soundWoodFootstep).setUnlocalizedName("button.amaranth");
         GameRegistry.registerBlock(buttonAmaranth, "button.amaranth");
 
-        fenceGateAmaranth = new NFenceGate(PHNatura.fenceGateAmaranth, planks, 7);
+        fenceGateAmaranth = new NFenceGate(PHNatura.fenceGateAmaranth, planks, 8);
         fenceGateAmaranth.setHardness(2.0F).setResistance(5.0F).setStepSound(Block.soundWoodFootstep).setUnlocalizedName("fenceGate.amaranth");
         GameRegistry.registerBlock(fenceGateAmaranth, "fenceGate.amaranth");
 
         //Silverbell
-        pressurePlateSilverbell = new NPressurePlate(PHNatura.pressurePlateSilverbell, Material.wood, EnumMobType.everything, planks, 8);
+        pressurePlateSilverbell = new NPressurePlate(PHNatura.pressurePlateSilverbell, Material.wood, EnumMobType.everything, planks, 7);
         pressurePlateSilverbell.setHardness(0.5F).setStepSound(Block.soundWoodFootstep).setUnlocalizedName("pressureplate.silverbell");
         GameRegistry.registerBlock(pressurePlateSilverbell, "pressureplate.silverbell");
 
@@ -479,11 +498,11 @@ public class NContent implements IFuelHandler
         trapdoorSilverbell.setHardness(3.0F).setStepSound(Block.soundWoodFootstep).setUnlocalizedName("trapdoor.silverbell");
         GameRegistry.registerBlock(trapdoorSilverbell, "trapdoor.silverbell");
 
-        buttonSilverbell = new NButton(PHNatura.buttonSilverbell, planks, 8);
+        buttonSilverbell = new NButton(PHNatura.buttonSilverbell, planks, 7);
         buttonSilverbell.setHardness(0.5F).setStepSound(Block.soundWoodFootstep).setUnlocalizedName("button.silverbell");
         GameRegistry.registerBlock(buttonSilverbell, "button.silverbell");
 
-        fenceGateSilverbell = new NFenceGate(PHNatura.fenceGateSilverbell, planks, 8);
+        fenceGateSilverbell = new NFenceGate(PHNatura.fenceGateSilverbell, planks, 7);
         fenceGateSilverbell.setHardness(2.0F).setResistance(5.0F).setStepSound(Block.soundWoodFootstep).setUnlocalizedName("fenceGate.silverbell");
         GameRegistry.registerBlock(fenceGateSilverbell, "fenceGate.silverbell");
 
@@ -605,6 +624,8 @@ public class NContent implements IFuelHandler
         impBoots = new NaturaArmor(PHNatura.impBoots, Imp, 1, 3, "imp_boots", "imp").setUnlocalizedName("natura.armor.impboots");
 
         impMeat = new ImpMeat(PHNatura.impMeat).setUnlocalizedName("impmeat");
+        GameRegistry.registerCustomItemStack("rawImphide", new ItemStack(impMeat, 1, 0));
+        GameRegistry.registerCustomItemStack("cookedImphide", new ItemStack(impMeat, 1, 1));
 
         MinecraftForge.setToolClass(ghostwoodPickaxe, "pickaxe", 0);
         MinecraftForge.setToolClass(ghostwoodShovel, "shovel", 0);
