@@ -134,7 +134,7 @@
 	</target>
 
 	<target name="reobf" depends="compile">
-		<!--- remove ic2 api to prevent crashes because of old api versions --->
+		<!-- remove ic2 api to prevent crashes because of old api versions -->
 		<delete dir="${mcpsrc.dir}/minecraft/ic2"/>
 		<!-- Reobfuscate -->
 		<exec dir="${mcp.dir}" executable="cmd" osfamily="windows">
