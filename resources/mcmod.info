@@ -17,4 +17,23 @@
   "dependencies": [
   ]
 }
+  {
+    "modid": "Natura|CompatForgeMultiPart",
+    "name": "Natura Compat: FMP",
+    "description": "Natura support for forgemultipart",
+    "version": "@VERSION@",
+    "mcversion": "@MCVERSION@",
+  "url": "www.minecraftforum.net/topic/1753754-natura/",
+    "updateUrl": "",
+    "authors": [
+      "mDiyo"
+    ],
+    "credits": "",
+    "logoFile": "",
+    "screenshots": [],
+    "parent":"Natura",
+    "dependencies": [
+      "Natura"
+    ]
+  }
 ]
