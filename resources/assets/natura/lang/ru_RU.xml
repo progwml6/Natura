@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties version="1.0">
-  <entry key="item.natura.spawnegg.name">Spawn </entry>
+  <entry key="item.natura.spawnegg.name">Призвать существо -  </entry>
 
   <entry key="item.wheatBag.name">Мешочек семян пшеницы</entry>
   <entry key="item.barleyBag.name">Мешочек семян ячменя</entry>
@@ -73,7 +73,7 @@
 
   <entry key="normalcloud.name">Облако</entry>
   <entry key="darkcloud.name">Тёмное облако</entry>
-  <entry key="ashcloud.name">Облако пепла</entry>
+  <entry key="ashcloud.name">Пепельное облако</entry>
   <entry key="sulfurcloud.name">Облако серы</entry>
 
   <entry key="redwoodNDoor.name">Дверь из древесины красного дерева</entry>
@@ -106,7 +106,7 @@
   <entry key="block.sapling.sakura.name">Саженец сакуры</entry>
   <entry key="block.sapling.ghost.name">Саженец призрачного дерева</entry>
   <entry key="block.sapling.bush.name">Саженец хмельного дерева</entry>
-  <entry key="block.sapling.redwood.name">Саженец краного дерева</entry>
+  <entry key="block.sapling.redwood.name">Саженец красного дерева</entry>
   <entry key="block.sapling.blood.name">Саженец кровавого дерева</entry>
   <entry key="block.sapling.darkwood.name">Саженец тёмного дерева</entry>
   <entry key="block.sapling.fusewood.name">Саженец плавкого дерева</entry>
@@ -275,16 +275,16 @@
   <entry key="item.natura.axe.netherquartz.name">Топор из кварца</entry>
   <entry key="item.natura.kama.netherquartz.name">Мотыга из кварца</entry>
 
-  <entry key="item.natura.armor.imphelmet.name">Шлем импа</entry>
-  <entry key="item.natura.armor.impjerkin.name">Безрукавка импа</entry>
-  <entry key="item.natura.armor.impleggings.name">Поножи импа</entry>
-  <entry key="item.natura.armor.impboots.name">Ботинки импа</entry>
+  <entry key="item.natura.armor.imphelmet.name">Шлем дьяволёнка</entry>
+  <entry key="item.natura.armor.impjerkin.name">Безрукавка дьяволёнка</entry>
+  <entry key="item.natura.armor.impleggings.name">Поножи дьяволёнка</entry>
+  <entry key="item.natura.armor.impboots.name">Ботинки дьяволёнка</entry>
   
-  <entry key="entity.Natura.Imp.name">Имп</entry>
-  <entry key="entity.Natura.HeatscarSpider.name">Heatscar Spider</entry>
-  <entry key="entity.Natura.BabyHeatscarSpider.name">Baby Heatscar Spider</entry>
-  <entry key="entity.Natura.FlameSpider.name">Heatscar Spider</entry>
-  <entry key="entity.Natura.FlameSpiderBaby.name">Baby Heatscar Spider</entry>
+  <entry key="entity.Natura.Imp.name">Дьяволёнок</entry>
+  <entry key="entity.Natura.HeatscarSpider.name">Паук с тепловым шрамом</entry>
+  <entry key="entity.Natura.BabyHeatscarSpider.name">Паук-ребёнок с тепловым шрамом</entry>
+  <entry key="entity.Natura.FlameSpider.name">Паук с тепловым шрамом</entry>
+  <entry key="entity.Natura.FlameSpiderBaby.name">Паук-ребёнок с тепловым шрамом</entry>
   <entry key="entity.Natura.NitroCreeper.name">Нитро крипер</entry>
   
 </properties>
