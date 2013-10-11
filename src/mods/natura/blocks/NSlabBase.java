@@ -101,4 +101,10 @@ public class NSlabBase extends Block
             list.add(new ItemStack(id, 1, iter));
         }
     }
+    
+    @Override
+    public int damageDropped(int meta)
+    {
+        return meta;
+    }
 }
