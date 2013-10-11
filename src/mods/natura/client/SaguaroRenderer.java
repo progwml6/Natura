@@ -111,7 +111,7 @@ public class SaguaroRenderer implements ISimpleBlockRenderingHandler
             renderblocks.setRenderBounds(botX, botY, botZ, topX, topY, topZ);
             renderblocks.renderStandardBlock(cactus, x, y, z);
         }
-        return false;
+        return true;
     }
 
     public boolean renderFruit (SaguaroBlock block, int x, int y, int z, IBlockAccess world, int meta)
