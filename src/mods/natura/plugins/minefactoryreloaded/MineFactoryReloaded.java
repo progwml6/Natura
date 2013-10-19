@@ -12,7 +12,7 @@ import mods.natura.plugins.minefactoryreloaded.plantables.PlantableNaturaCrop;
 import mods.natura.plugins.minefactoryreloaded.plantables.PlantableNaturaNetherBerry;
 import mods.natura.plugins.minefactoryreloaded.plantables.PlantableStandard;
 import net.minecraft.item.ItemStack;
-import powercrystals.minefactoryreloaded.api.FarmingRegistry;
+import powercrystals.minefactoryreloaded.api.FactoryRegistry;
 import powercrystals.minefactoryreloaded.api.HarvestType;
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.Loader;
@@ -73,48 +73,48 @@ public class MineFactoryReloaded
             int bluebellsId = NContent.bluebells.blockID;
             int thornVinesId = NContent.thornVines.blockID;
 
-            FarmingRegistry.registerPlantable(new PlantableNaturaCrop(seedsId, cropsId));
-            FarmingRegistry.registerPlantable(new PlantableNaturaBerry(berryBushId, berryBushId));
-            FarmingRegistry.registerPlantable(new PlantableNaturaNetherBerry(netherBerryBushId, netherBerryBushId));
-            FarmingRegistry.registerPlantable(new PlantableStandard(saguaroFruitId, saguaroId));
-            FarmingRegistry.registerPlantable(new PlantableStandard(floraSaplingId, floraSaplingId));
+            FactoryRegistry.registerPlantable(new PlantableNaturaCrop(seedsId, cropsId));
+            FactoryRegistry.registerPlantable(new PlantableNaturaBerry(berryBushId, berryBushId));
+            FactoryRegistry.registerPlantable(new PlantableNaturaNetherBerry(netherBerryBushId, netherBerryBushId));
+            FactoryRegistry.registerPlantable(new PlantableStandard(saguaroFruitId, saguaroId));
+            FactoryRegistry.registerPlantable(new PlantableStandard(floraSaplingId, floraSaplingId));
 
             //misc plants
-            FarmingRegistry.registerHarvestable(new HarvestableStandard(bluebellsId, HarvestType.Normal));
+            FactoryRegistry.registerHarvestable(new HarvestableStandard(bluebellsId, HarvestType.Normal));
             //glowshrooms
-            FarmingRegistry.registerHarvestable(new HarvestableStandard(glowshroomId, HarvestType.Normal));
-            FarmingRegistry.registerHarvestable(new HarvestableStandard(glowshroomBlueId, HarvestType.Normal));
-            FarmingRegistry.registerHarvestable(new HarvestableStandard(glowshroomGreenId, HarvestType.Normal));
-            FarmingRegistry.registerHarvestable(new HarvestableStandard(glowshroomPurpleId, HarvestType.Normal));
+            FactoryRegistry.registerHarvestable(new HarvestableStandard(glowshroomId, HarvestType.Normal));
+            FactoryRegistry.registerHarvestable(new HarvestableStandard(glowshroomBlueId, HarvestType.Normal));
+            FactoryRegistry.registerHarvestable(new HarvestableStandard(glowshroomGreenId, HarvestType.Normal));
+            FactoryRegistry.registerHarvestable(new HarvestableStandard(glowshroomPurpleId, HarvestType.Normal));
             //crops
-            FarmingRegistry.registerHarvestable(new HarvestableNaturaCropPlant(cropsId, cottonItemId));
+            FactoryRegistry.registerHarvestable(new HarvestableNaturaCropPlant(cropsId, cottonItemId));
             //bushes
-            FarmingRegistry.registerHarvestable(new HarvestableNaturaBerry(berryBushId, berryItemId));
-            FarmingRegistry.registerHarvestable(new HarvestableNaturaBerry(netherBerryBushId, netherBerryItemId));
+            FactoryRegistry.registerHarvestable(new HarvestableNaturaBerry(berryBushId, berryItemId));
+            FactoryRegistry.registerHarvestable(new HarvestableNaturaBerry(netherBerryBushId, netherBerryItemId));
             //trees
-            FarmingRegistry.registerHarvestable(new HarvestableStandard(treeId, HarvestType.Tree));
-            FarmingRegistry.registerHarvestable(new HarvestableStandard(rareTreeId, HarvestType.Tree));
-            FarmingRegistry.registerHarvestable(new HarvestableStandard(darkTreeId, HarvestType.Tree));
-            FarmingRegistry.registerHarvestable(new HarvestableStandard(redwoodId, HarvestType.Tree));
-            FarmingRegistry.registerHarvestable(new HarvestableStandard(willowId, HarvestType.Tree));
-            FarmingRegistry.registerHarvestable(new HarvestableStandard(bloodwoodId, HarvestType.TreeFlipped));
+            FactoryRegistry.registerHarvestable(new HarvestableStandard(treeId, HarvestType.Tree));
+            FactoryRegistry.registerHarvestable(new HarvestableStandard(rareTreeId, HarvestType.Tree));
+            FactoryRegistry.registerHarvestable(new HarvestableStandard(darkTreeId, HarvestType.Tree));
+            FactoryRegistry.registerHarvestable(new HarvestableStandard(redwoodId, HarvestType.Tree));
+            FactoryRegistry.registerHarvestable(new HarvestableStandard(willowId, HarvestType.Tree));
+            FactoryRegistry.registerHarvestable(new HarvestableStandard(bloodwoodId, HarvestType.TreeFlipped));
             //leaves
-            FarmingRegistry.registerHarvestable(new HarvestableNaturaTreeLeaves(rareLeavesId));
-            FarmingRegistry.registerHarvestable(new HarvestableNaturaTreeLeaves(darkLeavesId));
-            FarmingRegistry.registerHarvestable(new HarvestableNaturaTreeLeaves(floraLeavesId));
-            FarmingRegistry.registerHarvestable(new HarvestableNaturaTreeLeaves(floraLeavesNoColorId));
-            FarmingRegistry.registerHarvestable(new HarvestableNaturaTreeLeaves(thornVinesId));
+            FactoryRegistry.registerHarvestable(new HarvestableNaturaTreeLeaves(rareLeavesId));
+            FactoryRegistry.registerHarvestable(new HarvestableNaturaTreeLeaves(darkLeavesId));
+            FactoryRegistry.registerHarvestable(new HarvestableNaturaTreeLeaves(floraLeavesId));
+            FactoryRegistry.registerHarvestable(new HarvestableNaturaTreeLeaves(floraLeavesNoColorId));
+            FactoryRegistry.registerHarvestable(new HarvestableNaturaTreeLeaves(thornVinesId));
 
-            FarmingRegistry.registerFertilizable(new FertilizableNaturaCrop(cropsId));
-            FarmingRegistry.registerFertilizable(new FertilizableSapling(floraSaplingId));
-            FarmingRegistry.registerFertilizable(new FertilizableSapling(rareSaplingId));
+            FactoryRegistry.registerFertilizable(new FertilizableNaturaCrop(cropsId));
+            FactoryRegistry.registerFertilizable(new FertilizableSapling(floraSaplingId));
+            FactoryRegistry.registerFertilizable(new FertilizableSapling(rareSaplingId));
 
             /*
              *  The sludge boiler takes sludge from harvester machines and boils it to get soil-like items,
              *  such as dirt, sand, clay, or rarely things like soulsand and mycelium. 
              */
-            FarmingRegistry.registerSludgeDrop(5, new ItemStack(NContent.heatSand));
-            FarmingRegistry.registerSludgeDrop(5, new ItemStack(NContent.taintedSoil));
+            FactoryRegistry.registerSludgeDrop(5, new ItemStack(NContent.heatSand));
+            FactoryRegistry.registerSludgeDrop(5, new ItemStack(NContent.taintedSoil));
         }
         catch (Throwable pikachu)
         {
