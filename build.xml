@@ -200,11 +200,11 @@
 		</exec>
 
 		<!-- Copy classes -->
-		<copy todir="${classes.dir}">
-			<fileset dir="${mcp.dir}/reobf/minecraft"/>
+		<mkdir dir="${classes.dir}/mods/natura"/>
+		<copy todir="${classes.dir}/mods/natura">
+			<fileset dir="${mcp.dir}/reobf/minecraft/mods/natura"/>
 		</copy>
-		<!-- remove ic2 api to prevent crashes because of old api versions -->
-		<delete dir="${classes.dir}/ic2"/>
+		
 		
 		<!-- Copy resources -->
 		<copy todir="${classes.dir}" outputencoding="UTF-8">
