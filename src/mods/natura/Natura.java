@@ -11,7 +11,6 @@ import mods.natura.gui.NGuiHandler;
 import mods.natura.worldgen.BaseCloudWorldgen;
 import mods.natura.worldgen.BaseCropWorldgen;
 import mods.natura.worldgen.BaseTreeWorldgen;
-import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.EntityLiving;
@@ -22,6 +21,8 @@ import net.minecraft.entity.passive.EntityCow;
 import net.minecraft.entity.passive.EntitySheep;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
+import net.minecraft.world.chunk.Chunk;
 import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.Event;
@@ -29,6 +30,7 @@ import net.minecraftforge.event.ForgeSubscribe;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.player.BonemealEvent;
 import net.minecraftforge.event.entity.player.EntityInteractEvent;
+import net.minecraftforge.event.world.ChunkDataEvent;
 import net.minecraftforge.oredict.OreDictionary;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
@@ -66,12 +68,16 @@ public class Natura
         content.postIntermodCommunication();
     }
 
+    BaseCropWorldgen crops;
+    BaseCloudWorldgen clouds;
+    BaseTreeWorldgen trees;
+
     @EventHandler
     public void init (FMLInitializationEvent evt)
     {
-        GameRegistry.registerWorldGenerator(new BaseCropWorldgen());
-        GameRegistry.registerWorldGenerator(new BaseCloudWorldgen());
-        GameRegistry.registerWorldGenerator(new BaseTreeWorldgen());
+        GameRegistry.registerWorldGenerator(crops = new BaseCropWorldgen());
+        GameRegistry.registerWorldGenerator(clouds = new BaseCloudWorldgen());
+        GameRegistry.registerWorldGenerator(trees = new BaseTreeWorldgen());
         NaturaTab.init(content.wheatBag.itemID);
         proxy.registerRenderer();
         proxy.addNames();
@@ -85,8 +91,9 @@ public class Natura
             DimensionManager.unregisterProviderType(-1);
             DimensionManager.registerProviderType(-1, NetheriteWorldProvider.class, true);
         }
-        
+
         OreDictionary.registerOre("cropVine", new ItemStack(NContent.thornVines));
+        random.setSeed(2 ^ 16 + 2 ^ 8 + (4 * 3 * 271));
     }
 
     @EventHandler
@@ -176,13 +183,36 @@ public class Natura
     {
         if (event.entity instanceof EntityCow || event.entity instanceof EntitySheep)
         {
-            ((EntityLiving)event.entity).tasks.addTask(3, new EntityAITempt((EntityCreature) event.entity, 0.25F, NContent.plantItem.itemID, false));
+            ((EntityLiving) event.entity).tasks.addTask(3, new EntityAITempt((EntityCreature) event.entity, 0.25F, NContent.plantItem.itemID, false));
         }
 
         if (event.entity instanceof EntityChicken)
         {
-        	((EntityLiving)event.entity).tasks.addTask(3, new EntityAITempt((EntityCreature) event.entity, 0.25F, NContent.seeds.itemID, false));
+            ((EntityLiving) event.entity).tasks.addTask(3, new EntityAITempt((EntityCreature) event.entity, 0.25F, NContent.seeds.itemID, false));
         }
+    }
+
+    public static boolean retrogen;
+
+    @ForgeSubscribe
+    public void chunkDataLoad (ChunkDataEvent.Load event)
+    {
+        if (!event.getData().getBoolean("Natura.Retrogen") && retrogen)
+        {
+            Chunk chunk = event.getChunk();
+            World world = chunk.worldObj;
+            crops.generate(random, chunk.xPosition, chunk.zPosition, world, world.provider.createChunkGenerator(), world.provider.createChunkGenerator());
+            clouds.generate(random, chunk.xPosition, chunk.zPosition, world, world.provider.createChunkGenerator(), world.provider.createChunkGenerator());
+            trees.retrogen = true;
+            trees.generate(random, chunk.xPosition, chunk.zPosition, world, world.provider.createChunkGenerator(), world.provider.createChunkGenerator());
+            trees.retrogen = false;
+        }
+    }
+
+    @ForgeSubscribe
+    public void chunkDataSave (ChunkDataEvent.Save event)
+    {
+        event.getData().setBoolean("Natura.Retrogen", true);
     }
 
     NContent content;

@@ -3,6 +3,7 @@ package mods.natura.common;
 import java.io.File;
 import java.io.IOException;
 
+import mods.natura.Natura;
 import net.minecraftforge.common.Configuration;
 
 public class PHNatura
@@ -43,6 +44,8 @@ public class PHNatura
         taintedSoil = config.getTerrainBlock("terrain", "Tainted Soil", 250, "Requires blockID < 256").getInt(250);
         heatSand = config.getTerrainBlock("terrain", "Heat Sand", 249, "Requires blockID < 256").getInt(249);
         //sulfurair = config.getTerrainBlock("terrain", "Sulfurous Air", 168, "Requires blockID < 256").getInt(168);
+
+        Natura.retrogen = config.get("Retrogen", "Retroactive Generation", true).getBoolean(true);
 
         treeID = config.getBlock("Wood Block", 3251).getInt(3251);
         redwoodDoor = config.getBlock("Redwood Door", 3252).getInt(3252);
