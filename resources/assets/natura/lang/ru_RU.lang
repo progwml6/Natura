@@ -1,0 +1,285 @@
+item.natura.spawnegg.name=Призвать существо -  
+
+item.wheatBag.name=Мешочек семян пшеницы
+item.barleyBag.name=Мешочек семян ячменя
+item.potatoBag.name=Мешочек картофеля
+item.carrotBag.name=Мешочек моркови
+item.wartBag.name=Мешочек адского нароста
+item.cottonBag.name=Мешочек семян хлопчатника
+item.boneBag.name=Мешочек костной муки
+
+item.barley.seed.name=Семена ячменя
+item.barley.plant.name=Ячмень
+item.barley.flour.name=Ячменная мука
+item.wheat.flour.name=Пшеничная мука
+item.cotton.plant.name=Хлопок
+item.fletching.ghostwood.name=Оперение призрачного дерева
+item.leather.imp.name=Кожа импа
+item.string.flame.name=Пламенная нить
+item.dye.blue.name=Синий краситель
+
+item.cotton.seed.name=Семена хлопчатника
+item.powder.sulfur.name=Сера
+item.waterdrop.name=Кактусовый сок
+item.saguaro.fruit.name=Плод сагуаро
+
+item.berry.rasp.name=Малина
+item.berry.blue.name=Черника
+item.berry.black.name=Ежевика
+item.berry.geo.name=Вредная ягода
+item.berry.medley.name=Ягодное попурри
+item.berry.blight.name=Губительная ягода
+item.berry.dusk.name=Сумеречная ягода
+item.berry.sky.name=Небесная ягода
+item.berry.sting.name=Ядовитая ягода
+
+block.raspberryBush.name=Куст малины
+block.blueberryBush.name=Куст черники
+block.blackberryBush.name=Куст ежевики
+block.geoberryBush.name=Куст вредной ягоды
+
+block.bush.berry.blight.name=Куст губительной ягоды
+block.bush.berry.dusk.name=Куст сумеречной ягоды
+block.bush.berry.sky.name=Куст небесной ягоды
+block.bush.berry.sting.name=Куст ядовитой ягоды
+
+block.log.maple.name=Древесина клёна
+block.log.silverbell.name=Древесина галезии
+block.log.purpleheart.name=Древесина щирицы
+block.log.tiger.name=Древесина тигрового дерева
+block.log.willow.name=Древесина ивы
+
+block.log.darkwood.name=Древесина тёмного дерева
+block.log.fusewood.name=Древесина плавкого дерева
+
+item.bowl.mushroom.name=Тушёные грибы
+item.bowl.glowshroom.name=Тушёные светогрибы
+
+block.leaves.darkwood.name=Листва тёмного дерева
+block.leaves.darkwood.flowering.name=Листва тёмного дерева
+block.leaves.darkwood.fruit.name=Листва тёмного дерева
+block.leaves.fusewood.name=Листва плавкого дерева
+
+item.food.nether.potashapple.name=Хлористое яблоко
+
+block.leaves.maple.name=Листва клёна
+block.leaves.silverbell.name=Листва галезии
+block.leaves.purpleheart.name=Листва щирицы
+block.leaves.tiger.name=Листва тигрового дерева
+block.leaves.willow.name=Листва ивы
+
+normalcloud.name=Облако
+darkcloud.name=Тёмное облако
+ashcloud.name=Пепельное облако
+sulfurcloud.name=Облако серы
+
+redwoodNDoor.name=Дверь из древесины красного дерева
+eucalyptusNDoor.name=Дверь из древесины эвкалипта
+hopseedNDoor.name=Дверь из древесины хмельного дерева
+sakuraNDoor.name=Дверь из древесины сакуры
+ghostNDoor.name=Дверь из древесины призрачного дерева
+bloodNDoor.name=Дверь из древесины кровавого дерева
+redwoodBarkNDoor.name=Дверь из коры красного дерева
+
+barkRedwood.name=Кора красного дерева
+heartRedwood.name=Красное дерево
+rootRedwood.name=Корень красного дерева
+
+eucalyptusNPlanks.name=Доски из древесины эвкалипта
+sakuraNPlanks.name=Доски из древесины сакуры
+ghostNPlanks.name=Доски из древесины призрачного дерева
+bushNPlanks.name=Доски из древесины хмельного дерева
+bloodNPlanks.name=Доски из древесины кровавого дерева
+redwoodNPlanks.name=Доски из древесины красного дерева
+mapleNPlanks.name=Доски из древесины клёна
+silverbellNPlanks.name=Доски из древесины галезии
+tigerNPlanks.name=Доски из древесины тигрового дерева
+purpleheartNPlanks.name=Доски из древесины щирицы
+willowNPlanks.name=Доски из древесины ивы
+darkwoodNPlanks.name=Доски из древесины тёмного дерева
+fusewoodNPlanks.name=Доски из древесины плавкого дерева
+
+block.sapling.eucalyptus.name=Саженец эвкалипта
+block.sapling.sakura.name=Саженец сакуры
+block.sapling.ghost.name=Саженец призрачного дерева
+block.sapling.bush.name=Саженец хмельного дерева
+block.sapling.redwood.name=Саженец красного дерева
+block.sapling.blood.name=Саженец кровавого дерева
+block.sapling.darkwood.name=Саженец тёмного дерева
+block.sapling.fusewood.name=Саженец плавкого дерева
+block.sapling.willow.name=Саженец ивы
+block.sapling.tiger.name=Саженец тигрового дерева
+block.sapling.maple.name=Саженец клёна
+block.sapling.purpleheart.name=Саженец щирицы
+block.sapling.silverbell.name=Саженец галезии
+
+block.wood.eucalyptus.slab.name=Плита из древесины эвкалипта
+block.wood.sakura.slab.name=Плита из древесины сакуры
+block.wood.ghost.slab.name=Плита из древесины призрачного дерева
+block.wood.bush.slab.name=Плита из древесины хмельного дерева
+block.wood.redwood.slab.name=Плита из древесины красного дерева
+block.wood.blood.slab.name=Плита из древесины кровавого дерева
+block.wood.darkwood.slab.name=Плита из древесины тёмного дерева
+block.wood.fusewood.slab.name=Плита из древесины плавкого дерева
+block.wood.willow.slab.name=Плита из древесины ивы
+block.wood.tiger.slab.name=Плита из древесины тигрового дерева
+block.wood.maple.slab.name=Плита из древесины клёна
+block.wood.purpleheart.slab.name=Плита из древесины щирицы
+block.wood.silverbell.slab.name=Плита из древесины галезии
+
+tile.pressureplate.eucalyptus.name=Нажимная плита из древесины эвкалипта
+tile.pressureplate.sakura.name=Нажимная плита из древесины сакуры
+tile.pressureplate.ghostwood.name=Нажимная плита из древесины призрачного дерева</
+tile.pressureplate.hopseed.name=Нажимная плита из древесины хмельного дерева</
+tile.pressureplate.redwood.name=Нажимная плита из древесины красного дерева</entry
+tile.pressureplate.bloodwood.name=Нажимная плита из древесины кровавого дерева</
+tile.pressureplate.darkwood.name=Нажимная плита из древесины тёмного дерева</entry
+tile.pressureplate.fusewood.name=Нажимная плита из древесины плавкого дерева</
+tile.pressureplate.willow.name=Нажимная плита из древесины ивы
+tile.pressureplate.tiger.name=Нажимная плита из древесины тигрового дерева
+tile.pressureplate.maple.name=Нажимная плита из древесины клёна
+tile.pressureplate.amaranth.name=Нажимная плита из древесины щирицы
+tile.pressureplate.silverbell.name=Нажимная плита из древесины галезии
+
+tile.fenceGate.eucalyptus.name=Калитка из древесины эвкалипта
+tile.fenceGate.sakura.name=Калитка из древесины сакуры
+tile.fenceGate.ghostwood.name=Калитка из древесины призрачного дерева
+tile.fenceGate.hopseed.name=Калитка из древесины хмельного дерева
+tile.fenceGate.redwood.name=Калитка из древесины красного дерева
+tile.fenceGate.bloodwood.name=Калитка из древесины кровавого дерева
+tile.fenceGate.darkwood.name=Калитка из древесины тёмного дерева
+tile.fenceGate.fusewood.name=Калитка из древесины плавкого дерева
+tile.fenceGate.willow.name=Калитка из древесины ивы
+tile.fenceGate.tiger.name=Калитка из древесины тигрового дерева
+tile.fenceGate.maple.name=Калитка из древесины клёна
+tile.fenceGate.amaranth.name=Калитка из древесины щирицы
+tile.fenceGate.silverbell.name=Калитка из древесины галезии
+
+tile.stair.eucalyptus.name=Ступеньки из древесины эвкалипта
+tile.stair.sakura.name=Ступеньки из древесины сакуры
+tile.stair.ghostwood.name=Ступеньки из древесины призрачного дерева
+tile.stair.hopseed.name=Ступеньки из древесины хмельного дерева
+tile.stair.redwood.name=Ступеньки из древесины красного дерева
+tile.stair.bloodwood.name=Ступеньки из древесины кровавого дерева
+tile.stair.darkwood.name=Ступеньки из древесины тёмного дерева
+tile.stair.fusewood.name=Ступеньки из древесины плавкого дерева
+tile.stair.willow.name=Ступеньки из древесины ивы
+tile.stair.tiger.name=Ступеньки из древесины тигрового дерева
+tile.stair.maple.name=Ступеньки из древесины клёна
+tile.stair.amaranth.name=Ступеньки из древесины щирицы
+tile.stair.silverbell.name=Ступеньки из древесины галезии
+
+tile.button.eucalyptus.name=Кнопка из древесины эвкалипта
+tile.button.sakura.name=Кнопка из древесины сакуры
+tile.button.ghostwood.name=Кнопка из древесины призрачного дерева
+tile.button.hopseed.name=Кнопка из древесины хмельного дерева
+tile.button.redwood.name=Кнопка из древесины красного дерева
+tile.button.bloodwood.name=Кнопка из древесины кровавого дерева
+tile.button.darkwood.name=Кнопка из древесины тёмного дерева
+tile.button.fusewood.name=Кнопка из древесины плавкого дерева
+tile.button.willow.name=Кнопка из древесины ивы
+tile.button.tiger.name=Кнопка из древесины тигрового дерева
+tile.button.maple.name=Кнопка из древесины клёна
+tile.button.amaranth.name=Кнопка из древесины щирицы
+tile.button.silverbell.name=Кнопка из древесины галезии
+
+tile.trapdoor.eucalyptus.name=Люк из древесины эвкалипта
+tile.trapdoor.sakura.name=Люк из древесины сакуры
+tile.trapdoor.ghostwood.name=Люк из древесины призрачного дерева
+tile.trapdoor.hopseed.name=Люк из древесины хмельного дерева
+tile.trapdoor.redwood.name=Люк из древесины красного дерева
+tile.trapdoor.bloodwood.name=Люк из древесины кровавого дерева
+tile.trapdoor.darkwood.name=Люк из древесины тёмного дерева
+tile.trapdoor.fusewood.name=Люк из древесины плавкого дерева
+tile.trapdoor.willow.name=Люк из древесины ивы
+tile.trapdoor.tiger.name=Люк из древесины тигрового дерева
+tile.trapdoor.maple.name=Люк из древесины клёна
+tile.trapdoor.amaranth.name=Люк из древесины щирицы
+tile.trapdoor.silverbell.name=Люк из древесины галезии
+
+block.glowshroom.green.name=Зелёный светогриб
+block.glowshroom.purple.name=Фиолетовый светогриб
+block.glowshroom.blue.name=Синий светогриб
+
+eucalyptusNLeaves.name=Листва эвкалипта
+block.leaves.sakura.name=Листва сакуры
+block.leaves.ghost.name=Листва призрачного дерева
+bushNLeaves.name=Листва хмельного дерева
+redwoodNLeaves.name=Листва красного дерева
+block.leaves.blood.name=Листва кровавого дерева
+
+eucalyptusLog.name=Древесина эвкалипта
+sakuraLog.name=Древесина сакуры
+ghostLog.name=Древесина призрачного дерева
+hopseedLog.name=Древесина хмельного дерева
+
+redwoodBoat.name=Лодка из древесины красного дерева
+bloodBoat.name=Лодка из древесины кровавого дерева
+whiteBoat.name=Белая лодка
+eucalyptusBoat.name=Лодка из древесины эвкалипта
+
+item.impmeat.raw.name=Сырой имфид
+item.impmeat.cooked.name=Приготовленный имфид
+
+block.soil.grass.name=Подстриженная трава
+block.soil.bluegrass.name=Синяя трава
+block.soil.autumngrass.name=Осенняя трава
+block.soil.grass.slab.name=Плита из подстриженной травы
+block.soil.bluegrass.slab.name=Плита из синей травы
+block.soil.autumngrass.slab.name=Плита из осенней травы
+
+tile.bloodwood.name=Кровавое дерево
+tile.saguaro.block.name=Кактус сагуаро
+tile.bluebells.name=Синие колокольчики
+
+tile.TaintedSoil.name=Испорченная почва
+tile.HeatSand.name=Тёплый песок
+tile.Thornvines.name=Колючие лозы
+tile.potashApple.name=Хлористое яблоко
+item.natura.stick.name=Палка
+
+item.natura.sword.ghostwood.name=Меч из призрачного дерева
+item.natura.pickaxe.ghostwood.name=Кирка из призрачного дерева
+item.natura.shovel.ghostwood.name=Лопата из призрачного дерева
+item.natura.axe.ghostwood.name=Топор из призрачного дерева
+item.natura.kama.ghostwood.name=Мотыга из призрачного дерева
+item.natura.bow.ghostwood.name=Лук из призрачного дерева
+
+item.natura.sword.bloodwood.name=Меч из кровавого дерева
+item.natura.pickaxe.bloodwood.name=Кирка из кровавого дерева
+item.natura.shovel.bloodwood.name=Лопата из кровавого дерева
+item.natura.axe.bloodwood.name=Топор из кровавого дерева
+item.natura.kama.bloodwood.name=Мотыга из кровавого дерева
+item.natura.bow.bloodwood.name=Лук из кровавого дерева
+
+item.natura.sword.darkwood.name=Меч из тёмного дерева
+item.natura.pickaxe.darkwood.name=Кирка из тёмного дерева
+item.natura.shovel.darkwood.name=Лопата из тёмного дерева
+item.natura.axe.darkwood.name=Топор из тёмного дерева
+item.natura.kama.darkwood.name=Мотыга из тёмного дерева
+item.natura.bow.darkwood.name=Лук из тёмного дерева
+
+item.natura.sword.fusewood.name=Меч из плавкого дерева
+item.natura.pickaxe.fusewood.name=Кирка из плавкого дерева
+item.natura.shovel.fusewood.name=Лопата из плавкого дерева
+item.natura.axe.fusewood.name=Топор из плавкого дерева
+item.natura.kama.fusewood.name=Мотыга из плавкого дерева
+item.natura.bow.fusewood.name=Лук из плавкого дерева
+
+item.natura.sword.netherquartz.name=Меч из кварца
+item.natura.pickaxe.netherquartz.name=Кирка из кварца
+item.natura.shovel.netherquartz.name=Лопата из кварца
+item.natura.axe.netherquartz.name=Топор из кварца
+item.natura.kama.netherquartz.name=Мотыга из кварца
+
+item.natura.armor.imphelmet.name=Шлем дьяволёнка
+item.natura.armor.impjerkin.name=Безрукавка дьяволёнка
+item.natura.armor.impleggings.name=Поножи дьяволёнка
+item.natura.armor.impboots.name=Ботинки дьяволёнка
+
+entity.Natura.Imp.name=Дьяволёнок
+entity.Natura.HeatscarSpider.name=Паук с тепловым шрамом
+entity.Natura.BabyHeatscarSpider.name=Паук-ребёнок с тепловым шрамом
+entity.Natura.FlameSpider.name=Паук с тепловым шрамом
+entity.Natura.FlameSpiderBaby.name=Паук-ребёнок с тепловым шрамом
+entity.Natura.NitroCreeper.name=Нитро крипер

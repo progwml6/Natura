@@ -202,8 +202,8 @@ public class NSaplingBlock extends BlockSapling
     {
         int meta = world.getBlockMetadata(x, y, z);
 
-        if (meta % 8 == 0)
-            return false;
+        /*if (meta % 8 == 0)
+            return false;*/
 
         if ((meta & 8) == 0)
         {

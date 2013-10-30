@@ -477,7 +477,7 @@ public class NContent implements IFuelHandler
         pressurePlateAmaranth.setHardness(0.5F).setStepSound(Block.soundWoodFootstep).setUnlocalizedName("pressureplate.amaranth");
         GameRegistry.registerBlock(pressurePlateAmaranth, "pressureplate.amaranth");
 
-        trapdoorAmaranth = new NTrapdoor(PHNatura.trapdoorAmaranth, Material.wood, "amaranth_trapdoor");
+        trapdoorAmaranth = new NTrapdoor(PHNatura.trapdoorAmaranth, Material.wood, "purpleheart_trapdoor");
         trapdoorAmaranth.setHardness(3.0F).setStepSound(Block.soundWoodFootstep).setUnlocalizedName("trapdoor.amaranth");
         GameRegistry.registerBlock(trapdoorAmaranth, "trapdoor.amaranth");
 
@@ -902,6 +902,10 @@ public class NContent implements IFuelHandler
             addShapedRecipeFirst(recipes, new ItemStack(stairs[i], 4, i), "#  ", "## ", "###", '#', new ItemStack(planks, 1, i));
             addShapedRecipeFirst(recipes, new ItemStack(trapdoors[i], 2, i), "###", "###", '#', new ItemStack(planks, 1, i));
         }
+        for (int i = 0; i < 8; i++)
+        	addShapedRecipeFirst(recipes, new ItemStack(plankSlab1, 6, i), "###", '#', new ItemStack(planks, 1, i));
+        for (int i = 0; i < 5; i++)
+        	addShapedRecipeFirst(recipes, new ItemStack(plankSlab2, 6, i), "###", '#', new ItemStack(planks, 1, 8 + i));
     }
 
     public void addShapedRecipeFirst(List recipeList, ItemStack itemstack, Object... objArray)

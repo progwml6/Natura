@@ -11,6 +11,7 @@ import mods.natura.gui.NGuiHandler;
 import mods.natura.worldgen.BaseCloudWorldgen;
 import mods.natura.worldgen.BaseCropWorldgen;
 import mods.natura.worldgen.BaseTreeWorldgen;
+import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.EntityLiving;
@@ -28,6 +29,7 @@ import net.minecraftforge.event.ForgeSubscribe;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.player.BonemealEvent;
 import net.minecraftforge.event.entity.player.EntityInteractEvent;
+import net.minecraftforge.oredict.OreDictionary;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
@@ -39,7 +41,7 @@ import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 
-@Mod(modid = "Natura", name = "Natura", version = "2.1.10")
+@Mod(modid = "Natura", name = "Natura", version = "2.1.12")
 @NetworkMod(serverSideRequired = false, clientSideRequired = true)
 public class Natura
 {
@@ -83,6 +85,8 @@ public class Natura
             DimensionManager.unregisterProviderType(-1);
             DimensionManager.registerProviderType(-1, NetheriteWorldProvider.class, true);
         }
+        
+        OreDictionary.registerOre("cropVine", new ItemStack(NContent.thornVines));
     }
 
     @EventHandler
