@@ -40,8 +40,8 @@ public class PHNatura
          */
 
         //infernalStone = config.getTerrainBlock("terrain", "Infernal Stone", 168, "Requires blockID < 256").getInt(168);
-        taintedSoil = config.getTerrainBlock("terrain", "Tainted Soil", 253, "Requires blockID < 256").getInt(253);
-        heatSand = config.getTerrainBlock("terrain", "Heat Sand", 252, "Requires blockID < 256").getInt(252);
+        taintedSoil = config.getTerrainBlock("terrain", "Tainted Soil", 250, "Requires blockID < 256").getInt(250);
+        heatSand = config.getTerrainBlock("terrain", "Heat Sand", 249, "Requires blockID < 256").getInt(249);
         //sulfurair = config.getTerrainBlock("terrain", "Sulfurous Air", 168, "Requires blockID < 256").getInt(168);
 
         treeID = config.getBlock("Wood Block", 3251).getInt(3251);
