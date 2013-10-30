@@ -45,7 +45,7 @@ public class PHNatura
         heatSand = config.getTerrainBlock("terrain", "Heat Sand", 249, "Requires blockID < 256").getInt(249);
         //sulfurair = config.getTerrainBlock("terrain", "Sulfurous Air", 168, "Requires blockID < 256").getInt(168);
 
-        Natura.retrogen = config.get("Retrogen", "Retroactive Generation", true).getBoolean(true);
+        Natura.retrogen = config.get("Retrogen", "Retroactive Generation", false).getBoolean(false);
 
         treeID = config.getBlock("Wood Block", 3251).getInt(3251);
         redwoodDoor = config.getBlock("Redwood Door", 3252).getInt(3252);
