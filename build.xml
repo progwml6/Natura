@@ -21,25 +21,39 @@
 	<property name="forge.version" value="9.11.0.880"/>
 	
 	<!-- FMP stuff - copied from projectred w/ CB's permission -->
-	<property name="build.dependencies.file" value="${build.dir}/dependencies.properties" />
+<property name="build.dependencies.file" value="${build.dir}/dependencies.properties" />
 	<property name="ccl.version" value="1.0.0.36" />
 	<property name="fmp.version" value="1.0.0.182" />
+	<property name="nei.version" value="1.6.1.5_d1" />
+
 	<property name="ccl.name" value="CodeChickenLib-dev-${mc.version}-${ccl.version}.jar" />
 	<property name="fmp.name" value="ForgeMultipart-dev-${mc.version}-${fmp.version}.jar" />
+	<property name="nei.name" value="NotEnoughItems-dev%20${nei.version}.jar" />
 	<available property="fmp-downloaded" file="${download.dir}/${fmp.name}" />
 	<available property="ccl-downloaded" file="${download.dir}/${ccl.name}" />
+	<available property="nei-downloaded" file="${download.dir}/${nei.name}" />
+
 	<condition property="ccl-installed">
 		<and>
 			<isset property="forge-installed" />
 			<equals arg1="${build.dependencies.ccl}" arg2="${ccl.version}" />
 		</and>
 	</condition>
+
 	<condition property="fmp-installed">
 		<and>
 			<isset property="forge-installed" />
 			<equals arg1="${build.dependencies.fmp}" arg2="${fmp.version}" />
 		</and>
 	</condition>
+
+	<condition property="nei-installed">
+		<and>
+			<isset property="forge-installed" />
+			<equals arg1="${build.dependencies.nei}" arg2="${nei.version}" />
+		</and>
+	</condition>
+
     <property name="version.major" value="0"/>
     <property name="version.minor" value="0"/>
 
@@ -61,10 +75,11 @@
 
 	<!-- Targets -->
 
-		<!-- Targets FMP stuff from ProjectRed w/ CB's Permission -->
+	<!-- Targets FMP stuff from ProjectRed w/ CB's Permission -->
 	<target name="download-ccl" unless="ccl-downloaded">
 		<get src="http://files.minecraftforge.net/CodeChickenLib/${ccl.name}" dest="${download.dir}" usetimestamp="true" />
 	</target>
+
 	<target name="install-ccl" depends="setup,download-ccl" unless="ccl-installed">
 		<echo message="Deleting old CodeChickenLib" />
 		<delete file="${mcp.dir}/lib/${build.dependencies.ccl.name}" />
@@ -78,6 +93,7 @@
 			<entry key="ccl.name" value="${ccl.name}" />
 		</propertyfile>
 	</target>
+
 	<target name="install-fmp" depends="setup,download-fmp" unless="fmp-installed">
 		<echo message="Deleting old ForgeMultipart" />
 		<delete file="${mcp.dir}/lib/${build.dependencies.fmp.name}" />
@@ -91,10 +107,30 @@
 			<entry key="fmp.name" value="${fmp.name}" />
 		</propertyfile>
 	</target>
-	<target name="install-deps" depends="install-ccl,install-fmp" />
+
+	<target name="install-nei" depends="setup,download-nei" unless="nei-installed">
+		<echo message="Deleting old NotEnoughItems" />
+		<delete file="${mcp.dir}/lib/${build.dependencies.nei.name}" />
+
+		<echo message="Installing NotEnoughItems" />
+		<copy file="${download.dir}/${nei.name}" todir="${mcp.dir}/lib" />
+
+		<echo message="Updating build.dependencies" />
+		<propertyfile file="${build.dependencies.file}">
+			<entry key="nei" value="${nei.version}" />
+			<entry key="nei.name" value="${nei.name}" />
+		</propertyfile>
+	</target>
+
+
+	<target name="install-deps" depends="install-ccl,install-fmp,install-nei" />
 	
 	<target name="download-fmp" unless="fmp-downloaded">
 		<get src="http://files.minecraftforge.net/ForgeMultipart/${fmp.name}" dest="${download.dir}" usetimestamp="true" />
+	</target>
+	
+	<target name="download-nei" unless="nei-downloaded">
+		<get src="http://www.chickenbones.craftsaddle.org/Files/New_Versions/${mc.version}/${nei.name}" dest="${download.dir}" usetimestamp="true" />
 	</target>
 
 	<!-- Clear build directory -->
@@ -127,7 +163,7 @@
 	</target>
 
 	<!-- Download necessary files -->
-	<target name="download-files" depends="download-forge"/>
+	<target name="download-files" depends="download-forge,download-ccl,download-fmp,download-nei"/>
 
 	<!-- Download forge (if it doesn't exist) -->
 	<target name="download-forge" unless="forge-exists">
