@@ -1225,7 +1225,7 @@ public class NContent implements IFuelHandler
             /* Registering plants */
             ThaumcraftApi.registerObjectTag(plantItem.itemID, 0, new AspectList().add(Aspect.LIFE, 2).add(Aspect.CROP, 2));
             ThaumcraftApi.registerObjectTag(plantItem.itemID, 3, new AspectList().add(Aspect.CLOTH, 1));
-            ThaumcraftApi.registerObjectTag(plantItem.itemID, 4, new AspectList().add(Aspect.ENERGY, 1).add(Aspect.FIRE, 1));
+            ThaumcraftApi.registerObjectTag(plantItem.itemID, 4, new AspectList().add(Aspect.ENTROPY, 1).add(Aspect.FIRE, 1));
             ThaumcraftApi.registerObjectTag(plantItem.itemID, 5, new AspectList().add(Aspect.AIR, 1).add(Aspect.FLIGHT, 1));
             ThaumcraftApi.registerObjectTag(plantItem.itemID, 6, new AspectList().add(Aspect.BEAST, 1).add(Aspect.FLESH, 1).add(Aspect.CLOTH, 1).add(Aspect.ARMOR, 1).add(Aspect.FIRE, 1));
             ThaumcraftApi.registerObjectTag(plantItem.itemID, 7, new AspectList().add(Aspect.BEAST, 1).add(Aspect.CLOTH, 1).add(Aspect.TRAP, 1).add(Aspect.FIRE, 1));
@@ -1336,7 +1336,7 @@ public class NContent implements IFuelHandler
             ThaumcraftApi.registerObjectTag(floraSapling.blockID, 4, new AspectList().add(Aspect.SOUL, 1).add(Aspect.PLANT, 2).add(Aspect.TREE, 2));
             ThaumcraftApi.registerObjectTag(floraSapling.blockID, 5, new AspectList().add(Aspect.TREE, 2).add(Aspect.PLANT, 2));
             ThaumcraftApi.registerObjectTag(floraSapling.blockID, 6, new AspectList().add(Aspect.TREE, 2).add(Aspect.PLANT, 2));
-            ThaumcraftApi.registerObjectTag(floraSapling.blockID, 7, new AspectList().add(Aspect.TREE, 2).add(Aspect.PLANT, 2).add(Aspect.ENERGY, 2));
+            ThaumcraftApi.registerObjectTag(floraSapling.blockID, 7, new AspectList().add(Aspect.TREE, 2).add(Aspect.PLANT, 2).add(Aspect.ENTROPY, 2));
 
             /* Nether blocks */
             ThaumcraftApi.registerObjectTag(heatSand.blockID, 0, new AspectList().add(Aspect.FIRE, 2).add(Aspect.STONE, 1));
@@ -1347,19 +1347,19 @@ public class NContent implements IFuelHandler
             ThaumcraftApi.registerObjectTag(planks.blockID, 2, new AspectList().add(Aspect.TREE, 1));
             ThaumcraftApi.registerObjectTag(planks.blockID, 4, new AspectList().add(Aspect.TREE, 1).add(Aspect.METAL, 1));
             ThaumcraftApi.registerObjectTag(darkTree.blockID, 0, new AspectList().add(Aspect.TREE, 4));
-            ThaumcraftApi.registerObjectTag(darkTree.blockID, 1, new AspectList().add(Aspect.TREE, 4).add(Aspect.ENERGY, 2));
+            ThaumcraftApi.registerObjectTag(darkTree.blockID, 1, new AspectList().add(Aspect.TREE, 4).add(Aspect.ENTROPY, 2));
             ThaumcraftApi.registerObjectTag(bloodwood.blockID, 0, new AspectList().add(Aspect.TREE, 2).add(Aspect.ENERGY, 2).add(Aspect.METAL, 1));
             ThaumcraftApi.registerObjectTag(bloodwood.blockID, 15, new AspectList().add(Aspect.TREE, 2).add(Aspect.ENERGY, 2).add(Aspect.METAL, 1));
             ThaumcraftApi.registerObjectTag(darkLeaves.blockID, 0, leafTags);
             ThaumcraftApi.registerObjectTag(darkLeaves.blockID, 1, leafTags);
             ThaumcraftApi.registerObjectTag(darkLeaves.blockID, 2, new AspectList().add(Aspect.PLANT, 2).add(Aspect.CROP, 2));
-            ThaumcraftApi.registerObjectTag(darkLeaves.blockID, 3, new AspectList().add(Aspect.PLANT, 2).add(Aspect.ENERGY, 1));
+            ThaumcraftApi.registerObjectTag(darkLeaves.blockID, 3, new AspectList().add(Aspect.PLANT, 2).add(Aspect.ENTROPY, 1));
 
             /*Nether vines and bushes */
             ThaumcraftApi.registerObjectTag(netherBerryBush.blockID, 0, new AspectList().add(Aspect.ENTROPY, 4).add(Aspect.POISON, 4).add(Aspect.PLANT, 1));
             ThaumcraftApi.registerObjectTag(netherBerryBush.blockID, 1, new AspectList().add(Aspect.ENTROPY, 4).add(Aspect.DARKNESS, 4).add(Aspect.PLANT, 1));
             ThaumcraftApi.registerObjectTag(netherBerryBush.blockID, 2, new AspectList().add(Aspect.ENTROPY, 4).add(Aspect.FLIGHT, 4).add(Aspect.PLANT, 1));
-            ThaumcraftApi.registerObjectTag(netherBerryBush.blockID, 3, new AspectList().add(Aspect.ENTROPY, 4).add(Aspect.ENERGY, 4).add(Aspect.PLANT, 1));
+            ThaumcraftApi.registerObjectTag(netherBerryBush.blockID, 3, new AspectList().add(Aspect.ENTROPY, 8).add(Aspect.PLANT, 1));
             ThaumcraftApi.registerObjectTag(thornVines.blockID, 0, new AspectList().add(Aspect.FIRE, 1).add(Aspect.PLANT, 1));
 
             /* Nether and End clouds */
@@ -1372,7 +1372,7 @@ public class NContent implements IFuelHandler
             ThaumcraftApi.registerObjectTag(netherBerryItem.itemID, 0, new AspectList().add(Aspect.ENTROPY, 4).add(Aspect.POISON, 4).add(Aspect.LIFE, 1).add(Aspect.CROP, 1));
             ThaumcraftApi.registerObjectTag(netherBerryItem.itemID, 1, new AspectList().add(Aspect.ENTROPY, 4).add(Aspect.DARKNESS, 4).add(Aspect.LIFE, 1).add(Aspect.CROP, 1));
             ThaumcraftApi.registerObjectTag(netherBerryItem.itemID, 2, new AspectList().add(Aspect.ENTROPY, 4).add(Aspect.FLIGHT, 4).add(Aspect.LIFE, 1).add(Aspect.CROP, 1));
-            ThaumcraftApi.registerObjectTag(netherBerryItem.itemID, 3, new AspectList().add(Aspect.ENTROPY, 4).add(Aspect.ENERGY, 4).add(Aspect.LIFE, 1).add(Aspect.CROP, 1));
+            ThaumcraftApi.registerObjectTag(netherBerryItem.itemID, 3, new AspectList().add(Aspect.ENTROPY, 8).add(Aspect.LIFE, 1).add(Aspect.CROP, 1));
         }
         catch (Exception e)
         {
