@@ -1330,7 +1330,7 @@ public class NContent implements IFuelHandler
             ThaumcraftApi.registerObjectTag(seedFood.itemID, 0, new AspectList().add(Aspect.CROP, 2).add(Aspect.PLANT, 1).add(Aspect.WATER, 1));
 
             /* Overworld Clouds */
-            ThaumcraftApi.registerObjectTag(cloud.blockID, 0, new AspectList().add(Aspect.AIR, 1).add(Aspect.FLIGHT, 1).add(Aspect.WATER, 1));
+            ThaumcraftApi.registerObjectTag(cloud.blockID, 0, new AspectList().add(Aspect.AIR, 1).add(Aspect.FLIGHT, 1).add(Aspect.WATER, 1).add(Aspect.WEATHER, 1));
 
             /* Nether saplings */
             ThaumcraftApi.registerObjectTag(floraSapling.blockID, 4, new AspectList().add(Aspect.SOUL, 1).add(Aspect.PLANT, 2).add(Aspect.TREE, 2));
