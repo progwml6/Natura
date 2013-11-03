@@ -1,133 +1,37 @@
 package mods.natura.common;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import cpw.mods.fml.common.*;
+import cpw.mods.fml.common.event.FMLInterModComms;
+import cpw.mods.fml.common.registry.*;
+
+import java.util.*;
 
 import mods.natura.Natura;
-import mods.natura.blocks.CloudBlock;
-import mods.natura.blocks.GrassBlock;
-import mods.natura.blocks.GrassSlab;
-import mods.natura.blocks.HeatSand;
-import mods.natura.blocks.NButton;
-import mods.natura.blocks.NFenceGate;
-import mods.natura.blocks.NPressurePlate;
-import mods.natura.blocks.NSlabBase;
-import mods.natura.blocks.NStairs;
-import mods.natura.blocks.NTrapdoor;
-import mods.natura.blocks.TaintedSoil;
-import mods.natura.blocks.crops.BerryBush;
-import mods.natura.blocks.crops.CropBlock;
-import mods.natura.blocks.crops.FlowerBlock;
-import mods.natura.blocks.crops.Glowshroom;
-import mods.natura.blocks.crops.LargeGlowshroom;
-import mods.natura.blocks.crops.NetherBerryBush;
-import mods.natura.blocks.crops.ThornVines;
-import mods.natura.blocks.overrides.AlternateBookshelf;
-import mods.natura.blocks.overrides.AlternateFence;
-import mods.natura.blocks.overrides.AlternateWorkbench;
-import mods.natura.blocks.trees.DarkTreeBlock;
-import mods.natura.blocks.trees.LogTwoxTwo;
-import mods.natura.blocks.trees.NDoor;
-import mods.natura.blocks.trees.NLeaves;
-import mods.natura.blocks.trees.NLeavesDark;
-import mods.natura.blocks.trees.NLeavesNocolor;
-import mods.natura.blocks.trees.NSaplingBlock;
-import mods.natura.blocks.trees.OverworldLeaves;
-import mods.natura.blocks.trees.OverworldSapling;
-import mods.natura.blocks.trees.OverworldTreeBlock;
-import mods.natura.blocks.trees.Planks;
-import mods.natura.blocks.trees.SaguaroBlock;
-import mods.natura.blocks.trees.SimpleLog;
-import mods.natura.blocks.trees.TreeBlock;
-import mods.natura.blocks.trees.WillowBlock;
-import mods.natura.entity.BabyHeatscarSpider;
-import mods.natura.entity.FusewoodArrow;
-import mods.natura.entity.HeatscarSpider;
-import mods.natura.entity.ImpEntity;
-import mods.natura.entity.NitroCreeper;
-import mods.natura.items.BerryItem;
-import mods.natura.items.BerryMedley;
-import mods.natura.items.BoneBag;
-import mods.natura.items.BowlEmpty;
-import mods.natura.items.BowlStew;
-import mods.natura.items.CactusJuice;
-import mods.natura.items.ImpMeat;
-import mods.natura.items.NaturaSeeds;
-import mods.natura.items.NetherBerryItem;
-import mods.natura.items.NetherFoodItem;
-import mods.natura.items.PlantItem;
-import mods.natura.items.SeedBag;
-import mods.natura.items.SeedFood;
-import mods.natura.items.SpawnEgg;
-import mods.natura.items.StickItem;
-import mods.natura.items.blocks.BerryBushItem;
-import mods.natura.items.blocks.CloudItem;
-import mods.natura.items.blocks.DarkTreeItem;
-import mods.natura.items.blocks.FenceItem;
-import mods.natura.items.blocks.GlowshroomItem;
-import mods.natura.items.blocks.GrassBlockItem;
-import mods.natura.items.blocks.GrassSlabItem;
-import mods.natura.items.blocks.LogTwoxTwoItem;
-import mods.natura.items.blocks.NAlternateItem;
-import mods.natura.items.blocks.NDoorItem;
-import mods.natura.items.blocks.NLeavesDarkItem;
-import mods.natura.items.blocks.NLeavesItem;
-import mods.natura.items.blocks.NSaplingItem;
-import mods.natura.items.blocks.NetherBerryBushItem;
-import mods.natura.items.blocks.NoColorLeavesItem;
-import mods.natura.items.blocks.OverworldLeavesItem;
-import mods.natura.items.blocks.OverworldSaplingItem;
-import mods.natura.items.blocks.OverworldTreeItem;
-import mods.natura.items.blocks.PlankSlab1Item;
-import mods.natura.items.blocks.PlankSlab2Item;
-import mods.natura.items.blocks.PlanksItem;
-import mods.natura.items.blocks.RedwoodItem;
-import mods.natura.items.blocks.SaguaroItem;
-import mods.natura.items.blocks.TreeItem;
-import mods.natura.items.blocks.WillowItem;
-import mods.natura.items.tools.NaturaArmor;
-import mods.natura.items.tools.NaturaBow;
-import mods.natura.items.tools.NaturaHatchet;
-import mods.natura.items.tools.NaturaKama;
-import mods.natura.items.tools.NaturaPickaxe;
-import mods.natura.items.tools.NaturaShovel;
-import mods.natura.items.tools.NaturaSword;
+import mods.natura.blocks.*;
+import mods.natura.blocks.crops.*;
+import mods.natura.blocks.overrides.*;
+import mods.natura.blocks.trees.*;
+import mods.natura.entity.*;
+import mods.natura.items.*;
+import mods.natura.items.blocks.*;
+import mods.natura.items.tools.*;
 import mods.natura.util.DispenserBehaviorSpawnEgg;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockDispenser;
-import net.minecraft.block.EnumMobType;
+import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.EnumCreatureType;
-import net.minecraft.item.EnumArmorMaterial;
-import net.minecraft.item.EnumToolMaterial;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.CraftingManager;
-import net.minecraft.item.crafting.FurnaceRecipes;
-import net.minecraft.item.crafting.ShapedRecipes;
-import net.minecraft.item.crafting.ShapelessRecipes;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
+import net.minecraft.item.*;
+import net.minecraft.item.crafting.*;
+import net.minecraft.nbt.*;
 import net.minecraft.world.biome.BiomeGenBase;
-import net.minecraftforge.common.BiomeDictionary;
-import net.minecraftforge.common.EnumHelper;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.oredict.OreDictionary;
-import net.minecraftforge.oredict.ShapedOreRecipe;
-import net.minecraftforge.oredict.ShapelessOreRecipe;
+import net.minecraftforge.common.*;
+import net.minecraftforge.oredict.*;
 import tconstruct.library.crafting.PatternBuilder;
-import cpw.mods.fml.common.IFuelHandler;
-import cpw.mods.fml.common.Loader;
-import cpw.mods.fml.common.event.FMLInterModComms;
-import cpw.mods.fml.common.registry.EntityRegistry;
-import cpw.mods.fml.common.registry.GameRegistry;
 
 public class NContent implements IFuelHandler
 {
 
-    public void preInit()
+    public void preInit ()
     {
         spawnEgg = new SpawnEgg(PHNatura.spawnEgg).setUnlocalizedName("natura.spawnegg");
         //Crops
@@ -662,7 +566,7 @@ public class NContent implements IFuelHandler
         addRecipes();
     }
 
-    public void addRecipes()
+    public void addRecipes ()
     {
         //Crops
         GameRegistry.addRecipe(new ItemStack(wheatBag, 1, 0), "sss", "sss", "sss", 's', Item.seeds);
@@ -903,12 +807,12 @@ public class NContent implements IFuelHandler
             addShapedRecipeFirst(recipes, new ItemStack(trapdoors[i], 2, i), "###", "###", '#', new ItemStack(planks, 1, i));
         }
         for (int i = 0; i < 8; i++)
-        	addShapedRecipeFirst(recipes, new ItemStack(plankSlab1, 6, i), "###", '#', new ItemStack(planks, 1, i));
+            addShapedRecipeFirst(recipes, new ItemStack(plankSlab1, 6, i), "###", '#', new ItemStack(planks, 1, i));
         for (int i = 0; i < 5; i++)
-        	addShapedRecipeFirst(recipes, new ItemStack(plankSlab2, 6, i), "###", '#', new ItemStack(planks, 1, 8 + i));
+            addShapedRecipeFirst(recipes, new ItemStack(plankSlab2, 6, i), "###", '#', new ItemStack(planks, 1, 8 + i));
     }
 
-    public void addShapedRecipeFirst(List recipeList, ItemStack itemstack, Object... objArray)
+    public void addShapedRecipeFirst (List recipeList, ItemStack itemstack, Object... objArray)
     {
         String var3 = "";
         int var4 = 0;
@@ -917,7 +821,7 @@ public class NContent implements IFuelHandler
 
         if (objArray[var4] instanceof String[])
         {
-            String[] var7 = (String[]) ((String[]) objArray[var4++]);
+            String[] var7 = ((String[]) objArray[var4++]);
 
             for (int var8 = 0; var8 < var7.length; ++var8)
             {
@@ -981,7 +885,7 @@ public class NContent implements IFuelHandler
         recipeList.add(0, var17);
     }
 
-    public void addShapelessRecipeFirst(List recipeList, ItemStack par1ItemStack, Object... par2ArrayOfObj)
+    public void addShapelessRecipeFirst (List recipeList, ItemStack par1ItemStack, Object... par2ArrayOfObj)
     {
         ArrayList arraylist = new ArrayList();
         Object[] aobject = par2ArrayOfObj;
@@ -1013,12 +917,12 @@ public class NContent implements IFuelHandler
         recipeList.add(0, new ShapelessRecipes(par1ItemStack, arraylist));
     }
 
-    public void addLoot()
+    public void addLoot ()
     {
         //ChestGenHooks.getInfo(ChestGenHooks.BONUS_CHEST).addItem(new WeightedRandomChestContent(new ItemStack(VanityBlocksStorage.StorageBlock,0,0),3,5,6));
     }
 
-    public void intermodCommunication()
+    public void intermodCommunication ()
     {
         //Thaumcraft
         FMLInterModComms.sendMessage("Thaumcraft", "harvestClickableCrop", new ItemStack(berryBush, 1, 12));
@@ -1129,7 +1033,7 @@ public class NContent implements IFuelHandler
         }
     }
 
-    public void postIntermodCommunication()
+    public void postIntermodCommunication ()
     {
         //Buildcraft
         for (int i = 0; i < 13; i++)
@@ -1162,7 +1066,7 @@ public class NContent implements IFuelHandler
         FMLInterModComms.sendMessage("BuildCraft|Transport", "add-facade", heatSand.blockID + "@" + 0);
     }
 
-    public void addOredictSupport()
+    public void addOredictSupport ()
     {
         OreDictionary.registerOre("cropRaspberry", new ItemStack(berryItem, 1, 0));
         OreDictionary.registerOre("cropBlueberry", new ItemStack(berryItem, 1, 1));
@@ -1175,9 +1079,18 @@ public class NContent implements IFuelHandler
         OreDictionary.registerOre("cropStingberry", new ItemStack(netherBerryItem, 1, 3));
 
         OreDictionary.registerOre("taintedSoil", new ItemStack(taintedSoil, 1));
+
+        OreDictionary.registerOre("slabWood", new ItemStack(plankSlab1, 1, Short.MAX_VALUE));
+        OreDictionary.registerOre("slabWood", new ItemStack(plankSlab2, 1, Short.MAX_VALUE));
+        OreDictionary.registerOre("saplingTree", new ItemStack(floraSapling, 1, Short.MAX_VALUE));
+        OreDictionary.registerOre("saplingTree", new ItemStack(rareSapling, 1, Short.MAX_VALUE));
+        OreDictionary.registerOre("leavesTree", new ItemStack(floraLeaves, 1, Short.MAX_VALUE));
+        OreDictionary.registerOre("leavesTree", new ItemStack(floraLeavesNoColor, 1, Short.MAX_VALUE));
+        OreDictionary.registerOre("leavesTree", new ItemStack(rareLeaves, 1, Short.MAX_VALUE));
+        OreDictionary.registerOre("leavesTree", new ItemStack(darkLeaves, 1, Short.MAX_VALUE));
     }
 
-    public void createEntities()
+    public void createEntities ()
     {
         EntityRegistry.registerModEntity(ImpEntity.class, "Imp", 0, Natura.instance, 32, 5, true);
         EntityRegistry.registerModEntity(HeatscarSpider.class, "FlameSpider", 1, Natura.instance, 32, 5, true);
@@ -1195,7 +1108,7 @@ public class NContent implements IFuelHandler
         BlockDispenser.dispenseBehaviorRegistry.putObject(spawnEgg, new DispenserBehaviorSpawnEgg());
     }
 
-    public void modIntegration()
+    public void modIntegration ()
     {
         try
         {
@@ -1595,7 +1508,7 @@ public class NContent implements IFuelHandler
     public static Block fenceGateFusewood;
 
     @Override
-    public int getBurnTime(ItemStack fuel)
+    public int getBurnTime (ItemStack fuel)
     {
         if (fuel.itemID == floraSapling.blockID || fuel.itemID == rareSapling.blockID)
             return 100;
