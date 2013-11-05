@@ -8,8 +8,9 @@
     "url": "www.minecraftforum.net/topic/1753754-natura/",
     "updateUrl": "",
     "authors": [
-      "mDiyo"
+      "mDiyo", "Slime Knights"
     ],
+    "credits": "Samtrion",
     "logoFile": "",
     "screenshots": [
     ],
@@ -26,9 +27,47 @@
   "url": "www.minecraftforum.net/topic/1753754-natura/",
     "updateUrl": "",
     "authors": [
-      "mDiyo"
+      "mDiyo", "Slime Knights"
     ],
     "credits": "",
+    "logoFile": "",
+    "screenshots": [],
+    "parent":"Natura",
+    "dependencies": [
+      "Natura"
+    ]
+  },
+  {
+    "modid": "Natura|CompatMineFactoryReloaded",
+    "name": "Natura Compat: MFR",
+    "description": "Natura support for MFR",
+    "version": "@VERSION@",
+    "mcversion": "@MCVERSION@",
+  "url": "www.minecraftforum.net/topic/1753754-natura/",
+    "updateUrl": "",
+    "authors": [
+      "mDiyo", "Slime Knights"
+    ],
+    "credits": "",
+    "logoFile": "",
+    "screenshots": [],
+    "parent":"Natura",
+    "dependencies": [
+      "Natura"
+    ]
+  },
+  {
+    "modid": "Natura|CompatNotEnoughItems",
+    "name": "Natura Compat: NEI",
+    "description": "Natura support for NEI",
+    "version": "@VERSION@",
+    "mcversion": "@MCVERSION@",
+  "url": "www.minecraftforum.net/topic/1753754-natura/",
+    "updateUrl": "",
+    "authors": [
+      "mDiyo", "Slime Knights"
+    ],
+    "credits": "Samtrion",
     "logoFile": "",
     "screenshots": [],
     "parent":"Natura",
