@@ -21,6 +21,7 @@ import net.minecraft.entity.passive.EntityCow;
 import net.minecraft.entity.passive.EntitySheep;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.world.ChunkCoordIntPair;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraftforge.common.DimensionManager;
@@ -201,6 +202,12 @@ public class Natura
         {
             Chunk chunk = event.getChunk();
             World world = chunk.worldObj;
+            int chunkoffset = 1;
+            //force adjacent chunks to load
+            ChunkCoordIntPair coords = chunk.getChunkCoordIntPair();
+            Chunk chunk01 = world.getChunkFromChunkCoords(coords.chunkXPos, coords.chunkZPos + chunkoffset);
+            Chunk chunk10 = world.getChunkFromChunkCoords(coords.chunkXPos + chunkoffset, coords.chunkZPos);
+            Chunk chunk11 = world.getChunkFromChunkCoords(coords.chunkXPos + chunkoffset, coords.chunkZPos + chunkoffset);
             crops.generate(random, chunk.xPosition, chunk.zPosition, world, world.provider.createChunkGenerator(), world.provider.createChunkGenerator());
             clouds.generate(random, chunk.xPosition, chunk.zPosition, world, world.provider.createChunkGenerator(), world.provider.createChunkGenerator());
             trees.retrogen = true;
