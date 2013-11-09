@@ -230,6 +230,7 @@
 		<delete dir="${mcpsrc.dir}/minecraft/mods/battlegear2"/>
         <delete dir="${mcpsrc.dir}/minecraft/powercrystals"/>
         <delete dir="${mcpsrc.dir}/minecraft/ic2"/>
+        <delete dir="${mcpsrc.dir}/minecraft/thaumcraft"/>
 
 	</target>
 
