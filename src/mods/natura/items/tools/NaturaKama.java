@@ -60,9 +60,9 @@ public class NaturaKama extends ItemSword
         return par2Block.blockID != Block.web.blockID && par2Block.blockID != Block.leaves.blockID ? (par2Block.blockID == Block.cloth.blockID ? 5.0F : super.getStrVsBlock(par1ItemStack, par2Block))
                 : 15.0F;
     }
-    
+
     @Override
-    public boolean itemInteractionForEntity(ItemStack itemstack, EntityPlayer player, EntityLivingBase entity)
+    public boolean itemInteractionForEntity (ItemStack itemstack, EntityPlayer player, EntityLivingBase entity)
     {
         if (entity.worldObj.isRemote)
         {
@@ -70,14 +70,14 @@ public class NaturaKama extends ItemSword
         }
         if (entity instanceof IShearable)
         {
-            IShearable target = (IShearable)entity;
-            if (target.isShearable(itemstack, entity.worldObj, (int)entity.posX, (int)entity.posY, (int)entity.posZ))
+            IShearable target = (IShearable) entity;
+            if (target.isShearable(itemstack, entity.worldObj, (int) entity.posX, (int) entity.posY, (int) entity.posZ))
             {
-                ArrayList<ItemStack> drops = target.onSheared(itemstack, entity.worldObj, (int)entity.posX, (int)entity.posY, (int)entity.posZ,
+                ArrayList<ItemStack> drops = target.onSheared(itemstack, entity.worldObj, (int) entity.posX, (int) entity.posY, (int) entity.posZ,
                         EnchantmentHelper.getEnchantmentLevel(Enchantment.fortune.effectId, itemstack));
 
                 Random rand = new Random();
-                for(ItemStack stack : drops)
+                for (ItemStack stack : drops)
                 {
                     EntityItem ent = entity.entityDropItem(stack, 1.0F);
                     ent.motionY += rand.nextFloat() * 0.05F;

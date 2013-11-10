@@ -20,7 +20,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class GrassBlock extends Block
 {
     public GrassBlock(int id)
-    { 
+    {
         super(id, Material.grass);
         setHardness(0.6F);
         this.setCreativeTab(NaturaTab.tab);
@@ -91,14 +91,14 @@ public class GrassBlock extends Block
                 int grassColor = 0;
                 if (meta == 1)
                 {
-                    double temp = (double)MathHelper.clamp_float(biome.getFloatTemperature(), 0.0F, 1.0F);
-                    double rainfall = (double)MathHelper.clamp_float(biome.getFloatRainfall(), 0.0F, 1.0F);
+                    double temp = (double) MathHelper.clamp_float(biome.getFloatTemperature(), 0.0F, 1.0F);
+                    double rainfall = (double) MathHelper.clamp_float(biome.getFloatRainfall(), 0.0F, 1.0F);
                     grassColor = GrassColorizerAlternate.getBlueGrassColor(temp, rainfall);
                 }
                 else if (meta == 2)
                 {
-                    double temp = (double)MathHelper.clamp_float(biome.getFloatTemperature(), 0.0F, 1.0F);
-                    double rainfall = (double)MathHelper.clamp_float(biome.getFloatRainfall(), 0.0F, 1.0F);
+                    double temp = (double) MathHelper.clamp_float(biome.getFloatTemperature(), 0.0F, 1.0F);
+                    double rainfall = (double) MathHelper.clamp_float(biome.getFloatRainfall(), 0.0F, 1.0F);
                     grassColor = GrassColorizerAlternate.getOrangeGrassColor(temp, rainfall);
                 }
                 else

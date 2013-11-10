@@ -65,9 +65,8 @@ public class AlternateFence extends BlockFence
     {
         return FenceRender.model;
     }
-    
 
-    public boolean canConnectFenceTo(IBlockAccess par1IBlockAccess, int par2, int par3, int par4)
+    public boolean canConnectFenceTo (IBlockAccess par1IBlockAccess, int par2, int par3, int par4)
     {
         int l = par1IBlockAccess.getBlockId(par2, par3, par4);
 
@@ -77,7 +76,7 @@ public class AlternateFence extends BlockFence
             if (block == null)
                 return false;
             if (block.blockMaterial.isOpaque() && block.renderAsNormalBlock())
-                return  block.blockMaterial != Material.pumpkin;
+                return block.blockMaterial != Material.pumpkin;
             return (block instanceof BlockFenceGate);
         }
         else

@@ -10,7 +10,6 @@ import net.minecraft.world.World;
 import powercrystals.minefactoryreloaded.api.HarvestType;
 import powercrystals.minefactoryreloaded.api.IFactoryHarvestable;
 
-
 public class HarvestableNaturaBerry implements IFactoryHarvestable
 {
     private int _sourceBlockId;

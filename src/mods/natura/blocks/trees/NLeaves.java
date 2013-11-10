@@ -215,8 +215,8 @@ public class NLeaves extends BlockLeaves
     {
         return this.damageDropped(par1World.getBlockMetadata(par2, par3, par4)) % 3;
     }
-    
-    public int getLightOpacity(World world, int x, int y, int z)
+
+    public int getLightOpacity (World world, int x, int y, int z)
     {
         int meta = world.getBlockMetadata(x, y, z) % 4;
         if (meta == 0)

@@ -15,6 +15,7 @@ public class NLadder extends BlockLadder
 {
     public String[] textureNames;
     public Icon[] icons;
+
     public NLadder(int id, String[] textures)
     {
         super(id);
@@ -40,7 +41,7 @@ public class NLadder extends BlockLadder
     @SideOnly(Side.CLIENT)
     public Icon getIcon (int side, int meta)
     {
-        return icons[meta/4];
+        return icons[meta / 4];
     }
 
     @Override
@@ -48,7 +49,7 @@ public class NLadder extends BlockLadder
     {
         for (int iter = 0; iter < icons.length; iter++)
         {
-            list.add(new ItemStack(id, 1, iter*4));
+            list.add(new ItemStack(id, 1, iter * 4));
         }
     }
 }

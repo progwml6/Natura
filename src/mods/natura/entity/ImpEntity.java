@@ -48,7 +48,7 @@ public class ImpEntity extends EntityAnimal
     }
 
     @Override
-    protected void applyEntityAttributes()
+    protected void applyEntityAttributes ()
     {
         super.applyEntityAttributes();
         this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setAttribute(40.0D); //Health

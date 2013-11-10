@@ -36,9 +36,9 @@ public class HeatscarSpider extends EntitySpider
     {
         return 2.0F;
     }
-    
+
     @Override
-    protected void applyEntityAttributes()
+    protected void applyEntityAttributes ()
     {
         super.applyEntityAttributes();
         this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setAttribute(50.0D); //Health

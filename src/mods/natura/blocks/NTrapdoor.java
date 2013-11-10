@@ -25,7 +25,7 @@ public class NTrapdoor extends BlockTrapDoor
     @SideOnly(Side.CLIENT)
     public void registerIcons (IconRegister iconRegister)
     {
-        this.blockIcon = iconRegister.registerIcon("natura:"+textureName);
+        this.blockIcon = iconRegister.registerIcon("natura:" + textureName);
     }
 
     @Override

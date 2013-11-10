@@ -14,6 +14,7 @@ public class NPressurePlate extends BlockPressurePlate
 {
     Block modelBlock;
     int modelMeta;
+
     public NPressurePlate(int id, Material material, EnumMobType mobType, Block block, int meta)
     {
         super(id, "", material, mobType);

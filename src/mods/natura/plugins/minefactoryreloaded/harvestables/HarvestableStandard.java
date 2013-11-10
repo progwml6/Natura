@@ -10,7 +10,6 @@ import net.minecraft.world.World;
 import powercrystals.minefactoryreloaded.api.HarvestType;
 import powercrystals.minefactoryreloaded.api.IFactoryHarvestable;
 
-
 public class HarvestableStandard implements IFactoryHarvestable
 {
     private int sourceId;
