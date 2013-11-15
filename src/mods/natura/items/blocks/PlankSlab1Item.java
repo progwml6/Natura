@@ -42,10 +42,10 @@ public class PlankSlab1Item extends ItemBlock
             {
                 return "";
             }
-            damage = 0;
+            damage -= blockType.length;
         }
 
-        return (new StringBuilder()).append("block.wood.").append(blockType[itemstack.getItemDamage()]).append(".slab").toString();
+        return (new StringBuilder()).append("block.wood.").append(blockType[damage]).append(".slab").toString();
     }
 
     @Override
