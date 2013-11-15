@@ -1,4 +1,4 @@
-Natura - 1.5.1 	 
+Natura
 http://www.minecraftforum.net/topic/1753754-natura/
 
 We work all day and we work all night 	 
