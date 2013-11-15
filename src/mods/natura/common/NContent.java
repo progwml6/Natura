@@ -1112,7 +1112,7 @@ public class NContent implements IFuelHandler
     {
         try
         {
-            Class.forName("mods.tinker.tconstruct.TConstruct");
+            Class.forName("tconstruct.TConstruct");
             PatternBuilder pb = PatternBuilder.instance;
             pb.registerMaterial(new ItemStack(saguaro), 2, "Cactus");
         }
