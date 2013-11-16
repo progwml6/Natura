@@ -105,6 +105,6 @@ public class NSlabBase extends Block
     @Override
     public int damageDropped (int meta)
     {
-        return meta % 8 + startingMeta;
+        return meta % 8;
     }
 }
