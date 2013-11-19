@@ -26,7 +26,7 @@ public class StickItem extends Item
     @Override
     public Icon getIconFromDamage (int meta)
     {
-        if (meta > textureNames.length)
+        if (meta >= textureNames.length)
             return Item.helmetLeather.getIconFromDamage(meta);
         return icons[meta];
     }
