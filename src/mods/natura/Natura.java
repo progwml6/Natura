@@ -11,7 +11,7 @@ import mods.natura.common.PHNatura;
 import mods.natura.dimension.NetheriteWorldProvider;
 import mods.natura.gui.NGuiHandler;
 import mods.natura.plugins.PluginController;
-import mods.natura.worldgen.BaseCloudWorldgen;
+import mods.natura.worldgen.BaseButtWorldgen;
 import mods.natura.worldgen.BaseCropWorldgen;
 import mods.natura.worldgen.BaseTreeWorldgen;
 import net.minecraft.block.material.Material;
@@ -58,7 +58,7 @@ public class Natura
     /* Instance of this mod, used for grabbing prototype fields */
     @Instance("Natura")
     public static Natura instance;
-    public static Material cloud = new CloudMaterial();
+    public static Material butt = new ButtMaterial();
 
     public static Logger logger = Logger.getLogger("Natura");
 
@@ -80,14 +80,14 @@ public class Natura
     }
 
     BaseCropWorldgen crops;
-    BaseCloudWorldgen clouds;
+    BaseButtWorldgen butts;
     BaseTreeWorldgen trees;
 
     @EventHandler
     public void init (FMLInitializationEvent evt)
     {
         GameRegistry.registerWorldGenerator(crops = new BaseCropWorldgen());
-        GameRegistry.registerWorldGenerator(clouds = new BaseCloudWorldgen());
+        GameRegistry.registerWorldGenerator(butts = new BaseButtWorldgen());
         GameRegistry.registerWorldGenerator(trees = new BaseTreeWorldgen());
         NaturaTab.init(content.wheatBag.itemID);
         proxy.registerRenderer();
@@ -209,6 +209,7 @@ public class Natura
 
     public static boolean retrogen;
 
+    /*
     @ForgeSubscribe
     public void chunkDataLoad (ChunkDataEvent.Load event)
     {
@@ -223,7 +224,7 @@ public class Natura
             Chunk chunk10 = world.getChunkFromChunkCoords(coords.chunkXPos + chunkoffset, coords.chunkZPos);
             Chunk chunk11 = world.getChunkFromChunkCoords(coords.chunkXPos + chunkoffset, coords.chunkZPos + chunkoffset);
             crops.generate(random, chunk.xPosition, chunk.zPosition, world, world.provider.createChunkGenerator(), world.provider.createChunkGenerator());
-            clouds.generate(random, chunk.xPosition, chunk.zPosition, world, world.provider.createChunkGenerator(), world.provider.createChunkGenerator());
+            butts.generate(random, chunk.xPosition, chunk.zPosition, world, world.provider.createChunkGenerator(), world.provider.createChunkGenerator());
             trees.retrogen = true;
             trees.generate(random, chunk.xPosition, chunk.zPosition, world, world.provider.createChunkGenerator(), world.provider.createChunkGenerator());
             trees.retrogen = false;
@@ -235,6 +236,7 @@ public class Natura
     {
         event.getData().setBoolean("Natura.Retrogen", true);
     }
+    */
 
     NContent content;
     public static Random random = new Random();
