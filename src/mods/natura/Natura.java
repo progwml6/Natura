@@ -1,13 +1,16 @@
 package mods.natura;
 
 import java.util.Random;
+import java.util.logging.Logger;
 
+import cpw.mods.fml.common.FMLCommonHandler;
 import mods.natura.common.NContent;
 import mods.natura.common.NProxyCommon;
 import mods.natura.common.NaturaTab;
 import mods.natura.common.PHNatura;
 import mods.natura.dimension.NetheriteWorldProvider;
 import mods.natura.gui.NGuiHandler;
+import mods.natura.plugins.PluginController;
 import mods.natura.worldgen.BaseCloudWorldgen;
 import mods.natura.worldgen.BaseCropWorldgen;
 import mods.natura.worldgen.BaseTreeWorldgen;
@@ -57,16 +60,23 @@ public class Natura
     public static Natura instance;
     public static Material cloud = new CloudMaterial();
 
+    public static Logger logger = Logger.getLogger("Natura");
+
     @EventHandler
     public void preInit (FMLPreInitializationEvent evt)
     {
         MinecraftForge.EVENT_BUS.register(this);
+        logger.setParent(FMLCommonHandler.instance().getFMLLogger());
+
+        PluginController.getController().registerBuiltins();
 
         PHNatura.initProps(evt.getModConfigurationDirectory());
         content = new NContent();
         content.preInit();
         content.addOredictSupport();
         content.postIntermodCommunication();
+
+        PluginController.getController().preInit();
     }
 
     BaseCropWorldgen crops;
@@ -95,6 +105,8 @@ public class Natura
 
         OreDictionary.registerOre("cropVine", new ItemStack(NContent.thornVines));
         random.setSeed(2 ^ 16 + 2 ^ 8 + (4 * 3 * 271));
+
+        PluginController.getController().init();
     }
 
     @EventHandler
@@ -102,6 +114,8 @@ public class Natura
     {
         content.createEntities();
         content.modIntegration();
+
+        PluginController.getController().postInit();
     }
 
     @ForgeSubscribe

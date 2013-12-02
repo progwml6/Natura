@@ -1,31 +1,28 @@
 package mods.natura.plugins.fmp;
 
+import mods.natura.Natura;
 import mods.natura.common.NContent;
+import mods.natura.plugins.ICompatPlugin;
 import mods.natura.plugins.fmp.register.RegisterWithFMP;
-import cpw.mods.fml.common.FMLLog;
-import cpw.mods.fml.common.Loader;
-import cpw.mods.fml.common.Mod;
-import cpw.mods.fml.common.Mod.EventHandler;
-import cpw.mods.fml.common.event.FMLInitializationEvent;
-import cpw.mods.fml.common.event.FMLInterModComms;
-import cpw.mods.fml.common.network.NetworkMod;
 
-@Mod(modid = "Natura|ForgeMuliPart", name = "Natura Compat: FMP", version = "0.1", dependencies = "after:ForgeMultipart;after:Natura")
-@NetworkMod(clientSideRequired = false, serverSideRequired = false)
-public class ForgeMultiPart
+public class ForgeMultiPart implements ICompatPlugin
 {
-    @EventHandler
-    public static void load (FMLInitializationEvent ev)
-    {
-        if (!Loader.isModLoaded("ForgeMultipart"))
-        {
-            FMLLog.warning("Forgemultipart missing - Natura Compat: FMP not loading.");
+    @Override
+    public String getModId() {
+        return "ForgeMultipart";
+    }
 
-            return;
-        }
+    @Override
+    public void preInit() {
+
+    }
+
+    @Override
+    public void init()
+    {
         try
         {
-            FMLLog.fine("ForgeMultipart detected. Registering Natura decorative blocks with FMP.");
+            Natura.logger.fine("[FMP] Registering Natura decorative blocks with FMP.");
             RegisterWithFMP.registerBlock(NContent.bloodwood);
             RegisterWithFMP.registerBlock(NContent.willow);
             RegisterWithFMP.registerBlock(NContent.planks, 0, 12);
@@ -36,12 +33,16 @@ public class ForgeMultiPart
             RegisterWithFMP.registerBlock(NContent.redwood, 0, 2);
             RegisterWithFMP.registerBlock(NContent.floraLeaves, 0, 2);
             RegisterWithFMP.registerBlock(NContent.floraLeavesNoColor, 0, 2);
-
         }
         catch (Exception e)
         {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void postInit() {
+
     }
 
 }

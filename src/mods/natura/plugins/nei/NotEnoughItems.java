@@ -4,33 +4,40 @@ import cpw.mods.fml.common.*;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
+import mods.natura.Natura;
+import mods.natura.plugins.ICompatPlugin;
 
-@Mod(modid = "Natura|NotEnoughItems", name = "Natura Compat: NEI", version = "0.1", dependencies = "after:NotEnoughItems;after:Natura")
-@NetworkMod(clientSideRequired = false, serverSideRequired = false)
-public class NotEnoughItems
+public class NotEnoughItems implements ICompatPlugin
 {
-    @EventHandler
-    public static void load (FMLInitializationEvent ev)
-    {
-        if (ev.getSide().isServer())
+    @Override
+    public String getModId() {
+        return "NotEnoughItems";
+    }
+
+    @Override
+    public void preInit() {
+
+    }
+
+    @Override
+    public void init() {
+        if (FMLCommonHandler.instance().getSide().isServer())
             return;
 
-        if (!Loader.isModLoaded("NotEnoughItems"))
-        {
-            FMLLog.warning("NotEnoughItems missing - Natura Compat: NEI not loading.");
-
-            return;
-        }
         try
         {
-            FMLLog.fine("NotEnoughItems detected. Registering Natura NEI plugin.");
+            Natura.logger.fine("[NEI] Registering Natura NEI plugin.");
             NEICompat.registerNEICompat();
-
         }
         catch (Exception e)
         {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void postInit() {
+
     }
 
 }
