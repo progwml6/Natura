@@ -3,7 +3,6 @@ package mods.natura.worldgen.retro;
 
 import java.io.Serializable;
 
-import mantle.world.CoordTuple;
 import net.minecraft.world.chunk.Chunk;
 
 /**
@@ -23,9 +22,9 @@ public final class ChunkCoord implements Comparable<ChunkCoord>, Serializable {
                 this.chunkZ = chunk.zPosition;
         }
 
-        public ChunkCoord(CoordTuple c) {
+        public ChunkCoord(BlockCoord c) {
 
-                this(c.x() >> 4, c.z() >> 4);
+                this(c.x >> 4, c.z >> 4);
         }
 
         public ChunkCoord(int x, int z) {
