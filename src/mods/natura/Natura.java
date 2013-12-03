@@ -209,6 +209,7 @@ public class Natura
 
     public static boolean retrogen;
 
+    /*
     @ForgeSubscribe
     public void chunkDataLoad (ChunkDataEvent.Load event)
     {
@@ -235,6 +236,7 @@ public class Natura
     {
         event.getData().setBoolean("Natura.Retrogen", true);
     }
+    */
 
     NContent content;
     public static Random random = new Random();
