@@ -236,14 +236,14 @@ public class Natura
             trees.generate(random, chunk.xPosition, chunk.zPosition, world, world.provider.createChunkGenerator(), world.provider.createChunkGenerator());
             trees.retrogen = false;
         }
-    }
+    }*/
     
     @ForgeSubscribe
     public void chunkDataSave (ChunkDataEvent.Save event)
     {
         event.getData().setBoolean("Natura.Retrogen", true);
     }
-    */
+    
 
     NContent content;
     public static Random random = new Random();

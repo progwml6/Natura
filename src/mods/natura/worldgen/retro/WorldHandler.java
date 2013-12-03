@@ -50,7 +50,7 @@ public class WorldHandler implements IWorldGenerator {
                 if (Natura.retrogen) {
                         tag.setLong("Features", genHash);
                 }
-                event.getData().setTag("CoFHWorld", tag);
+                event.getData().setTag("NaturaWorld", tag);
         }
  
         @ForgeSubscribe
