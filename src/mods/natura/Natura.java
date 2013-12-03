@@ -14,6 +14,8 @@ import mods.natura.plugins.PluginController;
 import mods.natura.worldgen.BaseCloudWorldgen;
 import mods.natura.worldgen.BaseCropWorldgen;
 import mods.natura.worldgen.BaseTreeWorldgen;
+import mods.natura.worldgen.retro.TickHandlerWorld;
+import mods.natura.worldgen.retro.WorldHandler;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.EntityLiving;
@@ -46,6 +48,8 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
+import cpw.mods.fml.common.registry.TickRegistry;
+import cpw.mods.fml.relauncher.Side;
 
 @Mod(modid = "Natura", name = "Natura", version = "2.1.13")
 @NetworkMod(serverSideRequired = false, clientSideRequired = true)
@@ -102,7 +106,10 @@ public class Natura
             DimensionManager.unregisterProviderType(-1);
             DimensionManager.registerProviderType(-1, NetheriteWorldProvider.class, true);
         }
-
+        if(retrogen){
+        TickRegistry.registerTickHandler(new TickHandlerWorld(), Side.SERVER);
+        GameRegistry.registerWorldGenerator(new WorldHandler());
+        }
         OreDictionary.registerOre("cropVine", new ItemStack(NContent.thornVines));
         random.setSeed(2 ^ 16 + 2 ^ 8 + (4 * 3 * 271));
 
@@ -209,7 +216,7 @@ public class Natura
 
     public static boolean retrogen;
 
-    /*
+    /*// RG removed until 1.7 needs a better implementation
     @ForgeSubscribe
     public void chunkDataLoad (ChunkDataEvent.Load event)
     {
@@ -230,7 +237,7 @@ public class Natura
             trees.retrogen = false;
         }
     }
-
+    
     @ForgeSubscribe
     public void chunkDataSave (ChunkDataEvent.Save event)
     {
