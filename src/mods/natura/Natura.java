@@ -79,9 +79,9 @@ public class Natura
         PluginController.getController().preInit();
     }
 
-    BaseCropWorldgen crops;
-    BaseCloudWorldgen clouds;
-    BaseTreeWorldgen trees;
+    public static BaseCropWorldgen crops;
+    public static BaseCloudWorldgen clouds;
+    public static BaseTreeWorldgen trees;
 
     @EventHandler
     public void init (FMLInitializationEvent evt)
