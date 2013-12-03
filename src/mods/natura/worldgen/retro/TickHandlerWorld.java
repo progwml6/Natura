@@ -50,7 +50,7 @@ package mods.natura.worldgen.retro;
             @Override
             public String getLabel() {
      
-                    return "Natura.Retrogen";
+                    return "NaturaWorld";
             }
      
     }
