@@ -115,7 +115,7 @@ public class WorldHandler implements IWorldGenerator {
                 if (!newGen && Natura.retrogen) {
                         return;
                 }
-                if (world.provider.dimensionId == 1 || world.provider.dimensionId == -1) {
+                if (world.provider.dimensionId == 1 ){//|| world.provider.dimensionId == -1) {
                         return;
                 }        
                 Natura.crops.generate(random, chunkX, chunkZ, world, world.provider.createChunkGenerator(), world.provider.createChunkGenerator());
