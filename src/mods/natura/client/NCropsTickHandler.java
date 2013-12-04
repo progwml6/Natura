@@ -2,10 +2,10 @@ package mods.natura.client;
 
 import java.util.EnumSet;
 
+import cpw.mods.fml.client.FMLClientHandler;
 import mods.natura.common.NContent;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
-import net.minecraft.src.ModLoader;
 import cpw.mods.fml.common.ITickHandler;
 import cpw.mods.fml.common.TickType;
 
@@ -18,7 +18,7 @@ public class NCropsTickHandler implements ITickHandler
     /* Grabs the minecraft instance */
     public NCropsTickHandler()
     {
-        mc = ModLoader.getMinecraftInstance();
+        mc = FMLClientHandler.instance().getClient();
     }
 
     @Override

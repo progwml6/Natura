@@ -107,4 +107,9 @@ public class NLeavesNocolor extends NLeaves
         par3List.add(new ItemStack(par1, 1, 2));
         par3List.add(new ItemStack(par1, 1, 3));
     }
+
+    public int getLightOpacity (World world, int x, int y, int z)
+    {
+        return lightOpacity[blockID];
+    }
 }

@@ -1,0 +1,127 @@
+/*
+ * Natura
+ * Master build file
+ * Based on TConstruct's master build file
+ * Authors: Sunstrike, ProgWML6
+ * Help from AbrarSyed
+ */
+
+buildscript {
+    repositories {
+        mavenCentral()
+        maven {
+            name = 'ForgeFS'
+            url = 'http://files.minecraftforge.net/maven'
+        }
+	}
+    dependencies {
+        classpath 'net.minecraftforge.gradle:ForgeGradle:1.0-SNAPSHOT'
+    }
+}
+
+repositories {
+	ivy {
+		name 'Forge FS legacy'
+		artifactPattern "http://files.minecraftforge.net/[module]/[module]-dev-[revision].[ext]"
+	}
+	ivy {
+		name 'CB FS'
+		artifactPattern "http://www.chickenbones.craftsaddle.org/Files/New_Versions/1.6.4/[module]-dev%20[revision].[ext]"
+	}
+	maven {
+	      name 'SlimeKnights Maven FS'
+          url 'http://aeon.sunstrike.io'
+	}
+	maven {
+          name 'ForgeFS'
+          url 'http://files.minecraftforge.net/maven'
+     }
+     maven {
+          name 'MinecraftS3'
+          url 'http://s3.amazonaws.com/Minecraft.Download/libraries'
+     }
+}
+
+
+apply plugin: 'forge'
+
+// define the properties file
+ext.configFile = file "build.properties"
+
+configFile.withReader {
+    // read config.  it shall from now on be referenced as simply config or as project.config
+    def prop = new Properties()
+    prop.load(it)
+    project.ext.config = new ConfigSlurper().parse prop
+}
+
+dependencies {
+     compile "mantle:Mantle:${config.mantle_version}:dev"
+     compile "tconstruct:TConstruct:${config.tconstruct_version}:dev"
+     compile name: 'ForgeMultipart', version: "${config.minecraft_version}-${config.FMP_version}", ext: 'jar'
+     compile name: 'CodeChickenLib', version: "${config.minecraft_version}-${config.CCLIB_version}", ext: 'jar'
+     compile name: 'NotEnoughItems', version: "${config.NEI_version}", type: 'jar'
+
+}
+
+minecraft {
+    version = config.minecraft_version + "-" + config.forge_version
+    assetDir = 'run/assets'
+}
+
+// sets version to the slimeKnights version format
+task buildInfo {
+    def cmd = "git rev-parse --short HEAD"
+    def proc = cmd.execute()
+    proc.waitFor()
+    if (proc.exitValue() == 0) {
+        ext.revision = proc.text.trim()
+    } else {
+        ext.revision = "GITBORK"
+    }
+
+    if (System.getenv().BUILD_NUMBER != null) {
+        ext.buildNum = System.getenv().BUILD_NUMBER
+    } else {
+        ext.buildNum = "DEV"
+    }
+}
+version = "${minecraft.version}-${project.buildInfo.buildNum}.${project.buildInfo.revision}"
+
+sourceSets {
+	main {
+		java {
+            srcDir 'src'
+        }
+		resources {
+			srcDir 'resources'
+		}
+	}
+}
+processResources
+{
+        // replace stuff in text files, not binary ones.
+    from(sourceSets.main.resources.srcDirs) {
+        include '**/*.info'
+		
+                // replace version and MCVersion
+      expand 'version':project.version, 'mcversion':project.minecraft.version
+    }
+        
+        // copy everything else, thats not text
+    from(sourceSets.main.resources.srcDirs) {
+        exclude '**/*.info'
+    }
+}
+
+
+
+// because the normal output has been made to be obfuscated
+task devjar(type: Jar) {
+        from sourceSets.main.output
+        classifier = 'dev'
+}
+artifacts {
+        archives devjar
+}
+

@@ -54,6 +54,8 @@ public class BaseTreeWorldgen implements IWorldGenerator
     RareTreeGen tiger;
     WillowGen willow;
 
+    public static boolean retrogen;
+
     @Override
     public void generate (Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider)
     {
@@ -84,7 +86,7 @@ public class BaseTreeWorldgen implements IWorldGenerator
         }
         if (biomeName == "Plains" || biomeName == "Meadow")
         {
-            if (PHNatura.generateRedwood && random.nextInt((int) PHNatura.redwoodSpawnRarity) == 0)
+            if (!retrogen && PHNatura.generateRedwood && random.nextInt((int) PHNatura.redwoodSpawnRarity) == 0)
             {
                 xSpawn = xPos + random.nextInt(16);
                 zSpawn = zPos + random.nextInt(16);

@@ -13,11 +13,11 @@ public class NitroCreeperRender extends RenderCreeper
     }
 
     @Override
-    protected ResourceLocation getEntityTexture(Entity par1Entity)
+    protected ResourceLocation getEntityTexture (Entity par1Entity)
     {
         return texture;
     }
-    
+
     static final ResourceLocation texture = new ResourceLocation("natura", "textures/mob/creeperunstable.png");
 
 }

@@ -3,6 +3,7 @@ package mods.natura.common;
 import java.io.File;
 import java.io.IOException;
 
+import mods.natura.Natura;
 import net.minecraftforge.common.Configuration;
 
 public class PHNatura
@@ -40,9 +41,11 @@ public class PHNatura
          */
 
         //infernalStone = config.getTerrainBlock("terrain", "Infernal Stone", 168, "Requires blockID < 256").getInt(168);
-        taintedSoil = config.getTerrainBlock("terrain", "Tainted Soil", 253, "Requires blockID < 256").getInt(253);
-        heatSand = config.getTerrainBlock("terrain", "Heat Sand", 252, "Requires blockID < 256").getInt(252);
+        taintedSoil = config.getTerrainBlock("terrain", "Tainted Soil", 250, "Requires blockID < 256").getInt(250);
+        heatSand = config.getTerrainBlock("terrain", "Heat Sand", 249, "Requires blockID < 256").getInt(249);
         //sulfurair = config.getTerrainBlock("terrain", "Sulfurous Air", 168, "Requires blockID < 256").getInt(168);
+
+        Natura.retrogen = config.get("Retrogen", "Retroactive Generation", false).getBoolean(false);
 
         treeID = config.getBlock("Wood Block", 3251).getInt(3251);
         redwoodDoor = config.getBlock("Redwood Door", 3252).getInt(3252);
@@ -85,14 +88,14 @@ public class PHNatura
         alternateWorkbench = config.getBlock("Crafting Table", 3283).getInt(3283);
         alternateBookshelf = config.getBlock("Bookshelf", 3284).getInt(3284);
         alternateFence = config.getBlock("Fence", 3285).getInt(3285);
-        
+
         grassBlock = config.getBlock("Topiary Grass Block", 3286).getInt(3286);
         grassSlab = config.getBlock("Topiary Grass Slab", 3287).getInt(3287);
-        
+
         plankSlab1 = config.getBlock("Plank Slab One", 3288).getInt(3288);
         plankSlab2 = config.getBlock("Plank Slab Two", 3289).getInt(3289);
         logSlab = config.getBlock("Log Slab", 3290).getInt(3290);
-        
+
         stairEucalyptus = config.getBlock("Eucalyputus Stairs", 3291).getInt(3291);
         stairSakura = config.getBlock("Sakura Stairs", 3292).getInt(3292);
         stairGhostwood = config.getBlock("Ghostwood Stairs", 3293).getInt(3293);
@@ -134,7 +137,7 @@ public class PHNatura
         trapdoorWillow = config.getBlock("Willow Trapdoor", 3327).getInt(3327);
         trapdoorDarkwood = config.getBlock("Darkwood Trapdoor", 3328).getInt(3328);
         trapdoorFusewood = config.getBlock("Fusewood Trapdoor", 3329).getInt(3329);
-        
+
         buttonEucalyptus = config.getBlock("Eucalyputus Button", 3330).getInt(3330);
         buttonSakura = config.getBlock("Sakura Button", 3331).getInt(3331);
         buttonGhostwood = config.getBlock("Ghostwood Button", 3332).getInt(3332);
@@ -148,7 +151,7 @@ public class PHNatura
         buttonWillow = config.getBlock("Willow Button", 3340).getInt(3340);
         buttonDarkwood = config.getBlock("Darkwood Button", 3341).getInt(3341);
         buttonFusewood = config.getBlock("Fusewood Button", 3342).getInt(3342);
-        
+
         fenceGateEucalyptus = config.getBlock("Eucalyputus Fence Gate", 3343).getInt(3343);
         fenceGateSakura = config.getBlock("Sakura Fence Gate", 3344).getInt(3344);
         fenceGateGhostwood = config.getBlock("Ghostwood Fence Gate", 3345).getInt(3345);
@@ -540,12 +543,11 @@ public class PHNatura
     public static int grassBlock;
     public static int grassSlab;
     public static int miniDoor;
-    
+
     public static int plankSlab1;
     public static int plankSlab2;
-    
+
     public static int logSlab;
-    
 
     public static int stairEucalyptus;
     public static int stairSakura;

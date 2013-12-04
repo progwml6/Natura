@@ -1,5 +1,4 @@
-Natura - 1.5.1 	 
-http://www.minecraftforum.net/topic/1753754-natura/
+#[Natura](http://www.minecraftforum.net/topic/1753754-natura/)
 
 We work all day and we work all night 	 
 The mandrake gives us quite a fright 	 
@@ -9,6 +8,24 @@ While we search for herbs to grow
 Heyo, Redwood trees! Chop them all day long~ 	 
 Heyo, Redwood trees! Chop them all day long~ 	
 
-Most code is public domain under Creative Commons 0: http://creativecommons.org/publicdomain/zero/1.0/ 	 
-Textures and binaries are licensed under Creative Commons 3: http://creativecommons.org/licenses/by/3.0/ 	 
-Any alternate licenses are noted where appropriate 
+##Development
+Install Forge as usual, and setup your IDE as with any other Forge project. Forge Multipart, and CClib must be installed to `forge/mcp/jars/mods/` from the  Forge File Server: [ForgeMultipart](http://files.minecraftforge.net/ForgeMultipart/). [CClib](http://files.minecraftforge.net/CodeChickenLib/).  The DEVELOPMENT version of NEI must be installed to the same directory from [Chicken Bones Site](http://www.chickenbones.craftsaddle.org/Files/New_Versions/links.php). Tinkers' Construct must be installed as well from [Kalen](tanis.sunstrike.io/TConstruct/development/)
+
+##Issue reporting
+Please include the following:
+
+* Minecraft version
+* Natura version
+* Forge version/build
+* Versions of any mods potentially related to the issue 
+* Any relevant screenshots are greatly appreciated.
+* For crashes:
+	* Steps to reproduce
+	* ForgeModLoader-client-0.log (the FML log) from the root folder of the client
+
+
+Most code is public domain under [Creative Commons 0](http://creativecommons.org/publicdomain/zero/1.0/) 	 
+Textures and binaries are licensed under [Creative Commons 3](http://creativecommons.org/licenses/by/3.0/) 
+Any alternate licenses are noted where appropriate
+We do not take bug reports for outdated builds of Minecraft, or unofficial builds.
+If you have queries about any license or the other restrictions, please drop by our IRC channel, #TinkersConstruct on irc.esper.net

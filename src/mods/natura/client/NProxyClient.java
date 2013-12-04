@@ -51,7 +51,7 @@ public class NProxyClient extends NProxyCommon
             GrassColorizerAlternate.setBlueGrassBiomeColorizer(TextureUtil.readImageData(mc.getResourceManager(), bluegrass));
             GrassColorizerAlternate.setOrangeGrassBiomeColorizer(TextureUtil.readImageData(mc.getResourceManager(), orangegrass));
         }
-        catch (IOException e)
+        catch (Exception e)
         {
             e.printStackTrace();
         }

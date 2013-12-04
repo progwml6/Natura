@@ -29,7 +29,7 @@ public class NSlabBase extends Block
         super(id, material);
         this.setCreativeTab(NaturaTab.tab);
     }
-    
+
     public NSlabBase(int id, Material material, Block model, int meta, int totalSize)
     {
         super(id, material);
@@ -58,17 +58,17 @@ public class NSlabBase extends Block
         float maxY = meta == 1 ? 1.0F : 0.5F;
         setBlockBounds(0.0F, minY, 0F, 1.0F, maxY, 1.0F);
     }
-    
+
     public int onBlockPlaced (World par1World, int blockX, int blockY, int blockZ, int side, float clickX, float clickY, float clickZ, int metadata)
     {
         if (side == 1)
             return metadata;
         if (side == 0 || clickY >= 0.5F)
             return metadata | 8;
-        
+
         return metadata;
     }
-    
+
     public boolean isOpaqueCube ()
     {
         return false;
@@ -78,7 +78,7 @@ public class NSlabBase extends Block
     {
         return false;
     }
-    
+
     @Override
     @SideOnly(Side.CLIENT)
     public void registerIcons (IconRegister iconRegister)
@@ -100,5 +100,11 @@ public class NSlabBase extends Block
         {
             list.add(new ItemStack(id, 1, iter));
         }
+    }
+
+    @Override
+    public int damageDropped (int meta)
+    {
+        return meta % 8;
     }
 }

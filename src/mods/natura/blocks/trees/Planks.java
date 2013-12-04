@@ -34,6 +34,8 @@ public class Planks extends Block
     @SideOnly(Side.CLIENT)
     public Icon getIcon (int side, int meta)
     {
+        if (meta >= textureNames.length )
+            return Block.lavaStill.getIcon(0, 0);
         return icons[meta];
     }
 

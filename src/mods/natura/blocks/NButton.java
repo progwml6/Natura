@@ -12,6 +12,7 @@ public class NButton extends BlockButton
 {
     Block modelBlock;
     int modelMeta;
+
     public NButton(int id, Block block, int meta)
     {
         super(id, true);

@@ -673,9 +673,9 @@ public class NetheriteChunkProvider implements IChunkProvider
     }
 
     @Override
-    public void saveExtraData()
+    public void saveExtraData ()
     {
         // TODO Auto-generated method stub
-        
+
     }
 }

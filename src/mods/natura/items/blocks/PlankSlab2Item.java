@@ -35,7 +35,17 @@ public class PlankSlab2Item extends ItemBlock
     @Override
     public String getUnlocalizedName (ItemStack itemstack)
     {
-        return (new StringBuilder()).append("block.wood.").append(blockType[itemstack.getItemDamage()]).append(".slab").toString();
+        int damage = itemstack.getItemDamage();
+        if (damage >= blockType.length)
+        {
+            if (blockType.length == 0)
+            {
+                return "";
+            }
+            damage %= blockType.length;
+        }
+
+        return (new StringBuilder()).append("block.wood.").append(blockType[damage]).append(".slab").toString();
     }
 
     @Override
@@ -73,7 +83,7 @@ public class PlankSlab2Item extends ItemBlock
 
         if ((side == 1 && !flag || side == 0 && flag) && id == this.blockID && trueMeta == stack.getItemDamage())
         {
-            if (world.setBlock(x, y, z, NContent.planks.blockID, trueMeta+8, 3))
+            if (world.setBlock(x, y, z, NContent.planks.blockID, trueMeta + 8, 3))
             {
                 world.playSoundEffect((double) ((float) x + 0.5F), (double) ((float) y + 0.5F), (double) ((float) z + 0.5F), this.block.stepSound.getPlaceSound(),
                         (this.block.stepSound.getVolume() + 1.0F) / 2.0F, this.block.stepSound.getPitch() * 0.8F);

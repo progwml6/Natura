@@ -1,0 +1,285 @@
+item.natura.spawnegg.name=Spawn 
+
+item.wheatBag.name=Sacchetto di Semi di Grano
+item.barleyBag.name=Sacchetto di Semi d'Orzo
+item.potatoBag.name=Sacchetto di Patate
+item.carrotBag.name=Sacchetto di Carote
+item.wartBag.name=Sacchetto di Verruche del Nether
+item.cottonBag.name=Sacchetto di Semi di Cotone
+item.boneBag.name=Sacchetto di Farina d'Osso
+
+item.barley.seed.name=Semi d'Orzo
+item.barley.plant.name=Orzo
+item.barley.flour.name=Farina d'Orzo
+item.wheat.flour.name=Farina di Grano
+item.cotton.plant.name=Cotone
+item.fletching.ghostwood.name=Impennaggio di Foglie Fantasma
+item.leather.imp.name=Pelle di Imp
+item.string.flame.name=Cordicella Ardente
+item.dye.blue.name=Tintura Blu
+
+item.cotton.seed.name=Semi di Cotone
+item.powder.sulfur.name=Zolfo
+item.waterdrop.name=Succo di Cactus
+item.saguaro.fruit.name=Frutto di Saguaro
+
+item.berry.rasp.name=Lamponi
+item.berry.blue.name=Mirtilli
+item.berry.black.name=More
+item.berry.geo.name=Malobacche
+item.berry.medley.name=Miscuglio di Bacche
+item.berry.blight.name=Bacche Degradate
+item.berry.dusk.name=Bacche del Tramonto
+item.berry.sky.name=Bacche del Cielo
+item.berry.sting.name=Bacche Appuntite
+
+block.raspberryBush.name=Cespuglio di Lamponi
+block.blueberryBush.name=Cespuglio di Mirtilli
+block.blackberryBush.name=Cespuglio di More
+block.geoberryBush.name=Cespuglio di Malobacche
+
+block.bush.berry.blight.name=Cespuglio di Bacche Degradate
+block.bush.berry.dusk.name=Cespuglio di Bacche del Tramonto
+block.bush.berry.sky.name=Cespuglio di Bacche del Cielo
+block.bush.berry.sting.name=Cespuglio di Bacche Appuntite
+
+block.log.maple.name=Legno d'Acero
+block.log.silverbell.name=Legno di Halesia
+block.log.purpleheart.name=Legno di Amaranto
+block.log.tiger.name=Legno Tigrato
+block.log.willow.name=Legno di Salice
+
+block.log.darkwood.name=Legno Oscuro
+block.log.fusewood.name=Legno Esplosivo
+
+item.bowl.mushroom.name=Zuppa di Funghi
+item.bowl.glowshroom.name=Zuppa di Brillantfunghi
+
+block.leaves.darkwood.name=Foglie Oscure
+block.leaves.darkwood.flowering.name=Foglie Oscure
+block.leaves.darkwood.fruit.name=Foglie Oscure
+block.leaves.fusewood.name=Foglie Esplosive
+
+item.food.nether.potashapple.name=Mela Potassa
+
+block.leaves.maple.name=Foglie d'Acero
+block.leaves.silverbell.name=Foglie di Halesia
+block.leaves.purpleheart.name=Foglie di Amaranto
+block.leaves.tiger.name=Foglie  Tigrate
+block.leaves.willow.name=Foglie di Salice
+
+normalcloud.name=Nuvola
+darkcloud.name=Nuvola Scura
+ashcloud.name=Nuvola di Cenere
+sulfurcloud.name=Nuvola di Zolfo
+
+redwoodNDoor.name=Porta di Redwood
+eucalyptusNDoor.name=Porta di Eucalipto
+hopseedNDoor.name=Porta di Hopseed
+sakuraNDoor.name=Porta di Ciliegio
+ghostNDoor.name=Porta di Legno Fantasma
+bloodNDoor.name=Porta di Legno Insanguinato
+redwoodBarkNDoor.name=Porta di Corteccia di Redwood
+
+barkRedwood.name=Corteccia di Redwood
+heartRedwood.name=Redwood
+rootRedwood.name=Radice di Redwood
+
+eucalyptusNPlanks.name=Assi di Legno in Eucalipto
+sakuraNPlanks.name=Assi di Legno in Ciliegio
+ghostNPlanks.name=Assi di Legno Fantasma
+bushNPlanks.name=Assi di Legno Hopseed
+bloodNPlanks.name=Assi di Legno Insanguinato
+redwoodNPlanks.name=Assi di Legno in Redwood
+mapleNPlanks.name=Assi di Legno in Acero
+silverbellNPlanks.name=Assi di Legno in Halesia
+tigerNPlanks.name=Assi di Legno Tigrato
+purpleheartNPlanks.name=Assi di Legno in Amaranto
+willowNPlanks.name=Assi di Legno in Salice
+darkwoodNPlanks.name=Assi di Legno Oscuro
+fusewoodNPlanks.name=Assi di Legno in Esplosivo
+
+block.sapling.eucalyptus.name=Arboscello di Eucalipto
+block.sapling.sakura.name=Arboscello di Ciliegio
+block.sapling.ghost.name=Arboscello Fantasma
+block.sapling.bush.name=Arboscello di Hopseed
+block.sapling.redwood.name=Arboscello di Redwood
+block.sapling.blood.name=Arboscello Insanguinato
+block.sapling.darkwood.name=Arboscello Oscuro
+block.sapling.fusewood.name=Arboscello Esplosivo
+block.sapling.willow.name=Arboscello di Salice
+block.sapling.tiger.name=Arboscello Tigrato
+block.sapling.maple.name=Arboscello d'Acero
+block.sapling.purpleheart.name=Arboscello di Amaranto
+block.sapling.silverbell.name=Arboscello di Halesia
+
+block.wood.eucalyptus.slab.name=Lastra di Eucalipto
+block.wood.sakura.slab.name=Lastra di Ciliegio
+block.wood.ghost.slab.name=Lastra di Legno Fantasma
+block.wood.bush.slab.name=Lastra di Hopseed
+block.wood.redwood.slab.name=Lastra di Redwood
+block.wood.blood.slab.name=Lastra di Legno Insanguinato
+block.wood.darkwood.slab.name=Lastra diHopseed Wood Legno Oscuro
+block.wood.fusewood.slab.name=Lastra di Legno Esplosivo
+block.wood.willow.slab.name=Lastra di Salice
+block.wood.tiger.slab.name=Lastra di Legno Tigrato
+block.wood.maple.slab.name=Lastra d'Acero
+block.wood.purpleheart.slab.name=Lastra di Amaranto
+block.wood.silverbell.slab.name=Lastra di Halesia
+
+tile.pressureplate.eucalyptus.name=Pedana a Pressione di Eucalipto
+tile.pressureplate.sakura.name=Pedana a Pressione di Ciliegio
+tile.pressureplate.ghostwood.name=Pedana a Pressione di Legno Fantasma
+tile.pressureplate.hopseed.name=Pedana a Pressione di Hopseed
+tile.pressureplate.redwood.name=Pedana a Pressione di Redwood
+tile.pressureplate.bloodwood.name=Pedana a Pressione di Legno Insanguinato
+tile.pressureplate.darkwood.name=Pedana a Pressione di Legno Oscuro
+tile.pressureplate.fusewood.name=Pedana a Pressione di Legno Esplosivo
+tile.pressureplate.willow.name=Pedana a Pressione di Salice
+tile.pressureplate.tiger.name=Pedana a Pressione di Legno Tigrato
+tile.pressureplate.maple.name=Pedana a Pressione d'Acero
+tile.pressureplate.amaranth.name=Pedana a Pressione di Amaranto
+tile.pressureplate.silverbell.name=Pedana a Pressione di Halesia
+
+tile.fenceGate.eucalyptus.name=Cancelletto di Eucalipto
+tile.fenceGate.sakura.name=Cancelletto di Ciliegio
+tile.fenceGate.ghostwood.name=Cancelletto di Legno Fantasma
+tile.fenceGate.hopseed.name=Cancelletto di Hopseed
+tile.fenceGate.redwood.name=Cancelletto di Redwood
+tile.fenceGate.bloodwood.name=Cancelletto di Legno Insanguinato
+tile.fenceGate.darkwood.name=Cancelletto di Legno Oscuro
+tile.fenceGate.fusewood.name=Cancelletto di Legno Esplosivo
+tile.fenceGate.willow.name=Cancelletto di Salice
+tile.fenceGate.tiger.name=Cancelletto di Legno Tigrato
+tile.fenceGate.maple.name=Cancelletto d'Acero
+tile.fenceGate.amaranth.name=Cancelletto di Amaranto
+tile.fenceGate.silverbell.name=Cancelletto di Halesia
+
+tile.stair.eucalyptus.name=Scalini di Eucalipto
+tile.stair.sakura.name=Scalini di Ciliegio
+tile.stair.ghostwood.name=Scalini di Legno Fantasma
+tile.stair.hopseed.name=Scalini di Hopseed
+tile.stair.redwood.name=Scalini di Redwood
+tile.stair.bloodwood.name=Scalini di Legno Insanguinato
+tile.stair.darkwood.name=Scalini di Legno Oscuro
+tile.stair.fusewood.name=Scalini di Legno Esplosivo
+tile.stair.willow.name=Scalini di Salice
+tile.stair.tiger.name=Scalini di Legno Tigrato
+tile.stair.maple.name=Scalini d'Acero
+tile.stair.amaranth.name=Scalini di Amaranto
+tile.stair.silverbell.name=Scalini di Halesia
+
+tile.button.eucalyptus.name=Bottone di Eucalipto
+tile.button.sakura.name=Bottone di Ciliegio
+tile.button.ghostwood.name=Bottone di Legno Fantasma
+tile.button.hopseed.name=Bottone di Hopseed
+tile.button.redwood.name=Bottone di Redwood
+tile.button.bloodwood.name=Bottone di Legno Insanguinato
+tile.button.darkwood.name=Bottone di Legno Oscuro
+tile.button.fusewood.name=Bottone di Legno Esplosivo
+tile.button.willow.name=Bottone di Salice
+tile.button.tiger.name=Bottone di Legno Tigrato
+tile.button.maple.name=Bottone d'Acero
+tile.button.amaranth.name=Bottone di Amaranto
+tile.button.silverbell.name=Bottone di Halesia
+
+tile.trapdoor.eucalyptus.name=Botola di Eucalipto
+tile.trapdoor.sakura.name=Botola di Ciliegio
+tile.trapdoor.ghostwood.name=Botola di Legno Fantasma
+tile.trapdoor.hopseed.name=Botola di Hopseed
+tile.trapdoor.redwood.name=Botola di Redwood
+tile.trapdoor.bloodwood.name=Botola di Legno Insanguinato
+tile.trapdoor.darkwood.name=Botola di Legno Oscuro
+tile.trapdoor.fusewood.name=Botola di Legno Esplosivo
+tile.trapdoor.willow.name=Botola di Salice
+tile.trapdoor.tiger.name=Botola di Legno Tigrato
+tile.trapdoor.maple.name=Botola d'Acero
+tile.trapdoor.amaranth.name=Botola di Amaranto
+tile.trapdoor.silverbell.name=Botola di Halesia
+
+block.glowshroom.green.name=Brillantfungo Verde
+block.glowshroom.purple.name=Brillantfungo Viola
+block.glowshroom.blue.name=Brillantfungo Blu
+
+eucalyptusNLeaves.name=Foglie di Eucalipto
+block.leaves.sakura.name=Foglie di Ciliegio
+block.leaves.ghost.name=Foglie Fantasma
+bushNLeaves.name=Foglie di Hopseed
+redwoodNLeaves.name=Foglie di Redwood
+block.leaves.blood.name=Foglie Insanguinate
+
+eucalyptusLog.name=Legno di Eucalipto
+sakuraLog.name=Legno di Ciliegio
+ghostLog.name=Legno Fantasma
+hopseedLog.name=Legno di Hopseed
+
+redwoodBoat.name=Barca di Redwood
+bloodBoat.name=Barca Insanguinata
+whiteBoat.name=Barca Bianca
+eucalyptusBoat.name=Barca di Eucalipto
+
+item.impmeat.raw.name=Carne di Imp Crudo
+item.impmeat.cooked.name=Carne di Imp Cotto
+
+block.soil.grass.name=Erba Topiaria
+block.soil.bluegrass.name=Erbablu
+block.soil.autumngrass.name=Erba Autunnale
+block.soil.grass.slab.name=Piastra di Erba Topiaria
+block.soil.bluegrass.slab.name=Piastra di Erbablu
+block.soil.autumngrass.slab.name=Piastra di Erba Autunnale
+
+tile.bloodwood.name=Legno Insanguinato
+tile.saguaro.block.name=Saguaro Cactus
+tile.bluebells.name=Campanula
+
+tile.TaintedSoil.name=Terreno Corrotto
+tile.HeatSand.name=Sabbia Calda
+tile.Thornvines.name=Rampicante Pungente
+tile.potashApple.name=Mela Potassa
+item.natura.stick.name=Bastone
+
+item.natura.sword.ghostwood.name=Spada Fantasma
+item.natura.pickaxe.ghostwood.name=Piccone Fantasma
+item.natura.shovel.ghostwood.name=Pala Fantasma
+item.natura.axe.ghostwood.name=Accetta Fantasma
+item.natura.kama.ghostwood.name=Kama Fantasma
+item.natura.bow.ghostwood.name=Arco Fantasma
+
+item.natura.sword.bloodwood.name=Spada Insanguinata
+item.natura.pickaxe.bloodwood.name=Piccone Insanguinato
+item.natura.shovel.bloodwood.name=Pala Insanguinata
+item.natura.axe.bloodwood.name=Accetta Insanguinata
+item.natura.kama.bloodwood.name=Bloodwood Kama Insanguinata
+item.natura.bow.bloodwood.name=Arco Insanguinato
+
+item.natura.sword.darkwood.name=Spada Oscura
+item.natura.pickaxe.darkwood.name=Piccone Oscuro
+item.natura.shovel.darkwood.name=Pala Oscura
+item.natura.axe.darkwood.name=Accetta Oscura
+item.natura.kama.darkwood.name=Kama Oscura
+item.natura.bow.darkwood.name=Arco Oscuro
+
+item.natura.sword.fusewood.name=Spada Esplosiva
+item.natura.pickaxe.fusewood.name=Piccone  Esplosivo
+item.natura.shovel.fusewood.name=Pala Esplosiva
+item.natura.axe.fusewood.name=Accetta Esplosiva
+item.natura.kama.fusewood.name=Kama Esplosiva
+item.natura.bow.fusewood.name=ArcoEsplosivo
+
+item.natura.sword.netherquartz.name=Spada di Quarzo
+item.natura.pickaxe.netherquartz.name=Piccone di Quarzo
+item.natura.shovel.netherquartz.name=Pala di Quarzo
+item.natura.axe.netherquartz.name=Accetta di Quarzo
+item.natura.kama.netherquartz.name=Kama di Quarzo
+
+item.natura.armor.imphelmet.name=Elmo di Imp
+item.natura.armor.impjerkin.name=Farsetto di Imp
+item.natura.armor.impleggings.name=Braghe di Imp
+item.natura.armor.impboots.name=Stivali di Imp
+
+entity.Natura.Imp.name=Imp
+entity.Natura.HeatscarSpider.name=Ragno Fiammeggiante
+entity.Natura.BabyHeatscarSpider.name=Ragno Fiammeggiante Baby
+entity.Natura.FlameSpider.name=Ragno Fiammeggiante
+entity.Natura.FlameSpiderBaby.name=Ragno Fiammeggiante Baby
+entity.Natura.NitroCreeper.name=Nitro Creeper

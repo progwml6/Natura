@@ -1,133 +1,40 @@
 package mods.natura.common;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import cpw.mods.fml.common.*;
+import cpw.mods.fml.common.event.FMLInterModComms;
+import cpw.mods.fml.common.registry.*;
+
+import java.util.*;
 
 import mods.natura.Natura;
-import mods.natura.blocks.CloudBlock;
-import mods.natura.blocks.GrassBlock;
-import mods.natura.blocks.GrassSlab;
-import mods.natura.blocks.HeatSand;
-import mods.natura.blocks.NButton;
-import mods.natura.blocks.NFenceGate;
-import mods.natura.blocks.NPressurePlate;
-import mods.natura.blocks.NSlabBase;
-import mods.natura.blocks.NStairs;
-import mods.natura.blocks.NTrapdoor;
-import mods.natura.blocks.TaintedSoil;
-import mods.natura.blocks.crops.BerryBush;
-import mods.natura.blocks.crops.CropBlock;
-import mods.natura.blocks.crops.FlowerBlock;
-import mods.natura.blocks.crops.Glowshroom;
-import mods.natura.blocks.crops.LargeGlowshroom;
-import mods.natura.blocks.crops.NetherBerryBush;
-import mods.natura.blocks.crops.ThornVines;
-import mods.natura.blocks.overrides.AlternateBookshelf;
-import mods.natura.blocks.overrides.AlternateFence;
-import mods.natura.blocks.overrides.AlternateWorkbench;
-import mods.natura.blocks.trees.DarkTreeBlock;
-import mods.natura.blocks.trees.LogTwoxTwo;
-import mods.natura.blocks.trees.NDoor;
-import mods.natura.blocks.trees.NLeaves;
-import mods.natura.blocks.trees.NLeavesDark;
-import mods.natura.blocks.trees.NLeavesNocolor;
-import mods.natura.blocks.trees.NSaplingBlock;
-import mods.natura.blocks.trees.OverworldLeaves;
-import mods.natura.blocks.trees.OverworldSapling;
-import mods.natura.blocks.trees.OverworldTreeBlock;
-import mods.natura.blocks.trees.Planks;
-import mods.natura.blocks.trees.SaguaroBlock;
-import mods.natura.blocks.trees.SimpleLog;
-import mods.natura.blocks.trees.TreeBlock;
-import mods.natura.blocks.trees.WillowBlock;
-import mods.natura.entity.BabyHeatscarSpider;
-import mods.natura.entity.FusewoodArrow;
-import mods.natura.entity.HeatscarSpider;
-import mods.natura.entity.ImpEntity;
-import mods.natura.entity.NitroCreeper;
-import mods.natura.items.BerryItem;
-import mods.natura.items.BerryMedley;
-import mods.natura.items.BoneBag;
-import mods.natura.items.BowlEmpty;
-import mods.natura.items.BowlStew;
-import mods.natura.items.CactusJuice;
-import mods.natura.items.ImpMeat;
-import mods.natura.items.NaturaSeeds;
-import mods.natura.items.NetherBerryItem;
-import mods.natura.items.NetherFoodItem;
-import mods.natura.items.PlantItem;
-import mods.natura.items.SeedBag;
-import mods.natura.items.SeedFood;
-import mods.natura.items.SpawnEgg;
-import mods.natura.items.StickItem;
-import mods.natura.items.blocks.BerryBushItem;
-import mods.natura.items.blocks.CloudItem;
-import mods.natura.items.blocks.DarkTreeItem;
-import mods.natura.items.blocks.FenceItem;
-import mods.natura.items.blocks.GlowshroomItem;
-import mods.natura.items.blocks.GrassBlockItem;
-import mods.natura.items.blocks.GrassSlabItem;
-import mods.natura.items.blocks.LogTwoxTwoItem;
-import mods.natura.items.blocks.NAlternateItem;
-import mods.natura.items.blocks.NDoorItem;
-import mods.natura.items.blocks.NLeavesDarkItem;
-import mods.natura.items.blocks.NLeavesItem;
-import mods.natura.items.blocks.NSaplingItem;
-import mods.natura.items.blocks.NetherBerryBushItem;
-import mods.natura.items.blocks.NoColorLeavesItem;
-import mods.natura.items.blocks.OverworldLeavesItem;
-import mods.natura.items.blocks.OverworldSaplingItem;
-import mods.natura.items.blocks.OverworldTreeItem;
-import mods.natura.items.blocks.PlankSlab1Item;
-import mods.natura.items.blocks.PlankSlab2Item;
-import mods.natura.items.blocks.PlanksItem;
-import mods.natura.items.blocks.RedwoodItem;
-import mods.natura.items.blocks.SaguaroItem;
-import mods.natura.items.blocks.TreeItem;
-import mods.natura.items.blocks.WillowItem;
-import mods.natura.items.tools.NaturaArmor;
-import mods.natura.items.tools.NaturaBow;
-import mods.natura.items.tools.NaturaHatchet;
-import mods.natura.items.tools.NaturaKama;
-import mods.natura.items.tools.NaturaPickaxe;
-import mods.natura.items.tools.NaturaShovel;
-import mods.natura.items.tools.NaturaSword;
+import mods.natura.blocks.*;
+import mods.natura.blocks.crops.*;
+import mods.natura.blocks.overrides.*;
+import mods.natura.blocks.trees.*;
+import mods.natura.entity.*;
+import mods.natura.items.*;
+import mods.natura.items.blocks.*;
+import mods.natura.items.tools.*;
 import mods.natura.util.DispenserBehaviorSpawnEgg;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockDispenser;
-import net.minecraft.block.EnumMobType;
+import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.EnumCreatureType;
-import net.minecraft.item.EnumArmorMaterial;
-import net.minecraft.item.EnumToolMaterial;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.CraftingManager;
-import net.minecraft.item.crafting.FurnaceRecipes;
-import net.minecraft.item.crafting.ShapedRecipes;
-import net.minecraft.item.crafting.ShapelessRecipes;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
+import net.minecraft.item.*;
+import net.minecraft.item.crafting.*;
+import net.minecraft.nbt.*;
 import net.minecraft.world.biome.BiomeGenBase;
-import net.minecraftforge.common.BiomeDictionary;
-import net.minecraftforge.common.EnumHelper;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.oredict.OreDictionary;
-import net.minecraftforge.oredict.ShapedOreRecipe;
-import net.minecraftforge.oredict.ShapelessOreRecipe;
+import net.minecraftforge.common.*;
+import net.minecraftforge.oredict.*;
 import tconstruct.library.crafting.PatternBuilder;
-import cpw.mods.fml.common.IFuelHandler;
-import cpw.mods.fml.common.Loader;
-import cpw.mods.fml.common.event.FMLInterModComms;
-import cpw.mods.fml.common.registry.EntityRegistry;
-import cpw.mods.fml.common.registry.GameRegistry;
+import thaumcraft.api.ThaumcraftApi;
+import thaumcraft.api.aspects.Aspect;
+import thaumcraft.api.aspects.AspectList;
 
 public class NContent implements IFuelHandler
 {
 
-    public void preInit()
+    public void preInit ()
     {
         spawnEgg = new SpawnEgg(PHNatura.spawnEgg).setUnlocalizedName("natura.spawnegg");
         //Crops
@@ -477,7 +384,7 @@ public class NContent implements IFuelHandler
         pressurePlateAmaranth.setHardness(0.5F).setStepSound(Block.soundWoodFootstep).setUnlocalizedName("pressureplate.amaranth");
         GameRegistry.registerBlock(pressurePlateAmaranth, "pressureplate.amaranth");
 
-        trapdoorAmaranth = new NTrapdoor(PHNatura.trapdoorAmaranth, Material.wood, "amaranth_trapdoor");
+        trapdoorAmaranth = new NTrapdoor(PHNatura.trapdoorAmaranth, Material.wood, "purpleheart_trapdoor");
         trapdoorAmaranth.setHardness(3.0F).setStepSound(Block.soundWoodFootstep).setUnlocalizedName("trapdoor.amaranth");
         GameRegistry.registerBlock(trapdoorAmaranth, "trapdoor.amaranth");
 
@@ -662,7 +569,7 @@ public class NContent implements IFuelHandler
         addRecipes();
     }
 
-    public void addRecipes()
+    public void addRecipes ()
     {
         //Crops
         GameRegistry.addRecipe(new ItemStack(wheatBag, 1, 0), "sss", "sss", "sss", 's', Item.seeds);
@@ -753,7 +660,7 @@ public class NContent implements IFuelHandler
         /*ItemStack[] plankStacks = new ItemStack[] { new ItemStack(planks, 1, 0), new ItemStack(planks, 1, 1), new ItemStack(planks, 1, 2), new ItemStack(planks, 1, 3), new ItemStack(planks, 1, 5),
                 new ItemStack(planks, 1, 6), new ItemStack(planks, 1, 7), new ItemStack(planks, 1, 8), new ItemStack(planks, 1, 9), new ItemStack(planks, 1, 10), new ItemStack(planks, 1, 11) };*/
         ItemStack[] logStacks = new ItemStack[] { new ItemStack(tree, 1, 0), new ItemStack(tree, 1, 1), new ItemStack(tree, 1, 2), new ItemStack(tree, 1, 3), new ItemStack(redwood, 1, 1),
-                new ItemStack(rareTree, 1, 0), new ItemStack(rareTree, 1, 1), new ItemStack(rareTree, 1, 2), new ItemStack(rareTree, 1, 3), new ItemStack(willow, 1, 0), new ItemStack(darkTree, 1, 0) };
+                new ItemStack(rareTree, 1, 0), new ItemStack(rareTree, 1, 1), new ItemStack(rareTree, 1, 2), new ItemStack(rareTree, 1, 3), new ItemStack(willow, 1, 0), new ItemStack(darkTree, 1, 0), new ItemStack(darkTree, 1, 1) };
         int[] exclusions = { 4, 11 };
 
         GameRegistry.addRecipe(new ItemStack(plantItem, 1, 5), " s ", "#s#", "#s#", 's', new ItemStack(stickItem, 1, 2), '#', new ItemStack(floraLeavesNoColor, 1, 1));
@@ -902,9 +809,13 @@ public class NContent implements IFuelHandler
             addShapedRecipeFirst(recipes, new ItemStack(stairs[i], 4, i), "#  ", "## ", "###", '#', new ItemStack(planks, 1, i));
             addShapedRecipeFirst(recipes, new ItemStack(trapdoors[i], 2, i), "###", "###", '#', new ItemStack(planks, 1, i));
         }
+        for (int i = 0; i < 8; i++)
+            addShapedRecipeFirst(recipes, new ItemStack(plankSlab1, 6, i), "###", '#', new ItemStack(planks, 1, i));
+        for (int i = 0; i < 5; i++)
+            addShapedRecipeFirst(recipes, new ItemStack(plankSlab2, 6, i), "###", '#', new ItemStack(planks, 1, 8 + i));
     }
 
-    public void addShapedRecipeFirst(List recipeList, ItemStack itemstack, Object... objArray)
+    public void addShapedRecipeFirst (List recipeList, ItemStack itemstack, Object... objArray)
     {
         String var3 = "";
         int var4 = 0;
@@ -913,7 +824,7 @@ public class NContent implements IFuelHandler
 
         if (objArray[var4] instanceof String[])
         {
-            String[] var7 = (String[]) ((String[]) objArray[var4++]);
+            String[] var7 = ((String[]) objArray[var4++]);
 
             for (int var8 = 0; var8 < var7.length; ++var8)
             {
@@ -977,7 +888,7 @@ public class NContent implements IFuelHandler
         recipeList.add(0, var17);
     }
 
-    public void addShapelessRecipeFirst(List recipeList, ItemStack par1ItemStack, Object... par2ArrayOfObj)
+    public void addShapelessRecipeFirst (List recipeList, ItemStack par1ItemStack, Object... par2ArrayOfObj)
     {
         ArrayList arraylist = new ArrayList();
         Object[] aobject = par2ArrayOfObj;
@@ -1009,12 +920,12 @@ public class NContent implements IFuelHandler
         recipeList.add(0, new ShapelessRecipes(par1ItemStack, arraylist));
     }
 
-    public void addLoot()
+    public void addLoot ()
     {
         //ChestGenHooks.getInfo(ChestGenHooks.BONUS_CHEST).addItem(new WeightedRandomChestContent(new ItemStack(VanityBlocksStorage.StorageBlock,0,0),3,5,6));
     }
 
-    public void intermodCommunication()
+    public void intermodCommunication ()
     {
         //Thaumcraft
         FMLInterModComms.sendMessage("Thaumcraft", "harvestClickableCrop", new ItemStack(berryBush, 1, 12));
@@ -1125,7 +1036,7 @@ public class NContent implements IFuelHandler
         }
     }
 
-    public void postIntermodCommunication()
+    public void postIntermodCommunication ()
     {
         //Buildcraft
         for (int i = 0; i < 13; i++)
@@ -1158,7 +1069,7 @@ public class NContent implements IFuelHandler
         FMLInterModComms.sendMessage("BuildCraft|Transport", "add-facade", heatSand.blockID + "@" + 0);
     }
 
-    public void addOredictSupport()
+    public void addOredictSupport ()
     {
         OreDictionary.registerOre("cropRaspberry", new ItemStack(berryItem, 1, 0));
         OreDictionary.registerOre("cropBlueberry", new ItemStack(berryItem, 1, 1));
@@ -1171,9 +1082,18 @@ public class NContent implements IFuelHandler
         OreDictionary.registerOre("cropStingberry", new ItemStack(netherBerryItem, 1, 3));
 
         OreDictionary.registerOre("taintedSoil", new ItemStack(taintedSoil, 1));
+
+        OreDictionary.registerOre("slabWood", new ItemStack(plankSlab1, 1, Short.MAX_VALUE));
+        OreDictionary.registerOre("slabWood", new ItemStack(plankSlab2, 1, Short.MAX_VALUE));
+        OreDictionary.registerOre("saplingTree", new ItemStack(floraSapling, 1, Short.MAX_VALUE));
+        OreDictionary.registerOre("saplingTree", new ItemStack(rareSapling, 1, Short.MAX_VALUE));
+        OreDictionary.registerOre("leavesTree", new ItemStack(floraLeaves, 1, Short.MAX_VALUE));
+        OreDictionary.registerOre("leavesTree", new ItemStack(floraLeavesNoColor, 1, Short.MAX_VALUE));
+        OreDictionary.registerOre("leavesTree", new ItemStack(rareLeaves, 1, Short.MAX_VALUE));
+        OreDictionary.registerOre("leavesTree", new ItemStack(darkLeaves, 1, Short.MAX_VALUE));
     }
 
-    public void createEntities()
+    public void createEntities ()
     {
         EntityRegistry.registerModEntity(ImpEntity.class, "Imp", 0, Natura.instance, 32, 5, true);
         EntityRegistry.registerModEntity(HeatscarSpider.class, "FlameSpider", 1, Natura.instance, 32, 5, true);
@@ -1191,11 +1111,11 @@ public class NContent implements IFuelHandler
         BlockDispenser.dispenseBehaviorRegistry.putObject(spawnEgg, new DispenserBehaviorSpawnEgg());
     }
 
-    public void modIntegration()
+    public void modIntegration ()
     {
         try
         {
-            Class.forName("mods.tinker.tconstruct.TConstruct");
+            Class.forName("tconstruct.TConstruct");
             PatternBuilder pb = PatternBuilder.instance;
             pb.registerMaterial(new ItemStack(saguaro), 2, "Cactus");
         }
@@ -1209,163 +1129,163 @@ public class NContent implements IFuelHandler
             Class.forName("thaumcraft.api.ThaumcraftApi");
 
             /* Registering seeds */
-            /*ObjectTags seedTags = new ObjectTags();
-            seedTags.add(EnumTag.PLANT, 1);
-            seedTags.add(EnumTag.EXCHANGE, 1);
+            AspectList seedTags = new AspectList();
+            seedTags.add(Aspect.PLANT, 1);
+            seedTags.add(Aspect.EXCHANGE, 1);
             ThaumcraftApi.registerObjectTag(seeds.itemID, 0, seedTags);
-            ThaumcraftApi.registerObjectTag(seeds.itemID, 1, seedTags);*/
+            ThaumcraftApi.registerObjectTag(seeds.itemID, 1, seedTags);
 
             /* Registering plants */
-            /*ThaumcraftApi.registerObjectTag(plantItem.itemID, 0, new ObjectTags().add(EnumTag.LIFE, 2).add(EnumTag.CROP, 2));
-            ThaumcraftApi.registerObjectTag(plantItem.itemID, 3, new ObjectTags().add(EnumTag.CLOTH, 1));
-            ThaumcraftApi.registerObjectTag(plantItem.itemID, 4, new ObjectTags().add(EnumTag.DESTRUCTION, 1).add(EnumTag.FIRE, 1));
-            ThaumcraftApi.registerObjectTag(plantItem.itemID, 5, new ObjectTags().add(EnumTag.WIND, 1).add(EnumTag.FLIGHT, 1));
-            ThaumcraftApi.registerObjectTag(plantItem.itemID, 6, new ObjectTags().add(EnumTag.BEAST, 1).add(EnumTag.FLESH, 1).add(EnumTag.CLOTH, 1).add(EnumTag.ARMOR, 1).add(EnumTag.FIRE, 1));
-            ThaumcraftApi.registerObjectTag(plantItem.itemID, 7, new ObjectTags().add(EnumTag.BEAST, 1).add(EnumTag.CLOTH, 1).add(EnumTag.TRAP, 1).add(EnumTag.FIRE, 1));*/
+            ThaumcraftApi.registerObjectTag(plantItem.itemID, 0, new AspectList().add(Aspect.LIFE, 2).add(Aspect.CROP, 2));
+            ThaumcraftApi.registerObjectTag(plantItem.itemID, 3, new AspectList().add(Aspect.CLOTH, 1));
+            ThaumcraftApi.registerObjectTag(plantItem.itemID, 4, new AspectList().add(Aspect.ENTROPY, 1).add(Aspect.FIRE, 1));
+            ThaumcraftApi.registerObjectTag(plantItem.itemID, 5, new AspectList().add(Aspect.AIR, 1).add(Aspect.FLIGHT, 1));
+            ThaumcraftApi.registerObjectTag(plantItem.itemID, 6, new AspectList().add(Aspect.BEAST, 1).add(Aspect.FLESH, 1).add(Aspect.CLOTH, 1).add(Aspect.ARMOR, 1).add(Aspect.FIRE, 1));
+            ThaumcraftApi.registerObjectTag(plantItem.itemID, 7, new AspectList().add(Aspect.BEAST, 1).add(Aspect.CLOTH, 1).add(Aspect.TRAP, 1).add(Aspect.FIRE, 1));
 
             /* Registering wood */
-            /*ObjectTags logTags = new ObjectTags();
-            logTags.add(EnumTag.WOOD, 4);
+            AspectList logTags = new AspectList();
+            logTags.add(Aspect.TREE, 4);
             ThaumcraftApi.registerObjectTag(tree.blockID, 0, logTags);
             ThaumcraftApi.registerObjectTag(tree.blockID, 1, logTags);
             ThaumcraftApi.registerObjectTag(tree.blockID, 3, logTags);
             ThaumcraftApi.registerObjectTag(willow.blockID, 0, logTags);
             ThaumcraftApi.registerObjectTag(willow.blockID, 1, logTags);
-            ThaumcraftApi.registerObjectTag(redwood.blockID, 0, new ObjectTags().add(EnumTag.ARMOR, 1).add(EnumTag.WOOD, 3));
+            ThaumcraftApi.registerObjectTag(redwood.blockID, 0, new AspectList().add(Aspect.ARMOR, 1).add(Aspect.TREE, 3));
             ThaumcraftApi.registerObjectTag(redwood.blockID, 1, logTags);
-            ThaumcraftApi.registerObjectTag(redwood.blockID, 2, new ObjectTags().add(EnumTag.EARTH, 1).add(EnumTag.WOOD, 3));*/
+            ThaumcraftApi.registerObjectTag(redwood.blockID, 2, new AspectList().add(Aspect.EARTH, 1).add(Aspect.TREE, 3));
 
             /* Leafy goodness */
-            /*ObjectTags leafTags = new ObjectTags();
-            leafTags.add(EnumTag.PLANT, 2);
+            AspectList leafTags = new AspectList();
+            leafTags.add(Aspect.PLANT, 2);
             ThaumcraftApi.registerObjectTag(floraLeavesNoColor.blockID, 0, leafTags);
             ThaumcraftApi.registerObjectTag(floraLeavesNoColor.blockID, 1, leafTags);
-            ThaumcraftApi.registerObjectTag(floraLeavesNoColor.blockID, 2, new ObjectTags().add(EnumTag.WOOD, 2).add(EnumTag.METAL, 1));
+            ThaumcraftApi.registerObjectTag(floraLeavesNoColor.blockID, 2, new AspectList().add(Aspect.TREE, 2).add(Aspect.METAL, 1));
             ThaumcraftApi.registerObjectTag(floraLeaves.blockID, 0, leafTags);
             ThaumcraftApi.registerObjectTag(floraLeaves.blockID, 1, leafTags);
             ThaumcraftApi.registerObjectTag(floraLeaves.blockID, 2, leafTags);
-            ThaumcraftApi.registerObjectTag(floraLeaves.blockID, 3, leafTags);*/
+            ThaumcraftApi.registerObjectTag(floraLeaves.blockID, 3, leafTags);
 
             /* And rare trees, too. */
-            /*for (int i = 0; i < 4; i++)
+            for (int i = 0; i < 4; i++)
             {
                 ThaumcraftApi.registerObjectTag(rareTree.blockID, i, logTags);
                 ThaumcraftApi.registerObjectTag(rareLeaves.blockID, i, leafTags);
-            }*/
+            }
 
             /* Add mushrooms */
-            /*ObjectTags shroomTag = new ObjectTags();
-            shroomTag.add(EnumTag.FUNGUS, 4);
-            shroomTag.add(EnumTag.LIGHT, 1);
-            shroomTag.add(EnumTag.SPIRIT, 1);
+            AspectList shroomTag = new AspectList();
+            shroomTag.add(Aspect.PLANT, 4);
+            shroomTag.add(Aspect.LIGHT, 1);
+            shroomTag.add(Aspect.SOUL, 1);
             for (int i = 0; i < 3; i++)
             {
                 ThaumcraftApi.registerObjectTag(glowshroom.blockID, i, shroomTag);
-            }*/
+            }
 
             /* Adding berries! */
-            /*ObjectTags berryTag = new ObjectTags();
-            berryTag.add(EnumTag.LIFE, 1);
-            berryTag.add(EnumTag.CROP, 1);
+            AspectList berryTag = new AspectList();
+            berryTag.add(Aspect.LIFE, 1);
+            berryTag.add(Aspect.CROP, 1);
             for (int i = 0; i < 4; i++)
             {
                 ThaumcraftApi.registerObjectTag(berryItem.itemID, i, berryTag);
-            }*/
+            }
 
             /* Adding berry bushes */
-            /*ObjectTags berryBushTag = new ObjectTags();
-            berryBushTag.add(EnumTag.PLANT, 1);
+            AspectList berryBushTag = new AspectList();
+            berryBushTag.add(Aspect.PLANT, 1);
             for (int i = 0; i < 4; i++)
             {
                 ThaumcraftApi.registerObjectTag(berryBush.blockID, i, berryBushTag);
             }
 
             /* Adding bowls, bowls of stew, and other bowl-based goodies! */
-            /*ObjectTags bowlEmptyTag = new ObjectTags();
-             bowlEmptyTag.add(EnumTag.VOID, 1);
-             ObjectTags bowlStewTag = new ObjectTags();
-             bowlStewTag.add(EnumTag.FUNGUS, 6);
-             bowlStewTag.add(EnumTag.WIND, 1);
-             bowlStewTag.add(EnumTag.LIFE, 4);
-             ObjectTags glowStewTag = new ObjectTags();
-             glowStewTag.add(EnumTag.FUNGUS, 8);
-             glowStewTag.add(EnumTag.WIND, 1);
-             glowStewTag.add(EnumTag.LIFE, 4);
-             glowStewTag.add(EnumTag.VISION, 4);
+            AspectList bowlEmptyTag = new AspectList();
+             bowlEmptyTag.add(Aspect.VOID, 1);
+             AspectList bowlStewTag = new AspectList();
+             bowlStewTag.add(Aspect.PLANT, 6);
+             bowlStewTag.add(Aspect.AIR, 1);
+             bowlStewTag.add(Aspect.LIFE, 4);
+             AspectList glowStewTag = new AspectList();
+             glowStewTag.add(Aspect.PLANT, 8);
+             glowStewTag.add(Aspect.AIR, 1);
+             glowStewTag.add(Aspect.LIFE, 4);
+             glowStewTag.add(Aspect.LIGHT, 4);
 
              for (int i = 0; i < 13; i++)
              {
                  ThaumcraftApi.registerObjectTag(bowlEmpty.itemID, i, bowlEmptyTag);
                  ThaumcraftApi.registerObjectTag(bowlStew.itemID, i, bowlStewTag);
                  ThaumcraftApi.registerObjectTag(bowlStew.itemID, i + 13, glowStewTag);
-             }*/
+             }
 
             /* Adding other overworld saplings */
-            /*ObjectTags saplingTag = new ObjectTags();
-            saplingTag.add(EnumTag.WOOD, 2);
-            saplingTag.add(EnumTag.PLANT, 2);
+            AspectList saplingTag = new AspectList();
+            saplingTag.add(Aspect.TREE, 2);
+            saplingTag.add(Aspect.PLANT, 2);
             ThaumcraftApi.registerObjectTag(rareSapling.blockID, 4, saplingTag);
             for (int i = 0; i < 4; i++)
             {
                 ThaumcraftApi.registerObjectTag(floraSapling.blockID, i, saplingTag);
                 ThaumcraftApi.registerObjectTag(rareSapling.blockID, i, saplingTag);
-            }*/
+            }
 
             /* Cactus Stuff */
-            /*ObjectTags cactusTag = new ObjectTags();
-            cactusTag.add(EnumTag.WATER, 1);
-            cactusTag.add(EnumTag.PLANT, 2);
-            cactusTag.add(EnumTag.WEAPON, 1);
-            cactusTag.add(EnumTag.WOOD, 2);
+            AspectList cactusTag = new AspectList();
+            cactusTag.add(Aspect.WATER, 1);
+            cactusTag.add(Aspect.PLANT, 2);
+            cactusTag.add(Aspect.WEAPON, 1);
+            cactusTag.add(Aspect.TREE, 2);
 
             ThaumcraftApi.registerObjectTag(saguaro.blockID, 0, cactusTag);
-            ThaumcraftApi.registerObjectTag(waterDrop.itemID, 0, new ObjectTags().add(EnumTag.WATER, 1));
-            ThaumcraftApi.registerObjectTag(seedFood.itemID, 0, new ObjectTags().add(EnumTag.CROP, 2).add(EnumTag.PLANT, 1).add(EnumTag.WATER, 1));*/
+            ThaumcraftApi.registerObjectTag(waterDrop.itemID, 0, new AspectList().add(Aspect.WATER, 1));
+            ThaumcraftApi.registerObjectTag(seedFood.itemID, 0, new AspectList().add(Aspect.CROP, 2).add(Aspect.PLANT, 1).add(Aspect.WATER, 1));
 
             /* Overworld Clouds */
-            //ThaumcraftApi.registerObjectTag(cloud.blockID, 0, new ObjectTags().add(EnumTag.WIND, 1).add(EnumTag.FLIGHT, 1).add(EnumTag.WATER, 1));
+            ThaumcraftApi.registerObjectTag(cloud.blockID, 0, new AspectList().add(Aspect.AIR, 1).add(Aspect.FLIGHT, 1).add(Aspect.WATER, 1).add(Aspect.WEATHER, 1));
 
             /* Nether saplings */
-            /*ThaumcraftApi.registerObjectTag(floraSapling.blockID, 4, new ObjectTags().add(EnumTag.SPIRIT, 1).add(EnumTag.PLANT, 2).add(EnumTag.WOOD, 2));
-            ThaumcraftApi.registerObjectTag(floraSapling.blockID, 5, new ObjectTags().add(EnumTag.WOOD, 2).add(EnumTag.PLANT, 2));
-            ThaumcraftApi.registerObjectTag(floraSapling.blockID, 6, new ObjectTags().add(EnumTag.WOOD, 2).add(EnumTag.PLANT, 2));
-            ThaumcraftApi.registerObjectTag(floraSapling.blockID, 7, new ObjectTags().add(EnumTag.WOOD, 2).add(EnumTag.PLANT, 2).add(EnumTag.DESTRUCTION, 2));*/
+            ThaumcraftApi.registerObjectTag(floraSapling.blockID, 4, new AspectList().add(Aspect.SOUL, 1).add(Aspect.PLANT, 2).add(Aspect.TREE, 2));
+            ThaumcraftApi.registerObjectTag(floraSapling.blockID, 5, new AspectList().add(Aspect.TREE, 2).add(Aspect.PLANT, 2));
+            ThaumcraftApi.registerObjectTag(floraSapling.blockID, 6, new AspectList().add(Aspect.TREE, 2).add(Aspect.PLANT, 2));
+            ThaumcraftApi.registerObjectTag(floraSapling.blockID, 7, new AspectList().add(Aspect.TREE, 2).add(Aspect.PLANT, 2).add(Aspect.ENTROPY, 2));
 
             /* Nether blocks */
-            /*ThaumcraftApi.registerObjectTag(heatSand.blockID, 0, new ObjectTags().add(EnumTag.FIRE, 2).add(EnumTag.ROCK, 1));
-            ThaumcraftApi.registerObjectTag(taintedSoil.blockID, 0, new ObjectTags().add(EnumTag.ROCK, 2));*/
+            ThaumcraftApi.registerObjectTag(heatSand.blockID, 0, new AspectList().add(Aspect.FIRE, 2).add(Aspect.STONE, 1));
+            ThaumcraftApi.registerObjectTag(taintedSoil.blockID, 0, new AspectList().add(Aspect.STONE, 2));
 
             /* Nether trees and leaves */
-            /*ThaumcraftApi.registerObjectTag(tree.blockID, 2, new ObjectTags().add(EnumTag.WOOD, 3).add(EnumTag.SPIRIT, 1));
-            ThaumcraftApi.registerObjectTag(planks.blockID, 2, new ObjectTags().add(EnumTag.WOOD, 1));
-            ThaumcraftApi.registerObjectTag(planks.blockID, 4, new ObjectTags().add(EnumTag.WOOD, 1).add(EnumTag.METAL, 1));
-            ThaumcraftApi.registerObjectTag(darkTree.blockID, 0, new ObjectTags().add(EnumTag.WOOD, 4));
-            ThaumcraftApi.registerObjectTag(darkTree.blockID, 1, new ObjectTags().add(EnumTag.WOOD, 4).add(EnumTag.DESTRUCTION, 2));
-            ThaumcraftApi.registerObjectTag(bloodwood.blockID, 0, new ObjectTags().add(EnumTag.WOOD, 2).add(EnumTag.POWER, 2).add(EnumTag.METAL, 1));
-            ThaumcraftApi.registerObjectTag(bloodwood.blockID, 15, new ObjectTags().add(EnumTag.WOOD, 2).add(EnumTag.POWER, 2).add(EnumTag.METAL, 1));
+            ThaumcraftApi.registerObjectTag(tree.blockID, 2, new AspectList().add(Aspect.TREE, 3).add(Aspect.SOUL, 1));
+            ThaumcraftApi.registerObjectTag(planks.blockID, 2, new AspectList().add(Aspect.TREE, 1));
+            ThaumcraftApi.registerObjectTag(planks.blockID, 4, new AspectList().add(Aspect.TREE, 1).add(Aspect.METAL, 1));
+            ThaumcraftApi.registerObjectTag(darkTree.blockID, 0, new AspectList().add(Aspect.TREE, 4));
+            ThaumcraftApi.registerObjectTag(darkTree.blockID, 1, new AspectList().add(Aspect.TREE, 4).add(Aspect.ENTROPY, 2));
+            ThaumcraftApi.registerObjectTag(bloodwood.blockID, 0, new AspectList().add(Aspect.TREE, 2).add(Aspect.ENERGY, 2).add(Aspect.METAL, 1));
+            ThaumcraftApi.registerObjectTag(bloodwood.blockID, 15, new AspectList().add(Aspect.TREE, 2).add(Aspect.ENERGY, 2).add(Aspect.METAL, 1));
             ThaumcraftApi.registerObjectTag(darkLeaves.blockID, 0, leafTags);
             ThaumcraftApi.registerObjectTag(darkLeaves.blockID, 1, leafTags);
-            ThaumcraftApi.registerObjectTag(darkLeaves.blockID, 2, new ObjectTags().add(EnumTag.PLANT, 2).add(EnumTag.CROP, 2));
-            ThaumcraftApi.registerObjectTag(darkLeaves.blockID, 3, new ObjectTags().add(EnumTag.PLANT, 2).add(EnumTag.DESTRUCTION, 1));*/
+            ThaumcraftApi.registerObjectTag(darkLeaves.blockID, 2, new AspectList().add(Aspect.PLANT, 2).add(Aspect.CROP, 2));
+            ThaumcraftApi.registerObjectTag(darkLeaves.blockID, 3, new AspectList().add(Aspect.PLANT, 2).add(Aspect.ENTROPY, 1));
 
             /*Nether vines and bushes */
-            /*ThaumcraftApi.registerObjectTag(netherBerryBush.blockID, 0, new ObjectTags().add(EnumTag.EVIL, 4).add(EnumTag.POISON, 4).add(EnumTag.PLANT, 1));
-            ThaumcraftApi.registerObjectTag(netherBerryBush.blockID, 1, new ObjectTags().add(EnumTag.EVIL, 4).add(EnumTag.DARK, 4).add(EnumTag.PLANT, 1));
-            ThaumcraftApi.registerObjectTag(netherBerryBush.blockID, 2, new ObjectTags().add(EnumTag.EVIL, 4).add(EnumTag.FLIGHT, 4).add(EnumTag.PLANT, 1));
-            ThaumcraftApi.registerObjectTag(netherBerryBush.blockID, 3, new ObjectTags().add(EnumTag.EVIL, 4).add(EnumTag.DESTRUCTION, 4).add(EnumTag.PLANT, 1));
-            ThaumcraftApi.registerObjectTag(thornVines.blockID, 0, new ObjectTags().add(EnumTag.FIRE, 1).add(EnumTag.PLANT, 1));*/
+            ThaumcraftApi.registerObjectTag(netherBerryBush.blockID, 0, new AspectList().add(Aspect.ENTROPY, 4).add(Aspect.POISON, 4).add(Aspect.PLANT, 1));
+            ThaumcraftApi.registerObjectTag(netherBerryBush.blockID, 1, new AspectList().add(Aspect.ENTROPY, 4).add(Aspect.DARKNESS, 4).add(Aspect.PLANT, 1));
+            ThaumcraftApi.registerObjectTag(netherBerryBush.blockID, 2, new AspectList().add(Aspect.ENTROPY, 4).add(Aspect.FLIGHT, 4).add(Aspect.PLANT, 1));
+            ThaumcraftApi.registerObjectTag(netherBerryBush.blockID, 3, new AspectList().add(Aspect.ENTROPY, 8).add(Aspect.PLANT, 1));
+            ThaumcraftApi.registerObjectTag(thornVines.blockID, 0, new AspectList().add(Aspect.FIRE, 1).add(Aspect.PLANT, 1));
 
             /* Nether and End clouds */
-            /*ThaumcraftApi.registerObjectTag(cloud.blockID, 2, new ObjectTags().add(EnumTag.WIND, 1).add(EnumTag.FLIGHT, 1).add(EnumTag.FIRE, 1));
-            ThaumcraftApi.registerObjectTag(cloud.blockID, 3, new ObjectTags().add(EnumTag.WIND, 1).add(EnumTag.FLIGHT, 1).add(EnumTag.DESTRUCTION, 1));
-            ThaumcraftApi.registerObjectTag(cloud.blockID, 1, new ObjectTags().add(EnumTag.WIND, 1).add(EnumTag.FLIGHT, 1).add(EnumTag.ELDRITCH, 1));*/
+            ThaumcraftApi.registerObjectTag(cloud.blockID, 2, new AspectList().add(Aspect.AIR, 1).add(Aspect.FLIGHT, 1).add(Aspect.FIRE, 1).add(Aspect.WEATHER, 1));
+            ThaumcraftApi.registerObjectTag(cloud.blockID, 3, new AspectList().add(Aspect.AIR, 1).add(Aspect.FLIGHT, 1).add(Aspect.POISON, 1).add(Aspect.WEATHER, 1));
+            ThaumcraftApi.registerObjectTag(cloud.blockID, 1, new AspectList().add(Aspect.AIR, 1).add(Aspect.FLIGHT, 1).add(Aspect.ELDRITCH, 1).add(Aspect.WEATHER, 1));
 
             /*Other nether items/plants */
-            /*ThaumcraftApi.registerObjectTag(potashApple.itemID, 0, new ObjectTags().add(EnumTag.CROP, 2).add(EnumTag.POISON, 2));
-            ThaumcraftApi.registerObjectTag(netherBerryItem.itemID, 0, new ObjectTags().add(EnumTag.EVIL, 4).add(EnumTag.POISON, 4).add(EnumTag.LIFE, 1).add(EnumTag.CROP, 1));
-            ThaumcraftApi.registerObjectTag(netherBerryItem.itemID, 1, new ObjectTags().add(EnumTag.EVIL, 4).add(EnumTag.DARK, 4).add(EnumTag.LIFE, 1).add(EnumTag.CROP, 1));
-            ThaumcraftApi.registerObjectTag(netherBerryItem.itemID, 2, new ObjectTags().add(EnumTag.EVIL, 4).add(EnumTag.FLIGHT, 4).add(EnumTag.LIFE, 1).add(EnumTag.CROP, 1));
-            ThaumcraftApi.registerObjectTag(netherBerryItem.itemID, 3, new ObjectTags().add(EnumTag.EVIL, 4).add(EnumTag.DESTRUCTION, 4).add(EnumTag.LIFE, 1).add(EnumTag.CROP, 1));*/
+            ThaumcraftApi.registerObjectTag(potashApple.itemID, 0, new AspectList().add(Aspect.CROP, 2).add(Aspect.POISON, 2));
+            ThaumcraftApi.registerObjectTag(netherBerryItem.itemID, 0, new AspectList().add(Aspect.ENTROPY, 4).add(Aspect.POISON, 4).add(Aspect.LIFE, 1).add(Aspect.CROP, 1));
+            ThaumcraftApi.registerObjectTag(netherBerryItem.itemID, 1, new AspectList().add(Aspect.ENTROPY, 4).add(Aspect.DARKNESS, 4).add(Aspect.LIFE, 1).add(Aspect.CROP, 1));
+            ThaumcraftApi.registerObjectTag(netherBerryItem.itemID, 2, new AspectList().add(Aspect.ENTROPY, 4).add(Aspect.FLIGHT, 4).add(Aspect.LIFE, 1).add(Aspect.CROP, 1));
+            ThaumcraftApi.registerObjectTag(netherBerryItem.itemID, 3, new AspectList().add(Aspect.ENTROPY, 8).add(Aspect.LIFE, 1).add(Aspect.CROP, 1));
         }
         catch (Exception e)
         {
@@ -1591,7 +1511,7 @@ public class NContent implements IFuelHandler
     public static Block fenceGateFusewood;
 
     @Override
-    public int getBurnTime(ItemStack fuel)
+    public int getBurnTime (ItemStack fuel)
     {
         if (fuel.itemID == floraSapling.blockID || fuel.itemID == rareSapling.blockID)
             return 100;
