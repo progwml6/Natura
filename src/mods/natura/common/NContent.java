@@ -1,35 +1,55 @@
 package mods.natura.common;
 
-import cpw.mods.fml.common.*;
-import cpw.mods.fml.common.event.FMLInterModComms;
-import cpw.mods.fml.common.registry.*;
-
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 import mods.natura.Natura;
 import mods.natura.blocks.*;
 import mods.natura.blocks.crops.*;
+import mods.natura.blocks.nether.*;
 import mods.natura.blocks.overrides.*;
+import mods.natura.blocks.tech.*;
 import mods.natura.blocks.trees.*;
 import mods.natura.entity.*;
 import mods.natura.items.*;
 import mods.natura.items.blocks.*;
 import mods.natura.items.tools.*;
 import mods.natura.util.DispenserBehaviorSpawnEgg;
-import net.minecraft.block.*;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockDispenser;
+import net.minecraft.block.BlockLever;
+import net.minecraft.block.BlockPressurePlate;
+import net.minecraft.block.EnumMobType;
 import net.minecraft.block.material.Material;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.EnumCreatureType;
-import net.minecraft.item.*;
-import net.minecraft.item.crafting.*;
-import net.minecraft.nbt.*;
+import net.minecraft.item.EnumArmorMaterial;
+import net.minecraft.item.EnumToolMaterial;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.CraftingManager;
+import net.minecraft.item.crafting.FurnaceRecipes;
+import net.minecraft.item.crafting.ShapedRecipes;
+import net.minecraft.item.crafting.ShapelessRecipes;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
 import net.minecraft.world.biome.BiomeGenBase;
-import net.minecraftforge.common.*;
-import net.minecraftforge.oredict.*;
+import net.minecraftforge.common.BiomeDictionary;
+import net.minecraftforge.common.EnumHelper;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.oredict.OreDictionary;
+import net.minecraftforge.oredict.ShapedOreRecipe;
+import net.minecraftforge.oredict.ShapelessOreRecipe;
 import tconstruct.library.crafting.PatternBuilder;
 import thaumcraft.api.ThaumcraftApi;
 import thaumcraft.api.aspects.Aspect;
 import thaumcraft.api.aspects.AspectList;
+import cpw.mods.fml.common.IFuelHandler;
+import cpw.mods.fml.common.Loader;
+import cpw.mods.fml.common.event.FMLInterModComms;
+import cpw.mods.fml.common.registry.EntityRegistry;
+import cpw.mods.fml.common.registry.GameRegistry;
 
 public class NContent implements IFuelHandler
 {
@@ -152,8 +172,6 @@ public class NContent implements IFuelHandler
         GameRegistry.registerBlock(taintedSoil, "soil.tainted");
         heatSand = new HeatSand(PHNatura.heatSand).setUnlocalizedName("HeatSand");//.setLightValue(0.375f);
         GameRegistry.registerBlock(heatSand, "heatsand");
-        /*netherAir = new SulfurAirBlock(PHNatura.sulfurair).setUnlocalizedName("SulfurAir");
-        GameRegistry.registerBlock(netherAir, "netherAir");*/
         /*infernalStone = new NBlock(PHNatura.infernalStone, Material.rock, 1.5f, new String[] { "infernal_stone" }).setUnlocalizedName("infernalStone");
         GameRegistry.registerBlock(infernalStone, "infernalStone");*/
 
@@ -174,9 +192,41 @@ public class NContent implements IFuelHandler
 
         Block.netherrack.setResistance(4f);
 
-        /*public static Block glowshroomBlue;
-        public static Block glowshroomGreen;
-        public static Block glowshroomPurple;*/
+        brail = new BlazeRail(PHNatura.brail).setHardness(0.7F).setUnlocalizedName("blazerail").setTextureName("natura:brail_normal");
+        GameRegistry.registerBlock(brail, "Blazerail");
+        brailPowered = new BlazeRailPowered(PHNatura.brailPowered, false).setHardness(0.7F).setUnlocalizedName("blazerail.powered").setTextureName("natura:brail_golden");
+        GameRegistry.registerBlock(brailPowered, "BrailPowered");
+        brailDetector = new BlazeRailDetector(PHNatura.brailDetector).setHardness(0.7F).setUnlocalizedName("blazerail.detector").setTextureName("natura:brail_detector");
+        GameRegistry.registerBlock(brailDetector, "BrailDetector");
+        brailActivator = new BlazeRailPowered(PHNatura.brailActivator, true).setHardness(0.7F).setUnlocalizedName("blazerail.activator").setTextureName("natura:brail_activator");
+        GameRegistry.registerBlock(brailActivator, "BrailActivator");
+
+        netherrackFurnace = new NetherrackFurnaceBlock(PHNatura.netherrackFurnace).setHardness(3.5F).setCreativeTab(NaturaTab.netherTab).setUnlocalizedName("furnace.netherrack");
+        GameRegistry.registerBlock(netherrackFurnace, "NetherFurnace");
+        GameRegistry.registerTileEntity(NetherrackFurnaceLogic.class, "netherrackFurnace");
+        respawnObelisk = new RespawnObelisk(PHNatura.respawnObelisk, Material.wood).setHardness(1.0F).setResistance(1000000F).setCreativeTab(NaturaTab.netherTab).setUnlocalizedName("nether.obelisk");
+        GameRegistry.registerBlock(respawnObelisk, "Obelisk");
+        netherGlass = (NetherGlass) new NetherGlass(PHNatura.netherGlass).setHardness(1.0F).setResistance(3000F).setStepSound(Block.soundGlassFootstep).setCreativeTab(NaturaTab.netherTab)
+                .setUnlocalizedName("nether.glass");
+        GameRegistry.registerBlock(netherGlass, NetherGlassItem.class, "NetherGlass");
+        netherHopper = (BlazeHopper) new BlazeHopper(PHNatura.netherHopper).setHardness(3.0F).setResistance(8.0F).setCreativeTab(NaturaTab.netherTab).setUnlocalizedName("nether.hopper");
+        GameRegistry.registerBlock(netherHopper, "NetherHopper");
+        netherPressurePlate = new AlternatePressurePlate(PHNatura.netherPressurePlate, "netherrack", Material.rock, EnumMobType.mobs).setHardness(0.5F).setStepSound(Block.soundStoneFootstep)
+                .setUnlocalizedName("pressurePlate");
+        GameRegistry.registerBlock(netherPressurePlate, "NetherPressurePlate");
+        netherButton = new NetherrackButton(PHNatura.netherButton).setHardness(0.5F).setStepSound(Block.soundStoneFootstep).setUnlocalizedName("button");
+        GameRegistry.registerBlock(netherButton, "NetherButton");
+        netherLever = new NetherLever(PHNatura.netherLever).setHardness(0.5F).setStepSound(Block.soundWoodFootstep).setUnlocalizedName("lever").setTextureName("natura:nlever");
+        GameRegistry.registerBlock(netherLever, "NetherLever");
+        /*public static Block netherDropper;
+        public static Block netherDispenser;*/
+
+        /*piston = (NetherPistonBase) new NetherPistonBase(PHNatura.piston, false).setUnlocalizedName("nether.piston");
+        GameRegistry.registerBlock(piston, "natura.piston");
+        pistonSticky = (NetherPistonBase) new NetherPistonBase(PHNatura.pistonSticky, true).setUnlocalizedName("nether.piston.sticky");
+        GameRegistry.registerBlock(pistonSticky, "natura.piston.sticky");
+        pistonExtension = new NetherPistonExtension(PHNatura.pistonExtension);
+        GameRegistry.registerBlock(pistonExtension, "natura.piston.extension");*/
 
         potashApple = new NetherFoodItem(PHNatura.netherFood).setUnlocalizedName("Natura.netherfood");
         GameRegistry.registerItem(potashApple, "Natura.netherfood");
@@ -189,18 +239,13 @@ public class NContent implements IFuelHandler
         GameRegistry.registerBlock(rareLeaves, OverworldLeavesItem.class, "Rare Leaves");
         rareSapling = (OverworldSapling) new OverworldSapling(PHNatura.rareSapling).setUnlocalizedName("RareSapling");
         GameRegistry.registerBlock(rareSapling, OverworldSaplingItem.class, "Rare Sapling");
-        //rareLeaves;
-        bluebells = new FlowerBlock(PHNatura.bluebells).setUnlocalizedName("Bluebells");
+        bluebells = new FlowerBlock(PHNatura.bluebells).setUnlocalizedName("bluebells");
         GameRegistry.registerBlock(bluebells, "Bluebells");
 
         //Vanilla overrides and alternates
-        //Block.blocksList[58] = null;
-        //Item.itemsList[58] = null;
         alternateWorkbench = new AlternateWorkbench(PHNatura.alternateWorkbench).setHardness(2.5F).setStepSound(Block.soundWoodFootstep).setUnlocalizedName("workbench").setCreativeTab(NaturaTab.tab);
         GameRegistry.registerBlock(alternateWorkbench, NAlternateItem.class, "Natura.workbench");
 
-        //Block.blocksList[47] = null;
-        //Item.itemsList[47] = null;
         alternateBookshelf = new AlternateBookshelf(PHNatura.alternateBookshelf).setHardness(1.5F).setStepSound(Block.soundWoodFootstep).setUnlocalizedName("bookshelf").setCreativeTab(NaturaTab.tab);
         GameRegistry.registerBlock(alternateBookshelf, NAlternateItem.class, "Natura.bookshelf");
 
@@ -503,7 +548,7 @@ public class NContent implements IFuelHandler
         stickItem = (new StickItem(PHNatura.stickItem)).setFull3D().setUnlocalizedName("natura.stick").setCreativeTab(NaturaTab.tab);
         GameRegistry.registerItem(stickItem, "natura.stick");
 
-        EnumToolMaterial Bloodwood = EnumHelper.addToolMaterial("Bloodwood", 2, 350, 7f, 3, 24);
+        EnumToolMaterial Bloodwood = EnumHelper.addToolMaterial("Bloodwood", 3, 350, 7f, 3, 24);
         EnumArmorMaterial Imp = EnumHelper.addArmorMaterial("Imp", 33, new int[] { 1, 3, 2, 1 }, 15);
 
         ghostwoodSword = new NaturaSword(PHNatura.ghostwoodSword, EnumToolMaterial.WOOD, "ghostwood").setUnlocalizedName("natura.sword.ghostwood");
@@ -579,6 +624,9 @@ public class NContent implements IFuelHandler
         GameRegistry.registerItem(impLeggings, "natura.armor.impleggings");
         impBoots = new NaturaArmor(PHNatura.impBoots, Imp, 1, 3, "imp_boots", "imp").setUnlocalizedName("natura.armor.impboots");
         GameRegistry.registerItem(impBoots, "natura.armor.impboots");
+
+        flintAndBlaze = new FlintAndBlaze(PHNatura.flintAndBlaze).setUnlocalizedName("flintandblaze").setTextureName("natura:flint_and_blaze");
+        GameRegistry.registerItem(flintAndBlaze, "natura.flintandblaze");
 
         impMeat = new ImpMeat(PHNatura.impMeat).setUnlocalizedName("impmeat");
         GameRegistry.registerItem(impMeat, "impmeat");
@@ -713,7 +761,8 @@ public class NContent implements IFuelHandler
         /*ItemStack[] plankStacks = new ItemStack[] { new ItemStack(planks, 1, 0), new ItemStack(planks, 1, 1), new ItemStack(planks, 1, 2), new ItemStack(planks, 1, 3), new ItemStack(planks, 1, 5),
                 new ItemStack(planks, 1, 6), new ItemStack(planks, 1, 7), new ItemStack(planks, 1, 8), new ItemStack(planks, 1, 9), new ItemStack(planks, 1, 10), new ItemStack(planks, 1, 11) };*/
         ItemStack[] logStacks = new ItemStack[] { new ItemStack(tree, 1, 0), new ItemStack(tree, 1, 1), new ItemStack(tree, 1, 2), new ItemStack(tree, 1, 3), new ItemStack(redwood, 1, 1),
-                new ItemStack(rareTree, 1, 0), new ItemStack(rareTree, 1, 1), new ItemStack(rareTree, 1, 2), new ItemStack(rareTree, 1, 3), new ItemStack(willow, 1, 0), new ItemStack(darkTree, 1, 0), new ItemStack(darkTree, 1, 1) };
+                new ItemStack(rareTree, 1, 0), new ItemStack(rareTree, 1, 1), new ItemStack(rareTree, 1, 2), new ItemStack(rareTree, 1, 3), new ItemStack(willow, 1, 0), new ItemStack(darkTree, 1, 0),
+                new ItemStack(darkTree, 1, 1) };
         int[] exclusions = { 4, 11 };
 
         GameRegistry.addRecipe(new ItemStack(plantItem, 1, 5), " s ", "#s#", "#s#", 's', new ItemStack(stickItem, 1, 2), '#', new ItemStack(floraLeavesNoColor, 1, 1));
@@ -754,6 +803,8 @@ public class NContent implements IFuelHandler
         }
 
         OreDictionary.registerOre("dyeBlue", new ItemStack(plantItem, 1, 8));
+        OreDictionary.registerOre("glassSoul", new ItemStack(netherGlass, 1, 0));
+        
         //Tools
         int[] toolMeta = { 2, 4, 11, 12 };
         Item[][] tools = { { ghostwoodSword, ghostwoodPickaxe, ghostwoodShovel, ghostwoodAxe, ghostwoodKama, ghostwoodBow },
@@ -866,6 +917,27 @@ public class NContent implements IFuelHandler
             addShapedRecipeFirst(recipes, new ItemStack(plankSlab1, 6, i), "###", '#', new ItemStack(planks, 1, i));
         for (int i = 0; i < 5; i++)
             addShapedRecipeFirst(recipes, new ItemStack(plankSlab2, 6, i), "###", '#', new ItemStack(planks, 1, 8 + i));
+
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(this.brail, 16), "X X", "X#X", "X X", 'X', Item.blazeRod, '#', "stickWood"));
+        GameRegistry.addRecipe(new ItemStack(this.brailPowered, 6), "X X", "X#X", "XRX", 'X', Item.blazeRod, 'R', Item.redstone, '#', new ItemStack(darkTree, 1, 1));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(this.brailActivator, 6), "XSX", "X#X", "XSX", 'X', Item.blazeRod, '#', Block.torchRedstoneActive, 'S', "stickWood"));
+        GameRegistry.addRecipe(new ItemStack(this.brailDetector, 6), "X X", "X#X", "XRX", 'X', Item.blazeRod, 'R', Item.redstone, '#', netherPressurePlate);
+
+        GameRegistry.addRecipe(new ItemStack(this.netherrackFurnace), "###", "# #", "###", '#', Block.netherrack);
+        GameRegistry.addRecipe(new ItemStack(this.respawnObelisk), "###", "# #", "###", '#', new ItemStack(tree, 1, 2));
+        FurnaceRecipes.smelting().addSmelting(Block.slowSand.blockID, 0, new ItemStack(netherGlass, 1, 0), 0.3f);
+        FurnaceRecipes.smelting().addSmelting(heatSand.blockID, 0, new ItemStack(netherGlass, 1, 1), 0.3f);
+        OreDictionary.registerOre("chestWood", new ItemStack(Block.chest));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(this.netherHopper), "# #", "#C#", " # ", '#', new ItemStack(Item.blazeRod), 'C', "chestWood"));
+        GameRegistry.addRecipe(new ItemStack(this.netherPressurePlate), "##", '#', new ItemStack(Block.netherrack));
+        GameRegistry.addRecipe(new ItemStack(this.netherButton), "#", '#', new ItemStack(Block.netherrack));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(this.netherLever), "S", "#", '#', new ItemStack(Block.netherrack), 'S', "stickWood"));
+
+        OreDictionary.registerOre("blockGlass", new ItemStack(Block.glass));
+        OreDictionary.registerOre("blockGlass", new ItemStack(netherGlass, 1, 0));
+        OreDictionary.registerOre("blockGlass", new ItemStack(netherGlass, 1, 1));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Item.glassBottle, 3), "# #", " # ", '#', "blockGlass" ));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Block.daylightSensor), "GGG", "QQQ", "WWW", 'G', "blockGlass", 'Q', Item.netherQuartz, 'W', "slabWood" ));
     }
 
     public void addShapedRecipeFirst (List recipeList, ItemStack itemstack, Object... objArray)
@@ -1255,23 +1327,23 @@ public class NContent implements IFuelHandler
 
             /* Adding bowls, bowls of stew, and other bowl-based goodies! */
             AspectList bowlEmptyTag = new AspectList();
-             bowlEmptyTag.add(Aspect.VOID, 1);
-             AspectList bowlStewTag = new AspectList();
-             bowlStewTag.add(Aspect.PLANT, 6);
-             bowlStewTag.add(Aspect.AIR, 1);
-             bowlStewTag.add(Aspect.LIFE, 4);
-             AspectList glowStewTag = new AspectList();
-             glowStewTag.add(Aspect.PLANT, 8);
-             glowStewTag.add(Aspect.AIR, 1);
-             glowStewTag.add(Aspect.LIFE, 4);
-             glowStewTag.add(Aspect.LIGHT, 4);
+            bowlEmptyTag.add(Aspect.VOID, 1);
+            AspectList bowlStewTag = new AspectList();
+            bowlStewTag.add(Aspect.PLANT, 6);
+            bowlStewTag.add(Aspect.AIR, 1);
+            bowlStewTag.add(Aspect.LIFE, 4);
+            AspectList glowStewTag = new AspectList();
+            glowStewTag.add(Aspect.PLANT, 8);
+            glowStewTag.add(Aspect.AIR, 1);
+            glowStewTag.add(Aspect.LIFE, 4);
+            glowStewTag.add(Aspect.LIGHT, 4);
 
-             for (int i = 0; i < 13; i++)
-             {
-                 ThaumcraftApi.registerObjectTag(bowlEmpty.itemID, i, bowlEmptyTag);
-                 ThaumcraftApi.registerObjectTag(bowlStew.itemID, i, bowlStewTag);
-                 ThaumcraftApi.registerObjectTag(bowlStew.itemID, i + 13, glowStewTag);
-             }
+            for (int i = 0; i < 13; i++)
+            {
+                ThaumcraftApi.registerObjectTag(bowlEmpty.itemID, i, bowlEmptyTag);
+                ThaumcraftApi.registerObjectTag(bowlStew.itemID, i, bowlStewTag);
+                ThaumcraftApi.registerObjectTag(bowlStew.itemID, i + 13, glowStewTag);
+            }
 
             /* Adding other overworld saplings */
             AspectList saplingTag = new AspectList();
@@ -1420,6 +1492,25 @@ public class NContent implements IFuelHandler
     public static Block glowshroomGreen;
     public static Block glowshroomPurple;
 
+    public static Block brail;
+    public static Block brailPowered;
+    public static Block brailDetector;
+    public static Block brailActivator;
+
+    public static Block netherrackFurnace;
+    public static Block respawnObelisk;
+    public static NetherGlass netherGlass;
+    public static BlazeHopper netherHopper;
+    public static Block netherDropper;
+    public static Block netherDispenser;
+    public static Block netherPressurePlate;
+    public static Block netherButton;
+    public static Block netherLever;
+
+    public static NetherPistonBase piston;
+    public static NetherPistonBase pistonSticky;
+    public static NetherPistonExtension pistonExtension;
+
     public static Item potashApple;
     public static Item impMeat;
 
@@ -1460,6 +1551,8 @@ public class NContent implements IFuelHandler
     public static Item impJerkin;
     public static Item impLeggings;
     public static Item impBoots;
+
+    public static Item flintAndBlaze;
 
     public static ItemStack impHelmetStack;
     public static ItemStack impJerkinStack;

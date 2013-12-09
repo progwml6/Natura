@@ -37,9 +37,9 @@ public class NaturaArmor extends ItemArmor
     public String getArmorTexture (ItemStack stack, Entity entity, int slot, int layer)
     {
         if (slot == 2)
-            return "/assets/natura/textures/armor/" + armorTexture + "_2.png";
+            return "natura:textures/armor/" + armorTexture + "_2.png";
         else
-            return "/assets/natura/textures/armor/" + armorTexture + "_1.png";
+            return "natura:textures/armor/" + armorTexture + "_1.png";
     }
 
     public void getSubItems (int id, CreativeTabs tab, List list)

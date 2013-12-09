@@ -5,14 +5,15 @@ import cpw.mods.fml.common.registry.LanguageRegistry;
 
 public class NaturaTab extends CreativeTabs
 {
-    public static NaturaTab tab = new NaturaTab();
+    public static NaturaTab tab = new NaturaTab("natura.plants");
+    public static NaturaTab woodTab = new NaturaTab("natura.trees");
+    public static NaturaTab netherTab = new NaturaTab("natura.nether");
     static boolean hasInit;
     static int icon;
 
-    public NaturaTab()
+    public NaturaTab(String name)
     {
-        super("naturaTab");
-        LanguageRegistry.instance().addStringLocalization("itemGroup.naturaTab", "Natura");
+        super(name);
     }
 
     public static void init (int index)

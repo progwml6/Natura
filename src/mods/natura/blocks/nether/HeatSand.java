@@ -1,4 +1,4 @@
-package mods.natura.blocks;
+package mods.natura.blocks.nether;
 
 import mods.natura.common.NaturaTab;
 import net.minecraft.block.Block;

@@ -29,9 +29,6 @@ public class HeatscarSpider extends EntitySpider
     }
 
     @SideOnly(Side.CLIENT)
-    /**
-     * How large the spider should be scaled.
-     */
     public float spiderScaleAmount ()
     {
         return 2.0F;
