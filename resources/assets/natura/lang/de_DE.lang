@@ -1,4 +1,8 @@
-﻿item.natura.spawnegg.name=Erschaffe 
+itemGroup.natura.plants=Natura-Pflanzen
+itemGroup.natura.trees=Natura-Bäume
+itemGroup.natura.nether=Natura-Nether
+
+item.natura.spawnegg.name=Erschaffe 
 
 item.wheatBag.name=Weizensamenbeutel
 item.barleyBag.name=Gerstensamenbeutel
@@ -197,6 +201,17 @@ tile.trapdoor.maple.name=Ahornfalltür
 tile.trapdoor.amaranth.name=Amarantfalltür
 tile.trapdoor.silverbell.name=Halesiafalltür
 
+tile.blazerail.name=Lohenschiene
+tile.blazerail.powered.name=Energetische Lohenschiene
+tile.blazerail.detector.name=Detektor-Lohenschiene
+tile.blazerail.activator.name=Aktivierungs-Lohenschiene
+
+tile.furnace.netherrack.name=Netherofen
+tile.nether.obelisk.name=Obelisk
+
+tile.glass.soul.name=Seelenglas
+tile.glass.heat.name=Hitzglas
+
 block.glowshroom.green.name=Grüner Leuchtpilz
 block.glowshroom.purple.name=Violetter Leuchtpilz
 block.glowshroom.blue.name=Blauer Leuchtpilz
@@ -277,9 +292,16 @@ item.natura.armor.impjerkin.name=Koboldhautwams
 item.natura.armor.impleggings.name=Koboldhauthose
 item.natura.armor.impboots.name=Koboldhautstiefel
 
+item.flintandblaze=Lohenfeuerzeug
+
 entity.Natura.Imp.name=Kobold
 entity.Natura.HeatscarSpider.name=Hitznarbenspinne
 entity.Natura.BabyHeatscarSpider.name=Baby-Hitznarbenspinne
 entity.Natura.FlameSpider.name=Hitznarbenspinne
 entity.Natura.FlameSpiderBaby.name=Baby-Hitznarbenspinne
 entity.Natura.NitroCreeper.name=Nitro-Creeper
+
+tooltip.nethertree=Netherbaum
+tooltip.fusewood.log=Explosive Persönlichkeit
+tooltip.glass.soul=Geisterhaft
+tooltip.glass.heat=Heiß
