@@ -1062,6 +1062,7 @@ public class NContent implements IFuelHandler
         FMLInterModComms.sendMessage("Thaumcraft", "harvestClickableCrop", new ItemStack(netherBerryBush, 1, 14));
         FMLInterModComms.sendMessage("Thaumcraft", "harvestClickableCrop", new ItemStack(netherBerryBush, 1, 15));
         FMLInterModComms.sendMessage("Thaumcraft", "harvestClickableCrop", new ItemStack(crops, 1, 8));
+        FMLInterModComms.sendMessage("Thaumcraft", "harvestStandardCrop", new ItemStack(crops, 1, 3));
 
         //Forestry
         StringBuilder builder = new StringBuilder();
