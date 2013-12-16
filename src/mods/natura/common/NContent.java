@@ -763,7 +763,6 @@ public class NContent implements IFuelHandler
         ItemStack[] logStacks = new ItemStack[] { new ItemStack(tree, 1, 0), new ItemStack(tree, 1, 1), new ItemStack(tree, 1, 2), new ItemStack(tree, 1, 3), new ItemStack(redwood, 1, 1),
                 new ItemStack(rareTree, 1, 0), new ItemStack(rareTree, 1, 1), new ItemStack(rareTree, 1, 2), new ItemStack(rareTree, 1, 3), new ItemStack(willow, 1, 0), new ItemStack(darkTree, 1, 0),
                 new ItemStack(darkTree, 1, 1) };
-        int[] exclusions = { 4, 11 };
 
         GameRegistry.addRecipe(new ItemStack(plantItem, 1, 5), " s ", "#s#", "#s#", 's', new ItemStack(stickItem, 1, 2), '#', new ItemStack(floraLeavesNoColor, 1, 1));
         GameRegistry.addRecipe(new ItemStack(Item.arrow, 4, 0), " f ", "#s#", " # ", 's', new ItemStack(stickItem, 1, Short.MAX_VALUE), '#', new ItemStack(plantItem, 1, 5), 'f', Item.flint);
@@ -784,22 +783,18 @@ public class NContent implements IFuelHandler
             addShapedRecipeFirst(recipes, new ItemStack(alternateWorkbench, 1, i), "##", "##", '#', new ItemStack(planks, 1, i));
             addShapedRecipeFirst(recipes, new ItemStack(alternateBookshelf, 1, i), "###", "bbb", "###", '#', new ItemStack(planks, 1, i), 'b', Item.book);
             addShapedRecipeFirst(recipes, new ItemStack(alternateFence, 2, i), "###", "###", '#', new ItemStack(stickItem, 1, i));
+            OreDictionary.registerOre("crafterWood", new ItemStack(alternateWorkbench, 1, i));
+            OreDictionary.registerOre("craftingTableWood", new ItemStack(alternateWorkbench, 1, i));
+            if(i!=4 && i!=12)
+            {
+            	OreDictionary.registerOre("plankWood", new ItemStack(planks, 1, i));
+                OreDictionary.registerOre("stickWood", new ItemStack(stickItem, 1, i));
+            }
         }
 
-        int meta = 0;
         for (int i = 0; i < logStacks.length; i++)
         {
-            OreDictionary.registerOre("crafterWood", new ItemStack(alternateWorkbench, 1, meta));
-            OreDictionary.registerOre("craftingTableWood", new ItemStack(alternateWorkbench, 1, meta));
-            for (int e = 0; e < exclusions.length; e++)
-            {
-                if (exclusions[e] == i)
-                    meta++;
-            }
-            OreDictionary.registerOre("plankWood", new ItemStack(planks, 1, meta));
             OreDictionary.registerOre("logWood", logStacks[i]);
-            OreDictionary.registerOre("stickWood", new ItemStack(stickItem, 1, meta));
-            meta++;
         }
 
         OreDictionary.registerOre("dyeBlue", new ItemStack(plantItem, 1, 8));
@@ -847,13 +842,6 @@ public class NContent implements IFuelHandler
         impBootsStack.addEnchantment(Enchantment.featherFalling, 1);
         impBootsStack.addEnchantment(Enchantment.fireProtection, 1);
         GameRegistry.addRecipe(impBootsStack.copy(), "# #", "# #", '#', new ItemStack(plantItem, 1, 6));
-
-        //Crafting overrides
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Item.swordWood, 1, 0), "##", "#s", " s", 's', new ItemStack(stickItem, 1, Short.MAX_VALUE), '#', "plankWood"));
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Item.pickaxeWood, 1, 0), "##", "#s", " s", 's', new ItemStack(stickItem, 1, Short.MAX_VALUE), '#', "plankWood"));
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Item.shovelWood, 1, 0), "##", "#s", " s", 's', new ItemStack(stickItem, 1, Short.MAX_VALUE), '#', "plankWood"));
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Item.axeWood, 1, 0), "##", "#s", " s", 's', new ItemStack(stickItem, 1, Short.MAX_VALUE), '#', "plankWood"));
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Item.hoeWood, 1, 0), "##", "#s", " s", 's', new ItemStack(stickItem, 1, Short.MAX_VALUE), '#', "plankWood"));
 
         GameRegistry.addShapelessRecipe(new ItemStack(Block.slowSand, 1, 0), heatSand, taintedSoil);
 
