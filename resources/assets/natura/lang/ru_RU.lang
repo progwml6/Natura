@@ -1,4 +1,8 @@
-item.natura.spawnegg.name=Призвать существо -  
+itemGroup.natura.plants=Natura растения
+itemGroup.natura.trees=Natura деревья
+itemGroup.natura.nether=Natura Нижний мир
+
+item.natura.spawnegg.name=Призвать существо - 
 
 item.wheatBag.name=Мешочек семян пшеницы
 item.barleyBag.name=Мешочек семян ячменя
@@ -197,6 +201,18 @@ tile.trapdoor.maple.name=Люк из древесины клёна
 tile.trapdoor.amaranth.name=Люк из древесины щирицы
 tile.trapdoor.silverbell.name=Люк из древесины галезии
 
+
+tile.blazerail.name=Пламенные рельсы
+tile.blazerail.powered.name=Пламенные электрические рельсы
+tile.blazerail.detector.name=Пламенные нажимные рельсы
+tile.blazerail.activator.name=Пламенные активирующие рельсы
+
+tile.furnace.netherrack.name=Печь Нижнего мира
+tile.nether.obelisk.name=Обелиск
+
+tile.glass.soul.name=Душевное стекло
+tile.glass.heat.name=Тёплое стекло
+
 block.glowshroom.green.name=Зелёный светогриб
 block.glowshroom.purple.name=Фиолетовый светогриб
 block.glowshroom.blue.name=Синий светогриб
@@ -277,9 +293,16 @@ item.natura.armor.impjerkin.name=Безрукавка дьяволёнка
 item.natura.armor.impleggings.name=Поножи дьяволёнка
 item.natura.armor.impboots.name=Ботинки дьяволёнка
 
+item.flintandblaze=Кремень и пламя
+
 entity.Natura.Imp.name=Дьяволёнок
 entity.Natura.HeatscarSpider.name=Паук с тепловым шрамом
 entity.Natura.BabyHeatscarSpider.name=Паук-ребёнок с тепловым шрамом
 entity.Natura.FlameSpider.name=Паук с тепловым шрамом
 entity.Natura.FlameSpiderBaby.name=Паук-ребёнок с тепловым шрамом
 entity.Natura.NitroCreeper.name=Нитро крипер
+
+tooltip.nethertree=Дерево Нижнего мира
+tooltip.fusewood.log=Взрывная личность
+tooltip.glass.soul=Призрачный
+tooltip.glass.heat=
