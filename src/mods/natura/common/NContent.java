@@ -921,11 +921,11 @@ public class NContent implements IFuelHandler
         GameRegistry.addRecipe(new ItemStack(this.netherButton), "#", '#', new ItemStack(Block.netherrack));
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(this.netherLever), "S", "#", '#', new ItemStack(Block.netherrack), 'S', "stickWood"));
 
-        OreDictionary.registerOre("blockGlass", new ItemStack(Block.glass));
-        OreDictionary.registerOre("blockGlass", new ItemStack(netherGlass, 1, 0));
-        OreDictionary.registerOre("blockGlass", new ItemStack(netherGlass, 1, 1));
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Item.glassBottle, 3), "# #", " # ", '#', "blockGlass" ));
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Block.daylightSensor), "GGG", "QQQ", "WWW", 'G', "blockGlass", 'Q', Item.netherQuartz, 'W', "slabWood" ));
+        OreDictionary.registerOre("glass", new ItemStack(Block.glass));
+        OreDictionary.registerOre("glass", new ItemStack(netherGlass, 1, 0));
+        OreDictionary.registerOre("glass", new ItemStack(netherGlass, 1, 1));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Item.glassBottle, 3), "# #", " # ", '#', "glass" ));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Block.daylightSensor), "GGG", "QQQ", "WWW", 'G', "glass", 'Q', Item.netherQuartz, 'W', "slabWood" ));
     }
 
     public void addShapedRecipeFirst (List recipeList, ItemStack itemstack, Object... objArray)
