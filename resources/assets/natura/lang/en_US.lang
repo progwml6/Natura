@@ -208,6 +208,7 @@ tile.blazerail.activator.name=Activator Blaze Rail
 
 tile.furnace.netherrack.name=Nether Furnace
 tile.nether.obelisk.name=Obelisk
+tile.nether.hopper.name=Hopper
 
 tile.glass.soul.name=Soul Glass
 tile.glass.heat.name=Heat Glass
