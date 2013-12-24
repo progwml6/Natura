@@ -208,6 +208,7 @@ tile.blazerail.activator.name=Aktivierungs-Lohenschiene
 
 tile.furnace.netherrack.name=Netherofen
 tile.nether.obelisk.name=Obelisk
+tile.nether.hopper.name=Trichter
 
 tile.glass.soul.name=Seelenglas
 tile.glass.heat.name=Hitzglas
