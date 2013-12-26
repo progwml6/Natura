@@ -5,6 +5,7 @@ import mods.natura.Natura;
 import mods.natura.plugins.fmp.ForgeMultiPart;
 import mods.natura.plugins.minefactoryreloaded.MineFactoryReloaded;
 import mods.natura.plugins.nei.NotEnoughItems;
+import mods.natura.plugins.te3.ThermalExpansion3;
 import net.minecraftforge.common.Configuration;
 
 import java.io.File;
@@ -110,6 +111,7 @@ public class PluginController
         registerPlugin(new ForgeMultiPart());
         registerPlugin(new MineFactoryReloaded());
         registerPlugin(new NotEnoughItems());
+        registerPlugin(new ThermalExpansion3());
     }
 
 }
