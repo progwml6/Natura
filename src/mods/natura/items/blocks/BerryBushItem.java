@@ -12,6 +12,7 @@ import net.minecraftforge.common.ForgeDirection;
 import net.minecraftforge.common.IPlantable;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.util.StatCollector;
 
 public class BerryBushItem extends ItemBlock
 {
@@ -71,20 +72,20 @@ public class BerryBushItem extends ItemBlock
         switch (stack.getItemDamage() % 4)
         {
         case 0:
-            list.add("Sweet and red");
-            list.add("Found in warm areas");
+            list.add(StatCollector.translateToLocal("tooltip.berrybush1"));
+            list.add(StatCollector.translateToLocal("tooltip.berrybush2"));
             break;
         case 1:
-            list.add("Tart and blue");
-            list.add("Found in temperate areas");
+            list.add(StatCollector.translateToLocal("tooltip.berrybush3"));
+            list.add(StatCollector.translateToLocal("tooltip.berrybush4"));
             break;
         case 2:
-            list.add("Sweet and black");
-            list.add("Found in wet areas");
+            list.add(StatCollector.translateToLocal("tooltip.berrybush5"));
+            list.add(StatCollector.translateToLocal("tooltip.berrybush6"));
             break;
         case 3:
-            list.add("Tasty and yellow-orange");
-            list.add("Found in cold areas");
+            list.add(StatCollector.translateToLocal("tooltip.berrybush7"));
+            list.add(StatCollector.translateToLocal("tooltip.berrybush8"));
             break;
         }
     }
