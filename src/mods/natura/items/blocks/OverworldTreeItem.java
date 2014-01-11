@@ -8,6 +8,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.MathHelper;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.util.StatCollector;
 
 public class OverworldTreeItem extends ItemBlock
 {
@@ -36,20 +37,20 @@ public class OverworldTreeItem extends ItemBlock
     @Override
     @SideOnly(Side.CLIENT)
     public void addInformation (ItemStack stack, EntityPlayer player, List list, boolean par4)
-    {
+   {
         switch (stack.getItemDamage() % 4)
         {
         case 0:
-            list.add("Somewhat sweet");
+            list.add(StatCollector.translateToLocal("tooltip.tree7"));
             break;
         case 1:
-            list.add("Silver Bells");
+            list.add(StatCollector.translateToLocal("tooltip.tree8"));
             break;
         case 2:
-            list.add("Heart of Wood");
+            list.add(StatCollector.translateToLocal("tooltip.tree9"));
             break;
         case 3:
-            list.add("Wild Grain");
+            list.add(StatCollector.translateToLocal("tooltip.tree10"));
             break;
         }
     }
