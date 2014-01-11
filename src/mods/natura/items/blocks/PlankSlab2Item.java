@@ -10,6 +10,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+import net.minecraft.util.StatCollector;
 
 public class PlankSlab2Item extends ItemBlock
 {
@@ -55,20 +56,20 @@ public class PlankSlab2Item extends ItemBlock
         switch (stack.getItemDamage())
         {
         case 0:
-            list.add("Heart of Wood");
+            list.add(StatCollector.translateToLocal("tooltip.tree9"));
             break;
         case 1:
-            list.add("Wild Grain");
+            list.add(StatCollector.translateToLocal("tooltip.tree10"));
             break;
         case 2:
-            list.add("The Weeper");
+            list.add(StatCollector.translateToLocal("tooltip.tree11"));
             break;
         case 3:
-            list.add("Nether Tree");
+            list.add(StatCollector.translateToLocal("tooltip.nethertree"));
             break;
         case 4:
-            list.add("Nether Tree");
-            list.add("Explosive Personality");
+            list.add(StatCollector.translateToLocal("tooltip.nethertree"));
+            list.add(StatCollector.translateToLocal("tooltip.fusewood.log"));
             break;
         }
     }
