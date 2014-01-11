@@ -12,6 +12,7 @@ import net.minecraftforge.common.ForgeDirection;
 import net.minecraftforge.common.IPlantable;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.util.StatCollector
 
 public class NetherBerryBushItem extends ItemBlock
 {
@@ -69,20 +70,20 @@ public class NetherBerryBushItem extends ItemBlock
     @SideOnly(Side.CLIENT)
     public void addInformation (ItemStack stack, EntityPlayer player, List list, boolean par4)
     {
-        list.add("A little bit evil");
+        list.add(StatCollector.translateToLocal("tooltip.netherberrybush1"));
         switch (stack.getItemDamage() % 4)
         {
         case 0:
-            list.add("Killer healing");
+            list.add(StatCollector.translateToLocal("tooltip.netherberrybush2"));
             break;
         case 1:
-            list.add("Visible night");
+            list.add(StatCollector.translateToLocal("tooltip.netherberrybush3"));
             break;
         case 2:
-            list.add("Slow dive");
+            list.add(StatCollector.translateToLocal("tooltip.netherberrybush4"));
             break;
         case 3:
-            list.add("Hit like a truck");
+            list.add(StatCollector.translateToLocal("tooltip.netherberrybush5"));
             break;
         }
     }
