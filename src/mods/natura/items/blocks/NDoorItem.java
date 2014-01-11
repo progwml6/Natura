@@ -15,6 +15,7 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.util.StatCollector;
 
 public class NDoorItem extends Item
 {
@@ -168,25 +169,25 @@ public class NDoorItem extends Item
         switch (stack.getItemDamage())
         {
         case 0:
-            list.add("Giant Sequoia");
+            list.add(StatCollector.translateToLocal("tooltip.tree4"));
             break;
         case 1:
-            list.add("The pink wood");
+            list.add(StatCollector.translateToLocal("tooltip.tree1"));
             break;
         case 2:
-            list.add("Ascended Glitch");
+            list.add(StatCollector.translateToLocal("tooltip.tree6"));
             break;
         case 3:
-            list.add("Flowering Cherry");
+            list.add(StatCollector.translateToLocal("tooltip.tree2"));
             break;
         case 4:
-            list.add("Pale as a ghost");
+            list.add(StatCollector.translateToLocal("tooltip.tree3"));
             break;
         case 5:
-            list.add("Fire-resistant door");
+            list.add(StatCollector.translateToLocal("tooltip.firedoor"));
             break;
         case 6:
-            list.add("Secret Tunnel");
+            list.add(StatCollector.translateToLocal("tooltip.barkdoor"));
             break;
         }
     }
