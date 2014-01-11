@@ -10,6 +10,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.util.StatCollector;
 
 public class CactusJuice extends ItemFood
 {
@@ -52,6 +53,6 @@ public class CactusJuice extends ItemFood
     @SideOnly(Side.CLIENT)
     public void addInformation (ItemStack stack, EntityPlayer player, List list, boolean par4)
     {
-        list.add("Refreshing!");
+        list.add(StatCollector.translateToLocal("tooltip.cactusjuice"));
     }
 }
