@@ -7,6 +7,7 @@ import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.util.StatCollector;
 
 public class PlanksItem extends ItemBlock
 {
@@ -38,44 +39,44 @@ public class PlanksItem extends ItemBlock
         switch (stack.getItemDamage())
         {
         case 0:
-            list.add("The pink wood");
+            list.add(StatCollector.translateToLocal("tooltip.tree1"));
             break;
         case 1:
-            list.add("Flowering Cherry");
+            list.add(StatCollector.translateToLocal("tooltip.tree2"));
             break;
         case 2:
-            list.add("Pale as a ghost");
+            list.add(StatCollector.translateToLocal("tooltip.tree3"));
             break;
         case 3:
-            list.add("Giant Sequoia");
+            list.add(StatCollector.translateToLocal("tooltip.tree4"));
             break;
         case 4:
-            list.add("Fire-resistant planks");
+            list.add(StatCollector.translateToLocal("tooltip.tree5"));
             break;
         case 5:
-            list.add("Ascended Glitch");
+            list.add(StatCollector.translateToLocal("tooltip.tree6"));
             break;
         case 6:
-            list.add("Somewhat Sweet");
+            list.add(StatCollector.translateToLocal("tooltip.tree7"));
             break;
         case 7:
-            list.add("Silver Bells");
+            list.add(StatCollector.translateToLocal("tooltip.tree8"));
             break;
         case 8:
-            list.add("Heart of Wood");
+            list.add(StatCollector.translateToLocal("tooltip.tree9"));
             break;
         case 9:
-            list.add("Wild Grain");
+            list.add(StatCollector.translateToLocal("tooltip.tree10"));
             break;
         case 10:
-            list.add("The Weeper");
+            list.add(StatCollector.translateToLocal("tooltip.tree11"));
             break;
         case 11:
-            list.add("Nether Tree");
+            list.add(StatCollector.translateToLocal("tooltip.nethertree"));
             break;
         case 12:
-            list.add("Nether Tree");
-            list.add("Explosive Personality");
+            list.add(StatCollector.translateToLocal("tooltip.nethertree"));
+            list.add(StatCollector.translateToLocal("tooltip.fusewood.log"));
             break;
         }
     }

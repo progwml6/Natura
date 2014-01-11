@@ -13,6 +13,7 @@ import net.minecraftforge.common.ForgeDirection;
 import net.minecraftforge.common.IPlantable;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.util.StatCollector;
 
 public class SeedBag extends Item
 {
@@ -73,6 +74,6 @@ public class SeedBag extends Item
     @SideOnly(Side.CLIENT)
     public void addInformation (ItemStack stack, EntityPlayer player, List list, boolean par4)
     {
-        list.add("Plants in a 3x3 area");
+        list.add(StatCollector.translateToLocal("tooltip.seedbag"));
     }
 }

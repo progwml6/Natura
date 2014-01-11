@@ -7,6 +7,7 @@ import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.util.StatCollector;
 
 public class RedwoodItem extends ItemBlock
 {
@@ -38,14 +39,14 @@ public class RedwoodItem extends ItemBlock
         switch (stack.getItemDamage())
         {
         case 0:
-            list.add("Burn it for charcoal");
-            list.add("or make a hidden tree door");
+            list.add(StatCollector.translateToLocal("tooltip.redwood1"));
+            list.add(StatCollector.translateToLocal("tooltip.redwood2"));
             break;
         case 1:
-            list.add("Heart of the tree");
+            list.add(StatCollector.translateToLocal("tooltip.redwood3"));
             break;
         case 2:
-            list.add("Root of the tree");
+            list.add(StatCollector.translateToLocal("tooltip.redwood4"));
             break;
         }
     }

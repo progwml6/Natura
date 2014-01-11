@@ -8,6 +8,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.MathHelper;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.util.StatCollector;
 
 public class WillowItem extends ItemBlock
 {
@@ -40,7 +41,7 @@ public class WillowItem extends ItemBlock
         switch (stack.getItemDamage() % 4)
         {
         case 0:
-            list.add("The weeper");
+            list.add(StatCollector.translateToLocal("tooltip.tree11"));
             break;
         }
     }

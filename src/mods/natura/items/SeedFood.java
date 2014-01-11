@@ -14,6 +14,7 @@ import net.minecraftforge.common.ForgeDirection;
 import net.minecraftforge.common.IPlantable;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.util.StatCollector;
 
 public class SeedFood extends ItemSeedFood
 {
@@ -68,6 +69,6 @@ public class SeedFood extends ItemSeedFood
     @SideOnly(Side.CLIENT)
     public void addInformation (ItemStack stack, EntityPlayer player, List list, boolean par4)
     {
-        list.add("Usable as food or seeds");
+        list.add(StatCollector.translateToLocal("tooltip.sagurofruit"));
     }
 }

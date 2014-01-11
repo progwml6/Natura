@@ -7,6 +7,7 @@ import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.util.StatCollector;
 
 public class NLeavesItem extends ItemBlock
 {
@@ -38,13 +39,13 @@ public class NLeavesItem extends ItemBlock
         switch (stack.getItemDamage())
         {
         case 0:
-            list.add("Giant Sequoia");
+            list.add(StatCollector.translateToLocal("tooltip.tree4"));
             break;
         case 1:
-            list.add("The pink wood");
+            list.add(StatCollector.translateToLocal("tooltip.tree1"));
             break;
         case 2:
-            list.add("Ascended Glitch");
+            list.add(StatCollector.translateToLocal("tooltip.tree6"));
             break;
         }
     }

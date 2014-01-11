@@ -12,6 +12,7 @@ import net.minecraft.util.Icon;
 import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.util.StatCollector;
 
 public class BerryMedley extends ItemFood
 {
@@ -85,7 +86,7 @@ public class BerryMedley extends ItemFood
     @SideOnly(Side.CLIENT)
     public void addInformation (ItemStack stack, EntityPlayer player, List list, boolean par4)
     {
-        list.add("An irresistable combination of berries");
+        list.add(StatCollector.translateToLocal("tooltip.berrymedley"));
     }
 
     /* Name override */

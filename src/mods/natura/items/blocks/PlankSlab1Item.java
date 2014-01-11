@@ -10,6 +10,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.util.StatCollector;
 
 public class PlankSlab1Item extends ItemBlock
 {
@@ -55,28 +56,28 @@ public class PlankSlab1Item extends ItemBlock
         switch (stack.getItemDamage())
         {
         case 0:
-            list.add("The pink wood");
+            list.add(StatCollector.translateToLocal("tooltip.tree1"));
             break;
         case 1:
-            list.add("Flowering Cherry");
+            list.add(StatCollector.translateToLocal("tooltip.tree2"));
             break;
         case 2:
-            list.add("Pale as a ghost");
+            list.add(StatCollector.translateToLocal("tooltip.tree3"));
             break;
         case 3:
-            list.add("Giant Sequoia");
+            list.add(StatCollector.translateToLocal("tooltip.tree4"));
             break;
         case 4:
-            list.add("Fire-resistant planks");
+            list.add(StatCollector.translateToLocal("tooltip.tree5"));
             break;
         case 5:
-            list.add("Ascended Glitch");
+            list.add(StatCollector.translateToLocal("tooltip.tree6"));
             break;
         case 6:
-            list.add("Somewhat Sweet");
+            list.add(StatCollector.translateToLocal("tooltip.tree7"));
             break;
         case 7:
-            list.add("Silver Bells");
+            list.add(StatCollector.translateToLocal("tooltip.tree8"));
             break;
         }
     }

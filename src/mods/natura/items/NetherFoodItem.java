@@ -15,7 +15,7 @@ import net.minecraft.util.Icon;
 import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-
+import net.minecraft.util.StatCollector;
 public class NetherFoodItem extends ItemFood
 {
     public Icon[] icons;
@@ -92,7 +92,7 @@ public class NetherFoodItem extends ItemFood
     @SideOnly(Side.CLIENT)
     public void addInformation (ItemStack stack, EntityPlayer player, List list, boolean par4)
     {
-        list.add("Tastes a bit like chalk");
+        list.add(StatCollector.translateToLocal("tooltip.netherfood"));
         /*switch (stack.getItemDamage())
         {
         case 0: 

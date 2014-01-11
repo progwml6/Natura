@@ -15,6 +15,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.util.StatCollector;
 
 public class NaturaSeeds extends ItemSeeds
 {
@@ -98,10 +99,10 @@ public class NaturaSeeds extends ItemSeeds
         switch (stack.getItemDamage())
         {
         case 0:
-            list.add("Similar to wheat, it grows in the wild");
+            list.add(StatCollector.translateToLocal("tooltip.barley"));
             break;
         case 1:
-            list.add("A great source of string and wool");
+            list.add(StatCollector.translateToLocal("tooltip.cotton"));
             break;
         }
     }

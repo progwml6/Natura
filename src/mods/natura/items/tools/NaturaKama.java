@@ -21,6 +21,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.IShearable;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.util.StatCollector;
 
 public class NaturaKama extends ItemSword
 {
@@ -129,6 +130,6 @@ public class NaturaKama extends ItemSword
     @SideOnly(Side.CLIENT)
     public void addInformation (ItemStack stack, EntityPlayer player, List list, boolean par4)
     {
-        list.add("The great leaf harvester");
+        list.add(StatCollector.translateToLocal("tooltip.kama"));
     }
 }

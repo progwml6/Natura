@@ -7,6 +7,7 @@ import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.util.StatCollector;
 
 public class NoColorLeavesItem extends ItemBlock
 {
@@ -38,18 +39,18 @@ public class NoColorLeavesItem extends ItemBlock
         switch (stack.getItemDamage())
         {
         case 0:
-            list.add("Flowering Cherry");
+            list.add(StatCollector.translateToLocal("tooltip.tree2"));
             break;
         case 1:
-            list.add("Nether Tree");
-            list.add("Pale as a ghost");
+            list.add(StatCollector.translateToLocal("tooltip.nethertree"));
+            list.add(StatCollector.translateToLocal("tooltip.tree3"));
             break;
         case 2:
-            list.add("Nether Tree");
-            list.add("Fire-resistant leaves");
+            list.add(StatCollector.translateToLocal("tooltip.nethertree"));
+            list.add(StatCollector.translateToLocal("tooltip.fireleaves"));
             break;
         case 3:
-            list.add("The weeper");
+            list.add(StatCollector.translateToLocal("tooltip.tree11"));
             break;
         }
     }
