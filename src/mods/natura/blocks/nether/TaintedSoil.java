@@ -1,5 +1,6 @@
-package mods.natura.blocks;
+package mods.natura.blocks.nether;
 
+import mods.natura.blocks.NBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.world.World;

@@ -5,6 +5,7 @@ import java.util.List;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.StatCollector;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -37,15 +38,11 @@ public class DarkTreeItem extends ItemBlock
         switch (stack.getItemDamage())
         {
         case 0:
-            list.add("Nether Tree");
+            list.add(StatCollector.translateToLocal("tooltip.nethertree"));
             break;
         case 1:
-            list.add("Nether Tree");
-            list.add("Explosive Personality");
-            break;
-        case 2:
-            list.add("Nether Tree");
-            list.add("Fire-resistant leaves");
+            list.add(StatCollector.translateToLocal("tooltip.nethertree"));
+            list.add(StatCollector.translateToLocal("tooltip.fusewood.log"));
             break;
         }
     }

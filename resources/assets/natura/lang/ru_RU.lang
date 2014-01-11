@@ -1,4 +1,8 @@
-item.natura.spawnegg.name=Призвать существо -  
+itemGroup.natura.plants=Natura: Растения
+itemGroup.natura.trees=Natura: Деревья
+itemGroup.natura.nether=Natura: Нижний мир
+
+item.natura.spawnegg.name=Призвать существо - 
 
 item.wheatBag.name=Мешочек семян пшеницы
 item.barleyBag.name=Мешочек семян ячменя
@@ -129,12 +133,12 @@ block.wood.silverbell.slab.name=Плита из древесины галези�
 
 tile.pressureplate.eucalyptus.name=Нажимная плита из древесины эвкалипта
 tile.pressureplate.sakura.name=Нажимная плита из древесины сакуры
-tile.pressureplate.ghostwood.name=Нажимная плита из древесины призрачного дерева</
-tile.pressureplate.hopseed.name=Нажимная плита из древесины хмельного дерева</
-tile.pressureplate.redwood.name=Нажимная плита из древесины красного дерева</entry
-tile.pressureplate.bloodwood.name=Нажимная плита из древесины кровавого дерева</
-tile.pressureplate.darkwood.name=Нажимная плита из древесины тёмного дерева</entry
-tile.pressureplate.fusewood.name=Нажимная плита из древесины плавкого дерева</
+tile.pressureplate.ghostwood.name=Нажимная плита из древесины призрачного дерева
+tile.pressureplate.hopseed.name=Нажимная плита из древесины хмельного дерева
+tile.pressureplate.redwood.name=Нажимная плита из древесины красного дерева
+tile.pressureplate.bloodwood.name=Нажимная плита из древесины кровавого дерева
+tile.pressureplate.darkwood.name=Нажимная плита из древесины тёмного дерева
+tile.pressureplate.fusewood.name=Нажимная плита из древесины плавкого дерева
 tile.pressureplate.willow.name=Нажимная плита из древесины ивы
 tile.pressureplate.tiger.name=Нажимная плита из древесины тигрового дерева
 tile.pressureplate.maple.name=Нажимная плита из древесины клёна
@@ -196,6 +200,19 @@ tile.trapdoor.tiger.name=Люк из древесины тигрового де�
 tile.trapdoor.maple.name=Люк из древесины клёна
 tile.trapdoor.amaranth.name=Люк из древесины щирицы
 tile.trapdoor.silverbell.name=Люк из древесины галезии
+
+
+tile.blazerail.name=Пламенные рельсы
+tile.blazerail.powered.name=Пламенные электрические рельсы
+tile.blazerail.detector.name=Пламенные нажимные рельсы
+tile.blazerail.activator.name=Пламенные активирующие рельсы
+
+tile.furnace.netherrack.name=Печь Нижнего мира
+tile.nether.obelisk.name=Обелиск
+tile.nether.hopper.name=Загрузочная воронка
+
+tile.glass.soul.name=Душевное стекло
+tile.glass.heat.name=Тёплое стекло
 
 block.glowshroom.green.name=Зелёный светогриб
 block.glowshroom.purple.name=Фиолетовый светогриб
@@ -277,9 +294,16 @@ item.natura.armor.impjerkin.name=Безрукавка дьяволёнка
 item.natura.armor.impleggings.name=Поножи дьяволёнка
 item.natura.armor.impboots.name=Ботинки дьяволёнка
 
+item.flintandblaze=Кремень и пламя
+
 entity.Natura.Imp.name=Дьяволёнок
 entity.Natura.HeatscarSpider.name=Паук с тепловым шрамом
 entity.Natura.BabyHeatscarSpider.name=Паук-ребёнок с тепловым шрамом
 entity.Natura.FlameSpider.name=Паук с тепловым шрамом
 entity.Natura.FlameSpiderBaby.name=Паук-ребёнок с тепловым шрамом
 entity.Natura.NitroCreeper.name=Нитро крипер
+
+tooltip.nethertree=Дерево Нижнего мира
+tooltip.fusewood.log=Взрывная личность
+tooltip.glass.soul=Призрачный
+tooltip.glass.heat=

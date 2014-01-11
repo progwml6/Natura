@@ -51,7 +51,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.TickRegistry;
 import cpw.mods.fml.relauncher.Side;
 
-@Mod(modid = "Natura", name = "Natura", version = "2.1.13")
+@Mod(modid = "Natura", name = "Natura", version = "2.1.14")
 @NetworkMod(serverSideRequired = false, clientSideRequired = true)
 public class Natura
 {

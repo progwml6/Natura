@@ -188,11 +188,11 @@ public class LogTwoxTwo extends Block
             case 1:
                 return icons[7]; //Top
             case 2:
-                return icons[5];
+                return icons[4];
             case 3:
                 return icons[0];
             case 4:
-                return icons[4];
+                return icons[5];
             case 5:
                 return icons[0];
             }

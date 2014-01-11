@@ -1,3 +1,7 @@
+itemGroup.natura.plants=Natura Plants
+itemGroup.natura.trees=Natura Trees
+itemGroup.natura.nether=Natura Nether
+
 item.natura.spawnegg.name=Spawn 
 
 item.wheatBag.name=Wheat Seed Bag
@@ -197,6 +201,18 @@ tile.trapdoor.maple.name=Maple Trapdoor
 tile.trapdoor.amaranth.name=Amaranth Trapdoor
 tile.trapdoor.silverbell.name=Silverbell Trapdoor
 
+tile.blazerail.name=Blaze Rail
+tile.blazerail.powered.name=Powered Blaze Rail
+tile.blazerail.detector.name=Detector Blaze Rail
+tile.blazerail.activator.name=Activator Blaze Rail
+
+tile.furnace.netherrack.name=Nether Furnace
+tile.nether.obelisk.name=Obelisk
+tile.nether.hopper.name=Hopper
+
+tile.glass.soul.name=Soul Glass
+tile.glass.heat.name=Heat Glass
+
 block.glowshroom.green.name=Green Glowshroom
 block.glowshroom.purple.name=Purple Glowshroom
 block.glowshroom.blue.name=Blue Glowshroom
@@ -277,9 +293,16 @@ item.natura.armor.impjerkin.name=Impskin Jerkin
 item.natura.armor.impleggings.name=Impskin Leggings
 item.natura.armor.impboots.name=Impskin Boots
 
+item.flintandblaze=Flint and Blaze
+
 entity.Natura.Imp.name=Imp
 entity.Natura.HeatscarSpider.name=Heatscar Spider
 entity.Natura.BabyHeatscarSpider.name=Baby Heatscar Spider
 entity.Natura.FlameSpider.name=Heatscar Spider
 entity.Natura.FlameSpiderBaby.name=Baby Heatscar Spider
 entity.Natura.NitroCreeper.name=Nitro Creeper
+
+tooltip.nethertree=Nether Tree
+tooltip.fusewood.log=Explosive Personality
+tooltip.glass.soul=Ghostly
+tooltip.glass.heat=

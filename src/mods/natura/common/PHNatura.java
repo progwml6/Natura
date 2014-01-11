@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 
 import mods.natura.Natura;
+import net.minecraft.block.Block;
 import net.minecraftforge.common.Configuration;
 
 public class PHNatura
@@ -165,6 +166,25 @@ public class PHNatura
         fenceGateWillow = config.getBlock("Willow Fence Gate", 3353).getInt(3353);
         fenceGateDarkwood = config.getBlock("Darkwood Fence Gate", 3354).getInt(3354);
         fenceGateFusewood = config.getBlock("Fusewood Fence Gate", 3355).getInt(3355);
+        
+        brail = config.getBlock("Blaze Rail", 3356).getInt(3356);
+        brailPowered = config.getBlock("Powered Blaze Rail", 3357).getInt(3357);
+        brailDetector = config.getBlock("Detector Blaze Rail", 3358).getInt(3358);
+        brailActivator = config.getBlock("Activator Blaze Rail", 3359).getInt(3359);
+        
+        netherrackFurnace = config.getBlock("Netherrack Furnace", 3360).getInt(3360);
+        respawnObelisk = config.getBlock("Respawn Obelisk", 3361).getInt(3361);
+        netherGlass = config.getBlock("Nether Glass", 3362).getInt(3362);
+        netherHopper = config.getBlock("Blaze Hopper", 3363).getInt(3363);
+        netherDropper = config.getBlock("Nether Dropper", 3364).getInt(3364);
+        netherDispenser = config.getBlock("Nether Dispenser", 3365).getInt(3365);
+        netherPressurePlate = config.getBlock("Netherrack Pressure Plate", 3366).getInt(3366);
+        netherButton = config.getBlock("Netherrack Button", 3367).getInt(3367);
+        netherLever = config.getBlock("Nether Lever", 3368).getInt(3368);
+
+        /*piston = config.getBlock("Nether Piston", 3362).getInt(3362);
+        pistonSticky = config.getBlock("Nether Sticky Piston", 3363).getInt(3363);
+        pistonExtension = config.getBlock("Nether Piston Extension", 3364).getInt(3364);*/
 
         netherBerryItem = config.getItem("Nether Berry Food", 12401).getInt(12401);
         berryItemID = config.getItem("Berry Food", 12402).getInt(12402);
@@ -233,6 +253,8 @@ public class PHNatura
 
         impMeat = config.getItem("Imp Meat", 12457).getInt(12457);
         spawnEgg = config.getItem("Spawn Egg", 12458).getInt(12458);
+        
+        flintAndBlaze = config.getItem("Flint and Blaze", 12459).getInt(12459);
 
         boolean BoP = false;
         try
@@ -251,6 +273,7 @@ public class PHNatura
         if (babyHeatscarMaximum < 0)
             babyHeatscarMaximum = 0;
         overrideNether = config.get("Disabler", "Override Nether", !BoP).getBoolean(!BoP);
+        canRespawnInNether = config.get("Disabler", "Obelisks let players respawn in the Nether", true).getBoolean(true);
 
         generateRedwood = config.get("Disabler", "Generate Redwood Trees", true).getBoolean(true);
         generateSakura = config.get("Disabler", "Generate Sakura Trees", true).getBoolean(true);
@@ -424,6 +447,8 @@ public class PHNatura
     public static int impJerkin;
     public static int impLeggings;
     public static int impBoots;
+    
+    public static int flintAndBlaze;
 
     //Rare trees
     public static int rareTree;
@@ -619,6 +644,25 @@ public class PHNatura
     public static int fenceGateDarkwood;
     public static int fenceGateFusewood;
 
+    public static int brail;
+    public static int brailPowered;
+    public static int brailDetector;
+    public static int brailActivator;
+
+    public static int netherrackFurnace;
+    public static int respawnObelisk;
+    public static int netherGlass;
+    public static int netherHopper;
+    public static int netherDropper;
+    public static int netherDispenser;
+    public static int netherPressurePlate;
+    public static int netherButton;
+    public static int netherLever;
+    
+    /*public static int piston;
+    public static int pistonSticky;
+    public static int pistonExtension;*/
+
     public static boolean generateRedwood;
     public static boolean generateSakura;
     public static boolean generateSmallEucalyptus;
@@ -645,6 +689,7 @@ public class PHNatura
     public static boolean enableWheatRecipe;
 
     public static boolean overrideNether;
+    public static boolean canRespawnInNether;
 
     public static int redwoodSpawnRarity;
     public static int redwoodSpawnRange;
