@@ -11,6 +11,7 @@ import net.minecraft.util.Icon;
 import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.util.StatCollector;
 
 public class NSaplingItem extends ItemBlock
 {
@@ -49,30 +50,30 @@ public class NSaplingItem extends ItemBlock
         switch (stack.getItemDamage())
         {
         case 0:
-            list.add("Plant these in a 7x7");
-            list.add("It takes days to grow");
+            list.add(StatCollector.translateToLocal("tooltip.sapling1"));
+            list.add(StatCollector.translateToLocal("tooltip.sapling2"));
             break;
         case 1:
-            list.add("The pink wood");
+            list.add(StatCollector.translateToLocal("tooltip.tree1"));
             break;
         case 2:
-            list.add("Ascended Glitch");
+            list.add(StatCollector.translateToLocal("tooltip.tree6"));
             break;
         case 3:
-            list.add("Flowering Cherry");
+            list.add(StatCollector.translateToLocal("tooltip.tree2"));
             break;
         case 4:
-            list.add("Pale as a ghost");
+            list.add(StatCollector.translateToLocal("tooltip.tree3"));
             break;
         case 5:
-            list.add("Lava-resistant");
-            list.add("Grows on the ceiling");
+            list.add(StatCollector.translateToLocal("tooltip.sapling3"));
+            list.add(StatCollector.translateToLocal("tooltip.sapling4"));
             break;
         case 6:
-            list.add("Produces chalky apples");
+            list.add(StatCollector.translateToLocal("tooltip.sapling5"));
             break;
         case 7:
-            list.add("Explosive personality");
+            list.add(StatCollector.translateToLocal("tooltip.fusewood.log"));
             break;
         }
     }
