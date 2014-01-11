@@ -8,6 +8,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.util.StatCollector;
 
 public class PlantItem extends NCraftingItem
 {
@@ -31,27 +32,27 @@ public class PlantItem extends NCraftingItem
         switch (stack.getItemDamage())
         {
         case 0:
-            list.add("Similar to wheat, it grows in the wild");
+            list.add(StatCollector.translateToLocal("tooltip.barley"));
             break;
         case 1:
         case 2:
-            list.add("Bake me to make bread");
-            list.add("Also used in baking cake");
+            list.add(StatCollector.translateToLocal("tooltip.flour1"));
+            list.add(StatCollector.translateToLocal("tooltip.flour2"));
             break;
         case 3:
-            list.add("The source of all string and wool");
+            list.add(StatCollector.translateToLocal("tooltip.cotton"));
             break;
         case 4:
-            list.add("2x2 converts into gunpowder");
+            list.add(StatCollector.translateToLocal("tooltip.sulfur"));
             break;
         case 5:
-            list.add("Arrow crafting component");
+            list.add(StatCollector.translateToLocal("tooltip.fletching"));
             break;
         case 6:
-            list.add("Resist the heat of the Nether");
+            list.add(StatCollector.translateToLocal("tooltip.imp"));
             break;
         case 7:
-            list.add("Somewhat more durable than string");
+            list.add(StatCollector.translateToLocal("tooltip.string"));
             break;
         }
     }
