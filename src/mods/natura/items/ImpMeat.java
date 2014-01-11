@@ -10,6 +10,7 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.util.StatCollector;
 
 public class ImpMeat extends NSpecialFood
 {
@@ -25,10 +26,10 @@ public class ImpMeat extends NSpecialFood
         switch (stack.getItemDamage())
         {
         case 0:
-            list.add("Eating this probably isn't good for you");
+            list.add(StatCollector.translateToLocal("tooltip.impmeat1"));
             break;
         case 1:
-            list.add("It's warm to the touch");
+            list.add(StatCollector.translateToLocal("tooltip.impmeat2"));
             break;
         }
     }
