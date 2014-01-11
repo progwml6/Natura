@@ -8,6 +8,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.MathHelper;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.util.StatCollector;
 
 public class TreeItem extends ItemBlock
 {
@@ -40,17 +41,17 @@ public class TreeItem extends ItemBlock
         switch (stack.getItemDamage() % 4)
         {
         case 0:
-            list.add("The pink wood");
+            list.add(StatCollector.translateToLocal("tooltip.tree1"));
             break;
         case 1:
-            list.add("Flowering Cherry");
+            list.add(StatCollector.translateToLocal("tooltip.tree2"));
             break;
         case 2:
-            list.add("Nether Tree");
-            list.add("Pale as a ghost");
+            list.add(StatCollector.translateToLocal("tooltip.nethertree"));
+            list.add(StatCollector.translateToLocal("tooltip.tree3"));
             break;
         case 3:
-            list.add("Ascended Glitch");
+            list.add(StatCollector.translateToLocal("tooltip.tree6"));
             break;
         }
     }
