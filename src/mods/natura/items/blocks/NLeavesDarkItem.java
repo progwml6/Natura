@@ -7,6 +7,7 @@ import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.util.StatCollector;
 
 public class NLeavesDarkItem extends ItemBlock
 {
@@ -38,19 +39,19 @@ public class NLeavesDarkItem extends ItemBlock
         switch (stack.getItemDamage())
         {
         case 0:
-            list.add("Nether Tree");
+            list.add(StatCollector.translateToLocal("tooltip.nethertree"));
             break;
         case 1:
-            list.add("Nether Tree");
-            list.add("Flowers!");
+            list.add(StatCollector.translateToLocal("tooltip.nethertree"));
+            list.add(StatCollector.translateToLocal("tooltip.darkwood1"));
             break;
         case 2:
-            list.add("Nether Tree");
-            list.add("Contains an apple");
+            list.add(StatCollector.translateToLocal("tooltip.nethertree"));
+            list.add(StatCollector.translateToLocal("tooltip.darkwood2"));
             break;
         case 3:
-            list.add("Nether Tree");
-            list.add("Explosive Personality");
+            list.add(StatCollector.translateToLocal("tooltip.nethertree"));
+            list.add(StatCollector.translateToLocal("tooltip.fusewood.log"));
             break;
         }
     }
