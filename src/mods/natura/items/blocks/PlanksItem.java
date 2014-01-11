@@ -57,7 +57,7 @@ public class PlanksItem extends ItemBlock
             list.add(StatCollector.translateToLocal("tooltip.tree6"));
             break;
         case 6:
-            list.add(StatCollector.translateToLocal("tooltip.tree7")");
+            list.add(StatCollector.translateToLocal("tooltip.tree7"));
             break;
         case 7:
             list.add(StatCollector.translateToLocal("tooltip.tree8"));
