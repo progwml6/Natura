@@ -76,7 +76,7 @@ public class PlanksItem extends ItemBlock
             break;
         case 12:
             list.add(StatCollector.translateToLocal("tooltip.nethertree"));
-            list.add(StatCollector.translateToLocal("tooltip.fusewood"));
+            list.add(StatCollector.translateToLocal("tooltip.fusewood.log"));
             break;
         }
     }
