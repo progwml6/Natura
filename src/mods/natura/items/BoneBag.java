@@ -21,7 +21,6 @@ import net.minecraftforge.event.Event.Result;
 import net.minecraftforge.event.entity.player.BonemealEvent;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-StatCollector.translateToLocal("metalblock.tooltip")
 
 public class BoneBag extends Item
 {
