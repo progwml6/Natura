@@ -12,7 +12,7 @@ import net.minecraftforge.common.ForgeDirection;
 import net.minecraftforge.common.IPlantable;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.util.StatCollector
+import net.minecraft.util.StatCollector;
 
 public class NetherBerryBushItem extends ItemBlock
 {
