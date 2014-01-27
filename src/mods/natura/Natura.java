@@ -3,11 +3,7 @@ package mods.natura;
 import java.util.Random;
 import java.util.logging.Logger;
 
-import cpw.mods.fml.common.FMLCommonHandler;
-import mods.natura.common.NContent;
-import mods.natura.common.NProxyCommon;
-import mods.natura.common.NaturaTab;
-import mods.natura.common.PHNatura;
+import mods.natura.common.*;
 import mods.natura.dimension.NetheriteWorldProvider;
 import mods.natura.gui.NGuiHandler;
 import mods.natura.plugins.PluginController;
@@ -20,15 +16,9 @@ import net.minecraft.block.material.Material;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.ai.EntityAITempt;
-import net.minecraft.entity.passive.EntityAnimal;
-import net.minecraft.entity.passive.EntityChicken;
-import net.minecraft.entity.passive.EntityCow;
-import net.minecraft.entity.passive.EntitySheep;
+import net.minecraft.entity.passive.*;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.world.ChunkCoordIntPair;
-import net.minecraft.world.World;
-import net.minecraft.world.chunk.Chunk;
 import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.Event;
@@ -38,10 +28,9 @@ import net.minecraftforge.event.entity.player.BonemealEvent;
 import net.minecraftforge.event.entity.player.EntityInteractEvent;
 import net.minecraftforge.event.world.ChunkDataEvent;
 import net.minecraftforge.oredict.OreDictionary;
-import cpw.mods.fml.common.Mod;
+import cpw.mods.fml.common.*;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
-import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
@@ -106,9 +95,12 @@ public class Natura
             DimensionManager.unregisterProviderType(-1);
             DimensionManager.registerProviderType(-1, NetheriteWorldProvider.class, true);
         }
-        if(retrogen){
-        TickRegistry.registerTickHandler(new TickHandlerWorld(), Side.SERVER);
-        GameRegistry.registerWorldGenerator(new WorldHandler());
+        
+        MinecraftForge.EVENT_BUS.register(new WorldHandler());
+        
+        if(retrogen)
+        {
+        	TickRegistry.registerTickHandler(new TickHandlerWorld(), Side.SERVER);
         }
         OreDictionary.registerOre("cropVine", new ItemStack(NContent.thornVines));
         random.setSeed(2 ^ 16 + 2 ^ 8 + (4 * 3 * 271));
