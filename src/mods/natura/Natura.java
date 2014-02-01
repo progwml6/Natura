@@ -106,10 +106,12 @@ public class Natura
             DimensionManager.unregisterProviderType(-1);
             DimensionManager.registerProviderType(-1, NetheriteWorldProvider.class, true);
         }
+        MinecraftForge.EVENT_BUS.register(WorldHandler.instance);
+        
         if(retrogen){
         TickRegistry.registerTickHandler(new TickHandlerWorld(), Side.SERVER);
-        GameRegistry.registerWorldGenerator(new WorldHandler());
         }
+
         OreDictionary.registerOre("cropVine", new ItemStack(NContent.thornVines));
         random.setSeed(2 ^ 16 + 2 ^ 8 + (4 * 3 * 271));
 
@@ -215,28 +217,6 @@ public class Natura
     }
 
     public static boolean retrogen;
-
-    /*// RG removed until 1.7 needs a better implementation
-    @ForgeSubscribe
-    public void chunkDataLoad (ChunkDataEvent.Load event)
-    {
-        if (!event.getData().getBoolean("Natura.Retrogen") && retrogen)
-        {
-            Chunk chunk = event.getChunk();
-            World world = chunk.worldObj;
-            int chunkoffset = 1;
-            //force adjacent chunks to load
-            ChunkCoordIntPair coords = chunk.getChunkCoordIntPair();
-            Chunk chunk01 = world.getChunkFromChunkCoords(coords.chunkXPos, coords.chunkZPos + chunkoffset);
-            Chunk chunk10 = world.getChunkFromChunkCoords(coords.chunkXPos + chunkoffset, coords.chunkZPos);
-            Chunk chunk11 = world.getChunkFromChunkCoords(coords.chunkXPos + chunkoffset, coords.chunkZPos + chunkoffset);
-            crops.generate(random, chunk.xPosition, chunk.zPosition, world, world.provider.createChunkGenerator(), world.provider.createChunkGenerator());
-            clouds.generate(random, chunk.xPosition, chunk.zPosition, world, world.provider.createChunkGenerator(), world.provider.createChunkGenerator());
-            trees.retrogen = true;
-            trees.generate(random, chunk.xPosition, chunk.zPosition, world, world.provider.createChunkGenerator(), world.provider.createChunkGenerator());
-            trees.retrogen = false;
-        }
-    }*/
     
     @ForgeSubscribe
     public void chunkDataSave (ChunkDataEvent.Save event)
