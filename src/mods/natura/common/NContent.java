@@ -143,7 +143,6 @@ public class NContent implements IFuelHandler
 
         MinecraftForge.addGrassSeed(new ItemStack(seeds, 1, 0), 3);
         MinecraftForge.addGrassSeed(new ItemStack(seeds, 1, 1), 3);
-        MinecraftForge.addGrassPlant(bluebells, 0, 18);
 
         //floraBoat = new NBoat(PHNatura.boatItemID).setIconCoord(0, 3).setUnlocalizedName("floraBoat");
 
@@ -241,6 +240,8 @@ public class NContent implements IFuelHandler
         GameRegistry.registerBlock(rareSapling, OverworldSaplingItem.class, "Rare Sapling");
         bluebells = new FlowerBlock(PHNatura.bluebells).setUnlocalizedName("bluebells");
         GameRegistry.registerBlock(bluebells, "Bluebells");
+        
+        MinecraftForge.addGrassPlant(bluebells, 0, 18);
 
         //Vanilla overrides and alternates
         alternateWorkbench = new AlternateWorkbench(PHNatura.alternateWorkbench).setHardness(2.5F).setStepSound(Block.soundWoodFootstep).setUnlocalizedName("workbench").setCreativeTab(NaturaTab.tab);
