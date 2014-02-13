@@ -90,9 +90,6 @@ version = "${minecraft.version}-${project.buildInfo.buildNum}.${project.buildInf
 
 sourceSets {
 	main {
-		java {
-            srcDir 'src'
-        }
 		resources {
 			srcDir 'resources'
 		}
@@ -119,7 +116,7 @@ processResources
 // because the normal output has been made to be obfuscated
 task devjar(type: Jar) {
         from sourceSets.main.output
-        classifier = 'dev'
+        classifier = 'deobf'
 }
 artifacts {
         archives devjar
