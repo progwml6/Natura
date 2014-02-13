@@ -8,7 +8,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-import net.minecraftforge.common.ForgeDirection;
+import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.common.IPlantable;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -17,9 +17,9 @@ import net.minecraft.util.StatCollector;
 public class BerryBushItem extends ItemBlock
 {
 
-    public BerryBushItem(int i)
+    public BerryBushItem(Block block)
     {
-        super(i);
+        super(block);
         setHasSubtypes(true);
     }
 
@@ -38,15 +38,15 @@ public class BerryBushItem extends ItemBlock
 
         else if (player.canPlayerEdit(x, y, z, side, stack) && player.canPlayerEdit(x, y + 1, z, side, stack))
         {
-            Block block = Block.blocksList[world.getBlockId(x, y, z)];
+            Block block = world.getBlock(x, y, z);
 
             if (block != null && block.canSustainPlant(world, x, y, z, ForgeDirection.UP, (IPlantable) NContent.berryBush) && world.isAirBlock(x, y + 1, z))
             {
-                world.setBlock(x, y + 1, z, NContent.berryBush.blockID, stack.getItemDamage() % 4, 3);
+                world.setBlock(x, y + 1, z, NContent.berryBush, stack.getItemDamage() % 4, 3);
                 if (!player.capabilities.isCreativeMode)
                     stack.stackSize--;
                 if (!world.isRemote)
-                    world.playAuxSFX(2001, x, y, z, NContent.berryBush.blockID);
+                    world.playAuxSFX(2001, x, y, z, Block.getIdFromBlock(NContent.berryBush));
                 return true;
             }
             else

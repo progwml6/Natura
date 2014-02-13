@@ -5,6 +5,7 @@ import java.util.Random;
 import mods.natura.common.NContent;
 import mods.natura.common.PHNatura;
 import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
@@ -81,11 +82,11 @@ public class RedwoodTreeGen extends WorldGenerator
     int heightLimitLimit;
     int leafDistanceLimit;
     int leafNodes[][];
-    int genWoodID;
+    Block genWoodID;
     int genWoodMetadata = 0;
     boolean useHeight;
 
-    public RedwoodTreeGen(boolean flag, int bID)
+    public RedwoodTreeGen(boolean flag, Block bID)
     {
         super(flag);
         useHeight = flag;
@@ -109,8 +110,8 @@ public class RedwoodTreeGen extends WorldGenerator
         do
         {
             height--;
-            int underID = world.getBlockId(x, height, z);
-            if (underID == Block.dirt.blockID || underID == Block.grass.blockID || height < PHNatura.seaLevel)
+            Block underID = world.getBlock(x, height, z);
+            if (underID == Blocks.dirt || underID == Blocks.grass || height < PHNatura.seaLevel)
                 foundGround = true;
         } while (!foundGround);
         return height;
@@ -118,9 +119,9 @@ public class RedwoodTreeGen extends WorldGenerator
 
     public boolean isValidSpawn (World world, int x, int y, int z)
     {
-        int bID = world.getBlockId(x, y, z);
-        boolean ground = bID == Block.dirt.blockID || bID == Block.grass.blockID;
-        boolean transparent = !Block.opaqueCubeLookup[world.getBlockId(x, y + 1, z)];
+        Block bID = world.getBlock(x, y, z);
+        boolean ground = bID == Blocks.dirt || bID == Blocks.grass;
+        boolean transparent = !world.getBlock(x, y + 1, z).isOpaqueCube();
         boolean valid = ground && transparent;
         return ground && transparent;
     }
@@ -496,7 +497,7 @@ public class RedwoodTreeGen extends WorldGenerator
 
     public boolean smallRoot1 (World world, Random random, int i, int j, int k)
     {
-        if (world.getBlockId(i, j, k) != Block.bedrock.blockID && j > 0)
+        if (world.getBlock(i, j, k) != Blocks.bedrock && j > 0)
         {
             setBlockAndMetadata(world, i - 4, j, k - 1, genWoodID, genWoodMetadata + 2);
             setBlockAndMetadata(world, i - 4, j, k + 1, genWoodID, genWoodMetadata + 2);
@@ -548,7 +549,7 @@ public class RedwoodTreeGen extends WorldGenerator
 
     public boolean smallRoot2 (World world, Random random, int i, int j, int k)
     {
-        if (world.getBlockId(i, j, k) != Block.bedrock.blockID && j > 0)
+        if (world.getBlock(i, j, k) != Blocks.bedrock && j > 0)
         {
             setBlockAndMetadata(world, i - 4, j, k - 1, genWoodID, genWoodMetadata + 2);
             setBlockAndMetadata(world, i - 4, j, k + 1, genWoodID, genWoodMetadata + 2);
@@ -592,7 +593,7 @@ public class RedwoodTreeGen extends WorldGenerator
 
     public boolean smallRoot3 (World world, Random random, int i, int j, int k)
     {
-        if (world.getBlockId(i, j, k) != Block.bedrock.blockID && j > 0)
+        if (world.getBlock(i, j, k) != Blocks.bedrock && j > 0)
         {
             setBlockAndMetadata(world, i - 2, j, k - 2, genWoodID, genWoodMetadata + 2);
             setBlockAndMetadata(world, i - 2, j, k + 2, genWoodID, genWoodMetadata + 2);
@@ -612,7 +613,7 @@ public class RedwoodTreeGen extends WorldGenerator
 
     public boolean smallRoot4 (World world, Random random, int i, int j, int k)
     {
-        if (world.getBlockId(i, j, k) != Block.bedrock.blockID && j > 0)
+        if (world.getBlock(i, j, k) != Blocks.bedrock && j > 0)
         {
             setBlockAndMetadata(world, i - 1, j, k - 2, genWoodID, genWoodMetadata + 2);
             setBlockAndMetadata(world, i - 1, j, k + 2, genWoodID, genWoodMetadata + 2);
@@ -624,7 +625,7 @@ public class RedwoodTreeGen extends WorldGenerator
 
     public boolean mediumRoot1 (World world, Random random, int i, int j, int k)
     {
-        if (world.getBlockId(i, j, k) != Block.bedrock.blockID && j > 0)
+        if (world.getBlock(i, j, k) != Blocks.bedrock && j > 0)
         {
             setBlockAndMetadata(world, i - 5, j, k - 1, genWoodID, genWoodMetadata + 2);
             setBlockAndMetadata(world, i - 5, j, k + 1, genWoodID, genWoodMetadata + 2);
@@ -747,7 +748,7 @@ public class RedwoodTreeGen extends WorldGenerator
 
     public boolean mediumRoot3 (World world, Random random, int i, int j, int k)
     {
-        if (world.getBlockId(i, j, k) != Block.bedrock.blockID && j > 0)
+        if (world.getBlock(i, j, k) != Blocks.bedrock && j > 0)
         {
             setBlockAndMetadata(world, i - 3, j, k - 2, genWoodID, genWoodMetadata + 2);
             setBlockAndMetadata(world, i - 3, j, k + 2, genWoodID, genWoodMetadata + 2);
@@ -775,7 +776,7 @@ public class RedwoodTreeGen extends WorldGenerator
 
     public boolean mediumRoot4 (World world, Random random, int i, int j, int k)
     {
-        if (world.getBlockId(i, j, k) != Block.bedrock.blockID && j > 0)
+        if (world.getBlock(i, j, k) != Blocks.bedrock && j > 0)
         {
             setBlockAndMetadata(world, i - 2, j, k - 2, genWoodID, genWoodMetadata + 2);
             setBlockAndMetadata(world, i - 2, j, k + 2, genWoodID, genWoodMetadata + 2);
@@ -791,7 +792,7 @@ public class RedwoodTreeGen extends WorldGenerator
 
     public boolean mediumRoot5 (World world, Random random, int i, int j, int k)
     {
-        if (world.getBlockId(i, j, k) != Block.bedrock.blockID && j > 0)
+        if (world.getBlock(i, j, k) != Blocks.bedrock && j > 0)
         {
             setBlockAndMetadata(world, i - 1, j, k - 3, genWoodID, genWoodMetadata + 2);
             setBlockAndMetadata(world, i - 1, j, k + 3, genWoodID, genWoodMetadata + 2);
@@ -803,7 +804,7 @@ public class RedwoodTreeGen extends WorldGenerator
 
     public boolean bigRoot1 (World world, Random random, int i, int j, int k)
     {
-        if (world.getBlockId(i, j, k) != Block.bedrock.blockID && j > 0)
+        if (world.getBlock(i, j, k) != Blocks.bedrock && j > 0)
         {
             setBlockAndMetadata(world, i - 6, j, k - 2, genWoodID, genWoodMetadata + 2);
             setBlockAndMetadata(world, i - 6, j, k - 1, genWoodID, genWoodMetadata + 2);
@@ -923,7 +924,7 @@ public class RedwoodTreeGen extends WorldGenerator
 
     public boolean bigRoot2 (World world, Random random, int i, int j, int k)
     {
-        if (world.getBlockId(i, j, k) != Block.bedrock.blockID && j > 0)
+        if (world.getBlock(i, j, k) != Blocks.bedrock && j > 0)
         {
             setBlockAndMetadata(world, i - 5, j, k - 4, genWoodID, genWoodMetadata + 2);
             setBlockAndMetadata(world, i - 5, j, k - 3, genWoodID, genWoodMetadata + 2);
@@ -1035,7 +1036,7 @@ public class RedwoodTreeGen extends WorldGenerator
 
     public boolean bigRoot3 (World world, Random random, int i, int j, int k)
     {
-        if (world.getBlockId(i, j, k) != Block.bedrock.blockID && j > 0)
+        if (world.getBlock(i, j, k) != Blocks.bedrock && j > 0)
         {
             setBlockAndMetadata(world, i - 4, j, k - 3, genWoodID, genWoodMetadata + 2);
             setBlockAndMetadata(world, i - 4, j, k - 2, genWoodID, genWoodMetadata + 2);
@@ -1091,7 +1092,7 @@ public class RedwoodTreeGen extends WorldGenerator
 
     public boolean bigRoot4 (World world, Random random, int i, int j, int k)
     {
-        if (world.getBlockId(i, j, k) != Block.bedrock.blockID && j > 0)
+        if (world.getBlock(i, j, k) != Blocks.bedrock && j > 0)
         {
             setBlockAndMetadata(world, i - 4, j, k - 3, genWoodID, genWoodMetadata + 2);
             setBlockAndMetadata(world, i - 4, j, k + 3, genWoodID, genWoodMetadata + 2);
@@ -1127,7 +1128,7 @@ public class RedwoodTreeGen extends WorldGenerator
 
     public boolean bigRoot5 (World world, Random random, int i, int j, int k)
     {
-        if (world.getBlockId(i, j, k) != Block.bedrock.blockID && j > 0)
+        if (world.getBlock(i, j, k) != Blocks.bedrock && j > 0)
         {
             setBlockAndMetadata(world, i - 3, j, k - 3, genWoodID, genWoodMetadata + 2);
             setBlockAndMetadata(world, i - 3, j, k + 3, genWoodID, genWoodMetadata + 2);
@@ -1151,7 +1152,7 @@ public class RedwoodTreeGen extends WorldGenerator
 
     public boolean bigRoot6 (World world, Random random, int i, int j, int k)
     {
-        if (world.getBlockId(i, j, k) != Block.bedrock.blockID && j > 0)
+        if (world.getBlock(i, j, k) != Blocks.bedrock && j > 0)
         {
             setBlockAndMetadata(world, i - 2, j, k - 4, genWoodID, genWoodMetadata + 2);
             setBlockAndMetadata(world, i - 2, j, k - 3, genWoodID, genWoodMetadata + 2);
@@ -1167,7 +1168,7 @@ public class RedwoodTreeGen extends WorldGenerator
 
     public boolean genRing13 (World world, Random random, int i, int j, int k)
     {
-        if (world.getBlockId(i, j, k) != Block.bedrock.blockID && j > 0)
+        if (world.getBlock(i, j, k) != Blocks.bedrock && j > 0)
         {
             setBlockAndMetadata(world, i - 6, j, k - 2, genWoodID, genWoodMetadata);
             setBlockAndMetadata(world, i - 6, j, k - 1, genWoodID, genWoodMetadata);
@@ -1312,7 +1313,7 @@ public class RedwoodTreeGen extends WorldGenerator
 
     public boolean genRing12 (World world, Random random, int i, int j, int k)
     {
-        if (world.getBlockId(i, j, k) != Block.bedrock.blockID && j > 0)
+        if (world.getBlock(i, j, k) != Blocks.bedrock && j > 0)
         {
             setBlockAndMetadata(world, i - 6, j, k - 1, genWoodID, genWoodMetadata);
             setBlockAndMetadata(world, i - 6, j, k, genWoodID, genWoodMetadata);
@@ -1445,7 +1446,7 @@ public class RedwoodTreeGen extends WorldGenerator
 
     public boolean genRing11 (World world, Random random, int i, int j, int k)
     {
-        if (world.getBlockId(i, j, k) != Block.bedrock.blockID && j > 0)
+        if (world.getBlock(i, j, k) != Blocks.bedrock && j > 0)
         {
             setBlockAndMetadata(world, i - 5, j, k - 1, genWoodID, genWoodMetadata);
             setBlockAndMetadata(world, i - 5, j, k, genWoodID, genWoodMetadata);
@@ -1542,7 +1543,7 @@ public class RedwoodTreeGen extends WorldGenerator
 
     public boolean genRing10 (World world, Random random, int i, int j, int k)
     {
-        if (world.getBlockId(i, j, k) != Block.bedrock.blockID && j > 0)
+        if (world.getBlock(i, j, k) != Blocks.bedrock && j > 0)
         {
             setBlockAndMetadata(world, i - 4, j, k - 2, genWoodID, genWoodMetadata);
             setBlockAndMetadata(world, i - 4, j, k - 1, genWoodID, genWoodMetadata);
@@ -1619,7 +1620,7 @@ public class RedwoodTreeGen extends WorldGenerator
 
     public boolean genRing9 (World world, Random random, int i, int j, int k)
     {
-        if (world.getBlockId(i, j, k) != Block.bedrock.blockID && j > 0)
+        if (world.getBlock(i, j, k) != Blocks.bedrock && j > 0)
         {
             setBlockAndMetadata(world, i - 4, j, k - 1, genWoodID, genWoodMetadata);
             setBlockAndMetadata(world, i - 4, j, k, genWoodID, genWoodMetadata);
@@ -1688,7 +1689,7 @@ public class RedwoodTreeGen extends WorldGenerator
 
     public boolean genRing8 (World world, Random random, int i, int j, int k)
     {
-        if (world.getBlockId(i, j, k) != Block.bedrock.blockID && j > 0)
+        if (world.getBlock(i, j, k) != Blocks.bedrock && j > 0)
         {
             setBlockAndMetadata(world, i - 3, j, k - 2, genWoodID, genWoodMetadata);
             setBlockAndMetadata(world, i - 3, j, k - 1, genWoodID, genWoodMetadata);
@@ -1741,7 +1742,7 @@ public class RedwoodTreeGen extends WorldGenerator
 
     public boolean genRing7 (World world, Random random, int i, int j, int k)
     {
-        if (world.getBlockId(i, j, k) != Block.bedrock.blockID && j > 0)
+        if (world.getBlock(i, j, k) != Blocks.bedrock && j > 0)
         {
             setBlockAndMetadata(world, i - 3, j, k - 1, genWoodID, genWoodMetadata);
             setBlockAndMetadata(world, i - 3, j, k, genWoodID, genWoodMetadata);
@@ -1786,7 +1787,7 @@ public class RedwoodTreeGen extends WorldGenerator
 
     public boolean genRing6 (World world, Random random, int i, int j, int k)
     {
-        if (world.getBlockId(i, j, k) != Block.bedrock.blockID && j > 0)
+        if (world.getBlock(i, j, k) != Blocks.bedrock && j > 0)
         {
             setBlockAndMetadata(world, i - 2, j, k - 2, genWoodID, genWoodMetadata);
             setBlockAndMetadata(world, i - 2, j, k - 1, genWoodID, genWoodMetadata);
@@ -1819,7 +1820,7 @@ public class RedwoodTreeGen extends WorldGenerator
 
     public boolean genRing5 (World world, Random random, int i, int j, int k)
     {
-        if (world.getBlockId(i, j, k) != Block.bedrock.blockID && j > 0)
+        if (world.getBlock(i, j, k) != Blocks.bedrock && j > 0)
         {
             setBlockAndMetadata(world, i - 2, j, k - 1, genWoodID, genWoodMetadata);
             setBlockAndMetadata(world, i - 2, j, k, genWoodID, genWoodMetadata);
@@ -1848,7 +1849,7 @@ public class RedwoodTreeGen extends WorldGenerator
 
     public boolean genRing4 (World world, Random random, int i, int j, int k)
     {
-        if (world.getBlockId(i, j, k) != Block.bedrock.blockID && j > 0)
+        if (world.getBlock(i, j, k) != Blocks.bedrock && j > 0)
         {
             setBlockAndMetadata(world, i - 2, j, k - 1, genWoodID, genWoodMetadata);
             setBlockAndMetadata(world, i - 2, j, k, genWoodID, genWoodMetadata);
@@ -1868,7 +1869,7 @@ public class RedwoodTreeGen extends WorldGenerator
 
     public boolean genRing3s (World world, Random random, int i, int j, int k)
     {
-        if (world.getBlockId(i, j, k) != Block.bedrock.blockID && j > 0)
+        if (world.getBlock(i, j, k) != Blocks.bedrock && j > 0)
         {
             setBlockAndMetadata(world, i - 1, j, k - 1, genWoodID, genWoodMetadata);
             setBlockAndMetadata(world, i - 1, j, k, genWoodID, genWoodMetadata);
@@ -1884,7 +1885,7 @@ public class RedwoodTreeGen extends WorldGenerator
 
     public boolean genRing3 (World world, Random random, int i, int j, int k)
     {
-        if (world.getBlockId(i, j, k) != Block.bedrock.blockID && j > 0)
+        if (world.getBlock(i, j, k) != Blocks.bedrock && j > 0)
         {
             setBlockAndMetadata(world, i - 1, j, k - 1, genWoodID, genWoodMetadata);
             setBlockAndMetadata(world, i - 1, j, k, genWoodID, genWoodMetadata);
@@ -1901,7 +1902,7 @@ public class RedwoodTreeGen extends WorldGenerator
 
     public boolean genRing2 (World world, Random random, int i, int j, int k)
     {
-        if (world.getBlockId(i, j, k) != Block.bedrock.blockID && j > 0)
+        if (world.getBlock(i, j, k) != Blocks.bedrock && j > 0)
         {
             setBlockAndMetadata(world, i - 1, j, k - 1, genWoodID, genWoodMetadata);
             setBlockAndMetadata(world, i - 1, j, k, genWoodID, genWoodMetadata);
@@ -1913,7 +1914,7 @@ public class RedwoodTreeGen extends WorldGenerator
 
     public boolean genRing1 (World world, Random random, int i, int j, int k)
     {
-        if (world.getBlockId(i, j, k) != Block.bedrock.blockID && j > 0)
+        if (world.getBlock(i, j, k) != Blocks.bedrock && j > 0)
         {
             setBlockAndMetadata(world, i, j, k, genWoodID, genWoodMetadata);
         }
@@ -2076,7 +2077,7 @@ public class RedwoodTreeGen extends WorldGenerator
         for (int i1 = j + leafDistanceLimit; l < i1; l++)
         {
             float f = func_526_b(l - j);
-            func_523_a(i, l, k, f, (byte) 1, NContent.floraLeaves.blockID);
+            func_523_a(i, l, k, f, (byte) 1, NContent.floraLeaves);
         }
     }
 
@@ -2151,7 +2152,7 @@ public class RedwoodTreeGen extends WorldGenerator
             int k = ai[1] - basePos[1];
             if (leafNodeNeedsBase(k))
             {
-                placeBlockLine(ai, ai2, NContent.redwood.blockID);
+                placeBlockLine(ai, ai2, NContent.redwood);
             }
         }
     }
@@ -2199,8 +2200,8 @@ public class RedwoodTreeGen extends WorldGenerator
             ai3[i] = ai[i] + j;
             ai3[byte1] = MathHelper.floor_double((double) ai[byte1] + (double) j * d);
             ai3[byte2] = MathHelper.floor_double((double) ai[byte2] + (double) j * d1);
-            int l = worldObj.getBlockId(ai3[0], ai3[1], ai3[2]);
-            if (l != 0 && l != 18)
+            Block l = worldObj.getBlock(ai3[0], ai3[1], ai3[2]);
+            if (l != null && l != 18)//what is ID 18
             {
                 break;
             }
@@ -2220,8 +2221,8 @@ public class RedwoodTreeGen extends WorldGenerator
     {
         int ai[] = { basePos[0], basePos[1], basePos[2] };
         int ai1[] = { basePos[0], (basePos[1] + heightLimit) - 1, basePos[2] };
-        int i = worldObj.getBlockId(basePos[0], basePos[1] - 1, basePos[2]);
-        if (i != 2 && i != 3)
+        Block i = worldObj.getBlock(basePos[0], basePos[1] - 1, basePos[2]);
+        if (i != 2 && i != 3)//what are ID's 2 & 3
         {
             return false;
         }

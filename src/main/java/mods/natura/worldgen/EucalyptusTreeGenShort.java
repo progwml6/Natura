@@ -4,6 +4,7 @@ import java.util.Random;
 
 import mods.natura.common.NContent;
 import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 
@@ -28,8 +29,8 @@ public class EucalyptusTreeGenShort extends WorldGenerator
     int findGround (World world, int x, int y, int z)
     {
         int l = 0;
-        int i1 = world.getBlockId(x, y - 1, z);
-        if (!Block.opaqueCubeLookup[world.getBlockId(x, y, z)] && (i1 == Block.grass.blockID || i1 == Block.dirt.blockID))
+        Block i1 = world.getBlock(x, y - 1, z);
+        if (!world.getBlock(x, y, z).isOpaqueCube() && (i1 == Blocks.grass || i1 == Blocks.dirt))
         {
             return y;
         }
@@ -40,8 +41,8 @@ public class EucalyptusTreeGenShort extends WorldGenerator
             {
                 break;
             }
-            int j1 = world.getBlockId(x, k1, z);
-            if ((j1 == Block.grass.blockID || j1 == Block.dirt.blockID) && !Block.opaqueCubeLookup[world.getBlockId(x, k1 + 1, z)])
+            Block j1 = world.getBlock(x, k1, z);
+            if ((j1 == Blocks.grass || j1 == Blocks.dirt) && !world.getBlock(x, k1 + 1, z).isOpaqueCube())
             {
                 l = k1 + 1;
                 break;
@@ -81,8 +82,8 @@ public class EucalyptusTreeGenShort extends WorldGenerator
                     }
                     if (i1 >= 0 && i1 < 256)
                     {
-                        int k2 = world.getBlockId(l1, i1, j2);
-                        if (k2 != 0 && k2 != NContent.floraLeaves.blockID)
+                        Block k2 = world.getBlock(l1, i1, j2);
+                        if (k2 != Blocks.air && k2 != NContent.floraLeaves)
                         {
                             flag = false;
                             continue label0;
@@ -102,18 +103,18 @@ public class EucalyptusTreeGenShort extends WorldGenerator
         {
             return false;
         }
-        int j1 = world.getBlockId(posX, posY - 1, posZ);
-        if (j1 != Block.grass.blockID && j1 != Block.dirt.blockID || posY >= 256 - height - 1)
+        Block j1 = world.getBlock(posX, posY - 1, posZ);
+        if (j1 != Blocks.grass && j1 != Blocks.dirt || posY >= 256 - height - 1)
         {
             return false;
         }
-        world.setBlock(posX, posY - 1, posZ, Block.dirt.blockID);
+        world.setBlock(posX, posY - 1, posZ, Blocks.dirt);
         for (int k1 = 0; k1 < height; k1++)
         {
-            int i2 = world.getBlockId(posX, posY + k1, posZ);
-            if (i2 == 0 || i2 == NContent.floraLeaves.blockID)
+            Block i2 = world.getBlock(posX, posY + k1, posZ);
+            if (i2 == Blocks.air || i2 == NContent.floraLeaves)
             {
-                setBlockAndMetadata(world, posX, posY + k1, posZ, NContent.tree.blockID, mdWood);
+                setBlockAndMetadata(world, posX, posY + k1, posZ, NContent.tree, mdWood);
             }
         }
 
@@ -172,8 +173,8 @@ public class EucalyptusTreeGenShort extends WorldGenerator
             int branch = heightShift % 3;
             posY += branch;
             if (branch == 2)
-                setBlockAndMetadata(world, posX, posY - 1, posZ, NContent.tree.blockID, mdWood);
-            setBlockAndMetadata(world, posX, posY, posZ, NContent.tree.blockID, mdWood);
+                setBlockAndMetadata(world, posX, posY - 1, posZ, NContent.tree, mdWood);
+            setBlockAndMetadata(world, posX, posY, posZ, NContent.tree, mdWood);
             if (bIter == 1)
                 generateNode(world, random, posX, posY, posZ);
             heightShift = random.nextInt(6);
@@ -225,8 +226,8 @@ public class EucalyptusTreeGenShort extends WorldGenerator
             int branch = heightShift % 3;
             posY += branch;
             if (branch == 2)
-                setBlockAndMetadata(world, posX, posY - 1, posZ, NContent.tree.blockID, mdWood);
-            setBlockAndMetadata(world, posX, posY, posZ, NContent.tree.blockID, mdWood);
+                setBlockAndMetadata(world, posX, posY - 1, posZ, NContent.tree, mdWood);
+            setBlockAndMetadata(world, posX, posY, posZ, NContent.tree, mdWood);
             if (j2 == 1)
                 generateNode(world, random, posX, posY, posZ);
             heightShift = random.nextInt(6);
@@ -235,15 +236,15 @@ public class EucalyptusTreeGenShort extends WorldGenerator
 
     public boolean generateNode (World world, Random random, int x, int y, int z)
     {
-        setBlockAndMetadata(world, x, y, z, NContent.tree.blockID, mdWood);
+        setBlockAndMetadata(world, x, y, z, NContent.tree, mdWood);
         for (int xIter = x - 2; xIter <= x + 2; xIter++)
         {
             for (int zIter = z - 1; zIter <= z + 1; zIter++)
             {
-                int bID = world.getBlockId(xIter, y, zIter);
-                if (bID != NContent.floraLeaves.blockID && !Block.opaqueCubeLookup[bID])
+                Block bID = world.getBlock(xIter, y, zIter);
+                if (bID != NContent.floraLeaves && !bID.isOpaqueCube())
                 {
-                    setBlockAndMetadata(world, xIter, y, zIter, NContent.floraLeaves.blockID, mdLeaves);
+                    setBlockAndMetadata(world, xIter, y, zIter, NContent.floraLeaves, mdLeaves);
                 }
             }
         }
@@ -252,10 +253,10 @@ public class EucalyptusTreeGenShort extends WorldGenerator
         {
             for (int zIter = z - 2; zIter <= z + 2; zIter++)
             {
-                int bID = world.getBlockId(xIter, y, zIter);
-                if (bID != NContent.floraLeaves.blockID && !Block.opaqueCubeLookup[bID])
+                Block bID = world.getBlock(xIter, y, zIter);
+                if (bID != NContent.floraLeaves && !bID.isOpaqueCube())
                 {
-                    setBlockAndMetadata(world, xIter, y, zIter, NContent.floraLeaves.blockID, mdLeaves);
+                    setBlockAndMetadata(world, xIter, y, zIter, NContent.floraLeaves, mdLeaves);
                 }
             }
         }
@@ -264,10 +265,10 @@ public class EucalyptusTreeGenShort extends WorldGenerator
         {
             for (int zIter = z - 1; zIter <= z + 1; zIter++)
             {
-                int bID = world.getBlockId(xIter, y + 1, zIter);
-                if (bID != NContent.floraLeaves.blockID && !Block.opaqueCubeLookup[bID])
+                Block bID = world.getBlock(xIter, y + 1, zIter);
+                if (bID != NContent.floraLeaves && !bID.isOpaqueCube())
                 {
-                    setBlockAndMetadata(world, xIter, y + 1, zIter, NContent.floraLeaves.blockID, mdLeaves);
+                    setBlockAndMetadata(world, xIter, y + 1, zIter, NContent.floraLeaves, mdLeaves);
                 }
             }
         }

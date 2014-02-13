@@ -4,9 +4,10 @@ import java.util.Random;
 
 import mods.natura.common.NContent;
 import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
-import net.minecraftforge.common.ForgeDirection;
+import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.common.IPlantable;
 
 public class NetherBerryBushGen extends WorldGenerator
@@ -44,9 +45,9 @@ public class NetherBerryBushGen extends WorldGenerator
     int findGround (World world, int x, int y, int z)
     {
         int returnHeight = -1;
-        int blockID = world.getBlockId(x, y - 1, z);
-        if (blockID != 0 && !Block.opaqueCubeLookup[world.getBlockId(x, y, z)]
-                && (blockID == Block.netherrack.blockID || Block.blocksList[blockID].canSustainPlant(world, x, y - 1, z, ForgeDirection.UP, (IPlantable) blockGen)))
+        Block blockID = world.getBlock(x, y - 1, z);
+        if (blockID != null && !world.getBlock(x, y, z).isOpaqueCube()
+                && (blockID == Blocks.netherrack || blockID.canSustainPlant(world, x, y - 1, z, ForgeDirection.UP, (IPlantable) blockGen)))
         {
             //System.out.println("Returning "+y);
             return y;
@@ -55,12 +56,12 @@ public class NetherBerryBushGen extends WorldGenerator
         int height = y;
         do
         {
-            int bID = world.getBlockId(x, height, z);
+            Block bID = world.getBlock(x, height, z);
             if (bID != 0)
             {
-                if (bID == Block.netherrack.blockID || Block.blocksList[bID].canSustainPlant(world, x, height, z, ForgeDirection.UP, (IPlantable) blockGen))
+                if (bID == Blocks.netherrack || bID.canSustainPlant(world, x, height, z, ForgeDirection.UP, (IPlantable) blockGen))
                 {
-                    if (!Block.opaqueCubeLookup[world.getBlockId(x, height + 1, z)])
+                    if (!world.getBlock(x, height + 1, z).isOpaqueCube())
                     {
                         returnHeight = height + 1;
                     }
@@ -126,7 +127,7 @@ public class NetherBerryBushGen extends WorldGenerator
         Block block = null;
         do
         {
-            block = Block.blocksList[world.getBlockId(x, y, z)];
+            block = world.getBlock(x, y, z);
             if (block != null && !block.isLeaves(world, x, y, z))
             {
                 break;
@@ -134,9 +135,9 @@ public class NetherBerryBushGen extends WorldGenerator
             y--;
         } while (y > 0);
 
-        int i1 = world.getBlockId(x, y, z);
+        Block i1 = world.getBlock(x, y, z);
 
-        if (i1 == Block.dirt.blockID || i1 == Block.grass.blockID)
+        if (i1 == Blocks.dirt || i1 == Blocks.grass)
         {
             ++y;
 
@@ -153,7 +154,7 @@ public class NetherBerryBushGen extends WorldGenerator
                     {
                         int l2 = zPos - z;
 
-                        block = Block.blocksList[world.getBlockId(xPos, yPos, zPos)];
+                        block = Block.blocksList[world.getBlock(xPos, yPos, zPos)];
 
                         if ((Math.abs(j2) != l1 || Math.abs(l2) != l1 || random.nextInt(2) != 0) && (block == null || block.canBeReplacedByLeaves(world, xPos, yPos, zPos)))
                         {
@@ -185,19 +186,19 @@ public class NetherBerryBushGen extends WorldGenerator
 
     void generateBerryBlock (World world, int x, int y, int z, Random random)
     {
-        if (!Block.opaqueCubeLookup[world.getBlockId(x, y, z)])
+        if (!world.getBlock(x, y, z).isOpaqueCube())
         {
             int metaOffset = random.nextInt(5) == 0 ? 1 : 0;
-            setBlockAndMetadata(world, x, y, z, NContent.netherBerryBush.blockID, metadata + 8 + metaOffset * 4);
+            setBlockAndMetadata(world, x, y, z, NContent.netherBerryBush, metadata + 8 + metaOffset * 4);
         }
     }
 
     void generateBerryBush (World world, int x, int y, int z, Random random)
     {
-        if (!Block.opaqueCubeLookup[world.getBlockId(x, y, z)])
+        if (!world.getBlock(x, y, z).isOpaqueCube())
         {
             int metaOffset = random.nextInt(4);
-            setBlockAndMetadata(world, x, y, z, NContent.netherBerryBush.blockID, metadata + metaOffset * 4);
+            setBlockAndMetadata(world, x, y, z, NContent.netherBerryBush, metadata + metaOffset * 4);
         }
     }
 }

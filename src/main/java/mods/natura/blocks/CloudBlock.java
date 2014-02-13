@@ -9,6 +9,7 @@ import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityArrow;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.Explosion;
@@ -51,7 +52,7 @@ public class CloudBlock extends NBlock
     public boolean onBlockActivated (World world, int x, int y, int z, EntityPlayer player, int par6, float par7, float par8, float par9)
     {
         int meta = world.getBlockMetadata(x, y, z);
-        if (meta == 3 && player.getCurrentEquippedItem() != null && player.getCurrentEquippedItem().itemID == Item.flintAndSteel.itemID)
+        if (meta == 3 && player.getCurrentEquippedItem() != null && player.getCurrentEquippedItem().getItem() == Items.flint_and_steel)
         {
             world.setBlockToAir(x, y, z);
             this.explode(world, x, y, z, 1, player);
@@ -88,8 +89,8 @@ public class CloudBlock extends NBlock
     @Override
     public boolean shouldSideBeRendered (IBlockAccess iblockaccess, int x, int y, int z, int side)
     {
-        int blockID = iblockaccess.getBlockId(x, y, z);
-        if (blockID == NContent.cloud.blockID)
+        Block block = iblockaccess.getBlock(x, y, z);
+        if (block == NContent.cloud)
         {
             return false;
         }
@@ -120,8 +121,8 @@ public class CloudBlock extends NBlock
     @Override
     public boolean isBlockSolid (IBlockAccess iblockaccess, int x, int y, int z, int l)
     {
-        int blockID = iblockaccess.getBlockId(x, y, z);
-        if (blockID == NContent.cloud.blockID)
+        Block block = iblockaccess.getBlock(x, y, z);
+        if (block == NContent.cloud)
         {
             return false;
         }
@@ -134,7 +135,7 @@ public class CloudBlock extends NBlock
     @Override
     public AxisAlignedBB getCollisionBoundingBoxFromPool (World world, int x, int y, int z)
     {
-        if (world.getBlockId(x, y - 1, z) == NContent.cloud.blockID)
+        if (world.getBlock(x, y - 1, z) == NContent.cloud)
         {
             return null;
         }

@@ -4,6 +4,7 @@ import mods.natura.entity.FusewoodArrow;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
@@ -32,7 +33,7 @@ public class FusewoodBow extends NaturaBow
 
         boolean flag = par3EntityPlayer.capabilities.isCreativeMode || EnchantmentHelper.getEnchantmentLevel(Enchantment.infinity.effectId, par1ItemStack) > 0;
 
-        if (flag || par3EntityPlayer.inventory.hasItem(Item.arrow.itemID))
+        if (flag || par3EntityPlayer.inventory.hasItem(Items.arrow))
         {
             float f = (float) j / 20.0F;
             f = (f * f + f * 2.0F) / 3.0F;
@@ -83,7 +84,7 @@ public class FusewoodBow extends NaturaBow
             }
             else
             {
-                par3EntityPlayer.inventory.consumeInventoryItem(Item.arrow.itemID);
+                par3EntityPlayer.inventory.consumeInventoryItem(Items.arrow);
             }
 
             if (!par2World.isRemote)

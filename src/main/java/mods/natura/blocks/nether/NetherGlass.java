@@ -6,15 +6,16 @@ import java.util.Random;
 import mods.natura.common.NContent;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
@@ -22,9 +23,9 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class NetherGlass extends Block
 {
-    public NetherGlass(int id)
+    public NetherGlass()
     {
-        super(id, Material.glass);
+        super(Material.glass);
     }
 
     @Override
@@ -61,8 +62,8 @@ public class NetherGlass extends Block
     @SideOnly(Side.CLIENT)
     public boolean shouldSideBeRendered (IBlockAccess par1IBlockAccess, int par2, int par3, int par4, int par5)
     {
-        int i1 = par1IBlockAccess.getBlockId(par2, par3, par4);
-        return i1 == this.blockID ? false : super.shouldSideBeRendered(par1IBlockAccess, par2, par3, par4, par5);
+        Block i1 = par1IBlockAccess.getBlock(par2, par3, par4);
+        return i1 == this ? false : super.shouldSideBeRendered(par1IBlockAccess, par2, par3, par4, par5);
     }
 
     @Override
@@ -73,13 +74,13 @@ public class NetherGlass extends Block
     }
 
     @SideOnly(Side.CLIENT)
-    public Icon[] icons;
+    public IIcon[] icons;
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void registerIcons (IconRegister par1IconRegister)
+    public void registerIcons (IIconRegister par1IconRegister)
     {
-        icons = new Icon[4];
+        icons = new IIcon[4];
         icons[0] = par1IconRegister.registerIcon("natura:glass_soul");
         icons[1] = par1IconRegister.registerIcon("natura:glass_heat");
         icons[2] = par1IconRegister.registerIcon("natura:glass_soul_item");
@@ -88,7 +89,7 @@ public class NetherGlass extends Block
     
     @Override
     @SideOnly(Side.CLIENT)
-    public Icon getBlockTexture (IBlockAccess par1IBlockAccess, int par2, int par3, int par4, int par5)
+    public IIcon getBlockTexture (IBlockAccess par1IBlockAccess, int par2, int par3, int par4, int par5)
     {
         int meta = par1IBlockAccess.getBlockMetadata(par2, par3, par4);
         if (meta < 1)
@@ -139,7 +140,7 @@ public class NetherGlass extends Block
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubBlocks (int par1, CreativeTabs par2CreativeTabs, List par3List)
+    public void getSubBlocks (Item par1, CreativeTabs par2CreativeTabs, List par3List)
     {
         for (int var4 = 0; var4 < 2; ++var4)
         {

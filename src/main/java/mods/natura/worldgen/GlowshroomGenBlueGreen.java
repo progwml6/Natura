@@ -4,6 +4,7 @@ import java.util.Random;
 
 import mods.natura.common.NContent;
 import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 
@@ -60,11 +61,9 @@ public class GlowshroomGenBlueGreen extends WorldGenerator
                     {
                         if (blockID >= 0 && blockID < 256)
                         {
-                            posX = world.getBlockId(posY, blockID, l1);
+                            Block block = world.getBlock(posY, blockID, l1);
 
-                            Block block = Block.blocksList[posX];
-
-                            if (posX != 0 && block != null && !block.isLeaves(world, posY, blockID, l1) && posX != NContent.glowshroom.blockID)
+                            if (posX != 0 && block != null && !block.isLeaves(world, posY, blockID, l1) && posX != NContent.glowshroom)
                             {
                                 flag = false;
                             }
@@ -83,9 +82,9 @@ public class GlowshroomGenBlueGreen extends WorldGenerator
             }
             else
             {
-                blockID = world.getBlockId(x, y - 1, z);
+                blockID = world.getBlock(x, y - 1, z);
 
-                if (blockID != Block.mycelium.blockID && blockID != Block.netherrack.blockID && blockID != NContent.taintedSoil.blockID && blockID != Block.slowSand.blockID)
+                if (blockID != Blocks.mycelium && blockID != Blocks.netherrack && blockID != NContent.taintedSoil && blockID != Blocks.soul_sand)
                 {
                     return false;
                 }
@@ -191,11 +190,11 @@ public class GlowshroomGenBlueGreen extends WorldGenerator
                                     meta = 0;
                                 }
 
-                                Block block = Block.blocksList[world.getBlockId(posX, posY, posZ)];
+                                Block block = world.getBlock(posX, posY, posZ);
 
                                 if ((meta != 0 || y >= y + height - 1) && (block == null || block.canBeReplacedByLeaves(world, posX, posY, posZ)))
                                 {
-                                    int localID = type == 1 ? NContent.glowshroomBlue.blockID : NContent.glowshroomGreen.blockID;
+                                    int localID = type == 1 ? NContent.glowshroomBlue : NContent.glowshroomGreen;
                                     this.setBlockAndMetadata(world, posX, posY, posZ, localID, meta);
                                 }
                             }
@@ -204,13 +203,11 @@ public class GlowshroomGenBlueGreen extends WorldGenerator
 
                     for (posY = 0; posY < height; ++posY)
                     {
-                        l1 = world.getBlockId(x, y + posY, z);
-
-                        Block block = Block.blocksList[l1];
+                        Block block = world.getBlock(x, y + posY, z);
 
                         if (block == null || block.canBeReplacedByLeaves(world, x, y + posY, z))
                         {
-                            int localID = type == 1 ? NContent.glowshroomBlue.blockID : NContent.glowshroomGreen.blockID;
+                            int localID = type == 1 ? NContent.glowshroomBlue : NContent.glowshroomGreen;
                             this.setBlockAndMetadata(world, x, y + posY, z, localID, 10);
                         }
                     }

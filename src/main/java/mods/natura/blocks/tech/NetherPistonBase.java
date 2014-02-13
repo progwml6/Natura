@@ -7,16 +7,17 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockPistonBase;
 import net.minecraft.block.BlockPistonMoving;
 import net.minecraft.block.BlockSnow;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityPiston;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.Facing;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -26,22 +27,22 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class NetherPistonBase extends BlockPistonBase
 {
     @SideOnly(Side.CLIENT)
-    private Icon iIcon;
+    private IIcon iIcon;
     @SideOnly(Side.CLIENT)
-    private Icon bIcon;
+    private IIcon bIcon;
     @SideOnly(Side.CLIENT)
-    private Icon tIcon;
+    private IIcon tIcon;
     private boolean sticky;
 
-    public NetherPistonBase(int id, boolean sticky)
+    public NetherPistonBase(boolean sticky)
     {
-        super(id, sticky);
+        super(sticky);
         this.sticky = sticky;
     }
 
     @Override
     @SideOnly(Side.CLIENT)
-    public Icon getPistonExtensionTexture ()
+    public IIcon getPistonExtensionTexture ()
     {
         return this.tIcon;
     }
@@ -52,7 +53,7 @@ public class NetherPistonBase extends BlockPistonBase
     }*/
 
     @SideOnly(Side.CLIENT)
-    public static Icon getBaseIcon (String par0Str)
+    public static IIcon getBaseIcon (String par0Str)
     {
         return par0Str == "piston_side" ? NContent.piston.blockIcon : (par0Str == "piston_top_normal" ? NContent.piston.tIcon : (par0Str == "piston_top_sticky" ? NContent.piston.tIcon
                 : (par0Str == "piston_inner" ? NContent.piston.iIcon : null)));
@@ -60,7 +61,7 @@ public class NetherPistonBase extends BlockPistonBase
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void registerIcons (IconRegister par1IconRegister)
+    public void registerIcons (IIconRegister par1IconRegister)
     {
         this.blockIcon = par1IconRegister.registerIcon("natura:piston_side");
         this.tIcon = par1IconRegister.registerIcon(this.sticky ? "natura:piston_top_sticky" : "natura:piston_top_normal");
@@ -70,7 +71,7 @@ public class NetherPistonBase extends BlockPistonBase
 
     @Override
     @SideOnly(Side.CLIENT)
-    public Icon getIcon (int side, int meta)
+    public IIcon getIcon (int side, int meta)
     {
         int k = getOrientation(meta);
         return k > 5 ? this.tIcon
@@ -126,7 +127,7 @@ public class NetherPistonBase extends BlockPistonBase
      */
     public void onBlockAdded (World par1World, int par2, int par3, int par4)
     {
-        if (!par1World.isRemote && par1World.getBlockTileEntity(par2, par3, par4) == null)
+        if (!par1World.isRemote && par1World.getTileEntity(par2, par3, par4) == null)
         {
             this.updatePistonState(par1World, par2, par3, par4);
         }
@@ -148,13 +149,13 @@ public class NetherPistonBase extends BlockPistonBase
             {
                 if (canExtend(par1World, par2, par3, par4, i1))
                 {
-                    par1World.addBlockEvent(par2, par3, par4, this.blockID, 0, i1);
+                    par1World.addBlockEvent(par2, par3, par4, this, 0, i1);
                 }
             }
             else if (!flag && isExtended(l))
             {
                 par1World.setBlockMetadataWithNotify(par2, par3, par4, i1, 2);
-                par1World.addBlockEvent(par2, par3, par4, this.blockID, 1, i1);
+                par1World.addBlockEvent(par2, par3, par4, this, 1, i1);
             }
         }
     }
@@ -206,28 +207,28 @@ public class NetherPistonBase extends BlockPistonBase
         }
         else if (par5 == 1)
         {
-            TileEntity tileentity = par1World.getBlockTileEntity(par2 + Facing.offsetsXForSide[par6], par3 + Facing.offsetsYForSide[par6], par4 + Facing.offsetsZForSide[par6]);
+            TileEntity tileentity = par1World.getTileEntity(par2 + Facing.offsetsXForSide[par6], par3 + Facing.offsetsYForSide[par6], par4 + Facing.offsetsZForSide[par6]);
 
             if (tileentity instanceof TileEntityPiston)
             {
                 ((TileEntityPiston) tileentity).clearPistonTileEntity();
             }
 
-            par1World.setBlock(par2, par3, par4, Block.pistonMoving.blockID, par6, 3);
-            par1World.setBlockTileEntity(par2, par3, par4, BlockPistonMoving.getTileEntity(this.blockID, par6, par6, false, true));
+            par1World.setBlock(par2, par3, par4, Blocks.piston, par6, 3);
+            par1World.setTileEntity(par2, par3, par4, BlockPistonMoving.getTileEntity(this, par6, par6, false, true));
 
             if (this.sticky)
             {
                 int j1 = par2 + Facing.offsetsXForSide[par6] * 2;
                 int k1 = par3 + Facing.offsetsYForSide[par6] * 2;
                 int l1 = par4 + Facing.offsetsZForSide[par6] * 2;
-                int i2 = par1World.getBlockId(j1, k1, l1);
+                Block i2 = par1World.getBlock(j1, k1, l1);
                 int j2 = par1World.getBlockMetadata(j1, k1, l1);
                 boolean flag1 = false;
 
-                if (i2 == Block.pistonMoving.blockID)
+                if (i2 == Blocks.piston)
                 {
-                    TileEntity tileentity1 = par1World.getBlockTileEntity(j1, k1, l1);
+                    TileEntity tileentity1 = par1World.getTileEntity(j1, k1, l1);
 
                     if (tileentity1 instanceof TileEntityPiston)
                     {
@@ -243,14 +244,14 @@ public class NetherPistonBase extends BlockPistonBase
                     }
                 }
 
-                if (!flag1 && i2 > 0 && canPushBlock(i2, par1World, j1, k1, l1, false)
-                        && (Block.blocksList[i2].getMobilityFlag() == 0 || i2 == NContent.piston.blockID || i2 == NContent.pistonSticky.blockID))
+                if (!flag1 && i2 != null && canPushBlock(i2, par1World, j1, k1, l1, false)
+                        && (i2.getMobilityFlag() == 0 || i2 == NContent.piston || i2 == NContent.pistonSticky))
                 {
                     par2 += Facing.offsetsXForSide[par6];
                     par3 += Facing.offsetsYForSide[par6];
                     par4 += Facing.offsetsZForSide[par6];
-                    par1World.setBlock(par2, par3, par4, Block.pistonMoving.blockID, j2, 3);
-                    par1World.setBlockTileEntity(par2, par3, par4, BlockPistonMoving.getTileEntity(i2, j2, par6, false, false));
+                    par1World.setBlock(par2, par3, par4, Blocks.piston, j2, 3);
+                    par1World.setTileEntity(par2, par3, par4, BlockPistonMoving.getTileEntity(i2, j2, par6, false, false));
                     par1World.setBlockToAir(j1, k1, l1);
                 }
                 else if (!flag1)
@@ -386,27 +387,27 @@ public class NetherPistonBase extends BlockPistonBase
     /**
      * returns true if the piston can push the specified block
      */
-    private static boolean canPushBlock (int par0, World par1World, int par2, int par3, int par4, boolean par5)
+    private static boolean canPushBlock (Block par0, World par1World, int par2, int par3, int par4, boolean par5)
     {
-        if (par0 == Block.obsidian.blockID)
+        if (par0 == Blocks.obsidian)
         {
             return false;
         }
         else
         {
-            if (par0 != NContent.piston.blockID && par0 != NContent.pistonSticky.blockID)
+            if (par0 != NContent.piston && par0 != NContent.pistonSticky)
             {
-                if (Block.blocksList[par0].getBlockHardness(par1World, par2, par3, par4) == -1.0F)
+                if (par0.getBlockHardness(par1World, par2, par3, par4) == -1.0F)
                 {
                     return false;
                 }
 
-                if (Block.blocksList[par0].getMobilityFlag() == 2)
+                if (par0.getMobilityFlag() == 2)
                 {
                     return false;
                 }
 
-                if (Block.blocksList[par0].getMobilityFlag() == 1)
+                if (par0.getMobilityFlag() == 1)
                 {
                     if (!par5)
                     {
@@ -444,7 +445,7 @@ public class NetherPistonBase extends BlockPistonBase
                     return false;
                 }
 
-                int i2 = par0World.getBlockId(i1, j1, k1);
+                Block i2 = par0World.getBlock(i1, j1, k1);
 
                 if (!par0World.isAirBlock(i1, j1, k1))
                 {
@@ -453,7 +454,7 @@ public class NetherPistonBase extends BlockPistonBase
                         return false;
                     }
 
-                    if (Block.blocksList[i2].getMobilityFlag() != 1)
+                    if (i2.getMobilityFlag() != 1)
                     {
                         if (l1 == 12)
                         {
@@ -485,7 +486,7 @@ public class NetherPistonBase extends BlockPistonBase
 
         while (true)
         {
-            int i2;
+            Block i2;
 
             if (l1 < 13)
             {
@@ -494,7 +495,7 @@ public class NetherPistonBase extends BlockPistonBase
                     return false;
                 }
 
-                i2 = par1World.getBlockId(i1, j1, k1);
+                i2 = par1World.getBlock(i1, j1, k1);
 
                 if (!par1World.isAirBlock(i1, j1, k1))
                 {
@@ -503,7 +504,7 @@ public class NetherPistonBase extends BlockPistonBase
                         return false;
                     }
 
-                    if (Block.blocksList[i2].getMobilityFlag() != 1)
+                    if (i2.getMobilityFlag() != 1)
                     {
                         if (l1 == 12)
                         {
@@ -518,8 +519,8 @@ public class NetherPistonBase extends BlockPistonBase
                     }
 
                     //With our change to how snowballs are dropped this needs to disallow to mimic vanilla behavior.
-                    float chance = (Block.blocksList[i2] instanceof BlockSnow ? -1.0f : 1.0f);
-                    Block.blocksList[i2].dropBlockAsItemWithChance(par1World, i1, j1, k1, par1World.getBlockMetadata(i1, j1, k1), chance, 0);
+                    float chance = (i2 instanceof BlockSnow ? -1.0f : 1.0f);
+                    i2.dropBlockAsItemWithChance(par1World, i1, j1, k1, par1World.getBlockMetadata(i1, j1, k1), chance, 0);
                     par1World.setBlockToAir(i1, j1, k1);
                 }
             }
@@ -538,18 +539,18 @@ public class NetherPistonBase extends BlockPistonBase
                 l2 = i1 - Facing.offsetsXForSide[par5];
                 i3 = j1 - Facing.offsetsYForSide[par5];
                 j3 = k1 - Facing.offsetsZForSide[par5];
-                int k3 = par1World.getBlockId(l2, i3, j3);
+                Block k3 = par1World.getBlock(l2, i3, j3);
                 int l3 = par1World.getBlockMetadata(l2, i3, j3);
 
-                if (k3 == this.blockID && l2 == par2 && i3 == par3 && j3 == par4)
+                if (k3 == this && l2 == par2 && i3 == par3 && j3 == par4)
                 {
-                    par1World.setBlock(i1, j1, k1, Block.pistonMoving.blockID, par5 | (this.sticky ? 8 : 0), 4);
-                    par1World.setBlockTileEntity(i1, j1, k1, BlockPistonMoving.getTileEntity(NContent.pistonExtension.blockID, par5 | (this.sticky ? 8 : 0), par5, true, false));
+                    par1World.setBlock(i1, j1, k1, Blocks.piston, par5 | (this.sticky ? 8 : 0), 4);
+                    par1World.setTileEntity(i1, j1, k1, BlockPistonMoving.getTileEntity(NContent.pistonExtension, par5 | (this.sticky ? 8 : 0), par5, true, false));
                 }
                 else
                 {
-                    par1World.setBlock(i1, j1, k1, Block.pistonMoving.blockID, l3, 4);
-                    par1World.setBlockTileEntity(i1, j1, k1, BlockPistonMoving.getTileEntity(k3, l3, par5, true, false));
+                    par1World.setBlock(i1, j1, k1, Blocks.piston, l3, 4);
+                    par1World.setTileEntity(i1, j1, k1, BlockPistonMoving.getTileEntity(k3, l3, par5, true, false));
                 }
 
                 aint[k2++] = k3;

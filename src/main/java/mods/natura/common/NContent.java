@@ -42,9 +42,6 @@ import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
 import tconstruct.library.crafting.PatternBuilder;
-import thaumcraft.api.ThaumcraftApi;
-import thaumcraft.api.aspects.Aspect;
-import thaumcraft.api.aspects.AspectList;
 import cpw.mods.fml.common.IFuelHandler;
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.event.FMLInterModComms;
@@ -122,8 +119,8 @@ public class NContent implements IFuelHandler
         tree = new TreeBlock(PHNatura.treeID).setUnlocalizedName("natura.treeblock");
         redwood = new SimpleLog(PHNatura.redwoodID).setUnlocalizedName("natura.redwood");
         planks = new Planks(PHNatura.planksID).setUnlocalizedName("natura.planks");
-        floraLeaves = (NLeaves) new NLeaves(PHNatura.floraLeavesID).setUnlocalizedName("natura.leaves");
-        floraLeavesNoColor = (NLeaves) new NLeavesNocolor(PHNatura.cherryLeavesID).setUnlocalizedName("natura.leavesnocolor");
+        floraLeaves = (NLeaves) new NLeaves().setUnlocalizedName("natura.leaves");
+        floraLeavesNoColor = (NLeaves) new NLeavesNocolor().setUnlocalizedName("natura.leavesnocolor");
         floraSapling = (NSaplingBlock) new NSaplingBlock(PHNatura.floraSaplingID).setUnlocalizedName("natura.sapling");
         willow = new WillowBlock(PHNatura.willow).setUnlocalizedName("willow");
 
@@ -131,7 +128,7 @@ public class NContent implements IFuelHandler
         seedFood = new SeedFood(PHNatura.seedFood, 3, 0.3f, saguaro.blockID).setUnlocalizedName("saguaro.fruit");
         GameRegistry.registerItem(seedFood, "saguaro.fruit");
 
-        doorItem = new NDoorItem(PHNatura.doorItemID).setUnlocalizedName("redwoodDoorItem");
+        doorItem = new NDoorItem().setUnlocalizedName("redwoodDoorItem");
         GameRegistry.registerItem(doorItem, "redwoodDoorItem");
         redwoodDoor = new NDoor(PHNatura.redwoodDoor, Material.wood, 0, "redwood").setUnlocalizedName("door.redwood");
         eucalyptusDoor = new NDoor(PHNatura.eucalyptusDoor, Material.wood, 1, "eucalyptus").setUnlocalizedName("door.eucalyptus");
@@ -1238,19 +1235,19 @@ public class NContent implements IFuelHandler
         {
 
         }
+        /*
 
         try
         {
             Class.forName("thaumcraft.api.ThaumcraftApi");
-
-            /* Registering seeds */
+            // Registering seeds
             AspectList seedTags = new AspectList();
             seedTags.add(Aspect.PLANT, 1);
             seedTags.add(Aspect.EXCHANGE, 1);
             ThaumcraftApi.registerObjectTag(seeds.itemID, 0, seedTags);
             ThaumcraftApi.registerObjectTag(seeds.itemID, 1, seedTags);
 
-            /* Registering plants */
+            // Registering plants
             ThaumcraftApi.registerObjectTag(plantItem.itemID, 0, new AspectList().add(Aspect.LIFE, 2).add(Aspect.CROP, 2));
             ThaumcraftApi.registerObjectTag(plantItem.itemID, 3, new AspectList().add(Aspect.CLOTH, 1));
             ThaumcraftApi.registerObjectTag(plantItem.itemID, 4, new AspectList().add(Aspect.ENTROPY, 1).add(Aspect.FIRE, 1));
@@ -1258,7 +1255,7 @@ public class NContent implements IFuelHandler
             ThaumcraftApi.registerObjectTag(plantItem.itemID, 6, new AspectList().add(Aspect.BEAST, 1).add(Aspect.FLESH, 1).add(Aspect.CLOTH, 1).add(Aspect.ARMOR, 1).add(Aspect.FIRE, 1));
             ThaumcraftApi.registerObjectTag(plantItem.itemID, 7, new AspectList().add(Aspect.BEAST, 1).add(Aspect.CLOTH, 1).add(Aspect.TRAP, 1).add(Aspect.FIRE, 1));
 
-            /* Registering wood */
+            // Registering wood
             AspectList logTags = new AspectList();
             logTags.add(Aspect.TREE, 4);
             ThaumcraftApi.registerObjectTag(tree.blockID, 0, logTags);
@@ -1270,7 +1267,7 @@ public class NContent implements IFuelHandler
             ThaumcraftApi.registerObjectTag(redwood.blockID, 1, logTags);
             ThaumcraftApi.registerObjectTag(redwood.blockID, 2, new AspectList().add(Aspect.EARTH, 1).add(Aspect.TREE, 3));
 
-            /* Leafy goodness */
+            // Leafy goodness
             AspectList leafTags = new AspectList();
             leafTags.add(Aspect.PLANT, 2);
             ThaumcraftApi.registerObjectTag(floraLeavesNoColor.blockID, 0, leafTags);
@@ -1281,14 +1278,14 @@ public class NContent implements IFuelHandler
             ThaumcraftApi.registerObjectTag(floraLeaves.blockID, 2, leafTags);
             ThaumcraftApi.registerObjectTag(floraLeaves.blockID, 3, leafTags);
 
-            /* And rare trees, too. */
+            // And rare trees, too.
             for (int i = 0; i < 4; i++)
             {
                 ThaumcraftApi.registerObjectTag(rareTree.blockID, i, logTags);
                 ThaumcraftApi.registerObjectTag(rareLeaves.blockID, i, leafTags);
             }
 
-            /* Add mushrooms */
+            // Add mushrooms
             AspectList shroomTag = new AspectList();
             shroomTag.add(Aspect.PLANT, 4);
             shroomTag.add(Aspect.LIGHT, 1);
@@ -1298,7 +1295,7 @@ public class NContent implements IFuelHandler
                 ThaumcraftApi.registerObjectTag(glowshroom.blockID, i, shroomTag);
             }
 
-            /* Adding berries! */
+            // Adding berries!
             AspectList berryTag = new AspectList();
             berryTag.add(Aspect.LIFE, 1);
             berryTag.add(Aspect.CROP, 1);
@@ -1307,7 +1304,7 @@ public class NContent implements IFuelHandler
                 ThaumcraftApi.registerObjectTag(berryItem.itemID, i, berryTag);
             }
 
-            /* Adding berry bushes */
+            // Adding berry bushes
             AspectList berryBushTag = new AspectList();
             berryBushTag.add(Aspect.PLANT, 1);
             for (int i = 0; i < 4; i++)
@@ -1315,7 +1312,7 @@ public class NContent implements IFuelHandler
                 ThaumcraftApi.registerObjectTag(berryBush.blockID, i, berryBushTag);
             }
 
-            /* Adding bowls, bowls of stew, and other bowl-based goodies! */
+            // Adding bowls, bowls of stew, and other bowl-based goodies!
             AspectList bowlEmptyTag = new AspectList();
             bowlEmptyTag.add(Aspect.VOID, 1);
             AspectList bowlStewTag = new AspectList();
@@ -1335,7 +1332,7 @@ public class NContent implements IFuelHandler
                 ThaumcraftApi.registerObjectTag(bowlStew.itemID, i + 13, glowStewTag);
             }
 
-            /* Adding other overworld saplings */
+            // Adding other overworld saplings
             AspectList saplingTag = new AspectList();
             saplingTag.add(Aspect.TREE, 2);
             saplingTag.add(Aspect.PLANT, 2);
@@ -1346,7 +1343,7 @@ public class NContent implements IFuelHandler
                 ThaumcraftApi.registerObjectTag(rareSapling.blockID, i, saplingTag);
             }
 
-            /* Cactus Stuff */
+            //Cactus Stuff
             AspectList cactusTag = new AspectList();
             cactusTag.add(Aspect.WATER, 1);
             cactusTag.add(Aspect.PLANT, 2);
@@ -1357,20 +1354,20 @@ public class NContent implements IFuelHandler
             ThaumcraftApi.registerObjectTag(waterDrop.itemID, 0, new AspectList().add(Aspect.WATER, 1));
             ThaumcraftApi.registerObjectTag(seedFood.itemID, 0, new AspectList().add(Aspect.CROP, 2).add(Aspect.PLANT, 1).add(Aspect.WATER, 1));
 
-            /* Overworld Clouds */
+            // Overworld Clouds
             ThaumcraftApi.registerObjectTag(cloud.blockID, 0, new AspectList().add(Aspect.AIR, 1).add(Aspect.FLIGHT, 1).add(Aspect.WATER, 1).add(Aspect.WEATHER, 1));
 
-            /* Nether saplings */
+            // Nether saplings
             ThaumcraftApi.registerObjectTag(floraSapling.blockID, 4, new AspectList().add(Aspect.SOUL, 1).add(Aspect.PLANT, 2).add(Aspect.TREE, 2));
             ThaumcraftApi.registerObjectTag(floraSapling.blockID, 5, new AspectList().add(Aspect.TREE, 2).add(Aspect.PLANT, 2));
             ThaumcraftApi.registerObjectTag(floraSapling.blockID, 6, new AspectList().add(Aspect.TREE, 2).add(Aspect.PLANT, 2));
             ThaumcraftApi.registerObjectTag(floraSapling.blockID, 7, new AspectList().add(Aspect.TREE, 2).add(Aspect.PLANT, 2).add(Aspect.ENTROPY, 2));
 
-            /* Nether blocks */
+            // Nether blocks
             ThaumcraftApi.registerObjectTag(heatSand.blockID, 0, new AspectList().add(Aspect.FIRE, 2).add(Aspect.STONE, 1));
             ThaumcraftApi.registerObjectTag(taintedSoil.blockID, 0, new AspectList().add(Aspect.STONE, 2));
 
-            /* Nether trees and leaves */
+            // Nether trees and leaves
             ThaumcraftApi.registerObjectTag(tree.blockID, 2, new AspectList().add(Aspect.TREE, 3).add(Aspect.SOUL, 1));
             ThaumcraftApi.registerObjectTag(planks.blockID, 2, new AspectList().add(Aspect.TREE, 1));
             ThaumcraftApi.registerObjectTag(planks.blockID, 4, new AspectList().add(Aspect.TREE, 1).add(Aspect.METAL, 1));
@@ -1383,19 +1380,19 @@ public class NContent implements IFuelHandler
             ThaumcraftApi.registerObjectTag(darkLeaves.blockID, 2, new AspectList().add(Aspect.PLANT, 2).add(Aspect.CROP, 2));
             ThaumcraftApi.registerObjectTag(darkLeaves.blockID, 3, new AspectList().add(Aspect.PLANT, 2).add(Aspect.ENTROPY, 1));
 
-            /*Nether vines and bushes */
+            //Nether vines and bushes
             ThaumcraftApi.registerObjectTag(netherBerryBush.blockID, 0, new AspectList().add(Aspect.ENTROPY, 4).add(Aspect.POISON, 4).add(Aspect.PLANT, 1));
             ThaumcraftApi.registerObjectTag(netherBerryBush.blockID, 1, new AspectList().add(Aspect.ENTROPY, 4).add(Aspect.DARKNESS, 4).add(Aspect.PLANT, 1));
             ThaumcraftApi.registerObjectTag(netherBerryBush.blockID, 2, new AspectList().add(Aspect.ENTROPY, 4).add(Aspect.FLIGHT, 4).add(Aspect.PLANT, 1));
             ThaumcraftApi.registerObjectTag(netherBerryBush.blockID, 3, new AspectList().add(Aspect.ENTROPY, 8).add(Aspect.PLANT, 1));
             ThaumcraftApi.registerObjectTag(thornVines.blockID, 0, new AspectList().add(Aspect.FIRE, 1).add(Aspect.PLANT, 1));
 
-            /* Nether and End clouds */
+            // Nether and End clouds
             ThaumcraftApi.registerObjectTag(cloud.blockID, 2, new AspectList().add(Aspect.AIR, 1).add(Aspect.FLIGHT, 1).add(Aspect.FIRE, 1).add(Aspect.WEATHER, 1));
             ThaumcraftApi.registerObjectTag(cloud.blockID, 3, new AspectList().add(Aspect.AIR, 1).add(Aspect.FLIGHT, 1).add(Aspect.POISON, 1).add(Aspect.WEATHER, 1));
             ThaumcraftApi.registerObjectTag(cloud.blockID, 1, new AspectList().add(Aspect.AIR, 1).add(Aspect.FLIGHT, 1).add(Aspect.ELDRITCH, 1).add(Aspect.WEATHER, 1));
 
-            /*Other nether items/plants */
+            //Other nether items/plants
             ThaumcraftApi.registerObjectTag(potashApple.itemID, 0, new AspectList().add(Aspect.CROP, 2).add(Aspect.POISON, 2));
             ThaumcraftApi.registerObjectTag(netherBerryItem.itemID, 0, new AspectList().add(Aspect.ENTROPY, 4).add(Aspect.POISON, 4).add(Aspect.LIFE, 1).add(Aspect.CROP, 1));
             ThaumcraftApi.registerObjectTag(netherBerryItem.itemID, 1, new AspectList().add(Aspect.ENTROPY, 4).add(Aspect.DARKNESS, 4).add(Aspect.LIFE, 1).add(Aspect.CROP, 1));
@@ -1406,6 +1403,8 @@ public class NContent implements IFuelHandler
         {
             System.out.println("ThaumCraft integration failed.");
         }
+        */
+
     }
 
     public static Item spawnEgg;

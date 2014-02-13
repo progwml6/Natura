@@ -5,6 +5,7 @@ import java.util.Random;
 import mods.natura.common.NContent;
 import mods.natura.common.PHNatura;
 import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.feature.WorldGenerator;
@@ -14,13 +15,13 @@ public class BaseTreeWorldgen implements IWorldGenerator
 {
     public BaseTreeWorldgen()
     {
-        genRedwood = new RedwoodTreeGen(false, NContent.redwood.blockID);
+        genRedwood = new RedwoodTreeGen(false, NContent.redwood);
         genBlood = new BloodTreeLargeGen(3, 2);
         bush = new BushTreeGen(false, 2, 3, 2);
         pinkSakura = new SakuraTreeGen(false, 1, 0);
         whiteSakura = new WhiteTreeGen(false, 2, 1);
         eucalyptusShort = new EucalyptusTreeGenShort(0, 1);
-        saguaro = new SaguaroGen(NContent.saguaro.blockID, 0, false);
+        saguaro = new SaguaroGen(NContent.saguaro, 0, false);
         darkwood = new DarkwoodGen(false, 3, 0);
         fusewood = new FusewoodGen(false, 3, 1);
 
@@ -243,8 +244,8 @@ public class BaseTreeWorldgen implements IWorldGenerator
                     int height = ySpawn - (random.nextInt(size) + random.nextInt(size) + random.nextInt(size));
                     for (int yHeight = ySpawn; yHeight > height; yHeight--)
                     {
-                        if (world.getBlockId(xSpawn, yHeight, zSpawn) == 0)
-                            world.setBlock(xSpawn, yHeight, zSpawn, NContent.thornVines.blockID, vineMeta, 2);
+                        if (world.getBlock(xSpawn, yHeight, zSpawn) == Blocks.air)
+                            world.setBlock(xSpawn, yHeight, zSpawn, NContent.thornVines, vineMeta, 2);
                     }
                 }
             }
@@ -272,8 +273,8 @@ public class BaseTreeWorldgen implements IWorldGenerator
         do
         {
             height--;
-            int underID = world.getBlockId(x, height, z);
-            if (underID == Block.netherrack.blockID || underID == Block.slowSand.blockID || underID == NContent.taintedSoil.blockID || height < 0)
+            Block underID = world.getBlock(x, height, z);
+            if (underID == Blocks.netherrack || underID == Blocks.soul_sand || underID == NContent.taintedSoil || height < 0)
                 foundGround = true;
         } while (!foundGround);
         return height + 1;

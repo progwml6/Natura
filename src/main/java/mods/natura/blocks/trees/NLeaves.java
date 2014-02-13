@@ -8,10 +8,12 @@ import mods.natura.common.NContent;
 import mods.natura.common.NaturaTab;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLeaves;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.init.Blocks;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.ColorizerFoliage;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -22,16 +24,16 @@ public class NLeaves extends BlockLeaves
 {
     int[] adjacentTreeBlocks;
 
-    public NLeaves(int id)
+    public NLeaves()
     {
-        super(id);
+        super();
         this.setTickRandomly(true);
         this.setHardness(0.2F);
         this.setLightOpacity(1);
         this.setStepSound(Block.soundGrassFootstep);
         this.setUnlocalizedName("floraLeaves");
         setCreativeTab(CreativeTabs.tabDecorations);
-        setBurnProperties(this.blockID, 30, 60);
+        setBurnProperties(this, 30, 60);
         this.setCreativeTab(NaturaTab.tab);
     }
 
@@ -103,7 +105,7 @@ public class NLeaves extends BlockLeaves
                     {
                         for (int posZ = z - range; posZ <= z + range; posZ++)
                         {
-                            Block block = Block.blocksList[world.getBlockId(posX, posY, posZ)];
+                            Block block = world.getBlock(posX, posY, posZ);
                             if (block != null && block.canSustainLeaves(world, posX, posY, posZ))
                                 nearbyTree = true;
                         }
@@ -119,7 +121,7 @@ public class NLeaves extends BlockLeaves
     public void removeLeaves (World world, int x, int y, int z)
     {
         this.dropBlockAsItem(world, x, y, z, world.getBlockMetadata(x, y, z), 0);
-        world.setBlock(x, y, z, 0, 0, 7);
+        world.setBlock(x, y, z, Blocks.air, 0, 7);
     }
 
     /**
@@ -137,7 +139,7 @@ public class NLeaves extends BlockLeaves
     @Override
     public int idDropped (int var1, Random var2, int var3)
     {
-        return NContent.floraSapling.blockID;
+        return NContent.floraSapling;
     }
 
     @Override
@@ -157,12 +159,12 @@ public class NLeaves extends BlockLeaves
         }
     }
 
-    public Icon[] fastIcons;
-    public Icon[] fancyIcons;
+    public IIcon[] fastIcons;
+    public IIcon[] fancyIcons;
 
     @Override
     @SideOnly(Side.CLIENT)
-    public Icon getIcon (int side, int metadata)
+    public IIcon getIcon (int side, int metadata)
     {
         int meta = metadata % 4;
         if (metadata == 3)
@@ -176,11 +178,11 @@ public class NLeaves extends BlockLeaves
 
     @SideOnly(Side.CLIENT)
     @Override
-    public void registerIcons (IconRegister iconRegister)
+    public void registerIcons (IIconRegister iconRegister)
     {
         String[] textureNames = new String[] { "redwood", "eucalyptus", "hopseed" };
-        this.fastIcons = new Icon[textureNames.length];
-        this.fancyIcons = new Icon[textureNames.length];
+        this.fastIcons = new IIcon[textureNames.length];
+        this.fancyIcons = new IIcon[textureNames.length];
 
         for (int i = 0; i < this.fastIcons.length; i++)
         {
@@ -204,7 +206,7 @@ public class NLeaves extends BlockLeaves
     /**
      * returns a list of blocks with the same ID, but different meta (eg: wood returns 4 blocks)
      */
-    public void getSubBlocks (int par1, CreativeTabs par2CreativeTabs, List par3List)
+    public void getSubBlocks (Item par1, CreativeTabs par2CreativeTabs, List par3List)
     {
         par3List.add(new ItemStack(par1, 1, 0));
         par3List.add(new ItemStack(par1, 1, 1));
@@ -223,6 +225,6 @@ public class NLeaves extends BlockLeaves
         {
             return 255;
         }
-        return lightOpacity[blockID];
+        return this.getLightOpacity();
     }
 }

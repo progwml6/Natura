@@ -7,32 +7,32 @@ import java.util.Random;
 import mods.natura.Natura;
 import mods.natura.common.NContent;
 import mods.natura.common.NaturaTab;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraftforge.common.ForgeDirection;
+import net.minecraftforge.common.util.ForgeDirection;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class NLeavesNocolor extends NLeaves
 {
-    public NLeavesNocolor(int id)
+    public NLeavesNocolor()
     {
-        super(id);
+        super();
         this.setCreativeTab(NaturaTab.tab);
     }
 
     @SideOnly(Side.CLIENT)
     @Override
-    public void registerIcons (IconRegister iconRegister)
+    public void registerIcons (IIconRegister iconRegister)
     {
         String[] textureNames = new String[] { "sakura", "ghostwood", "bloodwood", "willow" };
-        this.fastIcons = new Icon[textureNames.length];
-        this.fancyIcons = new Icon[textureNames.length];
+        this.fastIcons = new IIcon[textureNames.length];
+        this.fancyIcons = new IIcon[textureNames.length];
 
         for (int i = 0; i < this.fastIcons.length; i++)
         {
@@ -43,7 +43,7 @@ public class NLeavesNocolor extends NLeaves
 
     @Override
     @SideOnly(Side.CLIENT)
-    public Icon getIcon (int side, int metadata)
+    public IIcon getIcon (int side, int metadata)
     {
         int meta = metadata % 4;
 
@@ -80,12 +80,12 @@ public class NLeavesNocolor extends NLeaves
 
     public int getFlammability (IBlockAccess world, int x, int y, int z, int metadata, ForgeDirection face)
     {
-        return metadata % 4 == 0 ? blockFlammability[blockID] : 0;
+        return metadata % 4 == 0 ? this.getFlammability(world, x, y, z, face) : 0;
     }
 
     public int getFireSpreadSpeed (World world, int x, int y, int z, int metadata, ForgeDirection face)
     {
-        return metadata % 4 == 0 ? blockFireSpreadSpeed[blockID] : 0;
+        return metadata % 4 == 0 ? this.getFireSpreadSpeed(world, x, y, z, face) : 0;
     }
 
     public int damageDropped (int meta)
@@ -99,8 +99,8 @@ public class NLeavesNocolor extends NLeaves
     public int idDropped (int meta, Random random, int fortune)
     {
         if (meta % 4 == 3)
-            return NContent.rareSapling.blockID;
-        return NContent.floraSapling.blockID;
+            return NContent.rareSapling;
+        return NContent.floraSapling;
     }
     
     @Override
@@ -112,7 +112,7 @@ public class NLeavesNocolor extends NLeaves
         return ret;
     }
 
-    public void getSubBlocks (int par1, CreativeTabs par2CreativeTabs, List par3List)
+    public void getSubBlocks (Item par1, CreativeTabs par2CreativeTabs, List par3List)
     {
         par3List.add(new ItemStack(par1, 1, 0));
         par3List.add(new ItemStack(par1, 1, 1));
@@ -122,6 +122,6 @@ public class NLeavesNocolor extends NLeaves
 
     public int getLightOpacity (World world, int x, int y, int z)
     {
-        return lightOpacity[blockID];
+        return this.getLightOpacity();
     }
 }

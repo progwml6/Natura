@@ -4,6 +4,8 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockLog;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemHoe;
@@ -415,7 +417,6 @@ public class NetherrackFurnaceLogic extends TileEntityFurnace
         }
         else
         {
-            int i = par0ItemStack.getItem().itemID;
             Item item = par0ItemStack.getItem();
 
             if (par0ItemStack.getItem() instanceof ItemBlock && Block.blocksList[i] != null)
@@ -437,7 +438,7 @@ public class NetherrackFurnaceLogic extends TileEntityFurnace
                     return 300;
                 }
 
-                if (block == Block.coalBlock)
+                if (block == Blocks.coal_block)
                 {
                     return 16000;
                 }
@@ -449,15 +450,15 @@ public class NetherrackFurnaceLogic extends TileEntityFurnace
                 return 200;
             if (item instanceof ItemHoe && ((ItemHoe) item).getMaterialName().equals("WOOD"))
                 return 200;
-            if (i == Item.stick.itemID)
+            if (i == Items.stick)
                 return 100;
-            if (i == Item.coal.itemID)
+            if (i == Items.coal)
                 return 1600;
-            if (i == Item.bucketLava.itemID)
+            if (i == Items.lava_bucket)
                 return 20000;
-            if (i == Block.sapling.blockID)
+            if (i == Blocks.sapling)
                 return 100;
-            if (i == Item.blazeRod.itemID)
+            if (i == Items.blaze_rod)
                 return 2400;
             return GameRegistry.getFuelValue(par0ItemStack);
         }
@@ -476,7 +477,7 @@ public class NetherrackFurnaceLogic extends TileEntityFurnace
      */
     public boolean isUseableByPlayer (EntityPlayer par1EntityPlayer)
     {
-        return this.worldObj.getBlockTileEntity(this.xCoord, this.yCoord, this.zCoord) != this ? false : par1EntityPlayer.getDistanceSq((double) this.xCoord + 0.5D, (double) this.yCoord + 0.5D,
+        return this.worldObj.getTileEntity(this.xCoord, this.yCoord, this.zCoord) != this ? false : par1EntityPlayer.getDistanceSq((double) this.xCoord + 0.5D, (double) this.yCoord + 0.5D,
                 (double) this.zCoord + 0.5D) <= 64.0D;
     }
 
@@ -520,7 +521,7 @@ public class NetherrackFurnaceLogic extends TileEntityFurnace
      */
     public boolean canExtractItem (int par1, ItemStack par2ItemStack, int par3)
     {
-        return par3 != 0 || par1 != 1 || par2ItemStack.itemID == Item.bucketEmpty.itemID;
+        return par3 != 0 || par1 != 1 || par2ItemStack.getItem() == Items.bucket;
     }
 
     public boolean getActive ()

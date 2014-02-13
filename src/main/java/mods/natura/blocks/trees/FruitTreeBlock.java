@@ -8,13 +8,13 @@ import net.minecraft.block.BlockLog;
 
 public class FruitTreeBlock extends BlockLog
 {
-    public FruitTreeBlock(int id)
+    public FruitTreeBlock()
     {
-        super(id);
+        super();
         this.setHardness(1.5F);
         this.setResistance(5F);
         this.setStepSound(Block.soundWoodFootstep);
-        setBurnProperties(this.blockID, 5, 20);
+        setBurnProperties(this, 5, 20);
         this.setCreativeTab(NaturaTab.tab);
     }
 
@@ -44,7 +44,7 @@ public class FruitTreeBlock extends BlockLog
 
     public int idDropped (int par1, Random par2Random, int par3)
     {
-        return this.blockID;
+        return this;
     }
 
     @Override

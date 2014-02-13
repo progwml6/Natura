@@ -15,6 +15,7 @@ import mods.natura.worldgen.FlowerGen;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockSand;
 import net.minecraft.entity.EnumCreatureType;
+import net.minecraft.init.Blocks;
 import net.minecraft.util.IProgressUpdate;
 import net.minecraft.world.ChunkPosition;
 import net.minecraft.world.World;
@@ -211,8 +212,8 @@ public class NetheriteChunkProvider implements IChunkProvider
                 boolean flag1 = this.gravelNoise[iterX + iterZ * 16] + this.hellRNG.nextDouble() * 0.2D > 0.0D;
                 int i1 = (int) (this.netherrackExclusivityNoise[iterX + iterZ * 16] / 3.0D + 3.0D + this.hellRNG.nextDouble() * 0.25D);
                 int j1 = -1;
-                byte b1 = (byte) Block.netherrack.blockID;
-                byte b2 = (byte) NContent.taintedSoil.blockID;
+                byte b1 = (byte) Blocks.netherrack;
+                byte b2 = (byte) NContent.taintedSoil;
 
                 for (int k1 = 127; k1 >= 0; --k1)
                 {
@@ -226,44 +227,44 @@ public class NetheriteChunkProvider implements IChunkProvider
                         {
                             j1 = -1;
                         }
-                        else if (b3 == Block.netherrack.blockID)
+                        else if (b3 == Block.netherrack)
                         {
                             if (j1 == -1)
                             {
                                 if (i1 <= 0)
                                 {
                                     b1 = 0;
-                                    b2 = (byte) Block.netherrack.blockID;
+                                    b2 = (byte) Block.netherrack;
                                 }
                                 else if (k1 >= seaLevel - 4 && k1 <= seaLevel + 1)
                                 {
-                                    b1 = (byte) Block.netherrack.blockID;
-                                    b2 = (byte) NContent.taintedSoil.blockID;
+                                    b1 = (byte) Block.netherrack;
+                                    b2 = (byte) NContent.taintedSoil;
 
                                     if (flag1)
                                     {
-                                        b1 = (byte) Block.gravel.blockID;
+                                        b1 = (byte) Blocks.gravel;
                                     }
 
                                     if (flag1)
                                     {
-                                        b2 = (byte) Block.netherrack.blockID;
+                                        b2 = (byte) Blocks.netherrack;
                                     }
 
                                     if (flag)
                                     {
-                                        b1 = (byte) Block.slowSand.blockID;
+                                        b1 = (byte) Blocks.soul_sand;
                                     }
 
                                     if (flag)
                                     {
-                                        b2 = (byte) NContent.heatSand.blockID;
+                                        b2 = (byte) NContent.heatSand;
                                     }
                                 }
 
                                 if (k1 < seaLevel && b1 == 0)
                                 {
-                                    b1 = (byte) Block.lavaStill.blockID;
+                                    b1 = (byte) Blocks.lavaStill;
                                 }
 
                                 j1 = i1;
@@ -286,7 +287,7 @@ public class NetheriteChunkProvider implements IChunkProvider
                     }
                     else
                     {
-                        lowerIDs[l1] = (byte) Block.bedrock.blockID;
+                        lowerIDs[l1] = (byte) Blocks.bedrock;
                     }
                 }
             }
@@ -582,21 +583,21 @@ public class NetheriteChunkProvider implements IChunkProvider
             int l2 = blockX + hellRNG.nextInt(16) + 8;
             int k4 = hellRNG.nextInt(128);
             int j6 = blockZ + hellRNG.nextInt(16) + 8;
-            (new FlowerGen(NContent.glowshroom.blockID, 0)).generate(worldObj, hellRNG, l2, k4, j6);
+            (new FlowerGen(NContent.glowshroom, 0)).generate(worldObj, hellRNG, l2, k4, j6);
         }
         if (doGen && hellRNG.nextInt(8) == 0)
         {
             int i3 = blockX + hellRNG.nextInt(16) + 8;
             int l4 = hellRNG.nextInt(128);
             int k6 = blockZ + hellRNG.nextInt(16) + 8;
-            (new FlowerGen(NContent.glowshroom.blockID, 1)).generate(worldObj, hellRNG, i3, l4, k6);
+            (new FlowerGen(NContent.glowshroom, 1)).generate(worldObj, hellRNG, i3, l4, k6);
         }
         if (doGen && hellRNG.nextInt(9) == 0)
         {
             int i3 = blockX + hellRNG.nextInt(16) + 8;
             int l4 = hellRNG.nextInt(128);
             int k6 = blockZ + hellRNG.nextInt(16) + 8;
-            (new FlowerGen(NContent.glowshroom.blockID, 2)).generate(worldObj, hellRNG, i3, l4, k6);
+            (new FlowerGen(NContent.glowshroom, 2)).generate(worldObj, hellRNG, i3, l4, k6);
         }
 
         MinecraftForge.EVENT_BUS.post(new DecorateBiomeEvent.Post(worldObj, hellRNG, blockX, blockZ));

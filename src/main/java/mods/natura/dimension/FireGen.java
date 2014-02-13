@@ -4,6 +4,7 @@ import java.util.Random;
 
 import mods.natura.common.NContent;
 import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 
@@ -19,9 +20,9 @@ public class FireGen extends WorldGenerator
 
             if (world.isAirBlock(xPos, yPos, zPos))
             {
-                int blockID = world.getBlockId(xPos, yPos - 1, zPos);
-                if (blockID == Block.netherrack.blockID || blockID == NContent.taintedSoil.blockID)
-                    world.setBlock(xPos, yPos, zPos, Block.fire.blockID, 0, 2);
+                Block blockID = world.getBlock(xPos, yPos - 1, zPos);
+                if (blockID == Blocks.netherrack || blockID == NContent.taintedSoil)
+                    world.setBlock(xPos, yPos, zPos, Blocks.fire, 0, 2);
             }
         }
 

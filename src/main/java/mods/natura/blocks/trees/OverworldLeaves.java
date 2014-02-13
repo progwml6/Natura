@@ -4,10 +4,11 @@ import java.util.List;
 import java.util.Random;
 
 import mods.natura.common.NContent;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
@@ -15,18 +16,18 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class OverworldLeaves extends NLeaves
 {
-    public OverworldLeaves(int id)
+    public OverworldLeaves()
     {
-        super(id);
+        super();
     }
 
     @SideOnly(Side.CLIENT)
     @Override
-    public void registerIcons (IconRegister iconRegister)
+    public void registerIcons (IIconRegister iconRegister)
     {
         String[] textureNames = new String[] { "maple", "silverbell", "purpleheart", "tiger" };
-        this.fastIcons = new Icon[textureNames.length];
-        this.fancyIcons = new Icon[textureNames.length];
+        this.fastIcons = new IIcon[textureNames.length];
+        this.fancyIcons = new IIcon[textureNames.length];
 
         for (int i = 0; i < this.fastIcons.length; i++)
         {
@@ -75,7 +76,7 @@ public class OverworldLeaves extends NLeaves
 
     @Override
     @SideOnly(Side.CLIENT)
-    public Icon getIcon (int side, int metadata)
+    public IIcon getIcon (int side, int metadata)
     {
         int meta = metadata % 4;
 
@@ -88,12 +89,12 @@ public class OverworldLeaves extends NLeaves
     @Override
     public int idDropped (int var1, Random var2, int var3)
     {
-        return NContent.rareSapling.blockID;
+        return NContent.rareSapling;
     }
 
     @SideOnly(Side.CLIENT)
     @Override
-    public void getSubBlocks (int par1, CreativeTabs par2CreativeTabs, List par3List)
+    public void getSubBlocks (Item par1, CreativeTabs par2CreativeTabs, List par3List)
     {
         par3List.add(new ItemStack(par1, 1, 0));
         par3List.add(new ItemStack(par1, 1, 1));
@@ -103,6 +104,6 @@ public class OverworldLeaves extends NLeaves
 
     public int getLightOpacity (World world, int x, int y, int z)
     {
-        return lightOpacity[blockID];
+        return this.getLightOpacity();
     }
 }

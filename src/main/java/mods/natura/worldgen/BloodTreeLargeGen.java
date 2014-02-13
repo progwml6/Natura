@@ -4,6 +4,7 @@ import java.util.Random;
 
 import mods.natura.common.NContent;
 import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 
@@ -33,8 +34,8 @@ public class BloodTreeLargeGen extends WorldGenerator
         int height = y;
         do
         {
-            int heightID = world.getBlockId(x, height, z);
-            if ((heightID == Block.netherrack.blockID || heightID == Block.slowSand.blockID || heightID == NContent.taintedSoil.blockID) && !Block.opaqueCubeLookup[world.getBlockId(x, height - 1, z)])
+            Block heightID = world.getBlock(x, height, z);
+            if ((heightID == Blocks.netherrack || heightID == Blocks.soul_sand || heightID == NContent.taintedSoil) && !world.getBlock(x, height - 1, z).isOpaqueCube())
             {
                 ret = height - 1;
                 break;
@@ -73,13 +74,13 @@ public class BloodTreeLargeGen extends WorldGenerator
 
         for (int heightIter = 0; heightIter < treeHeight; heightIter++)
         {
-            int localID = world.getBlockId(x, y - heightIter, z);
-            if (localID == 0 || localID == NContent.floraLeaves.blockID)
+            Block localID = world.getBlock(x, y - heightIter, z);
+            if (localID == Blocks.air || localID == NContent.floraLeaves)
             {
-                setBlockAndMetadata(world, x, y - heightIter, z, NContent.bloodwood.blockID, 0);
-                setBlockAndMetadata(world, x + 1, y - heightIter, z, NContent.bloodwood.blockID, 1);
-                setBlockAndMetadata(world, x, y - heightIter, z + 1, NContent.bloodwood.blockID, 2);
-                setBlockAndMetadata(world, x + 1, y - heightIter, z + 1, NContent.bloodwood.blockID, 3);
+                setBlockAndMetadata(world, x, y - heightIter, z, NContent.bloodwood, 0);
+                setBlockAndMetadata(world, x + 1, y - heightIter, z, NContent.bloodwood, 1);
+                setBlockAndMetadata(world, x, y - heightIter, z + 1, NContent.bloodwood, 2);
+                setBlockAndMetadata(world, x + 1, y - heightIter, z + 1, NContent.bloodwood, 3);
             }
         }
 
@@ -190,17 +191,17 @@ public class BloodTreeLargeGen extends WorldGenerator
 
     public boolean generateNode (World world, Random random, int x, int y, int z)
     {
-        setBlockAndMetadata(world, x, y, z, NContent.bloodwood.blockID, 15);
+        setBlockAndMetadata(world, x, y, z, NContent.bloodwood, 15);
         for (int l = x - 1; l <= x + 1; l++)
         {
             for (int k1 = z - 1; k1 <= z + 1; k1++)
             {
                 for (int j2 = y - 1; j2 <= y + 1; j2++)
                 {
-                    int i3 = world.getBlockId(l, j2, k1);
-                    if (i3 != NContent.floraLeaves.blockID && !Block.opaqueCubeLookup[i3])
+                    Block i3 = world.getBlock(l, j2, k1);
+                    if (i3 != NContent.floraLeaves && !i3.isOpaqueCube())
                     {
-                        setBlockAndMetadata(world, l, j2, k1, NContent.floraLeavesNoColor.blockID, mdLeaves);
+                        setBlockAndMetadata(world, l, j2, k1, NContent.floraLeavesNoColor, mdLeaves);
                     }
                 }
             }
@@ -210,10 +211,10 @@ public class BloodTreeLargeGen extends WorldGenerator
         {
             for (int l1 = z - 2; l1 <= z + 2; l1++)
             {
-                int k2 = world.getBlockId(i1, y, l1);
-                if (k2 != NContent.floraLeaves.blockID && !Block.opaqueCubeLookup[k2])
+                Block k2 = world.getBlock(i1, y, l1);
+                if (k2 != NContent.floraLeaves && !k2.isOpaqueCube())
                 {
-                    setBlockAndMetadata(world, i1, y, l1, NContent.floraLeavesNoColor.blockID, mdLeaves);
+                    setBlockAndMetadata(world, i1, y, l1, NContent.floraLeavesNoColor, mdLeaves);
                 }
             }
         }
@@ -222,10 +223,10 @@ public class BloodTreeLargeGen extends WorldGenerator
         {
             for (int i2 = z - 1; i2 <= z + 1; i2++)
             {
-                int l2 = world.getBlockId(j1, y + 1, i2);
-                if (l2 != NContent.floraLeaves.blockID && !Block.opaqueCubeLookup[l2])
+                Block l2 = world.getBlock(j1, y + 1, i2);
+                if (l2 != NContent.floraLeaves && !l2.isOpaqueCube())
                 {
-                    setBlockAndMetadata(world, j1, y, i2, NContent.floraLeavesNoColor.blockID, mdLeaves);
+                    setBlockAndMetadata(world, j1, y, i2, NContent.floraLeavesNoColor, mdLeaves);
                 }
             }
         }

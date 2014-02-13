@@ -5,12 +5,13 @@ import java.util.List;
 import mods.natura.common.NContent;
 import mods.natura.common.NaturaTab;
 import net.minecraft.block.Block;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
@@ -19,12 +20,12 @@ import net.minecraft.util.StatCollector;
 
 public class NDoorItem extends Item
 {
-    public Icon[] icons;
+    public IIcon[] icons;
     public String[] textureNames = new String[] { "redwood", "eucalyptus", "hopseed", "sakura", "ghostwood", "bloodwood", "redwoodbark" };
 
-    public NDoorItem(int id)
+    public NDoorItem()
     {
-        super(id);
+        super();
         maxStackSize = 64;
         setCreativeTab(NaturaTab.tab);
         setHasSubtypes(true);
@@ -71,7 +72,7 @@ public class NDoorItem extends Item
             block = NContent.redwoodBarkDoor;
             break;
         default:
-            block = Block.doorWood;
+            block = Blocks.wooden_door;
             break;
         }
         if (!player.canPlayerEdit(x, y, z, side, itemstack) || !player.canPlayerEdit(x, y + 1, z, side, itemstack))
@@ -118,8 +119,8 @@ public class NDoorItem extends Item
 
         int var8 = (world.isBlockNormalCube(x - var6, y, z - var7) ? 1 : 0) + (world.isBlockNormalCube(x - var6, y + 1, z - var7) ? 1 : 0);
         int var9 = (world.isBlockNormalCube(x + var6, y, z + var7) ? 1 : 0) + (world.isBlockNormalCube(x + var6, y + 1, z + var7) ? 1 : 0);
-        boolean var10 = world.getBlockId(x - var6, y, z - var7) == block.blockID || world.getBlockId(x - var6, y + 1, z - var7) == block.blockID;
-        boolean var11 = world.getBlockId(x + var6, y, z + var7) == block.blockID || world.getBlockId(x + var6, y + 1, z + var7) == block.blockID;
+        boolean var10 = world.getBlock(x - var6, y, z - var7) == block || world.getBlock(x - var6, y + 1, z - var7) == block;
+        boolean var11 = world.getBlock(x + var6, y, z + var7) == block || world.getBlock(x + var6, y + 1, z + var7) == block;
         boolean var12 = false;
 
         if (var10 && !var11)
@@ -131,10 +132,10 @@ public class NDoorItem extends Item
             var12 = true;
         }
 
-        world.setBlock(x, y, z, block.blockID, rotate, 2);
-        world.setBlock(x, y + 1, z, block.blockID, 8 | (var12 ? 1 : 0), 2);
-        world.notifyBlocksOfNeighborChange(x, y, z, block.blockID);
-        world.notifyBlocksOfNeighborChange(x, y + 1, z, block.blockID);
+        world.setBlock(x, y, z, block, rotate, 2);
+        world.setBlock(x, y + 1, z, block, 8 | (var12 ? 1 : 0), 2);
+        world.notifyBlocksOfNeighborChange(x, y, z, block);
+        world.notifyBlocksOfNeighborChange(x, y + 1, z, block);
     }
 
     @SideOnly(Side.CLIENT)
@@ -146,9 +147,9 @@ public class NDoorItem extends Item
 
     @SideOnly(Side.CLIENT)
     @Override
-    public void registerIcons (IconRegister iconRegister)
+    public void registerIcons (IIconRegister iconRegister)
     {
-        this.icons = new Icon[textureNames.length];
+        this.icons = new IIcon[textureNames.length];
 
         for (int i = 0; i < this.icons.length; ++i)
         {
@@ -156,7 +157,7 @@ public class NDoorItem extends Item
         }
     }
 
-    public void getSubItems (int id, CreativeTabs tab, List list)
+    public void getSubItems (Item id, CreativeTabs tab, List list)
     {
         for (int i = 0; i < unlocalizedNames.length; i++)
             list.add(new ItemStack(id, 1, i));

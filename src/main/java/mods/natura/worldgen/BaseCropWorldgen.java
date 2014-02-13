@@ -6,6 +6,7 @@ import mods.natura.common.NContent;
 import mods.natura.common.PHNatura;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFlower;
+import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.chunk.IChunkProvider;
@@ -145,9 +146,9 @@ public class BaseCropWorldgen implements IWorldGenerator
             int i1 = (x + random.nextInt(8)) - random.nextInt(8);
             int j1 = (y + random.nextInt(4)) - random.nextInt(4);
             int k1 = (z + random.nextInt(8)) - random.nextInt(8);
-            if (world.isAirBlock(i1, j1, k1) && ((BlockFlower) Block.blocksList[Block.plantYellow.blockID]).canBlockStay(world, i1, j1, k1))
+            if (world.isAirBlock(i1, j1, k1) && ((BlockFlower) Blocks.plantYellow).canBlockStay(world, i1, j1, k1))
             {
-                world.setBlock(i1, j1, k1, NContent.crops.blockID, 3, 2);
+                world.setBlock(i1, j1, k1, NContent.crops, 3, 2);
             }
         }
 
@@ -161,9 +162,9 @@ public class BaseCropWorldgen implements IWorldGenerator
             int i1 = (x + random.nextInt(8)) - random.nextInt(8);
             int j1 = (y + random.nextInt(4)) - random.nextInt(4);
             int k1 = (z + random.nextInt(8)) - random.nextInt(8);
-            if (world.isAirBlock(i1, j1, k1) && ((BlockFlower) Block.blocksList[Block.plantYellow.blockID]).canBlockStay(world, i1, j1, k1))
+            if (world.isAirBlock(i1, j1, k1) && ((BlockFlower) Blocks.plantYellow).canBlockStay(world, i1, j1, k1))
             {
-                world.setBlock(i1, j1, k1, NContent.crops.blockID, 8, 2);
+                world.setBlock(i1, j1, k1, NContent.crops, 8, 2);
             }
         }
 
@@ -177,9 +178,9 @@ public class BaseCropWorldgen implements IWorldGenerator
             int i1 = (x + random.nextInt(8)) - random.nextInt(8);
             int j1 = (y + random.nextInt(8)) - random.nextInt(8);
             int k1 = (z + random.nextInt(8)) - random.nextInt(8);
-            if (world.isAirBlock(i1, j1, k1) && ((BlockFlower) Block.blocksList[Block.plantYellow.blockID]).canBlockStay(world, i1, j1, k1))
+            if (world.isAirBlock(i1, j1, k1) && ((BlockFlower) Blocks.plantYellow).canBlockStay(world, i1, j1, k1))
             {
-                world.setBlock(i1, j1, k1, NContent.bluebells.blockID, 0, 2);
+                world.setBlock(i1, j1, k1, NContent.bluebells, 0, 2);
             }
         }
 

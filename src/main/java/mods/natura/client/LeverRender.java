@@ -4,7 +4,8 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockFence;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.util.Icon;
+import net.minecraft.init.Blocks;
+import net.minecraft.util.IIcon;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.IBlockAccess;
 
@@ -30,7 +31,7 @@ public class LeverRender implements ISimpleBlockRenderingHandler
 
             if (!flag1)
             {
-                renderer.setOverrideBlockTexture(renderer.getBlockIcon(Block.netherrack));
+                renderer.setOverrideBlockTexture(renderer.getBlockIcon(Blocks.netherrack));
             }
 
             float f = 0.25F;
@@ -80,13 +81,13 @@ public class LeverRender implements ISimpleBlockRenderingHandler
             tessellator.setBrightness(par1Block.getMixedBrightnessForBlock(renderer.blockAccess, par2, par3, par4));
             float f3 = 1.0F;
 
-            if (Block.lightValue[par1Block.blockID] > 0)
+            if (par1Block.getLightValue() > 0)
             {
                 f3 = 1.0F;
             }
 
             tessellator.setColorOpaque_F(f3, f3, f3);
-            Icon icon = renderer.getBlockIconFromSide(par1Block, 0);
+            IIcon icon = renderer.getBlockIconFromSide(par1Block, 0);
 
             if (renderer.hasOverrideBlockTexture())
             {
@@ -257,14 +258,14 @@ public class LeverRender implements ISimpleBlockRenderingHandler
     }
 
     @Override
-    public boolean shouldRender3DInInventory ()
-    {
-        return false;
-    }
-
-    @Override
     public int getRenderId ()
     {
         return model;
+    }
+
+    @Override
+    public boolean shouldRender3DInInventory (int modelId)
+    {
+        return false;
     }
 }

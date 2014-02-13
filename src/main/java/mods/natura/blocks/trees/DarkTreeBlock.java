@@ -6,23 +6,24 @@ import java.util.Random;
 import mods.natura.common.NaturaTab;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class DarkTreeBlock extends Block
 {
-    public Icon[] icons;
+    public IIcon[] icons;
     public String[] textureNames = new String[] { "darkwood_bark", "darkwood_heart", "fusewood_bark", "fusewood_heart" };
 
-    public DarkTreeBlock(int id)
+    public DarkTreeBlock()
     {
-        super(id, Material.wood);
+        super(Material.wood);
         this.setHardness(3.5F);
         this.setResistance(40F);
         this.setStepSound(Block.soundWoodFootstep);
@@ -32,7 +33,7 @@ public class DarkTreeBlock extends Block
 
     @Override
     @SideOnly(Side.CLIENT)
-    public Icon getIcon (int side, int metadata)
+    public IIcon getIcon (int side, int metadata)
     {
         int tex = (metadata % 4) * 2;
         int orientation = metadata / 4;
@@ -59,9 +60,9 @@ public class DarkTreeBlock extends Block
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void registerIcons (IconRegister iconRegister)
+    public void registerIcons (IIconRegister iconRegister)
     {
-        this.icons = new Icon[textureNames.length];
+        this.icons = new IIcon[textureNames.length];
 
         for (int i = 0; i < this.icons.length; ++i)
         {
@@ -71,7 +72,7 @@ public class DarkTreeBlock extends Block
 
     public int idDropped (int par1, Random par2Random, int par3)
     {
-        return this.blockID;
+        return this;
     }
 
     /**
@@ -90,11 +91,11 @@ public class DarkTreeBlock extends Block
                 {
                     for (int i2 = -b0; i2 <= b0; ++i2)
                     {
-                        int j2 = par1World.getBlockId(par2 + k1, par3 + l1, par4 + i2);
+                        Block j2 = par1World.getBlock(par2 + k1, par3 + l1, par4 + i2);
 
-                        if (Block.blocksList[j2] != null)
+                        if (j2 != null)
                         {
-                            Block.blocksList[j2].beginLeavesDecay(par1World, par2 + k1, par3 + l1, par4 + i2);
+                            j2.beginLeavesDecay(par1World, par2 + k1, par3 + l1, par4 + i2);
                         }
                     }
                 }
@@ -146,7 +147,7 @@ public class DarkTreeBlock extends Block
 
     protected ItemStack createStackedBlock (int par1)
     {
-        return new ItemStack(this.blockID, 1, limitToValidMetadata(par1));
+        return new ItemStack(this, 1, limitToValidMetadata(par1));
     }
 
     public boolean isBlockReplaceable (World world, int x, int y, int z)
@@ -167,7 +168,7 @@ public class DarkTreeBlock extends Block
 
     @SideOnly(Side.CLIENT)
     @Override
-    public void getSubBlocks (int par1, CreativeTabs par2CreativeTabs, List par3List)
+    public void getSubBlocks (Item par1, CreativeTabs par2CreativeTabs, List par3List)
     {
         for (int i = 0; i < icons.length / 2; i++)
             par3List.add(new ItemStack(par1, 1, i));

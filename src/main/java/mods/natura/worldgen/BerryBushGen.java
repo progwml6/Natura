@@ -5,6 +5,7 @@ import java.util.Random;
 import mods.natura.common.NContent;
 import mods.natura.common.PHNatura;
 import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 
@@ -40,8 +41,8 @@ public class BerryBushGen extends WorldGenerator
     int findGround (World world, int x, int y, int z)
     {
         int returnHeight = -1;
-        int blockID = world.getBlockId(x, y - 1, z);
-        if (!Block.opaqueCubeLookup[world.getBlockId(x, y, z)] && (blockID == Block.dirt.blockID || blockID == Block.grass.blockID))
+        Block blockID = world.getBlock(x, y - 1, z);
+        if (!world.getBlock(x, y, z).isOpaqueCube() && (blockID == Blocks.dirt || blockID == Blocks.grass))
         {
             return y;
         }
@@ -52,10 +53,10 @@ public class BerryBushGen extends WorldGenerator
             {
                 break;
             }
-            int j1 = world.getBlockId(x, height, z);
-            if (j1 == Block.dirt.blockID || j1 == Block.grass.blockID)
+            Block j1 = world.getBlock(x, height, z);
+            if (j1 == Blocks.dirt || j1 == Blocks.grass)
             {
-                if (!Block.opaqueCubeLookup[world.getBlockId(x, height + 1, z)])
+                if (!world.getBlock(x, height + 1, z).isOpaqueCube())
                 {
                     returnHeight = height + 1;
                 }
@@ -120,7 +121,7 @@ public class BerryBushGen extends WorldGenerator
         Block block = null;
         do
         {
-            block = Block.blocksList[world.getBlockId(x, y, z)];
+            block = world.getBlock(x, y, z);
             if (block != null && !block.isLeaves(world, x, y, z))
             {
                 break;
@@ -128,9 +129,9 @@ public class BerryBushGen extends WorldGenerator
             y--;
         } while (y > 0);
 
-        int i1 = world.getBlockId(x, y, z);
+        Block i1 = world.getBlock(x, y, z);
 
-        if (i1 == Block.dirt.blockID || i1 == Block.grass.blockID)
+        if (i1 == Blocks.dirt || i1 == Blocks.grass)
         {
             ++y;
 
@@ -147,7 +148,7 @@ public class BerryBushGen extends WorldGenerator
                     {
                         int l2 = zPos - z;
 
-                        block = Block.blocksList[world.getBlockId(xPos, yPos, zPos)];
+                        block = world.getBlock(xPos, yPos, zPos);
 
                         if ((Math.abs(j2) != l1 || Math.abs(l2) != l1 || random.nextInt(2) != 0) && (block == null || block.canBeReplacedByLeaves(world, xPos, yPos, zPos)))
                         {
@@ -180,19 +181,19 @@ public class BerryBushGen extends WorldGenerator
 
     void generateBerryBlock (World world, int x, int y, int z, Random random)
     {
-        if (!Block.opaqueCubeLookup[world.getBlockId(x, y, z)])
+        if (!world.getBlock(x, y, z).isOpaqueCube())
         {
             int metaOffset = random.nextInt(5) == 0 ? 1 : 0;
-            setBlockAndMetadata(world, x, y, z, NContent.berryBush.blockID, metadata + 8 + metaOffset * 4);
+            setBlockAndMetadata(world, x, y, z, NContent.berryBush, metadata + 8 + metaOffset * 4);
         }
     }
 
     void generateBerryBush (World world, int x, int y, int z, Random random)
     {
-        if (!Block.opaqueCubeLookup[world.getBlockId(x, y, z)])
+        if (!world.getBlock(x, y, z).isOpaqueCube())
         {
             int metaOffset = random.nextInt(4);
-            setBlockAndMetadata(world, x, y, z, NContent.berryBush.blockID, metadata + metaOffset * 4);
+            setBlockAndMetadata(world, x, y, z, NContent.berryBush, metadata + metaOffset * 4);
         }
     }
 }

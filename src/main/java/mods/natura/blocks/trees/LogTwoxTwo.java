@@ -7,10 +7,11 @@ import mods.natura.common.NContent;
 import mods.natura.common.NaturaTab;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -21,12 +22,12 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class LogTwoxTwo extends Block
 {
-    public Icon[] icons;
+    public IIcon[] icons;
     public String[] textureNames = new String[] { "bark", "heart_small", "upper_left", "upper_right", "side_left", "side_right", "lower_left", "lower_right" };
 
-    public LogTwoxTwo(int id, float hardness, Material material)
+    public LogTwoxTwo(float hardness, Material material)
     {
-        super(id, material);
+        super(material);
         this.setHardness(hardness);
         this.setStepSound(Block.soundMetalFootstep);
         this.setCreativeTab(NaturaTab.tab);
@@ -34,9 +35,9 @@ public class LogTwoxTwo extends Block
 
     @SideOnly(Side.CLIENT)
     @Override
-    public void registerIcons (IconRegister iconRegister)
+    public void registerIcons (IIconRegister iconRegister)
     {
-        this.icons = new Icon[textureNames.length];
+        this.icons = new IIcon[textureNames.length];
 
         for (int i = 0; i < this.icons.length; i++)
         {
@@ -46,7 +47,7 @@ public class LogTwoxTwo extends Block
 
     public int idDropped (int par1, Random par2Random, int par3)
     {
-        return NContent.bloodwood.blockID;
+        return NContent.bloodwood;
     }
 
     public int damageDropped (int meta)
@@ -79,11 +80,11 @@ public class LogTwoxTwo extends Block
                 {
                     for (int i2 = -b0; i2 <= b0; ++i2)
                     {
-                        int j2 = par1World.getBlockId(par2 + k1, par3 + l1, par4 + i2);
+                        Block j2 = par1World.getBlock(par2 + k1, par3 + l1, par4 + i2);
 
-                        if (Block.blocksList[j2] != null)
+                        if (j2 != null)
                         {
-                            Block.blocksList[j2].beginLeavesDecay(par1World, par2 + k1, par3 + l1, par4 + i2);
+                            j2.beginLeavesDecay(par1World, par2 + k1, par3 + l1, par4 + i2);
                         }
                     }
                 }
@@ -101,7 +102,7 @@ public class LogTwoxTwo extends Block
 
     protected ItemStack createStackedBlock (int par1)
     {
-        return new ItemStack(this.blockID, 1, limitToValidMetadata(par1));
+        return new ItemStack(this, 1, limitToValidMetadata(par1));
     }
 
     /**
@@ -399,7 +400,7 @@ public class LogTwoxTwo extends Block
     /**
      * returns a list of blocks with the same ID, but different meta (eg: wood returns 4 blocks)
      */
-    public void getSubBlocks (int par1, CreativeTabs par2CreativeTabs, List par3List)
+    public void getSubBlocks (Item par1, CreativeTabs par2CreativeTabs, List par3List)
     {
         par3List.add(new ItemStack(par1, 1, 0));
         //par3List.add(new ItemStack(par1, 1, 12));

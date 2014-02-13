@@ -5,9 +5,10 @@ import java.util.Random;
 import mods.natura.blocks.trees.NSaplingBlock;
 import mods.natura.common.NContent;
 import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
-import net.minecraftforge.common.ForgeDirection;
+import net.minecraftforge.common.util.ForgeDirection;
 
 public class DarkwoodGen extends WorldGenerator
 {
@@ -39,8 +40,8 @@ public class DarkwoodGen extends WorldGenerator
         do
         {
             height--;
-            int underID = world.getBlockId(x, height, z);
-            if (underID == Block.netherrack.blockID || underID == Block.slowSand.blockID || underID == NContent.taintedSoil.blockID || height < 0)
+            Block underID = world.getBlock(x, height, z);
+            if (underID == Blocks.netherrack || underID == Blocks.soul_sand || underID == NContent.taintedSoil || height < 0)
                 foundGround = true;
         } while (!foundGround);
         return height + 1;
@@ -83,11 +84,9 @@ public class DarkwoodGen extends WorldGenerator
                     {
                         if (i1 >= 0 && i1 < 256)
                         {
-                            k1 = world.getBlockId(l1, i1, j1);
+                            Block block = world.getBlock(l1, i1, j1);
 
-                            Block block = Block.blocksList[k1];
-
-                            if (k1 != 0 && !block.isLeaves(world, l1, i1, j1) && k1 != Block.netherrack.blockID && k1 != Block.slowSand.blockID && k1 != NContent.taintedSoil.blockID
+                            if (block != null && !block.isLeaves(world, l1, i1, j1) && block != Blocks.netherrack && block != Blocks.soul_sand && block != NContent.taintedSoil
                                     && !block.isWood(world, l1, i1, j1))
                             {
                                 flag = false;
@@ -107,9 +106,8 @@ public class DarkwoodGen extends WorldGenerator
             }
             else
             {
-                i1 = world.getBlockId(xPos, yPos - 1, zPos);
-                Block soil = Block.blocksList[i1];
-                boolean isSoil = (soil != null && soil.canSustainPlant(world, xPos, yPos - 1, zPos, ForgeDirection.UP, (NSaplingBlock) NContent.floraSapling)) || soil == Block.netherrack;
+                Block soil = world.getBlock(xPos, yPos - 1, zPos);
+                boolean isSoil = (soil != null && soil.canSustainPlant(world, xPos, yPos - 1, zPos, ForgeDirection.UP, (NSaplingBlock) NContent.floraSapling)) || soil == Blocks.netherrack;
 
                 if (isSoil && yPos < 256 - treeHeight - 1)
                 {
@@ -135,12 +133,11 @@ public class DarkwoodGen extends WorldGenerator
 
                                 if (Math.abs(k2) != i2 || Math.abs(i3) != i2 || random.nextInt(2) != 0 && k1 != 0)
                                 {
-                                    int j3 = world.getBlockId(j2, j1, l2);
-                                    Block block = Block.blocksList[j3];
+                                    Block block = world.getBlock(j2, j1, l2);
 
                                     if (block == null || block.canBeReplacedByLeaves(world, j2, j1, l2))
                                     {
-                                        this.setBlockAndMetadata(world, j2, j1, l2, NContent.darkLeaves.blockID, random.nextInt(25) == 0 ? 2 : random.nextInt(15) == 0 ? 1 : 0);
+                                        this.setBlockAndMetadata(world, j2, j1, l2, NContent.darkLeaves, random.nextInt(25) == 0 ? 2 : random.nextInt(15) == 0 ? 1 : 0);
                                     }
                                 }
                             }
@@ -149,13 +146,11 @@ public class DarkwoodGen extends WorldGenerator
 
                     for (j1 = 0; j1 < treeHeight; ++j1)
                     {
-                        k1 = world.getBlockId(xPos, yPos + j1, zPos);
+                        Block block = world.getBlock(xPos, yPos + j1, zPos);
 
-                        Block block = Block.blocksList[k1];
-
-                        if (k1 == 0 || block == null || block.isLeaves(world, xPos, yPos + j1, zPos))
+                        if (block == null || block.isLeaves(world, xPos, yPos + j1, zPos))
                         {
-                            this.setBlockAndMetadata(world, xPos, yPos + j1, zPos, NContent.darkTree.blockID, this.metaWood);
+                            this.setBlockAndMetadata(world, xPos, yPos + j1, zPos, NContent.darkTree, this.metaWood);
 
                         }
                     }

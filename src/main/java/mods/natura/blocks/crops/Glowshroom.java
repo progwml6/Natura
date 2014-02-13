@@ -7,10 +7,11 @@ import mods.natura.common.NaturaTab;
 import mods.natura.worldgen.GlowshroomGenBlueGreen;
 import mods.natura.worldgen.GlowshroomGenPurple;
 import net.minecraft.block.BlockMushroom;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import cpw.mods.fml.relauncher.Side;
@@ -18,12 +19,12 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class Glowshroom extends BlockMushroom
 {
-    Icon[] icons;
+    IIcon[] icons;
     String[] textureNames = { "green", "purple", "blue" };
 
-    public Glowshroom(int par1)
+    public Glowshroom()
     {
-        super(par1);
+        super();
         this.setStepSound(soundGrassFootstep);
         this.setCreativeTab(NaturaTab.tab);
     }
@@ -44,7 +45,7 @@ public class Glowshroom extends BlockMushroom
                 {
                     for (posY = y - 1; posY <= y + 1; ++posY)
                     {
-                        if (world.getBlockId(posX, posY, posZ) == this.blockID)
+                        if (world.getBlock(posX, posY, posZ) == this)
                         {
                             --l;
 
@@ -78,7 +79,7 @@ public class Glowshroom extends BlockMushroom
             if (world.isAirBlock(posX, posY, posZ) && this.canBlockStay(world, posX, posY, posZ))
             {
                 int meta = world.getBlockMetadata(x, y, z);
-                world.setBlock(posX, posY, posZ, this.blockID, meta, 3);
+                world.setBlock(posX, posY, posZ, this, meta, 3);
             }
         }
     }
@@ -120,16 +121,16 @@ public class Glowshroom extends BlockMushroom
         }
         else
         {
-            world.setBlock(x, y, z, this.blockID, meta, 3);
+            world.setBlock(x, y, z, this, meta, 3);
             return false;
         }
     }
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void registerIcons (IconRegister iconRegister)
+    public void registerIcons (IIconRegister iconRegister)
     {
-        this.icons = new Icon[textureNames.length];
+        this.icons = new IIcon[textureNames.length];
 
         for (int i = 0; i < this.icons.length; ++i)
         {
@@ -139,7 +140,7 @@ public class Glowshroom extends BlockMushroom
 
     @Override
     @SideOnly(Side.CLIENT)
-    public Icon getIcon (int side, int meta)
+    public IIcon getIcon (int side, int meta)
     {
         meta = meta % 3;
         return icons[meta];
@@ -153,7 +154,7 @@ public class Glowshroom extends BlockMushroom
 
     @SideOnly(Side.CLIENT)
     @Override
-    public void getSubBlocks (int par1, CreativeTabs par2CreativeTabs, List par3List)
+    public void getSubBlocks (Item par1, CreativeTabs par2CreativeTabs, List par3List)
     {
         for (int i = 0; i < icons.length; i++)
             par3List.add(new ItemStack(par1, 1, i));
