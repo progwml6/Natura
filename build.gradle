@@ -29,16 +29,12 @@ repositories {
 		artifactPattern "http://www.chickenbones.craftsaddle.org/Files/New_Versions/1.6.4/[module]-dev%20[revision].[ext]"
 	}
 	maven {
-	      name 'SlimeKnights Maven FS'
-          url 'http://aeon.sunstrike.io'
+        name 'DVS1 Maven FS'
+        url 'http://dvs1.progwml6.com/files/maven'
 	}
 	maven {
           name 'ForgeFS'
           url 'http://files.minecraftforge.net/maven'
-     }
-     maven {
-          name 'MinecraftS3'
-          url 'http://s3.amazonaws.com/Minecraft.Download/libraries'
      }
 }
 
@@ -56,11 +52,11 @@ configFile.withReader {
 }
 
 dependencies {
-     compile "mantle:Mantle:${config.mantle_version}:dev"
-     compile "tconstruct:TConstruct:${config.tconstruct_version}:dev"
-     compile name: 'ForgeMultipart', version: "${config.minecraft_version}-${config.FMP_version}", ext: 'jar'
-     compile name: 'CodeChickenLib', version: "${config.minecraft_version}-${config.CCLIB_version}", ext: 'jar'
-     compile name: 'NotEnoughItems', version: "${config.NEI_version}", type: 'jar'
+    compile "mantle:Mantle:${config.minecraft_version}-${config.mantle_version}:deobf"
+	compile "tconstruct:TConstruct:${config.minecraft_version}-${config.tconstruct_version}:deobf"
+    //compile name: 'ForgeMultipart', version: "${config.minecraft_version}-${config.FMP_version}", ext: 'jar'
+    //compile name: 'CodeChickenLib', version: "${config.minecraft_version}-${config.CCLIB_version}", ext: 'jar'
+    //compile name: 'NotEnoughItems', version: "${config.NEI_version}", type: 'jar'
 
 }
 
@@ -121,4 +117,21 @@ task devjar(type: Jar) {
 artifacts {
         archives devjar
 }
+
+task("uploadJars", dependsOn:"build") {
+    
+    description = "uploads JARs"
+
+    if (project.hasProperty("local_maven")) {
+	    apply plugin: 'maven'
+            uploadArchives {
+                repositories {
+                    mavenDeployer {
+                        repository(url: "file://${local_maven}")
+                }
+            }
+        }
+    }
+}
+
 
