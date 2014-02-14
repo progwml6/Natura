@@ -263,7 +263,7 @@ public class NetheriteChunkProvider implements IChunkProvider
 
                                 if (k1 < seaLevel && b1 == 0)
                                 {
-                                    b1 = (byte) Blocks.lavaStill;
+                                    b1 = (byte) Blocks.lava;
                                 }
 
                                 j1 = i1;

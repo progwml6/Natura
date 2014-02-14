@@ -15,7 +15,7 @@ public class NaturaBow extends ItemBow
     IIcon[] icons;
     String woodType;
 
-    public NaturaBow(int id, int damage, String type)
+    public NaturaBow(int damage, String type)
     {
         super();
         this.setMaxDamage(damage);

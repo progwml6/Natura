@@ -22,7 +22,7 @@ public class NLadder extends BlockLadder
         super();
         this.textureNames = textures;
         this.setHardness(0.4F);
-        this.setStepSound(soundLadderFootstep);
+        this.setStepSound(soundTypeLadder);
         this.setCreativeTab(NaturaTab.tab);
     }
 

@@ -77,10 +77,10 @@ public class BloodTreeLargeGen extends WorldGenerator
             Block localID = world.getBlock(x, y - heightIter, z);
             if (localID == Blocks.air || localID == NContent.floraLeaves)
             {
-                setBlockAndMetadata(world, x, y - heightIter, z, NContent.bloodwood, 0);
-                setBlockAndMetadata(world, x + 1, y - heightIter, z, NContent.bloodwood, 1);
-                setBlockAndMetadata(world, x, y - heightIter, z + 1, NContent.bloodwood, 2);
-                setBlockAndMetadata(world, x + 1, y - heightIter, z + 1, NContent.bloodwood, 3);
+                world.setBlock(x, y - heightIter, z, NContent.bloodwood, 0, 0);
+                world.setBlock(x + 1, y - heightIter, z, NContent.bloodwood, 1, 0);
+                world.setBlock(x, y - heightIter, z + 1, NContent.bloodwood, 2, 0);
+                world.setBlock(x + 1, y - heightIter, z + 1, NContent.bloodwood, 3, 0);
             }
         }
 
@@ -191,7 +191,7 @@ public class BloodTreeLargeGen extends WorldGenerator
 
     public boolean generateNode (World world, Random random, int x, int y, int z)
     {
-        setBlockAndMetadata(world, x, y, z, NContent.bloodwood, 15);
+        world.setBlock(x, y, z, NContent.bloodwood, 15, 0);
         for (int l = x - 1; l <= x + 1; l++)
         {
             for (int k1 = z - 1; k1 <= z + 1; k1++)
@@ -201,7 +201,7 @@ public class BloodTreeLargeGen extends WorldGenerator
                     Block i3 = world.getBlock(l, j2, k1);
                     if (i3 != NContent.floraLeaves && !i3.isOpaqueCube())
                     {
-                        setBlockAndMetadata(world, l, j2, k1, NContent.floraLeavesNoColor, mdLeaves);
+                        world.setBlock(l, j2, k1, NContent.floraLeavesNoColor, mdLeaves, 0);
                     }
                 }
             }
@@ -214,7 +214,7 @@ public class BloodTreeLargeGen extends WorldGenerator
                 Block k2 = world.getBlock(i1, y, l1);
                 if (k2 != NContent.floraLeaves && !k2.isOpaqueCube())
                 {
-                    setBlockAndMetadata(world, i1, y, l1, NContent.floraLeavesNoColor, mdLeaves);
+                    world.setBlock(i1, y, l1, NContent.floraLeavesNoColor, mdLeaves, 0);
                 }
             }
         }
@@ -226,7 +226,7 @@ public class BloodTreeLargeGen extends WorldGenerator
                 Block l2 = world.getBlock(j1, y + 1, i2);
                 if (l2 != NContent.floraLeaves && !l2.isOpaqueCube())
                 {
-                    setBlockAndMetadata(world, j1, y, i2, NContent.floraLeavesNoColor, mdLeaves);
+                    world.setBlock(j1, y, i2, NContent.floraLeavesNoColor, mdLeaves, 0);
                 }
             }
         }

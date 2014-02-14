@@ -75,8 +75,8 @@ public class AlternateFence extends BlockFence
         {
             if (l == null)
                 return false;
-            if (l.blockMaterial.isOpaque() && l.renderAsNormalBlock())
-                return l.blockMaterial != Material.pumpkin;
+            if (l.getMaterial().isOpaque() && l.renderAsNormalBlock())
+                return l.getMaterial() != Material.pumpkin;
             return (l instanceof BlockFenceGate);
         }
         else

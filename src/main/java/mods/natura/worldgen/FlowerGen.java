@@ -9,17 +9,17 @@ import net.minecraft.world.gen.feature.WorldGenerator;
 public class FlowerGen extends WorldGenerator
 {
     /** The ID of the plant block used in this plant generator. */
-    public final int plantID;
+    public final Block plantID;
     public final int metadata;
     public int chances = 64;
 
-    public FlowerGen(int id, int meta)
+    public FlowerGen(Block id, int meta)
     {
         this.plantID = id;
         this.metadata = meta;
     }
 
-    public FlowerGen(int id, int meta, int count)
+    public FlowerGen(Block id, int meta, int count)
     {
         this.plantID = id;
         this.metadata = meta;
@@ -34,7 +34,7 @@ public class FlowerGen extends WorldGenerator
             int posY = y + random.nextInt(4) - random.nextInt(4);
             int posZ = z + random.nextInt(8) - random.nextInt(8);
 
-            if (world.isAirBlock(posX, posY, posZ) && (!world.provider.hasNoSky || posY < 127) && Block.blocksList[this.plantID].canBlockStay(world, posX, posY, posZ))
+            if (world.isAirBlock(posX, posY, posZ) && (!world.provider.hasNoSky || posY < 127) && this.plantID.canBlockStay(world, posX, posY, posZ))
             {
                 world.setBlock(posX, posY, posZ, this.plantID, this.metadata, 2);
             }

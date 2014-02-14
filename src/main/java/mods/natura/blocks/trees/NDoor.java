@@ -32,7 +32,7 @@ public class NDoor extends BlockDoor
         setBlockBounds(0.5F - f, 0.0F, 0.5F - f, 0.5F + f, f1, 0.5F + f);
         meta = md;
         this.setHardness(3F);
-        this.setStepSound(Block.soundWoodFootstep);
+        this.setStepSound(Block.soundTypeWood);
         this.disableStats();
     }
 

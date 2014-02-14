@@ -28,7 +28,7 @@ public class SaguaroBlock extends Block implements IPlantable
     {
         super(Material.cactus);
         this.setCreativeTab(NaturaTab.tab);
-        setStepSound(soundClothFootstep);
+        setStepSound(soundTypeCloth);
         this.setHardness(0.3f);
         this.setTickRandomly(true);
     }
@@ -265,7 +265,7 @@ public class SaguaroBlock extends Block implements IPlantable
     }
 
     @Override
-    public EnumPlantType getPlantType (World world, int x, int y, int z)
+    public EnumPlantType getPlantType (IBlockAccess world, int x, int y, int z)
     {
         return EnumPlantType.Desert;
     }

@@ -6,12 +6,15 @@ import cpw.mods.fml.client.FMLClientHandler;
 import mods.natura.common.NContent;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
-import cpw.mods.fml.common.ITickHandler;
-import cpw.mods.fml.common.TickType;
+import net.minecraft.init.Blocks;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import cpw.mods.fml.common.gameevent.TickEvent.ClientTickEvent;
+import cpw.mods.fml.common.gameevent.TickEvent.Phase;
+import cpw.mods.fml.common.gameevent.TickEvent.Type;
 
 /* Tick handler, used for rendering berry bushes between fast/fancy graphics */
 
-public class NCropsTickHandler implements ITickHandler
+public class NCropsTickHandler
 {
     private Minecraft mc;
 
@@ -21,32 +24,17 @@ public class NCropsTickHandler implements ITickHandler
         mc = FMLClientHandler.instance().getClient();
     }
 
-    @Override
-    public void tickStart (EnumSet<TickType> type, Object... tickData)
+    @SubscribeEvent
+    public void onTick (ClientTickEvent event)
     {
-        NContent.berryBush.setGraphicsLevel(Block.leaves.graphicsLevel);
-        NContent.netherBerryBush.setGraphicsLevel(Block.leaves.graphicsLevel);
-        NContent.floraLeaves.setGraphicsLevel(Block.leaves.graphicsLevel);
-        NContent.floraLeavesNoColor.setGraphicsLevel(Block.leaves.graphicsLevel);
-        NContent.darkLeaves.setGraphicsLevel(Block.leaves.graphicsLevel);
-        NContent.rareLeaves.setGraphicsLevel(Block.leaves.graphicsLevel);
-    }
 
-    @Override
-    public void tickEnd (EnumSet<TickType> type, Object... tickData)
-    {
-    }
-
-    @Override
-    public EnumSet<TickType> ticks ()
-    {
-        return EnumSet.of(TickType.RENDER);
-    }
-
-    @Override
-    public String getLabel ()
-    {
-        return null;
+        if (event.phase.equals(Phase.START) && event.type.equals(Type.RENDER))
+        NContent.berryBush.setGraphicsLevel(Blocks.leaves.field_150121_P);
+        NContent.netherBerryBush.setGraphicsLevel(Blocks.leaves.field_150121_P);
+        NContent.floraLeaves.setGraphicsLevel(Blocks.leaves.field_150121_P);
+        NContent.floraLeavesNoColor.setGraphicsLevel(Blocks.leaves.field_150121_P);
+        NContent.darkLeaves.setGraphicsLevel(Blocks.leaves.field_150121_P);
+        NContent.rareLeaves.setGraphicsLevel(Blocks.leaves.field_150121_P);
     }
 
 }

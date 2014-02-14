@@ -10,9 +10,9 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class FlowerBlock extends BlockFlower
 {
 
-    public FlowerBlock(int par1)
+    public FlowerBlock(int i)
     {
-        super(par1);
+        super(i);
         setCreativeTab(CreativeTabs.tabDecorations);
         this.setStepSound(soundTypeGrass);
     }

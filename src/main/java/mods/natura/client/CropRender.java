@@ -31,7 +31,7 @@ public class CropRender implements ISimpleBlockRenderingHandler
     }
 
     @Override
-    public boolean shouldRender3DInInventory ()
+    public boolean shouldRender3DInInventory (int id)
     {
         return false;
     }

@@ -40,8 +40,8 @@ public class BerryBush extends BlockLeavesBase implements IPlantable
         this.setTickRandomly(true);
         random = new Random();
         this.setHardness(0.3F);
-        this.setStepSound(Block.soundGrassFootstep);
-        this.setUnlocalizedName("berrybush");
+        this.setStepSound(Block.soundTypeGrass);
+        this.setBlockName("berrybush");
         this.setCreativeTab(NaturaTab.tab);
     }
 
@@ -65,7 +65,7 @@ public class BerryBush extends BlockLeavesBase implements IPlantable
     @SideOnly(Side.CLIENT)
     public IIcon getIcon (int side, int metadata)
     {
-        if (graphicsLevel)
+        if (field_150121_P)
         {
             if (metadata < 12)
             {
@@ -219,7 +219,7 @@ public class BerryBush extends BlockLeavesBase implements IPlantable
 
     public void setGraphicsLevel (boolean flag)
     {
-        graphicsLevel = flag;
+        field_150121_P = flag;
         //this.blockIndexInTexture = this.icon + (flag ? 0 : 32);
     }
 
@@ -236,7 +236,7 @@ public class BerryBush extends BlockLeavesBase implements IPlantable
 
     public boolean shouldSideBeRendered (IBlockAccess iblockaccess, int i, int j, int k, int l)
     {
-        if (l > 7 || graphicsLevel)
+        if (l > 7 || field_150121_P)
         {
             return super.shouldSideBeRendered(iblockaccess, i, j, k, l);
         }
@@ -318,19 +318,19 @@ public class BerryBush extends BlockLeavesBase implements IPlantable
     }
 
     @Override
-    public EnumPlantType getPlantType (World world, int x, int y, int z)
+    public EnumPlantType getPlantType (IBlockAccess world, int x, int y, int z)
     {
         return EnumPlantType.Plains;
     }
 
     @Override
-    public int getPlantID (World world, int x, int y, int z)
+    public Block getPlant (IBlockAccess world, int x, int y, int z)
     {
-        return this;
+        return (Block) this;
     }
 
     @Override
-    public int getPlantMetadata (World world, int x, int y, int z)
+    public int getPlantMetadata (IBlockAccess world, int x, int y, int z)
     {
         return world.getBlockMetadata(x, y, z) - 4;
     }

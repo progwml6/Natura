@@ -1,51 +1,57 @@
 package mods.natura.worldgen.retro;
- 
-     
-    import java.util.ArrayList;
-    import java.util.EnumSet;
-    import java.util.HashMap;
-    import java.util.Random;
-      
-    import net.minecraft.world.World;
-    import cpw.mods.fml.common.ITickHandler;
-    import cpw.mods.fml.common.TickType;
-      
-    public class TickHandlerWorld implements ITickHandler {
-      
-            public static TickHandlerWorld instance = new TickHandlerWorld();
-      
-            public static HashMap chunksToGen = new HashMap();
-            
-            @Override
-            public void tickEnd(EnumSet<TickType> type, Object... tickData) {
-      
-                    World world = (World) tickData[0];
-                    int dim = world.provider.dimensionId;
-                    ArrayList chunks = (ArrayList) chunksToGen.get(Integer.valueOf(dim));
-      
-                    if (chunks != null && chunks.size() > 0) {
-                            ChunkCoord c = (ChunkCoord) chunks.get(0);
-                            long worldSeed = world.getSeed();
-                            Random rand = new Random(worldSeed);
-                            long xSeed = rand.nextLong() >> 2 + 1L;
-                            long zSeed = rand.nextLong() >> 2 + 1L;
-                            rand.setSeed(xSeed * c.chunkX + zSeed * c.chunkZ ^ worldSeed);
-                            WorldHandler.instance.generateWorld(rand, c.chunkX, c.chunkZ, world, true);
-                            chunks.remove(0);
-                            chunksToGen.put(Integer.valueOf(dim), chunks);
-                    }
+
+import java.util.ArrayList;
+import java.util.EnumSet;
+import java.util.HashMap;
+import java.util.Random;
+
+import net.minecraft.world.World;
+import cpw.mods.fml.common.ITickHandler;
+import cpw.mods.fml.common.TickType;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import cpw.mods.fml.common.gameevent.TickEvent.ClientTickEvent;
+import cpw.mods.fml.common.gameevent.TickEvent.Phase;
+import cpw.mods.fml.common.gameevent.TickEvent.ServerTickEvent;
+import cpw.mods.fml.common.gameevent.TickEvent.Type;
+import cpw.mods.fml.common.gameevent.TickEvent.WorldTickEvent;
+
+public class TickHandlerWorld
+{
+
+    public static TickHandlerWorld instance = new TickHandlerWorld();
+
+    public static HashMap chunksToGen = new HashMap();
+
+    @SubscribeEvent
+    public void onTick (WorldTickEvent event)
+    {
+
+        if (event.phase.equals(Phase.END) && event.type.equals(Type.WORLD))
+        {
+            World world = (World) event.world;
+            int dim = world.provider.dimensionId;
+            ArrayList chunks = (ArrayList) chunksToGen.get(Integer.valueOf(dim));
+
+            if (chunks != null && chunks.size() > 0)
+            {
+                ChunkCoord c = (ChunkCoord) chunks.get(0);
+                long worldSeed = world.getSeed();
+                Random rand = new Random(worldSeed);
+                long xSeed = rand.nextLong() >> 2 + 1L;
+                long zSeed = rand.nextLong() >> 2 + 1L;
+                rand.setSeed(xSeed * c.chunkX + zSeed * c.chunkZ ^ worldSeed);
+                WorldHandler.instance.generateWorld(rand, c.chunkX, c.chunkZ, world, true);
+                chunks.remove(0);
+                chunksToGen.put(Integer.valueOf(dim), chunks);
             }
-      
-            @Override
-            public EnumSet<TickType> ticks() {
-      
-                    return EnumSet.of(TickType.WORLD);
-            }
-      
-            @Override
-            public String getLabel() {
-      
-                    return "NaturaWorld";
-            }
-      
+        }
     }
+
+   /* @Override
+    public String getLabel ()
+    {
+
+        return "NaturaWorld";
+    }*/
+
+}

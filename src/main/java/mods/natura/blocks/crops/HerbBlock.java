@@ -21,7 +21,7 @@ public class HerbBlock extends CropBlock
         this.setBlockBounds(0.5F - var3, 0.0F, 0.5F - var3, 0.5F + var3, 0.25F, 0.5F + var3);
         this.setCreativeTab((CreativeTabs) null);
         this.setHardness(0.0F);
-        this.setStepSound(soundGrassFootstep);
+        this.setStepSound(soundTypeGrass);
         this.disableStats();
         this.setCreativeTab(NaturaTab.tab);
     }
@@ -101,6 +101,6 @@ public class HerbBlock extends CropBlock
     public boolean canBlockStay (World par1World, int x, int y, int z)
     {
         Block soil = par1World.getBlock(x, y - 1, z);
-        return soil != null && soil.blockMaterial == Material.rock;
+        return soil != null && soil.getMaterial() == Material.rock;
     }
 }

@@ -2,6 +2,7 @@ package mods.natura.items.blocks;
 
 import java.util.List;
 
+import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
@@ -13,7 +14,7 @@ public class RedwoodItem extends ItemBlock
 {
     public static final String blockType[] = { "bark", "heart", "root", "", "", "", "", "", "", "", "", "", "", "", "", "" };
 
-    public RedwoodItem(int i)
+    public RedwoodItem(Block i)
     {
         super(i);
         setMaxDamage(0);

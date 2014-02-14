@@ -29,7 +29,7 @@ public class LogTwoxTwo extends Block
     {
         super(material);
         this.setHardness(hardness);
-        this.setStepSound(Block.soundMetalFootstep);
+        this.setStepSound(Block.soundTypeMetal);
         this.setCreativeTab(NaturaTab.tab);
     }
 

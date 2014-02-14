@@ -9,6 +9,7 @@ import mods.natura.common.NContent;
 import mods.natura.common.NaturaTab;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
@@ -47,7 +48,7 @@ public class NLeavesNocolor extends NLeaves
     {
         int meta = metadata % 4;
 
-        if (graphicsLevel)
+        if (field_150121_P)
             return fancyIcons[meta];
         else
             return fastIcons[meta];
@@ -108,7 +109,7 @@ public class NLeavesNocolor extends NLeaves
     {
         ArrayList<ItemStack> ret = super.getBlockDropped(world, x, y, z, metadata, fortune);
         if (metadata % 4 == 2 && Natura.random.nextInt(40 - fortune*10) == 0)
-            ret.add(new ItemStack(Item.redstone));
+            ret.add(new ItemStack(Items.redstone));
         return ret;
     }
 

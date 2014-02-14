@@ -3,7 +3,6 @@ package mods.natura.entity;
 import mods.natura.common.NContent;
 import net.minecraft.block.Block;
 import net.minecraft.block.Block.SoundType;
-import net.minecraft.block.StepSound;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.item.EntityItem;
@@ -112,13 +111,13 @@ public class BabyHeatscarSpider extends EntitySpider
             {
                 byte b0 = 0;
 
-                if (this.worldObj.difficultySetting > 1)
+                if (this.worldObj.difficultySetting != this.worldObj.difficultySetting.PEACEFUL)
                 {
-                    if (this.worldObj.difficultySetting == 2)
+                    if (this.worldObj.difficultySetting == this.worldObj.difficultySetting.NORMAL)
                     {
                         b0 = 5;
                     }
-                    else if (this.worldObj.difficultySetting == 3)
+                    else if (this.worldObj.difficultySetting == this.worldObj.difficultySetting.HARD)
                     {
                         b0 = 10;
                     }
@@ -175,7 +174,7 @@ public class BabyHeatscarSpider extends EntitySpider
 
     public boolean getCanSpawnHere ()
     {
-        return this.worldObj.difficultySetting > 0 && this.worldObj.checkNoEntityCollision(this.boundingBox) && this.worldObj.getCollidingBoundingBoxes(this, this.boundingBox).isEmpty()
+        return this.worldObj.difficultySetting != this.worldObj.difficultySetting.PEACEFUL && this.worldObj.checkNoEntityCollision(this.boundingBox) && this.worldObj.getCollidingBoundingBoxes(this, this.boundingBox).isEmpty()
                 && !this.worldObj.isAnyLiquid(this.boundingBox);
     }
 }

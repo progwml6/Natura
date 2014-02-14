@@ -205,7 +205,7 @@ public class WillowGen extends WorldGenerator
      */
     private void generateVines (World par1World, int par2, int par3, int par4, int par5)
     {
-        this.setBlockAndMetadata(par1World, par2, par3, par4, NContent.floraLeavesNoColor, par5);
+        par1World.setBlock(par2, par3, par4, NContent.floraLeavesNoColor, par5, 0);
         int i1 = 4;
 
         while (true)
@@ -217,7 +217,7 @@ public class WillowGen extends WorldGenerator
                 return;
             }
 
-            this.setBlockAndMetadata(par1World, par2, par3, par4, NContent.floraLeavesNoColor, par5);
+            par1World.setBlock(par2, par3, par4, NContent.floraLeavesNoColor, par5, 0);
             --i1;
         }
     }

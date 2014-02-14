@@ -31,7 +31,7 @@ public class CropBlock extends BlockCrops
         this.setBlockBounds(0.5F - var3, 0.0F, 0.5F - var3, 0.5F + var3, 0.25F, 0.5F + var3);
         this.setCreativeTab((CreativeTabs) null);
         this.setHardness(0.0F);
-        this.setStepSound(soundGrassFootstep);
+        this.setStepSound(soundTypeGrass);
         this.disableStats();
     }
 

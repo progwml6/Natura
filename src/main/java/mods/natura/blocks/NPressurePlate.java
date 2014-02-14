@@ -5,7 +5,6 @@ import cpw.mods.fml.relauncher.SideOnly;
 import mods.natura.common.NaturaTab;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockPressurePlate;
-import net.minecraft.block.EnumMobType;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.util.IIcon;
@@ -15,9 +14,9 @@ public class NPressurePlate extends BlockPressurePlate
     Block modelBlock;
     int modelMeta;
 
-    public NPressurePlate(int id, Material material, EnumMobType mobType, Block block, int meta)
+    public NPressurePlate(Material material, Sensitivity s, Block block, int meta)
     {
-        super(id, "", material, mobType);
+        super("", material, s);
         modelBlock = block;
         modelMeta = meta;
         this.setCreativeTab(NaturaTab.tab);

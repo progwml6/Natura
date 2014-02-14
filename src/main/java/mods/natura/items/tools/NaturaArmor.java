@@ -7,7 +7,6 @@ import mods.natura.common.NaturaTab;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
-import net.minecraft.item.EnumArmorMaterial;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import cpw.mods.fml.relauncher.Side;
@@ -18,9 +17,9 @@ public class NaturaArmor extends ItemArmor
     String itemTexture;
     String armorTexture;
 
-    public NaturaArmor(int id, EnumArmorMaterial material, int renderIndex, int slotType, String itemTexture, String armorTexture)
+    public NaturaArmor(ArmorMaterial material, int renderIndex, int slotType, String itemTexture, String armorTexture)
     {
-        super(id, material, renderIndex, slotType);
+        super(material, renderIndex, slotType);
         this.itemTexture = itemTexture;
         this.armorTexture = armorTexture;
         this.setCreativeTab(NaturaTab.tab);

@@ -3,12 +3,13 @@ package mods.natura.entity;
 import mods.natura.common.NContent;
 import mods.natura.common.PHNatura;
 import net.minecraft.block.Block;
-import net.minecraft.block.StepSound;
+import net.minecraft.block.Block.SoundType;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.monster.EntitySpider;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.util.DamageSource;
@@ -38,10 +39,10 @@ public class HeatscarSpider extends EntitySpider
     protected void applyEntityAttributes ()
     {
         super.applyEntityAttributes();
-        this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setAttribute(50.0D); //Health
-        this.getEntityAttribute(SharedMonsterAttributes.followRange).setAttribute(24D); //Detection range
-        this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setAttribute(1.35); //Movespeed
-        this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setAttribute(4.0); //Base damage
+        this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(50.0D); //Health
+        this.getEntityAttribute(SharedMonsterAttributes.followRange).setBaseValue(24D); //Detection range
+        this.getEntityAttribute(SharedMonsterAttributes.movementSpeed).setBaseValue(1.35); //Movespeed
+        this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(4.0); //Base damage
     }
 
     protected void attackEntity (Entity par1Entity, float par2)
@@ -109,12 +110,12 @@ public class HeatscarSpider extends EntitySpider
             }
 
             this.attackEntityFrom(DamageSource.fall, i);
-            int j = this.worldObj.getBlockId(MathHelper.floor_double(this.posX), MathHelper.floor_double(this.posY - 0.20000000298023224D - (double) this.yOffset), MathHelper.floor_double(this.posZ));
+            Block j = this.worldObj.getBlock(MathHelper.floor_double(this.posX), MathHelper.floor_double(this.posY - 0.20000000298023224D - (double) this.yOffset), MathHelper.floor_double(this.posZ));
 
-            if (j > 0)
+            if (j != null)
             {
-                StepSound stepsound = Block.blocksList[j].stepSound;
-                this.playSound(stepsound.getStepSound(), stepsound.getVolume() * 0.5F, stepsound.getPitch() * 0.75F);
+                SoundType stepsound = j.stepSound;
+                this.playSound(stepsound.func_150496_b(), stepsound.getVolume() * 0.5F, stepsound.getPitch() * 0.75F);
             }
         }
     }
@@ -127,13 +128,13 @@ public class HeatscarSpider extends EntitySpider
             {
                 byte b0 = 0;
 
-                if (this.worldObj.difficultySetting > 1)
+                if (this.worldObj.difficultySetting != this.worldObj.difficultySetting.PEACEFUL)
                 {
-                    if (this.worldObj.difficultySetting == 2)
+                    if (this.worldObj.difficultySetting == this.worldObj.difficultySetting.NORMAL)
                     {
                         b0 = 5;
                     }
-                    else if (this.worldObj.difficultySetting == 3)
+                    else if (this.worldObj.difficultySetting == this.worldObj.difficultySetting.HARD)
                     {
                         b0 = 10;
                     }
@@ -158,21 +159,21 @@ public class HeatscarSpider extends EntitySpider
         return 4;
     }
 
-    protected int getDropItemId ()
+    protected Item getDropItem ()
     {
-        return NContent.plantItem.itemID;
+        return NContent.plantItem;
     }
 
-    public EntityItem dropItemWithOffset (int par1, int par2, float par3)
+    public EntityItem dropItemWithOffset (Item par1, int par2, float par3)
     {
         return this.entityDropItem(new ItemStack(par1, par2, 7), par3);
     }
 
     protected void dropFewItems (boolean par1, int par2)
     {
-        int j = this.getDropItemId();
+        Item j = this.getDropItem();
 
-        if (j > 0)
+        if (j != null)
         {
             int k = this.rand.nextInt(3) + 2;
 
@@ -190,7 +191,7 @@ public class HeatscarSpider extends EntitySpider
 
     public boolean getCanSpawnHere ()
     {
-        return this.worldObj.difficultySetting > 0 && this.worldObj.checkNoEntityCollision(this.boundingBox) && this.worldObj.getCollidingBoundingBoxes(this, this.boundingBox).isEmpty()
+        return this.worldObj.difficultySetting != this.worldObj.difficultySetting.PEACEFUL && this.worldObj.checkNoEntityCollision(this.boundingBox) && this.worldObj.getCollidingBoundingBoxes(this, this.boundingBox).isEmpty()
                 && !this.worldObj.isAnyLiquid(this.boundingBox);
     }
 

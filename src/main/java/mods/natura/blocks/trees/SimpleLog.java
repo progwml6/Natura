@@ -50,12 +50,12 @@ public class SimpleLog extends Planks
 
     public int getFlammability (IBlockAccess world, int x, int y, int z, int metadata, ForgeDirection face)
     {
-        return blockFlammability[blockID];
+        return this.getFlammability(world, x, y, z, face);
     }
 
     public int getFireSpreadSpeed (World world, int x, int y, int z, int metadata, ForgeDirection face)
     {
-        return blockFireSpreadSpeed[blockID];
+        return this.getFireSpreadSpeed(world, x, y, z, face);
     }
 
     @Override

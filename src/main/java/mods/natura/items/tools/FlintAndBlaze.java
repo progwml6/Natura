@@ -4,6 +4,7 @@ import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntitySmallFireball;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -14,9 +15,9 @@ import net.minecraftforge.event.entity.player.ArrowNockEvent;
 
 public class FlintAndBlaze extends Item
 {
-    public FlintAndBlaze(int id)
+    public FlintAndBlaze()
     {
-        super(id);
+        super();
         this.maxStackSize = 1;
         this.setMaxDamage(256);
         this.setCreativeTab(CreativeTabs.tabTools);
@@ -109,7 +110,7 @@ public class FlintAndBlaze extends Item
             if (world.isAirBlock(x, y, z))
             {
                 world.playSoundEffect((double) x + 0.5D, (double) y + 0.5D, (double) z + 0.5D, "fire.ignite", 1.0F, itemRand.nextFloat() * 0.4F + 0.8F);
-                world.setBlock(x, y, z, Block.fire.blockID);
+                world.setBlock(x, y, z, Blocks.fire);
             }
 
             stack.damageItem(1, player);

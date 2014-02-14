@@ -29,7 +29,7 @@ public class Planks extends Block
         setBurnProperties(this, 5, 20);
         this.setHardness(2.0f);
         this.setCreativeTab(NaturaTab.tab);
-        this.setStepSound(Block.soundWoodFootstep);
+        this.setStepSound(Block.soundTypeWood);
     }
 
     @Override

@@ -6,6 +6,7 @@ import java.util.List;
 import cpw.mods.fml.common.event.FMLInterModComms;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -27,15 +28,15 @@ public class ThermalExpansion3 implements ICompatPlugin
     {
         NBTTagCompound toSend = new NBTTagCompound();
         toSend.setInteger("energy", energy);
-        toSend.setCompoundTag("input", new NBTTagCompound());
-        toSend.setCompoundTag("primaryOutput", new NBTTagCompound());
+        toSend.setTag("input", new NBTTagCompound());
+        toSend.setTag("primaryOutput", new NBTTagCompound());
 
         input.writeToNBT(toSend.getCompoundTag("input"));
         primaryOutput.writeToNBT(toSend.getCompoundTag("primaryOutput"));
 
         if (secondaryOutput != null)
         {
-            toSend.setCompoundTag("secondaryOutput", new NBTTagCompound());
+            toSend.setTag("secondaryOutput", new NBTTagCompound());
             secondaryOutput.writeToNBT(toSend.getCompoundTag("secondaryOutput"));
             toSend.setInteger("secondaryChance", chance);
         }
@@ -104,7 +105,7 @@ public class ThermalExpansion3 implements ICompatPlugin
                 // Workbenches
                 createSawmillRecipe(2400, new ItemStack(NContent.alternateWorkbench, 1, i), new ItemStack(NContent.planks, 4, plankMeta));
                 // Bookshelves
-                createSawmillRecipe(2400, new ItemStack(NContent.alternateBookshelf, 1, i), new ItemStack(NContent.planks, 6, plankMeta), new ItemStack(Item.book, 3), 100);
+                createSawmillRecipe(2400, new ItemStack(NContent.alternateBookshelf, 1, i), new ItemStack(NContent.planks, 6, plankMeta), new ItemStack(Items.book, 3), 100);
             }
         }
         // - Fence Gates

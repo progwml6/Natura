@@ -7,6 +7,7 @@ import mods.natura.common.NContent;
 import mods.natura.common.NaturaTab;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
@@ -44,7 +45,7 @@ public class NLeavesDark extends NLeaves
     {
         int meta = metadata % 4;
 
-        if (graphicsLevel)
+        if (field_150121_P)
             return fancyIcons[meta];
         else
             return fastIcons[meta];

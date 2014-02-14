@@ -24,7 +24,7 @@ public class HeatSand extends BlockSand
     {
         super();
         this.setHardness(3f);
-        this.setStepSound(Block.soundSandFootstep);
+        this.setStepSound(Block.soundTypeSand);
         this.setCreativeTab(NaturaTab.tab);
         MinecraftForge.setBlockHarvestLevel(this, "shovel", 0);
     }

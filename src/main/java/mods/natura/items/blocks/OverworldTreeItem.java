@@ -2,6 +2,7 @@ package mods.natura.items.blocks;
 
 import java.util.List;
 
+import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
@@ -14,7 +15,7 @@ public class OverworldTreeItem extends ItemBlock
 {
     public static final String blockType[] = { "maple", "silverbell", "purpleheart", "tiger" };
 
-    public OverworldTreeItem(int i)
+    public OverworldTreeItem(Block i)
     {
         super(i);
         setMaxDamage(0);

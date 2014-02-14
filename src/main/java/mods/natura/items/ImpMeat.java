@@ -14,9 +14,9 @@ import net.minecraft.util.StatCollector;
 
 public class ImpMeat extends NSpecialFood
 {
-    public ImpMeat(int id)
+    public ImpMeat()
     {
-        super(id, new int[] { 3, 8 }, new float[] { 0.2f, 0.6f }, new String[] { "raw", "cooked" }, new String[] { "impmeat_raw", "impmeat_cooked" });
+        super(new int[] { 3, 8 }, new float[] { 0.2f, 0.6f }, new String[] { "raw", "cooked" }, new String[] { "impmeat_raw", "impmeat_cooked" });
     }
 
     @Override
@@ -45,7 +45,7 @@ public class ImpMeat extends NSpecialFood
             case 0:
                 potion = player.getActivePotionEffect(Potion.hunger);
                 if (potion != null)
-                    duration = potion.duration;
+                    duration = potion.getDuration();
                 player.addPotionEffect(new PotionEffect(Potion.hunger.id, duration + 8 * 20, 0));
                 player.setFire(10);
 
@@ -53,9 +53,9 @@ public class ImpMeat extends NSpecialFood
                 {
                     potion = player.getActivePotionEffect(Potion.poison);
                     if (potion != null)
-                        duration = potion.duration;
+                        duration = potion.getDuration();
                     else
-                        duration = 0;
+                        duration= 0;
                     player.addPotionEffect(new PotionEffect(Potion.poison.id, duration + 5 * 20, 0));
                 }
                 break;
@@ -63,14 +63,14 @@ public class ImpMeat extends NSpecialFood
             case 1:
                 potion = player.getActivePotionEffect(Potion.fireResistance);
                 if (potion != null)
-                    duration = potion.duration;
+                    duration = potion.getDuration();
                 player.addPotionEffect(new PotionEffect(Potion.fireResistance.id, duration + 15 * 20, 0));
 
                 if (Natura.random.nextFloat() < 0.75f)
                 {
                     potion = player.getActivePotionEffect(Potion.poison);
                     if (potion != null)
-                        duration = potion.duration;
+                        duration = potion.getDuration();
                     else
                         duration = 0;
                     player.addPotionEffect(new PotionEffect(Potion.poison.id, duration + 5 * 20, 0));

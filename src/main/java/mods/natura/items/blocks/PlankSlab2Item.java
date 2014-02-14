@@ -15,14 +15,12 @@ import net.minecraft.util.StatCollector;
 public class PlankSlab2Item extends ItemBlock
 {
     public static final String blockType[] = { "purpleheart", "tiger", "willow", "darkwood", "fusewood", "", "", "" };
-    int blockID;
     Block block;
 
-    public PlankSlab2Item(int id)
+    public PlankSlab2Item(Block id)
     {
         super(id);
-        this.blockID = id + 256;
-        this.block = Block.blocksList[id + 256];
+        this.block = id;
         setMaxDamage(0);
         setHasSubtypes(true);
     }
@@ -77,14 +75,14 @@ public class PlankSlab2Item extends ItemBlock
     @Override
     public boolean onItemUse (ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ)
     {
-        int id = world.getBlockId(x, y, z);
+        Block id = world.getBlock(x, y, z);
         int meta = world.getBlockMetadata(x, y, z);
         int trueMeta = meta % 8;
-        boolean flag = (id & 8) != 0;
+        boolean flag = id != null;
 
-        if ((side == 1 && !flag || side == 0 && flag) && id == this.blockID && trueMeta == stack.getItemDamage())
+        if ((side == 1 && !flag || side == 0 && flag) && id == this.block && trueMeta == stack.getItemDamage())
         {
-            if (world.setBlock(x, y, z, NContent.planks.blockID, trueMeta + 8, 3))
+            if (world.setBlock(x, y, z, NContent.planks, trueMeta + 8, 3))
             {
                 world.playSoundEffect((double) ((float) x + 0.5F), (double) ((float) y + 0.5F), (double) ((float) z + 0.5F), this.block.stepSound.getPlaceSound(),
                         (this.block.stepSound.getVolume() + 1.0F) / 2.0F, this.block.stepSound.getPitch() * 0.8F);

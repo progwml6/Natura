@@ -6,9 +6,9 @@ import net.minecraft.world.World;
 
 public class BlazeRailDetector extends BlockDetectorRail
 {
-    public BlazeRailDetector(int par1)
+    public BlazeRailDetector()
     {
-        super(par1);
+        super();
     }
 
     @Override

@@ -27,7 +27,7 @@ public class TreeBlock extends BlockLog
         super();
         this.setHardness(1.5F);
         this.setResistance(5F);
-        this.setStepSound(Block.soundWoodFootstep);
+        this.setStepSound(Block.soundTypeWood);
         setBurnProperties(this, 5, 20);
         this.setCreativeTab(NaturaTab.tab);
     }
@@ -84,12 +84,12 @@ public class TreeBlock extends BlockLog
 
     public int getFlammability (IBlockAccess world, int x, int y, int z, int metadata, ForgeDirection face)
     {
-        return metadata % 4 != 2 ? blockFlammability[blockID] : 0;
+        return metadata % 4 != 2 ? this.getFlammability(world, x, y, z, face) : 0;
     }
 
     public int getFireSpreadSpeed (World world, int x, int y, int z, int metadata, ForgeDirection face)
     {
-        return metadata % 4 != 2 ? blockFireSpreadSpeed[blockID] : 0;
+        return metadata % 4 != 2 ? this.getFireSpreadSpeed(world, x, y, z, face) : 0;
     }
 
     @SideOnly(Side.CLIENT)

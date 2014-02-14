@@ -25,7 +25,7 @@ public class Glowshroom extends BlockMushroom
     public Glowshroom()
     {
         super();
-        this.setStepSound(soundGrassFootstep);
+        this.setStepSound(soundTypeGrass);
         this.setCreativeTab(NaturaTab.tab);
     }
 

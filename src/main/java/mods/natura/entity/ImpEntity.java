@@ -52,7 +52,7 @@ public class ImpEntity extends EntityAnimal
     protected void applyEntityAttributes ()
     {
         super.applyEntityAttributes();
-        this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setAttribute(40.0D); //Health
+        this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(40.0D); //Health
     }
 
     protected void updateAITasks ()

@@ -6,9 +6,9 @@ import net.minecraft.world.World;
 
 public class BlazeRail extends BlockRail
 {
-    public BlazeRail(int par1)
+    public BlazeRail()
     {
-        super(par1);
+        super();
     }
     
     @Override

@@ -80,7 +80,7 @@ public class OverworldLeaves extends NLeaves
     {
         int meta = metadata % 4;
 
-        if (graphicsLevel)
+        if (field_150121_P)
             return fancyIcons[meta];
         else
             return fastIcons[meta];

@@ -18,11 +18,11 @@ import net.minecraft.world.World;
 
 public class CloudBlock extends NBlock
 {
-    public CloudBlock(int id)
+    public CloudBlock()
     {
-        super(id, Natura.cloud, 0.3F, new String[] { "cloud_white", "cloud_gray", "cloud_dark", "cloud_sulfur" });
-        this.setStepSound(Block.soundClothFootstep);
-        this.setUnlocalizedName("cloud");
+        super(Natura.cloud, 0.3F, new String[] { "cloud_white", "cloud_gray", "cloud_dark", "cloud_sulfur" });
+        this.setStepSound(soundTypeCloth);
+        this.setBlockName("cloud");
         this.setCreativeTab(NaturaTab.tab);
     }
 

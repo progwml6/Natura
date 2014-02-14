@@ -422,7 +422,7 @@ public class NetherPistonBase extends BlockPistonBase
                 return false;
             }
 
-            return !par1World.blockHasTileEntity(par2, par3, par4);
+            return !par1World.getBlock(par2, par3, par4).hasTileEntity(0);
         }
     }
 

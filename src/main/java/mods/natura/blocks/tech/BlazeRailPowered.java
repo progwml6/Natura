@@ -9,9 +9,9 @@ public class BlazeRailPowered extends BlockRailPowered
 {
     boolean activator;
 
-    public BlazeRailPowered(int id, boolean activator)
+    public BlazeRailPowered(boolean activator)
     {
-        super(id);
+        super();
         this.activator = activator;
     }
 
@@ -45,18 +45,18 @@ public class BlazeRailPowered extends BlockRailPowered
                 if (meta == 8)
                 {
                     double speed = 0f;
-                    if (Block.isNormalCube(world.getBlockId(x, y, z + 1)))
+                    if (world.getBlock(x, y, z + 1).isNormalCube())
                         speed += 0.2f;
-                    if (Block.isNormalCube(world.getBlockId(x, y, z - 1)))
+                    if (world.getBlock(x, y, z - 1).isNormalCube())
                         speed -= 0.2f;
                     cart.motionX += speed;
                 }
                 else if (meta == 9)
                 {
                     double speed = 0f;
-                    if (Block.isNormalCube(world.getBlockId(x + 1, y, z)))
+                    if (world.getBlock(x + 1, y, z).isNormalCube())
                         speed -= 0.2f;
-                    if (Block.isNormalCube(world.getBlockId(x - 1, y, z)))
+                    if (world.getBlock(x - 1, y, z).isNormalCube())
                         speed += 0.2f;
                     cart.motionZ += speed;
                 }

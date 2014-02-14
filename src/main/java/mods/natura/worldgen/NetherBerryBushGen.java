@@ -46,8 +46,7 @@ public class NetherBerryBushGen extends WorldGenerator
     {
         int returnHeight = -1;
         Block blockID = world.getBlock(x, y - 1, z);
-        if (blockID != null && !world.getBlock(x, y, z).isOpaqueCube()
-                && (blockID == Blocks.netherrack || blockID.canSustainPlant(world, x, y - 1, z, ForgeDirection.UP, (IPlantable) blockGen)))
+        if (blockID != null && !world.getBlock(x, y, z).isOpaqueCube() && (blockID == Blocks.netherrack || blockID.canSustainPlant(world, x, y - 1, z, ForgeDirection.UP, (IPlantable) blockGen)))
         {
             //System.out.println("Returning "+y);
             return y;
@@ -154,7 +153,7 @@ public class NetherBerryBushGen extends WorldGenerator
                     {
                         int l2 = zPos - z;
 
-                        block = Block.blocksList[world.getBlock(xPos, yPos, zPos)];
+                        block = world.getBlock(xPos, yPos, zPos);
 
                         if ((Math.abs(j2) != l1 || Math.abs(l2) != l1 || random.nextInt(2) != 0) && (block == null || block.canBeReplacedByLeaves(world, xPos, yPos, zPos)))
                         {
@@ -189,7 +188,7 @@ public class NetherBerryBushGen extends WorldGenerator
         if (!world.getBlock(x, y, z).isOpaqueCube())
         {
             int metaOffset = random.nextInt(5) == 0 ? 1 : 0;
-            setBlockAndMetadata(world, x, y, z, NContent.netherBerryBush, metadata + 8 + metaOffset * 4);
+            world.setBlock(x, y, z, NContent.netherBerryBush, metadata + 8 + metaOffset * 4, 0);
         }
     }
 
@@ -198,7 +197,7 @@ public class NetherBerryBushGen extends WorldGenerator
         if (!world.getBlock(x, y, z).isOpaqueCube())
         {
             int metaOffset = random.nextInt(4);
-            setBlockAndMetadata(world, x, y, z, NContent.netherBerryBush, metadata + metaOffset * 4);
+            world.setBlock(x, y, z, NContent.netherBerryBush, metadata + metaOffset * 4, 0);
         }
     }
 }

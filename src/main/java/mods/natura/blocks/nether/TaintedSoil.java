@@ -12,10 +12,10 @@ import net.minecraftforge.common.IPlantable;
 public class TaintedSoil extends NBlock
 {
 
-    public TaintedSoil(int id)
+    public TaintedSoil()
     {
-        super(id, Material.ground, 2.2f, new String[] { "tainted_soil", "tainted_farmland_dry", "tainted_farmland_heated" });
-        this.setStepSound(Block.soundGravelFootstep);
+        super(Material.ground, 2.2f, new String[] { "tainted_soil", "tainted_farmland_dry", "tainted_farmland_heated" });
+        this.setStepSound(Block.soundTypeGravel);
         this.setResistance(25f);
     }
 

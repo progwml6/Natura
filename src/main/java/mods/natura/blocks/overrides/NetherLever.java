@@ -5,9 +5,9 @@ import net.minecraft.block.BlockLever;
 
 public class NetherLever extends BlockLever
 {
-    public NetherLever(int par1)
+    public NetherLever()
     {
-        super(par1);
+        super();
     }
     
     public int getRenderType ()

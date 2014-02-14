@@ -31,7 +31,7 @@ public class LargeGlowshroom extends Block
     {
         super(par2Material);
         mushroomType = type;
-        this.setStepSound(Block.soundWoodFootstep);
+        this.setStepSound(Block.soundTypeWood);
         this.setHardness(0.2F);
     }
 

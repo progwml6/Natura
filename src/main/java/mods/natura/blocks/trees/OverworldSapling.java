@@ -33,7 +33,7 @@ public class OverworldSapling extends BlockSapling
         float f = 0.4F;
         setBlockBounds(0.5F - f, 0.0F, 0.5F - f, 0.5F + f, f * 2.0F, 0.5F + f);
         this.setHardness(0.0F);
-        this.setStepSound(Block.soundGrassFootstep);
+        this.setStepSound(Block.soundTypeGrass);
         this.setCreativeTab(NaturaTab.tab);
     }
 
