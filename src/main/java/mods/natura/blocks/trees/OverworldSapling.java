@@ -9,25 +9,27 @@ import mods.natura.worldgen.RareTreeGen;
 import mods.natura.worldgen.WillowGen;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockSapling;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.init.Blocks;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.common.EnumPlantType;
-import net.minecraftforge.common.ForgeDirection;
+import net.minecraftforge.common.util.ForgeDirection;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class OverworldSapling extends BlockSapling
 {
-    public Icon[] icons;
+    public IIcon[] icons;
     public String[] textureNames = new String[] { "maple", "silverbell", "purpleheart", "tiger", "willow" };
 
-    public OverworldSapling(int id)
+    public OverworldSapling()
     {
-        super(id);
+        super();
         float f = 0.4F;
         setBlockBounds(0.5F - f, 0.0F, 0.5F - f, 0.5F + f, f * 2.0F, 0.5F + f);
         this.setHardness(0.0F);
@@ -37,9 +39,9 @@ public class OverworldSapling extends BlockSapling
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void registerIcons (IconRegister iconRegister)
+    public void registerIcons (IIconRegister iconRegister)
     {
-        this.icons = new Icon[textureNames.length];
+        this.icons = new IIcon[textureNames.length];
 
         for (int i = 0; i < this.icons.length; ++i)
         {
@@ -49,16 +51,16 @@ public class OverworldSapling extends BlockSapling
 
     public boolean canPlaceBlockAt (World world, int x, int y, int z)
     {
-        int blockID = world.getBlockId(x, y, z);
-        if (blockID == 0 || blocksList[blockID].blockMaterial.isReplaceable())
+        Block blockID = world.getBlock(x, y, z);
+        if (blockID == Blocks.air || blockID.getMaterial().isReplaceable())
             return true;
         //return canBlockStay(world, x, y, z);
         return false;
     }
 
-    public boolean canThisPlantGrowOnThisBlockID (int id)
+    public boolean canThisPlantGrowOnThisBlock(Block id)
     {
-        return id == Block.grass.blockID || id == Block.dirt.blockID || id == Block.slowSand.blockID || id == Block.netherrack.blockID || id == NContent.taintedSoil.blockID;
+        return id == Blocks.grass || id == Blocks.dirt || id == Blocks.soul_sand || id == Blocks.netherrack || id == NContent.taintedSoil;
     }
 
     @Override
@@ -71,8 +73,7 @@ public class OverworldSapling extends BlockSapling
         case 1:
         case 2:
         case 3:
-            int blockID = world.getBlockId(x, y - 1, z);
-            Block soil = blocksList[blockID];
+            Block soil = world.getBlock(x, y - 1, z);
             return (world.getFullBlockLightValue(x, y, z) >= 8 || world.canBlockSeeTheSky(x, y, z)) && (soil != null && soil.canSustainPlant(world, x, y - 1, z, ForgeDirection.UP, this));
             /*case 4:
             case 6:
@@ -118,7 +119,7 @@ public class OverworldSapling extends BlockSapling
 
     @Override
     @SideOnly(Side.CLIENT)
-    public Icon getIcon (int side, int meta)
+    public IIcon getIcon (int side, int meta)
     {
         return icons[meta % 8];
     }
@@ -148,7 +149,7 @@ public class OverworldSapling extends BlockSapling
     public void growTree (World world, int x, int y, int z, Random random)
     {
         int md = world.getBlockMetadata(x, y, z) % 8;
-        world.setBlock(x, y, z, 0);
+        world.setBlock(x, y, z, Blocks.air);
         WorldGenerator obj = null;
 
         if (md == 1)
@@ -167,7 +168,7 @@ public class OverworldSapling extends BlockSapling
             obj = new RareTreeGen(true, 4, 2, 0, 0);
 
         if (!(obj.generate(world, random, x, y, z)))
-            world.setBlock(x, y, z, blockID, md + 8, 3);
+            world.setBlock(x, y, z, this, md + 8, 3);
     }
 
     public int damageDropped (int i)
@@ -177,7 +178,7 @@ public class OverworldSapling extends BlockSapling
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubBlocks (int id, CreativeTabs tab, List list)
+    public void getSubBlocks (Item id, CreativeTabs tab, List list)
     {
         for (int iter = 0; iter < icons.length; iter++)
         {

@@ -3,13 +3,14 @@ package mods.natura.blocks.trees;
 import java.util.List;
 
 import mods.natura.common.NaturaTab;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraftforge.common.ForgeDirection;
+import net.minecraftforge.common.util.ForgeDirection;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -17,17 +18,17 @@ public class SimpleLog extends Planks
 {
     public String[] textureNames = new String[] { "redwood_bark", "redwood_heart", "redwood_root" };
 
-    public SimpleLog(int id)
+    public SimpleLog()
     {
-        super(id);
+        super();
         this.setCreativeTab(NaturaTab.tab);
     }
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void registerIcons (IconRegister iconRegister)
+    public void registerIcons (IIconRegister iconRegister)
     {
-        this.icons = new Icon[textureNames.length];
+        this.icons = new IIcon[textureNames.length];
 
         for (int i = 0; i < this.icons.length; ++i)
         {
@@ -59,7 +60,7 @@ public class SimpleLog extends Planks
 
     @Override
     @SideOnly(Side.CLIENT)
-    public Icon getIcon (int side, int meta)
+    public IIcon getIcon (int side, int meta)
     {
         int meat = meta;
         if (meat >= textureNames.length)
@@ -69,7 +70,7 @@ public class SimpleLog extends Planks
 
     @SideOnly(Side.CLIENT)
     @Override
-    public void getSubBlocks (int par1, CreativeTabs par2CreativeTabs, List par3List)
+    public void getSubBlocks (Item par1, CreativeTabs par2CreativeTabs, List par3List)
     {
         for (int i = 0; i < 3; i++)
             par3List.add(new ItemStack(par1, 1, i));

@@ -6,14 +6,14 @@ import java.util.Random;
 
 import mods.natura.common.NaturaTab;
 import net.minecraft.block.Block;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.EnumToolMaterial;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
 import net.minecraft.stats.StatList;
@@ -27,16 +27,16 @@ public class NaturaKama extends ItemSword
 {
     String texture;
 
-    public NaturaKama(int id, EnumToolMaterial toolmaterial, String texture)
+    public NaturaKama(ToolMaterial toolmaterial, String texture)
     {
-        super(id, toolmaterial);
+        super(toolmaterial);
         this.texture = texture;
         this.setCreativeTab(NaturaTab.tab);
     }
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void registerIcons (IconRegister par1IconRegister)
+    public void registerIcons (IIconRegister par1IconRegister)
     {
         this.itemIcon = par1IconRegister.registerIcon("natura:" + texture + "_kama");
     }
@@ -49,7 +49,7 @@ public class NaturaKama extends ItemSword
 
     public boolean canHarvestBlock (Block par1Block)
     {
-        return par1Block.blockID == Block.web.blockID || par1Block.blockID == Block.redstoneWire.blockID || par1Block.blockID == Block.tripWire.blockID;
+        return par1Block == Blocks.web || par1Block == Blocks.redstone_wire || par1Block == Blocks.tripwire;
     }
 
     /**
@@ -58,7 +58,7 @@ public class NaturaKama extends ItemSword
      */
     public float getStrVsBlock (ItemStack par1ItemStack, Block par2Block)
     {
-        return par2Block.blockID != Block.web.blockID && par2Block.blockID != Block.leaves.blockID ? (par2Block.blockID == Block.cloth.blockID ? 5.0F : super.getStrVsBlock(par1ItemStack, par2Block))
+        return par2Block != Blocks.web && par2Block != Blocks.leaves ? (par2Block == Blocks.wool ? 5.0F : super.getStrVsBlock(par1ItemStack, par2Block))
                 : 15.0F;
     }
 
@@ -99,10 +99,10 @@ public class NaturaKama extends ItemSword
         {
             return false;
         }
-        int id = player.worldObj.getBlockId(x, y, z);
-        if (Block.blocksList[id] instanceof IShearable)
+        Block id = player.worldObj.getBlock(x, y, z);
+        if (id instanceof IShearable)
         {
-            IShearable target = (IShearable) Block.blocksList[id];
+            IShearable target = (IShearable) id;
             if (target.isShearable(itemstack, player.worldObj, x, y, z))
             {
                 ArrayList<ItemStack> drops = target.onSheared(itemstack, player.worldObj, x, y, z, EnchantmentHelper.getEnchantmentLevel(Enchantment.fortune.effectId, itemstack));

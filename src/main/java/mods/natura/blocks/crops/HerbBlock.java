@@ -7,14 +7,15 @@ import mods.natura.common.NaturaTab;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.Item;
 import net.minecraft.world.World;
 import net.minecraftforge.common.EnumPlantType;
 
 public class HerbBlock extends CropBlock
 {
-    protected HerbBlock(int id)
+    protected HerbBlock()
     {
-        super(id);
+        super();
         this.setTickRandomly(true);
         float var3 = 0.5F;
         this.setBlockBounds(0.5F - var3, 0.0F, 0.5F - var3, 0.5F + var3, 0.25F, 0.5F + var3);
@@ -67,14 +68,14 @@ public class HerbBlock extends CropBlock
         return 1;
     }
 
-    protected int getCropItem (int meta)
+    protected Item getCropItem (int meta)
     {
-        return NContent.plantItem.itemID;
+        return NContent.plantItem;
     }
 
-    protected int getSeedItem (int meta)
+    protected Item getSeedItem (int meta)
     {
-        return NContent.seeds.itemID;
+        return NContent.seeds;
     }
 
     public int damageDropped (int meta)
@@ -99,7 +100,7 @@ public class HerbBlock extends CropBlock
      */
     public boolean canBlockStay (World par1World, int x, int y, int z)
     {
-        Block soil = blocksList[par1World.getBlockId(x, y - 1, z)];
+        Block soil = par1World.getBlock(x, y - 1, z);
         return soil != null && soil.blockMaterial == Material.rock;
     }
 }

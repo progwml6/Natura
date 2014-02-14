@@ -6,10 +6,11 @@ import mods.natura.client.GrassColorizerAlternate;
 import mods.natura.common.NaturaTab;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.ColorizerGrass;
 import net.minecraft.world.IBlockAccess;
@@ -19,29 +20,29 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class GrassBlock extends Block
 {
-    public GrassBlock(int id)
+    public GrassBlock()
     {
-        super(id, Material.grass);
+        super(Material.grass);
         setHardness(0.6F);
         this.setCreativeTab(NaturaTab.tab);
     }
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void registerIcons (IconRegister iconRegister)
+    public void registerIcons (IIconRegister iconRegister)
     {
         this.blockIcon = iconRegister.registerIcon("natura:grass_top");
     }
 
     @Override
     @SideOnly(Side.CLIENT)
-    public Icon getIcon (int side, int meta)
+    public IIcon getIcon (int side, int meta)
     {
         return this.blockIcon;
     }
 
     @Override
-    public void getSubBlocks (int id, CreativeTabs tab, List list)
+    public void getSubBlocks (Item id, CreativeTabs tab, List list)
     {
         for (int iter = 0; iter < 3; iter++)
         {

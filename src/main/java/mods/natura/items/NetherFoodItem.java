@@ -4,26 +4,27 @@ import java.util.List;
 
 import mods.natura.Natura;
 import mods.natura.common.NaturaTab;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.util.StatCollector;
 public class NetherFoodItem extends ItemFood
 {
-    public Icon[] icons;
+    public IIcon[] icons;
     public String[] textureNames = new String[] { "potashapple" };//, "haste"
 
-    public NetherFoodItem(int id)
+    public NetherFoodItem()
     {
-        super(id, 4, 0.4F, false);
+        super(4, 0.4F, false);
         setHasSubtypes(true);
         setMaxDamage(0);
         this.setCreativeTab(NaturaTab.tab);
@@ -53,7 +54,7 @@ public class NetherFoodItem extends ItemFood
                 {
                     potion = player.getActivePotionEffect(Potion.poison);
                     if (potion != null)
-                        duration = potion.duration;
+                        duration = potion.getDuration();
                     else
                         duration = 0;
                     player.addPotionEffect(new PotionEffect(Potion.poison.id, duration + 2 * 25, 0));
@@ -71,16 +72,16 @@ public class NetherFoodItem extends ItemFood
 
     @SideOnly(Side.CLIENT)
     @Override
-    public Icon getIconFromDamage (int meta)
+    public IIcon getIconFromDamage (int meta)
     {
         return icons[meta];
     }
 
     @SideOnly(Side.CLIENT)
     @Override
-    public void registerIcons (IconRegister iconRegister)
+    public void registerIcons (IIconRegister iconRegister)
     {
-        this.icons = new Icon[textureNames.length];
+        this.icons = new IIcon[textureNames.length];
 
         for (int i = 0; i < this.icons.length; ++i)
         {
@@ -122,7 +123,7 @@ public class NetherFoodItem extends ItemFood
      */
     @SideOnly(Side.CLIENT)
     @Override
-    public void getSubItems (int par1, CreativeTabs par2CreativeTabs, List par3List)
+    public void getSubItems (Item par1, CreativeTabs par2CreativeTabs, List par3List)
     {
         for (int var4 = 0; var4 < 1; ++var4)
         {

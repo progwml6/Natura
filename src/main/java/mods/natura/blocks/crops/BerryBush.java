@@ -13,6 +13,7 @@ import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.AxisAlignedBB;
@@ -269,9 +270,9 @@ public class BerryBush extends BlockLeavesBase implements IPlantable
             {
                 world.setBlock(x, y, z, this, md + 4, 3);
             }
-            if (random1.nextInt(3) == 0 && height < 3 && world.getBlockId(x, y + 1, z) == 0 && md >= 8)
+            if (random1.nextInt(3) == 0 && height < 3 && world.getBlock(x, y + 1, z) == Blocks.air && md >= 8)
             {
-                world.setBlock(x, y + 1, z, blockID, md % 4, 3);
+                world.setBlock(x, y + 1, z, this, md % 4, 3);
             }
         }
     }

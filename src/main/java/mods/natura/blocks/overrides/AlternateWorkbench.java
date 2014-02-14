@@ -6,28 +6,29 @@ import mods.natura.Natura;
 import mods.natura.common.NContent;
 import mods.natura.gui.NGuiHandler;
 import net.minecraft.block.BlockWorkbench;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class AlternateWorkbench extends BlockWorkbench
 {
-    Icon[] topIcons;
-    Icon[] sideIcons;
-    Icon[] faceIcons;
+    IIcon[] topIcons;
+    IIcon[] sideIcons;
+    IIcon[] faceIcons;
 
-    public AlternateWorkbench(int par1)
+    public AlternateWorkbench()
     {
-        super(par1);
+        super();
     }
 
     @SideOnly(Side.CLIENT)
-    public Icon getIcon (int side, int metadata)
+    public IIcon getIcon (int side, int metadata)
     {
         if (side == 0)
             return NContent.planks.getIcon(side, metadata);
@@ -45,11 +46,11 @@ public class AlternateWorkbench extends BlockWorkbench
     }
 
     @SideOnly(Side.CLIENT)
-    public void registerIcons (IconRegister iconRegister)
+    public void registerIcons (IIconRegister iconRegister)
     {
-        this.topIcons = new Icon[NContent.woodTextureNames.length];
-        this.sideIcons = new Icon[NContent.woodTextureNames.length];
-        this.faceIcons = new Icon[NContent.woodTextureNames.length];
+        this.topIcons = new IIcon[NContent.woodTextureNames.length];
+        this.sideIcons = new IIcon[NContent.woodTextureNames.length];
+        this.faceIcons = new IIcon[NContent.woodTextureNames.length];
 
         for (int i = 0; i < this.topIcons.length; ++i)
         {
@@ -67,7 +68,7 @@ public class AlternateWorkbench extends BlockWorkbench
 
     @SideOnly(Side.CLIENT)
     @Override
-    public void getSubBlocks (int par1, CreativeTabs tabs, List list)
+    public void getSubBlocks (Item par1, CreativeTabs tabs, List list)
     {
         for (int i = 0; i < topIcons.length; i++)
             list.add(new ItemStack(par1, 1, i));

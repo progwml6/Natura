@@ -5,17 +5,17 @@ import cpw.mods.fml.relauncher.SideOnly;
 import mods.natura.common.NaturaTab;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFenceGate;
-import net.minecraft.client.renderer.texture.IconRegister;
-import net.minecraft.util.Icon;
+import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.util.IIcon;
 
 public class NFenceGate extends BlockFenceGate
 {
     Block modelBlock;
     int modelMeta;
 
-    public NFenceGate(int id, Block block, int meta)
+    public NFenceGate(Block block, int meta)
     {
-        super(id);
+        super();
         modelBlock = block;
         modelMeta = meta;
         this.setCreativeTab(NaturaTab.tab);
@@ -23,13 +23,13 @@ public class NFenceGate extends BlockFenceGate
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void registerIcons (IconRegister iconRegister)
+    public void registerIcons (IIconRegister iconRegister)
     {
     }
 
     @Override
     @SideOnly(Side.CLIENT)
-    public Icon getIcon (int side, int meta)
+    public IIcon getIcon (int side, int meta)
     {
         return modelBlock.getIcon(side, modelMeta);
     }

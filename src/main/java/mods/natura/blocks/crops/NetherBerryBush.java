@@ -13,6 +13,8 @@ import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.IIcon;
@@ -174,8 +176,8 @@ public class NetherBerryBush extends BlockLeavesBase implements IPlantable
             int meta = world.getBlockMetadata(x, y, z);
             if (meta >= 12)
             {
-                world.setBlock(x, y, z, blockID, meta - 4, 3);
-                EntityItem entityitem = new EntityItem(world, player.posX, player.posY - 1.0D, player.posZ, new ItemStack(NContent.netherBerryItem.itemID, 1, meta - 12));
+                world.setBlock(x, y, z, this, meta - 4, 3);
+                EntityItem entityitem = new EntityItem(world, player.posX, player.posY - 1.0D, player.posZ, new ItemStack(NContent.netherBerryItem, 1, meta - 12));
                 world.spawnEntityInWorld(entityitem);
                 entityitem.onCollideWithPlayer(player);
             }
@@ -195,8 +197,8 @@ public class NetherBerryBush extends BlockLeavesBase implements IPlantable
             if (world.isRemote)
                 return true;
 
-            world.setBlock(x, y, z, blockID, meta - 4, 3);
-            EntityItem entityitem = new EntityItem(world, player.posX, player.posY - 1.0D, player.posZ, new ItemStack(NContent.netherBerryItem.itemID, 1, meta - 12));
+            world.setBlock(x, y, z, this, meta - 4, 3);
+            EntityItem entityitem = new EntityItem(world, player.posX, player.posY - 1.0D, player.posZ, new ItemStack(NContent.netherBerryItem, 1, meta - 12));
             world.spawnEntityInWorld(entityitem);
             entityitem.onCollideWithPlayer(player);
             return true;
@@ -252,7 +254,7 @@ public class NetherBerryBush extends BlockLeavesBase implements IPlantable
 
         int height;
 
-        for (height = 1; world.getBlockId(x, y - height, z) == this.blockID; ++height)
+        for (height = 1; world.getBlock(x, y - height, z) == this; ++height)
         {
             ;
         }
@@ -296,7 +298,7 @@ public class NetherBerryBush extends BlockLeavesBase implements IPlantable
      */
     @SideOnly(Side.CLIENT)
     @Override
-    public void getSubBlocks (int par1, CreativeTabs par2CreativeTabs, List par3List)
+    public void getSubBlocks (Item par1, CreativeTabs par2CreativeTabs, List par3List)
     {
         for (int var4 = 12; var4 < 16; ++var4)
         {

@@ -3,9 +3,10 @@ package mods.natura.blocks.nether;
 import mods.natura.blocks.NBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraftforge.common.EnumPlantType;
-import net.minecraftforge.common.ForgeDirection;
+import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.common.IPlantable;
 
 public class TaintedSoil extends NBlock
@@ -24,9 +25,9 @@ public class TaintedSoil extends NBlock
     }
 
     @Override
-    public boolean isGenMineableReplaceable (World world, int x, int y, int z, int target)
+    public boolean isGenMineableReplaceable (World world, int x, int y, int z, Block target)
     {
-        return blockID == target || target == Block.netherrack.blockID;
+        return this == target || target == Blocks.netherrack;
     }
 
     public boolean canSustainPlant (World world, int x, int y, int z, ForgeDirection direction, IPlantable plant)

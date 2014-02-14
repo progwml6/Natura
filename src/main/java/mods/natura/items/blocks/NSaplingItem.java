@@ -5,9 +5,10 @@ import java.util.List;
 import mods.natura.common.NContent;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -16,14 +17,14 @@ import net.minecraft.util.StatCollector;
 public class NSaplingItem extends ItemBlock
 {
     public static final String blockType[] = { "redwood", "eucalyptus", "bush", "sakura", "ghost", "blood", "darkwood", "fusewood", "", "", "", "", "", "", "", "", "" };
-    private int bID;
+    private Block bID;
 
-    public NSaplingItem(int id)
+    public NSaplingItem(Block block)
     {
-        super(id);
+        super(block);
         setMaxDamage(0);
         setHasSubtypes(true);
-        this.bID = id + 256;
+        this.bID = block;
     }
 
     @Override
@@ -32,7 +33,7 @@ public class NSaplingItem extends ItemBlock
         return md;
     }
 
-    public Icon getIconFromDamage (int i)
+    public IIcon getIconFromDamage (int i)
     {
         return NContent.floraSapling.getIcon(0, i);
     }
@@ -81,14 +82,14 @@ public class NSaplingItem extends ItemBlock
     @Override
     public boolean onItemUse (ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side, float par8, float par9, float par10)
     {
-        int blockID = world.getBlockId(x, y, z);
+        Block blockID = world.getBlock(x, y, z);
 
-        if (blockID == Block.snow.blockID && (world.getBlockMetadata(x, y, z) & 7) < 1)
+        if (blockID == Blocks.snow && (world.getBlockMetadata(x, y, z) & 7) < 1)
         {
             side = 1;
         }
-        else if (blockID != Block.vine.blockID && blockID != Block.tallGrass.blockID && blockID != Block.deadBush.blockID
-                && (Block.blocksList[blockID] == null || !Block.blocksList[blockID].isBlockReplaceable(world, x, y, z)))
+        else if (blockID != Blocks.vine && blockID != Blocks.tallgrass && blockID != Blocks.deadbush
+                && (blockID == null || !blockID.isReplaceable(world, x, y, z)))
         {
             if (side == 0)
             {
@@ -123,14 +124,14 @@ public class NSaplingItem extends ItemBlock
 
         if (stack.getItemDamage() == 5)
         {
-            Block block = Block.blocksList[world.getBlockId(x, y + 1, z)];
-            if (block == null || block.isAirBlock(world, x, y + 1, z))
+            Block block = world.getBlock(x, y + 1, z);
+            if (block == null || world.isAirBlock(x, y + 1, z))
                 return false;
         }
         else
         {
-            Block block = Block.blocksList[world.getBlockId(x, y - 1, z)];
-            if (block == null || block.isAirBlock(world, x, y - 1, z))
+            Block block = world.getBlock(x, y - 1, z);
+            if (block == null || world.isAirBlock(x, y - 1, z))
                 return false;
         }
 
@@ -142,15 +143,15 @@ public class NSaplingItem extends ItemBlock
         {
             return false;
         }
-        else if (y == 255 && Block.blocksList[this.bID].blockMaterial.isSolid())
+        else if (y == 255 && this.bID.getMaterial().isSolid())
         {
             return false;
         }
         else if (world.canPlaceEntityOnSide(this.bID, x, y, z, false, side, player, stack))
         {
-            Block block = Block.blocksList[this.bID];
+            Block block = this.bID;
             int j1 = this.getMetadata(stack.getItemDamage());
-            int k1 = Block.blocksList[this.bID].onBlockPlaced(world, x, y, z, side, par8, par9, par10, j1);
+            int k1 = this.bID.onBlockPlaced(world, x, y, z, side, par8, par9, par10, j1);
 
             if (placeBlockAt(stack, player, world, x, y, z, side, par8, par9, par10, k1))
             {

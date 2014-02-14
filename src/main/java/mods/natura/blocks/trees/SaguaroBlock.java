@@ -8,12 +8,13 @@ import mods.natura.common.NaturaTab;
 import mods.natura.worldgen.SaguaroGen;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
+import net.minecraft.init.Blocks;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.DamageSource;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.EnumPlantType;
@@ -23,9 +24,9 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class SaguaroBlock extends Block implements IPlantable
 {
-    public SaguaroBlock(int id)
+    public SaguaroBlock()
     {
-        super(id, Material.cactus);
+        super(Material.cactus);
         this.setCreativeTab(NaturaTab.tab);
         setStepSound(soundClothFootstep);
         this.setHardness(0.3f);
@@ -36,31 +37,31 @@ public class SaguaroBlock extends Block implements IPlantable
     public void updateTick (World world, int x, int y, int z, Random random)
     {
         int meta = world.getBlockMetadata(x, y, z);
-        if (meta == 0 && world.getWorldInfo().isRaining() && random.nextInt(20) == 0 && world.getBlockId(x, y + 1, z) == 0)
+        if (meta == 0 && world.getWorldInfo().isRaining() && random.nextInt(20) == 0 && world.getBlock(x, y + 1, z) == Blocks.air)
         {
             switch (random.nextInt(4))
             {
             case 0:
-                if (world.getBlockId(x + 1, y, z) == 0)
-                    world.setBlock(x + 1, y, z, this.blockID, 5, 3);
+                if (world.getBlock(x + 1, y, z) == Blocks.air)
+                    world.setBlock(x + 1, y, z, this, 5, 3);
                 break;
             case 1:
-                if (world.getBlockId(x, y, z + 1) == 0)
-                    world.setBlock(x, y, z + 1, this.blockID, 6, 3);
+                if (world.getBlock(x, y, z + 1) == Blocks.air)
+                    world.setBlock(x, y, z + 1, this, 6, 3);
                 break;
             case 2:
-                if (world.getBlockId(x - 1, y, z) == 0)
-                    world.setBlock(x - 1, y, z, this.blockID, 3, 3);
+                if (world.getBlock(x - 1, y, z) == Blocks.air)
+                    world.setBlock(x - 1, y, z, this, 3, 3);
                 break;
             case 3:
-                if (world.getBlockId(x, y, z - 1) == 0)
-                    world.setBlock(x, y, z - 1, this.blockID, 4, 3);
+                if (world.getBlock(x, y, z - 1) == Blocks.air)
+                    world.setBlock(x, y, z - 1, this, 4, 3);
                 break;
             }
         }
         else if (meta == 2 && random.nextInt(200) == 0)
         {
-            SaguaroGen gen = new SaguaroGen(NContent.saguaro.blockID, 0, true);
+            SaguaroGen gen = new SaguaroGen(NContent.saguaro, 0, true);
             gen.generate(world, random, x, y, z);
         }
         else if (meta == 1 && random.nextInt(200) == 0)
@@ -115,10 +116,10 @@ public class SaguaroBlock extends Block implements IPlantable
             float offset = 0.125F;
             float height = 0.125F;
             float base = 0F;
-            if (world.getBlockId(x, y + 1, z) == this.blockID)
+            if (world.getBlock(x, y + 1, z) == this)
                 height = 0F;
 
-            Block block = Block.blocksList[world.getBlockId(x, y - 1, z)];
+            Block block = world.getBlock(x, y - 1, z);
             if (block != null && !block.isOpaqueCube())
                 base = 0.125F;
 
@@ -170,19 +171,19 @@ public class SaguaroBlock extends Block implements IPlantable
     public int idDropped (int meta, Random random, int fortune)
     {
         if (meta == 0)
-            return this.blockID;
+            return this;
         else
-            return NContent.seedFood.itemID;
+            return NContent.seedFood;
     }
 
-    public Icon[] icons;
+    public IIcon[] icons;
     public String[] textureNames = new String[] { "saguaro_bottom", "saguaro_top", "saguaro_side", "saguaro_fruit" };
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void registerIcons (IconRegister iconRegister)
+    public void registerIcons (IIconRegister iconRegister)
     {
-        this.icons = new Icon[textureNames.length];
+        this.icons = new IIcon[textureNames.length];
 
         for (int i = 0; i < this.icons.length; ++i)
         {
@@ -192,7 +193,7 @@ public class SaguaroBlock extends Block implements IPlantable
 
     @Override
     @SideOnly(Side.CLIENT)
-    public Icon getIcon (int side, int meta)
+    public IIcon getIcon (int side, int meta)
     {
         if (meta == 0)
         {
@@ -244,8 +245,8 @@ public class SaguaroBlock extends Block implements IPlantable
 
     public boolean canBlockStay (World world, int x, int y, int z)
     {
-        int blockID = world.getBlockId(x, y - 1, z);
-        return blockID == this.blockID || blockID == Block.sand.blockID || blockID == 0;
+        Block blockID = world.getBlock(x, y - 1, z);
+        return blockID == this || blockID == Blocks.sand || blockID == null;
 
     }
 
@@ -257,7 +258,7 @@ public class SaguaroBlock extends Block implements IPlantable
 
     public boolean canConnectSuguaroTo (IBlockAccess world, int x, int y, int z)
     {
-        if (world.getBlockId(x, y, z) == blockID && world.getBlockMetadata(x, y, z) == 0)
+        if (world.getBlock(x, y, z) == this && world.getBlockMetadata(x, y, z) == 0)
             return true;
 
         return false;
@@ -272,7 +273,7 @@ public class SaguaroBlock extends Block implements IPlantable
     @Override
     public int getPlantID (World world, int x, int y, int z)
     {
-        return this.blockID;
+        return this;
     }
 
     @Override

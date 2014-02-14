@@ -2,11 +2,8 @@ package mods.natura.plugins;
 
 import cpw.mods.fml.common.Loader;
 import mods.natura.Natura;
-import mods.natura.plugins.fmp.ForgeMultiPart;
-import mods.natura.plugins.minefactoryreloaded.MineFactoryReloaded;
-import mods.natura.plugins.nei.NotEnoughItems;
 import mods.natura.plugins.te3.ThermalExpansion3;
-import net.minecraftforge.common.Configuration;
+import net.minecraftforge.common.config.Configuration;
 
 import java.io.File;
 import java.util.LinkedList;
@@ -108,9 +105,9 @@ public class PluginController
 
     public void registerBuiltins()
     {
-        registerPlugin(new ForgeMultiPart());
-        registerPlugin(new MineFactoryReloaded());
-        registerPlugin(new NotEnoughItems());
+       // registerPlugin(new ForgeMultiPart());
+       // registerPlugin(new MineFactoryReloaded());
+       // registerPlugin(new NotEnoughItems());
         registerPlugin(new ThermalExpansion3());
     }
 

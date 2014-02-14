@@ -2,6 +2,7 @@ package mods.natura.entity;
 
 import mods.natura.common.NContent;
 import net.minecraft.block.Block;
+import net.minecraft.block.Block.SoundType;
 import net.minecraft.block.StepSound;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
@@ -93,12 +94,12 @@ public class BabyHeatscarSpider extends EntitySpider
             }
 
             this.attackEntityFrom(DamageSource.fall, i);
-            int j = this.worldObj.getBlockId(MathHelper.floor_double(this.posX), MathHelper.floor_double(this.posY - 0.20000000298023224D - (double) this.yOffset), MathHelper.floor_double(this.posZ));
+            Block j = this.worldObj.getBlock(MathHelper.floor_double(this.posX), MathHelper.floor_double(this.posY - 0.20000000298023224D - (double) this.yOffset), MathHelper.floor_double(this.posZ));
 
-            if (j > 0)
+            if (j != null)
             {
-                StepSound stepsound = Block.blocksList[j].stepSound;
-                this.playSound(stepsound.getStepSound(), stepsound.getVolume() * 0.5F, stepsound.getPitch() * 0.75F);
+                SoundType stepsound = j.stepSound;
+                this.playSound(stepsound.soundName, stepsound.getVolume() * 0.5F, stepsound.getPitch() * 0.75F);
             }
         }
     }
@@ -144,7 +145,7 @@ public class BabyHeatscarSpider extends EntitySpider
 
     protected int getDropItemId ()
     {
-        return NContent.plantItem.itemID;
+        return NContent.plantItem;
     }
 
     public EntityItem dropItemWithOffset (int par1, int par2, float par3)

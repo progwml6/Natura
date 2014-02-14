@@ -7,6 +7,8 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.init.Blocks;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
@@ -24,7 +26,7 @@ public class Planks extends Block
     public Planks()
     {
         super(Material.wood);
-        setBurnProperties(this.blockID, 5, 20);
+        setBurnProperties(this, 5, 20);
         this.setHardness(2.0f);
         this.setCreativeTab(NaturaTab.tab);
         this.setStepSound(Block.soundWoodFootstep);
@@ -32,18 +34,18 @@ public class Planks extends Block
 
     @Override
     @SideOnly(Side.CLIENT)
-    public Icon getIcon (int side, int meta)
+    public IIcon getIcon (int side, int meta)
     {
         if (meta >= textureNames.length )
-            return Block.lavaStill.getIcon(0, 0);
+            return Blocks.lava.getIcon(0, 0);
         return icons[meta];
     }
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void registerIcons (IconRegister iconRegister)
+    public void registerIcons (IIconRegister iconRegister)
     {
-        this.icons = new Icon[textureNames.length];
+        this.icons = new IIcon[textureNames.length];
 
         for (int i = 0; i < this.icons.length; ++i)
         {
@@ -60,14 +62,14 @@ public class Planks extends Block
     {
         if (metadata == 2 || metadata == 4 || metadata > 10)
             return 0;
-        return blockFlammability[blockID];
+        return this.getFlammability(world, x, y, z, face);
     }
 
     public int getFireSpreadSpeed (World world, int x, int y, int z, int metadata, ForgeDirection face)
     {
         if (metadata == 2 || metadata == 4 || metadata > 10)
             return 0;
-        return blockFireSpreadSpeed[blockID];
+        return this.getFireSpreadSpeed(world, x, y, z, face);
     }
 
     @Override
@@ -78,7 +80,7 @@ public class Planks extends Block
 
     @SideOnly(Side.CLIENT)
     @Override
-    public void getSubBlocks (int par1, CreativeTabs par2CreativeTabs, List par3List)
+    public void getSubBlocks (Item par1, CreativeTabs par2CreativeTabs, List par3List)
     {
         for (int i = 0; i < textureNames.length; i++)
             par3List.add(new ItemStack(par1, 1, i));

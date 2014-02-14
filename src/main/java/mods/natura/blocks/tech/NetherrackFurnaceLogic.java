@@ -1,5 +1,6 @@
 package mods.natura.blocks.tech;
 
+import mantle.blocks.BlockUtils;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLog;
 import net.minecraft.block.material.Material;
@@ -16,7 +17,7 @@ import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.network.INetworkManager;
-import net.minecraft.network.packet.Packet;
+import net.minecraft.network.Packet;
 import net.minecraft.network.packet.Packet132TileEntityData;
 import net.minecraft.tileentity.TileEntityFurnace;
 import net.minecraft.util.MathHelper;
@@ -152,7 +153,7 @@ public class NetherrackFurnaceLogic extends TileEntityFurnace
     public void readFromNBT (NBTTagCompound par1NBTTagCompound)
     {
         super.readFromNBT(par1NBTTagCompound);
-        NBTTagList nbttaglist = par1NBTTagCompound.getTagList("Items");
+        NBTTagList nbttaglist = par1NBTTagCompound.getTagList("Items", 9);
         this.inventory = new ItemStack[this.getSizeInventory()];
 
         for (int i = 0; i < nbttaglist.tagCount(); ++i)
@@ -419,11 +420,11 @@ public class NetherrackFurnaceLogic extends TileEntityFurnace
         {
             Item item = par0ItemStack.getItem();
 
-            if (par0ItemStack.getItem() instanceof ItemBlock && Block.blocksList[i] != null)
+            if (par0ItemStack.getItem() instanceof ItemBlock && item != null)
             {
-                Block block = Block.blocksList[i];
+                Block block = BlockUtils.getBlockFromItem(item);
 
-                if (block == Block.woodSingleSlab)
+                if (block == Blocks.wooden_slab)
                 {
                     return 150;
                 }
@@ -433,7 +434,7 @@ public class NetherrackFurnaceLogic extends TileEntityFurnace
                     return 1200;
                 }
 
-                if (block.blockMaterial == Material.wood)
+                if (block.getMaterial() == Material.wood)
                 {
                     return 300;
                 }
@@ -448,17 +449,17 @@ public class NetherrackFurnaceLogic extends TileEntityFurnace
                 return 200;
             if (item instanceof ItemSword && ((ItemSword) item).getToolMaterialName().equals("WOOD"))
                 return 200;
-            if (item instanceof ItemHoe && ((ItemHoe) item).getMaterialName().equals("WOOD"))
+            if (item instanceof ItemHoe && ((ItemHoe) item).getToolMaterialName().equals("WOOD"))
                 return 200;
-            if (i == Items.stick)
+            if (item == Items.stick)
                 return 100;
-            if (i == Items.coal)
+            if (item == Items.coal)
                 return 1600;
-            if (i == Items.lava_bucket)
+            if (item == Items.lava_bucket)
                 return 20000;
-            if (i == Blocks.sapling)
+            if (BlockUtils.getBlockFromItem(item) == Blocks.sapling)
                 return 100;
-            if (i == Items.blaze_rod)
+            if (item == Items.blaze_rod)
                 return 2400;
             return GameRegistry.getFuelValue(par0ItemStack);
         }

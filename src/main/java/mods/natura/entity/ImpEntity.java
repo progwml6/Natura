@@ -14,6 +14,7 @@ import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldProviderHell;
@@ -30,7 +31,7 @@ public class ImpEntity extends EntityAnimal
         float f = 0.25F;
         this.tasks.addTask(0, new EntityAISwimming(this));
         this.tasks.addTask(1, new EntityAIPanic(this, 0.38F));
-        this.tasks.addTask(2, new EntityAITempt(this, 0.3F, NContent.bowlStew.itemID, false));
+        this.tasks.addTask(2, new EntityAITempt(this, 0.3F, NContent.bowlStew , false));
         this.tasks.addTask(3, new EntityAIMate(this, f));
         this.tasks.addTask(4, new EntityAIAvoidEntity(this, EntityPlayer.class, 8.0F, 0.25F, 0.3F));
         this.tasks.addTask(5, new EntityAIFollowParent(this, 0.28F));
@@ -94,9 +95,9 @@ public class ImpEntity extends EntityAnimal
     /**
      * Returns the item ID for the item the mob drops on death.
      */
-    protected int getDropItemId ()
+    protected Item getDropItem ()
     {
-        return NContent.impMeat.itemID;
+        return NContent.impMeat ;
     }
 
     /**
@@ -109,13 +110,13 @@ public class ImpEntity extends EntityAnimal
 
         for (int iter = 0; iter < amount; ++iter)
         {
-            this.dropItem(NContent.impMeat.itemID, 1);
+            this.dropItem(NContent.impMeat , 1);
         }
 
         amount = this.rand.nextInt(5) + 2 + this.rand.nextInt(1 + par2 * 2);
         for (int iter = 0; iter < amount; ++iter)
         {
-            this.entityDropItem(new ItemStack(NContent.plantItem.itemID, 1, 6), 0f);
+            this.entityDropItem(new ItemStack(NContent.plantItem , 1, 6), 0f);
         }
     }
 
@@ -133,7 +134,7 @@ public class ImpEntity extends EntityAnimal
      */
     public boolean isBreedingItem (ItemStack par1ItemStack)
     {
-        return par1ItemStack != null && par1ItemStack.itemID == NContent.bowlStew.itemID && par1ItemStack.getItemDamage() >= 13;
+        return par1ItemStack != null && par1ItemStack.getItem()  == NContent.bowlStew  && par1ItemStack.getItemDamage() >= 13;
     }
 
     public EntityAgeable createChild (EntityAgeable par1EntityAgeable)

@@ -35,8 +35,8 @@ public class WorkbenchGui extends GuiContainer
 
     protected void drawGuiContainerForegroundLayer (int par1, int par2)
     {
-        this.fontRenderer.drawString(I18n.getString("container.crafting"), 28, 6, 4210752);
-        this.fontRenderer.drawString(I18n.getString("container.inventory"), 8, this.ySize - 96 + 2, 4210752);
+        this.fontRendererObj.drawString(I18n.format("container.crafting"), 28, 6, 4210752);
+        this.fontRendererObj.drawString(I18n.format("container.inventory"), 8, this.ySize - 96 + 2, 4210752);
     }
 
     protected void drawGuiContainerBackgroundLayer (float par1, int par2, int par3)

@@ -402,7 +402,7 @@ public class FusewoodArrow extends EntityArrow
                     this.arrowShake = 7;
                     this.setIsCritical(false);
 
-                    if (this.inTile != 0)
+                    if (this.inTile != null)
                     {
                         this.inTile.onEntityCollidedWithBlock(this.worldObj, this.xTile, this.yTile, this.zTile, this);
                     }

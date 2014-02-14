@@ -2201,7 +2201,7 @@ public class RedwoodTreeGen extends WorldGenerator
             ai3[byte1] = MathHelper.floor_double((double) ai[byte1] + (double) j * d);
             ai3[byte2] = MathHelper.floor_double((double) ai[byte2] + (double) j * d1);
             Block l = worldObj.getBlock(ai3[0], ai3[1], ai3[2]);
-            if (l != null && l != 18)//what is ID 18
+            if (l != null && l != Blocks.leaves)//what is ID 18
             {
                 break;
             }
@@ -2222,7 +2222,7 @@ public class RedwoodTreeGen extends WorldGenerator
         int ai[] = { basePos[0], basePos[1], basePos[2] };
         int ai1[] = { basePos[0], (basePos[1] + heightLimit) - 1, basePos[2] };
         Block i = worldObj.getBlock(basePos[0], basePos[1] - 1, basePos[2]);
-        if (i != 2 && i != 3)//what are ID's 2 & 3
+        if (i != Blocks.grass && i != Blocks.dirt)//what are ID's 2 & 3
         {
             return false;
         }

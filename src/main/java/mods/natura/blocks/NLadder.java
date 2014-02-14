@@ -4,21 +4,22 @@ import java.util.List;
 
 import mods.natura.common.NaturaTab;
 import net.minecraft.block.BlockLadder;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class NLadder extends BlockLadder
 {
     public String[] textureNames;
-    public Icon[] icons;
+    public IIcon[] icons;
 
-    public NLadder(int id, String[] textures)
+    public NLadder(String[] textures)
     {
-        super(id);
+        super();
         this.textureNames = textures;
         this.setHardness(0.4F);
         this.setStepSound(soundLadderFootstep);
@@ -27,9 +28,9 @@ public class NLadder extends BlockLadder
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void registerIcons (IconRegister iconRegister)
+    public void registerIcons (IIconRegister iconRegister)
     {
-        this.icons = new Icon[textureNames.length];
+        this.icons = new IIcon[textureNames.length];
 
         for (int i = 0; i < this.icons.length; ++i)
         {
@@ -39,13 +40,13 @@ public class NLadder extends BlockLadder
 
     @Override
     @SideOnly(Side.CLIENT)
-    public Icon getIcon (int side, int meta)
+    public IIcon getIcon (int side, int meta)
     {
         return icons[meta / 4];
     }
 
     @Override
-    public void getSubBlocks (int id, CreativeTabs tab, List list)
+    public void getSubBlocks (Item id, CreativeTabs tab, List list)
     {
         for (int iter = 0; iter < icons.length; iter++)
         {

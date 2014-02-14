@@ -3,7 +3,7 @@ package mods.natura.blocks.crops;
 import mods.natura.Natura;
 import mods.natura.common.NaturaTab;
 import net.minecraft.block.BlockVine;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.monster.EntityGhast;
@@ -16,12 +16,12 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class ThornVines extends BlockVine
 {
 
-    public ThornVines(int id)
+    public ThornVines()
     {
-        super(id);
+        super();
         this.setCreativeTab(NaturaTab.netherTab);
         setHardness(1.0F);
-        setStepSound(soundGrassFootstep);
+        setStepSound(soundTypeGrass);
     }
 
     @SideOnly(Side.CLIENT)
@@ -43,7 +43,7 @@ public class ThornVines extends BlockVine
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void registerIcons (IconRegister iconRegister)
+    public void registerIcons (IIconRegister iconRegister)
     {
         this.blockIcon = iconRegister.registerIcon("natura:thornvine");
     }

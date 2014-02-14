@@ -5,10 +5,11 @@ import java.util.HashSet;
 import java.util.Random;
   
  
+
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import mods.natura.Natura;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
-import net.minecraftforge.event.ForgeSubscribe;
 import net.minecraftforge.event.world.ChunkDataEvent;
   
 public class WorldHandler {
@@ -20,7 +21,7 @@ public class WorldHandler {
   
         public static WorldHandler instance = new WorldHandler();
   
-        @ForgeSubscribe
+        @SubscribeEvent
         public void handleChunkSaveEvent(ChunkDataEvent.Save event) {
   
                 NBTTagCompound tag = new NBTTagCompound();
@@ -31,7 +32,7 @@ public class WorldHandler {
                 event.getData().setTag("NaturaWorld", tag);
         }
   
-        @ForgeSubscribe
+        @SubscribeEvent
         public void handleChunkLoadEvent(ChunkDataEvent.Load event) {
   
                 int dim = event.world.provider.dimensionId;

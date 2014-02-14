@@ -5,31 +5,31 @@ import java.util.Random;
 
 import mods.natura.common.NContent;
 import mods.natura.common.NaturaTab;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraftforge.common.ForgeDirection;
+import net.minecraftforge.common.util.ForgeDirection;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class NLeavesDark extends NLeaves
 {
-    public NLeavesDark(int id)
+    public NLeavesDark()
     {
-        super(id);
+        super();
         this.setCreativeTab(NaturaTab.tab);
     }
 
     @SideOnly(Side.CLIENT)
     @Override
-    public void registerIcons (IconRegister iconRegister)
+    public void registerIcons (IIconRegister iconRegister)
     {
         String[] textureNames = new String[] { "darkwood", "darkwood_flowering", "darkwood_fruit", "fusewood" };
-        this.fastIcons = new Icon[textureNames.length];
-        this.fancyIcons = new Icon[textureNames.length];
+        this.fastIcons = new IIcon[textureNames.length];
+        this.fancyIcons = new IIcon[textureNames.length];
 
         for (int i = 0; i < this.fastIcons.length; i++)
         {
@@ -40,7 +40,7 @@ public class NLeavesDark extends NLeaves
 
     @Override
     @SideOnly(Side.CLIENT)
-    public Icon getIcon (int side, int metadata)
+    public IIcon getIcon (int side, int metadata)
     {
         int meta = metadata % 4;
 
@@ -89,8 +89,8 @@ public class NLeavesDark extends NLeaves
     public int idDropped (int metadata, Random random, int fortune)
     {
         if (metadata % 4 == 2)
-            return NContent.potashApple.itemID;
-        return NContent.floraSapling.blockID;
+            return NContent.potashApple;
+        return NContent.floraSapling;
     }
 
     public int damageDropped (int par1)
@@ -109,7 +109,7 @@ public class NLeavesDark extends NLeaves
         return quantityDroppedWithBonus(fortune, random);
     }
 
-    public void getSubBlocks (int par1, CreativeTabs par2CreativeTabs, List par3List)
+    public void getSubBlocks (Item par1, CreativeTabs par2CreativeTabs, List par3List)
     {
         par3List.add(new ItemStack(par1, 1, 0));
         par3List.add(new ItemStack(par1, 1, 1));
@@ -119,6 +119,6 @@ public class NLeavesDark extends NLeaves
 
     public int getLightOpacity (World world, int x, int y, int z)
     {
-        return lightOpacity[blockID];
+        return this.getLightOpacity();
     }
 }

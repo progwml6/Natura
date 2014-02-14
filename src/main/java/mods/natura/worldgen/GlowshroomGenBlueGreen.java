@@ -82,9 +82,9 @@ public class GlowshroomGenBlueGreen extends WorldGenerator
             }
             else
             {
-                blockID = world.getBlock(x, y - 1, z);
+                Block blockb = world.getBlock(x, y - 1, z);
 
-                if (blockID != Blocks.mycelium && blockID != Blocks.netherrack && blockID != NContent.taintedSoil && blockID != Blocks.soul_sand)
+                if (blockb != Blocks.mycelium && blockb != Blocks.netherrack && blockb != NContent.taintedSoil && blockb != Blocks.soul_sand)
                 {
                     return false;
                 }

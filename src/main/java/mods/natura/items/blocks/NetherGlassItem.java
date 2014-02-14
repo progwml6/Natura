@@ -3,10 +3,11 @@ package mods.natura.items.blocks;
 import java.util.List;
 
 import mods.natura.common.NContent;
+import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 import net.minecraft.util.StatCollector;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -15,9 +16,9 @@ public class NetherGlassItem extends ItemBlock
 {
     public static final String blockType[] = { "soul", "heat" };
 
-    public NetherGlassItem(int i)
+    public NetherGlassItem(Block block)
     {
-        super(i);
+        super(block);
         setMaxDamage(0);
         setHasSubtypes(true);
     }
@@ -35,7 +36,7 @@ public class NetherGlassItem extends ItemBlock
 
     @Override
     @SideOnly(Side.CLIENT)
-    public Icon getIconFromDamage (int meta)
+    public IIcon getIconFromDamage (int meta)
     {
         if (meta < 1)
             return NContent.netherGlass.icons[2];

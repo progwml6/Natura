@@ -2,17 +2,19 @@ package mods.natura.items;
 
 import java.util.List;
 
+import mods.natura.blocks.crops.CropBlock;
 import mods.natura.common.NaturaTab;
 import net.minecraft.block.Block;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemSeeds;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
-import net.minecraftforge.common.ForgeDirection;
+import net.minecraftforge.common.util.ForgeDirection;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.util.StatCollector;
@@ -20,13 +22,13 @@ import net.minecraft.util.StatCollector;
 public class NaturaSeeds extends ItemSeeds
 {
     public String[] textureNames = new String[] { "barley", "cotton" };
-    public Icon[] icons;
+    public IIcon[] icons;
 
-    public int blockType;
+    public Block blockType;
 
-    public NaturaSeeds(int id, int cropID, int soilID)
+    public NaturaSeeds(Block cropID, Block soilID)
     {
-        super(id, cropID, soilID);
+        super(cropID, soilID);
         blockType = cropID;
         this.setCreativeTab(NaturaTab.tab);
         this.setHasSubtypes(true);
@@ -34,9 +36,9 @@ public class NaturaSeeds extends ItemSeeds
 
     @SideOnly(Side.CLIENT)
     @Override
-    public void registerIcons (IconRegister iconRegister)
+    public void registerIcons (IIconRegister iconRegister)
     {
-        this.icons = new Icon[textureNames.length];
+        this.icons = new IIcon[textureNames.length];
 
         for (int i = 0; i < this.icons.length; ++i)
         {
@@ -44,7 +46,7 @@ public class NaturaSeeds extends ItemSeeds
         }
     }
 
-    public void getSubItems (int id, CreativeTabs tab, List list)
+    public void getSubItems (Item id, CreativeTabs tab, List list)
     {
         for (int i = 0; i < textureNames.length; i++)
             list.add(new ItemStack(id, 1, i));
@@ -52,7 +54,7 @@ public class NaturaSeeds extends ItemSeeds
 
     @SideOnly(Side.CLIENT)
     @Override
-    public Icon getIconFromDamage (int meta)
+    public IIcon getIconFromDamage (int meta)
     {
         return icons[meta];
     }
@@ -66,8 +68,7 @@ public class NaturaSeeds extends ItemSeeds
         }
         else if (player.canPlayerEdit(xPos, yPos, zPos, side, stack) && player.canPlayerEdit(xPos, yPos + 1, zPos, side, stack))
         {
-            int i1 = world.getBlockId(xPos, yPos, zPos);
-            Block soil = Block.blocksList[i1];
+            Block soil = world.getBlock(xPos, yPos, zPos);
 
             if (soil != null && soil.canSustainPlant(world, xPos, yPos, zPos, ForgeDirection.UP, this) && world.isAirBlock(xPos, yPos + 1, zPos))
             {

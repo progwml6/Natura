@@ -2,9 +2,11 @@ package mods.natura.worldgen;
 
 import java.util.Random;
 
+import mods.natura.blocks.trees.NLeaves;
 import mods.natura.common.NContent;
 import mods.natura.common.PHNatura;
 import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
@@ -146,7 +148,7 @@ public class SakuraTreeGen extends WorldGenerator
         System.arraycopy(var2, 0, this.leafNodes, 0, var4);
     }
 
-    void genTreeLayer (int x, int y, int z, float size, byte loc, int blockID, World world)
+    void genTreeLayer (int x, int y, int z, float size, byte loc, Block b, World world)
     {
         int var7 = (int) ((double) size + 0.618D);
         byte var8 = otherCoordPairs[loc];
@@ -172,7 +174,7 @@ public class SakuraTreeGen extends WorldGenerator
                 else
                 {
                     leafPos[var9] = origPos[var9] + var13;
-                    Block block = Block.blocksList[world.getBlockId(leafPos[0], leafPos[1], leafPos[2])];
+                    Block block = world.getBlock(leafPos[0], leafPos[1], leafPos[2]);
 
                     if (block != null && !block.isLeaves(world, leafPos[0], leafPos[1], leafPos[2]))
                     {
@@ -180,7 +182,7 @@ public class SakuraTreeGen extends WorldGenerator
                     }
                     else
                     {
-                        this.setBlockAndMetadata(world, leafPos[0], leafPos[1], leafPos[2], blockID, metaLeaves);
+                        this.setBlockAndMetadata(world, leafPos[0], leafPos[1], leafPos[2], b, metaLeaves);
                         ++var13;
                     }
                 }
@@ -236,14 +238,14 @@ public class SakuraTreeGen extends WorldGenerator
         for (int iter = y + this.leafDistanceLimit; height < iter; ++height)
         {
             float var6 = this.leafSize(height - y);
-            this.genTreeLayer(x, height, z, var6, (byte) 1, NContent.floraLeavesNoColor.blockID, world);
+            this.genTreeLayer(x, height, z, var6, (byte) 1, NContent.floraLeavesNoColor, world);
         }
     }
 
     /**
-     * Places a line of the specified block ID into the world from the first coordinate triplet to the second.
+     * Places a line of the specified block into the world from the first coordinate triplet to the second.
      */
-    void placeBlockLine (int[] par1ArrayOfInteger, int[] par2ArrayOfInteger, int blockID, World world)
+    void placeBlockLine (int[] par1ArrayOfInteger, int[] par2ArrayOfInteger, Block tree, World world)
     {
         int[] var4 = new int[] { 0, 0, 0 };
         byte var5 = 0;
@@ -301,7 +303,7 @@ public class SakuraTreeGen extends WorldGenerator
                     }
                 }
 
-                this.setBlockAndMetadata(world, posArray[0], posArray[1], posArray[2], blockID, metadata);
+                this.setBlockAndMetadata(world, posArray[0], posArray[1], posArray[2], tree, metadata);
             }
         }
     }
@@ -340,19 +342,19 @@ public class SakuraTreeGen extends WorldGenerator
         int var4 = this.basePos[2];
         int[] var5 = new int[] { var1, var2, var4 };
         int[] var6 = new int[] { var1, var3, var4 };
-        this.placeBlockLine(var5, var6, NContent.tree.blockID, world);
+        this.placeBlockLine(var5, var6, NContent.tree, world);
 
         if (this.trunkSize == 2)
         {
             ++var5[0];
             ++var6[0];
-            this.placeBlockLine(var5, var6, NContent.tree.blockID, world);
+            this.placeBlockLine(var5, var6, NContent.tree, world);
             ++var5[2];
             ++var6[2];
-            this.placeBlockLine(var5, var6, NContent.tree.blockID, world);
+            this.placeBlockLine(var5, var6, NContent.tree, world);
             var5[0] += -1;
             var6[0] += -1;
-            this.placeBlockLine(var5, var6, NContent.tree.blockID, world);
+            this.placeBlockLine(var5, var6, NContent.tree, world);
         }
     }
 
@@ -373,7 +375,7 @@ public class SakuraTreeGen extends WorldGenerator
 
             if (this.leafNodeNeedsBase(var6))
             {
-                this.placeBlockLine(var3, var5, NContent.tree.blockID, world);
+                this.placeBlockLine(var3, var5, NContent.tree, world);
             }
         }
     }
@@ -428,7 +430,7 @@ public class SakuraTreeGen extends WorldGenerator
                 var13[var5] = par1ArrayOfInteger[var5] + var14;
                 var13[var6] = MathHelper.floor_double((double) par1ArrayOfInteger[var6] + (double) var14 * var9);
                 var13[var7] = MathHelper.floor_double((double) par1ArrayOfInteger[var7] + (double) var14 * var11);
-                Block block = Block.blocksList[world.getBlockId(var13[0], var13[1], var13[2])];
+                Block block = world.getBlock(var13[0], var13[1], var13[2]);
 
                 if (block != null && !block.isLeaves(world, var13[0], var13[1], var13[2]))
                 {
@@ -448,9 +450,9 @@ public class SakuraTreeGen extends WorldGenerator
     {
         int[] var1 = new int[] { this.basePos[0], this.basePos[1], this.basePos[2] };
         int[] var2 = new int[] { this.basePos[0], this.basePos[1] + this.heightLimit - 1, this.basePos[2] };
-        int var3 = world.getBlockId(this.basePos[0], this.basePos[1] - 1, this.basePos[2]);
+        Block var3 = world.getBlock(this.basePos[0], this.basePos[1] - 1, this.basePos[2]);
 
-        if (var3 != 2 && var3 != 3)
+        if (var3 != Blocks.grass && var3 != Blocks.dirt) //what are ID's 2 & 3
         {
             return false;
         }
@@ -497,8 +499,8 @@ public class SakuraTreeGen extends WorldGenerator
         do
         {
             height--;
-            int underID = world.getBlockId(x, height, z);
-            if (underID == Block.dirt.blockID || underID == Block.grass.blockID || height < PHNatura.seaLevel)
+            Block underID = world.getBlock(x, height, z);
+            if (underID == Blocks.dirt || underID == Blocks.grass || height < PHNatura.seaLevel)
                 foundGround = true;
         } while (!foundGround);
         return height + 1;

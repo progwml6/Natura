@@ -57,7 +57,7 @@ public class NetherBerryBushGen extends WorldGenerator
         do
         {
             Block bID = world.getBlock(x, height, z);
-            if (bID != 0)
+            if (bID != null)
             {
                 if (bID == Blocks.netherrack || bID.canSustainPlant(world, x, height, z, ForgeDirection.UP, (IPlantable) blockGen))
                 {

@@ -3,14 +3,14 @@ package mods.natura.blocks.nether;
 import mods.natura.common.NaturaTab;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockSand;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.DamageSource;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import cpw.mods.fml.relauncher.Side;
@@ -18,11 +18,11 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class HeatSand extends BlockSand
 {
-    Icon[] icons;
+    IIcon[] icons;
 
-    public HeatSand(int par1)
+    public HeatSand()
     {
-        super(par1);
+        super();
         this.setHardness(3f);
         this.setStepSound(Block.soundSandFootstep);
         this.setCreativeTab(NaturaTab.tab);
@@ -31,7 +31,7 @@ public class HeatSand extends BlockSand
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void registerIcons (IconRegister iconRegister)
+    public void registerIcons (IIconRegister iconRegister)
     {
         this.blockIcon = iconRegister.registerIcon("natura:heatsand");
     }

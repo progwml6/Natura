@@ -3,15 +3,16 @@ package mods.natura.items;
 import java.util.List;
 
 import mods.natura.common.NContent;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
@@ -19,7 +20,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class BowlStew extends ItemFood
 {
-    Icon[] icons;
+    IIcon[] icons;
     public static String[] textureNames = new String[] { "mushroom", "glowshroom" };
 
     public BowlStew(int par1)
@@ -35,13 +36,13 @@ public class BowlStew extends ItemFood
     }
 
     @Override
-    public Icon getIcon (ItemStack stack, int renderPass)
+    public IIcon getIcon (ItemStack stack, int renderPass)
     {
         if (renderPass == 0)
         {
             int stackDamage = stack.getItemDamage() % 14;
             if (stackDamage == 0)
-                return Item.bowlEmpty.getIconFromDamage(0);
+                return Items.bowl.getIconFromDamage(0);
             return NContent.bowlEmpty.getIconFromDamage(stack.getItemDamage() % 14 - 1);
         }
         else
@@ -50,9 +51,9 @@ public class BowlStew extends ItemFood
 
     @SideOnly(Side.CLIENT)
     @Override
-    public void registerIcons (IconRegister iconRegister)
+    public void registerIcons (IIconRegister iconRegister)
     {
-        this.icons = new Icon[textureNames.length];
+        this.icons = new IIcon[textureNames.length];
         for (int i = 0; i < this.textureNames.length; ++i)
         {
             if (!textureNames[i].equals(""))
@@ -73,12 +74,12 @@ public class BowlStew extends ItemFood
             {
                 int stackDamage = stack.getItemDamage() % 14;
                 if (stackDamage == 0)
-                    return new ItemStack(Item.bowlEmpty);
+                    return new ItemStack(Items.bowl);
 
                 return new ItemStack(NContent.bowlEmpty, 1, stackDamage - 1);
             }
 
-            ItemStack returnStack = new ItemStack(Item.bowlEmpty);
+            ItemStack returnStack = new ItemStack(Items.bowl);
             int stackDamage = stack.getItemDamage() % 14;
             if (stackDamage != 0)
                 returnStack = new ItemStack(NContent.bowlEmpty, 1, stackDamage - 1);
@@ -98,21 +99,21 @@ public class BowlStew extends ItemFood
 
             potion = player.getActivePotionEffect(Potion.nightVision);
             if (potion != null)
-                duration = potion.duration;
+                duration = potion.getDuration();
             else
                 duration = 0;
             player.addPotionEffect(new PotionEffect(Potion.nightVision.id, duration + 45 * 25, 0));
 
             potion = player.getActivePotionEffect(Potion.weakness);
             if (potion != null)
-                duration = potion.duration;
+                duration = potion.getDuration();
             else
                 duration = 0;
             player.addPotionEffect(new PotionEffect(Potion.weakness.id, duration + 16 * 25, 0));
 
             potion = player.getActivePotionEffect(Potion.weakness);
             if (potion != null)
-                duration = potion.duration;
+                duration = potion.getDuration();
             else
                 duration = 0;
             player.addPotionEffect(new PotionEffect(Potion.digSlowdown.id, duration + 8 * 25, 0));
@@ -127,7 +128,7 @@ public class BowlStew extends ItemFood
 
     @SideOnly(Side.CLIENT)
     @Override
-    public void getSubItems (int par1, CreativeTabs par2CreativeTabs, List par3List)
+    public void getSubItems (Item par1, CreativeTabs par2CreativeTabs, List par3List)
     {
         for (int iter = 1; iter < textureNames.length; iter++)
         {

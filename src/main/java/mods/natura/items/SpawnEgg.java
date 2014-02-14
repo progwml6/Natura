@@ -7,14 +7,15 @@ import mods.natura.entity.BabyHeatscarSpider;
 import mods.natura.entity.ImpEntity;
 import mods.natura.entity.NitroCreeper;
 import net.minecraft.block.Block;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Facing;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
@@ -26,15 +27,15 @@ public class SpawnEgg extends Item
     int[] secondaryColor = { 0x2E1F10, 0x57B1BD, 0x9B5004, 0x57B1BD };
     String[] mobNames = { "Natura.Imp", "Natura.FlameSpider", "Natura.NitroCreeper", "Natura.FlameSpiderBaby" };
 
-    public SpawnEgg(int par1)
+    public SpawnEgg()
     {
-        super(par1);
+        super();
         this.setCreativeTab(CreativeTabs.tabMisc);
         this.setHasSubtypes(true);
     }
 
     @Override
-    public void registerIcons (IconRegister iconRegister)
+    public void registerIcons (IIconRegister iconRegister)
     {
     }
 
@@ -45,9 +46,9 @@ public class SpawnEgg extends Item
     }
 
     @SideOnly(Side.CLIENT)
-    public Icon getIconFromDamageForRenderPass (int par1, int par2)
+    public IIcon getIconFromDamageForRenderPass (int par1, int par2)
     {
-        return Item.monsterPlacer.getIconFromDamageForRenderPass(par1, par2);
+        return Items.monsterPlacer.getIconFromDamageForRenderPass(par1, par2);
     }
 
     @Override
@@ -65,7 +66,7 @@ public class SpawnEgg extends Item
     }
 
     @Override
-    public void getSubItems (int id, CreativeTabs tab, List list)
+    public void getSubItems (Item id, CreativeTabs tab, List list)
     {
         for (int i = 0; i < mobNames.length; i++)
             list.add(new ItemStack(id, 1, i));
@@ -93,13 +94,13 @@ public class SpawnEgg extends Item
 
     public static EntityLiving activateSpawnEgg (ItemStack stack, World world, double posX, double posY, double posZ, int par7)
     {
-        int i1 = world.getBlockId((int) posX, (int) posY, (int) posZ);
+        Block i1 = world.getBlock((int) posX, (int) posY, (int) posZ);
         posX += Facing.offsetsXForSide[par7];
         posY += Facing.offsetsYForSide[par7];
         posZ += Facing.offsetsZForSide[par7];
         double d0 = 0.0D;
 
-        if (par7 == 1 && Block.blocksList[i1] != null && Block.blocksList[i1].getRenderType() == 11)
+        if (par7 == 1 && i1 != null && i1.getRenderType() == 11)
         {
             d0 = 0.5D;
         }

@@ -79,8 +79,8 @@ public class BushTreeGen extends WorldGenerator
                         {
                             var12 = world.getBlock(var10, var8, var11);
 
-                            if (var12 != 0 && (Block.blocksList[var12] != null && !Block.blocksList[var12].isLeaves(world, var10, var8, var11)) && var12 != Block.grass && var12 != Block.dirt
-                                    && (Block.blocksList[var12] != null && !Block.blocksList[var12].isWood(world, var10, var8, var11)) && var12 != Block.sapling)
+                            if (var12 != 0 && (var12 != null && !var12.isLeaves(world, var10, var8, var11)) && var12 != Blocks.grass && var12 != Blocks.dirt
+                                    && (var12 != null && !var12.isWood(world, var10, var8, var11)) && var12 != Blocks.sapling)
                             {
                                 var7 = false;
                             }

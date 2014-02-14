@@ -10,15 +10,15 @@ import net.minecraft.block.BlockDirectional;
 import net.minecraft.block.BlockMushroom;
 import net.minecraft.block.BlockSapling;
 import net.minecraft.block.BlockStem;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.Event.Result;
 import net.minecraftforge.event.entity.player.BonemealEvent;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -27,9 +27,9 @@ public class BoneBag extends Item
 {
     String textureName;
 
-    public BoneBag(int id, String texture)
+    public BoneBag(String texture)
     {
-        super(id);
+        super();
         textureName = texture;
         this.setCreativeTab(NaturaTab.tab);
     }
@@ -70,7 +70,7 @@ public class BoneBag extends Item
 
     public static boolean applyBonemeal (ItemStack par0ItemStack, World par1World, int par2, int par3, int par4, EntityPlayer player)
     {
-        int l = par1World.getBlockId(par2, par3, par4);
+        Block l = par1World.getBlock(par2, par3, par4);
 
         BonemealEvent event = new BonemealEvent(player, par1World, l, par2, par3, par4);
         if (MinecraftForge.EVENT_BUS.post(event))
@@ -78,7 +78,7 @@ public class BoneBag extends Item
             return false;
         }
 
-        if (event.getResult() == Result.ALLOW)
+        if (event.getResult() == event.getResult().ALLOW)
         {
             /*if (!par1World.isRemote)
             {
@@ -87,13 +87,13 @@ public class BoneBag extends Item
             return true;
         }
 
-        if (l == Block.sapling.blockID)
+        if (l == Blocks.sapling)
         {
             if (!par1World.isRemote)
             {
                 if ((double) par1World.rand.nextFloat() < 0.45D)
                 {
-                    ((BlockSapling) Block.sapling).markOrGrowMarked(par1World, par2, par3, par4, par1World.rand);
+                    ((BlockSapling) Blocks.sapling).markOrGrowMarked(par1World, par2, par3, par4, par1World.rand);
                 }
 
                 //--par0ItemStack.stackSize;
@@ -101,11 +101,11 @@ public class BoneBag extends Item
 
             return true;
         }
-        else if (l != Block.mushroomBrown.blockID && l != Block.mushroomRed.blockID)
+        else if (l != Blocks.brown_mushroom && l != Blocks.red_mushroom)
         {
-            if (l != Block.melonStem.blockID && l != Block.pumpkinStem.blockID)
+            if (l != Blocks.melon_stem && l != Blocks.pumpkin_stem)
             {
-                if (l > 0 && Block.blocksList[l] instanceof BlockCrops)
+                if (l != null && l instanceof BlockCrops)
                 {
                     if (par1World.getBlockMetadata(par2, par3, par4) == 7)
                     {
@@ -115,7 +115,7 @@ public class BoneBag extends Item
                     {
                         if (!par1World.isRemote)
                         {
-                            ((BlockCrops) Block.blocksList[l]).fertilize(par1World, par2, par3, par4);
+                            ((BlockCrops) l).fertilize(par1World, par2, par3, par4);
                             //--par0ItemStack.stackSize;
                         }
 
@@ -128,7 +128,7 @@ public class BoneBag extends Item
                     int j1;
                     int k1;
 
-                    if (l == Block.cocoaPlant.blockID)
+                    if (l == Blocks.cocoa)
                     {
                         i1 = par1World.getBlockMetadata(par2, par3, par4);
                         j1 = BlockDirectional.getDirection(i1);
@@ -150,7 +150,7 @@ public class BoneBag extends Item
                             return true;
                         }
                     }
-                    else if (l != Block.grass.blockID)
+                    else if (l != Blocks.grass)
                     {
                         return false;
                     }
@@ -173,19 +173,19 @@ public class BoneBag extends Item
                                     k1 += (itemRand.nextInt(3) - 1) * itemRand.nextInt(3) / 2;
                                     l1 += itemRand.nextInt(3) - 1;
 
-                                    if (par1World.getBlockId(j1, k1 - 1, l1) != Block.grass.blockID || par1World.isBlockNormalCube(j1, k1, l1))
+                                    if (par1World.getBlock(j1, k1 - 1, l1) != Blocks.grass || par1World.getBlock(j1, k1, l1).isNormalCube())
                                     {
                                         continue label102;
                                     }
                                 }
 
-                                if (par1World.getBlockId(j1, k1, l1) == 0)
+                                if (par1World.getBlock(j1, k1, l1) == Blocks.air)
                                 {
                                     if (itemRand.nextInt(10) != 0)
                                     {
-                                        if (Block.tallGrass.canBlockStay(par1World, j1, k1, l1))
+                                        if (Blocks.tallgrass.canBlockStay(par1World, j1, k1, l1))
                                         {
-                                            par1World.setBlock(j1, k1, l1, Block.tallGrass.blockID, 1, 3);
+                                            par1World.setBlock(j1, k1, l1, Blocks.tallgrass, 1, 3);
                                         }
                                     }
                                     else
@@ -208,7 +208,7 @@ public class BoneBag extends Item
             {
                 if (!par1World.isRemote)
                 {
-                    ((BlockStem) Block.blocksList[l]).fertilizeStem(par1World, par2, par3, par4);
+                    ((BlockStem) l).fertilizeStem(par1World, par2, par3, par4);
                     //--par0ItemStack.stackSize;
                 }
 
@@ -221,7 +221,7 @@ public class BoneBag extends Item
             {
                 if ((double) par1World.rand.nextFloat() < 0.4D)
                 {
-                    ((BlockMushroom) Block.blocksList[l]).fertilizeMushroom(par1World, par2, par3, par4, par1World.rand);
+                    ((BlockMushroom) l).fertilizeMushroom(par1World, par2, par3, par4, par1World.rand);
                 }
 
                 //--par0ItemStack.stackSize;
@@ -233,7 +233,7 @@ public class BoneBag extends Item
 
     @SideOnly(Side.CLIENT)
     @Override
-    public void registerIcons (IconRegister par1IconRegister)
+    public void registerIcons (IIconRegister par1IconRegister)
     {
         this.itemIcon = par1IconRegister.registerIcon("natura:seedbag_" + textureName);
     }

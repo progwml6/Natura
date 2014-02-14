@@ -5,7 +5,8 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockDirectional;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.util.Icon;
+import net.minecraft.init.Blocks;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 import cpw.mods.fml.client.registry.RenderingRegistry;
@@ -39,7 +40,7 @@ public class SaguaroRenderer implements ISimpleBlockRenderingHandler
     }
 
     @Override
-    public boolean shouldRender3DInInventory ()
+    public boolean shouldRender3DInInventory (int id)
     {
         return true;
     }
@@ -63,12 +64,12 @@ public class SaguaroRenderer implements ISimpleBlockRenderingHandler
         float topY = 1.0F - offset;
         float topZ = 1.0F - offset;
 
-        int airBelow = iblockaccess.getBlockId(x, y - 1, z);
-        int cactusAbove = iblockaccess.getBlockId(x, y + 1, z);
+        Block airBelow = iblockaccess.getBlock(x, y - 1, z);
+        Block cactusAbove = iblockaccess.getBlock(x, y + 1, z);
 
-        if (airBelow == 0)
+        if (airBelow == Blocks.air)
             botY = offset;
-        if (cactusAbove == cactus.blockID)
+        if (cactusAbove == cactus)
             topY = 1.0F;
 
         renderblocks.setRenderBounds(botX, botY, botZ, topX, topY, topZ);
@@ -77,7 +78,7 @@ public class SaguaroRenderer implements ISimpleBlockRenderingHandler
         botY = offset;
         topY = 1.0F - offset;
 
-        if (cactus.canConnectSuguaroTo(iblockaccess, x + 1, y, z) && (airBelow == 0 || iblockaccess.getBlockId(x + 1, y - 1, z) == 0))
+        if (cactus.canConnectSuguaroTo(iblockaccess, x + 1, y, z) && (airBelow == Blocks.air || iblockaccess.getBlock(x + 1, y - 1, z) == Blocks.air))
         {
             botX = 1F - offset;
             topX = 1F;
@@ -85,7 +86,7 @@ public class SaguaroRenderer implements ISimpleBlockRenderingHandler
             renderblocks.renderStandardBlock(cactus, x, y, z);
         }
 
-        if (cactus.canConnectSuguaroTo(iblockaccess, x - 1, y, z) && (airBelow == 0 || iblockaccess.getBlockId(x - 1, y - 1, z) == 0))
+        if (cactus.canConnectSuguaroTo(iblockaccess, x - 1, y, z) && (airBelow == Blocks.air || iblockaccess.getBlock(x - 1, y - 1, z) == Blocks.air))
         {
             botX = 0F;
             topX = offset;
@@ -96,7 +97,7 @@ public class SaguaroRenderer implements ISimpleBlockRenderingHandler
         botX = offset;
         topX = 1.0F - offset;
 
-        if (cactus.canConnectSuguaroTo(iblockaccess, x, y, z + 1) && (airBelow == 0 || iblockaccess.getBlockId(x, y - 1, z + 1) == 0))
+        if (cactus.canConnectSuguaroTo(iblockaccess, x, y, z + 1) && (airBelow == Blocks.air || iblockaccess.getBlock(x, y - 1, z + 1) == Blocks.air))
         {
             botZ = 1F - offset;
             topZ = 1F;
@@ -104,7 +105,7 @@ public class SaguaroRenderer implements ISimpleBlockRenderingHandler
             renderblocks.renderStandardBlock(cactus, x, y, z);
         }
 
-        if (cactus.canConnectSuguaroTo(iblockaccess, x, y, z - 1) && (airBelow == 0 || iblockaccess.getBlockId(x, y - 1, z - 1) == 0))
+        if (cactus.canConnectSuguaroTo(iblockaccess, x, y, z - 1) && (airBelow == Blocks.air || iblockaccess.getBlock(x, y - 1, z - 1) == Blocks.air))
         {
             botZ = 0F;
             topZ = offset;
@@ -123,7 +124,7 @@ public class SaguaroRenderer implements ISimpleBlockRenderingHandler
         int sizer = SaguaroBlock.func_72219_c(meta + 5);
         if (sizer > 4)
             sizer = 0;
-        Icon icon = block.icons[3];
+        IIcon icon = block.icons[3];
         int offsetX = 4 + sizer * 2;
         int offsetY = 5 + sizer * 2;
         double d0 = 16.0D - (double) offsetX;

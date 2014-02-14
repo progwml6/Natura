@@ -4,17 +4,17 @@ import java.util.List;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-
 import mods.natura.common.NContent;
 import mods.natura.common.NaturaTab;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
@@ -24,15 +24,15 @@ public class NSlabBase extends Block
     int startingMeta;
     int totalSize;
 
-    public NSlabBase(int id, Material material)
+    public NSlabBase(Material material)
     {
-        super(id, material);
+        super(material);
         this.setCreativeTab(NaturaTab.tab);
     }
 
-    public NSlabBase(int id, Material material, Block model, int meta, int totalSize)
+    public NSlabBase(Material material, Block model, int meta, int totalSize)
     {
-        super(id, material);
+        super(material);
         this.setCreativeTab(NaturaTab.tab);
         this.modelBlock = model;
         this.startingMeta = meta;
@@ -81,20 +81,20 @@ public class NSlabBase extends Block
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void registerIcons (IconRegister iconRegister)
+    public void registerIcons (IIconRegister iconRegister)
     {
     }
 
     @Override
     @SideOnly(Side.CLIENT)
-    public Icon getIcon (int side, int meta)
+    public IIcon getIcon (int side, int meta)
     {
         meta = meta % 8 + startingMeta;
         return modelBlock.getIcon(side, meta);
     }
 
     @Override
-    public void getSubBlocks (int id, CreativeTabs tab, List list)
+    public void getSubBlocks (Item id, CreativeTabs tab, List list)
     {
         for (int iter = 0; iter < totalSize; iter++)
         {

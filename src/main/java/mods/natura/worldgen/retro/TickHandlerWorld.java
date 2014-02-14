@@ -15,12 +15,7 @@ package mods.natura.worldgen.retro;
             public static TickHandlerWorld instance = new TickHandlerWorld();
       
             public static HashMap chunksToGen = new HashMap();
-      
-            @Override
-            public void tickStart(EnumSet<TickType> type, Object... tickData) {
-      
-            }
-      
+            
             @Override
             public void tickEnd(EnumSet<TickType> type, Object... tickData) {
       

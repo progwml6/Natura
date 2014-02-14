@@ -115,7 +115,7 @@ public class LogTwoxTwo extends Block
 
     @Override
     @SideOnly(Side.CLIENT)
-    public Icon getIcon (int side, int meta)
+    public IIcon getIcon (int side, int meta)
     {
         if (meta == 15) //Fullbark
             return icons[0];

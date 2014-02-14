@@ -4,25 +4,26 @@ import java.util.List;
 
 import mods.natura.common.NContent;
 import net.minecraft.block.BlockBookshelf;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class AlternateBookshelf extends BlockBookshelf
 {
-    Icon[] icons;
+    IIcon[] icons;
 
-    public AlternateBookshelf(int id)
+    public AlternateBookshelf()
     {
-        super(id);
+        super();
     }
 
     @SideOnly(Side.CLIENT)
-    public Icon getIcon (int side, int metadata)
+    public IIcon getIcon (int side, int metadata)
     {
         if (side == 0 || side == 1)
             return NContent.planks.getIcon(side, metadata);
@@ -30,10 +31,10 @@ public class AlternateBookshelf extends BlockBookshelf
     }
 
     @SideOnly(Side.CLIENT)
-    public void registerIcons (IconRegister iconRegister)
+    public void registerIcons (IIconRegister iconRegister)
     {
         super.registerIcons(iconRegister);
-        this.icons = new Icon[NContent.woodTextureNames.length];
+        this.icons = new IIcon[NContent.woodTextureNames.length];
 
         for (int i = 0; i < this.icons.length; ++i)
         {
@@ -60,7 +61,7 @@ public class AlternateBookshelf extends BlockBookshelf
 
     @SideOnly(Side.CLIENT)
     @Override
-    public void getSubBlocks (int par1, CreativeTabs tabs, List list)
+    public void getSubBlocks (Item par1, CreativeTabs tabs, List list)
     {
         for (int i = 0; i < icons.length; i++)
             list.add(new ItemStack(par1, 1, i));

@@ -8,12 +8,14 @@ import mods.natura.client.CropRender;
 import mods.natura.common.NContent;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockCrops;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import net.minecraftforge.common.EnumPlantType;
 import cpw.mods.fml.relauncher.Side;
@@ -21,9 +23,9 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class CropBlock extends BlockCrops
 {
-    public CropBlock(int id)
+    public CropBlock()
     {
-        super(id);
+        super();
         this.setTickRandomly(true);
         float var3 = 0.5F;
         this.setBlockBounds(0.5F - var3, 0.0F, 0.5F - var3, 0.5F + var3, 0.25F, 0.5F + var3);
@@ -112,7 +114,7 @@ public class CropBlock extends BlockCrops
     protected float getGrowthRate (World world, int x, int y, int z, int meta, int light)
     {
         float growth = 0.25f * (light - 7);
-        Block soil = blocksList[world.getBlockId(x, y - 1, z)];
+        Block soil = world.getBlock(x, y - 1, z);
 
         if (world.canBlockSeeTheSky(x, y, z) || !requiresSun(meta))
             growth += 2f;
@@ -128,9 +130,9 @@ public class CropBlock extends BlockCrops
         return true;
     }
 
-    protected boolean canThisPlantGrowOnThisBlockID (int par1)
+    protected boolean canThisPlantGrowOnThisBlock (Block par1)
     {
-        return par1 == Block.tilledField.blockID;
+        return par1 == Blocks.farmland;
     }
 
     /* Left-click harvests berries */
@@ -142,8 +144,8 @@ public class CropBlock extends BlockCrops
             int meta = world.getBlockMetadata(x, y, z);
             if (meta == 8)
             {
-                world.setBlock(x, y, z, blockID, 6, 3);
-                EntityItem entityitem = new EntityItem(world, player.posX, player.posY - 1.0D, player.posZ, new ItemStack(NContent.plantItem.itemID, 1, 3));
+                world.setBlock(x, y, z, this, 6, 3);
+                EntityItem entityitem = new EntityItem(world, player.posX, player.posY - 1.0D, player.posZ, new ItemStack(NContent.plantItem, 1, 3));
                 world.spawnEntityInWorld(entityitem);
                 entityitem.onCollideWithPlayer(player);
             }
@@ -163,8 +165,8 @@ public class CropBlock extends BlockCrops
             if (world.isRemote)
                 return true;
 
-            world.setBlock(x, y, z, blockID, 6, 3);
-            EntityItem entityitem = new EntityItem(world, player.posX, player.posY - 1.0D, player.posZ, new ItemStack(NContent.plantItem.itemID, 1, 3));
+            world.setBlock(x, y, z, this, 6, 3);
+            EntityItem entityitem = new EntityItem(world, player.posX, player.posY - 1.0D, player.posZ, new ItemStack(NContent.plantItem, 1, 3));
             world.spawnEntityInWorld(entityitem);
             entityitem.onCollideWithPlayer(player);
             return true;
@@ -179,14 +181,14 @@ public class CropBlock extends BlockCrops
         return this.blockHardness;
     }
 
-    public Icon[] icons;
+    public IIcon[] icons;
     public String[] textureNames = new String[] { "barley_1", "barley_2", "barley_3", "barley_4", "cotton_1", "cotton_2", "cotton_3", "cotton_4", "cotton_5" };
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void registerIcons (IconRegister iconRegister)
+    public void registerIcons (IIconRegister iconRegister)
     {
-        this.icons = new Icon[textureNames.length];
+        this.icons = new IIcon[textureNames.length];
 
         for (int i = 0; i < this.icons.length; ++i)
         {
@@ -196,7 +198,7 @@ public class CropBlock extends BlockCrops
 
     @Override
     @SideOnly(Side.CLIENT)
-    public Icon getIcon (int side, int meta)
+    public IIcon getIcon (int side, int meta)
     {
         return icons[meta];
     }
@@ -209,21 +211,21 @@ public class CropBlock extends BlockCrops
         return CropRender.model;
     }
 
-    public int idDropped (int meta, Random random, int fortune)
+    public Item itemDropped (int meta, Random random, int fortune)
     {
         if (meta == 3 || meta == 8)
             return this.getCropItem(meta);
         return this.getSeedItem(meta);
     }
 
-    protected int getCropItem (int meta)
+    protected Item getCropItem (int meta)
     {
-        return NContent.plantItem.itemID;
+        return NContent.plantItem;
     }
 
-    protected int getSeedItem (int meta)
+    protected Item getSeedItem (int meta)
     {
-        return NContent.seeds.itemID;
+        return NContent.seeds;
     }
 
     public int damageDropped (int meta)
@@ -258,8 +260,8 @@ public class CropBlock extends BlockCrops
             int count = quantityDropped(metadata, fortune, world.rand);
             for (int i = 0; i < count; i++)
             {
-                int id = idDropped(metadata, world.rand, 0);
-                if (id > 0)
+                Item id = itemDropped(metadata, world.rand, 0);
+                if (id != null)
                 {
                     ret.add(new ItemStack(id, 1, damageDropped(metadata)));
                 }
@@ -301,7 +303,7 @@ public class CropBlock extends BlockCrops
     /**
      * only called by clickMiddleMouseButton , and passed to inventory.setCurrentItem (along with isCreative)
      */
-    public int idPicked (World world, int x, int y, int z)
+    public Item idPicked (World world, int x, int y, int z)
     {
         return this.getSeedItem(world.getBlockMetadata(x, y, z));
     }
@@ -325,7 +327,7 @@ public class CropBlock extends BlockCrops
     {
         int meta = world.getBlockMetadata(x, y, z); //Wild crops can stay
         if (meta == 3 || meta == 8)
-            return world.getBlockId(x, y - 1, z) != 0;
+            return world.getBlock(x, y - 1, z) != Blocks.air;
 
         return super.canBlockStay(world, x, y, z);
     }

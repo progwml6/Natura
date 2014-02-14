@@ -6,7 +6,7 @@ import net.minecraft.block.BlockHopper;
 import net.minecraft.client.renderer.EntityRenderer;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 import cpw.mods.fml.client.registry.RenderingRegistry;
@@ -123,8 +123,8 @@ public class HopperRender implements ISimpleBlockRenderingHandler
             tessellator.setColorOpaque_F(f1 * f, f1 * f2, f1 * f3);
         }
 
-        Icon icon = BlazeHopper.hopperIcon("hopper_outside");
-        Icon icon1 = BlazeHopper.hopperIcon("hopper_inside");
+        IIcon icon = BlazeHopper.hopperIcon("hopper_outside");
+        IIcon icon1 = BlazeHopper.hopperIcon("hopper_inside");
         f = 0.125F;
 
         if (par6)
@@ -238,7 +238,7 @@ public class HopperRender implements ISimpleBlockRenderingHandler
     }
 
     @Override
-    public boolean shouldRender3DInInventory ()
+    public boolean shouldRender3DInInventory (int id)
     {
         return true;
     }

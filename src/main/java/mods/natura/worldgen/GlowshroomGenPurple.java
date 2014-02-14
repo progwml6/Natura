@@ -4,6 +4,7 @@ import java.util.Random;
 
 import mods.natura.common.NContent;
 import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 
@@ -44,9 +45,7 @@ public class GlowshroomGenPurple extends WorldGenerator
                     {
                         if (blockID >= 0 && blockID < 256)
                         {
-                            posX = world.getBlockId(posY, blockID, range);
-
-                            Block block = Block.blocksList[posX];
+                            Block block = world.getBlock(posY, blockID, range);
 
                             if (posX != 0 && block != null && !block.isLeaves(world, posY, blockID, range))
                             {
@@ -67,9 +66,9 @@ public class GlowshroomGenPurple extends WorldGenerator
             }
             else
             {
-                blockID = world.getBlockId(x, y - 1, z);
+               Block blockb = world.getBlock(x, y - 1, z);
 
-                if (blockID != Block.mycelium.blockID && blockID != Block.netherrack.blockID && blockID != NContent.taintedSoil.blockID && blockID != Block.slowSand.blockID)
+                if (blockb != Blocks.mycelium && blockb != Blocks.netherrack && blockb != NContent.taintedSoil && blockb != Blocks.soul_sand)
                 {
                     return false;
                 }
@@ -177,30 +176,28 @@ public class GlowshroomGenPurple extends WorldGenerator
                                     meta = 0;
                                 }
 
-                                Block block = Block.blocksList[world.getBlockId(posX, posY, posZ)];
+                                Block block = world.getBlock(posX, posY, posZ);
 
                                 if ((meta != 0 || y >= y + height - 1) && (block == null || block.canBeReplacedByLeaves(world, posX, posY, posZ)))
                                 {
-                                    this.setBlockAndMetadata(world, posX, posY, posZ, NContent.glowshroomPurple.blockID, meta);
+                                    this.setBlockAndMetadata(world, posX, posY, posZ, NContent.glowshroomPurple, meta);
                                 }
                             }
                         }
                     }
 
-                    this.setBlockAndMetadata(world, x - 2, y + height - 1, z - 2, NContent.glowshroomPurple.blockID, 1);
-                    this.setBlockAndMetadata(world, x + 2, y + height - 1, z - 2, NContent.glowshroomPurple.blockID, 3);
-                    this.setBlockAndMetadata(world, x - 2, y + height - 1, z + 2, NContent.glowshroomPurple.blockID, 7);
-                    this.setBlockAndMetadata(world, x + 2, y + height - 1, z + 2, NContent.glowshroomPurple.blockID, 9);
+                    this.setBlockAndMetadata(world, x - 2, y + height - 1, z - 2, NContent.glowshroomPurple, 1);
+                    this.setBlockAndMetadata(world, x + 2, y + height - 1, z - 2, NContent.glowshroomPurple, 3);
+                    this.setBlockAndMetadata(world, x - 2, y + height - 1, z + 2, NContent.glowshroomPurple, 7);
+                    this.setBlockAndMetadata(world, x + 2, y + height - 1, z + 2, NContent.glowshroomPurple, 9);
 
                     for (posY = 0; posY < height; ++posY)
                     {
-                        range = world.getBlockId(x, y + posY, z);
-
-                        Block block = Block.blocksList[range];
+                        Block block =  world.getBlock(x, y + posY, z);;
 
                         if (block == null || block.canBeReplacedByLeaves(world, x, y + posY, z))
                         {
-                            this.setBlockAndMetadata(world, x, y + posY, z, NContent.glowshroomPurple.blockID, 10);
+                            this.setBlockAndMetadata(world, x, y + posY, z, NContent.glowshroomPurple, 10);
                         }
                     }
 

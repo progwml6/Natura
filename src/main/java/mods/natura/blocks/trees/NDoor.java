@@ -7,10 +7,10 @@ import mods.natura.common.NContent;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDoor;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -20,12 +20,12 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class NDoor extends BlockDoor
 {
     private int meta;
-    public Icon[] icons;
+    public IIcon[] icons;
     public final String doorName;
 
-    public NDoor(int id, Material material, int md, String doorName)
+    public NDoor(Material material, int md, String doorName)
     {
-        super(id, material);
+        super(material);
         this.doorName = doorName;
         float f = 0.5F;
         float f1 = 1.0F;
@@ -38,7 +38,7 @@ public class NDoor extends BlockDoor
 
     public int idDropped (int i, Random random, int j)
     {
-        return (i & 8) != 0 ? 0 : NContent.doorItem.itemID;
+        return (i & 8) != 0 ? 0 : NContent.doorItem;
     }
 
     public int damageDropped (int par1)
@@ -46,9 +46,9 @@ public class NDoor extends BlockDoor
         return meta;
     }
 
-    public void registerIcons (IconRegister iconRegister)
+    public void registerIcons (IIconRegister iconRegister)
     {
-        this.icons = new Icon[2];
+        this.icons = new IIcon[2];
 
         this.icons[0] = iconRegister.registerIcon("natura:" + doorName + "_door_bottom");
         this.icons[1] = iconRegister.registerIcon("natura:" + doorName + "_door_top");
@@ -58,7 +58,7 @@ public class NDoor extends BlockDoor
     /**
      * Retrieves the block texture to use based on the display side. Args: iBlockAccess, x, y, z, side
      */
-    public Icon getBlockTexture (IBlockAccess par1IBlockAccess, int par2, int par3, int par4, int par5)
+    public IIcon getBlockTexture (IBlockAccess par1IBlockAccess, int par2, int par3, int par4, int par5)
     {
         if (par5 != 1 && par5 != 0)
         {
@@ -76,7 +76,7 @@ public class NDoor extends BlockDoor
 
     @Override
     @SideOnly(Side.CLIENT)
-    public Icon getIcon (int par1, int par2)
+    public IIcon getIcon (int par1, int par2)
     {
         return this.icons[0];
     }

@@ -4,7 +4,7 @@ import java.util.List;
 
 import mods.natura.common.NContent;
 import mods.natura.common.NaturaTab;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.EnumArmorMaterial;
@@ -28,7 +28,7 @@ public class NaturaArmor extends ItemArmor
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void registerIcons (IconRegister par1IconRegister)
+    public void registerIcons (IIconRegister par1IconRegister)
     {
         this.itemIcon = par1IconRegister.registerIcon("natura:armor_" + itemTexture);
     }

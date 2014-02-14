@@ -99,7 +99,7 @@ public class NetherGlass extends Block
 
     @Override
     @SideOnly(Side.CLIENT)
-    public Icon getIcon (int side, int meta)
+    public IIcon getIcon (int side, int meta)
     {
         if (meta < 1)
             return icons[2];

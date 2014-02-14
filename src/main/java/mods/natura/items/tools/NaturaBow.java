@@ -1,23 +1,23 @@
 package mods.natura.items.tools;
 
 import mods.natura.common.NaturaTab;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemBow;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class NaturaBow extends ItemBow
 {
     public static final String[] drawNames = new String[] { "_bow_drawn_0", "_bow_drawn_1", "_bow_drawn_2" };
-    Icon[] icons;
+    IIcon[] icons;
     String woodType;
 
     public NaturaBow(int id, int damage, String type)
     {
-        super(id);
+        super();
         this.setMaxDamage(damage);
         this.woodType = type;
         this.setCreativeTab(NaturaTab.tab);
@@ -25,10 +25,10 @@ public class NaturaBow extends ItemBow
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void registerIcons (IconRegister par1IconRegister)
+    public void registerIcons (IIconRegister par1IconRegister)
     {
         this.itemIcon = par1IconRegister.registerIcon("natura:" + woodType + "_bow");
-        this.icons = new Icon[bowPullIconNameArray.length];
+        this.icons = new IIcon[bowPullIconNameArray.length];
 
         for (int i = 0; i < this.icons.length; ++i)
         {
@@ -38,7 +38,7 @@ public class NaturaBow extends ItemBow
 
     @Override
     @SideOnly(Side.CLIENT)
-    public Icon getIcon (ItemStack stack, int renderPass, EntityPlayer player, ItemStack usingItem, int useRemaining)
+    public IIcon getIcon (ItemStack stack, int renderPass, EntityPlayer player, ItemStack usingItem, int useRemaining)
     {
         if (usingItem != null)
         {
@@ -54,7 +54,7 @@ public class NaturaBow extends ItemBow
 
     @Override
     @SideOnly(Side.CLIENT)
-    public Icon getItemIconForUseDuration (int par1)
+    public IIcon getItemIconForUseDuration (int par1)
     {
         return this.icons[par1];
     }

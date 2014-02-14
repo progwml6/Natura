@@ -5,13 +5,13 @@ import java.util.Random;
 import mods.natura.common.NContent;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
@@ -21,15 +21,15 @@ public class LargeGlowshroom extends Block
 {
     private final String mushroomType;
     @SideOnly(Side.CLIENT)
-    private Icon iconSkin;
+    private IIcon iconSkin;
     @SideOnly(Side.CLIENT)
-    private Icon iconStem;
+    private IIcon iconStem;
     @SideOnly(Side.CLIENT)
-    private Icon iconInside;
+    private IIcon iconInside;
 
-    public LargeGlowshroom(int par1, Material par2Material, String type)
+    public LargeGlowshroom(Material par2Material, String type)
     {
-        super(par1, par2Material);
+        super(par2Material);
         mushroomType = type;
         this.setStepSound(Block.soundWoodFootstep);
         this.setHardness(0.2F);
@@ -39,7 +39,7 @@ public class LargeGlowshroom extends Block
     /**
      * From the specified side and block metadata retrieves the blocks texture. Args: side, metadata
      */
-    public Icon getIcon (int side, int meta)
+    public IIcon getIcon (int side, int meta)
     {
         return meta == 10 && side > 1 ? this.iconStem : (meta >= 1 && meta <= 9 && side == 1 ? this.iconSkin : (meta >= 1 && meta <= 3 && side == 2 ? this.iconSkin : (meta >= 7 && meta <= 9
                 && side == 3 ? this.iconSkin : ((meta == 1 || meta == 4 || meta == 7) && side == 4 ? this.iconSkin : ((meta == 3 || meta == 6 || meta == 9) && side == 5 ? this.iconSkin
@@ -63,11 +63,11 @@ public class LargeGlowshroom extends Block
 
     public int damageDropped (int meta)
     {
-        if (this.blockID == NContent.glowshroomBlue.blockID)
+        if (this == NContent.glowshroomBlue)
             return 2;
-        if (this.blockID == NContent.glowshroomPurple.blockID)
+        if (this == NContent.glowshroomPurple)
             return 1;
-        if (this.blockID == NContent.glowshroomGreen.blockID)
+        if (this == NContent.glowshroomGreen)
             return 0;
 
         return 0;
@@ -94,8 +94,8 @@ public class LargeGlowshroom extends Block
     @Override
     public boolean shouldSideBeRendered (IBlockAccess iblockaccess, int x, int y, int z, int side)
     {
-        int blockID = iblockaccess.getBlockId(x, y, z);
-        if (blockID == NContent.glowshroomBlue.blockID || blockID == NContent.glowshroomPurple.blockID)
+        Block blockID = iblockaccess.getBlock(x, y, z);
+        if (blockID == NContent.glowshroomBlue || blockID == NContent.glowshroomPurple)
         {
             return false;
         }
@@ -110,7 +110,7 @@ public class LargeGlowshroom extends Block
      */
     public int idDropped (int par1, Random par2Random, int par3)
     {
-        return NContent.glowshroom.blockID;
+        return NContent.glowshroom;
     }
 
     @SideOnly(Side.CLIENT)
@@ -119,7 +119,7 @@ public class LargeGlowshroom extends Block
      */
     public int idPicked (World par1World, int par2, int par3, int par4)
     {
-        return NContent.glowshroom.blockID;
+        return NContent.glowshroom;
     }
 
     @SideOnly(Side.CLIENT)
@@ -127,7 +127,7 @@ public class LargeGlowshroom extends Block
      * When this method is called, your block should register all the icons it needs with the given IconRegister. This
      * is the only chance you get to register icons.
      */
-    public void registerIcons (IconRegister iconregister)
+    public void registerIcons (IIconRegister iconregister)
     {
         this.iconSkin = iconregister.registerIcon("natura:mushroom_skin_" + mushroomType);
         this.iconInside = iconregister.registerIcon("natura:mushroom_inside_" + mushroomType);
@@ -137,7 +137,7 @@ public class LargeGlowshroom extends Block
     @Override
     public AxisAlignedBB getCollisionBoundingBoxFromPool (World world, int x, int y, int z)
     {
-        if (Block.blocksList[world.getBlockId(x, y + 1, z)] instanceof LargeGlowshroom)
+        if (world.getBlock(x, y + 1, z) instanceof LargeGlowshroom)
         {
             return null;
         }

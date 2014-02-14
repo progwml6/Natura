@@ -31,7 +31,6 @@ import net.minecraft.world.gen.feature.WorldGenHellLava;
 import net.minecraft.world.gen.feature.WorldGenMinable;
 import net.minecraft.world.gen.structure.MapGenNetherBridge;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.Event.Result;
 import net.minecraftforge.event.terraingen.ChunkProviderEvent;
 import net.minecraftforge.event.terraingen.DecorateBiomeEvent;
 import net.minecraftforge.event.terraingen.PopulateChunkEvent;
@@ -159,21 +158,21 @@ public class NetheriteChunkProvider implements IChunkProvider
 
                             for (int k2 = 0; k2 < 4; ++k2)
                             {
-                                int blockID = 0;
+                                Block blockID = Blocks.air;
 
                                 if (iterY * 8 + offsetY < b1)
                                 {
-                                    blockID = Block.lavaStill.blockID;
+                                    blockID = Blocks.lava;
                                 }
 
                                 if (lValue > 0.0D)
                                 {
-                                    blockID = Block.netherrack.blockID;
+                                    blockID = Blocks.netherrack;
                                 }
 
                                 if (lValue > 56.0D)
                                 {
-                                    blockID = NContent.taintedSoil.blockID;
+                                    blockID = NContent.taintedSoil;
                                 }
 
                                 lowerIDs[layerPos] = (byte) blockID;
@@ -227,18 +226,18 @@ public class NetheriteChunkProvider implements IChunkProvider
                         {
                             j1 = -1;
                         }
-                        else if (b3 == Block.netherrack)
+                        else if (b3 == Blocks.netherrack)
                         {
                             if (j1 == -1)
                             {
                                 if (i1 <= 0)
                                 {
                                     b1 = 0;
-                                    b2 = (byte) Block.netherrack;
+                                    b2 = (byte) Blocks.netherrack;
                                 }
                                 else if (k1 >= seaLevel - 4 && k1 <= seaLevel + 1)
                                 {
-                                    b1 = (byte) Block.netherrack;
+                                    b1 = (byte) Blocks.netherrack;
                                     b2 = (byte) NContent.taintedSoil;
 
                                     if (flag1)
@@ -336,7 +335,7 @@ public class NetheriteChunkProvider implements IChunkProvider
     {
         ChunkProviderEvent.InitNoiseField event = new ChunkProviderEvent.InitNoiseField(this, par1ArrayOfDouble, par2, par3, par4, par5, par6, par7);
         MinecraftForge.EVENT_BUS.post(event);
-        if (event.getResult() == Result.DENY)
+        if (event.getResult() == event.getResult().DENY)
             return event.noisefield;
         if (par1ArrayOfDouble == null)
         {
@@ -507,7 +506,7 @@ public class NetheriteChunkProvider implements IChunkProvider
             xPos = blockX + this.hellRNG.nextInt(16) + 8;
             yPos = this.hellRNG.nextInt(120) + 4;
             zPos = blockZ + this.hellRNG.nextInt(16) + 8;
-            (new WorldGenHellLava(Block.lavaMoving.blockID, false)).generate(this.worldObj, this.hellRNG, xPos, yPos, zPos);
+            (new WorldGenHellLava(Blocks.lava, false)).generate(this.worldObj, this.hellRNG, xPos, yPos, zPos);
         }
 
         i1 = this.hellRNG.nextInt(this.hellRNG.nextInt(10) + 1) + 1;
@@ -541,7 +540,7 @@ public class NetheriteChunkProvider implements IChunkProvider
             (new WorldGenGlowStone2()).generate(this.worldObj, this.hellRNG, yPos, zPos, i2);
         }
 
-        WorldGenMinable worldgenminable = new WorldGenMinable(Block.oreNetherQuartz.blockID, 13, Block.netherrack.blockID);
+        WorldGenMinable worldgenminable = new WorldGenMinable(Blocks.quartz_ore, 13, Blocks.netherrack);
         int j2;
 
         for (yPos = 0; yPos < 16; ++yPos)
@@ -557,7 +556,7 @@ public class NetheriteChunkProvider implements IChunkProvider
             zPos = blockX + this.hellRNG.nextInt(16);
             i2 = this.hellRNG.nextInt(108) + 10;
             j2 = blockZ + this.hellRNG.nextInt(16);
-            (new WorldGenHellLava(Block.lavaMoving.blockID, true)).generate(this.worldObj, this.hellRNG, zPos, i2, j2);
+            (new WorldGenHellLava(Blocks.lava, true)).generate(this.worldObj, this.hellRNG, zPos, i2, j2);
         }
         MinecraftForge.EVENT_BUS.post(new DecorateBiomeEvent.Pre(worldObj, hellRNG, blockX, blockZ));
         doGen = TerrainGen.decorate(worldObj, hellRNG, blockX, blockZ, SHROOM);

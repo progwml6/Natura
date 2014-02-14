@@ -117,8 +117,8 @@ public class NDoorItem extends Item
             var6 = 1;
         }
 
-        int var8 = (world.isBlockNormalCube(x - var6, y, z - var7) ? 1 : 0) + (world.isBlockNormalCube(x - var6, y + 1, z - var7) ? 1 : 0);
-        int var9 = (world.isBlockNormalCube(x + var6, y, z + var7) ? 1 : 0) + (world.isBlockNormalCube(x + var6, y + 1, z + var7) ? 1 : 0);
+        int var8 = (world.getBlock(x - var6, y, z - var7).isNormalCube() ? 1 : 0) + (world.getBlock(x - var6, y + 1, z - var7).isNormalCube() ? 1 : 0);
+        int var9 = (world.getBlock(x + var6, y, z + var7).isNormalCube() ? 1 : 0) + (world.getBlock(x + var6, y + 1, z + var7).isNormalCube() ? 1 : 0);
         boolean var10 = world.getBlock(x - var6, y, z - var7) == block || world.getBlock(x - var6, y + 1, z - var7) == block;
         boolean var11 = world.getBlock(x + var6, y, z + var7) == block || world.getBlock(x + var6, y + 1, z + var7) == block;
         boolean var12 = false;
@@ -140,7 +140,7 @@ public class NDoorItem extends Item
 
     @SideOnly(Side.CLIENT)
     @Override
-    public Icon getIconFromDamage (int meta)
+    public IIcon getIconFromDamage (int meta)
     {
         return icons[meta];
     }

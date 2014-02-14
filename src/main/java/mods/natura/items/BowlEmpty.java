@@ -1,34 +1,35 @@
 package mods.natura.items;
 
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class BowlEmpty extends Item
 {
-    Icon[] icons;
+    IIcon[] icons;
     public static String[] textureNames = new String[] { "", "", "ghostwood", "", "bloodwood", "", "", "", "", "", "", "darkwood", "fusewood" };
 
-    public BowlEmpty(int id)
+    public BowlEmpty()
     {
-        super(id);
+        super();
     }
 
     @SideOnly(Side.CLIENT)
     @Override
-    public Icon getIconFromDamage (int meta)
+    public IIcon getIconFromDamage (int meta)
     {
         return icons[meta];
     }
 
     @SideOnly(Side.CLIENT)
     @Override
-    public void registerIcons (IconRegister iconRegister)
+    public void registerIcons (IIconRegister iconRegister)
     {
-        this.icons = new Icon[textureNames.length];
+        this.icons = new IIcon[textureNames.length];
         for (int i = 0; i < this.textureNames.length; ++i)
         {
             if (!textureNames[i].equals(""))
@@ -41,7 +42,7 @@ public class BowlEmpty extends Item
 
     public String getUnlocalizedName (ItemStack stack)
     {
-        return Item.bowlEmpty.getUnlocalizedName(stack);
+        return Items.bowl.getUnlocalizedName(stack);
         /*int arr = MathHelper.clamp_int(stack.getItemDamage(), 0, textureNames.length);
         return "item.bowl." +textureNames[arr];*/
     }

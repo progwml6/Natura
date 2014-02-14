@@ -5,21 +5,22 @@ import java.util.List;
 import mods.natura.common.NaturaTab;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class NBlock extends Block
 {
     public String[] textureNames;
-    public Icon[] icons;
+    public IIcon[] icons;
 
-    public NBlock(int id, Material material, float hardness, String[] tex)
+    public NBlock(Material material, float hardness, String[] tex)
     {
-        super(id, material);
+        super(material);
         setHardness(hardness);
         this.setCreativeTab(NaturaTab.tab);
         textureNames = tex;
@@ -33,9 +34,9 @@ public class NBlock extends Block
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void registerIcons (IconRegister iconRegister)
+    public void registerIcons (IIconRegister iconRegister)
     {
-        this.icons = new Icon[textureNames.length];
+        this.icons = new IIcon[textureNames.length];
 
         for (int i = 0; i < this.icons.length; ++i)
         {
@@ -45,13 +46,13 @@ public class NBlock extends Block
 
     @Override
     @SideOnly(Side.CLIENT)
-    public Icon getIcon (int side, int meta)
+    public IIcon getIcon (int side, int meta)
     {
         return icons[meta];
     }
 
     @Override
-    public void getSubBlocks (int id, CreativeTabs tab, List list)
+    public void getSubBlocks (Item id, CreativeTabs tab, List list)
     {
         for (int iter = 0; iter < icons.length; iter++)
         {

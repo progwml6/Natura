@@ -5,9 +5,10 @@ import java.util.Random;
 import mods.natura.common.NContent;
 import mods.natura.common.PHNatura;
 import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
-import net.minecraftforge.common.ForgeDirection;
+import net.minecraftforge.common.util.ForgeDirection;
 
 public class RareTreeGen extends WorldGenerator
 {
@@ -40,7 +41,7 @@ public class RareTreeGen extends WorldGenerator
 
         if (yPos >= 1 && yPos + height + 1 <= 256)
         {
-            Block soil = Block.blocksList[world.getBlockId(xPos, yPos - 1, zPos)];
+            Block soil = world.getBlock(xPos, yPos - 1, zPos);
             boolean isSoil = (soil != null && soil.canSustainPlant(world, xPos, yPos - 1, zPos, ForgeDirection.UP, NContent.rareSapling));
 
             if (isSoil)
@@ -72,9 +73,8 @@ public class RareTreeGen extends WorldGenerator
             {
                 for (int zPos = range; zPos <= range; zPos++)
                 {
-                    int blockID = world.getBlockId(x + xPos, y + yPos, z + zPos);
-                    Block block = Block.blocksList[blockID];
-                    if (block != null && blockID != NContent.rareSapling.blockID && !block.isLeaves(world, x + xPos, y + yPos, z + zPos))
+                    Block block = world.getBlock(x + xPos, y + yPos, z + zPos);
+                    if (block != null && block != NContent.rareSapling && !block.isLeaves(world, x + xPos, y + yPos, z + zPos))
                         return false;
                 }
             }
@@ -88,8 +88,8 @@ public class RareTreeGen extends WorldGenerator
         int height = y;
         do
         {
-            int heightID = world.getBlockId(x, height, z);
-            if ((heightID == Block.dirt.blockID || heightID == Block.grass.blockID) && !Block.opaqueCubeLookup[world.getBlockId(x, height + 1, z)])
+            Block heightID = world.getBlock(x, height, z);
+            if ((heightID == Blocks.dirt || heightID == Blocks.grass) && !world.getBlock(x, height + 1, z).isOpaqueCube())
             {
                 ret = height + 1;
                 break;
@@ -116,11 +116,11 @@ public class RareTreeGen extends WorldGenerator
 
                     if (Math.abs(k2) != i2 || Math.abs(i3) != i2 || random.nextInt(2) != 0 && k1 != 0)
                     {
-                        Block block = Block.blocksList[world.getBlockId(x, y, z)];
+                        Block block = world.getBlock(x, y, z);
 
                         if (block == null || block.canBeReplacedByLeaves(world, x, y, z))
                         {
-                            this.setBlockAndMetadata(world, x, y, z, NContent.rareLeaves.blockID, this.metaLeaves);
+                            this.setBlockAndMetadata(world, x, y, z, NContent.rareLeaves, this.metaLeaves);
                         }
                     }
                 }
@@ -132,13 +132,11 @@ public class RareTreeGen extends WorldGenerator
     {
         for (int localHeight = 0; localHeight < height; ++localHeight)
         {
-            int blockID = world.getBlockId(xPos, yPos + localHeight, zPos);
+            Block block = world.getBlock(xPos, yPos + localHeight, zPos);
 
-            Block block = Block.blocksList[blockID];
-
-            if (blockID == 0 || block == null || block.isLeaves(world, xPos, yPos + localHeight, zPos))
+            if (block == null || block.isLeaves(world, xPos, yPos + localHeight, zPos))
             {
-                this.setBlockAndMetadata(world, xPos, yPos + localHeight, zPos, NContent.rareTree.blockID, this.metaWood);
+                this.setBlockAndMetadata(world, xPos, yPos + localHeight, zPos, NContent.rareTree, this.metaWood);
             }
         }
     }

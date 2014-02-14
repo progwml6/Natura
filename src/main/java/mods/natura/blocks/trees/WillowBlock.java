@@ -6,30 +6,31 @@ import java.util.Random;
 import mods.natura.common.NaturaTab;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLog;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class WillowBlock extends BlockLog
 {
-    public Icon[] icons;
+    public IIcon[] icons;
     public String[] textureNames = new String[] { "willow_bark", "willow_heart" };
 
-    public WillowBlock(int id)
+    public WillowBlock()
     {
-        super(id);
+        super();
         this.setHardness(2.0F);
         this.setStepSound(Block.soundWoodFootstep);
-        setBurnProperties(this.blockID, 5, 20);
+        setBurnProperties(this, 5, 20);
         this.setCreativeTab(NaturaTab.tab);
     }
 
     @Override
     @SideOnly(Side.CLIENT)
-    public Icon getIcon (int side, int metadata)
+    public IIcon getIcon (int side, int metadata)
     {
         int tex = (metadata % 4) * 2;
         int orientation = metadata / 4;
@@ -56,9 +57,9 @@ public class WillowBlock extends BlockLog
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void registerIcons (IconRegister iconRegister)
+    public void registerIcons (IIconRegister iconRegister)
     {
-        this.icons = new Icon[textureNames.length];
+        this.icons = new IIcon[textureNames.length];
 
         for (int i = 0; i < this.icons.length; ++i)
         {
@@ -68,7 +69,7 @@ public class WillowBlock extends BlockLog
 
     public int idDropped (int par1, Random par2Random, int par3)
     {
-        return this.blockID;
+        return this;
     }
 
     /*@Override
@@ -89,7 +90,7 @@ public class WillowBlock extends BlockLog
 
     @SideOnly(Side.CLIENT)
     @Override
-    public void getSubBlocks (int par1, CreativeTabs par2CreativeTabs, List par3List)
+    public void getSubBlocks (Item par1, CreativeTabs par2CreativeTabs, List par3List)
     {
         for (int i = 0; i < icons.length / 2; i++)
             par3List.add(new ItemStack(par1, 1, i));

@@ -24,6 +24,8 @@ import net.minecraft.block.EnumMobType;
 import net.minecraft.block.material.Material;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.EnumCreatureType;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.item.EnumArmorMaterial;
 import net.minecraft.item.EnumToolMaterial;
 import net.minecraft.item.Item;
@@ -53,14 +55,14 @@ public class NContent implements IFuelHandler
 
     public void preInit ()
     {
-        spawnEgg = new SpawnEgg(PHNatura.spawnEgg).setUnlocalizedName("natura.spawnegg");
+        spawnEgg = new SpawnEgg().setUnlocalizedName("natura.spawnegg");
         GameRegistry.registerItem(spawnEgg, "natura.spawnegg");
         //Crops
-        plantItem = new PlantItem(PHNatura.foodID).setUnlocalizedName("barleyFood");
+        plantItem = new PlantItem().setUnlocalizedName("barleyFood");
         GameRegistry.registerItem(plantItem, "barleyFood");
-        crops = new CropBlock(PHNatura.floraCropsID);
+        crops = new CropBlock();
         GameRegistry.registerBlock(crops, "N Crops");
-        seeds = new NaturaSeeds(PHNatura.barleySeedID, crops.blockID, Block.tilledField.blockID).setUnlocalizedName("barley.seed");
+        seeds = new NaturaSeeds(crops, Blocks.farmland).setUnlocalizedName("barley.seed");
         GameRegistry.registerItem(seeds, "barley.seed");
         GameRegistry.registerCustomItemStack("seedBarley", new ItemStack(seeds, 1, 0));
         GameRegistry.registerCustomItemStack("seedCotton", new ItemStack(seeds, 1, 1));
@@ -68,75 +70,75 @@ public class NContent implements IFuelHandler
         waterDrop = new CactusJuice(PHNatura.cactusJuice, false).setUnlocalizedName("waterdrop");
         GameRegistry.registerItem(waterDrop, "waterdrop");
 
-        wheatBag = new SeedBag(PHNatura.wheatBagID, Block.crops, 0, "wheat").setUnlocalizedName("wheatBag");
+        wheatBag = new SeedBag(Items.crops, 0, "wheat").setUnlocalizedName("wheatBag");
         GameRegistry.registerItem(wheatBag, "wheatBag");
         GameRegistry.registerCustomItemStack("bagWheat", new ItemStack(wheatBag, 1, 0));
-        barleyBag = new SeedBag(PHNatura.barleyBagID, crops, 0, "barley").setUnlocalizedName("barleyBag");
+        barleyBag = new SeedBag(crops, 0, "barley").setUnlocalizedName("barleyBag");
         GameRegistry.registerItem(barleyBag, "barleyBag");
         GameRegistry.registerCustomItemStack("bagBarley", new ItemStack(barleyBag, 1, 0));
-        potatoBag = new SeedBag(PHNatura.potatoBagID, Block.potato, 0, "potato").setUnlocalizedName("potatoBag");
+        potatoBag = new SeedBag(Items.potato, 0, "potato").setUnlocalizedName("potatoBag");
         GameRegistry.registerItem(potatoBag, "potatoBag");
         GameRegistry.registerCustomItemStack("bagPotato", new ItemStack(potatoBag, 1, 0));
-        carrotBag = new SeedBag(PHNatura.carrotBagID, Block.carrot, 0, "carrot").setUnlocalizedName("carrotBag");
+        carrotBag = new SeedBag(Items.carrot, 0, "carrot").setUnlocalizedName("carrotBag");
         GameRegistry.registerItem(carrotBag, "carrotBag");
         GameRegistry.registerCustomItemStack("bagCarrot", new ItemStack(carrotBag, 1, 0));
-        netherWartBag = new SeedBag(PHNatura.netherWartBagID, Block.netherStalk, 0, "netherwart").setUnlocalizedName("wartBag");
+        netherWartBag = new SeedBag(Blocks.nether_wart, 0, "netherwart").setUnlocalizedName("wartBag");
         GameRegistry.registerItem(netherWartBag, "wartBag");
         GameRegistry.registerCustomItemStack("bagNetherWart", new ItemStack(netherWartBag, 1, 0));
-        cottonBag = new SeedBag(PHNatura.cottonBagID, crops, 4, "cotton").setUnlocalizedName("cottonBag");
+        cottonBag = new SeedBag(crops, 4, "cotton").setUnlocalizedName("cottonBag");
         GameRegistry.registerItem(cottonBag, "cottonBag");
         GameRegistry.registerCustomItemStack("bagCotton", new ItemStack(cottonBag, 1, 0));
-        boneBag = new BoneBag(PHNatura.boneBagID, "bone").setUnlocalizedName("boneBag");
+        boneBag = new BoneBag("bone").setUnlocalizedName("boneBag");
         GameRegistry.registerItem(boneBag, "boneBag");
         GameRegistry.registerCustomItemStack("bagBone", new ItemStack(boneBag, 1, 0));
 
-        netherBerryItem = new NetherBerryItem(PHNatura.netherBerryItem, 1).setUnlocalizedName("berry.nether");
+        netherBerryItem = new NetherBerryItem(1).setUnlocalizedName("berry.nether");
         GameRegistry.registerItem(netherBerryItem, "berry.nether");
         GameRegistry.registerCustomItemStack("berryBlight", new ItemStack(netherBerryItem, 1, 0));
         GameRegistry.registerCustomItemStack("berryDusk", new ItemStack(netherBerryItem, 1, 1));
         GameRegistry.registerCustomItemStack("berrySky", new ItemStack(netherBerryItem, 1, 2));
         GameRegistry.registerCustomItemStack("berrySting", new ItemStack(netherBerryItem, 1, 3));
-        berryItem = new BerryItem(PHNatura.berryItemID, 1).setUnlocalizedName("berry");
+        berryItem = new BerryItem(1).setUnlocalizedName("berry");
         GameRegistry.registerItem(berryItem, "berry");
         GameRegistry.registerCustomItemStack("berryRasp", new ItemStack(berryItem, 1, 0));
         GameRegistry.registerCustomItemStack("berryBlue", new ItemStack(berryItem, 1, 1));
         GameRegistry.registerCustomItemStack("berryBlack", new ItemStack(berryItem, 1, 2));
         GameRegistry.registerCustomItemStack("berryMalo", new ItemStack(berryItem, 1, 3));
-        berryMedley = new BerryMedley(PHNatura.berryMedley, 5).setUnlocalizedName("berryMedley");
+        berryMedley = new BerryMedley(5).setUnlocalizedName("berryMedley");
         GameRegistry.registerItem(berryMedley, "berryMedley");
         GameRegistry.registerCustomItemStack("berryMedley", new ItemStack(berryMedley, 1, 0));
 
-        berryBush = new BerryBush(PHNatura.berryBlockID);
+        berryBush = new BerryBush();
         GameRegistry.registerBlock(berryBush, BerryBushItem.class, "BerryBush");
-        netherBerryBush = new NetherBerryBush(PHNatura.netherBerryBlock);
+        netherBerryBush = new NetherBerryBush();
         GameRegistry.registerBlock(netherBerryBush, NetherBerryBushItem.class, "NetherBerryBush");
 
         //Clouds
-        cloud = new CloudBlock(PHNatura.cloudID);
+        cloud = new CloudBlock();
         GameRegistry.registerBlock(cloud, CloudItem.class, "Cloud");
 
         //Trees
-        tree = new TreeBlock(PHNatura.treeID).setUnlocalizedName("natura.treeblock");
-        redwood = new SimpleLog(PHNatura.redwoodID).setUnlocalizedName("natura.redwood");
-        planks = new Planks(PHNatura.planksID).setUnlocalizedName("natura.planks");
+        tree = new TreeBlock().setUnlocalizedName("natura.treeblock");
+        redwood = new SimpleLog().setUnlocalizedName("natura.redwood");
+        planks = new Planks().setUnlocalizedName("natura.planks");
         floraLeaves = (NLeaves) new NLeaves().setUnlocalizedName("natura.leaves");
         floraLeavesNoColor = (NLeaves) new NLeavesNocolor().setUnlocalizedName("natura.leavesnocolor");
-        floraSapling = (NSaplingBlock) new NSaplingBlock(PHNatura.floraSaplingID).setUnlocalizedName("natura.sapling");
-        willow = new WillowBlock(PHNatura.willow).setUnlocalizedName("willow");
+        floraSapling = (NSaplingBlock) new NSaplingBlock().setUnlocalizedName("natura.sapling");
+        willow = new WillowBlock().setUnlocalizedName("willow");
 
-        saguaro = new SaguaroBlock(PHNatura.saguaroID).setUnlocalizedName("saguaro.block");
-        seedFood = new SeedFood(PHNatura.seedFood, 3, 0.3f, saguaro.blockID).setUnlocalizedName("saguaro.fruit");
+        saguaro = new SaguaroBlock().setUnlocalizedName("saguaro.block");
+        seedFood = new SeedFood(3, 0.3f, saguaro).setUnlocalizedName("saguaro.fruit");
         GameRegistry.registerItem(seedFood, "saguaro.fruit");
 
         doorItem = new NDoorItem().setUnlocalizedName("redwoodDoorItem");
         GameRegistry.registerItem(doorItem, "redwoodDoorItem");
-        redwoodDoor = new NDoor(PHNatura.redwoodDoor, Material.wood, 0, "redwood").setUnlocalizedName("door.redwood");
-        eucalyptusDoor = new NDoor(PHNatura.eucalyptusDoor, Material.wood, 1, "eucalyptus").setUnlocalizedName("door.eucalyptus");
-        hopseedDoor = new NDoor(PHNatura.hopseedDoor, Material.wood, 2, "hopseed").setUnlocalizedName("door.hopseed");
-        sakuraDoor = new NDoor(PHNatura.sakuraDoor, Material.wood, 3, "sakura").setUnlocalizedName("door.sakura");
-        ghostDoor = new NDoor(PHNatura.ghostDoor, Material.wood, 4, "ghostwood").setUnlocalizedName("door.ghostwood");
-        bloodDoor = new NDoor(PHNatura.bloodDoor, Material.wood, 5, "bloodwood").setUnlocalizedName("door.bloodwood");
-        redwoodBarkDoor = new NDoor(PHNatura.redwoodBarkDoor, Material.wood, 6, "redwoodbark").setUnlocalizedName("door.redwoodbark");
+        redwoodDoor = new NDoor(Material.wood, 0, "redwood").setUnlocalizedName("door.redwood");
+        eucalyptusDoor = new NDoor(Material.wood, 1, "eucalyptus").setUnlocalizedName("door.eucalyptus");
+        hopseedDoor = new NDoor(Material.wood, 2, "hopseed").setUnlocalizedName("door.hopseed");
+        sakuraDoor = new NDoor(Material.wood, 3, "sakura").setUnlocalizedName("door.sakura");
+        ghostDoor = new NDoor(Material.wood, 4, "ghostwood").setUnlocalizedName("door.ghostwood");
+        bloodDoor = new NDoor(Material.wood, 5, "bloodwood").setUnlocalizedName("door.bloodwood");
+        redwoodBarkDoor = new NDoor(Material.wood, 6, "redwoodbark").setUnlocalizedName("door.redwoodbark");
 
         MinecraftForge.addGrassSeed(new ItemStack(seeds, 1, 0), 3);
         MinecraftForge.addGrassSeed(new ItemStack(seeds, 1, 1), 3);
@@ -171,19 +173,19 @@ public class NContent implements IFuelHandler
         /*infernalStone = new NBlock(PHNatura.infernalStone, Material.rock, 1.5f, new String[] { "infernal_stone" }).setUnlocalizedName("infernalStone");
         GameRegistry.registerBlock(infernalStone, "infernalStone");*/
 
-        darkTree = new DarkTreeBlock(PHNatura.darkTree).setUnlocalizedName("Darktree");
+        darkTree = new DarkTreeBlock().setUnlocalizedName("Darktree");
         GameRegistry.registerBlock(darkTree, DarkTreeItem.class, "Dark Tree");
-        darkLeaves = (NLeaves) new NLeavesDark(PHNatura.darkLeaves).setUnlocalizedName("Darkleaves");
+        darkLeaves = (NLeaves) new NLeavesDark().setUnlocalizedName("Darkleaves");
         GameRegistry.registerBlock(darkLeaves, NLeavesDarkItem.class, "Dark Leaves");
-        thornVines = new ThornVines(PHNatura.thornVines).setUnlocalizedName("Thornvines").setLightValue(0.625f);
+        thornVines = new ThornVines().setUnlocalizedName("Thornvines").setLightValue(0.625f);
         GameRegistry.registerBlock(thornVines, "Thornvines");
-        glowshroom = (Glowshroom) new Glowshroom(PHNatura.glowshroom).setUnlocalizedName("Glowshroom").setLightValue(0.625f);
+        glowshroom = (Glowshroom) new Glowshroom().setUnlocalizedName("Glowshroom").setLightValue(0.625f);
         GameRegistry.registerBlock(glowshroom, GlowshroomItem.class, "Glowshroom");
-        glowshroomBlue = new LargeGlowshroom(PHNatura.glowshroomBlue, Material.wood, "blue").setUnlocalizedName("blueGlowshroom").setLightValue(0.625f);
+        glowshroomBlue = new LargeGlowshroom(Material.wood, "blue").setUnlocalizedName("blueGlowshroom").setLightValue(0.625f);
         GameRegistry.registerBlock(glowshroomBlue, "blueGlowshroom");
-        glowshroomPurple = new LargeGlowshroom(PHNatura.glowshroomPurple, Material.wood, "purple").setUnlocalizedName("purpleGlowshroom").setLightValue(0.5f);
+        glowshroomPurple = new LargeGlowshroom(Material.wood, "purple").setUnlocalizedName("purpleGlowshroom").setLightValue(0.5f);
         GameRegistry.registerBlock(glowshroomPurple, "purpleGlowshroom");
-        glowshroomGreen = new LargeGlowshroom(PHNatura.glowshroomGreen, Material.wood, "green").setUnlocalizedName("greenGlowshroom").setLightValue(0.5f);
+        glowshroomGreen = new LargeGlowshroom(Material.wood, "green").setUnlocalizedName("greenGlowshroom").setLightValue(0.5f);
         GameRegistry.registerBlock(glowshroomGreen, "greenGlowshroom");
 
         Block.netherrack.setResistance(4f);
@@ -231,39 +233,39 @@ public class NContent implements IFuelHandler
         //Rare overworld
         rareTree = new OverworldTreeBlock(PHNatura.rareTree).setUnlocalizedName("RareTree");
         GameRegistry.registerBlock(rareTree, OverworldTreeItem.class, "Rare Tree");
-        rareLeaves = (NLeaves) new OverworldLeaves(PHNatura.rareLeaves).setUnlocalizedName("RareLeaves");
+        rareLeaves = (NLeaves) new OverworldLeaves().setUnlocalizedName("RareLeaves");
         GameRegistry.registerBlock(rareLeaves, OverworldLeavesItem.class, "Rare Leaves");
         rareSapling = (OverworldSapling) new OverworldSapling(PHNatura.rareSapling).setUnlocalizedName("RareSapling");
         GameRegistry.registerBlock(rareSapling, OverworldSaplingItem.class, "Rare Sapling");
         bluebells = new FlowerBlock(PHNatura.bluebells).setUnlocalizedName("bluebells");
         GameRegistry.registerBlock(bluebells, "Bluebells");
-        
+
         MinecraftForge.addGrassPlant(bluebells, 0, 18);
 
         //Vanilla overrides and alternates
         alternateWorkbench = new AlternateWorkbench(PHNatura.alternateWorkbench).setHardness(2.5F).setStepSound(Block.soundWoodFootstep).setUnlocalizedName("workbench").setCreativeTab(NaturaTab.tab);
         GameRegistry.registerBlock(alternateWorkbench, NAlternateItem.class, "Natura.workbench");
 
-        alternateBookshelf = new AlternateBookshelf(PHNatura.alternateBookshelf).setHardness(1.5F).setStepSound(Block.soundWoodFootstep).setUnlocalizedName("bookshelf").setCreativeTab(NaturaTab.tab);
+        alternateBookshelf = new AlternateBookshelf().setHardness(1.5F).setStepSound(Block.soundWoodFootstep).setUnlocalizedName("bookshelf").setCreativeTab(NaturaTab.tab);
         GameRegistry.registerBlock(alternateBookshelf, NAlternateItem.class, "Natura.bookshelf");
 
-        alternateFence = new AlternateFence(PHNatura.alternateFence, Material.wood).setHardness(2.0F).setResistance(5.0F).setStepSound(Block.soundWoodFootstep).setUnlocalizedName("fence")
+        alternateFence = new AlternateFence(Material.wood).setHardness(2.0F).setResistance(5.0F).setStepSound(Block.soundWoodFootstep).setUnlocalizedName("fence")
                 .setCreativeTab(NaturaTab.tab);
         GameRegistry.registerBlock(alternateFence, FenceItem.class, "Natura.fence");
 
-        grassBlock = new GrassBlock(PHNatura.grassBlock).setUnlocalizedName("GrassBlock");
+        grassBlock = new GrassBlock().setUnlocalizedName("GrassBlock");
         grassBlock.stepSound = Block.soundGrassFootstep;
         GameRegistry.registerBlock(grassBlock, GrassBlockItem.class, "GrassBlock");
 
-        grassSlab = new GrassSlab(PHNatura.grassSlab).setUnlocalizedName("GrassSlab");
+        grassSlab = new GrassSlab().setUnlocalizedName("GrassSlab");
         grassSlab.stepSound = Block.soundGrassFootstep;
         GameRegistry.registerBlock(grassSlab, GrassSlabItem.class, "GrassSlab");
 
-        plankSlab1 = new NSlabBase(PHNatura.plankSlab1, Material.wood, planks, 0, 8).setHardness(2.0f).setUnlocalizedName("plankSlab1");
+        plankSlab1 = new NSlabBase(Material.wood, planks, 0, 8).setHardness(2.0f).setUnlocalizedName("plankSlab1");
         plankSlab1.stepSound = Block.soundWoodFootstep;
         GameRegistry.registerBlock(plankSlab1, PlankSlab1Item.class, "plankSlab1");
 
-        plankSlab2 = new NSlabBase(PHNatura.plankSlab2, Material.wood, planks, 8, 5).setHardness(2.0f).setUnlocalizedName("plankSlab2");
+        plankSlab2 = new NSlabBase(Material.wood, planks, 8, 5).setHardness(2.0f).setUnlocalizedName("plankSlab2");
         plankSlab2.stepSound = Block.soundWoodFootstep;
         GameRegistry.registerBlock(plankSlab2, PlankSlab2Item.class, "plankSlab2");
 
@@ -783,9 +785,9 @@ public class NContent implements IFuelHandler
             addShapedRecipeFirst(recipes, new ItemStack(alternateFence, 2, i), "###", "###", '#', new ItemStack(stickItem, 1, i));
             OreDictionary.registerOre("crafterWood", new ItemStack(alternateWorkbench, 1, i));
             OreDictionary.registerOre("craftingTableWood", new ItemStack(alternateWorkbench, 1, i));
-            if(i!=4 && i!=12)
+            if (i != 4 && i != 12)
             {
-            	OreDictionary.registerOre("plankWood", new ItemStack(planks, 1, i));
+                OreDictionary.registerOre("plankWood", new ItemStack(planks, 1, i));
                 OreDictionary.registerOre("stickWood", new ItemStack(stickItem, 1, i));
             }
         }
@@ -797,7 +799,7 @@ public class NContent implements IFuelHandler
 
         OreDictionary.registerOre("dyeBlue", new ItemStack(plantItem, 1, 8));
         OreDictionary.registerOre("glassSoul", new ItemStack(netherGlass, 1, 0));
-        
+
         //Tools
         int[] toolMeta = { 2, 4, 11, 12 };
         Item[][] tools = { { ghostwoodSword, ghostwoodPickaxe, ghostwoodShovel, ghostwoodAxe, ghostwoodKama, ghostwoodBow },
@@ -922,8 +924,8 @@ public class NContent implements IFuelHandler
         OreDictionary.registerOre("glass", new ItemStack(Block.glass));
         OreDictionary.registerOre("glass", new ItemStack(netherGlass, 1, 0));
         OreDictionary.registerOre("glass", new ItemStack(netherGlass, 1, 1));
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Item.glassBottle, 3), "# #", " # ", '#', "glass" ));
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Block.daylightSensor), "GGG", "QQQ", "WWW", 'G', "glass", 'Q', Item.netherQuartz, 'W', "slabWood" ));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Item.glassBottle, 3), "# #", " # ", '#', "glass"));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Block.daylightSensor), "GGG", "QQQ", "WWW", 'G', "glass", 'Q', Item.netherQuartz, 'W', "slabWood"));
     }
 
     public void addShapedRecipeFirst (List recipeList, ItemStack itemstack, Object... objArray)
@@ -1648,7 +1650,7 @@ public class NContent implements IFuelHandler
     @Override
     public int getBurnTime (ItemStack fuel)
     {
-        if (fuel.itemID == floraSapling.blockID || fuel.itemID == rareSapling.blockID)
+        if (fuel.getItem() == new ItemStack((Block) floraSapling).getItem() || fuel.getItem() == rareSapling)
             return 100;
         return 0;
     }

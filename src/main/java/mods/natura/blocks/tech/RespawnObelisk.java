@@ -5,11 +5,11 @@ import java.util.Random;
 import mods.natura.Natura;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ChunkCoordinates;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
@@ -17,9 +17,9 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class RespawnObelisk extends Block
 {
-    public RespawnObelisk(int id, Material material)
+    public RespawnObelisk(Material material)
     {
-        super(id, material);
+        super(material);
     }
 
     @Override
@@ -49,7 +49,7 @@ public class RespawnObelisk extends Block
         int meta = world.getBlockMetadata(x, y, z);
         if (meta > 0)
             return 7;
-        return lightValue[blockID];
+        return this.getLightValue();
     }
 
     @Override
@@ -68,11 +68,11 @@ public class RespawnObelisk extends Block
     }
 
     @SideOnly(Side.CLIENT)
-    Icon activeTexture;
+    IIcon activeTexture;
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void registerIcons (IconRegister iconRegister)
+    public void registerIcons (IIconRegister iconRegister)
     {
         this.blockIcon = iconRegister.registerIcon("natura:obelisk");
         this.activeTexture = iconRegister.registerIcon("natura:obelisk_active");
@@ -80,7 +80,7 @@ public class RespawnObelisk extends Block
 
     @Override
     @SideOnly(Side.CLIENT)
-    public Icon getIcon (int side, int meta)
+    public IIcon getIcon (int side, int meta)
     {
         return meta == 0 ? this.blockIcon : this.activeTexture;
     }

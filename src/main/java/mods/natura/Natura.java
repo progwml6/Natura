@@ -1,7 +1,9 @@
 package mods.natura;
 
 import java.util.Random;
-import java.util.logging.Logger;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import cpw.mods.fml.common.FMLCommonHandler;
 import mods.natura.common.NContent;
@@ -31,8 +33,6 @@ import net.minecraft.world.World;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.Event;
-import net.minecraftforge.event.ForgeSubscribe;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.player.BonemealEvent;
 import net.minecraftforge.event.entity.player.EntityInteractEvent;
@@ -45,14 +45,13 @@ import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-import cpw.mods.fml.common.network.NetworkMod;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.TickRegistry;
 import cpw.mods.fml.relauncher.Side;
 
 @Mod(modid = "Natura", name = "Natura", version = "2.1.14")
-@NetworkMod(serverSideRequired = false, clientSideRequired = true)
 public class Natura
 {
     /* Proxies for sides, used for graphics processing */
@@ -64,17 +63,16 @@ public class Natura
     public static Natura instance;
     public static Material cloud = new CloudMaterial();
 
-    public static Logger logger = Logger.getLogger("Natura");
+    public static Logger logger = LogManager.getLogger("Natura");
 
     @EventHandler
     public void preInit (FMLPreInitializationEvent evt)
     {
         MinecraftForge.EVENT_BUS.register(this);
-        logger.setParent(FMLCommonHandler.instance().getFMLLogger());
 
         PluginController.getController().registerBuiltins();
 
-        PHNatura.initProps(evt.getModConfigurationDirectory());
+        PHNatura.initProps(evt.getSuggestedConfigurationFile());
         content = new NContent();
         content.preInit();
         content.addOredictSupport();
@@ -93,7 +91,7 @@ public class Natura
         GameRegistry.registerWorldGenerator(crops = new BaseCropWorldgen());
         GameRegistry.registerWorldGenerator(clouds = new BaseCloudWorldgen());
         GameRegistry.registerWorldGenerator(trees = new BaseTreeWorldgen());
-        NaturaTab.init(content.wheatBag.itemID);
+        NaturaTab.init(content.wheatBag);
         proxy.registerRenderer();
         proxy.addNames();
         NetworkRegistry.instance().registerGuiHandler(instance, new NGuiHandler());
@@ -127,45 +125,45 @@ public class Natura
         PluginController.getController().postInit();
     }
 
-    @ForgeSubscribe
+    @SubscribeEvent
     public void bonemealEvent (BonemealEvent event)
     {
         if (!event.world.isRemote)
         {
-            /*if (event.ID == content.crops.blockID)
+            /*if (event.block == content.crops.blockID)
             {
-            	if (content.crops.boneFertilize(event.world, event.X, event.Y, event.Z, event.world.rand))
-            		event.setResult(Event.Result.ALLOW);
+            	if (content.crops.boneFertilize(event.world, event.X, event.y, event.z, event.world.rand))
+            		event.setResult(event.getResult().ALLOW);
             }*/
-            if (event.ID == content.floraSapling.blockID)
+            if (event.block == content.floraSapling)
             {
-                if (content.floraSapling.boneFertilize(event.world, event.X, event.Y, event.Z, event.world.rand))
-                    event.setResult(Event.Result.ALLOW);
+                if (content.floraSapling.boneFertilize(event.world, event.x, event.y, event.z, event.world.rand))
+                    event.setResult(event.getResult().ALLOW);
             }
-            if (event.ID == content.rareSapling.blockID)
+            if (event.block == content.rareSapling)
             {
-                if (content.rareSapling.boneFertilize(event.world, event.X, event.Y, event.Z, event.world.rand))
-                    event.setResult(Event.Result.ALLOW);
+                if (content.rareSapling.boneFertilize(event.world, event.x, event.y, event.z, event.world.rand))
+                    event.setResult(event.getResult().ALLOW);
             }
-            if (event.ID == content.glowshroom.blockID)
+            if (event.block == content.glowshroom)
             {
-                if (content.glowshroom.fertilizeMushroom(event.world, event.X, event.Y, event.Z, event.world.rand))
-                    event.setResult(Event.Result.ALLOW);
+                if (content.glowshroom.fertilizeMushroom(event.world, event.x, event.y, event.z, event.world.rand))
+                    event.setResult(event.getResult().ALLOW);
             }
-            if (event.ID == content.berryBush.blockID)
+            if (event.block == content.berryBush)
             {
-                if (content.berryBush.boneFertilize(event.world, event.X, event.Y, event.Z, event.world.rand))
-                    event.setResult(Event.Result.ALLOW);
+                if (content.berryBush.boneFertilize(event.world, event.x, event.y, event.z, event.world.rand))
+                    event.setResult(event.getResult().ALLOW);
             }
-            if (event.ID == content.netherBerryBush.blockID)
+            if (event.block == content.netherBerryBush)
             {
-                if (content.netherBerryBush.boneFertilize(event.world, event.X, event.Y, event.Z, event.world.rand))
-                    event.setResult(Event.Result.ALLOW);
+                if (content.netherBerryBush.boneFertilize(event.world, event.x, event.y, event.z, event.world.rand))
+                    event.setResult(event.getResult().ALLOW);
             }
         }
     }
 
-    @ForgeSubscribe
+    @SubscribeEvent
     public void interactEvent (EntityInteractEvent event)
     {
         //if (event.target == null)
@@ -173,7 +171,7 @@ public class Natura
         {
             ItemStack equipped = event.entityPlayer.getCurrentEquippedItem();
             EntityAnimal creature = (EntityAnimal) event.target;
-            if (equipped != null && equipped.itemID == NContent.plantItem.itemID && equipped.getItemDamage() == 0 && creature.getGrowingAge() == 0 && creature.inLove <= 0)
+            if (equipped != null && equipped.getItem() == NContent.plantItem && equipped.getItemDamage() == 0 && creature.getGrowingAge() == 0 && creature.inLove <= 0)
             {
                 EntityPlayer player = event.entityPlayer;
                 if (!player.capabilities.isCreativeMode)
@@ -202,23 +200,23 @@ public class Natura
         }
     }
 
-    @ForgeSubscribe
+    @SubscribeEvent
     public void spawnEvent (EntityJoinWorldEvent event)
     {
         if (event.entity instanceof EntityCow || event.entity instanceof EntitySheep)
         {
-            ((EntityLiving) event.entity).tasks.addTask(3, new EntityAITempt((EntityCreature) event.entity, 0.25F, NContent.plantItem.itemID, false));
+            ((EntityLiving) event.entity).tasks.addTask(3, new EntityAITempt((EntityCreature) event.entity, 0.25F, NContent.plantItem, false));
         }
 
         if (event.entity instanceof EntityChicken)
         {
-            ((EntityLiving) event.entity).tasks.addTask(3, new EntityAITempt((EntityCreature) event.entity, 0.25F, NContent.seeds.itemID, false));
+            ((EntityLiving) event.entity).tasks.addTask(3, new EntityAITempt((EntityCreature) event.entity, 0.25F, NContent.seeds, false));
         }
     }
 
     public static boolean retrogen;
     
-    @ForgeSubscribe
+    @SubscribeEvent
     public void chunkDataSave (ChunkDataEvent.Save event)
     {
         event.getData().setBoolean("Natura.Retrogen", true);
