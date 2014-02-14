@@ -137,7 +137,7 @@ public class NLeaves extends BlockLeaves
      * Returns the ID of the items to drop on destruction.
      */
     @Override
-    public int idDropped (int var1, Random var2, int var3)
+    public Block idDropped (int var1, Random var2, int var3)
     {
         return NContent.floraSapling;
     }
@@ -226,5 +226,12 @@ public class NLeaves extends BlockLeaves
             return 255;
         }
         return this.getLightOpacity();
+    }
+
+    @Override
+    public String[] func_150125_e ()
+    {
+        // TODO Auto-generated method stub
+        return null;
     }
 }

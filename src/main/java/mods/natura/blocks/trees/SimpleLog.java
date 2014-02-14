@@ -37,13 +37,13 @@ public class SimpleLog extends Planks
     }
 
     @Override
-    public boolean canSustainLeaves (World world, int x, int y, int z)
+    public boolean canSustainLeaves (IBlockAccess world, int x, int y, int z)
     {
         return true;
     }
 
     @Override
-    public boolean isWood (World world, int x, int y, int z)
+    public boolean isWood (IBlockAccess world, int x, int y, int z)
     {
         return true;
     }

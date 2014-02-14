@@ -12,6 +12,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -45,9 +46,9 @@ public class LogTwoxTwo extends Block
         }
     }
 
-    public int idDropped (int par1, Random par2Random, int par3)
+    public Item itemDropped (int par1, Random par2Random, int par3)
     {
-        return NContent.bloodwood;
+        return new ItemStack(NContent.bloodwood).getItem();
     }
 
     public int damageDropped (int meta)
@@ -408,13 +409,13 @@ public class LogTwoxTwo extends Block
     }
 
     @Override
-    public boolean canSustainLeaves (World world, int x, int y, int z)
+    public boolean canSustainLeaves (IBlockAccess world, int x, int y, int z)
     {
         return true;
     }
 
     @Override
-    public boolean isWood (World world, int x, int y, int z)
+    public boolean isWood (IBlockAccess world, int x, int y, int z)
     {
         return true;
     }

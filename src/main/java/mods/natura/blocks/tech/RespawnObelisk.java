@@ -39,7 +39,7 @@ public class RespawnObelisk extends Block
     }
 
     @Override
-    public boolean isBed (World world, int x, int y, int z, EntityLivingBase player)
+    public boolean isBed (IBlockAccess world, int x, int y, int z, EntityLivingBase player)
     {
         return world.getBlockMetadata(x, y, z) != 0;
     }
