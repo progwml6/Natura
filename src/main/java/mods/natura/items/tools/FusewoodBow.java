@@ -14,9 +14,9 @@ import net.minecraftforge.event.entity.player.ArrowLooseEvent;
 public class FusewoodBow extends NaturaBow
 {
 
-    public FusewoodBow(int id, int damage, String type)
+    public FusewoodBow(int damage, String type)
     {
-        super(id, damage, type);
+        super(damage, type);
     }
 
     public void onPlayerStoppedUsing (ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer, int par4)

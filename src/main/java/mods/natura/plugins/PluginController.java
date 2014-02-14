@@ -2,7 +2,9 @@ package mods.natura.plugins;
 
 import cpw.mods.fml.common.Loader;
 import mods.natura.Natura;
+import mods.natura.plugins.imc.*;
 import mods.natura.plugins.te3.ThermalExpansion3;
+import mods.natura.plugins.thaumcraft.Thaumcraft;
 import net.minecraftforge.common.config.Configuration;
 
 import java.io.File;
@@ -109,6 +111,11 @@ public class PluginController
        // registerPlugin(new MineFactoryReloaded());
        // registerPlugin(new NotEnoughItems());
         registerPlugin(new ThermalExpansion3());
+        registerPlugin(new BuildCraft());
+        registerPlugin(new Forestry());
+        registerPlugin(new TreeCapitator());
+        registerPlugin(new Thaumcraft());
+
     }
 
 }

@@ -76,7 +76,6 @@ public class Natura
         content = new NContent();
         content.preInit();
         content.addOredictSupport();
-        content.postIntermodCommunication();
 
         PluginController.getController().preInit();
     }
@@ -96,7 +95,6 @@ public class Natura
         proxy.addNames();
         NetworkRegistry.instance().registerGuiHandler(instance, new NGuiHandler());
 
-        content.intermodCommunication();
         GameRegistry.registerFuelHandler(content);
 
         if (PHNatura.overrideNether)
