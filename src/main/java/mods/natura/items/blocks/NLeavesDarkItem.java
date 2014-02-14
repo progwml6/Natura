@@ -3,6 +3,7 @@ package mods.natura.items.blocks;
 import java.util.List;
 
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.block.Block;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import cpw.mods.fml.relauncher.Side;
@@ -13,7 +14,7 @@ public class NLeavesDarkItem extends ItemBlock
 {
     public static final String blockType[] = { "darkwood", "darkwood.flowering", "darkwood.fruit", "fusewood", "", "", "", "", "", "", "", "", "", "", "", "", "" };
 
-    public NLeavesDarkItem(int i)
+    public NLeavesDarkItem(Block i)
     {
         super(i);
         setMaxDamage(0);

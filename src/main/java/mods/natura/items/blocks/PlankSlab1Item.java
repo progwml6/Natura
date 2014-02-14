@@ -92,7 +92,7 @@ public class PlankSlab1Item extends ItemBlock
         {
             if (world.setBlock(x, y, z, NContent.planks, trueMeta, 3))
             {
-                world.playSoundEffect((double) ((float) x + 0.5F), (double) ((float) y + 0.5F), (double) ((float) z + 0.5F), this.block.stepSound.getPlaceSound(),
+                world.playSoundEffect((double) ((float) x + 0.5F), (double) ((float) y + 0.5F), (double) ((float) z + 0.5F), this.block.stepSound.getBreakSound(),
                         (this.block.stepSound.getVolume() + 1.0F) / 2.0F, this.block.stepSound.getPitch() * 0.8F);
                 --stack.stackSize;
                 return true;

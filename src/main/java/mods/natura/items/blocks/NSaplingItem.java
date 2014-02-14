@@ -155,7 +155,7 @@ public class NSaplingItem extends ItemBlock
 
             if (placeBlockAt(stack, player, world, x, y, z, side, par8, par9, par10, k1))
             {
-                world.playSoundEffect((double) ((float) x + 0.5F), (double) ((float) y + 0.5F), (double) ((float) z + 0.5F), block.stepSound.getPlaceSound(),
+                world.playSoundEffect((double) ((float) x + 0.5F), (double) ((float) y + 0.5F), (double) ((float) z + 0.5F), block.stepSound.getBreakSound(),
                         (block.stepSound.getVolume() + 1.0F) / 2.0F, block.stepSound.getPitch() * 0.8F);
                 --stack.stackSize;
             }

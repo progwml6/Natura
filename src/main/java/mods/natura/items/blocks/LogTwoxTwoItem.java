@@ -2,6 +2,7 @@ package mods.natura.items.blocks;
 
 import java.util.List;
 
+import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
@@ -11,7 +12,7 @@ import net.minecraft.util.StatCollector;
 
 public class LogTwoxTwoItem extends ItemBlock
 {
-    public LogTwoxTwoItem(int i)
+    public LogTwoxTwoItem(Block i)
     {
         super(i);
         setMaxDamage(0);

@@ -113,7 +113,7 @@ public class WillowGen extends WorldGenerator
 
                 if ((i1 == Blocks.grass || i1 == Blocks.dirt) && y < 128 - l - 1)
                 {
-                    this.setBlock(world, x, y - 1, z, Blocks.dirt);
+                    world.setBlock(x, y - 1, z, Blocks.dirt);
                     int i2;
                     int j2;
 
@@ -134,7 +134,7 @@ public class WillowGen extends WorldGenerator
 
                                 if ((Math.abs(i2) != k1 || Math.abs(l2) != k1 || par2Random.nextInt(2) != 0 && j1 != 0) && (block == null || block.canBeReplacedByLeaves(world, l1, j2, k2)))
                                 {
-                                    this.setBlockAndMetadata(world, l1, j2, k2, NContent.floraLeavesNoColor, 3);
+                                    world.setBlock(l1, j2, k2, NContent.floraLeavesNoColor, 3, 0);
                                 }
                             }
                         }

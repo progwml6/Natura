@@ -1,5 +1,6 @@
 package mods.natura.items.blocks;
 
+import net.minecraft.block.Block;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.MathHelper;
@@ -8,7 +9,7 @@ public class GrassBlockItem extends ItemBlock
 {
     public static final String blockType[] = { "grass", "bluegrass", "autumngrass" };
 
-    public GrassBlockItem(int id)
+    public GrassBlockItem(Block id)
     {
         super(id);
         setMaxDamage(0);

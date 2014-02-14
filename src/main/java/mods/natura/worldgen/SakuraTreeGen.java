@@ -182,7 +182,7 @@ public class SakuraTreeGen extends WorldGenerator
                     }
                     else
                     {
-                        this.setBlockAndMetadata(world, leafPos[0], leafPos[1], leafPos[2], b, metaLeaves);
+                        world.setBlock(leafPos[0], leafPos[1], leafPos[2], b, metaLeaves, 0);
                         ++var13;
                     }
                 }
@@ -303,7 +303,7 @@ public class SakuraTreeGen extends WorldGenerator
                     }
                 }
 
-                this.setBlockAndMetadata(world, posArray[0], posArray[1], posArray[2], tree, metadata);
+                world.setBlock(posArray[0], posArray[1], posArray[2], tree, metadata, 0);
             }
         }
     }

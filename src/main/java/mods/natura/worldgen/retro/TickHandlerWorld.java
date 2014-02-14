@@ -6,8 +6,6 @@ import java.util.HashMap;
 import java.util.Random;
 
 import net.minecraft.world.World;
-import cpw.mods.fml.common.ITickHandler;
-import cpw.mods.fml.common.TickType;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.TickEvent.ClientTickEvent;
 import cpw.mods.fml.common.gameevent.TickEvent.Phase;

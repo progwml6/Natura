@@ -2,6 +2,7 @@ package mods.natura.items.blocks;
 
 import java.util.List;
 
+import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
@@ -13,7 +14,7 @@ public class DarkTreeItem extends ItemBlock
 {
     public static final String blockType[] = { "darkwood", "fusewood" };
 
-    public DarkTreeItem(int i)
+    public DarkTreeItem(Block i)
     {
         super(i);
         setMaxDamage(0);

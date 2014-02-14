@@ -66,7 +66,7 @@ public class GlowshroomGenPurple extends WorldGenerator
             }
             else
             {
-               Block blockb = world.getBlock(x, y - 1, z);
+                Block blockb = world.getBlock(x, y - 1, z);
 
                 if (blockb != Blocks.mycelium && blockb != Blocks.netherrack && blockb != NContent.taintedSoil && blockb != Blocks.soul_sand)
                 {
@@ -180,24 +180,25 @@ public class GlowshroomGenPurple extends WorldGenerator
 
                                 if ((meta != 0 || y >= y + height - 1) && (block == null || block.canBeReplacedByLeaves(world, posX, posY, posZ)))
                                 {
-                                    this.setBlockAndMetadata(world, posX, posY, posZ, NContent.glowshroomPurple, meta);
+                                    world.setBlock(posX, posY, posZ, NContent.glowshroomPurple, meta,0);
                                 }
                             }
                         }
                     }
 
-                    this.setBlockAndMetadata(world, x - 2, y + height - 1, z - 2, NContent.glowshroomPurple, 1);
-                    this.setBlockAndMetadata(world, x + 2, y + height - 1, z - 2, NContent.glowshroomPurple, 3);
-                    this.setBlockAndMetadata(world, x - 2, y + height - 1, z + 2, NContent.glowshroomPurple, 7);
-                    this.setBlockAndMetadata(world, x + 2, y + height - 1, z + 2, NContent.glowshroomPurple, 9);
+                    world.setBlock(x - 2, y + height - 1, z - 2, NContent.glowshroomPurple, 1, 0);
+                    world.setBlock(x + 2, y + height - 1, z - 2, NContent.glowshroomPurple, 3, 0);
+                    world.setBlock(x - 2, y + height - 1, z + 2, NContent.glowshroomPurple, 7, 0);
+                    world.setBlock(x + 2, y + height - 1, z + 2, NContent.glowshroomPurple, 9, 0);
 
                     for (posY = 0; posY < height; ++posY)
                     {
-                        Block block =  world.getBlock(x, y + posY, z);;
+                        Block block = world.getBlock(x, y + posY, z);
+                        ;
 
                         if (block == null || block.canBeReplacedByLeaves(world, x, y + posY, z))
                         {
-                            this.setBlockAndMetadata(world, x, y + posY, z, NContent.glowshroomPurple, 10);
+                            world.setBlock(x, y + posY, z, NContent.glowshroomPurple, 10, 0);
                         }
                     }
 

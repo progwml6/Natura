@@ -120,7 +120,7 @@ public class RareTreeGen extends WorldGenerator
 
                         if (block == null || block.canBeReplacedByLeaves(world, x, y, z))
                         {
-                            this.setBlockAndMetadata(world, x, y, z, NContent.rareLeaves, this.metaLeaves);
+                            world.setBlock(x, y, z, NContent.rareLeaves, this.metaLeaves, 0);
                         }
                     }
                 }
@@ -136,7 +136,7 @@ public class RareTreeGen extends WorldGenerator
 
             if (block == null || block.isLeaves(world, xPos, yPos + localHeight, zPos))
             {
-                this.setBlockAndMetadata(world, xPos, yPos + localHeight, zPos, NContent.rareTree, this.metaWood);
+                world.setBlock(xPos, yPos + localHeight, zPos, NContent.rareTree, this.metaWood, 0);
             }
         }
     }

@@ -2026,7 +2026,7 @@ public class RedwoodTreeGen extends WorldGenerator
                     }
                     else
                     {
-                        worldObj.setBlock(ai1[0], ai1[1], ai1[2], l, 0);
+                        worldObj.setBlock(ai1[0], ai1[1], ai1[2], l);
                         l1++;
                     }
                 }

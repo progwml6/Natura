@@ -19,7 +19,7 @@ public class NGuiHandler implements IGuiHandler
         }
         if (ID == furnaceGui)
         {
-            return new FurnaceGui(player.inventory, (NetherrackFurnaceLogic) world.getBlockTileEntity(x, y, z));
+            return new FurnaceGui(player.inventory, (NetherrackFurnaceLogic) world.getTileEntity(x, y, z));
         }
         return null;
     }
@@ -33,7 +33,7 @@ public class NGuiHandler implements IGuiHandler
         }
         if (ID == furnaceGui)
         {
-            return new FurnaceContainer(player.inventory, (NetherrackFurnaceLogic) world.getBlockTileEntity(x, y, z));
+            return new FurnaceContainer(player.inventory, (NetherrackFurnaceLogic) world.getTileEntity(x, y, z));
         }
         return null;
     }

@@ -194,8 +194,8 @@ public class GlowshroomGenBlueGreen extends WorldGenerator
 
                                 if ((meta != 0 || y >= y + height - 1) && (block == null || block.canBeReplacedByLeaves(world, posX, posY, posZ)))
                                 {
-                                    int localID = type == 1 ? NContent.glowshroomBlue : NContent.glowshroomGreen;
-                                    this.setBlockAndMetadata(world, posX, posY, posZ, localID, meta);
+                                    Block localID = type == 1 ? NContent.glowshroomBlue : NContent.glowshroomGreen;
+                                    world.setBlock(posX, posY, posZ, localID, meta, 0);
                                 }
                             }
                         }
@@ -207,8 +207,8 @@ public class GlowshroomGenBlueGreen extends WorldGenerator
 
                         if (block == null || block.canBeReplacedByLeaves(world, x, y + posY, z))
                         {
-                            int localID = type == 1 ? NContent.glowshroomBlue : NContent.glowshroomGreen;
-                            this.setBlockAndMetadata(world, x, y + posY, z, localID, 10);
+                            Block localID = type == 1 ? NContent.glowshroomBlue : NContent.glowshroomGreen;
+                            world.setBlock(x, y + posY, z, localID, 10, 0);
                         }
                     }
 

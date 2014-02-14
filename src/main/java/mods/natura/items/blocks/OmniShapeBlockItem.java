@@ -1,5 +1,6 @@
 package mods.natura.items.blocks;
 
+import net.minecraft.block.Block;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 
@@ -7,7 +8,7 @@ public class OmniShapeBlockItem extends ItemBlock
 {
     public static final String blockType[] = { "stair", "stair", "stair", "stair", "stair", "stair", "stair", "stair", "slab", "slab", "slab", "slab", "slab", "slab", "fence", "none" };
 
-    public OmniShapeBlockItem(int i)
+    public OmniShapeBlockItem(Block i)
     {
         super(i);
         setMaxDamage(0);
