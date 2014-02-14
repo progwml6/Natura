@@ -114,7 +114,7 @@ public class EucalyptusTreeGenShort extends WorldGenerator
             Block i2 = world.getBlock(posX, posY + k1, posZ);
             if (i2 == Blocks.air || i2 == NContent.floraLeaves)
             {
-                world.setBlock(posX, posY + k1, posZ, NContent.tree, mdWood);
+                world.setBlock(posX, posY + k1, posZ, NContent.tree, mdWood, 0);
             }
         }
 
@@ -173,8 +173,8 @@ public class EucalyptusTreeGenShort extends WorldGenerator
             int branch = heightShift % 3;
             posY += branch;
             if (branch == 2)
-                world.setBlock(posX, posY - 1, posZ, NContent.tree, mdWood);
-            world.setBlock(posX, posY, posZ, NContent.tree, mdWood);
+                world.setBlock(posX, posY - 1, posZ, NContent.tree, mdWood, 0);
+            world.setBlock(posX, posY, posZ, NContent.tree, mdWood, 0);
             if (bIter == 1)
                 generateNode(world, random, posX, posY, posZ);
             heightShift = random.nextInt(6);
@@ -226,8 +226,8 @@ public class EucalyptusTreeGenShort extends WorldGenerator
             int branch = heightShift % 3;
             posY += branch;
             if (branch == 2)
-                world.setBlock(posX, posY - 1, posZ, NContent.tree, mdWood);
-            world.setBlock(posX, posY, posZ, NContent.tree, mdWood);
+                world.setBlock(posX, posY - 1, posZ, NContent.tree, mdWood, 0);
+            world.setBlock(posX, posY, posZ, NContent.tree, mdWood, 0);
             if (j2 == 1)
                 generateNode(world, random, posX, posY, posZ);
             heightShift = random.nextInt(6);
@@ -236,7 +236,7 @@ public class EucalyptusTreeGenShort extends WorldGenerator
 
     public boolean generateNode (World world, Random random, int x, int y, int z)
     {
-        world.setBlock(x, y, z, NContent.tree, mdWood);
+        world.setBlock(x, y, z, NContent.tree, mdWood, 0);
         for (int xIter = x - 2; xIter <= x + 2; xIter++)
         {
             for (int zIter = z - 1; zIter <= z + 1; zIter++)

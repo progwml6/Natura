@@ -73,7 +73,7 @@ public class RespawnObelisk extends Block
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void registerIcons (IIconRegister iconRegister)
+    public void registerBlockIcons (IIconRegister iconRegister)
     {
         this.blockIcon = iconRegister.registerIcon("natura:obelisk");
         this.activeTexture = iconRegister.registerIcon("natura:obelisk_active");

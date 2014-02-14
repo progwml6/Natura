@@ -24,7 +24,7 @@ public class NPressurePlate extends BlockPressurePlate
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void registerIcons (IIconRegister iconRegister)
+    public void registerBlockIcons (IIconRegister iconRegister)
     {
     }
 

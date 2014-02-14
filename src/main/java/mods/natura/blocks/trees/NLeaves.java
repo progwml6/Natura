@@ -178,7 +178,7 @@ public class NLeaves extends BlockLeaves
 
     @SideOnly(Side.CLIENT)
     @Override
-    public void registerIcons (IIconRegister iconRegister)
+    public void registerBlockIcons (IIconRegister iconRegister)
     {
         String[] textureNames = new String[] { "redwood", "eucalyptus", "hopseed" };
         this.fastIcons = new IIcon[textureNames.length];

@@ -26,12 +26,12 @@ public class HeatSand extends BlockSand
         this.setHardness(3f);
         this.setStepSound(Block.soundTypeSand);
         this.setCreativeTab(NaturaTab.tab);
-        MinecraftForge.setBlockHarvestLevel(this, "shovel", 0);
+        this.setHarvestLevel("shovel", 0);
     }
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void registerIcons (IIconRegister iconRegister)
+    public void registerBlockIcons (IIconRegister iconRegister)
     {
         this.blockIcon = iconRegister.registerIcon("natura:heatsand");
     }

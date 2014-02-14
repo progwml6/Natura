@@ -184,7 +184,7 @@ public class BerryBushGen extends WorldGenerator
         if (!world.getBlock(x, y, z).isOpaqueCube())
         {
             int metaOffset = random.nextInt(5) == 0 ? 1 : 0;
-            setBlockAndMetadata(world, x, y, z, NContent.berryBush, metadata + 8 + metaOffset * 4);
+            world.setBlock(x, y, z, NContent.berryBush, metadata + 8 + metaOffset * 4, 0);
         }
     }
 
@@ -193,7 +193,7 @@ public class BerryBushGen extends WorldGenerator
         if (!world.getBlock(x, y, z).isOpaqueCube())
         {
             int metaOffset = random.nextInt(4);
-            setBlockAndMetadata(world, x, y, z, NContent.berryBush, metadata + metaOffset * 4);
+            world.setBlock(x, y, z, NContent.berryBush, metadata + metaOffset * 4, 0);
         }
     }
 }

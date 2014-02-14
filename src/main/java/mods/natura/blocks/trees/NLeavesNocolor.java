@@ -29,7 +29,7 @@ public class NLeavesNocolor extends NLeaves
 
     @SideOnly(Side.CLIENT)
     @Override
-    public void registerIcons (IIconRegister iconRegister)
+    public void registerBlockIcons (IIconRegister iconRegister)
     {
         String[] textureNames = new String[] { "sakura", "ghostwood", "bloodwood", "willow" };
         this.fastIcons = new IIcon[textureNames.length];

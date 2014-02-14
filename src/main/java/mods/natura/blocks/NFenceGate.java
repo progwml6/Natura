@@ -23,7 +23,7 @@ public class NFenceGate extends BlockFenceGate
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void registerIcons (IIconRegister iconRegister)
+    public void registerBlockIcons (IIconRegister iconRegister)
     {
     }
 

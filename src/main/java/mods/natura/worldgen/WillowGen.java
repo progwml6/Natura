@@ -59,7 +59,7 @@ public class WillowGen extends WorldGenerator
             int i1;
             int j1;
             int k1;
-            Block l1;
+            int l1;
 
             for (i1 = y; i1 <= y + 1 + l; ++i1)
             {
@@ -81,11 +81,11 @@ public class WillowGen extends WorldGenerator
                     {
                         if (i1 >= 0 && i1 < 128)
                         {
-                            l1 = world.getBlock(j1, i1, k1);
+                            Block b1 = world.getBlock(j1, i1, k1);
 
-                            if (l1 != null && !l1.isLeaves(world, j1, i1, k1))
+                            if (b1 != null && !b1.isLeaves(world, j1, i1, k1))
                             {
-                                if (l1 != Blocks.water)
+                                if (b1 != Blocks.water)
                                 {
                                     flag = false;
                                 }
@@ -109,9 +109,9 @@ public class WillowGen extends WorldGenerator
             }
             else
             {
-                i1 = world.getBlock(x, y - 1, z);
+               Block bi1 = world.getBlock(x, y - 1, z);
 
-                if ((i1 == Blocks.grass || i1 == Blocks.dirt) && y < 128 - l - 1)
+                if ((bi1 == Blocks.grass || bi1 == Blocks.dirt) && y < 128 - l - 1)
                 {
                     world.setBlock(x, y - 1, z, Blocks.dirt);
                     int i2;
@@ -134,7 +134,7 @@ public class WillowGen extends WorldGenerator
 
                                 if ((Math.abs(i2) != k1 || Math.abs(l2) != k1 || par2Random.nextInt(2) != 0 && j1 != 0) && (block == null || block.canBeReplacedByLeaves(world, l1, j2, k2)))
                                 {
-                                    world.setBlock(l1, j2, k2, NContent.floraLeavesNoColor, 3, 0);
+                                    world.setBlock(l1, j2, k2,(Block) NContent.floraLeavesNoColor, 3, 0);
                                 }
                             }
                         }
@@ -144,7 +144,7 @@ public class WillowGen extends WorldGenerator
                     {
                         Block block = world.getBlock(x, y + j2, z);
 
-                        if (j1 == 0 || (block != null && block.isLeaves(world, x, y + j2, z)) || block == Blocks.water)
+                        if (block != null && block.isLeaves(world, x, y + j2, z) || block == Blocks.water)
                         {
                             world.setBlock(x, y + j2, z, NContent.willow);
                         }
@@ -162,22 +162,22 @@ public class WillowGen extends WorldGenerator
                                 Block block = world.getBlock(l1, j2, i2);
                                 if (block != null && block.isLeaves(world, l1, j2, i2))
                                 {
-                                    if (par2Random.nextInt(4) == 0 && world.getBlock(l1 - 1, j2, i2) == 0)
+                                    if (par2Random.nextInt(4) == 0 && world.getBlock(l1 - 1, j2, i2) == Blocks.air)
                                     {
                                         this.generateVines(world, l1 - 1, j2, i2, 3);
                                     }
 
-                                    if (par2Random.nextInt(4) == 0 && world.getBlock(l1 + 1, j2, i2) == 0)
+                                    if (par2Random.nextInt(4) == 0 && world.getBlock(l1 + 1, j2, i2) == Blocks.air)
                                     {
                                         this.generateVines(world, l1 + 1, j2, i2, 3);
                                     }
 
-                                    if (par2Random.nextInt(4) == 0 && world.getBlock(l1, j2, i2 - 1) == 0)
+                                    if (par2Random.nextInt(4) == 0 && world.getBlock(l1, j2, i2 - 1) == Blocks.air)
                                     {
                                         this.generateVines(world, l1, j2, i2 - 1, 3);
                                     }
 
-                                    if (par2Random.nextInt(4) == 0 && world.getBlock(l1, j2, i2 + 1) == 0)
+                                    if (par2Random.nextInt(4) == 0 && world.getBlock(l1, j2, i2 + 1) == Blocks.air)
                                     {
                                         this.generateVines(world, l1, j2, i2 + 1, 3);
                                     }

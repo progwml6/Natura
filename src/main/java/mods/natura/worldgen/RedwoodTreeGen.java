@@ -1996,7 +1996,7 @@ public class RedwoodTreeGen extends WorldGenerator
         System.arraycopy(ai, 0, leafNodes, 0, k);
     }
 
-    void func_523_a (int i, int j, int k, float f, byte byte0, int l)
+    void func_523_a (int i, int j, int k, float f, byte byte0, Block l)
     {
         int i1 = (int) ((double) f + 0.61799999999999999D);
         byte byte1 = otherCoordPairs[byte0];
@@ -2020,7 +2020,7 @@ public class RedwoodTreeGen extends WorldGenerator
                 {
                     ai1[byte2] = ai[byte2] + l1;
                     Block i2 = worldObj.getBlock(ai1[0], ai1[1], ai1[2]);
-                    if (i2 != null && i2 != 18)//what is ID 18???
+                    if (i2 != null && i2 != Blocks.leaves)//what is ID 18???
                     {
                         l1++;
                     }

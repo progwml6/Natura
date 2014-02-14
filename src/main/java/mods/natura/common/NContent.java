@@ -204,13 +204,11 @@ public class NContent implements IFuelHandler
         GameRegistry.registerTileEntity(NetherrackFurnaceLogic.class, "netherrackFurnace");
         respawnObelisk = new RespawnObelisk(Material.wood).setHardness(1.0F).setResistance(1000000F).setCreativeTab(NaturaTab.netherTab).setBlockName("nether.obelisk");
         GameRegistry.registerBlock(respawnObelisk, "Obelisk");
-        netherGlass = (NetherGlass) new NetherGlass().setHardness(1.0F).setResistance(3000F).setStepSound(Block.soundTypeGlass).setCreativeTab(NaturaTab.netherTab)
-                .setBlockName("nether.glass");
+        netherGlass = (NetherGlass) new NetherGlass().setHardness(1.0F).setResistance(3000F).setStepSound(Block.soundTypeGlass).setCreativeTab(NaturaTab.netherTab).setBlockName("nether.glass");
         GameRegistry.registerBlock(netherGlass, NetherGlassItem.class, "NetherGlass");
         netherHopper = (BlazeHopper) new BlazeHopper().setHardness(3.0F).setResistance(8.0F).setCreativeTab(NaturaTab.netherTab).setBlockName("nether.hopper");
         GameRegistry.registerBlock(netherHopper, "NetherHopper");
-        netherPressurePlate = new AlternatePressurePlate("netherrack", Material.rock, Sensitivity.mobs).setHardness(0.5F).setStepSound(Block.soundTypeStone)
-                .setBlockName("pressurePlate");
+        netherPressurePlate = new AlternatePressurePlate("netherrack", Material.rock, Sensitivity.mobs).setHardness(0.5F).setStepSound(Block.soundTypeStone).setBlockName("pressurePlate");
         GameRegistry.registerBlock(netherPressurePlate, "NetherPressurePlate");
         netherButton = new NetherrackButton().setHardness(0.5F).setStepSound(Block.soundTypeStone).setBlockName("button");
         GameRegistry.registerBlock(netherButton, "NetherButton");
@@ -226,7 +224,7 @@ public class NContent implements IFuelHandler
         pistonExtension = new NetherPistonExtension(PHNatura.pistonExtension);
         GameRegistry.registerBlock(pistonExtension, "natura.piston.extension");*/
 
-        potashApple = new NetherFoodItem().setBlockName("Natura.netherfood");
+        potashApple = new NetherFoodItem().setUnlocalizedName("Natura.netherfood");
         GameRegistry.registerItem(potashApple, "Natura.netherfood");
         GameRegistry.registerCustomItemStack("applePotash", new ItemStack(potashApple, 1, 0));
 
@@ -249,8 +247,7 @@ public class NContent implements IFuelHandler
         alternateBookshelf = new AlternateBookshelf().setHardness(1.5F).setStepSound(Block.soundTypeWood).setBlockName("bookshelf").setCreativeTab(NaturaTab.tab);
         GameRegistry.registerBlock(alternateBookshelf, NAlternateItem.class, "Natura.bookshelf");
 
-        alternateFence = new AlternateFence(Material.wood).setHardness(2.0F).setResistance(5.0F).setStepSound(Block.soundTypeWood).setBlockName("fence")
-                .setCreativeTab(NaturaTab.tab);
+        alternateFence = new AlternateFence(Material.wood).setHardness(2.0F).setResistance(5.0F).setStepSound(Block.soundTypeWood).setBlockName("fence").setCreativeTab(NaturaTab.tab);
         GameRegistry.registerBlock(alternateFence, FenceItem.class, "Natura.fence");
 
         grassBlock = new GrassBlock().setBlockName("GrassBlock");
@@ -306,7 +303,7 @@ public class NContent implements IFuelHandler
         stairAmaranth.stepSound = Block.soundTypeWood;
         GameRegistry.registerBlock(stairAmaranth, "stair.amaranth");
 
-        stairTiger = new NStairs( planks, 9).setBlockName("stair.tiger");
+        stairTiger = new NStairs(planks, 9).setBlockName("stair.tiger");
         stairTiger.stepSound = Block.soundTypeWood;
         GameRegistry.registerBlock(stairTiger, "stair.tiger");
 
@@ -331,7 +328,7 @@ public class NContent implements IFuelHandler
         trapdoorEucalyptus.setHardness(3.0F).setStepSound(Block.soundTypeWood).setBlockName("trapdoor.eucalyptus");
         GameRegistry.registerBlock(trapdoorEucalyptus, "trapdoor.eucalyptus");
 
-        buttonEucalyptus = new NButton( planks, 0);
+        buttonEucalyptus = new NButton(planks, 0);
         buttonEucalyptus.setHardness(0.5F).setStepSound(Block.soundTypeWood).setBlockName("button.eucalyptus");
         GameRegistry.registerBlock(buttonEucalyptus, "button.eucalyptus");
 
@@ -633,35 +630,33 @@ public class NContent implements IFuelHandler
         GameRegistry.registerCustomItemStack("rawImphide", new ItemStack(impMeat, 1, 0));
         GameRegistry.registerCustomItemStack("cookedImphide", new ItemStack(impMeat, 1, 1));
 
-        MinecraftForge.setToolClass(ghostwoodPickaxe, "pickaxe", 0);
-        MinecraftForge.setToolClass(ghostwoodShovel, "shovel", 0);
-        MinecraftForge.setToolClass(ghostwoodAxe, "axe", 0);
+        ghostwoodPickaxe.setHarvestLevel("pickaxe", 0);
+        ghostwoodShovel.setHarvestLevel("shovel", 0);
+        ghostwoodAxe.setHarvestLevel("axe", 0);
 
-        MinecraftForge.setToolClass(bloodwoodPickaxe, "pickaxe", 2);
-        MinecraftForge.setToolClass(bloodwoodShovel, "shovel", 2);
-        MinecraftForge.setToolClass(bloodwoodAxe, "axe", 2);
+        bloodwoodPickaxe.setHarvestLevel("pickaxe", 2);
+        bloodwoodShovel.setHarvestLevel("shovel", 2);
+        bloodwoodAxe.setHarvestLevel("axe", 2);
 
-        MinecraftForge.setToolClass(darkwoodPickaxe, "pickaxe", 1);
-        MinecraftForge.setToolClass(darkwoodShovel, "shovel", 1);
-        MinecraftForge.setToolClass(darkwoodAxe, "axe", 1);
+        darkwoodPickaxe.setHarvestLevel("pickaxe", 1);
+        darkwoodShovel.setHarvestLevel("shovel", 1);
+        darkwoodAxe.setHarvestLevel("axe", 1);
 
-        MinecraftForge.setToolClass(fusewoodPickaxe, "pickaxe", 2);
-        MinecraftForge.setToolClass(fusewoodShovel, "shovel", 2);
-        MinecraftForge.setToolClass(fusewoodAxe, "axe", 2);
+        fusewoodPickaxe.setHarvestLevel("pickaxe", 2);
+        fusewoodShovel.setHarvestLevel("shovel", 2);
+        fusewoodAxe.setHarvestLevel("axe", 2);
 
-        MinecraftForge.setToolClass(netherquartzPickaxe, "pickaxe", 1);
-        MinecraftForge.setToolClass(netherquartzShovel, "shovel", 1);
-        MinecraftForge.setToolClass(netherquartzAxe, "axe", 1);
+        netherquartzPickaxe.setHarvestLevel("pickaxe", 1);
+        netherquartzShovel.setHarvestLevel("shovel", 1);
+        netherquartzAxe.setHarvestLevel("axe", 1);
         //Material.vine.setRequiresTool();
-
-        MinecraftForge.setBlockHarvestLevel(bloodwood, "axe", 2);
-        MinecraftForge.setBlockHarvestLevel(darkTree, 1, "axe", 1);
-        MinecraftForge.setBlockHarvestLevel(darkTree, 0, "axe", -1);
-        MinecraftForge.setBlockHarvestLevel(tree, "axe", -1);
-        MinecraftForge.setBlockHarvestLevel(redwood, "axe", -1);
-
-        MinecraftForge.setBlockHarvestLevel(taintedSoil, "shovel", 0);
-        MinecraftForge.setBlockHarvestLevel(heatSand, "shovel", 0);
+        bloodwood.setHarvestLevel("axe", 2);
+        darkTree.setHarvestLevel("axe", 1, 1);
+        darkTree.setHarvestLevel("axe", -1, 0);
+        tree.setHarvestLevel("axe", -1);
+        redwood.setHarvestLevel("axe", -1);
+        taintedSoil.setHarvestLevel("shovel", 0);
+        heatSand.setHarvestLevel("shovel", 0);
 
         bowlEmpty = new BowlEmpty().setUnlocalizedName("natura.emptybowl");
         GameRegistry.registerItem(bowlEmpty, "natura.emptybowl");
@@ -679,7 +674,7 @@ public class NContent implements IFuelHandler
         GameRegistry.addRecipe(new ItemStack(carrotBag, 1, 0), "sss", "sss", "sss", 's', Items.carrot);
         GameRegistry.addRecipe(new ItemStack(netherWartBag, 1, 0), "sss", "sss", "sss", 's', Items.nether_wart);
         GameRegistry.addRecipe(new ItemStack(cottonBag, 1, 0), "sss", "sss", "sss", 's', new ItemStack(seeds, 1, 1));
-        GameRegistry.addRecipe(new ItemStack(boneBag, 1, 0), "sss", "sss", "sss", 's', new ItemStack(Items.dyePowder, 1, 15));
+        GameRegistry.addRecipe(new ItemStack(boneBag, 1, 0), "sss", "sss", "sss", 's', new ItemStack(Items.dye, 1, 15));
 
         GameRegistry.addRecipe(new ItemStack(Items.wheat_seeds, 9, 0), "s", 's', wheatBag);
         GameRegistry.addRecipe(new ItemStack(seeds, 9, 0), "s", 's', barleyBag);
@@ -687,7 +682,7 @@ public class NContent implements IFuelHandler
         GameRegistry.addRecipe(new ItemStack(Items.carrot, 9, 0), "s", 's', carrotBag);
         GameRegistry.addRecipe(new ItemStack(Items.nether_wart, 9, 0), "s", 's', netherWartBag);
         GameRegistry.addRecipe(new ItemStack(seeds, 9, 1), "s", 's', cottonBag);
-        GameRegistry.addRecipe(new ItemStack(Item.dyePowder, 9, 15), "s", 's', boneBag);
+        GameRegistry.addRecipe(new ItemStack(Items.dye, 9, 15), "s", 's', boneBag);
 
         GameRegistry.addRecipe(new ItemStack(Items.string), "sss", 's', new ItemStack(plantItem, 1, 3));
         GameRegistry.addRecipe(new ItemStack(Blocks.wool), "sss", "sss", "sss", 's', new ItemStack(plantItem, 1, 3));
@@ -702,12 +697,12 @@ public class NContent implements IFuelHandler
 
         GameRegistry.addRecipe(new ItemStack(plantItem, 2, 8), "X", 'X', new ItemStack(bluebells));
 
-        FurnaceRecipes.smelting().addSmelting(saguaro, 0, new ItemStack(Items.dyePowder, 1, 2), 0.2F);
-        FurnaceRecipes.smelting().addSmelting(impMeat, 0, new ItemStack(impMeat, 1, 1), 0.2F);
+        FurnaceRecipes.smelting().func_151394_a(new ItemStack(saguaro, 0), new ItemStack(Items.dye, 1, 2), 0.2F);
+        FurnaceRecipes.smelting().func_151394_a(new ItemStack(impMeat, 0), new ItemStack(impMeat, 1, 1), 0.2F);
 
         for (int i = 1; i <= 2; i++)
         {
-            FurnaceRecipes.smelting().addSmelting(plantItem, i, new ItemStack(Items.bread, 1), 0.5f);
+            FurnaceRecipes.smelting().func_151394_a(new ItemStack(plantItem, i), new ItemStack(Items.bread, 1), 0.5f);
             GameRegistry.addRecipe(new ItemStack(Items.cake, 1), "AAA", "BEB", " C ", 'A', Items.milk_bucket, 'B', Items.sugar, 'C', new ItemStack(plantItem, 1, i), 'E', Items.egg);
         }
 
@@ -722,8 +717,8 @@ public class NContent implements IFuelHandler
             for (int iter2 = iter1 + 1; iter2 < berryTypes.length - 2; iter2++)
                 for (int iter3 = iter2 + 1; iter3 < berryTypes.length - 1; iter3++)
                     for (int iter4 = iter3 + 1; iter4 < berryTypes.length; iter4++)
-                        GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(berryMedley, 2, 0), new ItemStack(Items.bowl), new ItemStack(Items.bowl), berryTypes[iter1],
-                                berryTypes[iter2], berryTypes[iter3], berryTypes[iter4]));
+                        GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(berryMedley, 2, 0), new ItemStack(Items.bowl), new ItemStack(Items.bowl), berryTypes[iter1], berryTypes[iter2],
+                                berryTypes[iter3], berryTypes[iter4]));
 
         //GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(toolStationWood, 1, 1), "p", "w", 'p', new ItemStack(blankPattern, 1, 0), 'w', "logWood"));
         /*GameRegistry.addShapelessRecipe(new ItemStack(berryMedley, 1), new ItemStack(berryItem, 1, 0), new ItemStack(berryItem, 1, 1), new ItemStack(berryItem, 1, 2), new ItemStack(Item.bowlEmpty));
@@ -857,8 +852,7 @@ public class NContent implements IFuelHandler
         }
 
         addShapelessRecipeFirst(recipes, new ItemStack(bowlStew, 1, 0), new ItemStack(Blocks.brown_mushroom), new ItemStack(Blocks.red_mushroom), new ItemStack(Items.bowl));
-        GameRegistry.addShapelessRecipe(new ItemStack(bowlStew, 1, 14), new ItemStack(glowshroom, 1, 0), new ItemStack(glowshroom, 1, 1), new ItemStack(glowshroom, 1, 2),
-                new ItemStack(Items.bowl));
+        GameRegistry.addShapelessRecipe(new ItemStack(bowlStew, 1, 14), new ItemStack(glowshroom, 1, 0), new ItemStack(glowshroom, 1, 1), new ItemStack(glowshroom, 1, 2), new ItemStack(Items.bowl));
 
         /*bowlEmpty = new BowlEmpty(PHNatura.bowlEmpty).setUnlocalizedName("natura.emptybowl");
         bowlStew = new BowlStew(PHNatura.bowlStew).setUnlocalizedName("natura.stewbowl");*/
@@ -872,7 +866,7 @@ public class NContent implements IFuelHandler
         FurnaceRecipes.smelting().func_151394_a(new ItemStack(redwood, 1), new ItemStack(Items.coal, 1, 1), 0.15f);
         FurnaceRecipes.smelting().func_151394_a(new ItemStack(redwood, 2), new ItemStack(Items.coal, 1, 1), 0.15f);
 
-        GameRegistry.addRecipe(new ItemStack(grassBlock, 1, 0), " s ", "s#s", " s ", 's', new ItemStack(Items.wheat_seeds), '#', new ItemStack(Block.dirt));
+        GameRegistry.addRecipe(new ItemStack(grassBlock, 1, 0), " s ", "s#s", " s ", 's', new ItemStack(Items.wheat_seeds), '#', new ItemStack(Blocks.dirt));
         GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(grassBlock, 1, 1), new ItemStack(grassBlock, 1, 0), "dyeBlue"));
         GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(grassBlock, 1, 2), new ItemStack(grassBlock, 1, 0), "dyeRed"));
 
@@ -925,7 +919,7 @@ public class NContent implements IFuelHandler
         OreDictionary.registerOre("glass", new ItemStack(netherGlass, 1, 0));
         OreDictionary.registerOre("glass", new ItemStack(netherGlass, 1, 1));
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Items.glass_bottle, 3), "# #", " # ", '#', "glass"));
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Blocks.daylightSensor), "GGG", "QQQ", "WWW", 'G', "glass", 'Q', Items.netherQuartz, 'W', "slabWood"));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Blocks.daylight_detector), "GGG", "QQQ", "WWW", 'G', "glass", 'Q', Items.quartz, 'W', "slabWood"));
     }
 
     public void addShapedRecipeFirst (List recipeList, ItemStack itemstack, Object... objArray)
@@ -1092,7 +1086,6 @@ public class NContent implements IFuelHandler
         {
 
         }
-        
 
     }
 
@@ -1337,7 +1330,7 @@ public class NContent implements IFuelHandler
     @Override
     public int getBurnTime (ItemStack fuel)
     {
-        if (fuel.getItem() == new ItemStack((Block) floraSapling).getItem() || fuel.getItem() == rareSapling)
+        if (fuel.getItem() == new ItemStack((Block) floraSapling).getItem() || fuel.getItem() == new ItemStack(rareSapling).getItem())
             return 100;
         return 0;
     }

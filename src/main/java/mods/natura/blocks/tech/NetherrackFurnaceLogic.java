@@ -309,7 +309,7 @@ public class NetherrackFurnaceLogic extends TileEntityFurnace
 
                         if (this.inventory[1].stackSize == 0)
                         {
-                            this.inventory[1] = this.inventory[1].getItem().getContainerItemStack(inventory[1]);
+                            this.inventory[1] = this.inventory[1].getItem().getContainerItem(inventory[1]);
                         }
                     }
                 }
@@ -352,7 +352,7 @@ public class NetherrackFurnaceLogic extends TileEntityFurnace
 
         if (flag1)
         {
-            this.onInventoryChanged();
+            this.markDirty();
         }
     }
 

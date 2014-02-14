@@ -12,6 +12,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -60,7 +61,7 @@ public class DarkTreeBlock extends Block
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void registerIcons (IIconRegister iconRegister)
+    public void registerBlockIcons (IIconRegister iconRegister)
     {
         this.icons = new IIcon[textureNames.length];
 
@@ -70,9 +71,9 @@ public class DarkTreeBlock extends Block
         }
     }
 
-    public int idDropped (int par1, Random par2Random, int par3)
+    public Item itemDropped (int par1, Random par2Random, int par3)
     {
-        return this;
+        return new ItemStack(this).getItem();
     }
 
     /**
@@ -159,7 +160,7 @@ public class DarkTreeBlock extends Block
     {
         if (meta % 4 == 1)
         {
-            if (world.difficultySetting > 2)
+            if (world.difficultySetting.getDifficultyId() > 2)
                 world.createExplosion(null, x, y, z, 1.75f, false);
             else
                 world.createExplosion(null, x, y, z, 2f, false);
@@ -175,13 +176,13 @@ public class DarkTreeBlock extends Block
     }
 
     @Override
-    public boolean canSustainLeaves (World world, int x, int y, int z)
+    public boolean canSustainLeaves (IBlockAccess world, int x, int y, int z)
     {
         return true;
     }
 
     @Override
-    public boolean isWood (World world, int x, int y, int z)
+    public boolean isWood (IBlockAccess world, int x, int y, int z)
     {
         return true;
     }

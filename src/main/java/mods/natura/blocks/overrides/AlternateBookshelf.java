@@ -31,9 +31,9 @@ public class AlternateBookshelf extends BlockBookshelf
     }
 
     @SideOnly(Side.CLIENT)
-    public void registerIcons (IIconRegister iconRegister)
+    public void registerBlockIcons (IIconRegister iconRegister)
     {
-        super.registerIcons(iconRegister);
+        super.registerBlockIcons(iconRegister);
         this.icons = new IIcon[NContent.woodTextureNames.length];
 
         for (int i = 0; i < this.icons.length; ++i)

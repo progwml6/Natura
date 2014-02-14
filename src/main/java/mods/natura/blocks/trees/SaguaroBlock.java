@@ -12,6 +12,8 @@ import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.init.Blocks;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.IIcon;
@@ -168,10 +170,10 @@ public class SaguaroBlock extends Block implements IPlantable
         return meta - 3;
     }
 
-    public int idDropped (int meta, Random random, int fortune)
+    public Item itemDropped (int meta, Random random, int fortune)
     {
         if (meta == 0)
-            return this;
+            return new ItemStack(this).getItem();
         else
             return NContent.seedFood;
     }
@@ -181,7 +183,7 @@ public class SaguaroBlock extends Block implements IPlantable
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void registerIcons (IIconRegister iconRegister)
+    public void registerBlockIcons (IIconRegister iconRegister)
     {
         this.icons = new IIcon[textureNames.length];
 
@@ -271,13 +273,13 @@ public class SaguaroBlock extends Block implements IPlantable
     }
 
     @Override
-    public int getPlantID (World world, int x, int y, int z)
+    public Block getPlant (IBlockAccess world, int x, int y, int z)
     {
         return this;
     }
 
     @Override
-    public int getPlantMetadata (World world, int x, int y, int z)
+    public int getPlantMetadata (IBlockAccess world, int x, int y, int z)
     {
         return 1;
     }

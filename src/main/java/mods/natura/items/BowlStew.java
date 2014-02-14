@@ -23,9 +23,9 @@ public class BowlStew extends ItemFood
     IIcon[] icons;
     public static String[] textureNames = new String[] { "mushroom", "glowshroom" };
 
-    public BowlStew(int par1)
+    public BowlStew()
     {
-        super(par1, 6, false);
+        super(6, false);
     }
 
     @SideOnly(Side.CLIENT)

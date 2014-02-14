@@ -23,7 +23,7 @@ public class OverworldLeaves extends NLeaves
 
     @SideOnly(Side.CLIENT)
     @Override
-    public void registerIcons (IIconRegister iconRegister)
+    public void registerBlockIcons (IIconRegister iconRegister)
     {
         String[] textureNames = new String[] { "maple", "silverbell", "purpleheart", "tiger" };
         this.fastIcons = new IIcon[textureNames.length];

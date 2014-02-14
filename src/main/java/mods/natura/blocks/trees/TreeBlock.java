@@ -61,7 +61,7 @@ public class TreeBlock extends BlockLog
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void registerIcons (IIconRegister IIconRegister)
+    public void registerBlockIcons (IIconRegister IIconRegister)
     {
         this.icons = new IIcon[textureNames.length];
 
@@ -71,9 +71,9 @@ public class TreeBlock extends BlockLog
         }
     }
 
-    public int idDropped (int par1, Random par2Random, int par3)
+    public Item itemDropped (int par1, Random par2Random, int par3)
     {
-        return this;
+        return new ItemStack(this).getItem();
     }
 
     @Override

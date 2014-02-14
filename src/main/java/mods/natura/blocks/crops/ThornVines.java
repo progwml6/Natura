@@ -43,7 +43,7 @@ public class ThornVines extends BlockVine
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void registerIcons (IIconRegister iconRegister)
+    public void registerBlockIcons (IIconRegister iconRegister)
     {
         this.blockIcon = iconRegister.registerIcon("natura:thornvine");
     }

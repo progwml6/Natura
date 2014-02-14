@@ -34,7 +34,7 @@ public class AlternateFence extends BlockFence
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void registerIcons (IIconRegister iconRegister)
+    public void registerBlockIcons (IIconRegister iconRegister)
     {
     }
 
@@ -76,7 +76,7 @@ public class AlternateFence extends BlockFence
             if (l == null)
                 return false;
             if (l.getMaterial().isOpaque() && l.renderAsNormalBlock())
-                return l.getMaterial() != Material.pumpkin;
+                return l.getMaterial() != Material.plants;
             return (l instanceof BlockFenceGate);
         }
         else

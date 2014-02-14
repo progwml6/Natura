@@ -19,7 +19,7 @@ public class FlowerBlock extends BlockFlower
 
     @SideOnly(Side.CLIENT)
     @Override
-    public void registerIcons (IIconRegister iconRegister)
+    public void registerBlockIcons (IIconRegister iconRegister)
     {
         this.blockIcon = iconRegister.registerIcon("natura:flower_bluebells");
     }

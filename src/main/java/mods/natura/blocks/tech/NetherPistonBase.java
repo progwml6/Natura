@@ -61,7 +61,7 @@ public class NetherPistonBase extends BlockPistonBase
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void registerIcons (IIconRegister par1IconRegister)
+    public void registerBlockIcons (IIconRegister par1IconRegister)
     {
         this.blockIcon = par1IconRegister.registerIcon("natura:piston_side");
         this.tIcon = par1IconRegister.registerIcon(this.sticky ? "natura:piston_top_sticky" : "natura:piston_top_normal");

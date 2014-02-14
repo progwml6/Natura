@@ -137,7 +137,7 @@ public class DarkwoodGen extends WorldGenerator
 
                                     if (block == null || block.canBeReplacedByLeaves(world, j2, j1, l2))
                                     {
-                                        this.setBlockAndMetadata(world, j2, j1, l2, NContent.darkLeaves, random.nextInt(25) == 0 ? 2 : random.nextInt(15) == 0 ? 1 : 0);
+                                        world.setBlock(j2, j1, l2, NContent.darkLeaves, random.nextInt(25) == 0 ? 2 : random.nextInt(15) == 0 ? 1 : 0, 0);
                                     }
                                 }
                             }
@@ -150,7 +150,7 @@ public class DarkwoodGen extends WorldGenerator
 
                         if (block == null || block.isLeaves(world, xPos, yPos + j1, zPos))
                         {
-                            this.setBlockAndMetadata(world, xPos, yPos + j1, zPos, NContent.darkTree, this.metaWood);
+                            world.setBlock(xPos, yPos + j1, zPos, NContent.darkTree, this.metaWood, 0);
 
                         }
                     }

@@ -3,6 +3,7 @@ package mods.natura.entity;
 import net.minecraft.entity.ai.EntityAIAttackOnCollide;
 import net.minecraft.entity.monster.EntityCreeper;
 import net.minecraft.entity.monster.EntityIronGolem;
+import net.minecraft.item.Item;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EntityDamageSource;
@@ -94,7 +95,7 @@ public class NitroCreeper extends EntityCreeper
                 this.timeSinceIgnited = 0;
             }
 
-            int difficulty = worldObj.difficultySetting;
+            int difficulty = worldObj.difficultySetting.getDifficultyId();
             int lengthBoost = 4 * (3 - difficulty);
             int powered = this.getPowered() ? 12 : 0;
 
@@ -130,9 +131,9 @@ public class NitroCreeper extends EntityCreeper
 
     protected void dropFewItems (boolean par1, int par2)
     {
-        int j = this.getDropItemId();
+        Item j = this.getDropItem();
 
-        if (j > 0)
+        if (j != null)
         {
             int k = this.rand.nextInt(4) + 2;
 
@@ -149,7 +150,7 @@ public class NitroCreeper extends EntityCreeper
 
         if (this.getPowered())
         {
-            if (j > 0)
+            if (j != null)
             {
                 int k = this.rand.nextInt(40) + 20;
 

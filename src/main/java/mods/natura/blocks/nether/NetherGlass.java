@@ -78,7 +78,7 @@ public class NetherGlass extends Block
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void registerIcons (IIconRegister par1IconRegister)
+    public void registerBlockIcons (IIconRegister par1IconRegister)
     {
         icons = new IIcon[4];
         icons[0] = par1IconRegister.registerIcon("natura:glass_soul");
