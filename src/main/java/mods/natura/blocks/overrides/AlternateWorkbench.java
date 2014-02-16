@@ -46,7 +46,8 @@ public class AlternateWorkbench extends BlockWorkbench
     }
 
     @SideOnly(Side.CLIENT)
-    public void registerIcons (IIconRegister iconRegister)
+    @Override
+    public void registerBlockIcons(IIconRegister iconRegister)
     {
         this.topIcons = new IIcon[NContent.woodTextureNames.length];
         this.sideIcons = new IIcon[NContent.woodTextureNames.length];
