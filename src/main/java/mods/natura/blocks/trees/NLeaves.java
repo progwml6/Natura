@@ -235,4 +235,9 @@ public class NLeaves extends BlockLeaves
         // TODO Auto-generated method stub
         return null;
     }
+    
+    public boolean getRenderLevel()
+    {
+    	return this.field_150121_P;
+    }
 }
