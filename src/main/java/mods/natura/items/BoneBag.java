@@ -93,7 +93,7 @@ public class BoneBag extends Item
             {
                 if ((double) par1World.rand.nextFloat() < 0.45D)
                 {
-                    ((BlockSapling) Blocks.sapling).markOrGrowMarked(par1World, par2, par3, par4, par1World.rand);
+                    ((BlockSapling) Blocks.sapling).func_149879_c/*markOrGrowMarked*/(par1World, par2, par3, par4, par1World.rand);
                 }
 
                 //--par0ItemStack.stackSize;
@@ -115,7 +115,7 @@ public class BoneBag extends Item
                     {
                         if (!par1World.isRemote)
                         {
-                            ((BlockCrops) l).fertilize(par1World, par2, par3, par4);
+                            ((BlockCrops) l).func_149863_m/*fertilize*/(par1World, par2, par3, par4);
                             //--par0ItemStack.stackSize;
                         }
 
@@ -132,7 +132,7 @@ public class BoneBag extends Item
                     {
                         i1 = par1World.getBlockMetadata(par2, par3, par4);
                         j1 = BlockDirectional.getDirection(i1);
-                        k1 = BlockCocoa.func_72219_c(i1);
+                        k1 = BlockCocoa.func_149987_c(i1);
 
                         if (k1 >= 2)
                         {
@@ -190,7 +190,7 @@ public class BoneBag extends Item
                                     }
                                     else
                                     {
-                                        ForgeHooks.plantGrass(par1World, j1, k1, l1);
+                                        // TODO 1.7 Probably a vanilla method for this now? ForgeHooks.plantGrass(par1World, j1, k1, l1);
                                     }
                                 }
                             }
@@ -208,7 +208,7 @@ public class BoneBag extends Item
             {
                 if (!par1World.isRemote)
                 {
-                    ((BlockStem) l).fertilizeStem(par1World, par2, par3, par4);
+                    ((BlockStem) l).func_149874_m/*fertilizeStem*/(par1World, par2, par3, par4);
                     //--par0ItemStack.stackSize;
                 }
 
@@ -221,7 +221,7 @@ public class BoneBag extends Item
             {
                 if ((double) par1World.rand.nextFloat() < 0.4D)
                 {
-                    ((BlockMushroom) l).fertilizeMushroom(par1World, par2, par3, par4, par1World.rand);
+                    ((BlockMushroom) l).func_149884_c/*fertilizeMushroom*/(par1World, par2, par3, par4, par1World.rand);
                 }
 
                 //--par0ItemStack.stackSize;

@@ -58,7 +58,7 @@ public class NaturaKama extends ItemSword
      */
     public float getStrVsBlock (ItemStack par1ItemStack, Block par2Block)
     {
-        return par2Block != Blocks.web && par2Block != Blocks.leaves ? (par2Block == Blocks.wool ? 5.0F : super.getStrVsBlock(par1ItemStack, par2Block))
+        return par2Block != Blocks.web && par2Block != Blocks.leaves ? (par2Block == Blocks.wool ? 5.0F : super.func_150893_a/*getStrVsBlock*/(par1ItemStack, par2Block))
                 : 15.0F;
     }
 
@@ -120,7 +120,7 @@ public class NaturaKama extends ItemSword
                 }
 
                 itemstack.damageItem(1, player);
-                player.addStat(StatList.mineBlockStatArray[id], 1);
+                player.addStat(StatList.mineBlockStatArray[Block.getIdFromBlock(id)], 1);
             }
         }
         return false;

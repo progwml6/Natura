@@ -65,7 +65,7 @@ public class WorkbenchContainer extends Container
             ItemStack itemstack = craftMatrix.getStackInSlot(i);
             if (itemstack != null)
             {
-                entityplayer.dropPlayerItem(itemstack);
+                entityplayer.entityDropItem(itemstack, 0);
             }
         }
     }

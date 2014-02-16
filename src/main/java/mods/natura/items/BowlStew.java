@@ -63,7 +63,8 @@ public class BowlStew extends ItemFood
 
     public ItemStack onEaten (ItemStack stack, World world, EntityPlayer player)
     {
-        player.getFoodStats().addStats(this);
+    	// TODO 1.7 check this
+        player.getFoodStats().addStats(6, 0.6f);
         world.playSoundAtEntity(player, "random.burp", 0.5F, world.rand.nextFloat() * 0.1F + 0.9F);
         this.onFoodEaten(stack, world, player);
 

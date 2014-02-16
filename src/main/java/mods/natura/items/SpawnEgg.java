@@ -48,11 +48,11 @@ public class SpawnEgg extends Item
     @SideOnly(Side.CLIENT)
     public IIcon getIconFromDamageForRenderPass (int par1, int par2)
     {
-        return Items.monsterPlacer.getIconFromDamageForRenderPass(par1, par2);
+        return Items.spawn_egg.getIconFromDamageForRenderPass(par1, par2);
     }
 
     @Override
-    public String getItemDisplayName (ItemStack par1ItemStack)
+    public String getItemStackDisplayName(ItemStack par1ItemStack)
     {
         String s = ("" + StatCollector.translateToLocal(this.getUnlocalizedName() + ".name")).trim();
         String s1 = mobNames[par1ItemStack.getItemDamage()];
