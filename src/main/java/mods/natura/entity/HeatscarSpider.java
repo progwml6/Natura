@@ -14,6 +14,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
+import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeHooks;
 import cpw.mods.fml.relauncher.Side;
@@ -45,7 +46,8 @@ public class HeatscarSpider extends EntitySpider
         this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(4.0); //Base damage
     }
 
-    protected void attackEntity (Entity par1Entity, float par2)
+    @Override
+	protected void attackEntity (Entity par1Entity, float par2)
     {
         if (par2 > 2.0F && par2 < 6.0F && this.rand.nextInt(10) == 0)
         {
@@ -54,8 +56,8 @@ public class HeatscarSpider extends EntitySpider
                 double d0 = par1Entity.posX - this.posX;
                 double d1 = par1Entity.posZ - this.posZ;
                 float f2 = MathHelper.sqrt_double(d0 * d0 + d1 * d1);
-                this.motionX = d0 / (double) f2 * 0.5D + this.motionX * 0.20000000298023224D;
-                this.motionZ = d1 / (double) f2 * 0.5D + this.motionZ * 0.20000000298023224D;
+                this.motionX = d0 / f2 * 0.5D + this.motionX * 0.20000000298023224D;
+                this.motionZ = d1 / f2 * 0.5D + this.motionZ * 0.20000000298023224D;
                 this.motionY = 0.62D;
             }
         }
@@ -66,20 +68,21 @@ public class HeatscarSpider extends EntitySpider
 
     }
 
-    public void jump ()
+    @Override
+	public void jump ()
     {
         this.motionY = 0.62D;
 
         if (this.isPotionActive(Potion.jump))
         {
-            this.motionY += (double) ((float) (this.getActivePotionEffect(Potion.jump).getAmplifier() + 1) * 0.1F);
+            this.motionY += (this.getActivePotionEffect(Potion.jump).getAmplifier() + 1) * 0.1F;
         }
 
         if (this.isSprinting())
         {
             float f = this.rotationYaw * 0.017453292F;
-            this.motionX -= (double) (MathHelper.sin(f) * 0.2F);
-            this.motionZ += (double) (MathHelper.cos(f) * 0.2F);
+            this.motionX -= MathHelper.sin(f) * 0.2F;
+            this.motionZ += MathHelper.cos(f) * 0.2F;
         }
 
         this.isAirBorne = true;
@@ -110,7 +113,7 @@ public class HeatscarSpider extends EntitySpider
             }
 
             this.attackEntityFrom(DamageSource.fall, i);
-            Block j = this.worldObj.getBlock(MathHelper.floor_double(this.posX), MathHelper.floor_double(this.posY - 0.20000000298023224D - (double) this.yOffset), MathHelper.floor_double(this.posZ));
+            Block j = this.worldObj.getBlock(MathHelper.floor_double(this.posX), MathHelper.floor_double(this.posY - 0.20000000298023224D - this.yOffset), MathHelper.floor_double(this.posZ));
 
             if (j != null)
             {
@@ -120,7 +123,8 @@ public class HeatscarSpider extends EntitySpider
         }
     }
 
-    public boolean attackEntityAsMob (Entity par1Entity)
+    @Override
+	public boolean attackEntityAsMob (Entity par1Entity)
     {
         if (super.attackEntityAsMob(par1Entity))
         {
@@ -128,13 +132,13 @@ public class HeatscarSpider extends EntitySpider
             {
                 byte b0 = 0;
 
-                if (this.worldObj.difficultySetting != this.worldObj.difficultySetting.PEACEFUL)
+                if (this.worldObj.difficultySetting != EnumDifficulty.PEACEFUL)
                 {
-                    if (this.worldObj.difficultySetting == this.worldObj.difficultySetting.NORMAL)
+                    if (this.worldObj.difficultySetting == EnumDifficulty.NORMAL)
                     {
                         b0 = 5;
                     }
-                    else if (this.worldObj.difficultySetting == this.worldObj.difficultySetting.HARD)
+                    else if (this.worldObj.difficultySetting == EnumDifficulty.HARD)
                     {
                         b0 = 10;
                     }
@@ -159,7 +163,8 @@ public class HeatscarSpider extends EntitySpider
         return 4;
     }
 
-    protected Item getDropItem ()
+    @Override
+	protected Item getDropItem ()
     {
         return NContent.plantItem;
     }
@@ -169,7 +174,8 @@ public class HeatscarSpider extends EntitySpider
         return this.entityDropItem(new ItemStack(par1, par2, 7), par3);
     }
 
-    protected void dropFewItems (boolean par1, int par2)
+    @Override
+	protected void dropFewItems (boolean par1, int par2)
     {
         Item j = this.getDropItem();
 
@@ -189,9 +195,10 @@ public class HeatscarSpider extends EntitySpider
         }
     }
 
-    public boolean getCanSpawnHere ()
+    @Override
+	public boolean getCanSpawnHere ()
     {
-        return this.worldObj.difficultySetting != this.worldObj.difficultySetting.PEACEFUL && this.worldObj.checkNoEntityCollision(this.boundingBox) && this.worldObj.getCollidingBoundingBoxes(this, this.boundingBox).isEmpty()
+        return this.worldObj.difficultySetting != EnumDifficulty.PEACEFUL && this.worldObj.checkNoEntityCollision(this.boundingBox) && this.worldObj.getCollidingBoundingBoxes(this, this.boundingBox).isEmpty()
                 && !this.worldObj.isAnyLiquid(this.boundingBox);
     }
 
@@ -200,7 +207,8 @@ public class HeatscarSpider extends EntitySpider
         return new BabyHeatscarSpider(this.worldObj);
     }
 
-    public void setDead ()
+    @Override
+	public void setDead ()
     {
 
         if (!this.worldObj.isRemote)
@@ -212,7 +220,7 @@ public class HeatscarSpider extends EntitySpider
                 double f = rand.nextDouble() * 2;
                 double f1 = rand.nextDouble() * 2;
                 BabyHeatscarSpider babyspider = this.createBabyInstance();
-                babyspider.setLocationAndAngles(this.posX + (double) f, this.posY + 0.5D, this.posZ + (double) f1, this.rand.nextFloat() * 360.0F, 0.0F);
+                babyspider.setLocationAndAngles(this.posX + f, this.posY + 0.5D, this.posZ + f1, this.rand.nextFloat() * 360.0F, 0.0F);
                 this.worldObj.spawnEntityInWorld(babyspider);
             }
         }

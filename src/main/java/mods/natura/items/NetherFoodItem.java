@@ -41,7 +41,8 @@ public class NetherFoodItem extends ItemFood
         return par1ItemStack;
     }*/
 
-    protected void onFoodEaten (ItemStack stack, World world, EntityPlayer player)
+    @Override
+	protected void onFoodEaten (ItemStack stack, World world, EntityPlayer player)
     {
         if (!world.isRemote)
         {

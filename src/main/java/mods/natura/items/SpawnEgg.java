@@ -39,20 +39,22 @@ public class SpawnEgg extends Item
     {
     }
 
-    @SideOnly(Side.CLIENT)
+    @Override
+	@SideOnly(Side.CLIENT)
     public boolean requiresMultipleRenderPasses ()
     {
         return true;
     }
 
-    @SideOnly(Side.CLIENT)
+    @Override
+	@SideOnly(Side.CLIENT)
     public IIcon getIconFromDamageForRenderPass (int par1, int par2)
     {
-        return Items.monsterPlacer.getIconFromDamageForRenderPass(par1, par2);
+        return Items.spawn_egg.getIconFromDamageForRenderPass(par1, par2);
     }
 
     @Override
-    public String getItemDisplayName (ItemStack par1ItemStack)
+    public String getItemStackDisplayName(ItemStack par1ItemStack)
     {
         String s = ("" + StatCollector.translateToLocal(this.getUnlocalizedName() + ".name")).trim();
         String s1 = mobNames[par1ItemStack.getItemDamage()];
@@ -72,14 +74,16 @@ public class SpawnEgg extends Item
             list.add(new ItemStack(id, 1, i));
     }
 
-    @SideOnly(Side.CLIENT)
+    @Override
+	@SideOnly(Side.CLIENT)
     public int getColorFromItemStack (ItemStack stack, int pass)
     {
         int damage = stack.getItemDamage();
         return pass == 0 ? primaryColor[damage] : secondaryColor[damage];
     }
 
-    public boolean onItemUse (ItemStack stack, EntityPlayer player, World world, int posX, int posY, int posZ, int par7, float par8, float par9, float par10)
+    @Override
+	public boolean onItemUse (ItemStack stack, EntityPlayer player, World world, int posX, int posY, int posZ, int par7, float par8, float par9, float par10)
     {
         if (!world.isRemote)
         {

@@ -33,7 +33,8 @@ public class NDoorItem extends Item
 
     public static final String unlocalizedNames[] = { "redwood", "eucalyptus", "hopseed", "sakura", "ghost", "blood", "redwoodBark" };
 
-    public String getUnlocalizedName (ItemStack itemstack)
+    @Override
+	public String getUnlocalizedName (ItemStack itemstack)
     {
         return (new StringBuilder()).append(unlocalizedNames[itemstack.getItemDamage()]).append("NDoor").toString();
     }
@@ -85,7 +86,7 @@ public class NDoorItem extends Item
         }
         else
         {
-            int rotate = MathHelper.floor_double((double) (((player.rotationYaw + 180F) * 4F) / 360F) - 0.5D) & 3;
+            int rotate = MathHelper.floor_double(((player.rotationYaw + 180F) * 4F) / 360F - 0.5D) & 3;
             placeDoorBlock(world, x, y, z, rotate, block);
             itemstack.stackSize--;
             return true;
@@ -157,7 +158,8 @@ public class NDoorItem extends Item
         }
     }
 
-    public void getSubItems (Item id, CreativeTabs tab, List list)
+    @Override
+	public void getSubItems (Item id, CreativeTabs tab, List list)
     {
         for (int i = 0; i < unlocalizedNames.length; i++)
             list.add(new ItemStack(id, 1, i));

@@ -37,7 +37,8 @@ public class WillowGen extends WorldGenerator
         return ret;
     }
 
-    public boolean generate (World world, Random par2Random, int x, int y, int z)
+    @Override
+	public boolean generate (World world, Random par2Random, int x, int y, int z)
     {
         if (seekHeight)
         {
@@ -134,7 +135,7 @@ public class WillowGen extends WorldGenerator
 
                                 if ((Math.abs(i2) != k1 || Math.abs(l2) != k1 || par2Random.nextInt(2) != 0 && j1 != 0) && (block == null || block.canBeReplacedByLeaves(world, l1, j2, k2)))
                                 {
-                                    world.setBlock(l1, j2, k2,(Block) NContent.floraLeavesNoColor, 3, 0);
+                                    world.setBlock(l1, j2, k2,NContent.floraLeavesNoColor, 3, 0);
                                 }
                             }
                         }

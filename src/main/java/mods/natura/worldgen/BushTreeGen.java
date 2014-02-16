@@ -43,7 +43,8 @@ public class BushTreeGen extends WorldGenerator
         return height + 1;
     }
 
-    public boolean generate (World world, Random random, int x, int y, int z)
+    @Override
+	public boolean generate (World world, Random random, int x, int y, int z)
     {
         int var6 = random.nextInt(3) + this.baseHeight;
         boolean var7 = true;
@@ -119,8 +120,8 @@ public class BushTreeGen extends WorldGenerator
 
                         for (int var13 = 0; var13 < 5; ++var13)
                         {
-                            int tempx = x + (int) (1.5F + MathHelper.cos(var15) * (float) var13);
-                            int tempz = z + (int) (1.5F + MathHelper.sin(var15) * (float) var13);
+                            int tempx = x + (int) (1.5F + MathHelper.cos(var15) * var13);
+                            int tempz = z + (int) (1.5F + MathHelper.sin(var15) * var13);
                             world.setBlock(tempx, var14 - 3 + var13 / 2, tempz, NContent.tree, this.woodMetadata, 0);
                         }
                     }

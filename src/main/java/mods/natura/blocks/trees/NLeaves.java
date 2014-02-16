@@ -33,11 +33,12 @@ public class NLeaves extends BlockLeaves
         this.setStepSound(Block.soundTypeGrass);
         this.setBlockName("floraLeaves");
         setCreativeTab(CreativeTabs.tabDecorations);
-        setBurnProperties(this, 30, 60);
+        // TODO 1.7 Where the heck did this go? setBurnProperties(this, 30, 60);
         this.setCreativeTab(NaturaTab.tab);
     }
 
-    public int getBlockColor ()
+    @Override
+	public int getBlockColor ()
     {
         double var1 = 0.5D;
         double var3 = 1.0D;
@@ -47,7 +48,8 @@ public class NLeaves extends BlockLeaves
     /**
      * Returns the color this block should be rendered. Used by leaves.
      */
-    public int getRenderColor (int var1)
+    @Override
+	public int getRenderColor (int var1)
     {
         return ColorizerFoliage.getFoliageColorBasic();
     }
@@ -56,7 +58,8 @@ public class NLeaves extends BlockLeaves
      * Returns a integer with hex for 0xrrggbb with this color multiplied against the blocks color. Note only called
      * when first determining what to render.
      */
-    public int colorMultiplier (IBlockAccess var1, int x, int y, int z)
+    @Override
+	public int colorMultiplier (IBlockAccess var1, int x, int y, int z)
     {
         //int meta = var1.getBlockMetadata(x, y, z);
 
@@ -78,7 +81,7 @@ public class NLeaves extends BlockLeaves
         {
             for (int var10 = -1; var10 <= 1; ++var10)
             {
-                int var11 = var1.getBiomeGenForCoords(x + var10, z + var9).getBiomeFoliageColor();
+                int var11 = var1.getBiomeGenForCoords(x + var10, z + var9).getBiomeFoliageColor(x, y, z);
                 var6 += (var11 & 16711680) >> 16;
                 var7 += (var11 & 65280) >> 8;
                 var8 += var11 & 255;
@@ -89,7 +92,8 @@ public class NLeaves extends BlockLeaves
         //}
     }
 
-    public void updateTick (World world, int x, int y, int z, Random random)
+    @Override
+	public void updateTick (World world, int x, int y, int z, Random random)
     {
         if (!world.isRemote)
         {
@@ -137,23 +141,24 @@ public class NLeaves extends BlockLeaves
      * Returns the ID of the items to drop on destruction.
      */
     @Override
-    public Block idDropped (int var1, Random var2, int var3)
+    public Item getItemDropped(int p_149650_1_, Random p_149650_2_, int p_149650_3_)
     {
-        return NContent.floraSapling;
+        return NContent.floraSapling.getItem();
     }
 
     @Override
-    public void dropBlockAsItemWithChance (World par1World, int par2, int par3, int par4, int par5, float par6, int par7)
+    public void dropBlockAsItemWithChance (World world, int x, int y, int z, int metadata, float par6, int fortune)
     {
-        if (!par1World.isRemote)
+        if (!world.isRemote)
         {
-            ArrayList<ItemStack> items = getBlockDropped(par1World, par2, par3, par4, par5, par7);
+            ArrayList<ItemStack> items = getDrops(world, x, y, z, metadata, fortune);
 
             for (ItemStack item : items)
             {
-                if (par1World.rand.nextFloat() <= par6)
+                if (world.rand.nextFloat() <= par6)
                 {
-                    this.dropBlockAsItem_do(par1World, par2, par3, par4, item);
+                	// TODO 1.7 used to be dropBlockAsItem_do is this right?
+                    this.dropBlockAsItem(world, x, y, z, item);
                 }
             }
         }
@@ -202,7 +207,8 @@ public class NLeaves extends BlockLeaves
         return this.field_150121_P ? super.shouldSideBeRendered(var1, var2, var3, var4, var5) : true;
     }
 
-    @SideOnly(Side.CLIENT)
+    @Override
+	@SideOnly(Side.CLIENT)
     /**
      * returns a list of blocks with the same ID, but different meta (eg: wood returns 4 blocks)
      */
@@ -213,7 +219,8 @@ public class NLeaves extends BlockLeaves
         par3List.add(new ItemStack(par1, 1, 2));
     }
 
-    public int getDamageValue (World par1World, int par2, int par3, int par4)
+    @Override
+	public int getDamageValue (World par1World, int par2, int par3, int par4)
     {
         return this.damageDropped(par1World.getBlockMetadata(par2, par3, par4)) % 3;
     }
@@ -233,5 +240,10 @@ public class NLeaves extends BlockLeaves
     {
         // TODO Auto-generated method stub
         return null;
+    }
+    
+    public boolean getRenderLevel()
+    {
+    	return this.field_150121_P;
     }
 }

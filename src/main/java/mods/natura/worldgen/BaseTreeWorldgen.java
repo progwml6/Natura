@@ -67,7 +67,7 @@ public class BaseTreeWorldgen implements IWorldGenerator
         if (biomeName == "Forest" || biomeName == "AutumnWoods" || biomeName == "BirchForest" || biomeName == "PineForest" || biomeName == "Rainforest" || biomeName == "TemperateRainforest"
                 || biomeName == "Woodlands")
         {
-            if (PHNatura.generateSakura && random.nextInt((int) (PHNatura.sakuraSpawnRarity * 5)) == 0)
+            if (PHNatura.generateSakura && random.nextInt(PHNatura.sakuraSpawnRarity * 5) == 0)
             {
                 for (int iter = 0; iter < 3; iter++)
                 {
@@ -87,7 +87,7 @@ public class BaseTreeWorldgen implements IWorldGenerator
         }
         if (biomeName == "Plains" || biomeName == "Meadow")
         {
-            if (!retrogen && PHNatura.generateRedwood && random.nextInt((int) PHNatura.redwoodSpawnRarity) == 0)
+            if (!retrogen && PHNatura.generateRedwood && random.nextInt(PHNatura.redwoodSpawnRarity) == 0)
             {
                 xSpawn = xPos + random.nextInt(16);
                 zSpawn = zPos + random.nextInt(16);
@@ -120,7 +120,7 @@ public class BaseTreeWorldgen implements IWorldGenerator
         }
         if (biomeName == "River")
         {
-            if (PHNatura.generateSakura && random.nextInt((int) (PHNatura.sakuraSpawnRarity)) == 0)
+            if (PHNatura.generateSakura && random.nextInt((PHNatura.sakuraSpawnRarity)) == 0)
             {
                 for (int iter = 0; iter < 3; iter++)
                 {
@@ -130,7 +130,7 @@ public class BaseTreeWorldgen implements IWorldGenerator
                     pinkSakura.generate(world, random, xSpawn, ySpawn, zSpawn);
                 }
             }
-            if (PHNatura.generateWillow && random.nextInt((int) PHNatura.willowRarity) == 0)
+            if (PHNatura.generateWillow && random.nextInt(PHNatura.willowRarity) == 0)
             {
                 xSpawn = xPos + random.nextInt(16);
                 zSpawn = zPos + random.nextInt(16);
@@ -141,7 +141,7 @@ public class BaseTreeWorldgen implements IWorldGenerator
 
         if (biomeName == "Desert" || biomeName == "DesertHills")
         {
-            if (PHNatura.generateSaguaro && random.nextInt((int) (PHNatura.saguaroSpawnRarity)) == 0)
+            if (PHNatura.generateSaguaro && random.nextInt((PHNatura.saguaroSpawnRarity)) == 0)
             {
                 xSpawn = xPos + random.nextInt(16);
                 ySpawn = random.nextInt(PHNatura.seaLevel) + 16;
@@ -161,14 +161,14 @@ public class BaseTreeWorldgen implements IWorldGenerator
         }
         if (biomeName == "Forest" || biomeName == "Woodlands" || biomeName == "AutumnWoods")
         {
-            if (PHNatura.generateMaple && random.nextInt((int) PHNatura.mapleRarity) == 0)
+            if (PHNatura.generateMaple && random.nextInt(PHNatura.mapleRarity) == 0)
             {
                 xSpawn = xPos + random.nextInt(16);
                 zSpawn = zPos + random.nextInt(16);
                 maple.generate(world, random, xSpawn, PHNatura.seaLevel + 48, zSpawn);
             }
 
-            if (PHNatura.generateSilverbell && random.nextInt((int) PHNatura.silverbellRarity) == 0)
+            if (PHNatura.generateSilverbell && random.nextInt(PHNatura.silverbellRarity) == 0)
             {
                 xSpawn = xPos + random.nextInt(16);
                 zSpawn = zPos + random.nextInt(16);
@@ -177,7 +177,7 @@ public class BaseTreeWorldgen implements IWorldGenerator
         }
         if (biomeName == "Forest" || biomeName == "Rainforest" || biomeName == "TemperateRainforest")
         {
-            if (PHNatura.generateTiger && random.nextInt((int) PHNatura.tigerRarity) == 0)
+            if (PHNatura.generateTiger && random.nextInt(PHNatura.tigerRarity) == 0)
             {
                 xSpawn = xPos + random.nextInt(16);
                 zSpawn = zPos + random.nextInt(16);
@@ -186,7 +186,7 @@ public class BaseTreeWorldgen implements IWorldGenerator
         }
         if (biomeName == "Swampland" || biomeName == "ForestHills")
         {
-            if (PHNatura.generateWillow && random.nextInt((int) PHNatura.willowRarity) == 0)
+            if (PHNatura.generateWillow && random.nextInt(PHNatura.willowRarity) == 0)
             {
                 for (int i = 0; i < 3; i++)
                 {

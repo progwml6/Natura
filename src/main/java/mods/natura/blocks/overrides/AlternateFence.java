@@ -57,17 +57,20 @@ public class AlternateFence extends BlockFence
             list.add(new ItemStack(par1, 1, i));
     }
 
-    public boolean canPlaceTorchOnTop (World world, int x, int y, int z)
+    @Override
+	public boolean canPlaceTorchOnTop (World world, int x, int y, int z)
     {
         return true;
     }
 
-    public int getRenderType ()
+    @Override
+	public int getRenderType ()
     {
         return FenceRender.model;
     }
 
-    public boolean canConnectFenceTo (IBlockAccess par1IBlockAccess, int par2, int par3, int par4)
+    @Override
+	public boolean canConnectFenceTo (IBlockAccess par1IBlockAccess, int par2, int par3, int par4)
     {
         Block l = par1IBlockAccess.getBlock(par2, par3, par4);
 

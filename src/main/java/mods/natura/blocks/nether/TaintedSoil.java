@@ -19,13 +19,14 @@ public class TaintedSoil extends NBlock
         this.setResistance(25f);
     }
 
-    public boolean isFertile (World world, int x, int y, int z)
+    @Override
+	public boolean isFertile (World world, int x, int y, int z)
     {
         return world.getBlockMetadata(x, y, z) == 2;
     }
 
     @Override
-    public boolean isGenMineableReplaceable (World world, int x, int y, int z, Block target)
+    public boolean isReplaceableOreGen(World world, int x, int y, int z, Block target)
     {
         return this == target || target == Blocks.netherrack;
     }

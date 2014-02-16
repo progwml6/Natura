@@ -2,10 +2,6 @@ package mods.natura;
 
 import java.util.Random;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
-import cpw.mods.fml.common.FMLCommonHandler;
 import mods.natura.common.NContent;
 import mods.natura.common.NProxyCommon;
 import mods.natura.common.NaturaTab;
@@ -28,9 +24,6 @@ import net.minecraft.entity.passive.EntityCow;
 import net.minecraft.entity.passive.EntitySheep;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.world.ChunkCoordIntPair;
-import net.minecraft.world.World;
-import net.minecraft.world.chunk.Chunk;
 import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
@@ -38,6 +31,10 @@ import net.minecraftforge.event.entity.player.BonemealEvent;
 import net.minecraftforge.event.entity.player.EntityInteractEvent;
 import net.minecraftforge.event.world.ChunkDataEvent;
 import net.minecraftforge.oredict.OreDictionary;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
@@ -48,8 +45,6 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
-import cpw.mods.fml.common.registry.TickRegistry;
-import cpw.mods.fml.relauncher.Side;
 
 @Mod(modid = "Natura", name = "Natura", version = "2.1.14")
 public class Natura
@@ -87,13 +82,13 @@ public class Natura
     @EventHandler
     public void init (FMLInitializationEvent evt)
     {
-        GameRegistry.registerWorldGenerator(crops = new BaseCropWorldgen());
-        GameRegistry.registerWorldGenerator(clouds = new BaseCloudWorldgen());
-        GameRegistry.registerWorldGenerator(trees = new BaseTreeWorldgen());
-        NaturaTab.init(content.wheatBag);
+        GameRegistry.registerWorldGenerator(crops = new BaseCropWorldgen(), 0); // TODO 1.7 Find correct weight (param 2)
+        GameRegistry.registerWorldGenerator(clouds = new BaseCloudWorldgen(), 0); // TODO 1.7 Find correct weight (param 2)
+        GameRegistry.registerWorldGenerator(trees = new BaseTreeWorldgen(), 0); // TODO 1.7 Find correct weight (param 2)
+        NaturaTab.init(NContent.wheatBag);
         proxy.registerRenderer();
         proxy.addNames();
-        NetworkRegistry.instance().registerGuiHandler(instance, new NGuiHandler());
+        NetworkRegistry.INSTANCE.registerGuiHandler(instance, new NGuiHandler());
 
         GameRegistry.registerFuelHandler(content);
 
@@ -105,7 +100,7 @@ public class Natura
         MinecraftForge.EVENT_BUS.register(WorldHandler.instance);
         
         if(retrogen){
-        TickRegistry.registerTickHandler(new TickHandlerWorld(), Side.SERVER);
+        MinecraftForge.EVENT_BUS.register(new TickHandlerWorld());
         }
 
         OreDictionary.registerOre("cropVine", new ItemStack(NContent.thornVines));
@@ -133,29 +128,29 @@ public class Natura
             	if (content.crops.boneFertilize(event.world, event.X, event.y, event.z, event.world.rand))
             		event.setResult(event.getResult().ALLOW);
             }*/
-            if (event.block == content.floraSapling)
+            if (event.block == NContent.floraSapling)
             {
-                if (content.floraSapling.boneFertilize(event.world, event.x, event.y, event.z, event.world.rand))
+                if (NContent.floraSapling.boneFertilize(event.world, event.x, event.y, event.z, event.world.rand))
                     event.setResult(event.getResult().ALLOW);
             }
-            if (event.block == content.rareSapling)
+            if (event.block == NContent.rareSapling)
             {
-                if (content.rareSapling.boneFertilize(event.world, event.x, event.y, event.z, event.world.rand))
+                if (NContent.rareSapling.boneFertilize(event.world, event.x, event.y, event.z, event.world.rand))
                     event.setResult(event.getResult().ALLOW);
             }
-            if (event.block == content.glowshroom)
+            if (event.block == NContent.glowshroom)
             {
-                if (content.glowshroom.fertilizeMushroom(event.world, event.x, event.y, event.z, event.world.rand))
+                if (NContent.glowshroom.fertilizeMushroom(event.world, event.x, event.y, event.z, event.world.rand))
                     event.setResult(event.getResult().ALLOW);
             }
-            if (event.block == content.berryBush)
+            if (event.block == NContent.berryBush)
             {
-                if (content.berryBush.boneFertilize(event.world, event.x, event.y, event.z, event.world.rand))
+                if (NContent.berryBush.boneFertilize(event.world, event.x, event.y, event.z, event.world.rand))
                     event.setResult(event.getResult().ALLOW);
             }
-            if (event.block == content.netherBerryBush)
+            if (event.block == NContent.netherBerryBush)
             {
-                if (content.netherBerryBush.boneFertilize(event.world, event.x, event.y, event.z, event.world.rand))
+                if (NContent.netherBerryBush.boneFertilize(event.world, event.x, event.y, event.z, event.world.rand))
                     event.setResult(event.getResult().ALLOW);
             }
         }
@@ -169,7 +164,7 @@ public class Natura
         {
             ItemStack equipped = event.entityPlayer.getCurrentEquippedItem();
             EntityAnimal creature = (EntityAnimal) event.target;
-            if (equipped != null && equipped.getItem() == NContent.plantItem && equipped.getItemDamage() == 0 && creature.getGrowingAge() == 0 && creature.inLove <= 0)
+            if (equipped != null && equipped.getItem() == NContent.plantItem && equipped.getItemDamage() == 0 && creature.getGrowingAge() == 0 && creature.isInLove())
             {
                 EntityPlayer player = event.entityPlayer;
                 if (!player.capabilities.isCreativeMode)
@@ -182,7 +177,7 @@ public class Natura
                     }
                 }
 
-                creature.inLove = 600;
+                creature.func_146082_f(event.entityPlayer);
                 creature.setTarget(null);
 
                 for (int i = 0; i < 7; ++i)
@@ -190,8 +185,8 @@ public class Natura
                     double d0 = random.nextGaussian() * 0.02D;
                     double d1 = random.nextGaussian() * 0.02D;
                     double d2 = random.nextGaussian() * 0.02D;
-                    creature.worldObj.spawnParticle("heart", creature.posX + (double) (random.nextFloat() * creature.width * 2.0F) - (double) creature.width,
-                            creature.posY + 0.5D + (double) (random.nextFloat() * creature.height), creature.posZ + (double) (random.nextFloat() * creature.width * 2.0F) - (double) creature.width,
+                    creature.worldObj.spawnParticle("heart", creature.posX + random.nextFloat() * creature.width * 2.0F - creature.width,
+                            creature.posY + 0.5D + random.nextFloat() * creature.height, creature.posZ + random.nextFloat() * creature.width * 2.0F - creature.width,
                             d0, d1, d2);
                 }
             }

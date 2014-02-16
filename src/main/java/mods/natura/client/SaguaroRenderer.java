@@ -127,45 +127,45 @@ public class SaguaroRenderer implements ISimpleBlockRenderingHandler
         IIcon icon = block.icons[3];
         int offsetX = 4 + sizer * 2;
         int offsetY = 5 + sizer * 2;
-        double d0 = 16.0D - (double) offsetX;
+        double d0 = 16.0D - offsetX;
         double d1 = 16.0D;
         double d2 = 4.0D;
-        double d3 = 4.0D + (double) offsetY;
-        double d4 = (double) icon.getInterpolatedU(d0);
-        double d5 = (double) icon.getInterpolatedU(d1);
-        double d6 = (double) icon.getInterpolatedV(d2);
-        double d7 = (double) icon.getInterpolatedV(d3);
+        double d3 = 4.0D + offsetY;
+        double d4 = icon.getInterpolatedU(d0);
+        double d5 = icon.getInterpolatedU(d1);
+        double d6 = icon.getInterpolatedV(d2);
+        double d7 = icon.getInterpolatedV(d3);
         double d8 = 0.0D;
         double d9 = 0.0D;
 
         switch (direction)
         {
         case 0:
-            d8 = 8.0D - (double) (offsetX / 2);
-            d9 = 18.0D - (double) offsetX;
+            d8 = 8.0D - offsetX / 2;
+            d9 = 18.0D - offsetX;
             break;
         case 1:
             d8 = -2.0D;
-            d9 = 8.0D - (double) (offsetX / 2);
+            d9 = 8.0D - offsetX / 2;
             break;
         case 2:
-            d8 = 8.0D - (double) (offsetX / 2);
+            d8 = 8.0D - offsetX / 2;
             d9 = -2.0D;
             break;
         case 3:
-            d8 = 18.0D - (double) offsetX;
-            d9 = 8.0D - (double) (offsetX / 2);
+            d8 = 18.0D - offsetX;
+            d9 = 8.0D - offsetX / 2;
             /*case 4:
                 d8 = 11.0D - (double)offsetX;
                 d9 = 8.0D - (double)(offsetX / 2);*/
         }
 
-        double d10 = (double) x + d8 / 16.0D;
-        double d11 = (double) x + (d8 + (double) offsetX) / 16.0D;
-        double d12 = (double) y + (12.0D - (double) offsetY) / 16.0D;
-        double d13 = (double) y + 0.75D;
-        double d14 = (double) z + d9 / 16.0D;
-        double d15 = (double) z + (d9 + (double) offsetX) / 16.0D;
+        double d10 = x + d8 / 16.0D;
+        double d11 = x + (d8 + offsetX) / 16.0D;
+        double d12 = y + (12.0D - offsetY) / 16.0D;
+        double d13 = y + 0.75D;
+        double d14 = z + d9 / 16.0D;
+        double d15 = z + (d9 + offsetX) / 16.0D;
         tessellator.addVertexWithUV(d10, d12, d14, d4, d7);
         tessellator.addVertexWithUV(d10, d12, d15, d5, d7);
         tessellator.addVertexWithUV(d10, d13, d15, d5, d6);
@@ -189,10 +189,10 @@ public class SaguaroRenderer implements ISimpleBlockRenderingHandler
             i2 = offsetX - 1;
         }
 
-        d4 = (double) icon.getMinU();
-        d5 = (double) icon.getInterpolatedU((double) i2);
-        d6 = (double) icon.getMinV();
-        d7 = (double) icon.getInterpolatedV((double) i2);
+        d4 = icon.getMinU();
+        d5 = icon.getInterpolatedU(i2);
+        d6 = icon.getMinV();
+        d7 = icon.getInterpolatedV(i2);
         tessellator.addVertexWithUV(d10, d13, d15, d4, d7);
         tessellator.addVertexWithUV(d11, d13, d15, d5, d7);
         tessellator.addVertexWithUV(d11, d13, d14, d5, d6);
@@ -201,10 +201,10 @@ public class SaguaroRenderer implements ISimpleBlockRenderingHandler
         tessellator.addVertexWithUV(d11, d12, d14, d5, d6);
         tessellator.addVertexWithUV(d11, d12, d15, d5, d7);
         tessellator.addVertexWithUV(d10, d12, d15, d4, d7);
-        d4 = (double) icon.getInterpolatedU(12.0D);
-        d5 = (double) icon.getMaxU();
-        d6 = (double) icon.getMinV();
-        d7 = (double) icon.getInterpolatedV(4.0D);
+        d4 = icon.getInterpolatedU(12.0D);
+        d5 = icon.getMaxU();
+        d6 = icon.getMinV();
+        d7 = icon.getInterpolatedV(4.0D);
         d8 = 8.0D;
         d9 = 0.0D;
         double d16;
@@ -234,12 +234,12 @@ public class SaguaroRenderer implements ISimpleBlockRenderingHandler
             d5 = d16;
         }
 
-        d10 = (double) x + d8 / 16.0D;
-        d11 = (double) x + (d8 + 4.0D) / 16.0D;
-        d12 = (double) y + 0.75D;
-        d13 = (double) y + 1.0D;
-        d14 = (double) z + d9 / 16.0D;
-        d15 = (double) z + (d9 + 4.0D) / 16.0D;
+        d10 = x + d8 / 16.0D;
+        d11 = x + (d8 + 4.0D) / 16.0D;
+        d12 = y + 0.75D;
+        d13 = y + 1.0D;
+        d14 = z + d9 / 16.0D;
+        d15 = z + (d9 + 4.0D) / 16.0D;
 
         /*if (i1 != 2 && i1 != 0)
         {

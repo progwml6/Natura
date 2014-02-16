@@ -16,7 +16,8 @@ public class GlowshroomGenPurple extends WorldGenerator
         super(flag);
     }
 
-    public boolean generate (World world, Random random, int x, int y, int z)
+    @Override
+	public boolean generate (World world, Random random, int x, int y, int z)
     {
         int type = 1;
 
@@ -28,7 +29,8 @@ public class GlowshroomGenPurple extends WorldGenerator
             int blockID;
             int posY;
             int range;
-            int posX;
+            // TODO 1.7 correct init value?
+            int posX = 0;
 
             for (blockID = y; blockID <= y + 1 + height; ++blockID)
             {

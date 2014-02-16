@@ -19,7 +19,7 @@ public class CropRender implements ISimpleBlockRenderingHandler
     @Override
     public boolean renderWorldBlock (IBlockAccess world, int x, int y, int z, Block block, int modelId, RenderBlocks renderer)
     {
-        if (modelId == this.model)
+        if (modelId == CropRender.model)
         {
             int meta = world.getBlockMetadata(x, y, z);
             if (meta < 4)

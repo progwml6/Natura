@@ -9,7 +9,6 @@ import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ChunkCoordinates;
-import net.minecraft.util.IChatComponent;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -33,7 +32,7 @@ public class RespawnObelisk extends Block
         if (!world.isRemote)
             player.addChatMessage(player.func_145748_c_().appendText("Spawn point set!"));
         world.setBlockMetadataWithNotify(x, y, z, 1, 3);
-        world.playSound((double) x + 0.5D, (double) y + 0.5D, (double) z + 0.5D, "portal.portal", 1.0F, Natura.random.nextFloat() * 0.4F + 0.8F, false);
+        world.playSound(x + 0.5D, y + 0.5D, z + 0.5D, "portal.portal", 1.0F, Natura.random.nextFloat() * 0.4F + 0.8F, false);
 
         return true;
     }

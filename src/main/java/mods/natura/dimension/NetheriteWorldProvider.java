@@ -12,7 +12,8 @@ public class NetheriteWorldProvider extends WorldProviderHell
     /**
      * creates a new world chunk manager for WorldProvider
      */
-    public void registerWorldChunkManager ()
+    @Override
+	public void registerWorldChunkManager ()
     {
         this.worldChunkMgr = new NetheriteChunkManager(BiomeGenBase.hell, 1.0F, 0.0F);
         this.isHellWorld = true;

@@ -1,6 +1,5 @@
 package mods.natura.blocks.tech;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockRailPowered;
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.world.World;
@@ -30,7 +29,8 @@ public class BlazeRailPowered extends BlockRailPowered
      * @param x The rail Y coordinate.
      * @param z The rail Z coordinate.
      */
-    public void onMinecartPass (World world, EntityMinecart cart, int x, int y, int z)
+    @Override
+	public void onMinecartPass (World world, EntityMinecart cart, int x, int y, int z)
     {
         int meta = world.getBlockMetadata(x, y, z);
         if (meta >= 8)

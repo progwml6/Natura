@@ -9,6 +9,7 @@ import net.minecraft.block.BlockDoor;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.MovingObjectPosition;
@@ -38,15 +39,17 @@ public class NDoor extends BlockDoor
 
     public int idDropped (int i, Random random, int j)
     {
-        return (i & 8) != 0 ? 0 : NContent.doorItem;
+        return (i & 8) != 0 ? 0 : Item.getIdFromItem(NContent.doorItem);
     }
 
-    public int damageDropped (int par1)
+    @Override
+	public int damageDropped (int par1)
     {
         return meta;
     }
 
-    public void registerIcons (IIconRegister iconRegister)
+    @Override
+    public void registerBlockIcons (IIconRegister iconRegister)
     {
         this.icons = new IIcon[2];
 
@@ -58,11 +61,12 @@ public class NDoor extends BlockDoor
     /**
      * Retrieves the block texture to use based on the display side. Args: iBlockAccess, x, y, z, side
      */
-    public IIcon getBlockTexture (IBlockAccess par1IBlockAccess, int par2, int par3, int par4, int par5)
+    @Override
+    public IIcon getIcon (IBlockAccess par1IBlockAccess, int par2, int par3, int par4, int par5)
     {
         if (par5 != 1 && par5 != 0)
         {
-            int i1 = this.getFullMetadata(par1IBlockAccess, par2, par3, par4);
+            int i1 = this.func_150012_g(par1IBlockAccess, par2, par3, par4);
             int j1 = i1 & 3;
             boolean flag2 = (i1 & 8) != 0;
 
@@ -81,7 +85,8 @@ public class NDoor extends BlockDoor
         return this.icons[0];
     }
 
-    public ItemStack getPickBlock (MovingObjectPosition target, World world, int x, int y, int z)
+    @Override
+	public ItemStack getPickBlock (MovingObjectPosition target, World world, int x, int y, int z)
     {
         return new ItemStack(NContent.doorItem, 1, meta);
     }
@@ -90,7 +95,8 @@ public class NDoor extends BlockDoor
     {
     }
 
-    public int getRenderType ()
+    @Override
+	public int getRenderType ()
     {
         return 7;
     }

@@ -1,5 +1,6 @@
 package mods.natura.dimension;
 
+import net.minecraft.block.Block;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.storage.ExtendedBlockStorage;
@@ -30,7 +31,7 @@ public class NetheriteChunk extends Chunk
                             storage[k1] = new ExtendedBlockStorage(k1 << 4, !world.provider.hasNoSky);
                         }
 
-                        storage[k1].setExtBlockID(x, y & 15, z, id);
+                        storage[k1].func_150818_a(x, y & 15, z, Block.getBlockById(id));
                     }
                 }
             }

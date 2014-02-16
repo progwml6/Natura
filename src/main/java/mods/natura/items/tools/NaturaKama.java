@@ -58,7 +58,7 @@ public class NaturaKama extends ItemSword
      */
     public float getStrVsBlock (ItemStack par1ItemStack, Block par2Block)
     {
-        return par2Block != Blocks.web && par2Block != Blocks.leaves ? (par2Block == Blocks.wool ? 5.0F : super.getStrVsBlock(par1ItemStack, par2Block))
+        return par2Block != Blocks.web && par2Block != Blocks.leaves ? (par2Block == Blocks.wool ? 5.0F : super.func_150893_a/*getStrVsBlock*/(par1ItemStack, par2Block))
                 : 15.0F;
     }
 
@@ -111,16 +111,16 @@ public class NaturaKama extends ItemSword
                 for (ItemStack stack : drops)
                 {
                     float f = 0.7F;
-                    double d = (double) (rand.nextFloat() * f) + (double) (1.0F - f) * 0.5D;
-                    double d1 = (double) (rand.nextFloat() * f) + (double) (1.0F - f) * 0.5D;
-                    double d2 = (double) (rand.nextFloat() * f) + (double) (1.0F - f) * 0.5D;
-                    EntityItem entityitem = new EntityItem(player.worldObj, (double) x + d, (double) y + d1, (double) z + d2, stack);
+                    double d = rand.nextFloat() * f + (1.0F - f) * 0.5D;
+                    double d1 = rand.nextFloat() * f + (1.0F - f) * 0.5D;
+                    double d2 = rand.nextFloat() * f + (1.0F - f) * 0.5D;
+                    EntityItem entityitem = new EntityItem(player.worldObj, x + d, y + d1, z + d2, stack);
                     entityitem.delayBeforeCanPickup = 10;
                     player.worldObj.spawnEntityInWorld(entityitem);
                 }
 
                 itemstack.damageItem(1, player);
-                player.addStat(StatList.mineBlockStatArray[id], 1);
+                player.addStat(StatList.mineBlockStatArray[Block.getIdFromBlock(id)], 1);
             }
         }
         return false;

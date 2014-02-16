@@ -21,7 +21,8 @@ public class NetherBerryBushGen extends WorldGenerator
         metadata = meta;
     }
 
-    public boolean generate (World world, Random random, int x, int y, int z)
+    @Override
+	public boolean generate (World world, Random random, int x, int y, int z)
     {
         int height = findGround(world, x, y, z);
         if (height != -1)

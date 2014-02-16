@@ -26,7 +26,8 @@ public class NaturaTab extends TabTools
         }
     }
 
-    public Item getTabIconItem ()
+    @Override
+	public Item getTabIconItem ()
     {
         return icon;
     }

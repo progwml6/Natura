@@ -33,13 +33,15 @@ public class WorkbenchGui extends GuiContainer
 
     private static final ResourceLocation field_110422_t = new ResourceLocation("textures/gui/container/crafting_table.png");
 
-    protected void drawGuiContainerForegroundLayer (int par1, int par2)
+    @Override
+	protected void drawGuiContainerForegroundLayer (int par1, int par2)
     {
         this.fontRendererObj.drawString(I18n.format("container.crafting"), 28, 6, 4210752);
         this.fontRendererObj.drawString(I18n.format("container.inventory"), 8, this.ySize - 96 + 2, 4210752);
     }
 
-    protected void drawGuiContainerBackgroundLayer (float par1, int par2, int par3)
+    @Override
+	protected void drawGuiContainerBackgroundLayer (float par1, int par2, int par3)
     {
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
         this.mc.getTextureManager().bindTexture(field_110422_t);

@@ -42,7 +42,7 @@ public class NetherBerryBushItem extends ItemBlock
         {
             Block block = world.getBlock(x, y, z);
 
-            if (block != null && (block.canSustainPlant(world, x, y, z, ForgeDirection.UP, (IPlantable) NContent.netherBerryBush) || block == Blocks.netherrack) && world.isAirBlock(x, y + 1, z))
+            if (block != null && (block.canSustainPlant(world, x, y, z, ForgeDirection.UP, NContent.netherBerryBush) || block == Blocks.netherrack) && world.isAirBlock(x, y + 1, z))
             {
                 world.setBlock(x, y + 1, z, NContent.netherBerryBush, stack.getItemDamage() % 4, 3);
                 if (!player.capabilities.isCreativeMode)

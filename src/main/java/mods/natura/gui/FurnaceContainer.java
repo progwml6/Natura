@@ -42,7 +42,8 @@ public class FurnaceContainer extends Container
         }
     }
 
-    public void addCraftingToCrafters (ICrafting par1ICrafting)
+    @Override
+	public void addCraftingToCrafters (ICrafting par1ICrafting)
     {
         super.addCraftingToCrafters(par1ICrafting);
         par1ICrafting.sendProgressBarUpdate(this, 0, this.furnace.furnaceCookTime);
@@ -53,7 +54,8 @@ public class FurnaceContainer extends Container
     /**
      * Looks for changes made in the container, sends them to every listener.
      */
-    public void detectAndSendChanges ()
+    @Override
+	public void detectAndSendChanges ()
     {
         super.detectAndSendChanges();
 
@@ -82,7 +84,8 @@ public class FurnaceContainer extends Container
         this.lastItemBurnTime = this.furnace.currentItemBurnTime;
     }
 
-    @SideOnly(Side.CLIENT)
+    @Override
+	@SideOnly(Side.CLIENT)
     public void updateProgressBar (int par1, int par2)
     {
         if (par1 == 0)
@@ -101,7 +104,8 @@ public class FurnaceContainer extends Container
         }
     }
 
-    public boolean canInteractWith (EntityPlayer par1EntityPlayer)
+    @Override
+	public boolean canInteractWith (EntityPlayer par1EntityPlayer)
     {
         return this.furnace.isUseableByPlayer(par1EntityPlayer);
     }
@@ -109,7 +113,8 @@ public class FurnaceContainer extends Container
     /**
      * Called when a player shift-clicks on a slot. You must override this or you will crash when someone does that.
      */
-    public ItemStack transferStackInSlot (EntityPlayer par1EntityPlayer, int par2)
+    @Override
+	public ItemStack transferStackInSlot (EntityPlayer par1EntityPlayer, int par2)
     {
         ItemStack itemstack = null;
         Slot slot = (Slot) this.inventorySlots.get(par2);

@@ -5,7 +5,6 @@ import java.util.Random;
 
 import mods.natura.common.NContent;
 import mods.natura.common.NaturaTab;
-import mods.natura.common.PHNatura;
 import mods.natura.worldgen.BloodTreeLargeGen;
 import mods.natura.worldgen.BushTreeGen;
 import mods.natura.worldgen.DarkwoodGen;
@@ -22,6 +21,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.common.EnumPlantType;
@@ -56,7 +56,8 @@ public class NSaplingBlock extends BlockSapling
         }
     }
 
-    public boolean canPlaceBlockAt (World world, int x, int y, int z)
+    @Override
+	public boolean canPlaceBlockAt (World world, int x, int y, int z)
     {
         Block block = world.getBlock(x, y, z);;
         if (block == null || block.isReplaceable(world, x, y, z))
@@ -105,7 +106,7 @@ public class NSaplingBlock extends BlockSapling
     }
 
     @Override
-    public EnumPlantType getPlantType (World world, int x, int y, int z)
+    public EnumPlantType getPlantType(IBlockAccess world, int x, int y, int z)
     {
         int meta = world.getBlockMetadata(x, y, z) % 8;
         if (meta <= 3)
@@ -114,7 +115,8 @@ public class NSaplingBlock extends BlockSapling
             return EnumPlantType.Nether;
     }
 
-    public void updateTick (World world, int x, int y, int z, Random random)
+    @Override
+	public void updateTick (World world, int x, int y, int z, Random random)
     {
         if (world.isRemote)
         {
@@ -191,7 +193,7 @@ public class NSaplingBlock extends BlockSapling
     }
 
     @Override
-    public void markOrGrowMarked (World world, int x, int y, int z, Random random)
+    public void func_149879_c (World world, int x, int y, int z, Random random)
     {
         boneFertilize(world, x, y, z, random);
     }
@@ -249,7 +251,8 @@ public class NSaplingBlock extends BlockSapling
             world.setBlock(x, y, z, this, md + 8, 3);
     }
 
-    public int damageDropped (int i)
+    @Override
+	public int damageDropped (int i)
     {
         return i % 8;
     }
@@ -260,5 +263,10 @@ public class NSaplingBlock extends BlockSapling
     {
         for (int i = 0; i < 8; i++)
             par3List.add(new ItemStack(par1, 1, i));
+    }
+    
+    public Item getItem()
+    {
+    	return this.getItem(null, 0, 0, 0);
     }
 }

@@ -29,7 +29,8 @@ public class BerryItem extends ItemFood
         this.setAlwaysEdible();
     }
 
-    public ItemStack onItemRightClick (ItemStack par1ItemStack, World par2World, EntityPlayer player)
+    @Override
+	public ItemStack onItemRightClick (ItemStack par1ItemStack, World par2World, EntityPlayer player)
     {
         if (player.canEat(true) && player.getFoodStats().getSaturationLevel() < 18F)
         {

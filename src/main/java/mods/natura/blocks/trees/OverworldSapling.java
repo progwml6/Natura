@@ -15,6 +15,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.common.EnumPlantType;
@@ -49,7 +50,8 @@ public class OverworldSapling extends BlockSapling
         }
     }
 
-    public boolean canPlaceBlockAt (World world, int x, int y, int z)
+    @Override
+	public boolean canPlaceBlockAt (World world, int x, int y, int z)
     {
         Block blockID = world.getBlock(x, y, z);
         if (blockID == Blocks.air || blockID.getMaterial().isReplaceable())
@@ -90,7 +92,7 @@ public class OverworldSapling extends BlockSapling
     }
 
     @Override
-    public EnumPlantType getPlantType (World world, int x, int y, int z)
+    public EnumPlantType getPlantType (IBlockAccess world, int x, int y, int z)
     {
         /*int meta = world.getBlockMetadata(x, y, z) % 8;
         if (meta <= 3)*/
@@ -99,7 +101,8 @@ public class OverworldSapling extends BlockSapling
         	return EnumPlantType.Nether;*/
     }
 
-    public void updateTick (World world, int x, int y, int z, Random random)
+    @Override
+	public void updateTick (World world, int x, int y, int z, Random random)
     {
         if (world.isRemote)
         {
@@ -125,7 +128,7 @@ public class OverworldSapling extends BlockSapling
     }
 
     @Override
-    public void markOrGrowMarked (World world, int x, int y, int z, Random random)
+    public void func_149879_c(World world, int x, int y, int z, Random random)
     {
         boneFertilize(world, x, y, z, random);
     }
@@ -171,7 +174,8 @@ public class OverworldSapling extends BlockSapling
             world.setBlock(x, y, z, this, md + 8, 3);
     }
 
-    public int damageDropped (int i)
+    @Override
+	public int damageDropped (int i)
     {
         return i % 8;
     }

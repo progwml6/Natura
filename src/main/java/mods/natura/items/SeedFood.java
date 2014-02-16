@@ -7,6 +7,7 @@ import mods.natura.common.NaturaTab;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemSeedFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
@@ -22,7 +23,8 @@ public class SeedFood extends ItemSeedFood
 
     public SeedFood(int hunger, float saturation, Block cropID)
     {
-        super(hunger, saturation, cropID, 0);
+    	// TODO 1.7 check last param
+        super(hunger, saturation, cropID, Blocks.farmland);
         crop = cropID;
         this.setCreativeTab(NaturaTab.tab);
     }

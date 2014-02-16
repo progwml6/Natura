@@ -12,9 +12,9 @@ import net.minecraft.util.StatCollector;
 
 public class PlantItem extends NCraftingItem
 {
-    public PlantItem(int id)
+    public PlantItem()
     {
-        super(id, new String[] { "barley.plant", "barley.flour", "wheat.flour", "cotton.plant", "powder.sulfur", "fletching.ghostwood", "leather.imp", "string.flame", "dye.blue" }, new String[] {
+        super(new String[] { "barley.plant", "barley.flour", "wheat.flour", "cotton.plant", "powder.sulfur", "fletching.ghostwood", "leather.imp", "string.flame", "dye.blue" }, new String[] {
                 "barley_plant", "barley_flour", "wheat_flour", "cotton_plant", "sulfur", "ghostwood_fletching", "leather_imp", "flamestring", "dye_blue" });
         this.setCreativeTab(NaturaTab.tab);
     }

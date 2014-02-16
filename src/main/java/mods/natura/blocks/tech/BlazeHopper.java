@@ -21,7 +21,8 @@ public class BlazeHopper extends BlockHopper
         super();
     }
     
-    public int getRenderType ()
+    @Override
+	public int getRenderType ()
     {
         return HopperRender.model;
     }
@@ -47,7 +48,8 @@ public class BlazeHopper extends BlockHopper
         return par0Str.equals("hopper_outside") ? NContent.netherHopper.hopperIcon : (par0Str.equals("hopper_inside") ? NContent.netherHopper.hopperInsideIcon : null);
     }
     
-    @SideOnly(Side.CLIENT)
+    @Override
+	@SideOnly(Side.CLIENT)
     public String getItemIconName ()
     {
         return "natura:nhopper";

@@ -91,19 +91,19 @@ public class GrassSlab extends NSlabBase
                 int grassColor = 0;
                 if (meta == 1)
                 {
-                    double temp = (double) MathHelper.clamp_float(biome.getFloatTemperature(), 0.0F, 1.0F);
-                    double rainfall = (double) MathHelper.clamp_float(biome.getFloatRainfall(), 0.0F, 1.0F);
+                    double temp = MathHelper.clamp_float(biome.getFloatTemperature(x, y, z), 0.0F, 1.0F);
+                    double rainfall = MathHelper.clamp_float(biome.getFloatRainfall(), 0.0F, 1.0F);
                     grassColor = GrassColorizerAlternate.getBlueGrassColor(temp, rainfall);
                 }
                 else if (meta == 2)
                 {
-                    double temp = (double) MathHelper.clamp_float(biome.getFloatTemperature(), 0.0F, 1.0F);
-                    double rainfall = (double) MathHelper.clamp_float(biome.getFloatRainfall(), 0.0F, 1.0F);
+                    double temp = MathHelper.clamp_float(biome.getFloatTemperature(x, y, z), 0.0F, 1.0F);
+                    double rainfall = MathHelper.clamp_float(biome.getFloatRainfall(), 0.0F, 1.0F);
                     grassColor = GrassColorizerAlternate.getOrangeGrassColor(temp, rainfall);
                 }
                 else
                 {
-                    grassColor = biome.getBiomeGrassColor();
+                    grassColor = biome.getBiomeGrassColor(x, y, z);
                 }
                 l += (grassColor & 16711680) >> 16;
                 i1 += (grassColor & 65280) >> 8;

@@ -61,7 +61,7 @@ public class OverworldLeaves extends NLeaves
             {
                 for (int i2 = -1; i2 <= 1; ++i2)
                 {
-                    int j2 = world.getBiomeGenForCoords(x + i2, z + l1).getBiomeFoliageColor();
+                    int j2 = world.getBiomeGenForCoords(x + i2, z + l1).getBiomeFoliageColor(x, y, z);
                     i1 += (j2 & 16711680) >> 16;
                     j1 += (j2 & 65280) >> 8;
                     k1 += j2 & 255;
@@ -87,9 +87,9 @@ public class OverworldLeaves extends NLeaves
     }
 
     @Override
-    public int idDropped (int var1, Random var2, int var3)
+    public Item getItemDropped(int p_149650_1_, Random p_149650_2_, int p_149650_3_)
     {
-        return NContent.rareSapling;
+        return NContent.rareSapling.getItem(null, 0, 0, 0);
     }
 
     @SideOnly(Side.CLIENT)
@@ -102,7 +102,8 @@ public class OverworldLeaves extends NLeaves
         par3List.add(new ItemStack(par1, 1, 3));
     }
 
-    public int getLightOpacity (World world, int x, int y, int z)
+    @Override
+	public int getLightOpacity (World world, int x, int y, int z)
     {
         return this.getLightOpacity();
     }

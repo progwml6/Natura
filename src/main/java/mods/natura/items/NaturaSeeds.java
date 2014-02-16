@@ -2,7 +2,6 @@ package mods.natura.items;
 
 import java.util.List;
 
-import mods.natura.blocks.crops.CropBlock;
 import mods.natura.common.NaturaTab;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -46,7 +45,8 @@ public class NaturaSeeds extends ItemSeeds
         }
     }
 
-    public void getSubItems (Item id, CreativeTabs tab, List list)
+    @Override
+	public void getSubItems (Item id, CreativeTabs tab, List list)
     {
         for (int i = 0; i < textureNames.length; i++)
             list.add(new ItemStack(id, 1, i));
@@ -87,7 +87,8 @@ public class NaturaSeeds extends ItemSeeds
         }
     }
 
-    public String getUnlocalizedName (ItemStack stack)
+    @Override
+	public String getUnlocalizedName (ItemStack stack)
     {
         int arr = MathHelper.clamp_int(stack.getItemDamage(), 0, textureNames.length);
         return "item." + textureNames[arr] + ".seed";

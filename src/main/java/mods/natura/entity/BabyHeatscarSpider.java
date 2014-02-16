@@ -7,10 +7,12 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.monster.EntitySpider;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
+import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeHooks;
 
@@ -28,7 +30,8 @@ public class BabyHeatscarSpider extends EntitySpider
         return 0.85F;
     }
 
-    protected void attackEntity (Entity par1Entity, float par2)
+    @Override
+	protected void attackEntity (Entity par1Entity, float par2)
     {
         if (par2 > 2.0F && par2 < 6.0F && this.rand.nextInt(10) == 0)
         {
@@ -37,8 +40,8 @@ public class BabyHeatscarSpider extends EntitySpider
                 double d0 = par1Entity.posX - this.posX;
                 double d1 = par1Entity.posZ - this.posZ;
                 float f2 = MathHelper.sqrt_double(d0 * d0 + d1 * d1);
-                this.motionX = d0 / (double) f2 * 0.5D + this.motionX * 0.20000000298023224D;
-                this.motionZ = d1 / (double) f2 * 0.5D + this.motionZ * 0.20000000298023224D;
+                this.motionX = d0 / f2 * 0.5D + this.motionX * 0.20000000298023224D;
+                this.motionZ = d1 / f2 * 0.5D + this.motionZ * 0.20000000298023224D;
                 this.motionY = 0.62D;
             }
         }
@@ -49,20 +52,21 @@ public class BabyHeatscarSpider extends EntitySpider
 
     }
 
-    public void jump ()
+    @Override
+	public void jump ()
     {
         this.motionY = 0.62D;
 
         if (this.isPotionActive(Potion.jump))
         {
-            this.motionY += (double) ((float) (this.getActivePotionEffect(Potion.jump).getAmplifier() + 1) * 0.1F);
+            this.motionY += (this.getActivePotionEffect(Potion.jump).getAmplifier() + 1) * 0.1F;
         }
 
         if (this.isSprinting())
         {
             float f = this.rotationYaw * 0.017453292F;
-            this.motionX -= (double) (MathHelper.sin(f) * 0.2F);
-            this.motionZ += (double) (MathHelper.cos(f) * 0.2F);
+            this.motionX -= MathHelper.sin(f) * 0.2F;
+            this.motionZ += MathHelper.cos(f) * 0.2F;
         }
 
         this.isAirBorne = true;
@@ -93,7 +97,7 @@ public class BabyHeatscarSpider extends EntitySpider
             }
 
             this.attackEntityFrom(DamageSource.fall, i);
-            Block j = this.worldObj.getBlock(MathHelper.floor_double(this.posX), MathHelper.floor_double(this.posY - 0.20000000298023224D - (double) this.yOffset), MathHelper.floor_double(this.posZ));
+            Block j = this.worldObj.getBlock(MathHelper.floor_double(this.posX), MathHelper.floor_double(this.posY - 0.20000000298023224D - this.yOffset), MathHelper.floor_double(this.posZ));
 
             if (j != null)
             {
@@ -103,6 +107,7 @@ public class BabyHeatscarSpider extends EntitySpider
         }
     }
 
+    @Override
     public boolean attackEntityAsMob (Entity par1Entity)
     {
         if (super.attackEntityAsMob(par1Entity))
@@ -111,13 +116,13 @@ public class BabyHeatscarSpider extends EntitySpider
             {
                 byte b0 = 0;
 
-                if (this.worldObj.difficultySetting != this.worldObj.difficultySetting.PEACEFUL)
+                if (this.worldObj.difficultySetting != EnumDifficulty.PEACEFUL)
                 {
-                    if (this.worldObj.difficultySetting == this.worldObj.difficultySetting.NORMAL)
+                    if (this.worldObj.difficultySetting == EnumDifficulty.NORMAL)
                     {
                         b0 = 5;
                     }
-                    else if (this.worldObj.difficultySetting == this.worldObj.difficultySetting.HARD)
+                    else if (this.worldObj.difficultySetting == EnumDifficulty.HARD)
                     {
                         b0 = 10;
                     }
@@ -142,21 +147,25 @@ public class BabyHeatscarSpider extends EntitySpider
         return 4;
     }
 
-    protected int getDropItemId ()
+    @Override
+    protected Item getDropItem()
     {
         return NContent.plantItem;
     }
-
-    public EntityItem dropItemWithOffset (int par1, int par2, float par3)
+    
+    @Override
+    // dropItemWithOffset
+    public EntityItem func_145778_a(Item item, int par2, float offset)
     {
-        return this.entityDropItem(new ItemStack(par1, par2, 7), par3);
+        return this.entityDropItem(new ItemStack(item, par2, 7), offset);
     }
 
-    protected void dropFewItems (boolean par1, int par2)
+    @Override
+	protected void dropFewItems (boolean par1, int par2)
     {
-        int j = this.getDropItemId();
+        Item j = this.getDropItem();
 
-        if (j > 0)
+        if (Item.getIdFromItem(j) > 0)
         {
             int k = this.rand.nextInt(3) + 2;
 
@@ -172,9 +181,10 @@ public class BabyHeatscarSpider extends EntitySpider
         }
     }
 
-    public boolean getCanSpawnHere ()
+    @Override
+	public boolean getCanSpawnHere ()
     {
-        return this.worldObj.difficultySetting != this.worldObj.difficultySetting.PEACEFUL && this.worldObj.checkNoEntityCollision(this.boundingBox) && this.worldObj.getCollidingBoundingBoxes(this, this.boundingBox).isEmpty()
+        return this.worldObj.difficultySetting != EnumDifficulty.PEACEFUL && this.worldObj.checkNoEntityCollision(this.boundingBox) && this.worldObj.getCollidingBoundingBoxes(this, this.boundingBox).isEmpty()
                 && !this.worldObj.isAnyLiquid(this.boundingBox);
     }
 }

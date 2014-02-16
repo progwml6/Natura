@@ -10,7 +10,8 @@ public class NetherLever extends BlockLever
         super();
     }
     
-    public int getRenderType ()
+    @Override
+	public int getRenderType ()
     {
         return LeverRender.model;
     }

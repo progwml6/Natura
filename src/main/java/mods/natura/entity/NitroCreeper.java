@@ -36,7 +36,8 @@ public class NitroCreeper extends EntityCreeper
         return 20;
     }*/
 
-    protected void fall (float distance)
+    @Override
+	protected void fall (float distance)
     {
         if (!this.worldObj.isRemote)
         {
@@ -60,13 +61,15 @@ public class NitroCreeper extends EntityCreeper
         }
     }
 
-    public void writeEntityToNBT (NBTTagCompound par1NBTTagCompound)
+    @Override
+	public void writeEntityToNBT (NBTTagCompound par1NBTTagCompound)
     {
         super.writeEntityToNBT(par1NBTTagCompound);
         par1NBTTagCompound.setShort("Fuse", (short) this.fuseTime);
     }
 
-    public void readEntityFromNBT (NBTTagCompound par1NBTTagCompound)
+    @Override
+	public void readEntityFromNBT (NBTTagCompound par1NBTTagCompound)
     {
         super.readEntityFromNBT(par1NBTTagCompound);
 
@@ -76,7 +79,8 @@ public class NitroCreeper extends EntityCreeper
         }
     }
 
-    public void onUpdate ()
+    @Override
+	public void onUpdate ()
     {
         if (this.isEntityAlive())
         {
@@ -124,12 +128,14 @@ public class NitroCreeper extends EntityCreeper
         super.onUpdate();
     }
 
-    public float getCreeperFlashIntensity (float par1)
+    @Override
+	public float getCreeperFlashIntensity (float par1)
     {
-        return ((float) this.lastActiveTime + (float) (this.timeSinceIgnited - this.lastActiveTime) * par1) / (float) (this.fuseTime - 2);
+        return (this.lastActiveTime + (this.timeSinceIgnited - this.lastActiveTime) * par1) / (this.fuseTime - 2);
     }
 
-    protected void dropFewItems (boolean par1, int par2)
+    @Override
+	protected void dropFewItems (boolean par1, int par2)
     {
         Item j = this.getDropItem();
 

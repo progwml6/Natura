@@ -89,9 +89,9 @@ public class NetherGlass extends Block
     
     @Override
     @SideOnly(Side.CLIENT)
-    public IIcon getBlockTexture (IBlockAccess par1IBlockAccess, int par2, int par3, int par4, int par5)
+    public IIcon getIcon(IBlockAccess world, int x, int y, int z, int side)
     {
-        int meta = par1IBlockAccess.getBlockMetadata(par2, par3, par4);
+        int meta = world.getBlockMetadata(x, y, z);
         if (meta < 1)
             return icons[0];
         return icons[1];
@@ -106,7 +106,8 @@ public class NetherGlass extends Block
         return icons[3];
     }
 
-    public AxisAlignedBB getCollisionBoundingBoxFromPool (World world, int x, int y, int z)
+    @Override
+	public AxisAlignedBB getCollisionBoundingBoxFromPool (World world, int x, int y, int z)
     {
         int meta = world.getBlockMetadata(x, y, z);
         if (meta == 0)
@@ -116,7 +117,7 @@ public class NetherGlass extends Block
         else if (meta == 1)
         {
             float f = 0.125F;
-            return AxisAlignedBB.getAABBPool().getAABB((double) x, (double) y, (double) z, (double) (x + 1), (double) ((float) (y + 1) - f), (double) (z + 1));
+            return AxisAlignedBB.getAABBPool().getAABB(x, y, z, x + 1, y + 1 - f, z + 1);
         }
         return super.getCollisionBoundingBoxFromPool(world, x, y, z);
     }

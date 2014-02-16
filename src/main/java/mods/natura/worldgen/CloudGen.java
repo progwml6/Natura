@@ -22,7 +22,8 @@ public class CloudGen extends WorldGenerator
         flatCloud = flag;
     }
 
-    public boolean generate (World world, Random random, int x, int y, int z)
+    @Override
+	public boolean generate (World world, Random random, int x, int y, int z)
     {
         int l = random.nextInt(3) - 1;
         int i1 = random.nextInt(3) - 1;
@@ -42,7 +43,7 @@ public class CloudGen extends WorldGenerator
                     {
                         if (world.getBlock(xIter, yIter, zIter) == Blocks.air && Math.abs(xIter - x) + Math.abs(yIter - y) + Math.abs(zIter - z) < 4 * (flatCloud ? 3 : 1) + random.nextInt(2))
                         {
-                            setBlockAndMetadata(world, xIter, yIter, zIter, bID, meta);
+                            setBlockAndNotifyAdequately(world, xIter, yIter, zIter, bID, meta);
                         }
                     }
                 }

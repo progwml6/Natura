@@ -42,9 +42,9 @@ public class HopperRender implements ISimpleBlockRenderingHandler
         tessellator.setBrightness(par1BlockHopper.getMixedBrightnessForBlock(renderer.blockAccess, par2, par3, par4));
         float f = 1.0F;
         int l = par1BlockHopper.colorMultiplier(renderer.blockAccess, par2, par3, par4);
-        float f1 = (float) (l >> 16 & 255) / 255.0F;
-        float f2 = (float) (l >> 8 & 255) / 255.0F;
-        float f3 = (float) (l & 255) / 255.0F;
+        float f1 = (l >> 16 & 255) / 255.0F;
+        float f2 = (l >> 8 & 255) / 255.0F;
+        float f3 = (l & 255) / 255.0F;
 
         if (EntityRenderer.anaglyphEnable)
         {
@@ -106,9 +106,9 @@ public class HopperRender implements ISimpleBlockRenderingHandler
             tessellator.setBrightness(par1BlockHopper.getMixedBrightnessForBlock(renderer.blockAccess, par2, par3, par4));
             float f1 = 1.0F;
             int j1 = par1BlockHopper.colorMultiplier(renderer.blockAccess, par2, par3, par4);
-            f = (float) (j1 >> 16 & 255) / 255.0F;
-            float f2 = (float) (j1 >> 8 & 255) / 255.0F;
-            float f3 = (float) (j1 & 255) / 255.0F;
+            f = (j1 >> 16 & 255) / 255.0F;
+            float f2 = (j1 >> 8 & 255) / 255.0F;
+            float f3 = (j1 & 255) / 255.0F;
 
             if (EntityRenderer.anaglyphEnable)
             {
@@ -131,19 +131,19 @@ public class HopperRender implements ISimpleBlockRenderingHandler
         {
             tessellator.startDrawingQuads();
             tessellator.setNormal(1.0F, 0.0F, 0.0F);
-            renderer.renderFaceXPos(par1BlockHopper, (double) (-1.0F + f), 0.0D, 0.0D, icon);
+            renderer.renderFaceXPos(par1BlockHopper, -1.0F + f, 0.0D, 0.0D, icon);
             tessellator.draw();
             tessellator.startDrawingQuads();
             tessellator.setNormal(-1.0F, 0.0F, 0.0F);
-            renderer.renderFaceXNeg(par1BlockHopper, (double) (1.0F - f), 0.0D, 0.0D, icon);
+            renderer.renderFaceXNeg(par1BlockHopper, 1.0F - f, 0.0D, 0.0D, icon);
             tessellator.draw();
             tessellator.startDrawingQuads();
             tessellator.setNormal(0.0F, 0.0F, 1.0F);
-            renderer.renderFaceZPos(par1BlockHopper, 0.0D, 0.0D, (double) (-1.0F + f), icon);
+            renderer.renderFaceZPos(par1BlockHopper, 0.0D, 0.0D, -1.0F + f, icon);
             tessellator.draw();
             tessellator.startDrawingQuads();
             tessellator.setNormal(0.0F, 0.0F, -1.0F);
-            renderer.renderFaceZNeg(par1BlockHopper, 0.0D, 0.0D, (double) (1.0F - f), icon);
+            renderer.renderFaceZNeg(par1BlockHopper, 0.0D, 0.0D, 1.0F - f, icon);
             tessellator.draw();
             tessellator.startDrawingQuads();
             tessellator.setNormal(0.0F, 1.0F, 0.0F);
@@ -152,11 +152,11 @@ public class HopperRender implements ISimpleBlockRenderingHandler
         }
         else
         {
-            renderer.renderFaceXPos(par1BlockHopper, (double) ((float) par2 - 1.0F + f), (double) par3, (double) par4, icon);
-            renderer.renderFaceXNeg(par1BlockHopper, (double) ((float) par2 + 1.0F - f), (double) par3, (double) par4, icon);
-            renderer.renderFaceZPos(par1BlockHopper, (double) par2, (double) par3, (double) ((float) par4 - 1.0F + f), icon);
-            renderer.renderFaceZNeg(par1BlockHopper, (double) par2, (double) par3, (double) ((float) par4 + 1.0F - f), icon);
-            renderer.renderFaceYPos(par1BlockHopper, (double) par2, (double) ((float) par3 - 1.0F) + d0, (double) par4, icon1);
+            renderer.renderFaceXPos(par1BlockHopper, par2 - 1.0F + f, par3, par4, icon);
+            renderer.renderFaceXNeg(par1BlockHopper, par2 + 1.0F - f, par3, par4, icon);
+            renderer.renderFaceZPos(par1BlockHopper, par2, par3, par4 - 1.0F + f, icon);
+            renderer.renderFaceZNeg(par1BlockHopper, par2, par3, par4 + 1.0F - f, icon);
+            renderer.renderFaceYPos(par1BlockHopper, par2, par3 - 1.0F + d0, par4, icon1);
         }
 
         renderer.setOverrideBlockTexture(icon);

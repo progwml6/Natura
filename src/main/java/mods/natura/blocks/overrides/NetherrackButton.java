@@ -13,7 +13,8 @@ public class NetherrackButton extends BlockButton
         super(false);
     }
 
-    @SideOnly(Side.CLIENT)
+    @Override
+	@SideOnly(Side.CLIENT)
     public IIcon getIcon (int par1, int par2)
     {
         return Blocks.netherrack.getBlockTextureFromSide(1);

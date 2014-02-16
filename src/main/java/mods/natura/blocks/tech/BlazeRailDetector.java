@@ -1,10 +1,10 @@
 package mods.natura.blocks.tech;
 
-import net.minecraft.block.BlockDetectorRail;
+import net.minecraft.block.BlockRailDetector;
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.world.World;
 
-public class BlazeRailDetector extends BlockDetectorRail
+public class BlazeRailDetector extends BlockRailDetector
 {
     public BlazeRailDetector()
     {

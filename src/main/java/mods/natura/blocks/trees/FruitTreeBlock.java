@@ -14,7 +14,7 @@ public class FruitTreeBlock extends BlockLog
         this.setHardness(1.5F);
         this.setResistance(5F);
         this.setStepSound(Block.soundTypeWood);
-        setBurnProperties(this, 5, 20);
+        // TODO 1.7 Where the heck did this go? setBurnProperties(this, 5, 20);
         this.setCreativeTab(NaturaTab.tab);
     }
 
@@ -44,7 +44,7 @@ public class FruitTreeBlock extends BlockLog
 
     public int idDropped (int par1, Random par2Random, int par3)
     {
-        return this;
+        return Block.getIdFromBlock(this);
     }
 
     @Override

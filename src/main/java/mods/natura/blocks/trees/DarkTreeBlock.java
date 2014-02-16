@@ -107,7 +107,8 @@ public class DarkTreeBlock extends Block
     /**
      * Called when a block is placed using its ItemBlock. Args: World, X, Y, Z, side, hitX, hitY, hitZ, block metadata
      */
-    public int onBlockPlaced (World par1World, int par2, int par3, int par4, int par5, float par6, float par7, float par8, int par9)
+    @Override
+	public int onBlockPlaced (World par1World, int par2, int par3, int par4, int par5, float par6, float par7, float par8, int par9)
     {
         int j1 = par9 & 3;
         byte b0 = 0;
@@ -133,7 +134,8 @@ public class DarkTreeBlock extends Block
     /**
      * Determines the damage on the item the block drops. Used in cloth and wood.
      */
-    public int damageDropped (int par1)
+    @Override
+	public int damageDropped (int par1)
     {
         return par1 & 3;
     }
@@ -146,7 +148,8 @@ public class DarkTreeBlock extends Block
         return par0 & 3;
     }
 
-    protected ItemStack createStackedBlock (int par1)
+    @Override
+	protected ItemStack createStackedBlock (int par1)
     {
         return new ItemStack(this, 1, limitToValidMetadata(par1));
     }
@@ -156,7 +159,8 @@ public class DarkTreeBlock extends Block
         return false;
     }
 
-    public void onBlockHarvested (World world, int x, int y, int z, int meta, EntityPlayer player)
+    @Override
+	public void onBlockHarvested (World world, int x, int y, int z, int meta, EntityPlayer player)
     {
         if (meta % 4 == 1)
         {

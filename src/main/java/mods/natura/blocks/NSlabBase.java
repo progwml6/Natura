@@ -4,7 +4,6 @@ import java.util.List;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import mods.natura.common.NContent;
 import mods.natura.common.NaturaTab;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -46,12 +45,14 @@ public class NSlabBase extends Block
         super.addCollisionBoxesToList(world, x, y, z, axisalignedbb, arraylist, entity);
     }
 
-    public void setBlockBoundsForItemRender ()
+    @Override
+	public void setBlockBoundsForItemRender ()
     {
         setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.5F, 1.0F);
     }
 
-    public void setBlockBoundsBasedOnState (IBlockAccess world, int x, int y, int z)
+    @Override
+	public void setBlockBoundsBasedOnState (IBlockAccess world, int x, int y, int z)
     {
         int meta = world.getBlockMetadata(x, y, z) / 8;
         float minY = meta == 1 ? 0.5F : 0.0F;
@@ -59,7 +60,8 @@ public class NSlabBase extends Block
         setBlockBounds(0.0F, minY, 0F, 1.0F, maxY, 1.0F);
     }
 
-    public int onBlockPlaced (World par1World, int blockX, int blockY, int blockZ, int side, float clickX, float clickY, float clickZ, int metadata)
+    @Override
+	public int onBlockPlaced (World par1World, int blockX, int blockY, int blockZ, int side, float clickX, float clickY, float clickZ, int metadata)
     {
         if (side == 1)
             return metadata;
@@ -69,12 +71,14 @@ public class NSlabBase extends Block
         return metadata;
     }
 
-    public boolean isOpaqueCube ()
+    @Override
+	public boolean isOpaqueCube ()
     {
         return false;
     }
 
-    public boolean renderAsNormalBlock ()
+    @Override
+	public boolean renderAsNormalBlock ()
     {
         return false;
     }

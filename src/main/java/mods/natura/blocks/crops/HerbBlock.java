@@ -8,6 +8,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.EnumPlantType;
 
@@ -26,9 +27,10 @@ public class HerbBlock extends CropBlock
         this.setCreativeTab(NaturaTab.tab);
     }
 
-    public void updateTick (World world, int x, int y, int z, Random random)
+    @Override
+	public void updateTick (World world, int x, int y, int z, Random random)
     {
-        this.checkFlowerChange(world, x, y, z);
+        this.checkAndDropBlock(world, x, y, z);
 
         int light = world.getBlockLightValue(x, y, z);
         if (light >= 8)
@@ -55,7 +57,8 @@ public class HerbBlock extends CropBlock
     {
     }
 
-    boolean requiresSun (int meta)
+    @Override
+	boolean requiresSun (int meta)
     {
         return false;
     }
@@ -63,34 +66,38 @@ public class HerbBlock extends CropBlock
     /**
      * The type of render function that is called for this block
      */
-    public int getRenderType ()
+    @Override
+	public int getRenderType ()
     {
         return 1;
     }
 
-    protected Item getCropItem (int meta)
+    @Override
+	protected Item getCropItem (int meta)
     {
         return NContent.plantItem;
     }
 
-    protected Item getSeedItem (int meta)
+    @Override
+	protected Item getSeedItem (int meta)
     {
         return NContent.seeds;
     }
 
-    public int damageDropped (int meta)
+    @Override
+	public int damageDropped (int meta)
     {
         return 0;
     }
 
     @Override
-    public int getPlantMetadata (World world, int x, int y, int z)
+    public int getPlantMetadata (IBlockAccess world, int x, int y, int z)
     {
         return world.getBlockMetadata(x, y, z);
     }
 
     @Override
-    public EnumPlantType getPlantType (World world, int x, int y, int z)
+    public EnumPlantType getPlantType (IBlockAccess world, int x, int y, int z)
     {
         return EnumPlantType.Cave;
     }
@@ -98,7 +105,8 @@ public class HerbBlock extends CropBlock
     /**
      * Can this block stay at this position.  Similar to canPlaceBlockAt except gets checked often with plants.
      */
-    public boolean canBlockStay (World par1World, int x, int y, int z)
+    @Override
+	public boolean canBlockStay (World par1World, int x, int y, int z)
     {
         Block soil = par1World.getBlock(x, y - 1, z);
         return soil != null && soil.getMaterial() == Material.rock;

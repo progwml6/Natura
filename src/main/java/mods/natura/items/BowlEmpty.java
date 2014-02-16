@@ -30,7 +30,7 @@ public class BowlEmpty extends Item
     public void registerIcons (IIconRegister iconRegister)
     {
         this.icons = new IIcon[textureNames.length];
-        for (int i = 0; i < this.textureNames.length; ++i)
+        for (int i = 0; i < BowlEmpty.textureNames.length; ++i)
         {
             if (!textureNames[i].equals(""))
                 this.icons[i] = iconRegister.registerIcon("natura:" + textureNames[i] + "_bowl");
@@ -40,7 +40,8 @@ public class BowlEmpty extends Item
         }
     }
 
-    public String getUnlocalizedName (ItemStack stack)
+    @Override
+	public String getUnlocalizedName (ItemStack stack)
     {
         return Items.bowl.getUnlocalizedName(stack);
         /*int arr = MathHelper.clamp_int(stack.getItemDamage(), 0, textureNames.length);
