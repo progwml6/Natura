@@ -42,7 +42,7 @@ public class CloudGen extends WorldGenerator
                     {
                         if (world.getBlock(xIter, yIter, zIter) == Blocks.air && Math.abs(xIter - x) + Math.abs(yIter - y) + Math.abs(zIter - z) < 4 * (flatCloud ? 3 : 1) + random.nextInt(2))
                         {
-                            setBlockAndMetadata(world, xIter, yIter, zIter, bID, meta);
+                            setBlockAndNotifyAdequately(world, xIter, yIter, zIter, bID, meta);
                         }
                     }
                 }

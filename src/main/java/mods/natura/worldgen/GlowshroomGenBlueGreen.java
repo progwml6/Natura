@@ -44,7 +44,8 @@ public class GlowshroomGenBlueGreen extends WorldGenerator
             int blockID;
             int posY;
             int l1;
-            int posX;
+            // TODO 1.7 correct init value?
+            int posX = 0;
 
             for (blockID = y; blockID <= y + 1 + height; ++blockID)
             {
@@ -63,7 +64,7 @@ public class GlowshroomGenBlueGreen extends WorldGenerator
                         {
                             Block block = world.getBlock(posY, blockID, l1);
 
-                            if (posX != 0 && block != null && !block.isLeaves(world, posY, blockID, l1) && posX != NContent.glowshroom)
+                            if (posX != 0 && block != null && !block.isLeaves(world, posY, blockID, l1) && blockID != Block.getIdFromBlock(NContent.glowshroom))
                             {
                                 flag = false;
                             }

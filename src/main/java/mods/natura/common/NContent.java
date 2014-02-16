@@ -233,9 +233,9 @@ public class NContent implements IFuelHandler
         GameRegistry.registerBlock(rareTree, OverworldTreeItem.class, "Rare Tree");
         rareLeaves = (NLeaves) new OverworldLeaves().setBlockName("RareLeaves");
         GameRegistry.registerBlock(rareLeaves, OverworldLeavesItem.class, "Rare Leaves");
-        rareSapling = (NSaplingBlock) new OverworldSapling().setBlockName("RareSapling");
+        rareSapling = (OverworldSapling) new OverworldSapling().setBlockName("RareSapling");
         GameRegistry.registerBlock(rareSapling, OverworldSaplingItem.class, "Rare Sapling");
-        bluebells = (NSaplingBlock) new FlowerBlock().setBlockName("bluebells");
+        bluebells = (FlowerBlock) new FlowerBlock().setBlockName("bluebells");
         GameRegistry.registerBlock(bluebells, "Bluebells");
 
         // TODO 1.7 apparently this isn't so simple anymore
@@ -1234,8 +1234,8 @@ public class NContent implements IFuelHandler
     //Extra overworld
     public static Block rareTree;
     public static NLeaves rareLeaves;
-    public static NSaplingBlock rareSapling;
-    public static NSaplingBlock bluebells;
+    public static OverworldSapling rareSapling;
+    public static FlowerBlock bluebells;
 
     public static Item stickItem;
     public static Item bowlEmpty;
