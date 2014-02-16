@@ -8,6 +8,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.EnumPlantType;
 
@@ -28,7 +29,7 @@ public class HerbBlock extends CropBlock
 
     public void updateTick (World world, int x, int y, int z, Random random)
     {
-        this.checkFlowerChange(world, x, y, z);
+        this.checkAndDropBlock(world, x, y, z);
 
         int light = world.getBlockLightValue(x, y, z);
         if (light >= 8)
@@ -84,13 +85,13 @@ public class HerbBlock extends CropBlock
     }
 
     @Override
-    public int getPlantMetadata (World world, int x, int y, int z)
+    public int getPlantMetadata (IBlockAccess world, int x, int y, int z)
     {
         return world.getBlockMetadata(x, y, z);
     }
 
     @Override
-    public EnumPlantType getPlantType (World world, int x, int y, int z)
+    public EnumPlantType getPlantType (IBlockAccess world, int x, int y, int z)
     {
         return EnumPlantType.Cave;
     }

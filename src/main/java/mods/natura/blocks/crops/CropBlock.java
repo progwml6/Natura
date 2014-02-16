@@ -16,6 +16,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.EnumPlantType;
 import cpw.mods.fml.relauncher.Side;
@@ -40,7 +41,7 @@ public class CropBlock extends BlockCrops
      */
     public void updateTick (World world, int x, int y, int z, Random random)
     {
-        this.checkFlowerChange(world, x, y, z);
+    	this.checkAndDropBlock(world, x, y, z);
 
         int light = world.getBlockLightValue(x, y, z);
         if (light >= 8)
@@ -64,7 +65,7 @@ public class CropBlock extends BlockCrops
      * Apply bonemeal to the crops.
      */
     @Override
-    public void fertilize (World world, int x, int y, int z)
+    public void func_149863_m(World world, int x, int y, int z)
     {
         int meta = world.getBlockMetadata(x, y, z);
         if (meta != 3 && meta != 8)
@@ -251,7 +252,7 @@ public class CropBlock extends BlockCrops
     }
 
     @Override
-    public ArrayList<ItemStack> getBlockDropped (World world, int x, int y, int z, int metadata, int fortune)
+    public ArrayList<ItemStack> getDrops(World world, int x, int y, int z, int metadata, int fortune)
     {
         ArrayList<ItemStack> ret = new ArrayList<ItemStack>();
 
@@ -314,7 +315,7 @@ public class CropBlock extends BlockCrops
     }
 
     @Override
-    public EnumPlantType getPlantType (World world, int x, int y, int z)
+    public EnumPlantType getPlantType(IBlockAccess world, int x, int y, int z)
     {
         return EnumPlantType.Crop;
     }
@@ -333,7 +334,7 @@ public class CropBlock extends BlockCrops
     }
 
     @Override
-    public int getPlantMetadata (World world, int x, int y, int z)
+    public int getPlantMetadata(IBlockAccess world, int x, int y, int z)
     {
         int meta = world.getBlockMetadata(x, y, z);
         if (meta < 4)

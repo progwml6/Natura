@@ -287,19 +287,19 @@ public class BerryBush extends BlockLeavesBase implements IPlantable
     /* Resistance to fire */
 
     @Override
-    public int getFlammability (IBlockAccess world, int x, int y, int z, int metadata, ForgeDirection face)
+    public int getFlammability(IBlockAccess world, int x, int y, int z, ForgeDirection face)
     {
         return 25;
     }
 
     @Override
-    public boolean isFlammable (IBlockAccess world, int x, int y, int z, int metadata, ForgeDirection face)
+    public boolean isFlammable (IBlockAccess world, int x, int y, int z, ForgeDirection face)
     {
         return true;
     }
 
     @Override
-    public int getFireSpreadSpeed (World world, int x, int y, int z, int metadata, ForgeDirection face)
+    public int getFireSpreadSpeed(IBlockAccess world, int x, int y, int z, ForgeDirection face)
     {
         return 4;
     }
