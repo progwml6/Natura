@@ -1,5 +1,7 @@
 package mods.natura.blocks.trees;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
@@ -11,6 +13,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
+import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -24,7 +27,7 @@ public class OverworldTreeBlock extends BlockLog
         super();
         this.setHardness(2.0F);
         this.setStepSound(Block.soundTypeWood);
-        setBurnProperties(this, 5, 20);
+        // TODO 1.7 Where the heck did this go? setBurnProperties(this, 5, 20);
         this.setCreativeTab(NaturaTab.tab);
     }
 
@@ -67,9 +70,11 @@ public class OverworldTreeBlock extends BlockLog
         }
     }
 
-    public int idDropped (int par1, Random par2Random, int par3)
+    // TODO 1.7 check this
+    @Override
+    public ArrayList<ItemStack> getDrops(World world, int x, int y, int z, int metadata, int fortune)
     {
-        return this;
+        return (ArrayList<ItemStack>) Arrays.asList(new ItemStack(this));
     }
 
     /*@Override

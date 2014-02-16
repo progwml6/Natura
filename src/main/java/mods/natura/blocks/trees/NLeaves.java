@@ -33,7 +33,7 @@ public class NLeaves extends BlockLeaves
         this.setStepSound(Block.soundTypeGrass);
         this.setBlockName("floraLeaves");
         setCreativeTab(CreativeTabs.tabDecorations);
-        setBurnProperties(this, 30, 60);
+        // TODO 1.7 Where the heck did this go? setBurnProperties(this, 30, 60);
         this.setCreativeTab(NaturaTab.tab);
     }
 
@@ -78,7 +78,7 @@ public class NLeaves extends BlockLeaves
         {
             for (int var10 = -1; var10 <= 1; ++var10)
             {
-                int var11 = var1.getBiomeGenForCoords(x + var10, z + var9).getBiomeFoliageColor();
+                int var11 = var1.getBiomeGenForCoords(x + var10, z + var9).getBiomeFoliageColor(x, y, z);
                 var6 += (var11 & 16711680) >> 16;
                 var7 += (var11 & 65280) >> 8;
                 var8 += var11 & 255;
@@ -137,23 +137,24 @@ public class NLeaves extends BlockLeaves
      * Returns the ID of the items to drop on destruction.
      */
     @Override
-    public Block idDropped (int var1, Random var2, int var3)
+    public Item getItemDropped(int p_149650_1_, Random p_149650_2_, int p_149650_3_)
     {
         return NContent.floraSapling;
     }
 
     @Override
-    public void dropBlockAsItemWithChance (World par1World, int par2, int par3, int par4, int par5, float par6, int par7)
+    public void dropBlockAsItemWithChance (World world, int x, int y, int z, int metadata, float par6, int fortune)
     {
-        if (!par1World.isRemote)
+        if (!world.isRemote)
         {
-            ArrayList<ItemStack> items = getBlockDropped(par1World, par2, par3, par4, par5, par7);
+            ArrayList<ItemStack> items = getDrops(world, x, y, z, metadata, fortune);
 
             for (ItemStack item : items)
             {
-                if (par1World.rand.nextFloat() <= par6)
+                if (world.rand.nextFloat() <= par6)
                 {
-                    this.dropBlockAsItem_do(par1World, par2, par3, par4, item);
+                	// TODO 1.7 used to be dropBlockAsItem_do is this right?
+                    this.dropBlockAsItem(world, x, y, z, item);
                 }
             }
         }

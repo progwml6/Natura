@@ -5,7 +5,6 @@ import java.util.Random;
 
 import mods.natura.common.NContent;
 import mods.natura.common.NaturaTab;
-import mods.natura.common.PHNatura;
 import mods.natura.worldgen.BloodTreeLargeGen;
 import mods.natura.worldgen.BushTreeGen;
 import mods.natura.worldgen.DarkwoodGen;
@@ -22,6 +21,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.common.EnumPlantType;
@@ -105,7 +105,7 @@ public class NSaplingBlock extends BlockSapling
     }
 
     @Override
-    public EnumPlantType getPlantType (World world, int x, int y, int z)
+    public EnumPlantType getPlantType(IBlockAccess world, int x, int y, int z)
     {
         int meta = world.getBlockMetadata(x, y, z) % 8;
         if (meta <= 3)
@@ -191,7 +191,7 @@ public class NSaplingBlock extends BlockSapling
     }
 
     @Override
-    public void markOrGrowMarked (World world, int x, int y, int z, Random random)
+    public void func_149879_c (World world, int x, int y, int z, Random random)
     {
         boneFertilize(world, x, y, z, random);
     }

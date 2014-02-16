@@ -1135,7 +1135,7 @@ public class NContent implements IFuelHandler
 
     public static NLeaves floraLeaves;
     public static NLeaves floraLeavesNoColor;
-    public static NSaplingBlock floraSapling;
+    public static Item floraSapling;
 
     public static Block saguaro;
 
@@ -1233,7 +1233,7 @@ public class NContent implements IFuelHandler
     //Extra overworld
     public static Block rareTree;
     public static NLeaves rareLeaves;
-    public static OverworldSapling rareSapling;
+    public static Item rareSapling;
     public static Block bluebells;
 
     public static Item stickItem;

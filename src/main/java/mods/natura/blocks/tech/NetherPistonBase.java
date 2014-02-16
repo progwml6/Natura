@@ -24,7 +24,7 @@ import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-// TODO make sure this class still works (extending behavior)
+// TODO 1.7 make sure this class still works (extending behavior)
 public class NetherPistonBase extends BlockPistonBase
 {
     @SideOnly(Side.CLIENT)

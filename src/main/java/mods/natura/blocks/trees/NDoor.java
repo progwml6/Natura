@@ -9,6 +9,7 @@ import net.minecraft.block.BlockDoor;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.MovingObjectPosition;
@@ -38,7 +39,7 @@ public class NDoor extends BlockDoor
 
     public int idDropped (int i, Random random, int j)
     {
-        return (i & 8) != 0 ? 0 : NContent.doorItem;
+        return (i & 8) != 0 ? 0 : Item.getIdFromItem(NContent.doorItem);
     }
 
     public int damageDropped (int par1)
@@ -62,7 +63,7 @@ public class NDoor extends BlockDoor
     {
         if (par5 != 1 && par5 != 0)
         {
-            int i1 = this.getFullMetadata(par1IBlockAccess, par2, par3, par4);
+            int i1 = this.func_150012_g(par1IBlockAccess, par2, par3, par4);
             int j1 = i1 & 3;
             boolean flag2 = (i1 & 8) != 0;
 

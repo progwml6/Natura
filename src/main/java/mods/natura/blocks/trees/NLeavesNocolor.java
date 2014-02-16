@@ -97,7 +97,7 @@ public class NLeavesNocolor extends NLeaves
     }
 
     @Override
-    public int idDropped (int meta, Random random, int fortune)
+    public Item getItemDropped (int meta, Random random, int fortune)
     {
         if (meta % 4 == 3)
             return NContent.rareSapling;
@@ -105,9 +105,9 @@ public class NLeavesNocolor extends NLeaves
     }
     
     @Override
-    public ArrayList<ItemStack> getBlockDropped (World world, int x, int y, int z, int metadata, int fortune)
+    public ArrayList<ItemStack> getDrops (World world, int x, int y, int z, int metadata, int fortune)
     {
-        ArrayList<ItemStack> ret = super.getBlockDropped(world, x, y, z, metadata, fortune);
+        ArrayList<ItemStack> ret = super.getDrops(world, x, y, z, metadata, fortune);
         if (metadata % 4 == 2 && Natura.random.nextInt(40 - fortune*10) == 0)
             ret.add(new ItemStack(Items.redstone));
         return ret;

@@ -87,7 +87,7 @@ public class NLeavesDark extends NLeaves
     }
 
     @Override
-    public int idDropped (int metadata, Random random, int fortune)
+    public Item getItemDropped (int metadata, Random random, int fortune)
     {
         if (metadata % 4 == 2)
             return NContent.potashApple;
