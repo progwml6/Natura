@@ -7,6 +7,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.monster.EntitySpider;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.util.DamageSource;
@@ -103,6 +104,7 @@ public class BabyHeatscarSpider extends EntitySpider
         }
     }
 
+    @Override
     public boolean attackEntityAsMob (Entity par1Entity)
     {
         if (super.attackEntityAsMob(par1Entity))
@@ -142,21 +144,24 @@ public class BabyHeatscarSpider extends EntitySpider
         return 4;
     }
 
-    protected int getDropItemId ()
+    @Override
+    protected Item getDropItem()
     {
         return NContent.plantItem;
     }
-
-    public EntityItem dropItemWithOffset (int par1, int par2, float par3)
+    
+    @Override
+    // dropItemWithOffset
+    public EntityItem func_145778_a(Item item, int par2, float offset)
     {
-        return this.entityDropItem(new ItemStack(par1, par2, 7), par3);
+        return this.entityDropItem(new ItemStack(item, par2, 7), offset);
     }
 
     protected void dropFewItems (boolean par1, int par2)
     {
-        int j = this.getDropItemId();
+        Item j = this.getDropItem();
 
-        if (j > 0)
+        if (Item.getIdFromItem(j) > 0)
         {
             int k = this.rand.nextInt(3) + 2;
 

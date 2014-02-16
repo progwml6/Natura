@@ -24,6 +24,7 @@ import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.MapGenBase;
 import net.minecraft.world.gen.MapGenCavesHell;
+import net.minecraft.world.gen.NoiseGenerator;
 import net.minecraft.world.gen.NoiseGeneratorOctaves;
 import net.minecraft.world.gen.feature.WorldGenGlowStone1;
 import net.minecraft.world.gen.feature.WorldGenGlowStone2;
@@ -101,15 +102,16 @@ public class NetheriteChunkProvider implements IChunkProvider
         this.netherNoiseGen4 = new NoiseGeneratorOctaves(this.hellRNG, 10);
         this.netherNoiseGen5 = new NoiseGeneratorOctaves(this.hellRNG, 16);
 
-        NoiseGeneratorOctaves[] noiseGens = { netherNoiseGen1, netherNoiseGen2, netherNoiseGen3, slowsandGravelNoiseGen, netherrackExculsivityNoiseGen, netherNoiseGen4, netherNoiseGen5 };
+        // TODO 1.7 check these casts somehow
+        NoiseGenerator[] noiseGens = { netherNoiseGen1, netherNoiseGen2, netherNoiseGen3, slowsandGravelNoiseGen, netherrackExculsivityNoiseGen, netherNoiseGen4, netherNoiseGen5 };
         noiseGens = TerrainGen.getModdedNoiseGenerators(par1World, this.hellRNG, noiseGens);
-        this.netherNoiseGen1 = noiseGens[0];
-        this.netherNoiseGen2 = noiseGens[1];
-        this.netherNoiseGen3 = noiseGens[2];
-        this.slowsandGravelNoiseGen = noiseGens[3];
-        this.netherrackExculsivityNoiseGen = noiseGens[4];
-        this.netherNoiseGen4 = noiseGens[5];
-        this.netherNoiseGen5 = noiseGens[6];
+        this.netherNoiseGen1 = (NoiseGeneratorOctaves) noiseGens[0];
+        this.netherNoiseGen2 = (NoiseGeneratorOctaves) noiseGens[1];
+        this.netherNoiseGen3 = (NoiseGeneratorOctaves) noiseGens[2];
+        this.slowsandGravelNoiseGen = (NoiseGeneratorOctaves) noiseGens[3];
+        this.netherrackExculsivityNoiseGen = (NoiseGeneratorOctaves) noiseGens[4];
+        this.netherNoiseGen4 = (NoiseGeneratorOctaves) noiseGens[5];
+        this.netherNoiseGen5 = (NoiseGeneratorOctaves) noiseGens[6];
     }
 
     /**
@@ -175,7 +177,7 @@ public class NetheriteChunkProvider implements IChunkProvider
                                     blockID = NContent.taintedSoil;
                                 }
 
-                                lowerIDs[layerPos] = (byte) blockID;
+                                lowerIDs[layerPos] = (byte) Block.getIdFromBlock(blockID);
                                 layerPos += amountPerLayer;
                                 lValue += lOffset;
                             }
@@ -194,7 +196,8 @@ public class NetheriteChunkProvider implements IChunkProvider
         }
     }
 
-    public void replaceBlocksForBiome (int par1, int par2, byte[] lowerIDs)
+    // TODO 1.7 probably wrong. Gotta do something with the Block[]. This may or may not leave giant empty holes in the terain
+    public void replaceBlocksForBiome (int par1, int par2, Block[] blocks, byte[] lowerIDs)
     {
         //Lower nether
         byte seaLevel = 64;
@@ -211,8 +214,8 @@ public class NetheriteChunkProvider implements IChunkProvider
                 boolean flag1 = this.gravelNoise[iterX + iterZ * 16] + this.hellRNG.nextDouble() * 0.2D > 0.0D;
                 int i1 = (int) (this.netherrackExclusivityNoise[iterX + iterZ * 16] / 3.0D + 3.0D + this.hellRNG.nextDouble() * 0.25D);
                 int j1 = -1;
-                byte b1 = (byte) Blocks.netherrack;
-                byte b2 = (byte) NContent.taintedSoil;
+                byte b1 = (byte) Block.getIdFromBlock(Blocks.netherrack);
+                byte b2 = (byte) Block.getIdFromBlock(NContent.taintedSoil);
 
                 for (int k1 = 127; k1 >= 0; --k1)
                 {
@@ -226,44 +229,44 @@ public class NetheriteChunkProvider implements IChunkProvider
                         {
                             j1 = -1;
                         }
-                        else if (b3 == Blocks.netherrack)
+                        else if (b3 == Block.getIdFromBlock(Blocks.netherrack))
                         {
                             if (j1 == -1)
                             {
                                 if (i1 <= 0)
                                 {
                                     b1 = 0;
-                                    b2 = (byte) Blocks.netherrack;
+                                    b2 = (byte) Block.getIdFromBlock(Blocks.netherrack);
                                 }
                                 else if (k1 >= seaLevel - 4 && k1 <= seaLevel + 1)
                                 {
-                                    b1 = (byte) Blocks.netherrack;
-                                    b2 = (byte) NContent.taintedSoil;
+                                    b1 = (byte) Block.getIdFromBlock(Blocks.netherrack);
+                                    b2 = (byte) Block.getIdFromBlock(NContent.taintedSoil);
 
                                     if (flag1)
                                     {
-                                        b1 = (byte) Blocks.gravel;
+                                        b1 = (byte) Block.getIdFromBlock(Blocks.gravel);
                                     }
 
                                     if (flag1)
                                     {
-                                        b2 = (byte) Blocks.netherrack;
+                                        b2 = (byte) Block.getIdFromBlock(Blocks.netherrack);
                                     }
 
                                     if (flag)
                                     {
-                                        b1 = (byte) Blocks.soul_sand;
+                                        b1 = (byte) Block.getIdFromBlock(Blocks.soul_sand);
                                     }
 
                                     if (flag)
                                     {
-                                        b2 = (byte) NContent.heatSand;
+                                        b2 = (byte) Block.getIdFromBlock(NContent.heatSand);
                                     }
                                 }
 
                                 if (k1 < seaLevel && b1 == 0)
                                 {
-                                    b1 = (byte) Blocks.lava;
+                                    b1 = (byte) Block.getIdFromBlock(Blocks.lava);
                                 }
 
                                 j1 = i1;
@@ -286,7 +289,7 @@ public class NetheriteChunkProvider implements IChunkProvider
                     }
                     else
                     {
-                        lowerIDs[l1] = (byte) Blocks.bedrock;
+                        lowerIDs[l1] = (byte) Block.getIdFromBlock(Blocks.bedrock);
                     }
                 }
             }
@@ -309,11 +312,12 @@ public class NetheriteChunkProvider implements IChunkProvider
     {
         this.hellRNG.setSeed((long) chunkX * 341873128712L + (long) chunkZ * 132897987541L);
         byte[] lowerArray = new byte[32768];
+        Block[] aBlock = new Block[32768];
         //byte[] upperArray = new byte[32768];
         this.generateNetherTerrain(chunkX, chunkZ, lowerArray);
-        this.replaceBlocksForBiome(chunkX, chunkZ, lowerArray);
-        this.netherCaveGenerator.generate(this, this.worldObj, chunkX, chunkZ, lowerArray);
-        this.genNetherBridge.generate(this, this.worldObj, chunkX, chunkZ, lowerArray);
+        this.replaceBlocksForBiome(chunkX, chunkZ, aBlock, lowerArray);
+        this.netherCaveGenerator.func_151539_a(this, this.worldObj, chunkX, chunkZ, aBlock);
+        this.genNetherBridge.func_151539_a(this, this.worldObj, chunkX, chunkZ, aBlock);
         Chunk chunk = new NetheriteChunk(this.worldObj, lowerArray, chunkX, chunkZ);
         BiomeGenBase[] abiomegenbase = this.worldObj.getWorldChunkManager().loadBlockGeneratorData((BiomeGenBase[]) null, chunkX * 16, chunkZ * 16, 16, 16);
         byte[] abyte1 = chunk.getBiomeArray();
@@ -657,7 +661,7 @@ public class NetheriteChunkProvider implements IChunkProvider
     /**
      * Returns the location of the closest structure of the specified type. If not found returns null.
      */
-    public ChunkPosition findClosestStructure (World par1World, String par2Str, int par3, int par4, int par5)
+    public ChunkPosition func_147416_a (World par1World, String par2Str, int par3, int par4, int par5)
     {
         return null;
     }
@@ -669,13 +673,12 @@ public class NetheriteChunkProvider implements IChunkProvider
 
     public void recreateStructures (int par1, int par2)
     {
-        this.genNetherBridge.generate(this, this.worldObj, par1, par2, (byte[]) null);
+    	genNetherBridge.func_151539_a(this, this.worldObj, par1, par2, null);
     }
 
     @Override
     public void saveExtraData ()
     {
-        // TODO Auto-generated method stub
-
+        // NYI
     }
 }

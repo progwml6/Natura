@@ -12,10 +12,8 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.network.packet.Packet70GameEvent;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
@@ -243,7 +241,8 @@ public class FusewoodArrow extends EntityArrow
             ++this.ticksInAir;
             Vec3 vec3 = this.worldObj.getWorldVec3Pool().getVecFromPool(this.posX, this.posY, this.posZ);
             Vec3 vec31 = this.worldObj.getWorldVec3Pool().getVecFromPool(this.posX + this.motionX, this.posY + this.motionY, this.posZ + this.motionZ);
-            MovingObjectPosition movingobjectposition = this.worldObj.rayTraceBlocks_do_do(vec3, vec31, false, true);
+            // TODO 1.7 May need to call overload with extra params
+            MovingObjectPosition movingobjectposition = this.worldObj.rayTraceBlocks(vec3, vec31, false);
             vec3 = this.worldObj.getWorldVec3Pool().getVecFromPool(this.posX, this.posY, this.posZ);
             vec31 = this.worldObj.getWorldVec3Pool().getVecFromPool(this.posX + this.motionX, this.posY + this.motionY, this.posZ + this.motionZ);
 
@@ -335,11 +334,11 @@ public class FusewoodArrow extends EntityArrow
                         {
                             if (movingobjectposition.entityHit instanceof EntityLivingBase)
                             {
-                                EntityLivingBase entityliving = (EntityLivingBase) movingobjectposition.entityHit;
+                                Entity entityliving = movingobjectposition.entityHit;
 
                                 if (!this.worldObj.isRemote)
                                 {
-                                    entityliving.setArrowCountInEntity(entityliving.getArrowCountInEntity() + 1);
+                                    ((EntityLivingBase) entityliving).setArrowCountInEntity(((EntityLivingBase) entityliving).getArrowCountInEntity() + 1);
                                 }
 
                                 if (this.knockbackStrength > 0)
@@ -355,13 +354,14 @@ public class FusewoodArrow extends EntityArrow
 
                                 if (this.shootingEntity != null)
                                 {
-                                    EnchantmentThorns.func_92096_a(this.shootingEntity, entityliving, this.rand);
+                                	// TODO 1.7 last arg is level of enchant (I think), confirm this is correct
+                                    EnchantmentThorns.thorns.func_151367_b((EntityLivingBase) this.shootingEntity, entityliving, 1);
                                 }
 
                                 if (this.shootingEntity != null && movingobjectposition.entityHit != this.shootingEntity && movingobjectposition.entityHit instanceof EntityPlayer
                                         && this.shootingEntity instanceof EntityPlayerMP)
                                 {
-                                    ((EntityPlayerMP) this.shootingEntity).playerNetServerHandler.sendPacketToPlayer(new Packet70GameEvent(6, 0));
+                                    // TODO 1.7 What is Packet70 now? ((EntityPlayerMP) this.shootingEntity).playerNetServerHandler.sendPacketToPlayer(new Packet70GameEvent(6, 0));
                                 }
                             }
 
@@ -466,7 +466,7 @@ public class FusewoodArrow extends EntityArrow
             this.motionZ *= (double) f4;
             this.motionY -= (double) f1;
             this.setPosition(this.posX, this.posY, this.posZ);
-            this.doBlockCollisions();
+            this.func_145775_I(); // doBlockCollisions
         }
     }
 
@@ -478,7 +478,7 @@ public class FusewoodArrow extends EntityArrow
         par1NBTTagCompound.setShort("xTile", (short) this.xTile);
         par1NBTTagCompound.setShort("yTile", (short) this.yTile);
         par1NBTTagCompound.setShort("zTile", (short) this.zTile);
-        par1NBTTagCompound.setByte("inTile", (byte) this.inTile);
+        par1NBTTagCompound.setByte("inTile", (byte) Block.getIdFromBlock(this.inTile));
         par1NBTTagCompound.setByte("inData", (byte) this.inData);
         par1NBTTagCompound.setByte("shake", (byte) this.arrowShake);
         par1NBTTagCompound.setByte("inGround", (byte) (this.inGround ? 1 : 0));
@@ -494,7 +494,7 @@ public class FusewoodArrow extends EntityArrow
         this.xTile = par1NBTTagCompound.getShort("xTile");
         this.yTile = par1NBTTagCompound.getShort("yTile");
         this.zTile = par1NBTTagCompound.getShort("zTile");
-        this.inTile = par1NBTTagCompound.getByte("inTile") & 255;
+        this.inTile = Block.getBlockById(par1NBTTagCompound.getByte("inTile") & 255);
         this.inData = par1NBTTagCompound.getByte("inData") & 255;
         this.arrowShake = par1NBTTagCompound.getByte("shake") & 255;
         this.inGround = par1NBTTagCompound.getByte("inGround") == 1;
