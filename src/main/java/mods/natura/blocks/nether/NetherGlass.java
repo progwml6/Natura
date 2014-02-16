@@ -89,9 +89,9 @@ public class NetherGlass extends Block
     
     @Override
     @SideOnly(Side.CLIENT)
-    public IIcon getBlockTexture (IBlockAccess par1IBlockAccess, int par2, int par3, int par4, int par5)
+    public IIcon getIcon(IBlockAccess world, int x, int y, int z, int side)
     {
-        int meta = par1IBlockAccess.getBlockMetadata(par2, par3, par4);
+        int meta = world.getBlockMetadata(x, y, z);
         if (meta < 1)
             return icons[0];
         return icons[1];

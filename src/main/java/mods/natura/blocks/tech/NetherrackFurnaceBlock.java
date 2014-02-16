@@ -256,7 +256,7 @@ public class NetherrackFurnaceBlock extends BlockContainer
 
     @Override
     @SideOnly(Side.CLIENT)
-    public IIcon getBlockTexture (IBlockAccess world, int x, int y, int z, int side)
+    public IIcon getIcon (IBlockAccess world, int x, int y, int z, int side)
     {
         TileEntity logic = world.getTileEntity(x, y, z);
         int direction = (logic instanceof NetherrackFurnaceLogic) ? ((NetherrackFurnaceLogic) logic).getRenderDirection() : 0;

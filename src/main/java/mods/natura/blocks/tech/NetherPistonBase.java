@@ -24,6 +24,7 @@ import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
+// TODO make sure this class still works (extending behavior)
 public class NetherPistonBase extends BlockPistonBase
 {
     @SideOnly(Side.CLIENT)
@@ -479,9 +480,9 @@ public class NetherPistonBase extends BlockPistonBase
      */
     private boolean tryExtend (World par1World, int par2, int par3, int par4, int par5)
     {
-        int i1 = par2 + Facing.offsetsXForSide[par5];
-        int j1 = par3 + Facing.offsetsYForSide[par5];
-        int k1 = par4 + Facing.offsetsZForSide[par5];
+        int newX = par2 + Facing.offsetsXForSide[par5];
+        int newY = par3 + Facing.offsetsYForSide[par5];
+        int newZ = par4 + Facing.offsetsZForSide[par5];
         int l1 = 0;
 
         while (true)
@@ -490,16 +491,16 @@ public class NetherPistonBase extends BlockPistonBase
 
             if (l1 < 13)
             {
-                if (j1 <= 0 || j1 >= par1World.getHeight() - 1)
+                if (newY <= 0 || newY >= par1World.getHeight() - 1)
                 {
                     return false;
                 }
 
-                i2 = par1World.getBlock(i1, j1, k1);
+                i2 = par1World.getBlock(newX, newY, newZ);
 
-                if (!par1World.isAirBlock(i1, j1, k1))
+                if (!par1World.isAirBlock(newX, newY, newZ))
                 {
-                    if (!canPushBlock(i2, par1World, i1, j1, k1, true))
+                    if (!canPushBlock(i2, par1World, newX, newY, newZ, true))
                     {
                         return false;
                     }
@@ -511,65 +512,66 @@ public class NetherPistonBase extends BlockPistonBase
                             return false;
                         }
 
-                        i1 += Facing.offsetsXForSide[par5];
-                        j1 += Facing.offsetsYForSide[par5];
-                        k1 += Facing.offsetsZForSide[par5];
+                        newX += Facing.offsetsXForSide[par5];
+                        newY += Facing.offsetsYForSide[par5];
+                        newZ += Facing.offsetsZForSide[par5];
                         ++l1;
                         continue;
                     }
 
                     //With our change to how snowballs are dropped this needs to disallow to mimic vanilla behavior.
                     float chance = (i2 instanceof BlockSnow ? -1.0f : 1.0f);
-                    i2.dropBlockAsItemWithChance(par1World, i1, j1, k1, par1World.getBlockMetadata(i1, j1, k1), chance, 0);
-                    par1World.setBlockToAir(i1, j1, k1);
+                    i2.dropBlockAsItemWithChance(par1World, newX, newY, newZ, par1World.getBlockMetadata(newX, newY, newZ), chance, 0);
+                    par1World.setBlockToAir(newX, newY, newZ);
                 }
             }
 
-            l1 = i1;
-            i2 = j1;
-            int j2 = k1;
+            l1 = newX;
+            // TODO check this
+            i2 = par1World.getBlock(newX, newY, newZ);
+            int j2 = newZ;
             int k2 = 0;
-            int[] aint;
+            Block[] aint;
             int l2;
             int i3;
             int j3;
 
-            for (aint = new int[13]; i1 != par2 || j1 != par3 || k1 != par4; k1 = j3)
+            for (aint = new Block[13]; newX != par2 || newY != par3 || newZ != par4; newZ = j3)
             {
-                l2 = i1 - Facing.offsetsXForSide[par5];
-                i3 = j1 - Facing.offsetsYForSide[par5];
-                j3 = k1 - Facing.offsetsZForSide[par5];
+                l2 = newX - Facing.offsetsXForSide[par5];
+                i3 = newY - Facing.offsetsYForSide[par5];
+                j3 = newZ - Facing.offsetsZForSide[par5];
                 Block k3 = par1World.getBlock(l2, i3, j3);
                 int l3 = par1World.getBlockMetadata(l2, i3, j3);
 
                 if (k3 == this && l2 == par2 && i3 == par3 && j3 == par4)
                 {
-                    par1World.setBlock(i1, j1, k1, Blocks.piston, par5 | (this.sticky ? 8 : 0), 4);
-                    par1World.setTileEntity(i1, j1, k1, BlockPistonMoving.getTileEntity(NContent.pistonExtension, par5 | (this.sticky ? 8 : 0), par5, true, false));
+                    par1World.setBlock(newX, newY, newZ, Blocks.piston, par5 | (this.sticky ? 8 : 0), 4);
+                    par1World.setTileEntity(newX, newY, newZ, BlockPistonMoving.getTileEntity(NContent.pistonExtension, par5 | (this.sticky ? 8 : 0), par5, true, false));
                 }
                 else
                 {
-                    par1World.setBlock(i1, j1, k1, Blocks.piston, l3, 4);
-                    par1World.setTileEntity(i1, j1, k1, BlockPistonMoving.getTileEntity(k3, l3, par5, true, false));
+                    par1World.setBlock(newX, newY, newZ, Blocks.piston, l3, 4);
+                    par1World.setTileEntity(newX, newY, newZ, BlockPistonMoving.getTileEntity(k3, l3, par5, true, false));
                 }
 
                 aint[k2++] = k3;
-                i1 = l2;
-                j1 = i3;
+                newX = l2;
+                newY = i3;
             }
 
-            i1 = l1;
-            j1 = i2;
-            k1 = j2;
+            newX = l1;
+            i2 = par1World.getBlock(newX, newY, newZ);
+            newZ = j2;
 
-            for (k2 = 0; i1 != par2 || j1 != par3 || k1 != par4; k1 = j3)
+            for (k2 = 0; newX != par2 || newY != par3 || newZ != par4; newZ = j3)
             {
-                l2 = i1 - Facing.offsetsXForSide[par5];
-                i3 = j1 - Facing.offsetsYForSide[par5];
-                j3 = k1 - Facing.offsetsZForSide[par5];
+                l2 = newX - Facing.offsetsXForSide[par5];
+                i3 = newY - Facing.offsetsYForSide[par5];
+                j3 = newZ - Facing.offsetsZForSide[par5];
                 par1World.notifyBlocksOfNeighborChange(l2, i3, j3, aint[k2++]);
-                i1 = l2;
-                j1 = i3;
+                newX = l2;
+                newY = i3;
             }
 
             return true;
