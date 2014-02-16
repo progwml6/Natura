@@ -70,16 +70,16 @@ public class NContent implements IFuelHandler
         waterDrop = new CactusJuice(false).setUnlocalizedName("waterdrop");
         GameRegistry.registerItem(waterDrop, "waterdrop");
 
-        wheatBag = new SeedBag(Items.wheat, 0, "wheat").setUnlocalizedName("wheatBag");
+        wheatBag = new SeedBag(Blocks.wheat, 0, "wheat").setUnlocalizedName("wheatBag");
         GameRegistry.registerItem(wheatBag, "wheatBag");
         GameRegistry.registerCustomItemStack("bagWheat", new ItemStack(wheatBag, 1, 0));
         barleyBag = new SeedBag(crops, 0, "barley").setUnlocalizedName("barleyBag");
         GameRegistry.registerItem(barleyBag, "barleyBag");
         GameRegistry.registerCustomItemStack("bagBarley", new ItemStack(barleyBag, 1, 0));
-        potatoBag = new SeedBag(Items.potato, 0, "potato").setUnlocalizedName("potatoBag");
+        potatoBag = new SeedBag(Blocks.potatoes, 0, "potato").setUnlocalizedName("potatoBag");
         GameRegistry.registerItem(potatoBag, "potatoBag");
         GameRegistry.registerCustomItemStack("bagPotato", new ItemStack(potatoBag, 1, 0));
-        carrotBag = new SeedBag(Items.carrot, 0, "carrot").setUnlocalizedName("carrotBag");
+        carrotBag = new SeedBag(Blocks.carrots, 0, "carrot").setUnlocalizedName("carrotBag");
         GameRegistry.registerItem(carrotBag, "carrotBag");
         GameRegistry.registerCustomItemStack("bagCarrot", new ItemStack(carrotBag, 1, 0));
         netherWartBag = new SeedBag(Blocks.nether_wart, 0, "netherwart").setUnlocalizedName("wartBag");
@@ -123,7 +123,7 @@ public class NContent implements IFuelHandler
         planks = new Planks().setBlockName("natura.planks");
         floraLeaves = (NLeaves) new NLeaves().setBlockName("natura.leaves");
         floraLeavesNoColor = (NLeaves) new NLeavesNocolor().setBlockName("natura.leavesnocolor");
-        floraSapling = (NSaplingBlock) new NSaplingBlock().setBlockName("natura.sapling");
+        floraSapling = ((NSaplingBlock) new NSaplingBlock().setBlockName("natura.sapling"));
         willow = new WillowBlock().setBlockName("willow");
 
         saguaro = new SaguaroBlock().setBlockName("saguaro.block");
@@ -233,12 +233,13 @@ public class NContent implements IFuelHandler
         GameRegistry.registerBlock(rareTree, OverworldTreeItem.class, "Rare Tree");
         rareLeaves = (NLeaves) new OverworldLeaves().setBlockName("RareLeaves");
         GameRegistry.registerBlock(rareLeaves, OverworldLeavesItem.class, "Rare Leaves");
-        rareSapling = (OverworldSapling) new OverworldSapling().setBlockName("RareSapling");
+        rareSapling = (NSaplingBlock) new OverworldSapling().setBlockName("RareSapling");
         GameRegistry.registerBlock(rareSapling, OverworldSaplingItem.class, "Rare Sapling");
-        bluebells = new FlowerBlock().setBlockName("bluebells");
+        bluebells = (NSaplingBlock) new FlowerBlock().setBlockName("bluebells");
         GameRegistry.registerBlock(bluebells, "Bluebells");
 
-        MinecraftForge.addGrassPlant(bluebells, 0, 18);
+        // TODO 1.7 apparently this isn't so simple anymore
+        //MinecraftForge.addGrassPlant(bluebells, 0, 18);
 
         //Vanilla overrides and alternates
         alternateWorkbench = new AlternateWorkbench().setHardness(2.5F).setStepSound(Block.soundTypeWood).setBlockName("workbench").setCreativeTab(NaturaTab.tab);
@@ -1135,7 +1136,7 @@ public class NContent implements IFuelHandler
 
     public static NLeaves floraLeaves;
     public static NLeaves floraLeavesNoColor;
-    public static Item floraSapling;
+    public static NSaplingBlock floraSapling;
 
     public static Block saguaro;
 
@@ -1233,8 +1234,8 @@ public class NContent implements IFuelHandler
     //Extra overworld
     public static Block rareTree;
     public static NLeaves rareLeaves;
-    public static Item rareSapling;
-    public static Block bluebells;
+    public static NSaplingBlock rareSapling;
+    public static NSaplingBlock bluebells;
 
     public static Item stickItem;
     public static Item bowlEmpty;

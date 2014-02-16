@@ -1,6 +1,5 @@
 package mods.natura.blocks.crops;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockFlower;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
@@ -10,9 +9,9 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class FlowerBlock extends BlockFlower
 {
 
-    public FlowerBlock(int i)
+    public FlowerBlock()
     {
-        super(i);
+        super(0);
         setCreativeTab(CreativeTabs.tabDecorations);
         this.setStepSound(soundTypeGrass);
     }

@@ -261,4 +261,9 @@ public class NSaplingBlock extends BlockSapling
         for (int i = 0; i < 8; i++)
             par3List.add(new ItemStack(par1, 1, i));
     }
+    
+    public Item getItem()
+    {
+    	return this.getItem(null, 0, 0, 0);
+    }
 }

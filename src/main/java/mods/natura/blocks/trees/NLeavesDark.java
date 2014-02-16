@@ -91,7 +91,7 @@ public class NLeavesDark extends NLeaves
     {
         if (metadata % 4 == 2)
             return NContent.potashApple;
-        return NContent.floraSapling;
+        return NContent.floraSapling.getItem();
     }
 
     public int damageDropped (int par1)
