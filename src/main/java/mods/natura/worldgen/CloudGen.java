@@ -22,7 +22,8 @@ public class CloudGen extends WorldGenerator
         flatCloud = flag;
     }
 
-    public boolean generate (World world, Random random, int x, int y, int z)
+    @Override
+	public boolean generate (World world, Random random, int x, int y, int z)
     {
         int l = random.nextInt(3) - 1;
         int i1 = random.nextInt(3) - 1;

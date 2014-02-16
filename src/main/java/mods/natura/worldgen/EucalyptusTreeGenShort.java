@@ -19,7 +19,8 @@ public class EucalyptusTreeGenShort extends WorldGenerator
         mdLeaves = leavesMetadata;
     }
 
-    public boolean generate (World world, Random random, int x, int y, int z)
+    @Override
+	public boolean generate (World world, Random random, int x, int y, int z)
     {
         int height = findGround(world, x, y, z);
         generateRandomTree(world, random, x, height, z);

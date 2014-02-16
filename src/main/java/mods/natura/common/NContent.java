@@ -18,8 +18,6 @@ import mods.natura.items.tools.*;
 import mods.natura.util.DispenserBehaviorSpawnEgg;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDispenser;
-import net.minecraft.block.BlockLever;
-import net.minecraft.block.BlockPressurePlate;
 import net.minecraft.block.BlockPressurePlate.Sensitivity;
 import net.minecraft.block.material.Material;
 import net.minecraft.enchantment.Enchantment;
@@ -34,8 +32,6 @@ import net.minecraft.item.crafting.CraftingManager;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.item.crafting.ShapedRecipes;
 import net.minecraft.item.crafting.ShapelessRecipes;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.util.EnumHelper;
@@ -45,8 +41,6 @@ import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
 import tconstruct.library.crafting.PatternBuilder;
 import cpw.mods.fml.common.IFuelHandler;
-import cpw.mods.fml.common.Loader;
-import cpw.mods.fml.common.event.FMLInterModComms;
 import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 
@@ -901,20 +895,20 @@ public class NContent implements IFuelHandler
         for (int i = 0; i < 5; i++)
             addShapedRecipeFirst(recipes, new ItemStack(plankSlab2, 6, i), "###", '#', new ItemStack(planks, 1, 8 + i));
 
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(this.brail, 16), "X X", "X#X", "X X", 'X', Items.blaze_rod, '#', "stickWood"));
-        GameRegistry.addRecipe(new ItemStack(this.brailPowered, 6), "X X", "X#X", "XRX", 'X', Items.blaze_rod, 'R', Items.redstone, '#', new ItemStack(darkTree, 1, 1));
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(this.brailActivator, 6), "XSX", "X#X", "XSX", 'X', Items.blaze_rod, '#', Blocks.redstone_torch, 'S', "stickWood"));
-        GameRegistry.addRecipe(new ItemStack(this.brailDetector, 6), "X X", "X#X", "XRX", 'X', Items.blaze_rod, 'R', Items.redstone, '#', netherPressurePlate);
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(NContent.brail, 16), "X X", "X#X", "X X", 'X', Items.blaze_rod, '#', "stickWood"));
+        GameRegistry.addRecipe(new ItemStack(NContent.brailPowered, 6), "X X", "X#X", "XRX", 'X', Items.blaze_rod, 'R', Items.redstone, '#', new ItemStack(darkTree, 1, 1));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(NContent.brailActivator, 6), "XSX", "X#X", "XSX", 'X', Items.blaze_rod, '#', Blocks.redstone_torch, 'S', "stickWood"));
+        GameRegistry.addRecipe(new ItemStack(NContent.brailDetector, 6), "X X", "X#X", "XRX", 'X', Items.blaze_rod, 'R', Items.redstone, '#', netherPressurePlate);
 
-        GameRegistry.addRecipe(new ItemStack(this.netherrackFurnace), "###", "# #", "###", '#', Blocks.netherrack);
-        GameRegistry.addRecipe(new ItemStack(this.respawnObelisk), "###", "# #", "###", '#', new ItemStack(tree, 1, 2));
+        GameRegistry.addRecipe(new ItemStack(NContent.netherrackFurnace), "###", "# #", "###", '#', Blocks.netherrack);
+        GameRegistry.addRecipe(new ItemStack(NContent.respawnObelisk), "###", "# #", "###", '#', new ItemStack(tree, 1, 2));
         FurnaceRecipes.smelting().func_151394_a(new ItemStack(Blocks.soul_sand, 0), new ItemStack(netherGlass, 1, 0), 0.3f);
         FurnaceRecipes.smelting().func_151394_a(new ItemStack(heatSand, 0), new ItemStack(netherGlass, 1, 1), 0.3f);
         OreDictionary.registerOre("chestWood", new ItemStack(Blocks.chest));
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(this.netherHopper), "# #", "#C#", " # ", '#', new ItemStack(Items.blaze_rod), 'C', "chestWood"));
-        GameRegistry.addRecipe(new ItemStack(this.netherPressurePlate), "##", '#', new ItemStack(Blocks.netherrack));
-        GameRegistry.addRecipe(new ItemStack(this.netherButton), "#", '#', new ItemStack(Blocks.netherrack));
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(this.netherLever), "S", "#", '#', new ItemStack(Blocks.netherrack), 'S', "stickWood"));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(NContent.netherHopper), "# #", "#C#", " # ", '#', new ItemStack(Items.blaze_rod), 'C', "chestWood"));
+        GameRegistry.addRecipe(new ItemStack(NContent.netherPressurePlate), "##", '#', new ItemStack(Blocks.netherrack));
+        GameRegistry.addRecipe(new ItemStack(NContent.netherButton), "#", '#', new ItemStack(Blocks.netherrack));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(NContent.netherLever), "S", "#", '#', new ItemStack(Blocks.netherrack), 'S', "stickWood"));
 
         OreDictionary.registerOre("glass", new ItemStack(Blocks.glass));
         OreDictionary.registerOre("glass", new ItemStack(netherGlass, 1, 0));
@@ -1331,7 +1325,7 @@ public class NContent implements IFuelHandler
     @Override
     public int getBurnTime (ItemStack fuel)
     {
-        if (fuel.getItem() == new ItemStack((Block) floraSapling).getItem() || fuel.getItem() == new ItemStack(rareSapling).getItem())
+        if (fuel.getItem() == new ItemStack(floraSapling).getItem() || fuel.getItem() == new ItemStack(rareSapling).getItem())
             return 100;
         return 0;
     }

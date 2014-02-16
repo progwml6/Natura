@@ -16,7 +16,8 @@ public class GlowshroomGenPurple extends WorldGenerator
         super(flag);
     }
 
-    public boolean generate (World world, Random random, int x, int y, int z)
+    @Override
+	public boolean generate (World world, Random random, int x, int y, int z)
     {
         int type = 1;
 

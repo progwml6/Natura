@@ -1,12 +1,8 @@
 package mods.natura.client;
 
-import java.util.EnumSet;
-
 import cpw.mods.fml.client.FMLClientHandler;
 import mods.natura.common.NContent;
-import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
-import net.minecraft.init.Blocks;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.TickEvent.ClientTickEvent;
 import cpw.mods.fml.common.gameevent.TickEvent.Phase;

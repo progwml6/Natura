@@ -27,7 +27,8 @@ public class HerbBlock extends CropBlock
         this.setCreativeTab(NaturaTab.tab);
     }
 
-    public void updateTick (World world, int x, int y, int z, Random random)
+    @Override
+	public void updateTick (World world, int x, int y, int z, Random random)
     {
         this.checkAndDropBlock(world, x, y, z);
 
@@ -56,7 +57,8 @@ public class HerbBlock extends CropBlock
     {
     }
 
-    boolean requiresSun (int meta)
+    @Override
+	boolean requiresSun (int meta)
     {
         return false;
     }
@@ -64,22 +66,26 @@ public class HerbBlock extends CropBlock
     /**
      * The type of render function that is called for this block
      */
-    public int getRenderType ()
+    @Override
+	public int getRenderType ()
     {
         return 1;
     }
 
-    protected Item getCropItem (int meta)
+    @Override
+	protected Item getCropItem (int meta)
     {
         return NContent.plantItem;
     }
 
-    protected Item getSeedItem (int meta)
+    @Override
+	protected Item getSeedItem (int meta)
     {
         return NContent.seeds;
     }
 
-    public int damageDropped (int meta)
+    @Override
+	public int damageDropped (int meta)
     {
         return 0;
     }
@@ -99,7 +105,8 @@ public class HerbBlock extends CropBlock
     /**
      * Can this block stay at this position.  Similar to canPlaceBlockAt except gets checked often with plants.
      */
-    public boolean canBlockStay (World par1World, int x, int y, int z)
+    @Override
+	public boolean canBlockStay (World par1World, int x, int y, int z)
     {
         Block soil = par1World.getBlock(x, y - 1, z);
         return soil != null && soil.getMaterial() == Material.rock;

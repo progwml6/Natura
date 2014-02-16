@@ -3,7 +3,6 @@ package mods.natura.blocks.tech;
 import java.util.Random;
 
 import mods.natura.Natura;
-import mods.natura.common.NaturaTab;
 import mods.natura.gui.NGuiHandler;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
@@ -38,7 +37,8 @@ public class NetherrackFurnaceBlock extends BlockContainer
     }
 
     /* Logic backend */
-    public TileEntity createNewTileEntity (World world, int metadata)
+    @Override
+	public TileEntity createNewTileEntity (World world, int metadata)
     {
         return new NetherrackFurnaceLogic();
     }
@@ -102,7 +102,7 @@ public class NetherrackFurnaceBlock extends BlockContainer
                         }
 
                         stack.stackSize -= itemSize;
-                        EntityItem entityitem = new EntityItem(par1World, (double) ((float) x + jumpX), (double) ((float) y + jumpY), (double) ((float) z + jumpZ), new ItemStack(stack.getItem(),
+                        EntityItem entityitem = new EntityItem(par1World, x + jumpX, y + jumpY, z + jumpZ, new ItemStack(stack.getItem(),
                                 itemSize, stack.getItemDamage()));
 
                         if (stack.hasTagCompound())
@@ -111,9 +111,9 @@ public class NetherrackFurnaceBlock extends BlockContainer
                         }
 
                         float offset = 0.05F;
-                        entityitem.motionX = (double) ((float) rand.nextGaussian() * offset);
-                        entityitem.motionY = (double) ((float) rand.nextGaussian() * offset + 0.2F);
-                        entityitem.motionZ = (double) ((float) rand.nextGaussian() * offset);
+                        entityitem.motionX = (float) rand.nextGaussian() * offset;
+                        entityitem.motionY = (float) rand.nextGaussian() * offset + 0.2F;
+                        entityitem.motionZ = (float) rand.nextGaussian() * offset;
                         par1World.spawnEntityInWorld(entityitem);
                     }
                 }
@@ -172,13 +172,15 @@ public class NetherrackFurnaceBlock extends BlockContainer
         return false;
     }
 
-    public int damageDropped (int meta)
+    @Override
+	public int damageDropped (int meta)
     {
         return meta;
     }
     
     /* Light */
-    public int getLightValue (IBlockAccess world, int x, int y, int z)
+    @Override
+	public int getLightValue (IBlockAccess world, int x, int y, int z)
     {
         TileEntity te = world.getTileEntity(x, y, z);
         if (te instanceof NetherrackFurnaceLogic)
@@ -189,48 +191,51 @@ public class NetherrackFurnaceBlock extends BlockContainer
     }
     
     /* Comparator */
-    public boolean hasComparatorInputOverride ()
+    @Override
+	public boolean hasComparatorInputOverride ()
     {
         return true;
     }
 
-    public int getComparatorInputOverride (World par1World, int par2, int par3, int par4, int par5)
+    @Override
+	public int getComparatorInputOverride (World par1World, int par2, int par3, int par4, int par5)
     {
         return Container.calcRedstoneFromInventory((IInventory) par1World.getTileEntity(par2, par3, par4));
     }
     
-    @SideOnly(Side.CLIENT)
+    @Override
+	@SideOnly(Side.CLIENT)
     public void randomDisplayTick (World world, int x, int y, int z, Random par5Random)
     {
         NetherrackFurnaceLogic logic = (NetherrackFurnaceLogic) world.getTileEntity(x, y, z);
         if (logic.getActive())
         {
             int l = world.getBlockMetadata(x, y, z);
-            float f = (float) x + 0.5F;
-            float f1 = (float) y + 0.0F + par5Random.nextFloat() * 6.0F / 16.0F;
-            float f2 = (float) z + 0.5F;
+            float f = x + 0.5F;
+            float f1 = y + 0.0F + par5Random.nextFloat() * 6.0F / 16.0F;
+            float f2 = z + 0.5F;
             float f3 = 0.52F;
             float f4 = par5Random.nextFloat() * 0.6F - 0.3F;
 
             if (l == 4)
             {
-                world.spawnParticle("smoke", (double) (f - f3), (double) f1, (double) (f2 + f4), 0.0D, 0.0D, 0.0D);
-                world.spawnParticle("flame", (double) (f - f3), (double) f1, (double) (f2 + f4), 0.0D, 0.0D, 0.0D);
+                world.spawnParticle("smoke", f - f3, f1, f2 + f4, 0.0D, 0.0D, 0.0D);
+                world.spawnParticle("flame", f - f3, f1, f2 + f4, 0.0D, 0.0D, 0.0D);
             }
             else if (l == 5)
             {
-                world.spawnParticle("smoke", (double) (f + f3), (double) f1, (double) (f2 + f4), 0.0D, 0.0D, 0.0D);
-                world.spawnParticle("flame", (double) (f + f3), (double) f1, (double) (f2 + f4), 0.0D, 0.0D, 0.0D);
+                world.spawnParticle("smoke", f + f3, f1, f2 + f4, 0.0D, 0.0D, 0.0D);
+                world.spawnParticle("flame", f + f3, f1, f2 + f4, 0.0D, 0.0D, 0.0D);
             }
             else if (l == 2)
             {
-                world.spawnParticle("smoke", (double) (f + f4), (double) f1, (double) (f2 - f3), 0.0D, 0.0D, 0.0D);
-                world.spawnParticle("flame", (double) (f + f4), (double) f1, (double) (f2 - f3), 0.0D, 0.0D, 0.0D);
+                world.spawnParticle("smoke", f + f4, f1, f2 - f3, 0.0D, 0.0D, 0.0D);
+                world.spawnParticle("flame", f + f4, f1, f2 - f3, 0.0D, 0.0D, 0.0D);
             }
             else if (l == 3)
             {
-                world.spawnParticle("smoke", (double) (f + f4), (double) f1, (double) (f2 + f3), 0.0D, 0.0D, 0.0D);
-                world.spawnParticle("flame", (double) (f + f4), (double) f1, (double) (f2 + f3), 0.0D, 0.0D, 0.0D);
+                world.spawnParticle("smoke", f + f4, f1, f2 + f3, 0.0D, 0.0D, 0.0D);
+                world.spawnParticle("flame", f + f4, f1, f2 + f3, 0.0D, 0.0D, 0.0D);
             }
         }
     }

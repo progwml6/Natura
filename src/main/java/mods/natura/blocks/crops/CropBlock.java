@@ -39,7 +39,8 @@ public class CropBlock extends BlockCrops
     /**
      * Ticks the block if it's been scheduled
      */
-    public void updateTick (World world, int x, int y, int z, Random random)
+    @Override
+	public void updateTick (World world, int x, int y, int z, Random random)
     {
     	this.checkAndDropBlock(world, x, y, z);
 
@@ -175,7 +176,8 @@ public class CropBlock extends BlockCrops
         return false;
     }
 
-    public float getBlockHardness (World world, int x, int y, int z)
+    @Override
+	public float getBlockHardness (World world, int x, int y, int z)
     {
         if (world.getBlockMetadata(x, y, z) > 3)
             return 0.5f;
@@ -207,7 +209,8 @@ public class CropBlock extends BlockCrops
     /**
      * The type of render function that is called for this block
      */
-    public int getRenderType ()
+    @Override
+	public int getRenderType ()
     {
         return CropRender.model;
     }
@@ -229,7 +232,8 @@ public class CropBlock extends BlockCrops
         return NContent.seeds;
     }
 
-    public int damageDropped (int meta)
+    @Override
+	public int damageDropped (int meta)
     {
         if (meta < 4)
             return 0;
@@ -246,7 +250,8 @@ public class CropBlock extends BlockCrops
     /**
      * Drops the block items with a specified chance of dropping the specified items
      */
-    public void dropBlockAsItemWithChance (World par1World, int par2, int par3, int par4, int par5, float par6, int par7)
+    @Override
+	public void dropBlockAsItemWithChance (World par1World, int par2, int par3, int par4, int par5, float par6, int par7)
     {
         super.dropBlockAsItemWithChance(par1World, par2, par3, par4, par5, par6, 0);
     }
@@ -309,7 +314,8 @@ public class CropBlock extends BlockCrops
         return this.getSeedItem(world.getBlockMetadata(x, y, z));
     }
 
-    public int getDamageValue (World par1World, int par2, int par3, int par4)
+    @Override
+	public int getDamageValue (World par1World, int par2, int par3, int par4)
     {
         return seedDamageDropped(par1World.getBlockMetadata(par2, par3, par4));
     }

@@ -25,7 +25,8 @@ public class CactusJuice extends ItemFood
         this.setCreativeTab(NaturaTab.tab);
     }
 
-    public int getMaxItemUseDuration (ItemStack itemstack)
+    @Override
+	public int getMaxItemUseDuration (ItemStack itemstack)
     {
         return 12;
     }

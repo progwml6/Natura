@@ -56,7 +56,8 @@ public class NSaplingBlock extends BlockSapling
         }
     }
 
-    public boolean canPlaceBlockAt (World world, int x, int y, int z)
+    @Override
+	public boolean canPlaceBlockAt (World world, int x, int y, int z)
     {
         Block block = world.getBlock(x, y, z);;
         if (block == null || block.isReplaceable(world, x, y, z))
@@ -114,7 +115,8 @@ public class NSaplingBlock extends BlockSapling
             return EnumPlantType.Nether;
     }
 
-    public void updateTick (World world, int x, int y, int z, Random random)
+    @Override
+	public void updateTick (World world, int x, int y, int z, Random random)
     {
         if (world.isRemote)
         {
@@ -249,7 +251,8 @@ public class NSaplingBlock extends BlockSapling
             world.setBlock(x, y, z, this, md + 8, 3);
     }
 
-    public int damageDropped (int i)
+    @Override
+	public int damageDropped (int i)
     {
         return i % 8;
     }

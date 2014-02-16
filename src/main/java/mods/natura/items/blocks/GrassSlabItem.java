@@ -16,12 +16,14 @@ public class GrassSlabItem extends ItemBlock
         setHasSubtypes(true);
     }
 
-    public int getMetadata (int meta)
+    @Override
+	public int getMetadata (int meta)
     {
         return meta;
     }
 
-    public String getUnlocalizedName (ItemStack itemstack)
+    @Override
+	public String getUnlocalizedName (ItemStack itemstack)
     {
         int pos = MathHelper.clamp_int(itemstack.getItemDamage(), 0, blockType.length - 1);
         return (new StringBuilder()).append("block.soil.").append(blockType[pos]).append(".slab").toString();

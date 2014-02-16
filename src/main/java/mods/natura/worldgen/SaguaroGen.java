@@ -21,7 +21,8 @@ public class SaguaroGen extends WorldGenerator
         useHeight = notify;
     }
 
-    public boolean generate (World world, Random random, int x, int y, int z)
+    @Override
+	public boolean generate (World world, Random random, int x, int y, int z)
     {
         int yPos = findGround(world, x, y, z, useHeight);
         Block currentID = world.getBlock(x, yPos, z);

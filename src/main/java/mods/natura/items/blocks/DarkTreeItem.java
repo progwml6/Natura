@@ -27,7 +27,8 @@ public class DarkTreeItem extends ItemBlock
         return meta;
     }
 
-    public String getUnlocalizedName (ItemStack itemstack)
+    @Override
+	public String getUnlocalizedName (ItemStack itemstack)
     {
         return (new StringBuilder()).append("block.log.").append(blockType[itemstack.getItemDamage()]).toString();
     }

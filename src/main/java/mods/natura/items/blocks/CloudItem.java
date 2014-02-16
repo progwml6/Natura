@@ -27,7 +27,8 @@ public class CloudItem extends ItemBlock
         return md;
     }
 
-    public String getUnlocalizedName (ItemStack itemstack)
+    @Override
+	public String getUnlocalizedName (ItemStack itemstack)
     {
         return (new StringBuilder()).append(blockType[itemstack.getItemDamage()]).append("cloud").toString();
     }

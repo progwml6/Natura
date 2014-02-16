@@ -10,9 +10,11 @@ import static net.minecraftforge.event.terraingen.PopulateChunkEvent.Populate.Ev
 import java.util.List;
 import java.util.Random;
 
+import cpw.mods.fml.common.eventhandler.Event.Result;
 import mods.natura.common.NContent;
 import mods.natura.worldgen.FlowerGen;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockFalling;
 import net.minecraft.block.BlockSand;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.init.Blocks;
@@ -299,7 +301,8 @@ public class NetheriteChunkProvider implements IChunkProvider
     /**
      * loads or generates the chunk at the chunk location specified
      */
-    public Chunk loadChunk (int par1, int par2)
+    @Override
+	public Chunk loadChunk (int par1, int par2)
     {
         return this.provideChunk(par1, par2);
     }
@@ -308,9 +311,10 @@ public class NetheriteChunkProvider implements IChunkProvider
      * Will return back a chunk, if it doesn't exist and its not a MP client it will generates all the blocks for the
      * specified chunk from the map seed and chunk seed
      */
-    public Chunk provideChunk (int chunkX, int chunkZ)
+    @Override
+	public Chunk provideChunk (int chunkX, int chunkZ)
     {
-        this.hellRNG.setSeed((long) chunkX * 341873128712L + (long) chunkZ * 132897987541L);
+        this.hellRNG.setSeed(chunkX * 341873128712L + chunkZ * 132897987541L);
         byte[] lowerArray = new byte[32768];
         Block[] aBlock = new Block[32768];
         //byte[] upperArray = new byte[32768];
@@ -339,7 +343,8 @@ public class NetheriteChunkProvider implements IChunkProvider
     {
         ChunkProviderEvent.InitNoiseField event = new ChunkProviderEvent.InitNoiseField(this, par1ArrayOfDouble, par2, par3, par4, par5, par6, par7);
         MinecraftForge.EVENT_BUS.post(event);
-        if (event.getResult() == event.getResult().DENY)
+        event.getResult();
+		if (event.getResult() == Result.DENY)
             return event.noisefield;
         if (par1ArrayOfDouble == null)
         {
@@ -360,12 +365,12 @@ public class NetheriteChunkProvider implements IChunkProvider
 
         for (i2 = 0; i2 < par6; ++i2)
         {
-            adouble1[i2] = Math.cos((double) i2 * Math.PI * 6.0D / (double) par6) * 2.0D;
-            double d2 = (double) i2;
+            adouble1[i2] = Math.cos(i2 * Math.PI * 6.0D / par6) * 2.0D;
+            double d2 = i2;
 
             if (i2 > par6 / 2)
             {
-                d2 = (double) (par6 - 1 - i2);
+                d2 = par6 - 1 - i2;
             }
 
             if (d2 < 4.0D)
@@ -420,7 +425,7 @@ public class NetheriteChunkProvider implements IChunkProvider
                 }
 
                 d3 += 0.5D;
-                d5 = d5 * (double) par6 / 16.0D;
+                d5 = d5 * par6 / 16.0D;
                 ++l1;
 
                 for (int k2 = 0; k2 < par6; ++k2)
@@ -449,13 +454,13 @@ public class NetheriteChunkProvider implements IChunkProvider
 
                     if (k2 > par6 - 4)
                     {
-                        d11 = (double) ((float) (k2 - (par6 - 4)) / 3.0F);
+                        d11 = (k2 - (par6 - 4)) / 3.0F;
                         d6 = d6 * (1.0D - d11) + -10.0D * d11;
                     }
 
-                    if ((double) k2 < d4)
+                    if (k2 < d4)
                     {
-                        d11 = (d4 - (double) k2) / 4.0D;
+                        d11 = (d4 - k2) / 4.0D;
 
                         if (d11 < 0.0D)
                         {
@@ -482,7 +487,8 @@ public class NetheriteChunkProvider implements IChunkProvider
     /**
      * Checks to see if a chunk exists at x, y
      */
-    public boolean chunkExists (int par1, int par2)
+    @Override
+	public boolean chunkExists (int par1, int par2)
     {
         return true;
     }
@@ -490,9 +496,10 @@ public class NetheriteChunkProvider implements IChunkProvider
     /**
      * Populates chunk with ores etc etc
      */
-    public void populate (IChunkProvider par1IChunkProvider, int par2, int par3)
+    @Override
+	public void populate (IChunkProvider par1IChunkProvider, int par2, int par3)
     {
-        BlockSand.fallInstantly = true;
+        BlockFalling.fallInstantly = true;
 
         MinecraftForge.EVENT_BUS.post(new PopulateChunkEvent.Pre(par1IChunkProvider, worldObj, hellRNG, par2, par3, false));
 
@@ -606,14 +613,15 @@ public class NetheriteChunkProvider implements IChunkProvider
         MinecraftForge.EVENT_BUS.post(new DecorateBiomeEvent.Post(worldObj, hellRNG, blockX, blockZ));
         MinecraftForge.EVENT_BUS.post(new PopulateChunkEvent.Post(par1IChunkProvider, worldObj, hellRNG, par2, par3, false));
 
-        BlockSand.fallInstantly = false;
+        BlockFalling.fallInstantly = false;
     }
 
     /**
      * Two modes of operation: if passed true, save all Chunks in one go.  If passed false, save up to two chunks.
      * Return true if all chunks have been saved.
      */
-    public boolean saveChunks (boolean par1, IProgressUpdate par2IProgressUpdate)
+    @Override
+	public boolean saveChunks (boolean par1, IProgressUpdate par2IProgressUpdate)
     {
         return true;
     }
@@ -621,7 +629,8 @@ public class NetheriteChunkProvider implements IChunkProvider
     /**
      * Unloads chunks that are marked to be unloaded. This is not guaranteed to unload every such chunk.
      */
-    public boolean unloadQueuedChunks ()
+    @Override
+	public boolean unloadQueuedChunks ()
     {
         return false;
     }
@@ -629,7 +638,8 @@ public class NetheriteChunkProvider implements IChunkProvider
     /**
      * Returns if the IChunkProvider supports saving.
      */
-    public boolean canSave ()
+    @Override
+	public boolean canSave ()
     {
         return true;
     }
@@ -637,7 +647,8 @@ public class NetheriteChunkProvider implements IChunkProvider
     /**
      * Converts the instance data to a readable string.
      */
-    public String makeString ()
+    @Override
+	public String makeString ()
     {
         return "HellRandomLevelSource";
     }
@@ -645,7 +656,8 @@ public class NetheriteChunkProvider implements IChunkProvider
     /**
      * Returns a list of creatures of the specified type that can spawn at the given location.
      */
-    public List getPossibleCreatures (EnumCreatureType par1EnumCreatureType, int par2, int par3, int par4)
+    @Override
+	public List getPossibleCreatures (EnumCreatureType par1EnumCreatureType, int par2, int par3, int par4)
     {
         if (par1EnumCreatureType == EnumCreatureType.monster && this.genNetherBridge.hasStructureAt(par2, par3, par4))
         {
@@ -661,17 +673,20 @@ public class NetheriteChunkProvider implements IChunkProvider
     /**
      * Returns the location of the closest structure of the specified type. If not found returns null.
      */
-    public ChunkPosition func_147416_a (World par1World, String par2Str, int par3, int par4, int par5)
+    @Override
+	public ChunkPosition func_147416_a (World par1World, String par2Str, int par3, int par4, int par5)
     {
         return null;
     }
 
-    public int getLoadedChunkCount ()
+    @Override
+	public int getLoadedChunkCount ()
     {
         return 0;
     }
 
-    public void recreateStructures (int par1, int par2)
+    @Override
+	public void recreateStructures (int par1, int par2)
     {
     	genNetherBridge.func_151539_a(this, this.worldObj, par1, par2, null);
     }

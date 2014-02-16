@@ -5,7 +5,6 @@ import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
@@ -19,7 +18,8 @@ public class FusewoodBow extends NaturaBow
         super(damage, type);
     }
 
-    public void onPlayerStoppedUsing (ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer, int par4)
+    @Override
+	public void onPlayerStoppedUsing (ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer, int par4)
     {
         int j = this.getMaxItemUseDuration(par1ItemStack) - par4;
 
@@ -35,10 +35,10 @@ public class FusewoodBow extends NaturaBow
 
         if (flag || par3EntityPlayer.inventory.hasItem(Items.arrow))
         {
-            float f = (float) j / 20.0F;
+            float f = j / 20.0F;
             f = (f * f + f * 2.0F) / 3.0F;
 
-            if ((double) f < 0.1D)
+            if (f < 0.1D)
             {
                 return;
             }
@@ -60,7 +60,7 @@ public class FusewoodBow extends NaturaBow
 
             if (k > 0)
             {
-                entityarrow.setDamage(entityarrow.getDamage() + (double) k * 0.5D + 0.5D);
+                entityarrow.setDamage(entityarrow.getDamage() + k * 0.5D + 0.5D);
             }
 
             int l = EnchantmentHelper.getEnchantmentLevel(Enchantment.punch.effectId, par1ItemStack);

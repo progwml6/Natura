@@ -37,13 +37,14 @@ public class StickItem extends Item
     public void registerIcons (IIconRegister iconRegister)
     {
         this.icons = new IIcon[textureNames.length];
-        for (int i = 0; i < this.textureNames.length; ++i)
+        for (int i = 0; i < StickItem.textureNames.length; ++i)
         {
             this.icons[i] = iconRegister.registerIcon("natura:" + textureNames[i] + "_stick");
         }
     }
 
-    public void getSubItems (Item id, CreativeTabs tab, List list)
+    @Override
+	public void getSubItems (Item id, CreativeTabs tab, List list)
     {
         for (int i = 0; i < textureNames.length; i++)
             list.add(new ItemStack(id, 1, i));

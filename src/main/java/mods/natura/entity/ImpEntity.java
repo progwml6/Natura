@@ -43,7 +43,8 @@ public class ImpEntity extends EntityAnimal
     /**
      * Returns true if the newer Entity AI code should be run
      */
-    public boolean isAIEnabled ()
+    @Override
+	public boolean isAIEnabled ()
     {
         return true;
     }
@@ -55,7 +56,8 @@ public class ImpEntity extends EntityAnimal
         this.getEntityAttribute(SharedMonsterAttributes.maxHealth).setBaseValue(40.0D); //Health
     }
 
-    protected void updateAITasks ()
+    @Override
+	protected void updateAITasks ()
     {
         super.updateAITasks();
     }
@@ -63,7 +65,8 @@ public class ImpEntity extends EntityAnimal
     /**
      * Returns the sound this mob makes while it's alive.
      */
-    protected String getLivingSound ()
+    @Override
+	protected String getLivingSound ()
     {
         return "mob.pig.say";
     }
@@ -71,7 +74,8 @@ public class ImpEntity extends EntityAnimal
     /**
      * Returns the sound this mob makes when it is hurt.
      */
-    protected String getHurtSound ()
+    @Override
+	protected String getHurtSound ()
     {
         return "mob.pig.say";
     }
@@ -79,7 +83,8 @@ public class ImpEntity extends EntityAnimal
     /**
      * Returns the sound this mob makes on death.
      */
-    protected String getDeathSound ()
+    @Override
+	protected String getDeathSound ()
     {
         return "mob.pig.death";
     }
@@ -95,7 +100,8 @@ public class ImpEntity extends EntityAnimal
     /**
      * Returns the item ID for the item the mob drops on death.
      */
-    protected Item getDropItem ()
+    @Override
+	protected Item getDropItem ()
     {
         return NContent.impMeat ;
     }
@@ -104,7 +110,8 @@ public class ImpEntity extends EntityAnimal
      * Drop 0-2 items of this living's type. @param par1 - Whether this entity has recently been hit by a player. @param
      * par2 - Level of Looting used to kill this mob.
      */
-    protected void dropFewItems (boolean par1, int par2)
+    @Override
+	protected void dropFewItems (boolean par1, int par2)
     {
         int amount = this.rand.nextInt(3) + 1 + this.rand.nextInt(1 + par2);
 
@@ -132,17 +139,20 @@ public class ImpEntity extends EntityAnimal
      * Checks if the parameter is an item which this animal can be fed to breed it (wheat, carrots or seeds depending on
      * the animal type)
      */
-    public boolean isBreedingItem (ItemStack par1ItemStack)
+    @Override
+	public boolean isBreedingItem (ItemStack par1ItemStack)
     {
         return par1ItemStack != null && par1ItemStack.getItem()  == NContent.bowlStew  && par1ItemStack.getItemDamage() >= 13;
     }
 
-    public EntityAgeable createChild (EntityAgeable par1EntityAgeable)
+    @Override
+	public EntityAgeable createChild (EntityAgeable par1EntityAgeable)
     {
         return this.spawnBabyAnimal(par1EntityAgeable);
     }
 
-    public boolean getCanSpawnHere ()
+    @Override
+	public boolean getCanSpawnHere ()
     {
         //return true;
         return this.worldObj.provider instanceof WorldProviderHell && this.worldObj.checkNoEntityCollision(this.boundingBox)

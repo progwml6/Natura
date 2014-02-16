@@ -126,7 +126,8 @@ public class RedwoodTreeGen extends WorldGenerator
         return ground && transparent;
     }
 
-    public boolean generate (World world, Random random, int x, int yPos, int z)
+    @Override
+	public boolean generate (World world, Random random, int x, int yPos, int z)
     {
         int groundPoint = yPos;
         if (!useHeight)
@@ -1923,12 +1924,12 @@ public class RedwoodTreeGen extends WorldGenerator
 
     void generateLeafNodeList ()
     {
-        height = (int) ((double) heightLimit * heightAttenuation);
+        height = (int) (heightLimit * heightAttenuation);
         if (height >= heightLimit)
         {
             height = heightLimit - 1;
         }
-        int i = (int) (1.3819999999999999D + Math.pow((field_872_k * (double) heightLimit) / 13D, 2D));
+        int i = (int) (1.3819999999999999D + Math.pow((field_872_k * heightLimit) / 13D, 2D));
         if (i < 1)
         {
             i = 1;
@@ -1957,10 +1958,10 @@ public class RedwoodTreeGen extends WorldGenerator
                 double d = 0.5D;
                 for (; j1 < i; j1++)
                 {
-                    double d1 = field_873_j * ((double) f * ((double) rand.nextFloat() + 0.32800000000000001D));
-                    double d2 = (double) rand.nextFloat() * 2D * 3.1415899999999999D;
-                    int k1 = MathHelper.floor_double(d1 * Math.sin(d2) + (double) basePos[0] + d);
-                    int l1 = MathHelper.floor_double(d1 * Math.cos(d2) + (double) basePos[2] + d);
+                    double d1 = field_873_j * (f * (rand.nextFloat() + 0.32800000000000001D));
+                    double d2 = rand.nextFloat() * 2D * 3.1415899999999999D;
+                    int k1 = MathHelper.floor_double(d1 * Math.sin(d2) + basePos[0] + d);
+                    int l1 = MathHelper.floor_double(d1 * Math.cos(d2) + basePos[2] + d);
                     int ai1[] = { k1, j, l1 };
                     int ai2[] = { k1, j + leafDistanceLimit, l1 };
                     if (checkBlockLine(ai1, ai2) != -1)
@@ -1970,13 +1971,13 @@ public class RedwoodTreeGen extends WorldGenerator
                     int ai3[] = { basePos[0], basePos[1], basePos[2] };
                     double d3 = Math.sqrt(Math.pow(Math.abs(basePos[0] - ai1[0]), 2D) + Math.pow(Math.abs(basePos[2] - ai1[2]), 2D));
                     double d4 = d3 * field_874_i;
-                    if ((double) ai1[1] - d4 > (double) l)
+                    if (ai1[1] - d4 > l)
                     {
                         ai3[1] = l;
                     }
                     else
                     {
-                        ai3[1] = (int) ((double) ai1[1] - d4);
+                        ai3[1] = (int) (ai1[1] - d4);
                     }
                     if (checkBlockLine(ai3, ai1) == -1)
                     {
@@ -1998,7 +1999,7 @@ public class RedwoodTreeGen extends WorldGenerator
 
     void func_523_a (int i, int j, int k, float f, byte byte0, Block l)
     {
-        int i1 = (int) ((double) f + 0.61799999999999999D);
+        int i1 = (int) (f + 0.61799999999999999D);
         byte byte1 = otherCoordPairs[byte0];
         byte byte2 = otherCoordPairs[byte0 + 3];
         int ai[] = { i, j, k };
@@ -2011,8 +2012,8 @@ public class RedwoodTreeGen extends WorldGenerator
             ai1[byte1] = ai[byte1] + j1;
             for (int l1 = -i1; l1 <= i1;)
             {
-                double d = Math.sqrt(Math.pow((double) Math.abs(j1) + 0.5D, 2D) + Math.pow((double) Math.abs(l1) + 0.5D, 2D));
-                if (d > (double) f)
+                double d = Math.sqrt(Math.pow(Math.abs(j1) + 0.5D, 2D) + Math.pow(Math.abs(l1) + 0.5D, 2D));
+                if (d > f)
                 {
                     l1++;
                 }
@@ -2036,12 +2037,12 @@ public class RedwoodTreeGen extends WorldGenerator
 
     float func_528_a (int i)
     {
-        if ((double) i < (double) (float) heightLimit * 0.29999999999999999D)
+        if (i < heightLimit * 0.29999999999999999D)
         {
             return -1.618F;
         }
-        float f = (float) heightLimit / 2.0F;
-        float f1 = (float) heightLimit / 2.0F - (float) i;
+        float f = heightLimit / 2.0F;
+        float f1 = heightLimit / 2.0F - i;
         float f2;
         if (f1 == 0.0F)
         {
@@ -2116,9 +2117,9 @@ public class RedwoodTreeGen extends WorldGenerator
         int k = 0;
         for (int l = ai2[j] + byte3; k != l; k += byte3)
         {
-            ai3[j] = MathHelper.floor_double((double) (ai[j] + k) + 0.5D);
-            ai3[byte1] = MathHelper.floor_double((double) ai[byte1] + (double) k * d + 0.5D);
-            ai3[byte2] = MathHelper.floor_double((double) ai[byte2] + (double) k * d1 + 0.5D);
+            ai3[j] = MathHelper.floor_double(ai[j] + k + 0.5D);
+            ai3[byte1] = MathHelper.floor_double(ai[byte1] + k * d + 0.5D);
+            ai3[byte2] = MathHelper.floor_double(ai[byte2] + k * d1 + 0.5D);
             worldObj.setBlock(ai3[0], ai3[1], ai3[2], block);
         }
     }
@@ -2136,7 +2137,7 @@ public class RedwoodTreeGen extends WorldGenerator
 
     boolean leafNodeNeedsBase (int i)
     {
-        return (double) i >= (double) heightLimit * 0.20000000000000001D;
+        return i >= heightLimit * 0.20000000000000001D;
     }
 
     void generateLeafNodeBases ()
@@ -2198,8 +2199,8 @@ public class RedwoodTreeGen extends WorldGenerator
                 break;
             }
             ai3[i] = ai[i] + j;
-            ai3[byte1] = MathHelper.floor_double((double) ai[byte1] + (double) j * d);
-            ai3[byte2] = MathHelper.floor_double((double) ai[byte2] + (double) j * d1);
+            ai3[byte1] = MathHelper.floor_double(ai[byte1] + j * d);
+            ai3[byte2] = MathHelper.floor_double(ai[byte2] + j * d1);
             Block l = worldObj.getBlock(ai3[0], ai3[1], ai3[2]);
             if (l != null && l != Blocks.leaves)//what is ID 18
             {

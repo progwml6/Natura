@@ -10,7 +10,6 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.init.Items;
-import net.minecraft.item.Item;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.IBlockAccess;
@@ -49,7 +48,8 @@ public class CloudBlock extends NBlock
         entity.fallDistance = 0.0F;
     }
 
-    public boolean onBlockActivated (World world, int x, int y, int z, EntityPlayer player, int par6, float par7, float par8, float par9)
+    @Override
+	public boolean onBlockActivated (World world, int x, int y, int z, EntityPlayer player, int par6, float par7, float par8, float par9)
     {
         int meta = world.getBlockMetadata(x, y, z);
         if (meta == 3 && player.getCurrentEquippedItem() != null && player.getCurrentEquippedItem().getItem() == Items.flint_and_steel)
@@ -61,7 +61,8 @@ public class CloudBlock extends NBlock
         return super.onBlockActivated(world, x, y, z, player, par6, par7, par8, par9);
     }
 
-    public void onBlockDestroyedByExplosion (World world, int x, int y, int z, Explosion par5Explosion)
+    @Override
+	public void onBlockDestroyedByExplosion (World world, int x, int y, int z, Explosion par5Explosion)
     {
         /*int meta = world.getBlockMetadata(x, y, z);
         if (meta == 3)
@@ -75,7 +76,8 @@ public class CloudBlock extends NBlock
         world.createExplosion(living, x, y, z, size, true);
     }
 
-    public boolean canDropFromExplosion (Explosion par1Explosion)
+    @Override
+	public boolean canDropFromExplosion (Explosion par1Explosion)
     {
         return false;
     }
@@ -141,7 +143,7 @@ public class CloudBlock extends NBlock
         }
         else
         {
-            return AxisAlignedBB.getBoundingBox(x, y, z, (double) x + 1.0D, (double) y + 0.0625D, (double) z + 1.0D);
+            return AxisAlignedBB.getBoundingBox(x, y, z, x + 1.0D, y + 0.0625D, z + 1.0D);
         }
     }
 

@@ -35,7 +35,8 @@ public class LargeGlowshroom extends Block
         this.setHardness(0.2F);
     }
 
-    @SideOnly(Side.CLIENT)
+    @Override
+	@SideOnly(Side.CLIENT)
     /**
      * From the specified side and block metadata retrieves the blocks texture. Args: side, metadata
      */
@@ -49,7 +50,8 @@ public class LargeGlowshroom extends Block
     /**
      * Returns the quantity of items to drop on block destruction.
      */
-    public int quantityDropped (Random par1Random)
+    @Override
+	public int quantityDropped (Random par1Random)
     {
         int i = par1Random.nextInt(10) - 7;
 
@@ -61,7 +63,8 @@ public class LargeGlowshroom extends Block
         return i;
     }
 
-    public int damageDropped (int meta)
+    @Override
+	public int damageDropped (int meta)
     {
         if (this == NContent.glowshroomBlue)
             return 2;
@@ -143,7 +146,7 @@ public class LargeGlowshroom extends Block
         }
         else
         {
-            return AxisAlignedBB.getBoundingBox(x, y + 0.9375, z, (double) x + 1.0D, (double) y + 1, (double) z + 1.0D);
+            return AxisAlignedBB.getBoundingBox(x, y + 0.9375, z, x + 1.0D, (double) y + 1, z + 1.0D);
         }
     }
 

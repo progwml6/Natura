@@ -7,7 +7,6 @@ import cpw.mods.fml.common.event.FMLInterModComms;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.init.Items;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import mods.natura.blocks.trees.Planks;
@@ -84,7 +83,7 @@ public class ThermalExpansion3 implements ICompatPlugin
     @Override
     public void init ()
     {
-        list = Arrays.asList(((Planks) NContent.planks).textureNames);
+        list = Arrays.asList(Planks.textureNames);
         // Sawmill recipes
         // - Doors
         String[] doorNames = ((NDoorItem) NContent.doorItem).textureNames;

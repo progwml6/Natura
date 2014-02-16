@@ -24,19 +24,22 @@ public class ThornVines extends BlockVine
         setStepSound(soundTypeGrass);
     }
 
-    @SideOnly(Side.CLIENT)
+    @Override
+	@SideOnly(Side.CLIENT)
     public int getBlockColor ()
     {
         return 0xFFFFFF;
     }
 
-    @SideOnly(Side.CLIENT)
+    @Override
+	@SideOnly(Side.CLIENT)
     public int getRenderColor (int par1)
     {
         return 0xFFFFFF;
     }
 
-    public int colorMultiplier (IBlockAccess par1IBlockAccess, int par2, int par3, int par4)
+    @Override
+	public int colorMultiplier (IBlockAccess par1IBlockAccess, int par2, int par3, int par4)
     {
         return 0xFFFFFF;
     }
@@ -48,7 +51,8 @@ public class ThornVines extends BlockVine
         this.blockIcon = iconRegister.registerIcon("natura:thornvine");
     }
 
-    public void onEntityCollidedWithBlock (World par1World, int x, int y, int z, Entity entity)
+    @Override
+	public void onEntityCollidedWithBlock (World par1World, int x, int y, int z, Entity entity)
     {
         //entity.motionY *= 1.5D;
         if (!(entity instanceof EntityItem) && !(entity instanceof EntityGhast) && Natura.random.nextInt(30) == 0)

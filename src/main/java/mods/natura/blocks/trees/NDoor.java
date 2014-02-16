@@ -42,12 +42,14 @@ public class NDoor extends BlockDoor
         return (i & 8) != 0 ? 0 : Item.getIdFromItem(NContent.doorItem);
     }
 
-    public int damageDropped (int par1)
+    @Override
+	public int damageDropped (int par1)
     {
         return meta;
     }
 
-    public void registerIcons (IIconRegister iconRegister)
+    @Override
+    public void registerBlockIcons (IIconRegister iconRegister)
     {
         this.icons = new IIcon[2];
 
@@ -59,7 +61,8 @@ public class NDoor extends BlockDoor
     /**
      * Retrieves the block texture to use based on the display side. Args: iBlockAccess, x, y, z, side
      */
-    public IIcon getBlockTexture (IBlockAccess par1IBlockAccess, int par2, int par3, int par4, int par5)
+    @Override
+    public IIcon getIcon (IBlockAccess par1IBlockAccess, int par2, int par3, int par4, int par5)
     {
         if (par5 != 1 && par5 != 0)
         {
@@ -82,7 +85,8 @@ public class NDoor extends BlockDoor
         return this.icons[0];
     }
 
-    public ItemStack getPickBlock (MovingObjectPosition target, World world, int x, int y, int z)
+    @Override
+	public ItemStack getPickBlock (MovingObjectPosition target, World world, int x, int y, int z)
     {
         return new ItemStack(NContent.doorItem, 1, meta);
     }
@@ -91,7 +95,8 @@ public class NDoor extends BlockDoor
     {
     }
 
-    public int getRenderType ()
+    @Override
+	public int getRenderType ()
     {
         return 7;
     }

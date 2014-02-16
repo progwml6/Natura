@@ -6,8 +6,10 @@ import java.util.Random;
   
  
 
+
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import mods.natura.Natura;
+import mods.natura.worldgen.BaseTreeWorldgen;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 import net.minecraftforge.event.world.ChunkDataEvent;
@@ -82,9 +84,9 @@ public class WorldHandler {
                 }        
                 Natura.crops.generate(random, chunkX, chunkZ, world, world.provider.createChunkGenerator(), world.provider.createChunkGenerator());
                 Natura.clouds.generate(random, chunkX, chunkZ, world, world.provider.createChunkGenerator(), world.provider.createChunkGenerator());
-                Natura.trees.retrogen = true;
+                BaseTreeWorldgen.retrogen = true;
                 Natura.trees.generate(random, chunkX, chunkZ, world, world.provider.createChunkGenerator(), world.provider.createChunkGenerator());
-                Natura.trees.retrogen = false;
+                BaseTreeWorldgen.retrogen = false;
  
                 if (!newGen) {
                         world.getChunkFromChunkCoords(chunkX, chunkZ).setChunkModified();

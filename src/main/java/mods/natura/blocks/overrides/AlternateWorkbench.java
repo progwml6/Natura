@@ -27,7 +27,8 @@ public class AlternateWorkbench extends BlockWorkbench
         super();
     }
 
-    @SideOnly(Side.CLIENT)
+    @Override
+	@SideOnly(Side.CLIENT)
     public IIcon getIcon (int side, int metadata)
     {
         if (side == 0)
@@ -40,7 +41,8 @@ public class AlternateWorkbench extends BlockWorkbench
         return sideIcons[metadata];
     }
 
-    public boolean renderAsNormalBlock ()
+    @Override
+	public boolean renderAsNormalBlock ()
     {
         return false;
     }
@@ -75,7 +77,8 @@ public class AlternateWorkbench extends BlockWorkbench
             list.add(new ItemStack(par1, 1, i));
     }
 
-    public boolean onBlockActivated (World world, int x, int y, int z, EntityPlayer player, int par6, float par7, float par8, float par9)
+    @Override
+	public boolean onBlockActivated (World world, int x, int y, int z, EntityPlayer player, int par6, float par7, float par8, float par9)
     {
         if (world.isRemote)
         {

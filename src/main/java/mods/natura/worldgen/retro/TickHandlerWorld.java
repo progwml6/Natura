@@ -1,15 +1,12 @@
 package mods.natura.worldgen.retro;
 
 import java.util.ArrayList;
-import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.Random;
 
 import net.minecraft.world.World;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import cpw.mods.fml.common.gameevent.TickEvent.ClientTickEvent;
 import cpw.mods.fml.common.gameevent.TickEvent.Phase;
-import cpw.mods.fml.common.gameevent.TickEvent.ServerTickEvent;
 import cpw.mods.fml.common.gameevent.TickEvent.Type;
 import cpw.mods.fml.common.gameevent.TickEvent.WorldTickEvent;
 
@@ -26,7 +23,7 @@ public class TickHandlerWorld
 
         if (event.phase.equals(Phase.END) && event.type.equals(Type.WORLD))
         {
-            World world = (World) event.world;
+            World world = event.world;
             int dim = world.provider.dimensionId;
             ArrayList chunks = (ArrayList) chunksToGen.get(Integer.valueOf(dim));
 

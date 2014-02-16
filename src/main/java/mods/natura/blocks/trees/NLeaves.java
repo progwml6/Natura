@@ -37,7 +37,8 @@ public class NLeaves extends BlockLeaves
         this.setCreativeTab(NaturaTab.tab);
     }
 
-    public int getBlockColor ()
+    @Override
+	public int getBlockColor ()
     {
         double var1 = 0.5D;
         double var3 = 1.0D;
@@ -47,7 +48,8 @@ public class NLeaves extends BlockLeaves
     /**
      * Returns the color this block should be rendered. Used by leaves.
      */
-    public int getRenderColor (int var1)
+    @Override
+	public int getRenderColor (int var1)
     {
         return ColorizerFoliage.getFoliageColorBasic();
     }
@@ -56,7 +58,8 @@ public class NLeaves extends BlockLeaves
      * Returns a integer with hex for 0xrrggbb with this color multiplied against the blocks color. Note only called
      * when first determining what to render.
      */
-    public int colorMultiplier (IBlockAccess var1, int x, int y, int z)
+    @Override
+	public int colorMultiplier (IBlockAccess var1, int x, int y, int z)
     {
         //int meta = var1.getBlockMetadata(x, y, z);
 
@@ -89,7 +92,8 @@ public class NLeaves extends BlockLeaves
         //}
     }
 
-    public void updateTick (World world, int x, int y, int z, Random random)
+    @Override
+	public void updateTick (World world, int x, int y, int z, Random random)
     {
         if (!world.isRemote)
         {
@@ -203,7 +207,8 @@ public class NLeaves extends BlockLeaves
         return this.field_150121_P ? super.shouldSideBeRendered(var1, var2, var3, var4, var5) : true;
     }
 
-    @SideOnly(Side.CLIENT)
+    @Override
+	@SideOnly(Side.CLIENT)
     /**
      * returns a list of blocks with the same ID, but different meta (eg: wood returns 4 blocks)
      */
@@ -214,7 +219,8 @@ public class NLeaves extends BlockLeaves
         par3List.add(new ItemStack(par1, 1, 2));
     }
 
-    public int getDamageValue (World par1World, int par2, int par3, int par4)
+    @Override
+	public int getDamageValue (World par1World, int par2, int par3, int par4)
     {
         return this.damageDropped(par1World.getBlockMetadata(par2, par3, par4)) % 3;
     }

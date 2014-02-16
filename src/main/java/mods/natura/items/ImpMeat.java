@@ -34,7 +34,8 @@ public class ImpMeat extends NSpecialFood
         }
     }
 
-    protected void onFoodEaten (ItemStack stack, World world, EntityPlayer player)
+    @Override
+	protected void onFoodEaten (ItemStack stack, World world, EntityPlayer player)
     {
         if (!world.isRemote)
         {

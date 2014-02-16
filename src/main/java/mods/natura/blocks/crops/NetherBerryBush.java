@@ -102,32 +102,33 @@ public class NetherBerryBush extends BlockLeavesBase implements IPlantable
         int l = world.getBlockMetadata(x, y, z);
         if (l < 4)
         {
-            return AxisAlignedBB.getBoundingBox((double) x + 0.25D, y, (double) z + 0.25D, (double) x + 0.75D, (double) y + 0.5D, (double) z + 0.75D);
+            return AxisAlignedBB.getBoundingBox(x + 0.25D, y, z + 0.25D, x + 0.75D, y + 0.5D, z + 0.75D);
         }
         else if (l < 8)
         {
-            return AxisAlignedBB.getBoundingBox((double) x + 0.125D, y, (double) z + 0.125D, (double) x + 0.875D, (double) y + 0.75D, (double) z + 0.875D);
+            return AxisAlignedBB.getBoundingBox(x + 0.125D, y, z + 0.125D, x + 0.875D, y + 0.75D, z + 0.875D);
         }
         else
         {
-            return AxisAlignedBB.getBoundingBox(x, y, z, (double) x + 1.0D, (double) y + 1.0D, (double) z + 1.0D);
+            return AxisAlignedBB.getBoundingBox(x, y, z, x + 1.0D, y + 1.0D, z + 1.0D);
         }
     }
 
-    public AxisAlignedBB getSelectedBoundingBoxFromPool (World world, int x, int y, int z)
+    @Override
+	public AxisAlignedBB getSelectedBoundingBoxFromPool (World world, int x, int y, int z)
     {
         int l = world.getBlockMetadata(x, y, z);
         if (l < 4)
         {
-            return AxisAlignedBB.getBoundingBox((double) x + 0.25D, y, (double) z + 0.25D, (double) x + 0.75D, (double) y + 0.5D, (double) z + 0.75D);
+            return AxisAlignedBB.getBoundingBox(x + 0.25D, y, z + 0.25D, x + 0.75D, y + 0.5D, z + 0.75D);
         }
         else if (l < 8)
         {
-            return AxisAlignedBB.getBoundingBox((double) x + 0.125D, y, (double) z + 0.125D, (double) x + 0.875D, (double) y + 0.75D, (double) z + 0.875D);
+            return AxisAlignedBB.getBoundingBox(x + 0.125D, y, z + 0.125D, x + 0.875D, y + 0.75D, z + 0.875D);
         }
         else
         {
-            return AxisAlignedBB.getBoundingBox(x, y, z, (double) x + 1.0D, (double) y + 1.0D, (double) z + 1.0D);
+            return AxisAlignedBB.getBoundingBox(x, y, z, x + 1.0D, y + 1.0D, z + 1.0D);
         }
     }
 
@@ -225,12 +226,14 @@ public class NetherBerryBush extends BlockLeavesBase implements IPlantable
         return false;
     }
 
-    public int getRenderType ()
+    @Override
+	public int getRenderType ()
     {
         return BerryRender.berryModel;
     }
 
-    public boolean shouldSideBeRendered (IBlockAccess iblockaccess, int i, int j, int k, int l)
+    @Override
+	public boolean shouldSideBeRendered (IBlockAccess iblockaccess, int i, int j, int k, int l)
     {
         if (l > 7 || field_150121_P)
         {

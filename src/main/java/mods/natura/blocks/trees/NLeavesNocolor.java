@@ -54,13 +54,15 @@ public class NLeavesNocolor extends NLeaves
             return fastIcons[meta];
     }
 
-    @SideOnly(Side.CLIENT)
+    @Override
+	@SideOnly(Side.CLIENT)
     public int getBlockColor ()
     {
         return 16777215;
     }
 
-    @SideOnly(Side.CLIENT)
+    @Override
+	@SideOnly(Side.CLIENT)
     /**
      * Returns the color this block should be rendered. Used by leaves.
      */
@@ -69,7 +71,8 @@ public class NLeavesNocolor extends NLeaves
         return 16777215;
     }
 
-    @SideOnly(Side.CLIENT)
+    @Override
+	@SideOnly(Side.CLIENT)
     /**
      * Returns a integer with hex for 0xrrggbb with this color multiplied against the blocks color. Note only called
      * when first determining what to render.
@@ -89,7 +92,8 @@ public class NLeavesNocolor extends NLeaves
         return metadata % 4 == 0 ? this.getFireSpreadSpeed(world, x, y, z, face) : 0;
     }
 
-    public int damageDropped (int meta)
+    @Override
+	public int damageDropped (int meta)
     {
         if (meta % 4 == 3)
             return 4;
@@ -113,7 +117,8 @@ public class NLeavesNocolor extends NLeaves
         return ret;
     }
 
-    public void getSubBlocks (Item par1, CreativeTabs par2CreativeTabs, List par3List)
+    @Override
+	public void getSubBlocks (Item par1, CreativeTabs par2CreativeTabs, List par3List)
     {
         par3List.add(new ItemStack(par1, 1, 0));
         par3List.add(new ItemStack(par1, 1, 1));
@@ -121,7 +126,8 @@ public class NLeavesNocolor extends NLeaves
         par3List.add(new ItemStack(par1, 1, 3));
     }
 
-    public int getLightOpacity (World world, int x, int y, int z)
+    @Override
+	public int getLightOpacity (World world, int x, int y, int z)
     {
         return this.getLightOpacity();
     }

@@ -28,7 +28,8 @@ public class RareTreeGen extends WorldGenerator
         this.seekHeight = !notify;
     }
 
-    public boolean generate (World world, Random random, int xPos, int yPos, int zPos)
+    @Override
+	public boolean generate (World world, Random random, int xPos, int yPos, int zPos)
     {
         int height = random.nextInt(this.treeHeightRange) + this.minTreeHeight;
         boolean flag = true;

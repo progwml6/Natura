@@ -22,7 +22,8 @@ public class NetherPistonExtension extends BlockPistonExtension
         this.head = par1Icon;
     }
 
-    @SideOnly(Side.CLIENT)
+    @Override
+	@SideOnly(Side.CLIENT)
     public IIcon getIcon (int par1, int par2)
     {
         int k = getDirectionMeta(par2);

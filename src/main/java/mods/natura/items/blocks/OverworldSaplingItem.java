@@ -30,7 +30,8 @@ public class OverworldSaplingItem extends ItemBlock
         return md;
     }
 
-    public IIcon getIconFromDamage (int i)
+    @Override
+	public IIcon getIconFromDamage (int i)
     {
         return NContent.rareSapling.getIcon(0, i);
     }

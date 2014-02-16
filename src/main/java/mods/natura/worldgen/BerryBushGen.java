@@ -20,7 +20,8 @@ public class BerryBushGen extends WorldGenerator
         spawnHeight = range;
     }
 
-    public boolean generate (World world, Random random, int x, int y, int z)
+    @Override
+	public boolean generate (World world, Random random, int x, int y, int z)
     {
         int height = findGround(world, x, y, z);
         if (height != -1)

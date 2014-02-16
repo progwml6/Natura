@@ -48,12 +48,14 @@ public class SimpleLog extends Planks
         return true;
     }
 
-    public int getFlammability (IBlockAccess world, int x, int y, int z, int metadata, ForgeDirection face)
+    @Override
+	public int getFlammability (IBlockAccess world, int x, int y, int z, int metadata, ForgeDirection face)
     {
         return this.getFlammability(world, x, y, z, face);
     }
 
-    public int getFireSpreadSpeed (World world, int x, int y, int z, int metadata, ForgeDirection face)
+    @Override
+	public int getFireSpreadSpeed (World world, int x, int y, int z, int metadata, ForgeDirection face)
     {
         return this.getFireSpreadSpeed(world, x, y, z, face);
     }

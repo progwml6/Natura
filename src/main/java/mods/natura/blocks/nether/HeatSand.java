@@ -12,7 +12,6 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
-import net.minecraftforge.common.MinecraftForge;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -36,13 +35,15 @@ public class HeatSand extends BlockSand
         this.blockIcon = iconRegister.registerIcon("natura:heatsand");
     }
 
-    public AxisAlignedBB getCollisionBoundingBoxFromPool (World par1World, int par2, int par3, int par4)
+    @Override
+	public AxisAlignedBB getCollisionBoundingBoxFromPool (World par1World, int par2, int par3, int par4)
     {
         float f = 0.125F;
-        return AxisAlignedBB.getAABBPool().getAABB((double) par2, (double) par3, (double) par4, (double) (par2 + 1), (double) ((float) (par3 + 1) - f), (double) (par4 + 1));
+        return AxisAlignedBB.getAABBPool().getAABB(par2, par3, par4, par2 + 1, par3 + 1 - f, par4 + 1);
     }
 
-    public void onEntityCollidedWithBlock (World par1World, int x, int y, int z, Entity entity)
+    @Override
+	public void onEntityCollidedWithBlock (World par1World, int x, int y, int z, Entity entity)
     {
         if (entity instanceof EntityPlayer)
         {

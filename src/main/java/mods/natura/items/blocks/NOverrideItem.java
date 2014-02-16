@@ -21,7 +21,8 @@ public class NOverrideItem extends ItemBlock
         return meta;
     }
 
-    public CreativeTabs[] getCreativeTabs ()
+    @Override
+	public CreativeTabs[] getCreativeTabs ()
     {
         return new CreativeTabs[] { getCreativeTab(), NaturaTab.tab };
     }

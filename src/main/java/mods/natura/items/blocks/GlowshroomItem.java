@@ -29,12 +29,14 @@ public class GlowshroomItem extends ItemBlock
         return meta;
     }
 
-    public IIcon getIconFromDamage (int i)
+    @Override
+	public IIcon getIconFromDamage (int i)
     {
         return NContent.glowshroom.getIcon(0, i);
     }
 
-    public String getUnlocalizedName (ItemStack itemstack)
+    @Override
+	public String getUnlocalizedName (ItemStack itemstack)
     {
         return (new StringBuilder()).append("block.glowshroom.").append(blockType[itemstack.getItemDamage()]).toString();
     }

@@ -21,7 +21,8 @@ public class OmniShapeBlockItem extends ItemBlock
         return meta;
     }
 
-    public String getUnlocalizedName (ItemStack itemstack)
+    @Override
+	public String getUnlocalizedName (ItemStack itemstack)
     {
         return (new StringBuilder()).append(blockType[itemstack.getItemDamage()]).append("omni").toString();
     }

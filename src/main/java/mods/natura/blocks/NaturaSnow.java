@@ -15,7 +15,8 @@ public class NaturaSnow extends BlockSnow
         super();
     }
 
-    public void updateTick (World world, int x, int y, int z, Random random)
+    @Override
+	public void updateTick (World world, int x, int y, int z, Random random)
     {
         int meta;
 

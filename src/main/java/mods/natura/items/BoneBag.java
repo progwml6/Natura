@@ -17,9 +17,9 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
-import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.player.BonemealEvent;
+import cpw.mods.fml.common.eventhandler.Event.Result;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -78,7 +78,8 @@ public class BoneBag extends Item
             return false;
         }
 
-        if (event.getResult() == event.getResult().ALLOW)
+        event.getResult();
+		if (event.getResult() == Result.ALLOW)
         {
             /*if (!par1World.isRemote)
             {
@@ -91,7 +92,7 @@ public class BoneBag extends Item
         {
             if (!par1World.isRemote)
             {
-                if ((double) par1World.rand.nextFloat() < 0.45D)
+                if (par1World.rand.nextFloat() < 0.45D)
                 {
                     ((BlockSapling) Blocks.sapling).func_149879_c/*markOrGrowMarked*/(par1World, par2, par3, par4, par1World.rand);
                 }
@@ -219,7 +220,7 @@ public class BoneBag extends Item
         {
             if (!par1World.isRemote)
             {
-                if ((double) par1World.rand.nextFloat() < 0.4D)
+                if (par1World.rand.nextFloat() < 0.4D)
                 {
                     ((BlockMushroom) l).func_149884_c/*fertilizeMushroom*/(par1World, par2, par3, par4, par1World.rand);
                 }

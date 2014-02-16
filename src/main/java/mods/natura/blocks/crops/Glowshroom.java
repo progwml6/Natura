@@ -29,7 +29,8 @@ public class Glowshroom extends BlockMushroom
         this.setCreativeTab(NaturaTab.tab);
     }
 
-    public void updateTick (World world, int x, int y, int z, Random random)
+    @Override
+	public void updateTick (World world, int x, int y, int z, Random random)
     {
         if (random.nextInt(25) == 0)
         {

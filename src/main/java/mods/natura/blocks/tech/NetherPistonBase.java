@@ -84,7 +84,8 @@ public class NetherPistonBase extends BlockPistonBase
      * Is this block (a) opaque and (b) a full 1m cube?  This determines whether or not to render the shared face of two
      * adjacent blocks and also whether the player can attach torches, redstone wire, etc to this block.
      */
-    public boolean isOpaqueCube ()
+    @Override
+	public boolean isOpaqueCube ()
     {
         return false;
     }
@@ -92,7 +93,8 @@ public class NetherPistonBase extends BlockPistonBase
     /**
      * Called upon block activation (right click on the block.)
      */
-    public boolean onBlockActivated (World par1World, int par2, int par3, int par4, EntityPlayer par5EntityPlayer, int par6, float par7, float par8, float par9)
+    @Override
+	public boolean onBlockActivated (World par1World, int par2, int par3, int par4, EntityPlayer par5EntityPlayer, int par6, float par7, float par8, float par9)
     {
         return false;
     }
@@ -100,7 +102,8 @@ public class NetherPistonBase extends BlockPistonBase
     /**
      * Called when the block is placed in the world.
      */
-    public void onBlockPlacedBy (World par1World, int par2, int par3, int par4, EntityLivingBase par5EntityLivingBase, ItemStack par6ItemStack)
+    @Override
+	public void onBlockPlacedBy (World par1World, int par2, int par3, int par4, EntityLivingBase par5EntityLivingBase, ItemStack par6ItemStack)
     {
         int l = determineOrientation(par1World, par2, par3, par4, par5EntityLivingBase);
         par1World.setBlockMetadataWithNotify(par2, par3, par4, l, 2);
@@ -126,7 +129,8 @@ public class NetherPistonBase extends BlockPistonBase
     /**
      * Called whenever the block is added into the world. Args: world, x, y, z
      */
-    public void onBlockAdded (World par1World, int par2, int par3, int par4)
+    @Override
+	public void onBlockAdded (World par1World, int par2, int par3, int par4)
     {
         if (!par1World.isRemote && par1World.getTileEntity(par2, par3, par4) == null)
         {
@@ -178,7 +182,8 @@ public class NetherPistonBase extends BlockPistonBase
      * Called when the block receives a BlockEvent - see World.addBlockEvent. By default, passes it on to the tile
      * entity at this location. Args: world, x, y, z, blockID, EventID, event parameter
      */
-    public boolean onBlockEventReceived (World par1World, int par2, int par3, int par4, int par5, int par6)
+    @Override
+	public boolean onBlockEventReceived (World par1World, int par2, int par3, int par4, int par5, int par6)
     {
         if (!par1World.isRemote)
         {
@@ -204,7 +209,7 @@ public class NetherPistonBase extends BlockPistonBase
             }
 
             par1World.setBlockMetadataWithNotify(par2, par3, par4, par6 | 8, 2);
-            par1World.playSoundEffect((double) par2 + 0.5D, (double) par3 + 0.5D, (double) par4 + 0.5D, "tile.piston.out", 0.5F, par1World.rand.nextFloat() * 0.25F + 0.6F);
+            par1World.playSoundEffect(par2 + 0.5D, par3 + 0.5D, par4 + 0.5D, "tile.piston.out", 0.5F, par1World.rand.nextFloat() * 0.25F + 0.6F);
         }
         else if (par5 == 1)
         {
@@ -265,7 +270,7 @@ public class NetherPistonBase extends BlockPistonBase
                 par1World.setBlockToAir(par2 + Facing.offsetsXForSide[par6], par3 + Facing.offsetsYForSide[par6], par4 + Facing.offsetsZForSide[par6]);
             }
 
-            par1World.playSoundEffect((double) par2 + 0.5D, (double) par3 + 0.5D, (double) par4 + 0.5D, "tile.piston.in", 0.5F, par1World.rand.nextFloat() * 0.15F + 0.6F);
+            par1World.playSoundEffect(par2 + 0.5D, par3 + 0.5D, par4 + 0.5D, "tile.piston.in", 0.5F, par1World.rand.nextFloat() * 0.15F + 0.6F);
         }
 
         return true;
@@ -274,7 +279,8 @@ public class NetherPistonBase extends BlockPistonBase
     /**
      * Updates the blocks bounds based on its current state. Args: world, x, y, z
      */
-    public void setBlockBoundsBasedOnState (IBlockAccess par1IBlockAccess, int par2, int par3, int par4)
+    @Override
+	public void setBlockBoundsBasedOnState (IBlockAccess par1IBlockAccess, int par2, int par3, int par4)
     {
         int l = par1IBlockAccess.getBlockMetadata(par2, par3, par4);
 
@@ -312,7 +318,8 @@ public class NetherPistonBase extends BlockPistonBase
     /**
      * Sets the block's bounds for rendering it as an item
      */
-    public void setBlockBoundsForItemRender ()
+    @Override
+	public void setBlockBoundsForItemRender ()
     {
         this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
     }
@@ -321,7 +328,8 @@ public class NetherPistonBase extends BlockPistonBase
      * Adds all intersecting collision boxes to a list. (Be sure to only add boxes to the list if they intersect the
      * mask.) Parameters: World, X, Y, Z, mask, list, colliding entity
      */
-    public void addCollisionBoxesToList (World par1World, int par2, int par3, int par4, AxisAlignedBB par5AxisAlignedBB, List par6List, Entity par7Entity)
+    @Override
+	public void addCollisionBoxesToList (World par1World, int par2, int par3, int par4, AxisAlignedBB par5AxisAlignedBB, List par6List, Entity par7Entity)
     {
         this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
         super.addCollisionBoxesToList(par1World, par2, par3, par4, par5AxisAlignedBB, par6List, par7Entity);
@@ -331,7 +339,8 @@ public class NetherPistonBase extends BlockPistonBase
      * Returns a bounding box from the pool of bounding boxes (this means this box can change after the pool has been
      * cleared to be reused)
      */
-    public AxisAlignedBB getCollisionBoundingBoxFromPool (World par1World, int par2, int par3, int par4)
+    @Override
+	public AxisAlignedBB getCollisionBoundingBoxFromPool (World par1World, int par2, int par3, int par4)
     {
         this.setBlockBoundsBasedOnState(par1World, par2, par3, par4);
         return super.getCollisionBoundingBoxFromPool(par1World, par2, par3, par4);
@@ -340,7 +349,8 @@ public class NetherPistonBase extends BlockPistonBase
     /**
      * If this block doesn't render as an ordinary block it will return False (examples: signs, buttons, stairs, etc)
      */
-    public boolean renderAsNormalBlock ()
+    @Override
+	public boolean renderAsNormalBlock ()
     {
         return false;
     }
@@ -366,22 +376,22 @@ public class NetherPistonBase extends BlockPistonBase
      */
     public static int determineOrientation (World par0World, int par1, int par2, int par3, EntityLivingBase par4EntityLivingBase)
     {
-        if (MathHelper.abs((float) par4EntityLivingBase.posX - (float) par1) < 2.0F && MathHelper.abs((float) par4EntityLivingBase.posZ - (float) par3) < 2.0F)
+        if (MathHelper.abs((float) par4EntityLivingBase.posX - par1) < 2.0F && MathHelper.abs((float) par4EntityLivingBase.posZ - par3) < 2.0F)
         {
-            double d0 = par4EntityLivingBase.posY + 1.82D - (double) par4EntityLivingBase.yOffset;
+            double d0 = par4EntityLivingBase.posY + 1.82D - par4EntityLivingBase.yOffset;
 
-            if (d0 - (double) par2 > 2.0D)
+            if (d0 - par2 > 2.0D)
             {
                 return 1;
             }
 
-            if ((double) par2 - d0 > 0.0D)
+            if (par2 - d0 > 0.0D)
             {
                 return 0;
             }
         }
 
-        int l = MathHelper.floor_double((double) (par4EntityLivingBase.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
+        int l = MathHelper.floor_double(par4EntityLivingBase.rotationYaw * 4.0F / 360.0F + 0.5D) & 3;
         return l == 0 ? 2 : (l == 1 ? 5 : (l == 2 ? 3 : (l == 3 ? 4 : 0)));
     }
 

@@ -1,15 +1,12 @@
 package mods.natura.client;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockFence;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.IBlockAccess;
-
-import org.lwjgl.opengl.GL11;
 
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 import cpw.mods.fml.client.registry.RenderingRegistry;
@@ -40,35 +37,35 @@ public class LeverRender implements ISimpleBlockRenderingHandler
 
             if (i1 == 5)
             {
-                renderer.setRenderBounds((double) (0.5F - f1), 0.0D, (double) (0.5F - f), (double) (0.5F + f1), (double) f2, (double) (0.5F + f));
+                renderer.setRenderBounds(0.5F - f1, 0.0D, 0.5F - f, 0.5F + f1, f2, 0.5F + f);
             }
             else if (i1 == 6)
             {
-                renderer.setRenderBounds((double) (0.5F - f), 0.0D, (double) (0.5F - f1), (double) (0.5F + f), (double) f2, (double) (0.5F + f1));
+                renderer.setRenderBounds(0.5F - f, 0.0D, 0.5F - f1, 0.5F + f, f2, 0.5F + f1);
             }
             else if (i1 == 4)
             {
-                renderer.setRenderBounds((double) (0.5F - f1), (double) (0.5F - f), (double) (1.0F - f2), (double) (0.5F + f1), (double) (0.5F + f), 1.0D);
+                renderer.setRenderBounds(0.5F - f1, 0.5F - f, 1.0F - f2, 0.5F + f1, 0.5F + f, 1.0D);
             }
             else if (i1 == 3)
             {
-                renderer.setRenderBounds((double) (0.5F - f1), (double) (0.5F - f), 0.0D, (double) (0.5F + f1), (double) (0.5F + f), (double) f2);
+                renderer.setRenderBounds(0.5F - f1, 0.5F - f, 0.0D, 0.5F + f1, 0.5F + f, f2);
             }
             else if (i1 == 2)
             {
-                renderer.setRenderBounds((double) (1.0F - f2), (double) (0.5F - f), (double) (0.5F - f1), 1.0D, (double) (0.5F + f), (double) (0.5F + f1));
+                renderer.setRenderBounds(1.0F - f2, 0.5F - f, 0.5F - f1, 1.0D, 0.5F + f, 0.5F + f1);
             }
             else if (i1 == 1)
             {
-                renderer.setRenderBounds(0.0D, (double) (0.5F - f), (double) (0.5F - f1), (double) f2, (double) (0.5F + f), (double) (0.5F + f1));
+                renderer.setRenderBounds(0.0D, 0.5F - f, 0.5F - f1, f2, 0.5F + f, 0.5F + f1);
             }
             else if (i1 == 0)
             {
-                renderer.setRenderBounds((double) (0.5F - f), (double) (1.0F - f2), (double) (0.5F - f1), (double) (0.5F + f), 1.0D, (double) (0.5F + f1));
+                renderer.setRenderBounds(0.5F - f, 1.0F - f2, 0.5F - f1, 0.5F + f, 1.0D, 0.5F + f1);
             }
             else if (i1 == 7)
             {
-                renderer.setRenderBounds((double) (0.5F - f1), (double) (1.0F - f2), (double) (0.5F - f), (double) (0.5F + f1), 1.0D, (double) (0.5F + f));
+                renderer.setRenderBounds(0.5F - f1, 1.0F - f2, 0.5F - f, 0.5F + f1, 1.0D, 0.5F + f);
             }
 
             renderer.renderStandardBlock(par1Block, par2, par3, par4);
@@ -94,22 +91,22 @@ public class LeverRender implements ISimpleBlockRenderingHandler
                 icon = renderer.overrideBlockTexture;
             }
 
-            double d0 = (double) icon.getMinU();
-            double d1 = (double) icon.getMinV();
-            double d2 = (double) icon.getMaxU();
-            double d3 = (double) icon.getMaxV();
+            double d0 = icon.getMinU();
+            double d1 = icon.getMinV();
+            double d2 = icon.getMaxU();
+            double d3 = icon.getMaxV();
             Vec3[] avec3 = new Vec3[8];
             float f4 = 0.0625F;
             float f5 = 0.0625F;
             float f6 = 0.625F;
-            avec3[0] = renderer.blockAccess.getWorldVec3Pool().getVecFromPool((double) (-f4), 0.0D, (double) (-f5));
-            avec3[1] = renderer.blockAccess.getWorldVec3Pool().getVecFromPool((double) f4, 0.0D, (double) (-f5));
-            avec3[2] = renderer.blockAccess.getWorldVec3Pool().getVecFromPool((double) f4, 0.0D, (double) f5);
-            avec3[3] = renderer.blockAccess.getWorldVec3Pool().getVecFromPool((double) (-f4), 0.0D, (double) f5);
-            avec3[4] = renderer.blockAccess.getWorldVec3Pool().getVecFromPool((double) (-f4), (double) f6, (double) (-f5));
-            avec3[5] = renderer.blockAccess.getWorldVec3Pool().getVecFromPool((double) f4, (double) f6, (double) (-f5));
-            avec3[6] = renderer.blockAccess.getWorldVec3Pool().getVecFromPool((double) f4, (double) f6, (double) f5);
-            avec3[7] = renderer.blockAccess.getWorldVec3Pool().getVecFromPool((double) (-f4), (double) f6, (double) f5);
+            avec3[0] = renderer.blockAccess.getWorldVec3Pool().getVecFromPool((-f4), 0.0D, (-f5));
+            avec3[1] = renderer.blockAccess.getWorldVec3Pool().getVecFromPool(f4, 0.0D, (-f5));
+            avec3[2] = renderer.blockAccess.getWorldVec3Pool().getVecFromPool(f4, 0.0D, f5);
+            avec3[3] = renderer.blockAccess.getWorldVec3Pool().getVecFromPool((-f4), 0.0D, f5);
+            avec3[4] = renderer.blockAccess.getWorldVec3Pool().getVecFromPool((-f4), f6, (-f5));
+            avec3[5] = renderer.blockAccess.getWorldVec3Pool().getVecFromPool(f4, f6, (-f5));
+            avec3[6] = renderer.blockAccess.getWorldVec3Pool().getVecFromPool(f4, f6, f5);
+            avec3[7] = renderer.blockAccess.getWorldVec3Pool().getVecFromPool((-f4), f6, f5);
 
             for (int j1 = 0; j1 < 8; ++j1)
             {
@@ -159,21 +156,21 @@ public class LeverRender implements ISimpleBlockRenderingHandler
                         avec3[j1].rotateAroundY(-((float) Math.PI / 2F));
                     }
 
-                    avec3[j1].xCoord += (double) par2 + 0.5D;
-                    avec3[j1].yCoord += (double) ((float) par3 + 0.5F);
-                    avec3[j1].zCoord += (double) par4 + 0.5D;
+                    avec3[j1].xCoord += par2 + 0.5D;
+                    avec3[j1].yCoord += par3 + 0.5F;
+                    avec3[j1].zCoord += par4 + 0.5D;
                 }
                 else if (i1 != 0 && i1 != 7)
                 {
-                    avec3[j1].xCoord += (double) par2 + 0.5D;
-                    avec3[j1].yCoord += (double) ((float) par3 + 0.125F);
-                    avec3[j1].zCoord += (double) par4 + 0.5D;
+                    avec3[j1].xCoord += par2 + 0.5D;
+                    avec3[j1].yCoord += par3 + 0.125F;
+                    avec3[j1].zCoord += par4 + 0.5D;
                 }
                 else
                 {
-                    avec3[j1].xCoord += (double) par2 + 0.5D;
-                    avec3[j1].yCoord += (double) ((float) par3 + 0.875F);
-                    avec3[j1].zCoord += (double) par4 + 0.5D;
+                    avec3[j1].xCoord += par2 + 0.5D;
+                    avec3[j1].yCoord += par3 + 0.875F;
+                    avec3[j1].zCoord += par4 + 0.5D;
                 }
             }
 
@@ -186,17 +183,17 @@ public class LeverRender implements ISimpleBlockRenderingHandler
             {
                 if (k1 == 0)
                 {
-                    d0 = (double) icon.getInterpolatedU(7.0D);
-                    d1 = (double) icon.getInterpolatedV(6.0D);
-                    d2 = (double) icon.getInterpolatedU(9.0D);
-                    d3 = (double) icon.getInterpolatedV(8.0D);
+                    d0 = icon.getInterpolatedU(7.0D);
+                    d1 = icon.getInterpolatedV(6.0D);
+                    d2 = icon.getInterpolatedU(9.0D);
+                    d3 = icon.getInterpolatedV(8.0D);
                 }
                 else if (k1 == 2)
                 {
-                    d0 = (double) icon.getInterpolatedU(7.0D);
-                    d1 = (double) icon.getInterpolatedV(6.0D);
-                    d2 = (double) icon.getInterpolatedU(9.0D);
-                    d3 = (double) icon.getMaxV();
+                    d0 = icon.getInterpolatedU(7.0D);
+                    d1 = icon.getInterpolatedV(6.0D);
+                    d2 = icon.getInterpolatedU(9.0D);
+                    d3 = icon.getMaxV();
                 }
 
                 if (k1 == 0)

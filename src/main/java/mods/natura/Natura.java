@@ -45,7 +45,6 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
-import cpw.mods.fml.relauncher.Side;
 
 @Mod(modid = "Natura", name = "Natura", version = "2.1.14")
 public class Natura
@@ -86,7 +85,7 @@ public class Natura
         GameRegistry.registerWorldGenerator(crops = new BaseCropWorldgen(), 0); // TODO 1.7 Find correct weight (param 2)
         GameRegistry.registerWorldGenerator(clouds = new BaseCloudWorldgen(), 0); // TODO 1.7 Find correct weight (param 2)
         GameRegistry.registerWorldGenerator(trees = new BaseTreeWorldgen(), 0); // TODO 1.7 Find correct weight (param 2)
-        NaturaTab.init(content.wheatBag);
+        NaturaTab.init(NContent.wheatBag);
         proxy.registerRenderer();
         proxy.addNames();
         NetworkRegistry.INSTANCE.registerGuiHandler(instance, new NGuiHandler());
@@ -129,29 +128,29 @@ public class Natura
             	if (content.crops.boneFertilize(event.world, event.X, event.y, event.z, event.world.rand))
             		event.setResult(event.getResult().ALLOW);
             }*/
-            if (event.block == content.floraSapling)
+            if (event.block == NContent.floraSapling)
             {
-                if (content.floraSapling.boneFertilize(event.world, event.x, event.y, event.z, event.world.rand))
+                if (NContent.floraSapling.boneFertilize(event.world, event.x, event.y, event.z, event.world.rand))
                     event.setResult(event.getResult().ALLOW);
             }
-            if (event.block == content.rareSapling)
+            if (event.block == NContent.rareSapling)
             {
-                if (content.rareSapling.boneFertilize(event.world, event.x, event.y, event.z, event.world.rand))
+                if (NContent.rareSapling.boneFertilize(event.world, event.x, event.y, event.z, event.world.rand))
                     event.setResult(event.getResult().ALLOW);
             }
-            if (event.block == content.glowshroom)
+            if (event.block == NContent.glowshroom)
             {
-                if (content.glowshroom.fertilizeMushroom(event.world, event.x, event.y, event.z, event.world.rand))
+                if (NContent.glowshroom.fertilizeMushroom(event.world, event.x, event.y, event.z, event.world.rand))
                     event.setResult(event.getResult().ALLOW);
             }
-            if (event.block == content.berryBush)
+            if (event.block == NContent.berryBush)
             {
-                if (content.berryBush.boneFertilize(event.world, event.x, event.y, event.z, event.world.rand))
+                if (NContent.berryBush.boneFertilize(event.world, event.x, event.y, event.z, event.world.rand))
                     event.setResult(event.getResult().ALLOW);
             }
-            if (event.block == content.netherBerryBush)
+            if (event.block == NContent.netherBerryBush)
             {
-                if (content.netherBerryBush.boneFertilize(event.world, event.x, event.y, event.z, event.world.rand))
+                if (NContent.netherBerryBush.boneFertilize(event.world, event.x, event.y, event.z, event.world.rand))
                     event.setResult(event.getResult().ALLOW);
             }
         }
@@ -186,8 +185,8 @@ public class Natura
                     double d0 = random.nextGaussian() * 0.02D;
                     double d1 = random.nextGaussian() * 0.02D;
                     double d2 = random.nextGaussian() * 0.02D;
-                    creature.worldObj.spawnParticle("heart", creature.posX + (double) (random.nextFloat() * creature.width * 2.0F) - (double) creature.width,
-                            creature.posY + 0.5D + (double) (random.nextFloat() * creature.height), creature.posZ + (double) (random.nextFloat() * creature.width * 2.0F) - (double) creature.width,
+                    creature.worldObj.spawnParticle("heart", creature.posX + random.nextFloat() * creature.width * 2.0F - creature.width,
+                            creature.posY + 0.5D + random.nextFloat() * creature.height, creature.posZ + random.nextFloat() * creature.width * 2.0F - creature.width,
                             d0, d1, d2);
                 }
             }

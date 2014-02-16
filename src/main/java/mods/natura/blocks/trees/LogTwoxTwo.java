@@ -51,7 +51,8 @@ public class LogTwoxTwo extends Block
         return new ItemStack(NContent.bloodwood).getItem();
     }
 
-    public int damageDropped (int meta)
+    @Override
+	public int damageDropped (int meta)
     {
         if (meta < 12)
             return 0;
@@ -96,12 +97,14 @@ public class LogTwoxTwo extends Block
     /**
      * The type of render function that is called for this block
      */
-    public int getRenderType ()
+    @Override
+	public int getRenderType ()
     {
         return 31;
     }
 
-    protected ItemStack createStackedBlock (int par1)
+    @Override
+	protected ItemStack createStackedBlock (int par1)
     {
         return new ItemStack(this, 1, limitToValidMetadata(par1));
     }
@@ -397,7 +400,8 @@ public class LogTwoxTwo extends Block
         return meta | add;
     }
 
-    @SideOnly(Side.CLIENT)
+    @Override
+	@SideOnly(Side.CLIENT)
     /**
      * returns a list of blocks with the same ID, but different meta (eg: wood returns 4 blocks)
      */
