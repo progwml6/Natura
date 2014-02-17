@@ -46,6 +46,7 @@ repositories {
 
 
 apply plugin: 'forge'
+group = 'mods.natura'
 
 // define the properties file
 ext.configFile = file "build.properties"
@@ -124,7 +125,7 @@ artifacts {
         archives devjar
 }
 
-task("uploadJars", dependsOn:"build") {
+task("uploadJars", dependsOn:"reobf") {
     
     description = "uploads JARs"
 
