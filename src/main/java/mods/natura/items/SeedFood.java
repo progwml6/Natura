@@ -10,12 +10,12 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemSeedFood;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
-import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.common.IPlantable;
+import net.minecraftforge.common.util.ForgeDirection;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.util.StatCollector;
 
 public class SeedFood extends ItemSeedFood
 {
@@ -23,7 +23,7 @@ public class SeedFood extends ItemSeedFood
 
     public SeedFood(int hunger, float saturation, Block cropID)
     {
-    	// TODO 1.7 check last param
+        // TODO 1.7 check last param
         super(hunger, saturation, cropID, Blocks.farmland);
         crop = cropID;
         this.setCreativeTab(NaturaTab.tab);

@@ -47,14 +47,14 @@ public class NCraftingItem extends Item
     }
 
     @Override
-	public String getUnlocalizedName (ItemStack stack)
+    public String getUnlocalizedName (ItemStack stack)
     {
         int arr = MathHelper.clamp_int(stack.getItemDamage(), 0, unlocalizedNames.length);
         return getUnlocalizedName() + "." + unlocalizedNames[arr];
     }
 
     @Override
-	public void getSubItems (Item id, CreativeTabs tab, List list)
+    public void getSubItems (Item id, CreativeTabs tab, List list)
     {
         for (int i = 0; i < unlocalizedNames.length; i++)
             list.add(new ItemStack(id, 1, i));

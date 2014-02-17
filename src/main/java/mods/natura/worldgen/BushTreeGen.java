@@ -44,7 +44,7 @@ public class BushTreeGen extends WorldGenerator
     }
 
     @Override
-	public boolean generate (World world, Random random, int x, int y, int z)
+    public boolean generate (World world, Random random, int x, int y, int z)
     {
         int var6 = random.nextInt(3) + this.baseHeight;
         boolean var7 = true;
@@ -80,8 +80,8 @@ public class BushTreeGen extends WorldGenerator
                         {
                             Block block12 = world.getBlock(var10, var8, var111);
 
-                            if (block12 != null && !block12.isLeaves(world, var10, var8, var111) && block12 != Blocks.grass && block12 != Blocks.dirt
-                                    && !block12.isWood(world, var10, var8, var111) && block12 != Blocks.sapling)
+                            if (block12 != null && !block12.isLeaves(world, var10, var8, var111) && block12 != Blocks.grass && block12 != Blocks.dirt && !block12.isWood(world, var10, var8, var111)
+                                    && block12 != Blocks.sapling)
                             {
                                 var7 = false;
                             }
@@ -100,7 +100,7 @@ public class BushTreeGen extends WorldGenerator
             }
             else
             {
-               Block b8 = world.getBlock(x, y - 1, z);
+                Block b8 = world.getBlock(x, y - 1, z);
 
                 if ((b8 == Blocks.grass || b8 == Blocks.dirt) && y < 256 - var6 - 1)
                 {

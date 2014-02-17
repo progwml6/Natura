@@ -30,7 +30,7 @@ public class BlazeRailPowered extends BlockRailPowered
      * @param z The rail Z coordinate.
      */
     @Override
-	public void onMinecartPass (World world, EntityMinecart cart, int x, int y, int z)
+    public void onMinecartPass (World world, EntityMinecart cart, int x, int y, int z)
     {
         int meta = world.getBlockMetadata(x, y, z);
         if (meta >= 8)

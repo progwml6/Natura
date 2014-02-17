@@ -75,7 +75,7 @@ public class SaguaroBlock extends Block implements IPlantable
     }
 
     @Override
-	public AxisAlignedBB getCollisionBoundingBoxFromPool (World world, int x, int y, int z)
+    public AxisAlignedBB getCollisionBoundingBoxFromPool (World world, int x, int y, int z)
     {
         int meta = world.getBlockMetadata(x, y, z);
         if (meta == 0)
@@ -112,7 +112,7 @@ public class SaguaroBlock extends Block implements IPlantable
     }
 
     @Override
-	public AxisAlignedBB getSelectedBoundingBoxFromPool (World world, int x, int y, int z)
+    public AxisAlignedBB getSelectedBoundingBoxFromPool (World world, int x, int y, int z)
     {
         int meta = world.getBlockMetadata(x, y, z);
         if (meta == 0)
@@ -158,7 +158,7 @@ public class SaguaroBlock extends Block implements IPlantable
     }
 
     @Override
-	public int getRenderType ()
+    public int getRenderType ()
     {
         return SaguaroRenderer.model;
     }
@@ -218,19 +218,19 @@ public class SaguaroBlock extends Block implements IPlantable
     }
 
     @Override
-	public boolean renderAsNormalBlock ()
+    public boolean renderAsNormalBlock ()
     {
         return false;
     }
 
     @Override
-	public boolean isOpaqueCube ()
+    public boolean isOpaqueCube ()
     {
         return false;
     }
 
     @Override
-	public boolean canPlaceBlockAt (World world, int i, int j, int k)
+    public boolean canPlaceBlockAt (World world, int i, int j, int k)
     {
         if (!super.canPlaceBlockAt(world, i, j, k))
         {
@@ -252,7 +252,7 @@ public class SaguaroBlock extends Block implements IPlantable
     }
 
     @Override
-	public boolean canBlockStay (World world, int x, int y, int z)
+    public boolean canBlockStay (World world, int x, int y, int z)
     {
         Block blockID = world.getBlock(x, y - 1, z);
         return blockID == this || blockID == Blocks.sand || blockID == null;
@@ -260,7 +260,7 @@ public class SaguaroBlock extends Block implements IPlantable
     }
 
     @Override
-	public void onEntityCollidedWithBlock (World world, int i, int j, int k, Entity entity)
+    public void onEntityCollidedWithBlock (World world, int i, int j, int k, Entity entity)
     {
         if (!(entity instanceof EntityItem))
             entity.attackEntityFrom(DamageSource.cactus, 1);

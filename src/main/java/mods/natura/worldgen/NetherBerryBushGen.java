@@ -7,8 +7,8 @@ import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
-import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.common.IPlantable;
+import net.minecraftforge.common.util.ForgeDirection;
 
 public class NetherBerryBushGen extends WorldGenerator
 {
@@ -22,7 +22,7 @@ public class NetherBerryBushGen extends WorldGenerator
     }
 
     @Override
-	public boolean generate (World world, Random random, int x, int y, int z)
+    public boolean generate (World world, Random random, int x, int y, int z)
     {
         int height = findGround(world, x, y, z);
         if (height != -1)

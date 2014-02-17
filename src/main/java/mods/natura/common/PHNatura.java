@@ -1,6 +1,7 @@
 package mods.natura.common;
 
 import java.io.File;
+
 import mods.natura.Natura;
 import net.minecraftforge.common.config.Configuration;
 
@@ -9,15 +10,14 @@ public class PHNatura
 
     public static void initProps (File confFile)
     {
-        
+
         /* [Forge] Configuration class, used as config method */
         Configuration config = new Configuration(confFile);
         /* Load the configuration file */
         config.load();
 
-
         Natura.retrogen = config.get("Retrogen", "Retroactive Generation", false).getBoolean(false);
-       
+
         boolean BoP = false;
         try
         {
@@ -164,7 +164,6 @@ public class PHNatura
     public static boolean generateStingberries;
 
     public static int seedFood;
-
 
     public static int saguaroSpawnRarity;
     public static int saguaroSpawnHeight;

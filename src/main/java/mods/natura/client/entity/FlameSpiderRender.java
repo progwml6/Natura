@@ -21,12 +21,12 @@ public class FlameSpiderRender extends RenderSpider
     {
         return texture;
     }
-    
+
     protected void scaleSpider (HeatscarSpider par1EntityCaveSpider, float par2)
     {
         GL11.glScalef(2.0F, 2.0F, 2.0F);
     }
-    
+
     @Override
     protected void preRenderCallback (EntityLivingBase par1EntityLivingBase, float par2)
     {

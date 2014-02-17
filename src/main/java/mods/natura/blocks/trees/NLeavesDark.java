@@ -52,14 +52,14 @@ public class NLeavesDark extends NLeaves
     }
 
     @Override
-	@SideOnly(Side.CLIENT)
+    @SideOnly(Side.CLIENT)
     public int getBlockColor ()
     {
         return 16777215;
     }
 
     @Override
-	@SideOnly(Side.CLIENT)
+    @SideOnly(Side.CLIENT)
     /**
      * Returns the color this block should be rendered. Used by leaves.
      */
@@ -69,7 +69,7 @@ public class NLeavesDark extends NLeaves
     }
 
     @Override
-	@SideOnly(Side.CLIENT)
+    @SideOnly(Side.CLIENT)
     /**
      * Returns a integer with hex for 0xrrggbb with this color multiplied against the blocks color. Note only called
      * when first determining what to render.
@@ -98,7 +98,7 @@ public class NLeavesDark extends NLeaves
     }
 
     @Override
-	public int damageDropped (int par1)
+    public int damageDropped (int par1)
     {
         if (par1 % 4 == 2)
             return 0;
@@ -108,7 +108,7 @@ public class NLeavesDark extends NLeaves
     }
 
     @Override
-	public int quantityDropped (int meta, int fortune, Random random)
+    public int quantityDropped (int meta, int fortune, Random random)
     {
         if (meta % 4 == 2)
             return 1;
@@ -116,7 +116,7 @@ public class NLeavesDark extends NLeaves
     }
 
     @Override
-	public void getSubBlocks (Item par1, CreativeTabs par2CreativeTabs, List par3List)
+    public void getSubBlocks (Item par1, CreativeTabs par2CreativeTabs, List par3List)
     {
         par3List.add(new ItemStack(par1, 1, 0));
         par3List.add(new ItemStack(par1, 1, 1));
@@ -125,7 +125,7 @@ public class NLeavesDark extends NLeaves
     }
 
     @Override
-	public int getLightOpacity (World world, int x, int y, int z)
+    public int getLightOpacity (World world, int x, int y, int z)
     {
         return this.getLightOpacity();
     }

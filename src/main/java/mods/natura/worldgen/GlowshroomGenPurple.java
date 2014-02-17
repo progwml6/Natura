@@ -17,7 +17,7 @@ public class GlowshroomGenPurple extends WorldGenerator
     }
 
     @Override
-	public boolean generate (World world, Random random, int x, int y, int z)
+    public boolean generate (World world, Random random, int x, int y, int z)
     {
         int type = 1;
 
@@ -182,7 +182,7 @@ public class GlowshroomGenPurple extends WorldGenerator
 
                                 if ((meta != 0 || y >= y + height - 1) && (block == null || block.canBeReplacedByLeaves(world, posX, posY, posZ)))
                                 {
-                                    world.setBlock(posX, posY, posZ, NContent.glowshroomPurple, meta,0);
+                                    world.setBlock(posX, posY, posZ, NContent.glowshroomPurple, meta, 0);
                                 }
                             }
                         }

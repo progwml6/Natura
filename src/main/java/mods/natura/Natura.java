@@ -106,9 +106,10 @@ public class Natura
             DimensionManager.registerProviderType(-1, NetheriteWorldProvider.class, true);
         }
         MinecraftForge.EVENT_BUS.register(WorldHandler.instance);
-        
-        if(retrogen){
-        MinecraftForge.EVENT_BUS.register(new TickHandlerWorld());
+
+        if (retrogen)
+        {
+            MinecraftForge.EVENT_BUS.register(new TickHandlerWorld());
         }
 
         OreDictionary.registerOre("cropVine", new ItemStack(NContent.thornVines));
@@ -193,9 +194,8 @@ public class Natura
                     double d0 = random.nextGaussian() * 0.02D;
                     double d1 = random.nextGaussian() * 0.02D;
                     double d2 = random.nextGaussian() * 0.02D;
-                    creature.worldObj.spawnParticle("heart", creature.posX + random.nextFloat() * creature.width * 2.0F - creature.width,
-                            creature.posY + 0.5D + random.nextFloat() * creature.height, creature.posZ + random.nextFloat() * creature.width * 2.0F - creature.width,
-                            d0, d1, d2);
+                    creature.worldObj.spawnParticle("heart", creature.posX + random.nextFloat() * creature.width * 2.0F - creature.width, creature.posY + 0.5D + random.nextFloat() * creature.height,
+                            creature.posZ + random.nextFloat() * creature.width * 2.0F - creature.width, d0, d1, d2);
                 }
             }
         }
@@ -216,13 +216,12 @@ public class Natura
     }
 
     public static boolean retrogen;
-    
+
     @SubscribeEvent
     public void chunkDataSave (ChunkDataEvent.Save event)
     {
         event.getData().setBoolean("Natura.Retrogen", true);
     }
-    
 
     NContent content;
     public static Random random = new Random();

@@ -2,7 +2,6 @@ package mods.natura.worldgen;
 
 import java.util.Random;
 
-import mods.natura.blocks.trees.NSaplingBlock;
 import mods.natura.common.NContent;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
@@ -48,7 +47,7 @@ public class FusewoodGen extends WorldGenerator
     }
 
     @Override
-	public boolean generate (World world, Random random, int xPos, int yPos, int zPos)
+    public boolean generate (World world, Random random, int xPos, int yPos, int zPos)
     {
         int treeHeight = random.nextInt(3) + this.minTreeHeight;
         if (treeHeight < 4)
@@ -134,11 +133,11 @@ public class FusewoodGen extends WorldGenerator
 
                                 if (Math.abs(k2) != i2 || Math.abs(i3) != i2 || random.nextInt(2) != 0 && k1 != 0)
                                 {
-                                    Block block =world.getBlock(j2, j1, l2);
+                                    Block block = world.getBlock(j2, j1, l2);
 
                                     if (block == null || block.canBeReplacedByLeaves(world, j2, j1, l2))
                                     {
-                                        world.setBlock( j2, j1, l2, NContent.darkLeaves, 3,0);
+                                        world.setBlock(j2, j1, l2, NContent.darkLeaves, 3, 0);
                                     }
                                 }
                             }
@@ -147,11 +146,12 @@ public class FusewoodGen extends WorldGenerator
 
                     for (j1 = 0; j1 < treeHeight; ++j1)
                     {
-                        Block block = world.getBlock(xPos, yPos + j1, zPos);;
+                        Block block = world.getBlock(xPos, yPos + j1, zPos);
+                        ;
 
                         if (block == null || block.isLeaves(world, xPos, yPos + j1, zPos))
                         {
-                            world.setBlock( xPos, yPos + j1, zPos, NContent.darkTree, this.metaWood,0);
+                            world.setBlock(xPos, yPos + j1, zPos, NContent.darkTree, this.metaWood, 0);
 
                         }
                     }

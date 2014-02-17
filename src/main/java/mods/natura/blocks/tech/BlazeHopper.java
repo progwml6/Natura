@@ -16,24 +16,25 @@ public class BlazeHopper extends BlockHopper
     private IIcon hopperTopIcon;
     @SideOnly(Side.CLIENT)
     private IIcon hopperInsideIcon;
+
     public BlazeHopper()
     {
         super();
     }
-    
+
     @Override
-	public int getRenderType ()
+    public int getRenderType ()
     {
         return HopperRender.model;
     }
-    
+
     @Override
     @SideOnly(Side.CLIENT)
     public IIcon getIcon (int par1, int par2)
     {
         return par1 == 1 ? this.hopperTopIcon : this.hopperIcon;
     }
-    
+
     @SideOnly(Side.CLIENT)
     @Override
     public void registerBlockIcons (IIconRegister par1IconRegister)
@@ -42,15 +43,15 @@ public class BlazeHopper extends BlockHopper
         this.hopperTopIcon = par1IconRegister.registerIcon("natura:nhopper_top");
         this.hopperInsideIcon = par1IconRegister.registerIcon("natura:nhopper_inside");
     }
-    
+
     @SideOnly(Side.CLIENT)
     public static IIcon hopperIcon (String par0Str)
     {
         return par0Str.equals("hopper_outside") ? NContent.netherHopper.hopperIcon : (par0Str.equals("hopper_inside") ? NContent.netherHopper.hopperInsideIcon : null);
     }
-    
+
     @Override
-	@SideOnly(Side.CLIENT)
+    @SideOnly(Side.CLIENT)
     public String getItemIconName ()
     {
         return "natura:nhopper";

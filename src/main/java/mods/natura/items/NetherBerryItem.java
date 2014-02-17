@@ -13,10 +13,10 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.IIcon;
+import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.util.StatCollector;
 
 public class NetherBerryItem extends ItemFood
 {
@@ -33,7 +33,7 @@ public class NetherBerryItem extends ItemFood
     }
 
     @Override
-	public ItemStack onItemRightClick (ItemStack par1ItemStack, World par2World, EntityPlayer player)
+    public ItemStack onItemRightClick (ItemStack par1ItemStack, World par2World, EntityPlayer player)
     {
         if (player.canEat(true) && player.getFoodStats().getSaturationLevel() < 18F)
         {
@@ -44,7 +44,7 @@ public class NetherBerryItem extends ItemFood
     }
 
     @Override
-	protected void onFoodEaten (ItemStack stack, World world, EntityPlayer player)
+    protected void onFoodEaten (ItemStack stack, World world, EntityPlayer player)
     {
         if (!world.isRemote)
         {

@@ -13,10 +13,10 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
+import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.util.StatCollector;
 
 public class NDoorItem extends Item
 {
@@ -34,7 +34,7 @@ public class NDoorItem extends Item
     public static final String unlocalizedNames[] = { "redwood", "eucalyptus", "hopseed", "sakura", "ghost", "blood", "redwoodBark" };
 
     @Override
-	public String getUnlocalizedName (ItemStack itemstack)
+    public String getUnlocalizedName (ItemStack itemstack)
     {
         return (new StringBuilder()).append(unlocalizedNames[itemstack.getItemDamage()]).append("NDoor").toString();
     }
@@ -159,7 +159,7 @@ public class NDoorItem extends Item
     }
 
     @Override
-	public void getSubItems (Item id, CreativeTabs tab, List list)
+    public void getSubItems (Item id, CreativeTabs tab, List list)
     {
         for (int i = 0; i < unlocalizedNames.length; i++)
             list.add(new ItemStack(id, 1, i));

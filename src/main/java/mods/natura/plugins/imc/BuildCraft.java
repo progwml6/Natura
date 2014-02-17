@@ -1,10 +1,10 @@
 package mods.natura.plugins.imc;
 
+import mods.natura.common.NContent;
+import mods.natura.plugins.ICompatPlugin;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 import cpw.mods.fml.common.event.FMLInterModComms;
-import mods.natura.common.NContent;
-import mods.natura.plugins.ICompatPlugin;
 
 public class BuildCraft implements ICompatPlugin
 {

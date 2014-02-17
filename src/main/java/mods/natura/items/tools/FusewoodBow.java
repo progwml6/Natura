@@ -19,7 +19,7 @@ public class FusewoodBow extends NaturaBow
     }
 
     @Override
-	public void onPlayerStoppedUsing (ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer, int par4)
+    public void onPlayerStoppedUsing (ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer, int par4)
     {
         int j = this.getMaxItemUseDuration(par1ItemStack) - par4;
 

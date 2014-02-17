@@ -2,7 +2,6 @@ package mods.natura.worldgen;
 
 import java.util.Random;
 
-import mods.natura.blocks.trees.NSaplingBlock;
 import mods.natura.common.NContent;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
@@ -48,7 +47,7 @@ public class DarkwoodGen extends WorldGenerator
     }
 
     @Override
-	public boolean generate (World world, Random random, int xPos, int yPos, int zPos)
+    public boolean generate (World world, Random random, int xPos, int yPos, int zPos)
     {
         int treeHeight = random.nextInt(3) + this.minTreeHeight;
         if (treeHeight < 4)

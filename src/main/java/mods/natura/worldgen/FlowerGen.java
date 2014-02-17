@@ -27,7 +27,7 @@ public class FlowerGen extends WorldGenerator
     }
 
     @Override
-	public boolean generate (World world, Random random, int x, int y, int z)
+    public boolean generate (World world, Random random, int x, int y, int z)
     {
         for (int iter = 0; iter < chances; ++iter)
         {

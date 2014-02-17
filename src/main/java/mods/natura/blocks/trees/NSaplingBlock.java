@@ -57,9 +57,10 @@ public class NSaplingBlock extends BlockSapling
     }
 
     @Override
-	public boolean canPlaceBlockAt (World world, int x, int y, int z)
+    public boolean canPlaceBlockAt (World world, int x, int y, int z)
     {
-        Block block = world.getBlock(x, y, z);;
+        Block block = world.getBlock(x, y, z);
+        ;
         if (block == null || block.isReplaceable(world, x, y, z))
         {
             Block lowerID = world.getBlock(x, y - 1, z);
@@ -106,7 +107,7 @@ public class NSaplingBlock extends BlockSapling
     }
 
     @Override
-    public EnumPlantType getPlantType(IBlockAccess world, int x, int y, int z)
+    public EnumPlantType getPlantType (IBlockAccess world, int x, int y, int z)
     {
         int meta = world.getBlockMetadata(x, y, z) % 8;
         if (meta <= 3)
@@ -116,7 +117,7 @@ public class NSaplingBlock extends BlockSapling
     }
 
     @Override
-	public void updateTick (World world, int x, int y, int z, Random random)
+    public void updateTick (World world, int x, int y, int z, Random random)
     {
         if (world.isRemote)
         {
@@ -252,7 +253,7 @@ public class NSaplingBlock extends BlockSapling
     }
 
     @Override
-	public int damageDropped (int i)
+    public int damageDropped (int i)
     {
         return i % 8;
     }
@@ -264,9 +265,9 @@ public class NSaplingBlock extends BlockSapling
         for (int i = 0; i < 8; i++)
             par3List.add(new ItemStack(par1, 1, i));
     }
-    
-    public Item getItem()
+
+    public Item getItem ()
     {
-    	return this.getItem(null, 0, 0, 0);
+        return this.getItem(null, 0, 0, 0);
     }
 }

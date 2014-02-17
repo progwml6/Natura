@@ -11,7 +11,7 @@ import net.minecraft.world.gen.feature.WorldGenerator;
 public class FireGen extends WorldGenerator
 {
     @Override
-	public boolean generate (World world, Random par2Random, int x, int y, int z)
+    public boolean generate (World world, Random par2Random, int x, int y, int z)
     {
         for (int l = 0; l < 64; ++l)
         {

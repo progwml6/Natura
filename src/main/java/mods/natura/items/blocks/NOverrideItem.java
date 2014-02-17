@@ -1,10 +1,9 @@
 package mods.natura.items.blocks;
 
 import mods.natura.common.NaturaTab;
+import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemBlock;
-import net.minecraft.block.Block;
-
 
 public class NOverrideItem extends ItemBlock
 {
@@ -22,7 +21,7 @@ public class NOverrideItem extends ItemBlock
     }
 
     @Override
-	public CreativeTabs[] getCreativeTabs ()
+    public CreativeTabs[] getCreativeTabs ()
     {
         return new CreativeTabs[] { getCreativeTab(), NaturaTab.tab };
     }

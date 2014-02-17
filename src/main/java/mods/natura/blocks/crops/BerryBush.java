@@ -21,9 +21,9 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.EnumPlantType;
+import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.common.util.FakePlayer;
 import net.minecraftforge.common.util.ForgeDirection;
-import net.minecraftforge.common.IPlantable;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -116,7 +116,7 @@ public class BerryBush extends BlockLeavesBase implements IPlantable
     }
 
     @Override
-	public AxisAlignedBB getSelectedBoundingBoxFromPool (World world, int x, int y, int z)
+    public AxisAlignedBB getSelectedBoundingBoxFromPool (World world, int x, int y, int z)
     {
         int l = world.getBlockMetadata(x, y, z);
         if (l < 4)
@@ -231,13 +231,13 @@ public class BerryBush extends BlockLeavesBase implements IPlantable
     }
 
     @Override
-	public int getRenderType ()
+    public int getRenderType ()
     {
         return BerryRender.berryModel;
     }
 
     @Override
-	public boolean shouldSideBeRendered (IBlockAccess iblockaccess, int i, int j, int k, int l)
+    public boolean shouldSideBeRendered (IBlockAccess iblockaccess, int i, int j, int k, int l)
     {
         if (l > 7 || field_150121_P)
         {
@@ -290,7 +290,7 @@ public class BerryBush extends BlockLeavesBase implements IPlantable
     /* Resistance to fire */
 
     @Override
-    public int getFlammability(IBlockAccess world, int x, int y, int z, ForgeDirection face)
+    public int getFlammability (IBlockAccess world, int x, int y, int z, ForgeDirection face)
     {
         return 25;
     }
@@ -302,7 +302,7 @@ public class BerryBush extends BlockLeavesBase implements IPlantable
     }
 
     @Override
-    public int getFireSpreadSpeed(IBlockAccess world, int x, int y, int z, ForgeDirection face)
+    public int getFireSpreadSpeed (IBlockAccess world, int x, int y, int z, ForgeDirection face)
     {
         return 4;
     }
