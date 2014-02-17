@@ -30,11 +30,11 @@ public class FlowerBlock extends BlockFlower
     {
         return this.blockIcon;
     }
-    
+
     @Override
-    public IIcon getIcon(int p_149691_1_, int p_149691_2_)
+    public IIcon getIcon (int p_149691_1_, int p_149691_2_)
     {
-    	return this.blockIcon;
+        return this.blockIcon;
     }
 
     @SideOnly(Side.CLIENT)

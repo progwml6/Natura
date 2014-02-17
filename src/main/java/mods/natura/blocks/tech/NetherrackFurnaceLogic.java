@@ -44,7 +44,7 @@ public class NetherrackFurnaceLogic extends TileEntityFurnace
      * Returns the number of slots in the inventory.
      */
     @Override
-	public int getSizeInventory ()
+    public int getSizeInventory ()
     {
         return this.inventory.length;
     }
@@ -53,7 +53,7 @@ public class NetherrackFurnaceLogic extends TileEntityFurnace
      * Returns the stack in slot i
      */
     @Override
-	public ItemStack getStackInSlot (int par1)
+    public ItemStack getStackInSlot (int par1)
     {
         return this.inventory[par1];
     }
@@ -63,7 +63,7 @@ public class NetherrackFurnaceLogic extends TileEntityFurnace
      * new stack.
      */
     @Override
-	public ItemStack decrStackSize (int par1, int par2)
+    public ItemStack decrStackSize (int par1, int par2)
     {
         if (this.inventory[par1] != null)
         {
@@ -98,7 +98,7 @@ public class NetherrackFurnaceLogic extends TileEntityFurnace
      * like when you close a workbench GUI.
      */
     @Override
-	public ItemStack getStackInSlotOnClosing (int par1)
+    public ItemStack getStackInSlotOnClosing (int par1)
     {
         if (this.inventory[par1] != null)
         {
@@ -116,7 +116,7 @@ public class NetherrackFurnaceLogic extends TileEntityFurnace
      * Sets the given item stack to the specified slot in the inventory (can be crafting or armor sections).
      */
     @Override
-	public void setInventorySlotContents (int par1, ItemStack par2ItemStack)
+    public void setInventorySlotContents (int par1, ItemStack par2ItemStack)
     {
         this.inventory[par1] = par2ItemStack;
 
@@ -174,7 +174,7 @@ public class NetherrackFurnaceLogic extends TileEntityFurnace
 
         this.furnaceBurnTime = par1NBTTagCompound.getShort("BurnTime");
         this.furnaceCookTime = par1NBTTagCompound.getShort("CookTime");
-        this.currentItemBurnTime = getFuelTime(this.inventory[1])*2;
+        this.currentItemBurnTime = getFuelTime(this.inventory[1]) * 2;
 
         if (par1NBTTagCompound.hasKey("CustomName"))
         {
@@ -236,9 +236,9 @@ public class NetherrackFurnaceLogic extends TileEntityFurnace
     }
 
     @Override
-    public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt)
+    public void onDataPacket (NetworkManager net, S35PacketUpdateTileEntity pkt)
     {
-    	// Probably has deobf now, check on forge 1029
+        // Probably has deobf now, check on forge 1029
         readNetworkNBT(pkt.func_148857_g());
         worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
     }
@@ -248,13 +248,13 @@ public class NetherrackFurnaceLogic extends TileEntityFurnace
      * this more of a set than a get?*
      */
     @Override
-	public int getInventoryStackLimit ()
+    public int getInventoryStackLimit ()
     {
         return 64;
     }
 
     @Override
-	@SideOnly(Side.CLIENT)
+    @SideOnly(Side.CLIENT)
     /**
      * Returns an integer between 0 and the passed value representing how close the current item is to being completely
      * cooked
@@ -265,7 +265,7 @@ public class NetherrackFurnaceLogic extends TileEntityFurnace
     }
 
     @Override
-	@SideOnly(Side.CLIENT)
+    @SideOnly(Side.CLIENT)
     /**
      * Returns an integer between 0 and the passed value representing how much burn time is left on the current fuel
      * item, where 0 means that the item is exhausted and the passed value means that the item is fresh
@@ -284,7 +284,7 @@ public class NetherrackFurnaceLogic extends TileEntityFurnace
      * Returns true if the furnace is currently burning
      */
     @Override
-	public boolean isBurning ()
+    public boolean isBurning ()
     {
         return this.furnaceBurnTime > 0;
     }
@@ -294,7 +294,7 @@ public class NetherrackFurnaceLogic extends TileEntityFurnace
      * ticks and creates a new spawn inside its implementation.
      */
     @Override
-	public void updateEntity ()
+    public void updateEntity ()
     {
         boolean flag = this.furnaceBurnTime > 0;
         boolean flag1 = false;
@@ -308,7 +308,7 @@ public class NetherrackFurnaceLogic extends TileEntityFurnace
         {
             if (this.furnaceBurnTime == 0 && this.canSmelt())
             {
-                this.currentItemBurnTime = this.furnaceBurnTime = getFuelTime(this.inventory[1])*2;
+                this.currentItemBurnTime = this.furnaceBurnTime = getFuelTime(this.inventory[1]) * 2;
 
                 if (this.furnaceBurnTime > 0)
                 {
@@ -394,7 +394,7 @@ public class NetherrackFurnaceLogic extends TileEntityFurnace
      * Turn one item from the furnace source stack into the appropriate smelted item in the furnace result stack
      */
     @Override
-	public void smeltItem ()
+    public void smeltItem ()
     {
         if (this.canSmelt())
         {
@@ -440,7 +440,7 @@ public class NetherrackFurnaceLogic extends TileEntityFurnace
                 {
                     return 150;
                 }
-                
+
                 if (block instanceof BlockLog)
                 {
                     return 1200;
@@ -489,10 +489,9 @@ public class NetherrackFurnaceLogic extends TileEntityFurnace
      * Do not make give this method the name canInteractWith because it clashes with Container
      */
     @Override
-	public boolean isUseableByPlayer (EntityPlayer par1EntityPlayer)
+    public boolean isUseableByPlayer (EntityPlayer par1EntityPlayer)
     {
-        return this.worldObj.getTileEntity(this.xCoord, this.yCoord, this.zCoord) != this ? false : par1EntityPlayer.getDistanceSq(this.xCoord + 0.5D, this.yCoord + 0.5D,
-                this.zCoord + 0.5D) <= 64.0D;
+        return this.worldObj.getTileEntity(this.xCoord, this.yCoord, this.zCoord) != this ? false : par1EntityPlayer.getDistanceSq(this.xCoord + 0.5D, this.yCoord + 0.5D, this.zCoord + 0.5D) <= 64.0D;
     }
 
     public void openChest ()
@@ -507,7 +506,7 @@ public class NetherrackFurnaceLogic extends TileEntityFurnace
      * Returns true if automation is allowed to insert the given stack (ignoring stack size) into the given slot.
      */
     @Override
-	public boolean isItemValidForSlot (int par1, ItemStack par2ItemStack)
+    public boolean isItemValidForSlot (int par1, ItemStack par2ItemStack)
     {
         return par1 == 2 ? false : (par1 == 1 ? isItemFuel(par2ItemStack) : true);
     }
@@ -517,7 +516,7 @@ public class NetherrackFurnaceLogic extends TileEntityFurnace
      * block.
      */
     @Override
-	public int[] getAccessibleSlotsFromSide (int par1)
+    public int[] getAccessibleSlotsFromSide (int par1)
     {
         return par1 == 0 ? slots_bottom : (par1 == 1 ? slots_top : slots_sides);
     }
@@ -527,7 +526,7 @@ public class NetherrackFurnaceLogic extends TileEntityFurnace
      * side
      */
     @Override
-	public boolean canInsertItem (int par1, ItemStack par2ItemStack, int par3)
+    public boolean canInsertItem (int par1, ItemStack par2ItemStack, int par3)
     {
         return this.isItemValidForSlot(par1, par2ItemStack);
     }
@@ -537,7 +536,7 @@ public class NetherrackFurnaceLogic extends TileEntityFurnace
      * side
      */
     @Override
-	public boolean canExtractItem (int par1, ItemStack par2ItemStack, int par3)
+    public boolean canExtractItem (int par1, ItemStack par2ItemStack, int par3)
     {
         return par3 != 0 || par1 != 1 || par2ItemStack.getItem() == Items.bucket;
     }

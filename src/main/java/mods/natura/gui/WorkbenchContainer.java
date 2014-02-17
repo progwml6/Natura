@@ -49,13 +49,13 @@ public class WorkbenchContainer extends Container
     }
 
     @Override
-	public void onCraftMatrixChanged (IInventory iinventory)
+    public void onCraftMatrixChanged (IInventory iinventory)
     {
         craftResult.setInventorySlotContents(0, CraftingManager.getInstance().findMatchingRecipe(craftMatrix, worldObj));
     }
 
     @Override
-	public void onContainerClosed (EntityPlayer entityplayer)
+    public void onContainerClosed (EntityPlayer entityplayer)
     {
         super.onContainerClosed(entityplayer);
         if (worldObj.isRemote)
@@ -73,7 +73,7 @@ public class WorkbenchContainer extends Container
     }
 
     @Override
-	public boolean canInteractWith (EntityPlayer entityplayer)
+    public boolean canInteractWith (EntityPlayer entityplayer)
     {
         return true;
     }

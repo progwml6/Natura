@@ -2,8 +2,6 @@ package mods.natura.blocks;
 
 import java.util.List;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import mods.natura.common.NaturaTab;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -16,6 +14,8 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class NSlabBase extends Block
 {
@@ -46,13 +46,13 @@ public class NSlabBase extends Block
     }
 
     @Override
-	public void setBlockBoundsForItemRender ()
+    public void setBlockBoundsForItemRender ()
     {
         setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.5F, 1.0F);
     }
 
     @Override
-	public void setBlockBoundsBasedOnState (IBlockAccess world, int x, int y, int z)
+    public void setBlockBoundsBasedOnState (IBlockAccess world, int x, int y, int z)
     {
         int meta = world.getBlockMetadata(x, y, z) / 8;
         float minY = meta == 1 ? 0.5F : 0.0F;
@@ -61,7 +61,7 @@ public class NSlabBase extends Block
     }
 
     @Override
-	public int onBlockPlaced (World par1World, int blockX, int blockY, int blockZ, int side, float clickX, float clickY, float clickZ, int metadata)
+    public int onBlockPlaced (World par1World, int blockX, int blockY, int blockZ, int side, float clickX, float clickY, float clickZ, int metadata)
     {
         if (side == 1)
             return metadata;
@@ -72,13 +72,13 @@ public class NSlabBase extends Block
     }
 
     @Override
-	public boolean isOpaqueCube ()
+    public boolean isOpaqueCube ()
     {
         return false;
     }
 
     @Override
-	public boolean renderAsNormalBlock ()
+    public boolean renderAsNormalBlock ()
     {
         return false;
     }

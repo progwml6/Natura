@@ -2,8 +2,8 @@ package mods.natura.items;
 
 import java.util.List;
 
-import mods.natura.entity.HeatscarSpider;
 import mods.natura.entity.BabyHeatscarSpider;
+import mods.natura.entity.HeatscarSpider;
 import mods.natura.entity.ImpEntity;
 import mods.natura.entity.NitroCreeper;
 import net.minecraft.block.Block;
@@ -40,21 +40,21 @@ public class SpawnEgg extends Item
     }
 
     @Override
-	@SideOnly(Side.CLIENT)
+    @SideOnly(Side.CLIENT)
     public boolean requiresMultipleRenderPasses ()
     {
         return true;
     }
 
     @Override
-	@SideOnly(Side.CLIENT)
+    @SideOnly(Side.CLIENT)
     public IIcon getIconFromDamageForRenderPass (int par1, int par2)
     {
         return Items.spawn_egg.getIconFromDamageForRenderPass(par1, par2);
     }
 
     @Override
-    public String getItemStackDisplayName(ItemStack par1ItemStack)
+    public String getItemStackDisplayName (ItemStack par1ItemStack)
     {
         String s = ("" + StatCollector.translateToLocal(this.getUnlocalizedName() + ".name")).trim();
         String s1 = mobNames[par1ItemStack.getItemDamage()];
@@ -75,7 +75,7 @@ public class SpawnEgg extends Item
     }
 
     @Override
-	@SideOnly(Side.CLIENT)
+    @SideOnly(Side.CLIENT)
     public int getColorFromItemStack (ItemStack stack, int pass)
     {
         int damage = stack.getItemDamage();
@@ -83,7 +83,7 @@ public class SpawnEgg extends Item
     }
 
     @Override
-	public boolean onItemUse (ItemStack stack, EntityPlayer player, World world, int posX, int posY, int posZ, int par7, float par8, float par9, float par10)
+    public boolean onItemUse (ItemStack stack, EntityPlayer player, World world, int posX, int posY, int posZ, int par7, float par8, float par9, float par10)
     {
         if (!world.isRemote)
         {

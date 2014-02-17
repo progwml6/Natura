@@ -58,19 +58,19 @@ public class AlternateFence extends BlockFence
     }
 
     @Override
-	public boolean canPlaceTorchOnTop (World world, int x, int y, int z)
+    public boolean canPlaceTorchOnTop (World world, int x, int y, int z)
     {
         return true;
     }
 
     @Override
-	public int getRenderType ()
+    public int getRenderType ()
     {
         return FenceRender.model;
     }
 
     @Override
-	public boolean canConnectFenceTo (IBlockAccess par1IBlockAccess, int par2, int par3, int par4)
+    public boolean canConnectFenceTo (IBlockAccess par1IBlockAccess, int par2, int par3, int par4)
     {
         Block l = par1IBlockAccess.getBlock(par2, par3, par4);
 

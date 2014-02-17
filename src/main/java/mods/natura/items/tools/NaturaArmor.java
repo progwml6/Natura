@@ -33,7 +33,7 @@ public class NaturaArmor extends ItemArmor
     }
 
     @Override
-    public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type)
+    public String getArmorTexture (ItemStack stack, Entity entity, int slot, String type)
     {
         if (slot == 2)
             return "natura:textures/armor/" + armorTexture + "_2.png";

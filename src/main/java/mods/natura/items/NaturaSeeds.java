@@ -12,11 +12,11 @@ import net.minecraft.item.ItemSeeds;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
+import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.util.StatCollector;
 
 public class NaturaSeeds extends ItemSeeds
 {
@@ -46,7 +46,7 @@ public class NaturaSeeds extends ItemSeeds
     }
 
     @Override
-	public void getSubItems (Item id, CreativeTabs tab, List list)
+    public void getSubItems (Item id, CreativeTabs tab, List list)
     {
         for (int i = 0; i < textureNames.length; i++)
             list.add(new ItemStack(id, 1, i));
@@ -88,7 +88,7 @@ public class NaturaSeeds extends ItemSeeds
     }
 
     @Override
-	public String getUnlocalizedName (ItemStack stack)
+    public String getUnlocalizedName (ItemStack stack)
     {
         int arr = MathHelper.clamp_int(stack.getItemDamage(), 0, textureNames.length);
         return "item." + textureNames[arr] + ".seed";

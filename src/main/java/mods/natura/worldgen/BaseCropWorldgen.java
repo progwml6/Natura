@@ -4,7 +4,6 @@ import java.util.Random;
 
 import mods.natura.common.NContent;
 import mods.natura.common.PHNatura;
-import net.minecraft.block.BlockFlower;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;

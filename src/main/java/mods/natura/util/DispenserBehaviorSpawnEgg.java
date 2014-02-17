@@ -14,7 +14,7 @@ public class DispenserBehaviorSpawnEgg extends BehaviorDefaultDispenseItem
      * Dispense the specified stack, play the dispense sound and spawn particles.
      */
     @Override
-	public ItemStack dispenseStack (IBlockSource par1IBlockSource, ItemStack par2ItemStack)
+    public ItemStack dispenseStack (IBlockSource par1IBlockSource, ItemStack par2ItemStack)
     {
         EnumFacing enumfacing = BlockDispenser.func_149937_b(par1IBlockSource.getBlockMetadata());
         double d0 = par1IBlockSource.getX() + enumfacing.getFrontOffsetX();

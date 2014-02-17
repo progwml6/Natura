@@ -51,13 +51,13 @@ public class NetherGlass extends Block
     {
         return true;
     }
-    
+
     @Override
     public int damageDropped (int metadata)
     {
         return metadata;
     }
-    
+
     @Override
     @SideOnly(Side.CLIENT)
     public boolean shouldSideBeRendered (IBlockAccess par1IBlockAccess, int par2, int par3, int par4, int par5)
@@ -86,10 +86,10 @@ public class NetherGlass extends Block
         icons[2] = par1IconRegister.registerIcon("natura:glass_soul_item");
         icons[3] = par1IconRegister.registerIcon("natura:glass_heat_item");
     }
-    
+
     @Override
     @SideOnly(Side.CLIENT)
-    public IIcon getIcon(IBlockAccess world, int x, int y, int z, int side)
+    public IIcon getIcon (IBlockAccess world, int x, int y, int z, int side)
     {
         int meta = world.getBlockMetadata(x, y, z);
         if (meta < 1)
@@ -107,7 +107,7 @@ public class NetherGlass extends Block
     }
 
     @Override
-	public AxisAlignedBB getCollisionBoundingBoxFromPool (World world, int x, int y, int z)
+    public AxisAlignedBB getCollisionBoundingBoxFromPool (World world, int x, int y, int z)
     {
         int meta = world.getBlockMetadata(x, y, z);
         if (meta == 0)

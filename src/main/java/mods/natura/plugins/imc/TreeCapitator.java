@@ -1,13 +1,13 @@
 package mods.natura.plugins.imc;
 
-import cpw.mods.fml.common.event.FMLInterModComms;
-import cpw.mods.fml.common.registry.GameData;
+import mods.natura.common.NContent;
+import mods.natura.plugins.ICompatPlugin;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-import mods.natura.common.NContent;
-import mods.natura.plugins.ICompatPlugin;
+import cpw.mods.fml.common.event.FMLInterModComms;
+import cpw.mods.fml.common.registry.GameData;
 
 public class TreeCapitator implements ICompatPlugin
 {
@@ -28,7 +28,8 @@ public class TreeCapitator implements ICompatPlugin
     {
         NBTTagCompound tpModCfg = new NBTTagCompound();
         tpModCfg.setString("modID", "Natura");
-        tpModCfg.setString("axeIDList", String.format("%d; %d; %d; %d; %d", getUniqueName(NContent.ghostwoodAxe), getUniqueName(NContent.bloodwoodAxe), getUniqueName(NContent.darkwoodAxe), getUniqueName(NContent.fusewoodAxe), getUniqueName(NContent.netherquartzAxe)));
+        tpModCfg.setString("axeIDList", String.format("%d; %d; %d; %d; %d", getUniqueName(NContent.ghostwoodAxe), getUniqueName(NContent.bloodwoodAxe), getUniqueName(NContent.darkwoodAxe),
+                getUniqueName(NContent.fusewoodAxe), getUniqueName(NContent.netherquartzAxe)));
         tpModCfg.setBoolean("useShiftedItemID", false);
 
         NBTTagList treeList = new NBTTagList();

@@ -22,7 +22,7 @@ public class OmniShapeBlockItem extends ItemBlock
     }
 
     @Override
-	public String getUnlocalizedName (ItemStack itemstack)
+    public String getUnlocalizedName (ItemStack itemstack)
     {
         return (new StringBuilder()).append(blockType[itemstack.getItemDamage()]).append("omni").toString();
     }

@@ -23,7 +23,7 @@ public class CloudGen extends WorldGenerator
     }
 
     @Override
-	public boolean generate (World world, Random random, int x, int y, int z)
+    public boolean generate (World world, Random random, int x, int y, int z)
     {
         int l = random.nextInt(3) - 1;
         int i1 = random.nextInt(3) - 1;

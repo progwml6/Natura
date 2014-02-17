@@ -23,7 +23,7 @@ public class AlternateBookshelf extends BlockBookshelf
     }
 
     @Override
-	@SideOnly(Side.CLIENT)
+    @SideOnly(Side.CLIENT)
     public IIcon getIcon (int side, int metadata)
     {
         if (side == 0 || side == 1)
@@ -32,7 +32,7 @@ public class AlternateBookshelf extends BlockBookshelf
     }
 
     @Override
-	@SideOnly(Side.CLIENT)
+    @SideOnly(Side.CLIENT)
     public void registerBlockIcons (IIconRegister iconRegister)
     {
         super.registerBlockIcons(iconRegister);
@@ -51,7 +51,7 @@ public class AlternateBookshelf extends BlockBookshelf
     }
 
     @Override
-	public boolean renderAsNormalBlock ()
+    public boolean renderAsNormalBlock ()
     {
         return false;
     }

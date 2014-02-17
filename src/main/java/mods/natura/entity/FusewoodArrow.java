@@ -4,7 +4,6 @@ import java.util.List;
 
 import net.minecraft.block.Block;
 import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.EnchantmentThorns;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.monster.EntityEnderman;
@@ -106,8 +105,7 @@ public class FusewoodArrow extends EntityArrow
         }
 
         this.setSize(0.5F, 0.5F);
-        this.setLocationAndAngles(par2EntityLiving.posX, par2EntityLiving.posY + par2EntityLiving.getEyeHeight(), par2EntityLiving.posZ, par2EntityLiving.rotationYaw,
-                par2EntityLiving.rotationPitch);
+        this.setLocationAndAngles(par2EntityLiving.posX, par2EntityLiving.posY + par2EntityLiving.getEyeHeight(), par2EntityLiving.posZ, par2EntityLiving.rotationYaw, par2EntityLiving.rotationPitch);
         this.posX -= MathHelper.cos(this.rotationYaw / 180.0F * (float) Math.PI) * 0.16F;
         this.posY -= 0.10000000149011612D;
         this.posZ -= MathHelper.sin(this.rotationYaw / 180.0F * (float) Math.PI) * 0.16F;
@@ -120,7 +118,7 @@ public class FusewoodArrow extends EntityArrow
     }
 
     @Override
-	protected void entityInit ()
+    protected void entityInit ()
     {
         this.dataWatcher.addObject(16, Byte.valueOf((byte) 0));
     }
@@ -129,7 +127,7 @@ public class FusewoodArrow extends EntityArrow
      * Similar to setArrowHeading, it's point the throwable entity to a x, y, z direction.
      */
     @Override
-	public void setThrowableHeading (double par1, double par3, double par5, float par7, float par8)
+    public void setThrowableHeading (double par1, double par3, double par5, float par7, float par8)
     {
         float f2 = MathHelper.sqrt_double(par1 * par1 + par3 * par3 + par5 * par5);
         par1 /= f2;
@@ -151,7 +149,7 @@ public class FusewoodArrow extends EntityArrow
     }
 
     @Override
-	@SideOnly(Side.CLIENT)
+    @SideOnly(Side.CLIENT)
     /**
      * Sets the position and rotation. Only difference from the other one is no bounding on the rotation. Args: posX,
      * posY, posZ, yaw, pitch
@@ -163,7 +161,7 @@ public class FusewoodArrow extends EntityArrow
     }
 
     @Override
-	@SideOnly(Side.CLIENT)
+    @SideOnly(Side.CLIENT)
     /**
      * Sets the velocity to the args. Args: x, y, z
      */
@@ -189,7 +187,7 @@ public class FusewoodArrow extends EntityArrow
      * Called to update the entity's position/logic.
      */
     @Override
-	public void onUpdate ()
+    public void onUpdate ()
     {
         super.onUpdate();
 
@@ -353,14 +351,14 @@ public class FusewoodArrow extends EntityArrow
 
                                     if (f3 > 0.0F)
                                     {
-                                        movingobjectposition.entityHit.addVelocity(this.motionX * this.knockbackStrength * 0.6000000238418579D / f3, 0.1D, this.motionZ
-                                                * this.knockbackStrength * 0.6000000238418579D / f3);
+                                        movingobjectposition.entityHit.addVelocity(this.motionX * this.knockbackStrength * 0.6000000238418579D / f3, 0.1D, this.motionZ * this.knockbackStrength
+                                                * 0.6000000238418579D / f3);
                                     }
                                 }
 
                                 if (this.shootingEntity != null)
                                 {
-                                	// TODO 1.7 last arg is level of enchant (I think), confirm this is correct
+                                    // TODO 1.7 last arg is level of enchant (I think), confirm this is correct
                                     Enchantment.thorns.func_151367_b((EntityLivingBase) this.shootingEntity, entityliving, 1);
                                 }
 
@@ -419,8 +417,8 @@ public class FusewoodArrow extends EntityArrow
             {
                 for (l = 0; l < 4; ++l)
                 {
-                    this.worldObj.spawnParticle("crit", this.posX + this.motionX * l / 4.0D, this.posY + this.motionY * l / 4.0D, this.posZ + this.motionZ * l / 4.0D,
-                            -this.motionX, -this.motionY + 0.2D, -this.motionZ);
+                    this.worldObj.spawnParticle("crit", this.posX + this.motionX * l / 4.0D, this.posY + this.motionY * l / 4.0D, this.posZ + this.motionZ * l / 4.0D, -this.motionX,
+                            -this.motionY + 0.2D, -this.motionZ);
                 }
             }
 
@@ -460,8 +458,7 @@ public class FusewoodArrow extends EntityArrow
                 for (int j1 = 0; j1 < 4; ++j1)
                 {
                     f3 = 0.25F;
-                    this.worldObj.spawnParticle("bubble", this.posX - this.motionX * f3, this.posY - this.motionY * f3, this.posZ - this.motionZ * f3, this.motionX,
-                            this.motionY, this.motionZ);
+                    this.worldObj.spawnParticle("bubble", this.posX - this.motionX * f3, this.posY - this.motionY * f3, this.posZ - this.motionZ * f3, this.motionX, this.motionY, this.motionZ);
                 }
 
                 f4 = 0.8F;
@@ -480,7 +477,7 @@ public class FusewoodArrow extends EntityArrow
      * (abstract) Protected helper method to write subclass entity data to NBT.
      */
     @Override
-	public void writeEntityToNBT (NBTTagCompound par1NBTTagCompound)
+    public void writeEntityToNBT (NBTTagCompound par1NBTTagCompound)
     {
         par1NBTTagCompound.setShort("xTile", (short) this.xTile);
         par1NBTTagCompound.setShort("yTile", (short) this.yTile);
@@ -497,7 +494,7 @@ public class FusewoodArrow extends EntityArrow
      * (abstract) Protected helper method to read subclass entity data from NBT.
      */
     @Override
-	public void readEntityFromNBT (NBTTagCompound par1NBTTagCompound)
+    public void readEntityFromNBT (NBTTagCompound par1NBTTagCompound)
     {
         this.xTile = par1NBTTagCompound.getShort("xTile");
         this.yTile = par1NBTTagCompound.getShort("yTile");
@@ -526,7 +523,7 @@ public class FusewoodArrow extends EntityArrow
      * Called by a player entity when they collide with an entity
      */
     @Override
-	public void onCollideWithPlayer (EntityPlayer par1EntityPlayer)
+    public void onCollideWithPlayer (EntityPlayer par1EntityPlayer)
     {
         if (!this.worldObj.isRemote && this.inGround && this.arrowShake <= 0)
         {
@@ -551,26 +548,26 @@ public class FusewoodArrow extends EntityArrow
      * prevent them from trampling crops
      */
     @Override
-	protected boolean canTriggerWalking ()
+    protected boolean canTriggerWalking ()
     {
         return false;
     }
 
     @Override
-	@SideOnly(Side.CLIENT)
+    @SideOnly(Side.CLIENT)
     public float getShadowSize ()
     {
         return 0.0F;
     }
 
     @Override
-	public void setDamage (double par1)
+    public void setDamage (double par1)
     {
         this.damage = par1;
     }
 
     @Override
-	public double getDamage ()
+    public double getDamage ()
     {
         return this.damage;
     }
@@ -579,7 +576,7 @@ public class FusewoodArrow extends EntityArrow
      * Sets the amount of knockback the arrow applies when it hits a mob.
      */
     @Override
-	public void setKnockbackStrength (int par1)
+    public void setKnockbackStrength (int par1)
     {
         this.knockbackStrength = par1;
     }
@@ -588,7 +585,7 @@ public class FusewoodArrow extends EntityArrow
      * If returns false, the item will not inflict any damage against entities.
      */
     @Override
-	public boolean canAttackWithItem ()
+    public boolean canAttackWithItem ()
     {
         return false;
     }
@@ -597,7 +594,7 @@ public class FusewoodArrow extends EntityArrow
      * Whether the arrow has a stream of critical hit particles flying behind it.
      */
     @Override
-	public void setIsCritical (boolean par1)
+    public void setIsCritical (boolean par1)
     {
         byte b0 = this.dataWatcher.getWatchableObjectByte(16);
 
@@ -615,7 +612,7 @@ public class FusewoodArrow extends EntityArrow
      * Whether the arrow has a stream of critical hit particles flying behind it.
      */
     @Override
-	public boolean getIsCritical ()
+    public boolean getIsCritical ()
     {
         byte b0 = this.dataWatcher.getWatchableObjectByte(16);
         return (b0 & 1) != 0;

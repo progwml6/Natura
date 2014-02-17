@@ -21,8 +21,8 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.EnumPlantType;
-import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.common.IPlantable;
+import net.minecraftforge.common.util.ForgeDirection;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -115,7 +115,7 @@ public class NetherBerryBush extends BlockLeavesBase implements IPlantable
     }
 
     @Override
-	public AxisAlignedBB getSelectedBoundingBoxFromPool (World world, int x, int y, int z)
+    public AxisAlignedBB getSelectedBoundingBoxFromPool (World world, int x, int y, int z)
     {
         int l = world.getBlockMetadata(x, y, z);
         if (l < 4)
@@ -227,13 +227,13 @@ public class NetherBerryBush extends BlockLeavesBase implements IPlantable
     }
 
     @Override
-	public int getRenderType ()
+    public int getRenderType ()
     {
         return BerryRender.berryModel;
     }
 
     @Override
-	public boolean shouldSideBeRendered (IBlockAccess iblockaccess, int i, int j, int k, int l)
+    public boolean shouldSideBeRendered (IBlockAccess iblockaccess, int i, int j, int k, int l)
     {
         if (l > 7 || field_150121_P)
         {
@@ -271,7 +271,7 @@ public class NetherBerryBush extends BlockLeavesBase implements IPlantable
             }
             if (random1.nextInt(3) == 0 && height < 3 && world.getBlock(x, y + 1, z) == Blocks.air && md >= 8)
             {
-                world.setBlock(x, y + 1, z,  this, md % 4, 3);
+                world.setBlock(x, y + 1, z, this, md % 4, 3);
             }
         }
     }
@@ -291,7 +291,7 @@ public class NetherBerryBush extends BlockLeavesBase implements IPlantable
     }
 
     @Override
-    public int getFireSpreadSpeed(IBlockAccess world, int x, int y, int z, ForgeDirection face)
+    public int getFireSpreadSpeed (IBlockAccess world, int x, int y, int z, ForgeDirection face)
     {
         return 0;
     }

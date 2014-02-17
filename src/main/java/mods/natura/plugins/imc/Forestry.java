@@ -1,6 +1,7 @@
 package mods.natura.plugins.imc;
 
 import mods.natura.plugins.ICompatPlugin;
+
 public class Forestry implements ICompatPlugin
 {
 
@@ -12,7 +13,7 @@ public class Forestry implements ICompatPlugin
 
     @Override
     public void preInit ()
-    {        
+    {
     }
 
     @Override
@@ -26,12 +27,12 @@ public class Forestry implements ICompatPlugin
         builder = new StringBuilder();
         string = builder.append("farmWheat@").append(seeds.itemID).append(".1.").append(crops.blockID).append(".8").toString();
         FMLInterModComms.sendMessage("Forestry", "add-farmable-crop", string);
-         */        
+         */
     }
 
     @Override
     public void postInit ()
-    {        
+    {
     }
-  
+
 }

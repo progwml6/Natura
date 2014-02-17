@@ -47,7 +47,7 @@ public class HeatscarSpider extends EntitySpider
     }
 
     @Override
-	protected void attackEntity (Entity par1Entity, float par2)
+    protected void attackEntity (Entity par1Entity, float par2)
     {
         if (par2 > 2.0F && par2 < 6.0F && this.rand.nextInt(10) == 0)
         {
@@ -69,7 +69,7 @@ public class HeatscarSpider extends EntitySpider
     }
 
     @Override
-	public void jump ()
+    public void jump ()
     {
         this.motionY = 0.62D;
 
@@ -124,7 +124,7 @@ public class HeatscarSpider extends EntitySpider
     }
 
     @Override
-	public boolean attackEntityAsMob (Entity par1Entity)
+    public boolean attackEntityAsMob (Entity par1Entity)
     {
         if (super.attackEntityAsMob(par1Entity))
         {
@@ -164,7 +164,7 @@ public class HeatscarSpider extends EntitySpider
     }
 
     @Override
-	protected Item getDropItem ()
+    protected Item getDropItem ()
     {
         return NContent.plantItem;
     }
@@ -175,7 +175,7 @@ public class HeatscarSpider extends EntitySpider
     }
 
     @Override
-	protected void dropFewItems (boolean par1, int par2)
+    protected void dropFewItems (boolean par1, int par2)
     {
         Item j = this.getDropItem();
 
@@ -196,10 +196,10 @@ public class HeatscarSpider extends EntitySpider
     }
 
     @Override
-	public boolean getCanSpawnHere ()
+    public boolean getCanSpawnHere ()
     {
-        return this.worldObj.difficultySetting != EnumDifficulty.PEACEFUL && this.worldObj.checkNoEntityCollision(this.boundingBox) && this.worldObj.getCollidingBoundingBoxes(this, this.boundingBox).isEmpty()
-                && !this.worldObj.isAnyLiquid(this.boundingBox);
+        return this.worldObj.difficultySetting != EnumDifficulty.PEACEFUL && this.worldObj.checkNoEntityCollision(this.boundingBox)
+                && this.worldObj.getCollidingBoundingBoxes(this, this.boundingBox).isEmpty() && !this.worldObj.isAnyLiquid(this.boundingBox);
     }
 
     protected BabyHeatscarSpider createBabyInstance ()
@@ -208,7 +208,7 @@ public class HeatscarSpider extends EntitySpider
     }
 
     @Override
-	public void setDead ()
+    public void setDead ()
     {
 
         if (!this.worldObj.isRemote)

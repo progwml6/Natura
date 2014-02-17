@@ -7,10 +7,10 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.util.StatCollector;
 
 public class ImpMeat extends NSpecialFood
 {
@@ -35,7 +35,7 @@ public class ImpMeat extends NSpecialFood
     }
 
     @Override
-	protected void onFoodEaten (ItemStack stack, World world, EntityPlayer player)
+    protected void onFoodEaten (ItemStack stack, World world, EntityPlayer player)
     {
         if (!world.isRemote)
         {
@@ -56,7 +56,7 @@ public class ImpMeat extends NSpecialFood
                     if (potion != null)
                         duration = potion.getDuration();
                     else
-                        duration= 0;
+                        duration = 0;
                     player.addPotionEffect(new PotionEffect(Potion.poison.id, duration + 5 * 20, 0));
                 }
                 break;

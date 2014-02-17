@@ -10,7 +10,7 @@ public class BlazeRail extends BlockRail
     {
         super();
     }
-    
+
     @Override
     public float getRailMaxSpeed (World world, EntityMinecart cart, int y, int x, int z)
     {

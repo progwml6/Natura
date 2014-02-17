@@ -41,7 +41,7 @@ public class BowlEmpty extends Item
     }
 
     @Override
-	public String getUnlocalizedName (ItemStack stack)
+    public String getUnlocalizedName (ItemStack stack)
     {
         return Items.bowl.getUnlocalizedName(stack);
         /*int arr = MathHelper.clamp_int(stack.getItemDamage(), 0, textureNames.length);

@@ -1,9 +1,9 @@
 package mods.natura.plugins.thaumcraft;
 
-import net.minecraft.item.ItemStack;
-import cpw.mods.fml.common.event.FMLInterModComms;
 import mods.natura.common.NContent;
 import mods.natura.plugins.ICompatPlugin;
+import net.minecraft.item.ItemStack;
+import cpw.mods.fml.common.event.FMLInterModComms;
 
 public class Thaumcraft implements ICompatPlugin
 {
@@ -17,13 +17,13 @@ public class Thaumcraft implements ICompatPlugin
     @Override
     public void preInit ()
     {
-        
+
     }
 
     @Override
     public void init ()
     {
-      //Thaumcraft
+        //Thaumcraft
         FMLInterModComms.sendMessage("Thaumcraft", "harvestClickableCrop", new ItemStack(NContent.berryBush, 1, 12));
         FMLInterModComms.sendMessage("Thaumcraft", "harvestClickableCrop", new ItemStack(NContent.berryBush, 1, 13));
         FMLInterModComms.sendMessage("Thaumcraft", "harvestClickableCrop", new ItemStack(NContent.berryBush, 1, 14));
@@ -33,13 +33,13 @@ public class Thaumcraft implements ICompatPlugin
         FMLInterModComms.sendMessage("Thaumcraft", "harvestClickableCrop", new ItemStack(NContent.netherBerryBush, 1, 14));
         FMLInterModComms.sendMessage("Thaumcraft", "harvestClickableCrop", new ItemStack(NContent.netherBerryBush, 1, 15));
         FMLInterModComms.sendMessage("Thaumcraft", "harvestClickableCrop", new ItemStack(NContent.crops, 1, 8));
-        FMLInterModComms.sendMessage("Thaumcraft", "harvestStandardCrop", new ItemStack(NContent.crops, 1, 3));        
+        FMLInterModComms.sendMessage("Thaumcraft", "harvestStandardCrop", new ItemStack(NContent.crops, 1, 3));
     }
 
     @Override
     public void postInit ()
     {
-      //TODO update this once Thaumcraft is 1.7.x
+        //TODO update this once Thaumcraft is 1.7.x
         /*
 
         try
@@ -208,7 +208,7 @@ public class Thaumcraft implements ICompatPlugin
         {
             System.out.println("ThaumCraft integration failed.");
         }
-        */        
+        */
     }
 
 }
