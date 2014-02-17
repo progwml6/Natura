@@ -2,7 +2,7 @@ package mods.natura.blocks.nether;
 
 import mods.natura.common.NaturaTab;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockSand;
+import net.minecraft.block.BlockFalling;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
@@ -15,7 +15,7 @@ import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class HeatSand extends BlockSand
+public class HeatSand extends BlockFalling
 {
     IIcon[] icons;
 
