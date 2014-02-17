@@ -24,7 +24,7 @@ public class HeatSand extends BlockFalling
         super();
         this.setHardness(3f);
         this.setStepSound(Block.soundTypeSand);
-        this.setCreativeTab(NaturaTab.tab);
+        this.setCreativeTab(NaturaTab.tabNether);
         this.setHarvestLevel("shovel", 0);
     }
 

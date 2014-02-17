@@ -29,7 +29,7 @@ public class DarkTreeBlock extends Block
         this.setResistance(40F);
         this.setStepSound(Block.soundTypeWood);
         //setBurnProperties(this.blockID, 5, 20);
-        this.setCreativeTab(NaturaTab.tab);
+        this.setCreativeTab(NaturaTab.tabTrees);
     }
 
     @Override

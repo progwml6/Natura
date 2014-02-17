@@ -24,7 +24,7 @@ public class NLeavesNocolor extends NLeaves
     public NLeavesNocolor()
     {
         super();
-        this.setCreativeTab(NaturaTab.tab);
+        this.setCreativeTab(NaturaTab.tabTrees);
     }
 
     @SideOnly(Side.CLIENT)

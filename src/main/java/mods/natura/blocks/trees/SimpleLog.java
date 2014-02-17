@@ -21,7 +21,7 @@ public class SimpleLog extends Planks
     public SimpleLog()
     {
         super();
-        this.setCreativeTab(NaturaTab.tab);
+        this.setCreativeTab(NaturaTab.tabTrees);
     }
 
     @Override
