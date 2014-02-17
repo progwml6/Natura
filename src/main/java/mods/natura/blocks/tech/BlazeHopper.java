@@ -2,7 +2,6 @@ package mods.natura.blocks.tech;
 
 import mods.natura.client.HopperRender;
 import mods.natura.common.NContent;
-import mods.natura.common.NaturaTab;
 import net.minecraft.block.BlockHopper;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.util.IIcon;
@@ -20,7 +19,6 @@ public class BlazeHopper extends BlockHopper
     public BlazeHopper()
     {
         super();
-        setCreativeTab(NaturaTab.tabNether);
     }
     
     @Override

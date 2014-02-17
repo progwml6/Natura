@@ -3,7 +3,6 @@ package mods.natura.blocks.crops;
 import java.util.Random;
 
 import mods.natura.common.NContent;
-import mods.natura.common.NaturaTab;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -35,7 +34,6 @@ public class LargeGlowshroom extends Block
         mushroomType = type;
         this.setStepSound(Block.soundTypeWood);
         this.setHardness(0.2F);
-        setCreativeTab(NaturaTab.tabNether);
     }
 
     @Override

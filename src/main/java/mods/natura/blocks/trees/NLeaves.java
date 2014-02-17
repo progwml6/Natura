@@ -34,7 +34,7 @@ public class NLeaves extends BlockLeaves
         this.setBlockName("floraLeaves");
         setCreativeTab(CreativeTabs.tabDecorations);
         // TODO 1.7 Where the heck did this go? setBurnProperties(this, 30, 60);
-        this.setCreativeTab(NaturaTab.tabTrees);
+        this.setCreativeTab(NaturaTab.tab);
     }
 
     @Override

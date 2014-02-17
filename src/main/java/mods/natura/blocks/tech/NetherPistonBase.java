@@ -3,7 +3,6 @@ package mods.natura.blocks.tech;
 import java.util.List;
 
 import mods.natura.common.NContent;
-import mods.natura.common.NaturaTab;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockPistonBase;
 import net.minecraft.block.BlockPistonMoving;
@@ -40,7 +39,6 @@ public class NetherPistonBase extends BlockPistonBase
     {
         super(sticky);
         this.sticky = sticky;
-        setCreativeTab(NaturaTab.tabNether);
     }
 
     @Override
