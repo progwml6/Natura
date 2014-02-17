@@ -1,6 +1,7 @@
 package mods.natura.blocks.nether;
 
 import mods.natura.blocks.NBlock;
+import mods.natura.common.NaturaTab;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
@@ -17,6 +18,7 @@ public class TaintedSoil extends NBlock
         super(Material.ground, 2.2f, new String[] { "tainted_soil", "tainted_farmland_dry", "tainted_farmland_heated" });
         this.setStepSound(Block.soundTypeGravel);
         this.setResistance(25f);
+        setCreativeTab(NaturaTab.tabNether);
     }
 
     @Override

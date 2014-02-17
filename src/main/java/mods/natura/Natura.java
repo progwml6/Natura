@@ -59,7 +59,7 @@ public class Natura
     public static Material cloud = new CloudMaterial();
 
     public static Logger logger = LogManager.getLogger("Natura");
-
+    
     @EventHandler
     public void preInit (FMLPreInitializationEvent evt)
     {
@@ -85,7 +85,9 @@ public class Natura
         GameRegistry.registerWorldGenerator(crops = new BaseCropWorldgen(), 0); // TODO 1.7 Find correct weight (param 2)
         GameRegistry.registerWorldGenerator(clouds = new BaseCloudWorldgen(), 0); // TODO 1.7 Find correct weight (param 2)
         GameRegistry.registerWorldGenerator(trees = new BaseTreeWorldgen(), 0); // TODO 1.7 Find correct weight (param 2)
-        NaturaTab.init(NContent.wheatBag);
+        NaturaTab.tab.setIcon(NContent.boneBag, 0);
+        NaturaTab.tabTrees.setIcon(NContent.floraSapling.getItem(), 3);
+        NaturaTab.tabNether.setIcon(NContent.floraSapling.getItem(null, 9, 0, 0), 5);
         proxy.registerRenderer();
         proxy.addNames();
         NetworkRegistry.INSTANCE.registerGuiHandler(instance, new NGuiHandler());

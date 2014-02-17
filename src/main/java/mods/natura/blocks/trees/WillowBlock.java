@@ -26,7 +26,7 @@ public class WillowBlock extends BlockLog
         this.setHardness(2.0F);
         this.setStepSound(Block.soundTypeWood);
         // TODO 1.7 Where the heck did this go? setBurnProperties(this, 5, 20);
-        this.setCreativeTab(NaturaTab.tab);
+        this.setCreativeTab(NaturaTab.tabTrees);
     }
 
     @Override
