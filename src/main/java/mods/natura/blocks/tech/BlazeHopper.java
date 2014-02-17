@@ -35,7 +35,8 @@ public class BlazeHopper extends BlockHopper
     }
     
     @SideOnly(Side.CLIENT)
-    public void registerIcons (IIconRegister par1IconRegister)
+    @Override
+    public void registerBlockIcons (IIconRegister par1IconRegister)
     {
         this.hopperIcon = par1IconRegister.registerIcon("natura:nhopper_outside");
         this.hopperTopIcon = par1IconRegister.registerIcon("natura:nhopper_top");
