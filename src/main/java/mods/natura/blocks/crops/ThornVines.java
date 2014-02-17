@@ -19,7 +19,7 @@ public class ThornVines extends BlockVine
     public ThornVines()
     {
         super();
-        this.setCreativeTab(NaturaTab.tabNether);
+        this.setCreativeTab(NaturaTab.netherTab);
         setHardness(1.0F);
         setStepSound(soundTypeGrass);
     }

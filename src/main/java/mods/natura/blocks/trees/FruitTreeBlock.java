@@ -15,7 +15,7 @@ public class FruitTreeBlock extends BlockLog
         this.setResistance(5F);
         this.setStepSound(Block.soundTypeWood);
         // TODO 1.7 Where the heck did this go? setBurnProperties(this, 5, 20);
-        this.setCreativeTab(NaturaTab.tabTrees);
+        this.setCreativeTab(NaturaTab.tab);
     }
 
     /*public int getIcon(int side, int metadata)

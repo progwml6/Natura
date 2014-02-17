@@ -193,14 +193,14 @@ public class NContent implements IFuelHandler
         brailActivator = new BlazeRailPowered(true).setHardness(0.7F).setBlockName("blazerail.activator").setBlockTextureName("natura:brail_activator");
         GameRegistry.registerBlock(brailActivator, "BrailActivator");
 
-        netherrackFurnace = new NetherrackFurnaceBlock().setHardness(3.5F).setCreativeTab(NaturaTab.tabNether).setBlockName("furnace.netherrack");
+        netherrackFurnace = new NetherrackFurnaceBlock().setHardness(3.5F).setCreativeTab(NaturaTab.netherTab).setBlockName("furnace.netherrack");
         GameRegistry.registerBlock(netherrackFurnace, "NetherFurnace");
         GameRegistry.registerTileEntity(NetherrackFurnaceLogic.class, "netherrackFurnace");
-        respawnObelisk = new RespawnObelisk(Material.wood).setHardness(1.0F).setResistance(1000000F).setCreativeTab(NaturaTab.tabNether).setBlockName("nether.obelisk");
+        respawnObelisk = new RespawnObelisk(Material.wood).setHardness(1.0F).setResistance(1000000F).setCreativeTab(NaturaTab.netherTab).setBlockName("nether.obelisk");
         GameRegistry.registerBlock(respawnObelisk, "Obelisk");
-        netherGlass = (NetherGlass) new NetherGlass().setHardness(1.0F).setResistance(3000F).setStepSound(Block.soundTypeGlass).setCreativeTab(NaturaTab.tabNether).setBlockName("nether.glass");
+        netherGlass = (NetherGlass) new NetherGlass().setHardness(1.0F).setResistance(3000F).setStepSound(Block.soundTypeGlass).setCreativeTab(NaturaTab.netherTab).setBlockName("nether.glass");
         GameRegistry.registerBlock(netherGlass, NetherGlassItem.class, "NetherGlass");
-        netherHopper = (BlazeHopper) new BlazeHopper().setHardness(3.0F).setResistance(8.0F).setCreativeTab(NaturaTab.tabNether).setBlockName("nether.hopper");
+        netherHopper = (BlazeHopper) new BlazeHopper().setHardness(3.0F).setResistance(8.0F).setCreativeTab(NaturaTab.netherTab).setBlockName("nether.hopper");
         GameRegistry.registerBlock(netherHopper, "NetherHopper");
         netherPressurePlate = new AlternatePressurePlate("netherrack", Material.rock, Sensitivity.mobs).setHardness(0.5F).setStepSound(Block.soundTypeStone).setBlockName("pressurePlate");
         GameRegistry.registerBlock(netherPressurePlate, "NetherPressurePlate");

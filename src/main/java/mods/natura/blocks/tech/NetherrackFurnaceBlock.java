@@ -3,7 +3,6 @@ package mods.natura.blocks.tech;
 import java.util.Random;
 
 import mods.natura.Natura;
-import mods.natura.common.NaturaTab;
 import mods.natura.gui.NGuiHandler;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
@@ -35,7 +34,6 @@ public class NetherrackFurnaceBlock extends BlockContainer
     public NetherrackFurnaceBlock()
     {
         super(Material.rock);
-        setCreativeTab(NaturaTab.tabNether);
     }
 
     /* Logic backend */

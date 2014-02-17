@@ -41,7 +41,7 @@ public class NetherBerryBush extends BlockLeavesBase implements IPlantable
         this.setHardness(0.3F);
         this.setStepSound(Block.soundTypeGrass);
         this.setBlockName("berrybush");
-        this.setCreativeTab(NaturaTab.tabNether);
+        this.setCreativeTab(NaturaTab.tab);
     }
 
     /* Berries show up at meta 12-15 */
