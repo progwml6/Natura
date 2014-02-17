@@ -8,6 +8,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
+import net.minecraft.item.Item;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.AxisAlignedBB;
@@ -111,9 +112,10 @@ public class LargeGlowshroom extends Block
     /**
      * Returns the ID of the items to drop on destruction.
      */
-    public int idDropped (int par1, Random par2Random, int par3)
+    @Override
+    public Item getItemDropped (int par1, Random par2Random, int par3)
     {
-        return Block.getIdFromBlock(NContent.glowshroom);
+        return NContent.glowshroom.getItem(null, 0, 0, 0);
     }
 
     @SideOnly(Side.CLIENT)
@@ -130,7 +132,8 @@ public class LargeGlowshroom extends Block
      * When this method is called, your block should register all the icons it needs with the given IconRegister. This
      * is the only chance you get to register icons.
      */
-    public void registerIcons (IIconRegister iconregister)
+    @Override
+    public void registerBlockIcons(IIconRegister iconregister)
     {
         this.iconSkin = iconregister.registerIcon("natura:mushroom_skin_" + mushroomType);
         this.iconInside = iconregister.registerIcon("natura:mushroom_inside_" + mushroomType);
