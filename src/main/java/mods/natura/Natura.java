@@ -69,9 +69,16 @@ public class Natura
         PluginController.getController().registerBuiltins();
 
         PHNatura.initProps(evt.getSuggestedConfigurationFile());
+        NaturaTab.tab = new TabTools("natura.plants");
+        NaturaTab.woodTab = new TabTools("natura.trees");
+        NaturaTab.netherTab = new TabTools("natura.nether");
+
         content = new NContent();
         content.preInit();
         content.addOredictSupport();
+        NaturaTab.tab.init(new ItemStack(NContent.boneBag, 0));
+        NaturaTab.woodTab.init(new ItemStack(NContent.floraSapling.getItem(), 3));
+        NaturaTab.netherTab.init(new ItemStack(NContent.floraSapling.getItem(null, 9, 0, 0), 5));
 
         PluginController.getController().preInit();
     }
@@ -87,12 +94,6 @@ public class Natura
         GameRegistry.registerWorldGenerator(clouds = new BaseCloudWorldgen(), 0); // TODO 1.7 Find correct weight (param 2)
         GameRegistry.registerWorldGenerator(trees = new BaseTreeWorldgen(), 0); // TODO 1.7 Find correct weight (param 2)
         //NaturaTab.init(NContent.wheatBag);
-        NaturaTab.tab = new TabTools("natura.plants");
-        NaturaTab.woodTab = new TabTools("natura.trees");
-        NaturaTab.netherTab = new TabTools("natura.nether");
-        NaturaTab.tab.init(new ItemStack(NContent.boneBag, 0));
-        NaturaTab.woodTab.init(new ItemStack(NContent.floraSapling.getItem(), 3));
-        NaturaTab.netherTab.init(new ItemStack(NContent.floraSapling.getItem(null, 9, 0, 0), 5));
 
         proxy.registerRenderer();
         proxy.addNames();
