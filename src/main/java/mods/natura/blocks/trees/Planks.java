@@ -28,7 +28,7 @@ public class Planks extends Block
         super(Material.wood);
         // TODO 1.7 Where the heck did this go? setBurnProperties(this, 5, 20);
         this.setHardness(2.0f);
-        this.setCreativeTab(NaturaTab.tab);
+        this.setCreativeTab(NaturaTab.tabTrees);
         this.setStepSound(Block.soundTypeWood);
     }
 
