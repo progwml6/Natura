@@ -268,6 +268,6 @@ public class NSaplingBlock extends BlockSapling
 
     public Item getItem ()
     {
-        return this.getItem(null, 0, 0, 0);
+        return ((Block) this).getItem(null, 0, 0, 0);
     }
 }
