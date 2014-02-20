@@ -9,10 +9,10 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
+import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.util.StatCollector;
 
 public class NSaplingItem extends ItemBlock
 {
@@ -34,7 +34,7 @@ public class NSaplingItem extends ItemBlock
     }
 
     @Override
-	public IIcon getIconFromDamage (int i)
+    public IIcon getIconFromDamage (int i)
     {
         return NContent.floraSapling.getIcon(0, i);
     }
@@ -89,8 +89,7 @@ public class NSaplingItem extends ItemBlock
         {
             side = 1;
         }
-        else if (blockID != Blocks.vine && blockID != Blocks.tallgrass && blockID != Blocks.deadbush
-                && (blockID == null || !blockID.isReplaceable(world, x, y, z)))
+        else if (blockID != Blocks.vine && blockID != Blocks.tallgrass && blockID != Blocks.deadbush && (blockID == null || !blockID.isReplaceable(world, x, y, z)))
         {
             if (side == 0)
             {
@@ -156,8 +155,7 @@ public class NSaplingItem extends ItemBlock
 
             if (placeBlockAt(stack, player, world, x, y, z, side, par8, par9, par10, k1))
             {
-                world.playSoundEffect(x + 0.5F, y + 0.5F, z + 0.5F, block.stepSound.getBreakSound(),
-                        (block.stepSound.getVolume() + 1.0F) / 2.0F, block.stepSound.getPitch() * 0.8F);
+                world.playSoundEffect(x + 0.5F, y + 0.5F, z + 0.5F, block.stepSound.getBreakSound(), (block.stepSound.getVolume() + 1.0F) / 2.0F, block.stepSound.getPitch() * 0.8F);
                 --stack.stackSize;
             }
 

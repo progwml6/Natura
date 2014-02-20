@@ -79,7 +79,7 @@ public class BoneBag extends Item
         }
 
         event.getResult();
-		if (event.getResult() == Result.ALLOW)
+        if (event.getResult() == Result.ALLOW)
         {
             /*if (!par1World.isRemote)
             {

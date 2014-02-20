@@ -34,11 +34,11 @@ public class NLeaves extends BlockLeaves
         this.setBlockName("floraLeaves");
         setCreativeTab(CreativeTabs.tabDecorations);
         // TODO 1.7 Where the heck did this go? setBurnProperties(this, 30, 60);
-        this.setCreativeTab(NaturaTab.tabTrees);
+        this.setCreativeTab(NaturaTab.tab);
     }
 
     @Override
-	public int getBlockColor ()
+    public int getBlockColor ()
     {
         double var1 = 0.5D;
         double var3 = 1.0D;
@@ -49,7 +49,7 @@ public class NLeaves extends BlockLeaves
      * Returns the color this block should be rendered. Used by leaves.
      */
     @Override
-	public int getRenderColor (int var1)
+    public int getRenderColor (int var1)
     {
         return ColorizerFoliage.getFoliageColorBasic();
     }
@@ -59,7 +59,7 @@ public class NLeaves extends BlockLeaves
      * when first determining what to render.
      */
     @Override
-	public int colorMultiplier (IBlockAccess var1, int x, int y, int z)
+    public int colorMultiplier (IBlockAccess var1, int x, int y, int z)
     {
         //int meta = var1.getBlockMetadata(x, y, z);
 
@@ -93,7 +93,7 @@ public class NLeaves extends BlockLeaves
     }
 
     @Override
-	public void updateTick (World world, int x, int y, int z, Random random)
+    public void updateTick (World world, int x, int y, int z, Random random)
     {
         if (!world.isRemote)
         {
@@ -141,7 +141,7 @@ public class NLeaves extends BlockLeaves
      * Returns the ID of the items to drop on destruction.
      */
     @Override
-    public Item getItemDropped(int p_149650_1_, Random p_149650_2_, int p_149650_3_)
+    public Item getItemDropped (int p_149650_1_, Random p_149650_2_, int p_149650_3_)
     {
         return NContent.floraSapling.getItem();
     }
@@ -157,7 +157,7 @@ public class NLeaves extends BlockLeaves
             {
                 if (world.rand.nextFloat() <= par6)
                 {
-                	// TODO 1.7 used to be dropBlockAsItem_do is this right?
+                    // TODO 1.7 used to be dropBlockAsItem_do is this right?
                     this.dropBlockAsItem(world, x, y, z, item);
                 }
             }
@@ -208,7 +208,7 @@ public class NLeaves extends BlockLeaves
     }
 
     @Override
-	@SideOnly(Side.CLIENT)
+    @SideOnly(Side.CLIENT)
     /**
      * returns a list of blocks with the same ID, but different meta (eg: wood returns 4 blocks)
      */
@@ -220,7 +220,7 @@ public class NLeaves extends BlockLeaves
     }
 
     @Override
-	public int getDamageValue (World par1World, int par2, int par3, int par4)
+    public int getDamageValue (World par1World, int par2, int par3, int par4)
     {
         return this.damageDropped(par1World.getBlockMetadata(par2, par3, par4)) % 3;
     }
@@ -241,9 +241,9 @@ public class NLeaves extends BlockLeaves
         // TODO Auto-generated method stub
         return null;
     }
-    
-    public boolean getRenderLevel()
+
+    public boolean getRenderLevel ()
     {
-    	return this.field_150121_P;
+        return this.field_150121_P;
     }
 }

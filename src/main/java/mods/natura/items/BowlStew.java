@@ -62,9 +62,9 @@ public class BowlStew extends ItemFood
     }
 
     @Override
-	public ItemStack onEaten (ItemStack stack, World world, EntityPlayer player)
+    public ItemStack onEaten (ItemStack stack, World world, EntityPlayer player)
     {
-    	// TODO 1.7 check this
+        // TODO 1.7 check this
         player.getFoodStats().addStats(6, 0.6f);
         world.playSoundAtEntity(player, "random.burp", 0.5F, world.rand.nextFloat() * 0.1F + 0.9F);
         this.onFoodEaten(stack, world, player);
@@ -93,7 +93,7 @@ public class BowlStew extends ItemFood
     }
 
     @Override
-	protected void onFoodEaten (ItemStack stack, World world, EntityPlayer player)
+    protected void onFoodEaten (ItemStack stack, World world, EntityPlayer player)
     {
         if (!world.isRemote && stack.getItemDamage() / 14 == 1)
         {
@@ -124,7 +124,7 @@ public class BowlStew extends ItemFood
     }
 
     @Override
-	public String getUnlocalizedName (ItemStack stack)
+    public String getUnlocalizedName (ItemStack stack)
     {
         int arr = MathHelper.clamp_int(stack.getItemDamage() / 14, 0, textureNames.length);
         return "item.bowl." + textureNames[arr];

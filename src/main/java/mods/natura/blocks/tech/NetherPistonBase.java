@@ -3,7 +3,6 @@ package mods.natura.blocks.tech;
 import java.util.List;
 
 import mods.natura.common.NContent;
-import mods.natura.common.NaturaTab;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockPistonBase;
 import net.minecraft.block.BlockPistonMoving;
@@ -40,7 +39,6 @@ public class NetherPistonBase extends BlockPistonBase
     {
         super(sticky);
         this.sticky = sticky;
-        setCreativeTab(NaturaTab.tabNether);
     }
 
     @Override
@@ -87,7 +85,7 @@ public class NetherPistonBase extends BlockPistonBase
      * adjacent blocks and also whether the player can attach torches, redstone wire, etc to this block.
      */
     @Override
-	public boolean isOpaqueCube ()
+    public boolean isOpaqueCube ()
     {
         return false;
     }
@@ -96,7 +94,7 @@ public class NetherPistonBase extends BlockPistonBase
      * Called upon block activation (right click on the block.)
      */
     @Override
-	public boolean onBlockActivated (World par1World, int par2, int par3, int par4, EntityPlayer par5EntityPlayer, int par6, float par7, float par8, float par9)
+    public boolean onBlockActivated (World par1World, int par2, int par3, int par4, EntityPlayer par5EntityPlayer, int par6, float par7, float par8, float par9)
     {
         return false;
     }
@@ -105,7 +103,7 @@ public class NetherPistonBase extends BlockPistonBase
      * Called when the block is placed in the world.
      */
     @Override
-	public void onBlockPlacedBy (World par1World, int par2, int par3, int par4, EntityLivingBase par5EntityLivingBase, ItemStack par6ItemStack)
+    public void onBlockPlacedBy (World par1World, int par2, int par3, int par4, EntityLivingBase par5EntityLivingBase, ItemStack par6ItemStack)
     {
         int l = determineOrientation(par1World, par2, par3, par4, par5EntityLivingBase);
         par1World.setBlockMetadataWithNotify(par2, par3, par4, l, 2);
@@ -132,7 +130,7 @@ public class NetherPistonBase extends BlockPistonBase
      * Called whenever the block is added into the world. Args: world, x, y, z
      */
     @Override
-	public void onBlockAdded (World par1World, int par2, int par3, int par4)
+    public void onBlockAdded (World par1World, int par2, int par3, int par4)
     {
         if (!par1World.isRemote && par1World.getTileEntity(par2, par3, par4) == null)
         {
@@ -185,7 +183,7 @@ public class NetherPistonBase extends BlockPistonBase
      * entity at this location. Args: world, x, y, z, blockID, EventID, event parameter
      */
     @Override
-	public boolean onBlockEventReceived (World par1World, int par2, int par3, int par4, int par5, int par6)
+    public boolean onBlockEventReceived (World par1World, int par2, int par3, int par4, int par5, int par6)
     {
         if (!par1World.isRemote)
         {
@@ -252,8 +250,7 @@ public class NetherPistonBase extends BlockPistonBase
                     }
                 }
 
-                if (!flag1 && i2 != null && canPushBlock(i2, par1World, j1, k1, l1, false)
-                        && (i2.getMobilityFlag() == 0 || i2 == NContent.piston || i2 == NContent.pistonSticky))
+                if (!flag1 && i2 != null && canPushBlock(i2, par1World, j1, k1, l1, false) && (i2.getMobilityFlag() == 0 || i2 == NContent.piston || i2 == NContent.pistonSticky))
                 {
                     par2 += Facing.offsetsXForSide[par6];
                     par3 += Facing.offsetsYForSide[par6];
@@ -282,7 +279,7 @@ public class NetherPistonBase extends BlockPistonBase
      * Updates the blocks bounds based on its current state. Args: world, x, y, z
      */
     @Override
-	public void setBlockBoundsBasedOnState (IBlockAccess par1IBlockAccess, int par2, int par3, int par4)
+    public void setBlockBoundsBasedOnState (IBlockAccess par1IBlockAccess, int par2, int par3, int par4)
     {
         int l = par1IBlockAccess.getBlockMetadata(par2, par3, par4);
 
@@ -321,7 +318,7 @@ public class NetherPistonBase extends BlockPistonBase
      * Sets the block's bounds for rendering it as an item
      */
     @Override
-	public void setBlockBoundsForItemRender ()
+    public void setBlockBoundsForItemRender ()
     {
         this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
     }
@@ -331,7 +328,7 @@ public class NetherPistonBase extends BlockPistonBase
      * mask.) Parameters: World, X, Y, Z, mask, list, colliding entity
      */
     @Override
-	public void addCollisionBoxesToList (World par1World, int par2, int par3, int par4, AxisAlignedBB par5AxisAlignedBB, List par6List, Entity par7Entity)
+    public void addCollisionBoxesToList (World par1World, int par2, int par3, int par4, AxisAlignedBB par5AxisAlignedBB, List par6List, Entity par7Entity)
     {
         this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
         super.addCollisionBoxesToList(par1World, par2, par3, par4, par5AxisAlignedBB, par6List, par7Entity);
@@ -342,7 +339,7 @@ public class NetherPistonBase extends BlockPistonBase
      * cleared to be reused)
      */
     @Override
-	public AxisAlignedBB getCollisionBoundingBoxFromPool (World par1World, int par2, int par3, int par4)
+    public AxisAlignedBB getCollisionBoundingBoxFromPool (World par1World, int par2, int par3, int par4)
     {
         this.setBlockBoundsBasedOnState(par1World, par2, par3, par4);
         return super.getCollisionBoundingBoxFromPool(par1World, par2, par3, par4);
@@ -352,7 +349,7 @@ public class NetherPistonBase extends BlockPistonBase
      * If this block doesn't render as an ordinary block it will return False (examples: signs, buttons, stairs, etc)
      */
     @Override
-	public boolean renderAsNormalBlock ()
+    public boolean renderAsNormalBlock ()
     {
         return false;
     }

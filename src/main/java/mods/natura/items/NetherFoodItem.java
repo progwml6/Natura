@@ -13,10 +13,11 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.IIcon;
+import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.util.StatCollector;
+
 public class NetherFoodItem extends ItemFood
 {
     public IIcon[] icons;
@@ -42,7 +43,7 @@ public class NetherFoodItem extends ItemFood
     }*/
 
     @Override
-	protected void onFoodEaten (ItemStack stack, World world, EntityPlayer player)
+    protected void onFoodEaten (ItemStack stack, World world, EntityPlayer player)
     {
         if (!world.isRemote)
         {

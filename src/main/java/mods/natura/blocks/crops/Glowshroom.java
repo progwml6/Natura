@@ -26,11 +26,11 @@ public class Glowshroom extends BlockMushroom
     {
         super();
         this.setStepSound(soundTypeGrass);
-        this.setCreativeTab(NaturaTab.tabNether);
+        this.setCreativeTab(NaturaTab.tab);
     }
 
     @Override
-	public void updateTick (World world, int x, int y, int z, Random random)
+    public void updateTick (World world, int x, int y, int z, Random random)
     {
         if (random.nextInt(25) == 0)
         {

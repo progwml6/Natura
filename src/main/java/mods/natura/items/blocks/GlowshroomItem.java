@@ -8,9 +8,9 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
+import net.minecraft.util.StatCollector;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.util.StatCollector;
 
 public class GlowshroomItem extends ItemBlock
 {
@@ -30,13 +30,13 @@ public class GlowshroomItem extends ItemBlock
     }
 
     @Override
-	public IIcon getIconFromDamage (int i)
+    public IIcon getIconFromDamage (int i)
     {
         return NContent.glowshroom.getIcon(0, i);
     }
 
     @Override
-	public String getUnlocalizedName (ItemStack itemstack)
+    public String getUnlocalizedName (ItemStack itemstack)
     {
         return (new StringBuilder()).append("block.glowshroom.").append(blockType[itemstack.getItemDamage()]).toString();
     }

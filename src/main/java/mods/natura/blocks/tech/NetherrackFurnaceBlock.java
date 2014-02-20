@@ -3,7 +3,6 @@ package mods.natura.blocks.tech;
 import java.util.Random;
 
 import mods.natura.Natura;
-import mods.natura.common.NaturaTab;
 import mods.natura.gui.NGuiHandler;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
@@ -35,12 +34,11 @@ public class NetherrackFurnaceBlock extends BlockContainer
     public NetherrackFurnaceBlock()
     {
         super(Material.rock);
-        setCreativeTab(NaturaTab.tabNether);
     }
 
     /* Logic backend */
     @Override
-	public TileEntity createNewTileEntity (World world, int metadata)
+    public TileEntity createNewTileEntity (World world, int metadata)
     {
         return new NetherrackFurnaceLogic();
     }
@@ -104,8 +102,7 @@ public class NetherrackFurnaceBlock extends BlockContainer
                         }
 
                         stack.stackSize -= itemSize;
-                        EntityItem entityitem = new EntityItem(par1World, x + jumpX, y + jumpY, z + jumpZ, new ItemStack(stack.getItem(),
-                                itemSize, stack.getItemDamage()));
+                        EntityItem entityitem = new EntityItem(par1World, x + jumpX, y + jumpY, z + jumpZ, new ItemStack(stack.getItem(), itemSize, stack.getItemDamage()));
 
                         if (stack.hasTagCompound())
                         {
@@ -175,14 +172,14 @@ public class NetherrackFurnaceBlock extends BlockContainer
     }
 
     @Override
-	public int damageDropped (int meta)
+    public int damageDropped (int meta)
     {
         return meta;
     }
-    
+
     /* Light */
     @Override
-	public int getLightValue (IBlockAccess world, int x, int y, int z)
+    public int getLightValue (IBlockAccess world, int x, int y, int z)
     {
         TileEntity te = world.getTileEntity(x, y, z);
         if (te instanceof NetherrackFurnaceLogic)
@@ -191,22 +188,22 @@ public class NetherrackFurnaceBlock extends BlockContainer
         }
         return this.getLightValue();
     }
-    
+
     /* Comparator */
     @Override
-	public boolean hasComparatorInputOverride ()
+    public boolean hasComparatorInputOverride ()
     {
         return true;
     }
 
     @Override
-	public int getComparatorInputOverride (World par1World, int par2, int par3, int par4, int par5)
+    public int getComparatorInputOverride (World par1World, int par2, int par3, int par4, int par5)
     {
         return Container.calcRedstoneFromInventory((IInventory) par1World.getTileEntity(par2, par3, par4));
     }
-    
+
     @Override
-	@SideOnly(Side.CLIENT)
+    @SideOnly(Side.CLIENT)
     public void randomDisplayTick (World world, int x, int y, int z, Random par5Random)
     {
         NetherrackFurnaceLogic logic = (NetherrackFurnaceLogic) world.getTileEntity(x, y, z);

@@ -40,9 +40,9 @@ public class CropBlock extends BlockCrops
      * Ticks the block if it's been scheduled
      */
     @Override
-	public void updateTick (World world, int x, int y, int z, Random random)
+    public void updateTick (World world, int x, int y, int z, Random random)
     {
-    	this.checkAndDropBlock(world, x, y, z);
+        this.checkAndDropBlock(world, x, y, z);
 
         int light = world.getBlockLightValue(x, y, z);
         if (light >= 8)
@@ -66,7 +66,7 @@ public class CropBlock extends BlockCrops
      * Apply bonemeal to the crops.
      */
     @Override
-    public void func_149863_m(World world, int x, int y, int z)
+    public void func_149863_m (World world, int x, int y, int z)
     {
         int meta = world.getBlockMetadata(x, y, z);
         if (meta != 3 && meta != 8)
@@ -177,7 +177,7 @@ public class CropBlock extends BlockCrops
     }
 
     @Override
-	public float getBlockHardness (World world, int x, int y, int z)
+    public float getBlockHardness (World world, int x, int y, int z)
     {
         if (world.getBlockMetadata(x, y, z) > 3)
             return 0.5f;
@@ -210,7 +210,7 @@ public class CropBlock extends BlockCrops
      * The type of render function that is called for this block
      */
     @Override
-	public int getRenderType ()
+    public int getRenderType ()
     {
         return CropRender.model;
     }
@@ -233,7 +233,7 @@ public class CropBlock extends BlockCrops
     }
 
     @Override
-	public int damageDropped (int meta)
+    public int damageDropped (int meta)
     {
         if (meta < 4)
             return 0;
@@ -251,13 +251,13 @@ public class CropBlock extends BlockCrops
      * Drops the block items with a specified chance of dropping the specified items
      */
     @Override
-	public void dropBlockAsItemWithChance (World par1World, int par2, int par3, int par4, int par5, float par6, int par7)
+    public void dropBlockAsItemWithChance (World par1World, int par2, int par3, int par4, int par5, float par6, int par7)
     {
         super.dropBlockAsItemWithChance(par1World, par2, par3, par4, par5, par6, 0);
     }
 
     @Override
-    public ArrayList<ItemStack> getDrops(World world, int x, int y, int z, int metadata, int fortune)
+    public ArrayList<ItemStack> getDrops (World world, int x, int y, int z, int metadata, int fortune)
     {
         ArrayList<ItemStack> ret = new ArrayList<ItemStack>();
 
@@ -315,13 +315,13 @@ public class CropBlock extends BlockCrops
     }
 
     @Override
-	public int getDamageValue (World par1World, int par2, int par3, int par4)
+    public int getDamageValue (World par1World, int par2, int par3, int par4)
     {
         return seedDamageDropped(par1World.getBlockMetadata(par2, par3, par4));
     }
 
     @Override
-    public EnumPlantType getPlantType(IBlockAccess world, int x, int y, int z)
+    public EnumPlantType getPlantType (IBlockAccess world, int x, int y, int z)
     {
         return EnumPlantType.Crop;
     }
@@ -340,7 +340,7 @@ public class CropBlock extends BlockCrops
     }
 
     @Override
-    public int getPlantMetadata(IBlockAccess world, int x, int y, int z)
+    public int getPlantMetadata (IBlockAccess world, int x, int y, int z)
     {
         int meta = world.getBlockMetadata(x, y, z);
         if (meta < 4)

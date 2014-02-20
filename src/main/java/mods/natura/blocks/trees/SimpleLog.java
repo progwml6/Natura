@@ -21,7 +21,7 @@ public class SimpleLog extends Planks
     public SimpleLog()
     {
         super();
-        this.setCreativeTab(NaturaTab.tabTrees);
+        this.setCreativeTab(NaturaTab.tab);
     }
 
     @Override
@@ -49,13 +49,13 @@ public class SimpleLog extends Planks
     }
 
     @Override
-	public int getFlammability (IBlockAccess world, int x, int y, int z, int metadata, ForgeDirection face)
+    public int getFlammability (IBlockAccess world, int x, int y, int z, int metadata, ForgeDirection face)
     {
         return this.getFlammability(world, x, y, z, face);
     }
 
     @Override
-	public int getFireSpreadSpeed (World world, int x, int y, int z, int metadata, ForgeDirection face)
+    public int getFireSpreadSpeed (World world, int x, int y, int z, int metadata, ForgeDirection face)
     {
         return this.getFireSpreadSpeed(world, x, y, z, face);
     }

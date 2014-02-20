@@ -2,6 +2,7 @@ package mods.natura;
 
 import java.util.Random;
 
+import mantle.lib.TabTools;
 import mods.natura.common.NContent;
 import mods.natura.common.NProxyCommon;
 import mods.natura.common.NaturaTab;
@@ -59,7 +60,7 @@ public class Natura
     public static Material cloud = new CloudMaterial();
 
     public static Logger logger = LogManager.getLogger("Natura");
-    
+
     @EventHandler
     public void preInit (FMLPreInitializationEvent evt)
     {
@@ -68,9 +69,16 @@ public class Natura
         PluginController.getController().registerBuiltins();
 
         PHNatura.initProps(evt.getSuggestedConfigurationFile());
+        NaturaTab.tab = new TabTools("natura.plants");
+        NaturaTab.woodTab = new TabTools("natura.trees");
+        NaturaTab.netherTab = new TabTools("natura.nether");
+
         content = new NContent();
         content.preInit();
         content.addOredictSupport();
+        NaturaTab.tab.init(new ItemStack(NContent.boneBag, 0));
+        NaturaTab.woodTab.init(new ItemStack(NContent.floraSapling.getItem(), 3));
+        NaturaTab.netherTab.init(new ItemStack(NContent.floraSapling.getItem(null, 9, 0, 0), 5));
 
         PluginController.getController().preInit();
     }
@@ -85,9 +93,8 @@ public class Natura
         GameRegistry.registerWorldGenerator(crops = new BaseCropWorldgen(), 0); // TODO 1.7 Find correct weight (param 2)
         GameRegistry.registerWorldGenerator(clouds = new BaseCloudWorldgen(), 0); // TODO 1.7 Find correct weight (param 2)
         GameRegistry.registerWorldGenerator(trees = new BaseTreeWorldgen(), 0); // TODO 1.7 Find correct weight (param 2)
-        NaturaTab.tab.setIcon(NContent.boneBag, 0);
-        NaturaTab.tabTrees.setIcon(NContent.floraSapling.getItem(), 3);
-        NaturaTab.tabNether.setIcon(NContent.floraSapling.getItem(null, 9, 0, 0), 5);
+        //NaturaTab.init(NContent.wheatBag);
+
         proxy.registerRenderer();
         proxy.addNames();
         NetworkRegistry.INSTANCE.registerGuiHandler(instance, new NGuiHandler());
@@ -100,9 +107,10 @@ public class Natura
             DimensionManager.registerProviderType(-1, NetheriteWorldProvider.class, true);
         }
         MinecraftForge.EVENT_BUS.register(WorldHandler.instance);
-        
-        if(retrogen){
-        MinecraftForge.EVENT_BUS.register(new TickHandlerWorld());
+
+        if (retrogen)
+        {
+            MinecraftForge.EVENT_BUS.register(new TickHandlerWorld());
         }
 
         OreDictionary.registerOre("cropVine", new ItemStack(NContent.thornVines));
@@ -187,9 +195,8 @@ public class Natura
                     double d0 = random.nextGaussian() * 0.02D;
                     double d1 = random.nextGaussian() * 0.02D;
                     double d2 = random.nextGaussian() * 0.02D;
-                    creature.worldObj.spawnParticle("heart", creature.posX + random.nextFloat() * creature.width * 2.0F - creature.width,
-                            creature.posY + 0.5D + random.nextFloat() * creature.height, creature.posZ + random.nextFloat() * creature.width * 2.0F - creature.width,
-                            d0, d1, d2);
+                    creature.worldObj.spawnParticle("heart", creature.posX + random.nextFloat() * creature.width * 2.0F - creature.width, creature.posY + 0.5D + random.nextFloat() * creature.height,
+                            creature.posZ + random.nextFloat() * creature.width * 2.0F - creature.width, d0, d1, d2);
                 }
             }
         }
@@ -210,13 +217,12 @@ public class Natura
     }
 
     public static boolean retrogen;
-    
+
     @SubscribeEvent
     public void chunkDataSave (ChunkDataEvent.Save event)
     {
         event.getData().setBoolean("Natura.Retrogen", true);
     }
-    
 
     NContent content;
     public static Random random = new Random();

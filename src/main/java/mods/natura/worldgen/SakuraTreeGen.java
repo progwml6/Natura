@@ -479,7 +479,7 @@ public class SakuraTreeGen extends WorldGenerator
      * Rescales the generator settings, only used in WorldGenBigTree
      */
     @Override
-	public void setScale (double par1, double par3, double par5)
+    public void setScale (double par1, double par3, double par5)
     {
         this.heightLimitLimit = (int) (par1 * 12.0D);
 
@@ -507,7 +507,7 @@ public class SakuraTreeGen extends WorldGenerator
     }
 
     @Override
-	public boolean generate (World world, Random random, int x, int y, int z)
+    public boolean generate (World world, Random random, int x, int y, int z)
     {
         long var6 = random.nextLong();
         this.rand.setSeed(var6);

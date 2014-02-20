@@ -28,7 +28,7 @@ public class AlternateWorkbench extends BlockWorkbench
     }
 
     @Override
-	@SideOnly(Side.CLIENT)
+    @SideOnly(Side.CLIENT)
     public IIcon getIcon (int side, int metadata)
     {
         if (side == 0)
@@ -42,14 +42,14 @@ public class AlternateWorkbench extends BlockWorkbench
     }
 
     @Override
-	public boolean renderAsNormalBlock ()
+    public boolean renderAsNormalBlock ()
     {
         return false;
     }
 
     @SideOnly(Side.CLIENT)
     @Override
-    public void registerBlockIcons(IIconRegister iconRegister)
+    public void registerBlockIcons (IIconRegister iconRegister)
     {
         this.topIcons = new IIcon[NContent.woodTextureNames.length];
         this.sideIcons = new IIcon[NContent.woodTextureNames.length];
@@ -78,7 +78,7 @@ public class AlternateWorkbench extends BlockWorkbench
     }
 
     @Override
-	public boolean onBlockActivated (World world, int x, int y, int z, EntityPlayer player, int par6, float par7, float par8, float par9)
+    public boolean onBlockActivated (World world, int x, int y, int z, EntityPlayer player, int par6, float par7, float par8, float par9)
     {
         if (world.isRemote)
         {

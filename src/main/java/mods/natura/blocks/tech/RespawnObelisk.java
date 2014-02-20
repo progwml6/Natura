@@ -3,7 +3,6 @@ package mods.natura.blocks.tech;
 import java.util.Random;
 
 import mods.natura.Natura;
-import mods.natura.common.NaturaTab;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -21,7 +20,6 @@ public class RespawnObelisk extends Block
     public RespawnObelisk(Material material)
     {
         super(material);
-        setCreativeTab(NaturaTab.tab);
     }
 
     @Override

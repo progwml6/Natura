@@ -35,7 +35,7 @@ public class OverworldSapling extends BlockSapling
         setBlockBounds(0.5F - f, 0.0F, 0.5F - f, 0.5F + f, f * 2.0F, 0.5F + f);
         this.setHardness(0.0F);
         this.setStepSound(Block.soundTypeGrass);
-        setCreativeTab(NaturaTab.tabTrees);
+        this.setCreativeTab(NaturaTab.tab);
     }
 
     @Override
@@ -51,7 +51,7 @@ public class OverworldSapling extends BlockSapling
     }
 
     @Override
-	public boolean canPlaceBlockAt (World world, int x, int y, int z)
+    public boolean canPlaceBlockAt (World world, int x, int y, int z)
     {
         Block blockID = world.getBlock(x, y, z);
         if (blockID == Blocks.air || blockID.getMaterial().isReplaceable())
@@ -60,7 +60,7 @@ public class OverworldSapling extends BlockSapling
         return false;
     }
 
-    public boolean canThisPlantGrowOnThisBlock(Block id)
+    public boolean canThisPlantGrowOnThisBlock (Block id)
     {
         return id == Blocks.grass || id == Blocks.dirt || id == Blocks.soul_sand || id == Blocks.netherrack || id == NContent.taintedSoil;
     }
@@ -102,7 +102,7 @@ public class OverworldSapling extends BlockSapling
     }
 
     @Override
-	public void updateTick (World world, int x, int y, int z, Random random)
+    public void updateTick (World world, int x, int y, int z, Random random)
     {
         if (world.isRemote)
         {
@@ -128,7 +128,7 @@ public class OverworldSapling extends BlockSapling
     }
 
     @Override
-    public void func_149879_c(World world, int x, int y, int z, Random random)
+    public void func_149879_c (World world, int x, int y, int z, Random random)
     {
         boneFertilize(world, x, y, z, random);
     }
@@ -175,7 +175,7 @@ public class OverworldSapling extends BlockSapling
     }
 
     @Override
-	public int damageDropped (int i)
+    public int damageDropped (int i)
     {
         return i % 8;
     }

@@ -31,7 +31,7 @@ public class BabyHeatscarSpider extends EntitySpider
     }
 
     @Override
-	protected void attackEntity (Entity par1Entity, float par2)
+    protected void attackEntity (Entity par1Entity, float par2)
     {
         if (par2 > 2.0F && par2 < 6.0F && this.rand.nextInt(10) == 0)
         {
@@ -53,7 +53,7 @@ public class BabyHeatscarSpider extends EntitySpider
     }
 
     @Override
-	public void jump ()
+    public void jump ()
     {
         this.motionY = 0.62D;
 
@@ -148,20 +148,20 @@ public class BabyHeatscarSpider extends EntitySpider
     }
 
     @Override
-    protected Item getDropItem()
+    protected Item getDropItem ()
     {
         return NContent.plantItem;
     }
-    
+
     @Override
     // dropItemWithOffset
-    public EntityItem func_145778_a(Item item, int par2, float offset)
+    public EntityItem func_145778_a (Item item, int par2, float offset)
     {
         return this.entityDropItem(new ItemStack(item, par2, 7), offset);
     }
 
     @Override
-	protected void dropFewItems (boolean par1, int par2)
+    protected void dropFewItems (boolean par1, int par2)
     {
         Item j = this.getDropItem();
 
@@ -182,9 +182,9 @@ public class BabyHeatscarSpider extends EntitySpider
     }
 
     @Override
-	public boolean getCanSpawnHere ()
+    public boolean getCanSpawnHere ()
     {
-        return this.worldObj.difficultySetting != EnumDifficulty.PEACEFUL && this.worldObj.checkNoEntityCollision(this.boundingBox) && this.worldObj.getCollidingBoundingBoxes(this, this.boundingBox).isEmpty()
-                && !this.worldObj.isAnyLiquid(this.boundingBox);
+        return this.worldObj.difficultySetting != EnumDifficulty.PEACEFUL && this.worldObj.checkNoEntityCollision(this.boundingBox)
+                && this.worldObj.getCollidingBoundingBoxes(this, this.boundingBox).isEmpty() && !this.worldObj.isAnyLiquid(this.boundingBox);
     }
 }

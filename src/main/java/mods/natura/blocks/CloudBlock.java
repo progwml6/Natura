@@ -49,7 +49,7 @@ public class CloudBlock extends NBlock
     }
 
     @Override
-	public boolean onBlockActivated (World world, int x, int y, int z, EntityPlayer player, int par6, float par7, float par8, float par9)
+    public boolean onBlockActivated (World world, int x, int y, int z, EntityPlayer player, int par6, float par7, float par8, float par9)
     {
         int meta = world.getBlockMetadata(x, y, z);
         if (meta == 3 && player.getCurrentEquippedItem() != null && player.getCurrentEquippedItem().getItem() == Items.flint_and_steel)
@@ -62,7 +62,7 @@ public class CloudBlock extends NBlock
     }
 
     @Override
-	public void onBlockDestroyedByExplosion (World world, int x, int y, int z, Explosion par5Explosion)
+    public void onBlockDestroyedByExplosion (World world, int x, int y, int z, Explosion par5Explosion)
     {
         /*int meta = world.getBlockMetadata(x, y, z);
         if (meta == 3)
@@ -77,7 +77,7 @@ public class CloudBlock extends NBlock
     }
 
     @Override
-	public boolean canDropFromExplosion (Explosion par1Explosion)
+    public boolean canDropFromExplosion (Explosion par1Explosion)
     {
         return false;
     }

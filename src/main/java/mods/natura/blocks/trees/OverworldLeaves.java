@@ -87,7 +87,7 @@ public class OverworldLeaves extends NLeaves
     }
 
     @Override
-    public Item getItemDropped(int p_149650_1_, Random p_149650_2_, int p_149650_3_)
+    public Item getItemDropped (int p_149650_1_, Random p_149650_2_, int p_149650_3_)
     {
         return NContent.rareSapling.getItem(null, 0, 0, 0);
     }
@@ -103,7 +103,7 @@ public class OverworldLeaves extends NLeaves
     }
 
     @Override
-	public int getLightOpacity (World world, int x, int y, int z)
+    public int getLightOpacity (World world, int x, int y, int z)
     {
         return this.getLightOpacity();
     }

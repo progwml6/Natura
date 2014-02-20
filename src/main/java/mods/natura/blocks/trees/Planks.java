@@ -28,7 +28,7 @@ public class Planks extends Block
         super(Material.wood);
         // TODO 1.7 Where the heck did this go? setBurnProperties(this, 5, 20);
         this.setHardness(2.0f);
-        this.setCreativeTab(NaturaTab.tabTrees);
+        this.setCreativeTab(NaturaTab.tab);
         this.setStepSound(Block.soundTypeWood);
     }
 
@@ -36,7 +36,7 @@ public class Planks extends Block
     @SideOnly(Side.CLIENT)
     public IIcon getIcon (int side, int meta)
     {
-        if (meta >= textureNames.length )
+        if (meta >= textureNames.length)
             return Blocks.lava.getIcon(0, 0);
         return icons[meta];
     }

@@ -8,8 +8,8 @@ import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
-import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.common.IPlantable;
+import net.minecraftforge.common.util.ForgeDirection;
 
 public class SaguaroGen extends WorldGenerator
 {
@@ -22,7 +22,7 @@ public class SaguaroGen extends WorldGenerator
     }
 
     @Override
-	public boolean generate (World world, Random random, int x, int y, int z)
+    public boolean generate (World world, Random random, int x, int y, int z)
     {
         int yPos = findGround(world, x, y, z, useHeight);
         Block currentID = world.getBlock(x, yPos, z);

@@ -3,16 +3,16 @@ package mods.natura.plugins.te3;
 import java.util.Arrays;
 import java.util.List;
 
-import cpw.mods.fml.common.event.FMLInterModComms;
-import cpw.mods.fml.common.registry.GameRegistry;
-import net.minecraft.block.Block;
-import net.minecraft.init.Items;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 import mods.natura.blocks.trees.Planks;
 import mods.natura.common.NContent;
 import mods.natura.items.blocks.NDoorItem;
 import mods.natura.plugins.ICompatPlugin;
+import net.minecraft.block.Block;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import cpw.mods.fml.common.event.FMLInterModComms;
+import cpw.mods.fml.common.registry.GameRegistry;
 
 public class ThermalExpansion3 implements ICompatPlugin
 {

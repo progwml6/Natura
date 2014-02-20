@@ -64,7 +64,7 @@ public class FlintAndBlaze extends Item
 
     //Right-click on blocks
     @Override
-	public boolean onItemUse (ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ)
+    public boolean onItemUse (ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ)
     {
         if (side == 0)
         {

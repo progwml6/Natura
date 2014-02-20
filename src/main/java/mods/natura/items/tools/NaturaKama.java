@@ -17,11 +17,11 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
 import net.minecraft.stats.StatList;
+import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IShearable;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.util.StatCollector;
 
 public class NaturaKama extends ItemSword
 {
@@ -58,8 +58,7 @@ public class NaturaKama extends ItemSword
      */
     public float getStrVsBlock (ItemStack par1ItemStack, Block par2Block)
     {
-        return par2Block != Blocks.web && par2Block != Blocks.leaves ? (par2Block == Blocks.wool ? 5.0F : super.func_150893_a/*getStrVsBlock*/(par1ItemStack, par2Block))
-                : 15.0F;
+        return par2Block != Blocks.web && par2Block != Blocks.leaves ? (par2Block == Blocks.wool ? 5.0F : super.func_150893_a/*getStrVsBlock*/(par1ItemStack, par2Block)) : 15.0F;
     }
 
     @Override

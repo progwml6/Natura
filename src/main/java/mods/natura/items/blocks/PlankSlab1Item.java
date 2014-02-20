@@ -7,10 +7,10 @@ import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.util.StatCollector;
 
 public class PlankSlab1Item extends ItemBlock
 {
@@ -92,8 +92,7 @@ public class PlankSlab1Item extends ItemBlock
         {
             if (world.setBlock(x, y, z, NContent.planks, trueMeta, 3))
             {
-                world.playSoundEffect(x + 0.5F, y + 0.5F, z + 0.5F, this.block.stepSound.getBreakSound(),
-                        (this.block.stepSound.getVolume() + 1.0F) / 2.0F, this.block.stepSound.getPitch() * 0.8F);
+                world.playSoundEffect(x + 0.5F, y + 0.5F, z + 0.5F, this.block.stepSound.getBreakSound(), (this.block.stepSound.getVolume() + 1.0F) / 2.0F, this.block.stepSound.getPitch() * 0.8F);
                 --stack.stackSize;
                 return true;
             }

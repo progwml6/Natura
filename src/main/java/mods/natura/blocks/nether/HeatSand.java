@@ -24,7 +24,7 @@ public class HeatSand extends BlockFalling
         super();
         this.setHardness(3f);
         this.setStepSound(Block.soundTypeSand);
-        this.setCreativeTab(NaturaTab.tabNether);
+        this.setCreativeTab(NaturaTab.tab);
         this.setHarvestLevel("shovel", 0);
     }
 
@@ -36,14 +36,14 @@ public class HeatSand extends BlockFalling
     }
 
     @Override
-	public AxisAlignedBB getCollisionBoundingBoxFromPool (World par1World, int par2, int par3, int par4)
+    public AxisAlignedBB getCollisionBoundingBoxFromPool (World par1World, int par2, int par3, int par4)
     {
         float f = 0.125F;
         return AxisAlignedBB.getAABBPool().getAABB(par2, par3, par4, par2 + 1, par3 + 1 - f, par4 + 1);
     }
 
     @Override
-	public void onEntityCollidedWithBlock (World par1World, int x, int y, int z, Entity entity)
+    public void onEntityCollidedWithBlock (World par1World, int x, int y, int z, Entity entity)
     {
         if (entity instanceof EntityPlayer)
         {

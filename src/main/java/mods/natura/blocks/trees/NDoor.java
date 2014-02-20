@@ -43,7 +43,7 @@ public class NDoor extends BlockDoor
     }
 
     @Override
-	public int damageDropped (int par1)
+    public int damageDropped (int par1)
     {
         return meta;
     }
@@ -86,7 +86,7 @@ public class NDoor extends BlockDoor
     }
 
     @Override
-	public ItemStack getPickBlock (MovingObjectPosition target, World world, int x, int y, int z)
+    public ItemStack getPickBlock (MovingObjectPosition target, World world, int x, int y, int z)
     {
         return new ItemStack(NContent.doorItem, 1, meta);
     }
@@ -96,7 +96,7 @@ public class NDoor extends BlockDoor
     }
 
     @Override
-	public int getRenderType ()
+    public int getRenderType ()
     {
         return 7;
     }

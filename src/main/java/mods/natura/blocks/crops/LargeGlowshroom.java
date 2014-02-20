@@ -3,7 +3,6 @@ package mods.natura.blocks.crops;
 import java.util.Random;
 
 import mods.natura.common.NContent;
-import mods.natura.common.NaturaTab;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -35,11 +34,10 @@ public class LargeGlowshroom extends Block
         mushroomType = type;
         this.setStepSound(Block.soundTypeWood);
         this.setHardness(0.2F);
-        setCreativeTab(NaturaTab.tabNether);
     }
 
     @Override
-	@SideOnly(Side.CLIENT)
+    @SideOnly(Side.CLIENT)
     /**
      * From the specified side and block metadata retrieves the blocks texture. Args: side, metadata
      */
@@ -54,7 +52,7 @@ public class LargeGlowshroom extends Block
      * Returns the quantity of items to drop on block destruction.
      */
     @Override
-	public int quantityDropped (Random par1Random)
+    public int quantityDropped (Random par1Random)
     {
         int i = par1Random.nextInt(10) - 7;
 
@@ -67,7 +65,7 @@ public class LargeGlowshroom extends Block
     }
 
     @Override
-	public int damageDropped (int meta)
+    public int damageDropped (int meta)
     {
         if (this == NContent.glowshroomBlue)
             return 2;
@@ -135,7 +133,7 @@ public class LargeGlowshroom extends Block
      * is the only chance you get to register icons.
      */
     @Override
-    public void registerBlockIcons(IIconRegister iconregister)
+    public void registerBlockIcons (IIconRegister iconregister)
     {
         this.iconSkin = iconregister.registerIcon("natura:mushroom_skin_" + mushroomType);
         this.iconInside = iconregister.registerIcon("natura:mushroom_inside_" + mushroomType);

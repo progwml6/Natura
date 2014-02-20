@@ -21,24 +21,24 @@ public class BaseCloudWorldgen implements IWorldGenerator
 
     public BaseCloudWorldgen()
     {
-        smallcloud = new CloudGen(NContent.cloud , 0, 10, false);
-        mediumcloud = new CloudGen(NContent.cloud , 0, 20, false);
-        largecloud = new CloudGen(NContent.cloud , 0, 30, false);
-        hugecloud = new CloudGen(NContent.cloud , 0, 40, false);
-        smalldarkcloud = new CloudGen(NContent.cloud , 1, 10, false);
-        mediumdarkcloud = new CloudGen(NContent.cloud , 1, 20, false);
-        largedarkcloud = new CloudGen(NContent.cloud , 1, 30, false);
-        hugedarkcloud = new CloudGen(NContent.cloud , 1, 40, false);
-        tinyashcloud = new CloudGen(NContent.cloud , 2, 3, false);
-        smallashcloud = new CloudGen(NContent.cloud , 2, 10, false);
-        mediumashcloud = new CloudGen(NContent.cloud , 2, 18, false);
-        largeashcloud = new CloudGen(NContent.cloud , 2, 27, false);
-        hugeashcloud = new CloudGen(NContent.cloud , 2, 37, false);
-        tinysulfurcloud = new CloudGen(NContent.cloud , 3, 3, false);
-        smallsulfurcloud = new CloudGen(NContent.cloud , 3, 10, false);
-        mediumsulfurcloud = new CloudGen(NContent.cloud , 3, 18, false);
-        largesulfurcloud = new CloudGen(NContent.cloud , 3, 27, false);
-        hugesulfurcloud = new CloudGen(NContent.cloud , 3, 37, false);
+        smallcloud = new CloudGen(NContent.cloud, 0, 10, false);
+        mediumcloud = new CloudGen(NContent.cloud, 0, 20, false);
+        largecloud = new CloudGen(NContent.cloud, 0, 30, false);
+        hugecloud = new CloudGen(NContent.cloud, 0, 40, false);
+        smalldarkcloud = new CloudGen(NContent.cloud, 1, 10, false);
+        mediumdarkcloud = new CloudGen(NContent.cloud, 1, 20, false);
+        largedarkcloud = new CloudGen(NContent.cloud, 1, 30, false);
+        hugedarkcloud = new CloudGen(NContent.cloud, 1, 40, false);
+        tinyashcloud = new CloudGen(NContent.cloud, 2, 3, false);
+        smallashcloud = new CloudGen(NContent.cloud, 2, 10, false);
+        mediumashcloud = new CloudGen(NContent.cloud, 2, 18, false);
+        largeashcloud = new CloudGen(NContent.cloud, 2, 27, false);
+        hugeashcloud = new CloudGen(NContent.cloud, 2, 37, false);
+        tinysulfurcloud = new CloudGen(NContent.cloud, 3, 3, false);
+        smallsulfurcloud = new CloudGen(NContent.cloud, 3, 10, false);
+        mediumsulfurcloud = new CloudGen(NContent.cloud, 3, 18, false);
+        largesulfurcloud = new CloudGen(NContent.cloud, 3, 27, false);
+        hugesulfurcloud = new CloudGen(NContent.cloud, 3, 37, false);
     }
 
     @Override

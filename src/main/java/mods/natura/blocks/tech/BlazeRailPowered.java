@@ -1,6 +1,5 @@
 package mods.natura.blocks.tech;
 
-import mods.natura.common.NaturaTab;
 import net.minecraft.block.BlockRailPowered;
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.world.World;
@@ -13,7 +12,6 @@ public class BlazeRailPowered extends BlockRailPowered
     {
         super();
         this.activator = activator;
-        setCreativeTab(NaturaTab.tabNether);
     }
 
     @Override
@@ -32,7 +30,7 @@ public class BlazeRailPowered extends BlockRailPowered
      * @param z The rail Z coordinate.
      */
     @Override
-	public void onMinecartPass (World world, EntityMinecart cart, int x, int y, int z)
+    public void onMinecartPass (World world, EntityMinecart cart, int x, int y, int z)
     {
         int meta = world.getBlockMetadata(x, y, z);
         if (meta >= 8)

@@ -1,15 +1,17 @@
 package mods.natura.plugins;
 
-import cpw.mods.fml.common.Loader;
-import mods.natura.Natura;
-import mods.natura.plugins.imc.*;
-import mods.natura.plugins.te3.ThermalExpansion3;
-import mods.natura.plugins.thaumcraft.Thaumcraft;
-import net.minecraftforge.common.config.Configuration;
-
 import java.io.File;
 import java.util.LinkedList;
 import java.util.List;
+
+import mods.natura.Natura;
+import mods.natura.plugins.imc.BuildCraft;
+import mods.natura.plugins.imc.Forestry;
+import mods.natura.plugins.imc.TreeCapitator;
+import mods.natura.plugins.te3.ThermalExpansion3;
+import mods.natura.plugins.thaumcraft.Thaumcraft;
+import net.minecraftforge.common.config.Configuration;
+import cpw.mods.fml.common.Loader;
 
 /**
  * Master controller for Natura compat plugins.
@@ -19,7 +21,8 @@ import java.util.List;
 public class PluginController
 {
 
-    private enum Phase {
+    private enum Phase
+    {
         PRELAUNCH, PREINIT, INIT, POSTINIT, DONE
     }
 
@@ -28,15 +31,17 @@ public class PluginController
     private List<ICompatPlugin> plugins = new LinkedList<ICompatPlugin>();
     private Phase currPhase = Phase.PRELAUNCH;
 
-    private PluginController() {
+    private PluginController()
+    {
         String path = Loader.instance().getConfigDir().toString() + File.separator + "NaturaCompat.cfg";
         Natura.logger.info("[PluginController] Using config path: " + path);
         conf = new Configuration(new File(path));
     }
 
-    public static PluginController getController()
+    public static PluginController getController ()
     {
-        if (instance == null) instance = new PluginController();
+        if (instance == null)
+            instance = new PluginController();
         return instance;
     }
 
@@ -48,7 +53,7 @@ public class PluginController
      *
      * @param plugin Plugin to register
      */
-    public void registerPlugin(ICompatPlugin plugin)
+    public void registerPlugin (ICompatPlugin plugin)
     {
         conf.load();
         boolean shouldLoad = conf.get("Plugins", plugin.getModId(), true).getBoolean(true);
@@ -59,57 +64,62 @@ public class PluginController
     }
 
     // This does the actual plugin loading if mod is present; needed to allow force-enabling.
-    private void loadPlugin(ICompatPlugin plugin)
+    private void loadPlugin (ICompatPlugin plugin)
     {
-        if (!Loader.isModLoaded(plugin.getModId())) return;
+        if (!Loader.isModLoaded(plugin.getModId()))
+            return;
 
         Natura.logger.info("[PluginController] Registering compat plugin for " + plugin.getModId());
         plugins.add(plugin);
 
-        switch (currPhase) // Play catch-up if plugin is registered late
+        switch (currPhase)
+        // Play catch-up if plugin is registered late
         {
-            case DONE:
-            case POSTINIT:
-                plugin.preInit();
-                plugin.init();
-                plugin.postInit();
-                break;
-            case INIT:
-                plugin.preInit();
-                plugin.init();
-                break;
-            case PREINIT:
-                plugin.preInit();
-                break;
-            default:
-                break;
+        case DONE:
+        case POSTINIT:
+            plugin.preInit();
+            plugin.init();
+            plugin.postInit();
+            break;
+        case INIT:
+            plugin.preInit();
+            plugin.init();
+            break;
+        case PREINIT:
+            plugin.preInit();
+            break;
+        default:
+            break;
         }
     }
 
-    public void preInit()
+    public void preInit ()
     {
         currPhase = Phase.PREINIT;
-        for (ICompatPlugin pl : plugins) pl.preInit();
+        for (ICompatPlugin pl : plugins)
+            pl.preInit();
     }
 
-    public void init()
+    public void init ()
     {
         currPhase = Phase.INIT;
-        for (ICompatPlugin pl : plugins) pl.init();
+        for (ICompatPlugin pl : plugins)
+            pl.init();
     }
 
-    public void postInit()
+    public void postInit ()
     {
         currPhase = Phase.POSTINIT;
-        for (ICompatPlugin pl : plugins) pl.postInit();
+        for (ICompatPlugin pl : plugins)
+            pl.postInit();
         currPhase = Phase.DONE;
     }
 
-    public void registerBuiltins()
+    public void registerBuiltins ()
     {
-       // registerPlugin(new ForgeMultiPart());
-       // registerPlugin(new MineFactoryReloaded());
-       // registerPlugin(new NotEnoughItems());
+        // registerPlugin(new ForgeMultiPart());
+        // registerPlugin(new MineFactoryReloaded());
+        // registerPlugin(new NotEnoughItems());
         registerPlugin(new ThermalExpansion3());
         registerPlugin(new BuildCraft());
         registerPlugin(new Forestry());

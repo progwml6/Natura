@@ -30,7 +30,7 @@ public class NetherGlassItem extends ItemBlock
     }
 
     @Override
-	public String getUnlocalizedName (ItemStack itemstack)
+    public String getUnlocalizedName (ItemStack itemstack)
     {
         return (new StringBuilder()).append("tile.glass.").append(blockType[itemstack.getItemDamage()]).toString();
     }
