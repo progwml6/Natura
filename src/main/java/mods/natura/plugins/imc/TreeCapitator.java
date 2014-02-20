@@ -28,7 +28,7 @@ public class TreeCapitator implements ICompatPlugin
     {
         NBTTagCompound tpModCfg = new NBTTagCompound();
         tpModCfg.setString("modID", "Natura");
-        tpModCfg.setString("axeIDList", String.format("%d; %d; %d; %d; %d", getUniqueName(NContent.ghostwoodAxe), getUniqueName(NContent.bloodwoodAxe), getUniqueName(NContent.darkwoodAxe),
+        tpModCfg.setString("axeIDList", String.format("%s; %s; %s; %s; %s", getUniqueName(NContent.ghostwoodAxe), getUniqueName(NContent.bloodwoodAxe), getUniqueName(NContent.darkwoodAxe),
                 getUniqueName(NContent.fusewoodAxe), getUniqueName(NContent.netherquartzAxe)));
         tpModCfg.setBoolean("useShiftedItemID", false);
 
