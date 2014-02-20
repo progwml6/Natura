@@ -1136,8 +1136,12 @@ public class NContent implements IFuelHandler
 
         OreDictionary.registerOre("slabWood", new ItemStack(plankSlab1, 1, Short.MAX_VALUE));
         OreDictionary.registerOre("slabWood", new ItemStack(plankSlab2, 1, Short.MAX_VALUE));
+        //TODO 1.8 saplingTree is not the common name for saplings will be removed in 1.8
         OreDictionary.registerOre("saplingTree", new ItemStack(floraSapling, 1, Short.MAX_VALUE));
+        OreDictionary.registerOre("treeSapling", new ItemStack(floraSapling, 1, Short.MAX_VALUE));
         OreDictionary.registerOre("saplingTree", new ItemStack(rareSapling, 1, Short.MAX_VALUE));
+        OreDictionary.registerOre("treeSapling", new ItemStack(rareSapling, 1, Short.MAX_VALUE));
+
         OreDictionary.registerOre("leavesTree", new ItemStack(floraLeaves, 1, Short.MAX_VALUE));
         OreDictionary.registerOre("leavesTree", new ItemStack(floraLeavesNoColor, 1, Short.MAX_VALUE));
         OreDictionary.registerOre("leavesTree", new ItemStack(rareLeaves, 1, Short.MAX_VALUE));
