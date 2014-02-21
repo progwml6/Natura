@@ -18,11 +18,11 @@ import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.texture.TextureUtil;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.common.MinecraftForge;
 
 import org.lwjgl.opengl.GL11;
 
 import cpw.mods.fml.client.registry.RenderingRegistry;
+import cpw.mods.fml.common.FMLCommonHandler;
 
 public class NProxyClient extends NProxyCommon
 {
@@ -35,7 +35,7 @@ public class NProxyClient extends NProxyCommon
         RenderingRegistry.registerBlockHandler(new FenceRender());
         RenderingRegistry.registerBlockHandler(new HopperRender());
         RenderingRegistry.registerBlockHandler(new LeverRender());
-        MinecraftForge.EVENT_BUS.register(new NCropsTickHandler());
+        FMLCommonHandler.instance().bus().register(new NCropsTickHandler());
 
         RenderingRegistry.registerEntityRenderingHandler(ImpEntity.class, new ImpRender(new ImpModel(), 0f));
         RenderingRegistry.registerEntityRenderingHandler(HeatscarSpider.class, new FlameSpiderRender());

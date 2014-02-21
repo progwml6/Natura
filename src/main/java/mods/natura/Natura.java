@@ -77,8 +77,8 @@ public class Natura
         content.preInit();
         content.addOredictSupport();
         NaturaTab.tab.init(new ItemStack(NContent.boneBag, 0));
-        NaturaTab.woodTab.init(new ItemStack(NContent.floraSapling.getItem(), 3));
-        NaturaTab.netherTab.init(new ItemStack(NContent.floraSapling.getItem(null, 9, 0, 0), 5));
+        NaturaTab.woodTab.init(new ItemStack(NContent.floraSapling, 1, 3));
+        NaturaTab.netherTab.init(new ItemStack(NContent.floraSapling, 1, 5));
 
         PluginController.getController().preInit();
     }

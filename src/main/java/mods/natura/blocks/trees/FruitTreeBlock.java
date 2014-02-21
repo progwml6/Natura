@@ -5,6 +5,7 @@ import java.util.Random;
 import mods.natura.common.NaturaTab;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLog;
+import net.minecraft.item.Item;
 
 public class FruitTreeBlock extends BlockLog
 {
@@ -42,9 +43,10 @@ public class FruitTreeBlock extends BlockLog
     	return tex;
     }*/
 
-    public int idDropped (int par1, Random par2Random, int par3)
+    @Override
+    public Item getItemDropped (int par1, Random par2Random, int par3)
     {
-        return Block.getIdFromBlock(this);
+        return Item.getItemFromBlock(this);//Block.getIdFromBlock(this);
     }
 
     @Override

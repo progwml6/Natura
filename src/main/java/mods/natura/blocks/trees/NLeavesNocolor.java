@@ -104,8 +104,8 @@ public class NLeavesNocolor extends NLeaves
     public Item getItemDropped (int meta, Random random, int fortune)
     {
         if (meta % 4 == 3)
-            return NContent.rareSapling.getItem(null, 0, 0, 0);
-        return NContent.floraSapling.getItem();
+            return Item.getItemFromBlock(NContent.rareSapling);
+        return Item.getItemFromBlock(NContent.floraSapling);
     }
 
     @Override

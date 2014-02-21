@@ -46,9 +46,10 @@ public class LogTwoxTwo extends Block
         }
     }
 
-    public Item itemDropped (int par1, Random par2Random, int par3)
+    @Override
+    public Item getItemDropped (int par1, Random par2Random, int par3)
     {
-        return new ItemStack(NContent.bloodwood).getItem();
+        return Item.getItemFromBlock(NContent.bloodwood);
     }
 
     @Override

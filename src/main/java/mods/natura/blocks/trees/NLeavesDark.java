@@ -94,7 +94,7 @@ public class NLeavesDark extends NLeaves
     {
         if (metadata % 4 == 2)
             return NContent.potashApple;
-        return NContent.floraSapling.getItem();
+        return Item.getItemFromBlock(NContent.floraSapling);
     }
 
     @Override
