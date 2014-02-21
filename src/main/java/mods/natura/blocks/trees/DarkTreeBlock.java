@@ -71,9 +71,10 @@ public class DarkTreeBlock extends Block
         }
     }
 
-    public Item itemDropped (int par1, Random par2Random, int par3)
+    @Override
+    public Item getItemDropped (int par1, Random par2Random, int par3)
     {
-        return new ItemStack(this).getItem();
+        return Item.getItemFromBlock(this);
     }
 
     /**

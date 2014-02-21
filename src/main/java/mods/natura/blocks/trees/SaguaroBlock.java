@@ -13,7 +13,6 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.IIcon;
@@ -173,10 +172,11 @@ public class SaguaroBlock extends Block implements IPlantable
         return meta - 3;
     }
 
-    public Item itemDropped (int meta, Random random, int fortune)
+    @Override
+    public Item getItemDropped (int meta, Random random, int fortune)
     {
         if (meta == 0)
-            return new ItemStack(this).getItem();
+            return Item.getItemFromBlock(this);
         else
             return NContent.seedFood;
     }
