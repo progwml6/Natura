@@ -7,6 +7,7 @@ import mods.natura.common.NaturaTab;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import cpw.mods.fml.relauncher.Side;
@@ -41,7 +42,8 @@ public class NaturaArmor extends ItemArmor
             return "natura:textures/armor/" + armorTexture + "_1.png";
     }
 
-    public void getSubItems (int id, CreativeTabs tab, List list)
+    @Override
+    public void getSubItems (Item id, CreativeTabs tab, List list)
     {
         switch (armorType)
         {

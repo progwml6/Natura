@@ -115,7 +115,7 @@ public class LargeGlowshroom extends Block
     @Override
     public Item getItemDropped (int par1, Random par2Random, int par3)
     {
-        return NContent.glowshroom.getItem(null, 0, 0, 0);
+        return Item.getItemFromBlock(NContent.glowshroom);
     }
 
     @SideOnly(Side.CLIENT)
