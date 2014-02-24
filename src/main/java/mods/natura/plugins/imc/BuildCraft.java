@@ -23,42 +23,24 @@ public class BuildCraft implements ICompatPlugin
     @Override
     public void init ()
     {
-
-        for (int i = 0; i < 13; i++)
-        {
-            FMLInterModComms.sendMessage("BuildCraft|Transport", "add-facade", new ItemStack(NContent.planks, i));
-            FMLInterModComms.sendMessage("BuildCraft|Transport", "add-facade", new ItemStack(NContent.alternateWorkbench, i));
-            FMLInterModComms.sendMessage("BuildCraft|Transport", "add-facade", new ItemStack(NContent.alternateBookshelf, i));
-        }
         for (int i = 0; i < 4; i++)
-        {
-            FMLInterModComms.sendMessage("BuildCraft|Transport", "add-facade", new ItemStack(NContent.tree, i));
-            FMLInterModComms.sendMessage("BuildCraft|Transport", "add-facade", new ItemStack(NContent.rareTree, i));
-            FMLInterModComms.sendMessage("BuildCraft|Transport", "add-facade", new ItemStack(NContent.rareLeaves, i));
-            FMLInterModComms.sendMessage("BuildCraft|Transport", "add-facade", new ItemStack(NContent.darkLeaves, i));
-            FMLInterModComms.sendMessage("BuildCraft|Transport", "add-facade", new ItemStack(NContent.cloud, i));
+        {            
             FMLInterModComms.sendMessage("BuildCraft|Transport", "add-facade", new ItemStack(NContent.berryBush, i));
             FMLInterModComms.sendMessage("BuildCraft|Transport", "add-facade", new ItemStack(NContent.netherBerryBush, i));
         }
-        for (int i = 0; i < 3; i++)
-        {
-            FMLInterModComms.sendMessage("BuildCraft|Transport", "add-facade", new ItemStack(NContent.redwood, i));
-            FMLInterModComms.sendMessage("BuildCraft|Transport", "add-facade", new ItemStack(NContent.floraLeaves, i));
-            FMLInterModComms.sendMessage("BuildCraft|Transport", "add-facade", new ItemStack(NContent.floraLeavesNoColor, i));
-            FMLInterModComms.sendMessage("BuildCraft|Transport", "add-facade", new ItemStack(NContent.taintedSoil, i));
-        }
 
-        FMLInterModComms.sendMessage("BuildCraft|Transport", "add-facade", new ItemStack(NContent.willow, 0));
-        FMLInterModComms.sendMessage("BuildCraft|Transport", "add-facade", new ItemStack(NContent.bloodwood, 15));
-        FMLInterModComms.sendMessage("BuildCraft|Transport", "add-facade", new ItemStack(NContent.saguaro, 0));
-        FMLInterModComms.sendMessage("BuildCraft|Transport", "add-facade", new ItemStack(NContent.heatSand, 0));
-
+        addFacade(NContent.saguaro, 0);
     }
 
     @Override
     public void postInit ()
     {
     }
+
+    private void addFacade (Block b, int meta)
+	{
+	    FMLInterModComms.sendMessage("BuildCraft|Transport", "add-facade", new ItemStack(b, 1, meta));
+	}
 
     public int getId (Block b)
     {
