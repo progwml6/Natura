@@ -25,9 +25,9 @@ public class BuildCraft implements ICompatPlugin
     {
         for (int i = 0; i < 4; i++)
         {            
-            FMLInterModComms.sendMessage("BuildCraft|Transport", "add-facade", new ItemStack(NContent.berryBush, i));
-            FMLInterModComms.sendMessage("BuildCraft|Transport", "add-facade", new ItemStack(NContent.netherBerryBush, i));
-        }
+		addFacade(NContent.berryBush, i);
+		addFacade(NContent.netherBerryBush, i)
+					  }
 
         addFacade(NContent.saguaro, 0);
     }
