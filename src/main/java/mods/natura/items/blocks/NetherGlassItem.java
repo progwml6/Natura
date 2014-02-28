@@ -2,38 +2,32 @@ package mods.natura.items.blocks;
 
 import java.util.List;
 
+import mantle.blocks.abstracts.MultiItemBlock;
 import mods.natura.common.NContent;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.StatCollector;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class NetherGlassItem extends ItemBlock
+public class NetherGlassItem extends MultiItemBlock
 {
     public static final String blockType[] = { "soul", "heat" };
 
     public NetherGlassItem(Block block)
     {
-        super(block);
+        super(block, "tile.glass", blockType);
         setMaxDamage(0);
         setHasSubtypes(true);
     }
 
-    @Override
-    public int getMetadata (int meta)
-    {
-        return meta;
-    }
-
-    @Override
-    public String getUnlocalizedName (ItemStack itemstack)
-    {
-        return (new StringBuilder()).append("tile.glass.").append(blockType[itemstack.getItemDamage()]).toString();
-    }
+    /*    @Override
+        public String getUnlocalizedName (ItemStack itemstack)
+        {
+            return (new StringBuilder()).append("tile.glass.").append(blockType[itemstack.getItemDamage()]).toString();
+        }*/
 
     @Override
     @SideOnly(Side.CLIENT)

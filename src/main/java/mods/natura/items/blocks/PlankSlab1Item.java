@@ -2,36 +2,31 @@ package mods.natura.items.blocks;
 
 import java.util.List;
 
+import mantle.blocks.abstracts.MultiItemBlock;
 import mods.natura.common.NContent;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class PlankSlab1Item extends ItemBlock
+public class PlankSlab1Item extends MultiItemBlock
 {
     public static final String blockType[] = { "eucalyptus", "sakura", "ghost", "redwood", "blood", "bush", "maple", "silverbell" };
     Block block;
 
     public PlankSlab1Item(Block id)
     {
-        super(id);
+        super(id, "block.wood", "slab", blockType);
         this.block = id;
         setMaxDamage(0);
         setHasSubtypes(true);
     }
 
-    @Override
-    public int getMetadata (int md)
-    {
-        return md;
-    }
 
-    @Override
+    /*@Override
     public String getUnlocalizedName (ItemStack itemstack)
     {
         int damage = itemstack.getItemDamage();
@@ -45,7 +40,7 @@ public class PlankSlab1Item extends ItemBlock
         }
 
         return (new StringBuilder()).append("block.wood.").append(blockType[damage]).append(".slab").toString();
-    }
+    }*/
 
     @Override
     @SideOnly(Side.CLIENT)

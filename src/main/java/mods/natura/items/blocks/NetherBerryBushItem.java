@@ -2,11 +2,11 @@ package mods.natura.items.blocks;
 
 import java.util.List;
 
+import mantle.blocks.abstracts.MultiItemBlock;
 import mods.natura.common.NContent;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
-import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
@@ -14,12 +14,14 @@ import net.minecraftforge.common.util.ForgeDirection;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class NetherBerryBushItem extends ItemBlock
+public class NetherBerryBushItem extends MultiItemBlock
 {
+
+    public static final String blockType[] = { "blight", "dusk", "sky", "sting", "blight", "dusk", "sky", "sting", "blight", "dusk", "sky", "sting", "blight", "dusk", "sky", "sting" };
 
     public NetherBerryBushItem(Block block)
     {
-        super(block);
+        super(block, "block.bush.berry", blockType);
         //setMaxDamage(0);
         setHasSubtypes(true);
     }
@@ -58,13 +60,11 @@ public class NetherBerryBushItem extends ItemBlock
     }
 
     /* Block name in inventory */
-    @Override
-    public String getUnlocalizedName (ItemStack itemstack)
-    {
-        return (new StringBuilder()).append("block.bush.berry.").append(blockType[itemstack.getItemDamage()]).toString();
-    }
-
-    public static final String blockType[] = { "blight", "dusk", "sky", "sting", "blight", "dusk", "sky", "sting", "blight", "dusk", "sky", "sting", "blight", "dusk", "sky", "sting" };
+    /*   @Override
+       public String getUnlocalizedName (ItemStack itemstack)
+       {
+           return (new StringBuilder()).append("block.bush.berry.").append(blockType[itemstack.getItemDamage()]).toString();
+       }*/
 
     @Override
     @SideOnly(Side.CLIENT)

@@ -2,36 +2,30 @@ package mods.natura.items.blocks;
 
 import java.util.List;
 
+import mantle.blocks.abstracts.MultiItemBlock;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.StatCollector;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class RedwoodItem extends ItemBlock
+public class RedwoodItem extends MultiItemBlock
 {
     public static final String blockType[] = { "bark", "heart", "root", "", "", "", "", "", "", "", "", "", "", "", "", "" };
 
     public RedwoodItem(Block i)
     {
-        super(i);
+        super(i, "", "redwood", blockType);
         setMaxDamage(0);
         setHasSubtypes(true);
     }
 
-    @Override
-    public int getMetadata (int md)
-    {
-        return md;
-    }
-
-    @Override
-    public String getUnlocalizedName (ItemStack itemstack)
-    {
-        return (new StringBuilder()).append(blockType[itemstack.getItemDamage()]).append("Redwood").toString();
-    }
+    /*  @Override
+      public String getUnlocalizedName (ItemStack itemstack)
+      {
+          return (new StringBuilder()).append(blockType[itemstack.getItemDamage()]).append("Redwood").toString();
+      }*/
 
     @Override
     @SideOnly(Side.CLIENT)

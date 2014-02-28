@@ -2,11 +2,11 @@ package mods.natura.items.blocks;
 
 import java.util.List;
 
+import mantle.blocks.abstracts.MultiItemBlock;
 import mods.natura.common.NContent;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
-import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.StatCollector;
@@ -14,23 +14,17 @@ import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class NSaplingItem extends ItemBlock
+public class NSaplingItem extends MultiItemBlock
 {
     public static final String blockType[] = { "redwood", "eucalyptus", "bush", "sakura", "ghost", "blood", "darkwood", "fusewood", "", "", "", "", "", "", "", "", "" };
     private Block bID;
 
     public NSaplingItem(Block block)
     {
-        super(block);
+        super(block, "block.sapling", blockType);
         setMaxDamage(0);
         setHasSubtypes(true);
         this.bID = block;
-    }
-
-    @Override
-    public int getMetadata (int md)
-    {
-        return md;
     }
 
     @Override
@@ -39,11 +33,11 @@ public class NSaplingItem extends ItemBlock
         return NContent.floraSapling.getIcon(0, i);
     }
 
-    @Override
+    /*@Override
     public String getUnlocalizedName (ItemStack itemstack)
     {
         return (new StringBuilder()).append("block.sapling.").append(blockType[itemstack.getItemDamage()]).toString();
-    }
+    }*/
 
     @Override
     @SideOnly(Side.CLIENT)

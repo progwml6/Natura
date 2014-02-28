@@ -2,21 +2,21 @@ package mods.natura.items.blocks;
 
 import java.util.List;
 
+import mantle.blocks.abstracts.MultiItemBlock;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.StatCollector;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class NoColorLeavesItem extends ItemBlock
+public class NoColorLeavesItem extends MultiItemBlock
 {
     public static final String blockType[] = { "sakura", "ghost", "blood", "willow", "", "", "", "", "", "", "", "", "", "", "", "", "" };
 
     public NoColorLeavesItem(Block i)
     {
-        super(i);
+        super(i, "block.leaves", blockType);
         setMaxDamage(0);
         setHasSubtypes(true);
     }
@@ -27,11 +27,11 @@ public class NoColorLeavesItem extends ItemBlock
         return md | 4;
     }
 
-    @Override
-    public String getUnlocalizedName (ItemStack itemstack)
-    {
-        return (new StringBuilder()).append("block.leaves.").append(blockType[itemstack.getItemDamage()]).toString();
-    }
+    /* @Override
+     public String getUnlocalizedName (ItemStack itemstack)
+     {
+         return (new StringBuilder()).append("block.leaves.").append(blockType[itemstack.getItemDamage()]).toString();
+     }*/
 
     @Override
     @SideOnly(Side.CLIENT)

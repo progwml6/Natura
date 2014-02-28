@@ -2,33 +2,27 @@ package mods.natura.items.blocks;
 
 import java.util.List;
 
+import mantle.blocks.abstracts.MultiItemBlock;
 import mods.natura.common.NContent;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class PlankSlab2Item extends ItemBlock
+public class PlankSlab2Item extends MultiItemBlock
 {
     public static final String blockType[] = { "purpleheart", "tiger", "willow", "darkwood", "fusewood", "", "", "" };
     Block block;
 
     public PlankSlab2Item(Block id)
     {
-        super(id);
+        super(id, "block.wood", "slab", blockType);
         this.block = id;
         setMaxDamage(0);
         setHasSubtypes(true);
-    }
-
-    @Override
-    public int getMetadata (int md)
-    {
-        return md;
     }
 
     @Override

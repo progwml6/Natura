@@ -2,32 +2,25 @@ package mods.natura.items.blocks;
 
 import java.util.List;
 
+import mantle.blocks.abstracts.MultiItemBlock;
 import mods.natura.common.NContent;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
-import net.minecraft.util.MathHelper;
 import net.minecraft.util.StatCollector;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class OverworldSaplingItem extends ItemBlock
+public class OverworldSaplingItem extends MultiItemBlock
 {
     public static final String blockType[] = { "maple", "silverbell", "purpleheart", "tiger", "willow" };
 
     public OverworldSaplingItem(Block b)
     {
-        super(b);
+        super(b, "block.sapling", blockType);
         setMaxDamage(0);
         setHasSubtypes(true);
-    }
-
-    @Override
-    public int getMetadata (int md)
-    {
-        return md;
     }
 
     @Override
@@ -36,12 +29,12 @@ public class OverworldSaplingItem extends ItemBlock
         return NContent.rareSapling.getIcon(0, i);
     }
 
-    @Override
-    public String getUnlocalizedName (ItemStack itemstack)
-    {
-        int i = MathHelper.clamp_int(itemstack.getItemDamage(), 0, 4);
-        return (new StringBuilder()).append("block.sapling.").append(blockType[i]).toString();
-    }
+    /* @Override
+     public String getUnlocalizedName (ItemStack itemstack)
+     {
+         int i = MathHelper.clamp_int(itemstack.getItemDamage(), 0, 4);
+         return (new StringBuilder()).append("block.sapling.").append(blockType[i]).toString();
+     }*/
 
     @Override
     @SideOnly(Side.CLIENT)

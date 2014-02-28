@@ -1,31 +1,23 @@
 package mods.natura.items.blocks;
 
+import mantle.blocks.abstracts.MultiItemBlock;
 import net.minecraft.block.Block;
-import net.minecraft.item.ItemBlock;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.MathHelper;
 
-public class GrassSlabItem extends ItemBlock
+public class GrassSlabItem extends MultiItemBlock
 {
     public static final String blockType[] = { "grass", "bluegrass", "autumngrass" };
 
     public GrassSlabItem(Block id)
     {
-        super(id);
+        super(id, "block.soil", "slab", blockType);
         setMaxDamage(0);
         setHasSubtypes(true);
     }
 
-    @Override
-    public int getMetadata (int meta)
-    {
-        return meta;
-    }
-
-    @Override
-    public String getUnlocalizedName (ItemStack itemstack)
-    {
-        int pos = MathHelper.clamp_int(itemstack.getItemDamage(), 0, blockType.length - 1);
-        return (new StringBuilder()).append("block.soil.").append(blockType[pos]).append(".slab").toString();
-    }
+    /*    @Override
+        public String getUnlocalizedName (ItemStack itemstack)
+        {
+            int pos = MathHelper.clamp_int(itemstack.getItemDamage(), 0, blockType.length - 1);
+            return (new StringBuilder()).append("block.soil.").append(blockType[pos]).append(".slab").toString();
+        }*/
 }

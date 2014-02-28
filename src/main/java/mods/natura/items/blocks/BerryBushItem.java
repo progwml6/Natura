@@ -2,10 +2,10 @@ package mods.natura.items.blocks;
 
 import java.util.List;
 
+import mantle.blocks.abstracts.MultiItemBlock;
 import mods.natura.common.NContent;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
@@ -13,12 +13,13 @@ import net.minecraftforge.common.util.ForgeDirection;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class BerryBushItem extends ItemBlock
+public class BerryBushItem extends MultiItemBlock
 {
+    public static final String blockType[] = { "rasp", "blue", "black", "geo", "rasp", "blue", "black", "geo", "rasp", "blue", "black", "geo", "rasp", "blue", "black", "geo" };
 
     public BerryBushItem(Block block)
     {
-        super(block);
+        super(block, "block", "berryBush", blockType);
         setHasSubtypes(true);
     }
 
@@ -56,13 +57,11 @@ public class BerryBushItem extends ItemBlock
     }
 
     /* Block name in inventory */
-    @Override
-    public String getUnlocalizedName (ItemStack itemstack)
-    {
-        return (new StringBuilder()).append("block.").append(blockType[itemstack.getItemDamage()]).append("berryBush").toString();
-    }
-
-    public static final String blockType[] = { "rasp", "blue", "black", "geo", "rasp", "blue", "black", "geo", "rasp", "blue", "black", "geo", "rasp", "blue", "black", "geo" };
+    /* @Override
+     public String getUnlocalizedName (ItemStack itemstack)
+     {
+         return (new StringBuilder()).append("block.").append(blockType[itemstack.getItemDamage()]).append("berryBush").toString();
+     }*/
 
     @Override
     @SideOnly(Side.CLIENT)

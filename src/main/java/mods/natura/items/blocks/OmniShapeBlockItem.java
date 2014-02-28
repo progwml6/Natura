@@ -1,32 +1,26 @@
 package mods.natura.items.blocks;
 
+import mantle.blocks.abstracts.MultiItemBlock;
 import net.minecraft.block.Block;
-import net.minecraft.item.ItemBlock;
-import net.minecraft.item.ItemStack;
 
-public class OmniShapeBlockItem extends ItemBlock
+public class OmniShapeBlockItem extends MultiItemBlock
 {
     public static final String blockType[] = { "stair", "stair", "stair", "stair", "stair", "stair", "stair", "stair", "slab", "slab", "slab", "slab", "slab", "slab", "fence", "none" };
 
     public OmniShapeBlockItem(Block i)
     {
-        super(i);
+        super(i, "", "omni", blockType);
         setMaxDamage(0);
         setHasSubtypes(true);
     }
 
-    @Override
-    public int getMetadata (int meta)
-    {
-        return meta;
-    }
+    /* @Override
+     public String getUnlocalizedName (ItemStack itemstack)
+     {
+         return (new StringBuilder()).append(blockType[itemstack.getItemDamage()]).append("omni").toString();
+     }*/
 
-    @Override
-    public String getUnlocalizedName (ItemStack itemstack)
-    {
-        return (new StringBuilder()).append(blockType[itemstack.getItemDamage()]).append("omni").toString();
-    }
-
+    //was commented out already when moving to mantle interfaces
     /*@Override
     @SideOnly(Side.CLIENT)
     public void addInformation (ItemStack stack, EntityPlayer player, List list, boolean par4)
