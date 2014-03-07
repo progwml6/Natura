@@ -785,12 +785,12 @@ public class NContent implements IFuelHandler
 
         GameRegistry.addRecipe(new ItemStack(plantItem, 2, 8), "X", 'X', new ItemStack(bluebells));
 
-        FurnaceRecipes.smelting().func_151394_a(new ItemStack(saguaro, 0), new ItemStack(Items.dye, 1, 2), 0.2F);
-        FurnaceRecipes.smelting().func_151394_a(new ItemStack(impMeat, 0), new ItemStack(impMeat, 1, 1), 0.2F);
+        FurnaceRecipes.smelting().func_151394_a(new ItemStack(saguaro, 1, 0), new ItemStack(Items.dye, 1, 2), 0.2F);
+        FurnaceRecipes.smelting().func_151394_a(new ItemStack(impMeat, 1, 0), new ItemStack(impMeat, 1, 1), 0.2F);
 
         for (int i = 1; i <= 2; i++)
         {
-            FurnaceRecipes.smelting().func_151394_a(new ItemStack(plantItem, i), new ItemStack(Items.bread, 1), 0.5f);
+            FurnaceRecipes.smelting().func_151394_a(new ItemStack(plantItem, 1, i), new ItemStack(Items.bread, 1, 1), 0.5f);
             GameRegistry.addRecipe(new ItemStack(Items.cake, 1), "AAA", "BEB", " C ", 'A', Items.milk_bucket, 'B', Items.sugar, 'C', new ItemStack(plantItem, 1, i), 'E', Items.egg);
         }
 
@@ -946,13 +946,13 @@ public class NContent implements IFuelHandler
         bowlStew = new BowlStew(PHNatura.bowlStew).setUnlocalizedName("natura.stewbowl");*/
 
         //Turn logs into charcoal
-        FurnaceRecipes.smelting().func_151394_a(new ItemStack(tree, 0), new ItemStack(Items.coal, 1, 1), 0.15f);
-        FurnaceRecipes.smelting().func_151394_a(new ItemStack(tree, 1), new ItemStack(Items.coal, 1, 1), 0.15f);
-        FurnaceRecipes.smelting().func_151394_a(new ItemStack(tree, 2), new ItemStack(Items.coal, 1, 1), 0.15f);
-        FurnaceRecipes.smelting().func_151394_a(new ItemStack(tree, 3), new ItemStack(Items.coal, 1, 1), 0.15f);
-        FurnaceRecipes.smelting().func_151394_a(new ItemStack(redwood, 0), new ItemStack(Items.coal, 1, 1), 0.15f);
-        FurnaceRecipes.smelting().func_151394_a(new ItemStack(redwood, 1), new ItemStack(Items.coal, 1, 1), 0.15f);
-        FurnaceRecipes.smelting().func_151394_a(new ItemStack(redwood, 2), new ItemStack(Items.coal, 1, 1), 0.15f);
+        FurnaceRecipes.smelting().func_151394_a(new ItemStack(tree, 1, 0), new ItemStack(Items.coal, 1, 1), 0.15f);
+        FurnaceRecipes.smelting().func_151394_a(new ItemStack(tree, 1, 1), new ItemStack(Items.coal, 1, 1), 0.15f);
+        FurnaceRecipes.smelting().func_151394_a(new ItemStack(tree, 1, 2), new ItemStack(Items.coal, 1, 1), 0.15f);
+        FurnaceRecipes.smelting().func_151394_a(new ItemStack(tree, 1, 3), new ItemStack(Items.coal, 1, 1), 0.15f);
+        FurnaceRecipes.smelting().func_151394_a(new ItemStack(redwood, 1, 0), new ItemStack(Items.coal, 1, 1), 0.15f);
+        FurnaceRecipes.smelting().func_151394_a(new ItemStack(redwood, 1, 1), new ItemStack(Items.coal, 1, 1), 0.15f);
+        FurnaceRecipes.smelting().func_151394_a(new ItemStack(redwood, 1, 2), new ItemStack(Items.coal, 1, 1), 0.15f);
 
         GameRegistry.addRecipe(new ItemStack(grassBlock, 1, 0), " s ", "s#s", " s ", 's', new ItemStack(Items.wheat_seeds), '#', new ItemStack(Blocks.dirt));
         GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(grassBlock, 1, 1), new ItemStack(grassBlock, 1, 0), "dyeBlue"));
@@ -995,8 +995,8 @@ public class NContent implements IFuelHandler
 
         GameRegistry.addRecipe(new ItemStack(NContent.netherrackFurnace), "###", "# #", "###", '#', Blocks.netherrack);
         GameRegistry.addRecipe(new ItemStack(NContent.respawnObelisk), "###", "# #", "###", '#', new ItemStack(tree, 1, 2));
-        FurnaceRecipes.smelting().func_151394_a(new ItemStack(Blocks.soul_sand, 0), new ItemStack(netherGlass, 1, 0), 0.3f);
-        FurnaceRecipes.smelting().func_151394_a(new ItemStack(heatSand, 0), new ItemStack(netherGlass, 1, 1), 0.3f);
+        FurnaceRecipes.smelting().func_151394_a(new ItemStack(Blocks.soul_sand, 1, 0), new ItemStack(netherGlass, 1, 0), 0.3f);
+        FurnaceRecipes.smelting().func_151394_a(new ItemStack(heatSand, 1, 0), new ItemStack(netherGlass, 1, 1), 0.3f);
         OreDictionary.registerOre("chestWood", new ItemStack(Blocks.chest));
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(NContent.netherHopper), "# #", "#C#", " # ", '#', new ItemStack(Items.blaze_rod), 'C', "chestWood"));
         GameRegistry.addRecipe(new ItemStack(NContent.netherPressurePlate), "##", '#', new ItemStack(Blocks.netherrack));

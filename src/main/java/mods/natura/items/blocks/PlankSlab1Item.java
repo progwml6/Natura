@@ -25,7 +25,6 @@ public class PlankSlab1Item extends MultiItemBlock
         setHasSubtypes(true);
     }
 
-
     /*@Override
     public String getUnlocalizedName (ItemStack itemstack)
     {

@@ -151,7 +151,6 @@ public class DarkwoodGen extends WorldGenerator
                         if (block == null || block.isLeaves(world, xPos, yPos + j1, zPos))
                         {
                             world.setBlock(xPos, yPos + j1, zPos, NContent.darkTree, this.metaWood, 0);
-
                         }
                     }
 

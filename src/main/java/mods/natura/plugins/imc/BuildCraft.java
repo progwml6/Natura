@@ -24,10 +24,10 @@ public class BuildCraft implements ICompatPlugin
     public void init ()
     {
         for (int i = 0; i < 4; i++)
-        {            
-		addFacade(NContent.berryBush, i);
+        {
+            addFacade(NContent.berryBush, i);
             addFacade(NContent.netherBerryBush, i);
-					  }
+        }
 
         addFacade(NContent.saguaro, 0);
     }
@@ -38,7 +38,7 @@ public class BuildCraft implements ICompatPlugin
     }
 
     private void addFacade (Block b, int meta)
-	{
+    {
         FMLInterModComms.sendMessage("BuildCraft|Transport", "add-facade", new ItemStack(b, 1, meta));
-	}
+    }
 }
