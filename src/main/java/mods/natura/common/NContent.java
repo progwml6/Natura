@@ -129,6 +129,8 @@ import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.EnumHelper;
+import net.minecraftforge.fluids.FluidContainerRegistry;
+import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
@@ -932,6 +934,10 @@ public class NContent implements IFuelHandler
         {
             if (!(BowlEmpty.textureNames[i].equals("")))
             {
+                OreDictionary.registerOre("bowlWood", new ItemStack(bowlEmpty, 1, i));
+                //TODO 1.7 test this and deal w/ recipes as well, make sure vanilla bowl is registered
+                if (FluidRegistry.isFluidRegistered("mushroomsoup"))
+                    FluidContainerRegistry.registerFluidContainer(FluidRegistry.getFluid("mushroomsoup"), new ItemStack(this.bowlStew, 1, i));
                 addShapedRecipeFirst(recipes, new ItemStack(bowlEmpty, 4, i), "# #", " # ", '#', new ItemStack(planks, 1, i));
                 GameRegistry.addShapelessRecipe(new ItemStack(bowlStew, 1, i + 1), new ItemStack(bowlEmpty, 1, i), new ItemStack(Blocks.brown_mushroom), new ItemStack(Blocks.red_mushroom_block));
                 GameRegistry.addShapelessRecipe(new ItemStack(bowlStew, 1, i + 15), new ItemStack(bowlEmpty, 1, i), new ItemStack(glowshroom, 1, 0), new ItemStack(glowshroom, 1, 1), new ItemStack(
@@ -1008,6 +1014,7 @@ public class NContent implements IFuelHandler
         OreDictionary.registerOre("glass", new ItemStack(netherGlass, 1, 1));
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Items.glass_bottle, 3), "# #", " # ", '#', "glass"));
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Blocks.daylight_detector), "GGG", "QQQ", "WWW", 'G', "glass", 'Q', Items.quartz, 'W', "slabWood"));
+
     }
 
     public void addShapedRecipeFirst (List recipeList, ItemStack itemstack, Object... objArray)
