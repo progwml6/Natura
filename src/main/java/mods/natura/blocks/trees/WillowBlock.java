@@ -1,7 +1,6 @@
 package mods.natura.blocks.trees;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import mods.natura.common.NaturaTab;
@@ -13,6 +12,9 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
+
+import com.google.common.collect.Lists;
+
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -72,7 +74,9 @@ public class WillowBlock extends BlockLog
     @Override
     public ArrayList<ItemStack> getDrops (World world, int x, int y, int z, int metadata, int fortune)
     {
-        return (ArrayList<ItemStack>) Arrays.asList(new ItemStack(this));
+        ArrayList<ItemStack> i = Lists.newArrayList();
+        i.add(new ItemStack(this));
+        return i;
     }
 
     /*@Override
