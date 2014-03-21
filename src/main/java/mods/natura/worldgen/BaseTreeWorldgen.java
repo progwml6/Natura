@@ -63,6 +63,10 @@ public class BaseTreeWorldgen implements IWorldGenerator
         int xSpawn, ySpawn, zSpawn;
         int xPos = chunkX * 16 + 8, zPos = chunkZ * 16 + 8;
         String biomeName = world.getWorldChunkManager().getBiomeGenAt(xPos, zPos).biomeName;
+        
+        if (biomeName == null) {
+            return;
+        }
 
         if (biomeName == "Forest" || biomeName == "AutumnWoods" || biomeName == "BirchForest" || biomeName == "PineForest" || biomeName == "Rainforest" || biomeName == "TemperateRainforest"
                 || biomeName == "Woodlands")

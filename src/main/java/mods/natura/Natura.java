@@ -138,16 +138,6 @@ public class Natura
             	if (content.crops.boneFertilize(event.world, event.X, event.y, event.z, event.world.rand))
             		event.setResult(event.getResult().ALLOW);
             }*/
-            if (event.block == NContent.floraSapling)
-            {
-                if (NContent.floraSapling.boneFertilize(event.world, event.x, event.y, event.z, event.world.rand))
-                    event.setResult(event.getResult().ALLOW);
-            }
-            if (event.block == NContent.rareSapling)
-            {
-                if (NContent.rareSapling.boneFertilize(event.world, event.x, event.y, event.z, event.world.rand))
-                    event.setResult(event.getResult().ALLOW);
-            }
             if (event.block == NContent.glowshroom)
             {
                 if (NContent.glowshroom.fertilizeMushroom(event.world, event.x, event.y, event.z, event.world.rand))

@@ -103,7 +103,7 @@ public class OverworldLeaves extends NLeaves
     }
 
     @Override
-    public int getLightOpacity (World world, int x, int y, int z)
+    public int getLightOpacity (IBlockAccess world, int x, int y, int z)
     {
         return this.getLightOpacity();
     }

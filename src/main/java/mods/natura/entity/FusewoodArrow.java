@@ -118,7 +118,7 @@ public class FusewoodArrow extends EntityArrow
     }
 
     @Override
-    protected void entityInit ()
+    public void entityInit ()
     {
         this.dataWatcher.addObject(16, Byte.valueOf((byte) 0));
     }
@@ -548,7 +548,7 @@ public class FusewoodArrow extends EntityArrow
      * prevent them from trampling crops
      */
     @Override
-    protected boolean canTriggerWalking ()
+    public boolean canTriggerWalking ()
     {
         return false;
     }

@@ -16,7 +16,7 @@ public class NLeavesItem extends MultiItemBlock
 
     public NLeavesItem(Block i)
     {
-        super(i, "", "NLeaves", blockType);
+        super(i, "block", "NLeaves", blockType);
         setMaxDamage(0);
         setHasSubtypes(true);
     }

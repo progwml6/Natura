@@ -1,5 +1,6 @@
 package mods.natura.client;
 
+import net.minecraft.client.Minecraft;
 import mods.natura.common.NContent;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.TickEvent.ClientTickEvent;
@@ -13,11 +14,11 @@ public class NCropsTickHandler
     @SubscribeEvent
     public void tickEnd (ClientTickEvent event)
     {
-        NContent.berryBush.setGraphicsLevel(NContent.floraLeaves.getRenderLevel());
-        NContent.netherBerryBush.setGraphicsLevel(NContent.floraLeaves.getRenderLevel());
-        NContent.floraLeaves.setGraphicsLevel(NContent.floraLeaves.getRenderLevel());
-        NContent.floraLeavesNoColor.setGraphicsLevel(NContent.floraLeaves.getRenderLevel());
-        NContent.darkLeaves.setGraphicsLevel(NContent.floraLeaves.getRenderLevel());
-        NContent.rareLeaves.setGraphicsLevel(NContent.floraLeaves.getRenderLevel());
+        NContent.berryBush.setGraphicsLevel(Minecraft.getMinecraft().gameSettings.fancyGraphics);
+        NContent.netherBerryBush.setGraphicsLevel(Minecraft.getMinecraft().gameSettings.fancyGraphics);
+        NContent.floraLeaves.setGraphicsLevel(Minecraft.getMinecraft().gameSettings.fancyGraphics);
+        NContent.floraLeavesNoColor.setGraphicsLevel(Minecraft.getMinecraft().gameSettings.fancyGraphics);
+        NContent.darkLeaves.setGraphicsLevel(Minecraft.getMinecraft().gameSettings.fancyGraphics);
+        NContent.rareLeaves.setGraphicsLevel(Minecraft.getMinecraft().gameSettings.fancyGraphics);
     }
 }
