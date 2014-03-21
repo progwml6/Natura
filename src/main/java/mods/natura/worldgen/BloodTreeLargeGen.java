@@ -19,7 +19,6 @@ public class BloodTreeLargeGen extends WorldGenerator
         mdLeaves = leaves;
     }
 
-    @Override
     public boolean generate (World world, Random random, int x, int y, int z)
     {
         int height = findCeiling(world, x, y, z);
@@ -36,7 +35,7 @@ public class BloodTreeLargeGen extends WorldGenerator
         do
         {
             Block heightID = world.getBlock(x, height, z);
-            if ((heightID == Blocks.netherrack || heightID == Blocks.soul_sand || heightID == NContent.taintedSoil) && !world.getBlock(x, height - 1, z).isOpaqueCube())
+            if ((heightID == Blocks.netherrack || heightID == Blocks.soul_sand || heightID == NContent.taintedSoil) && !world.getBlock(x, height - 1, z).func_149730_j())
             {
                 ret = height - 1;
                 break;
@@ -78,10 +77,10 @@ public class BloodTreeLargeGen extends WorldGenerator
             Block localID = world.getBlock(x, y - heightIter, z);
             if (localID == Blocks.air || localID == NContent.floraLeaves)
             {
-                world.setBlock(x, y - heightIter, z, NContent.bloodwood, 0, 0);
-                world.setBlock(x + 1, y - heightIter, z, NContent.bloodwood, 1, 0);
-                world.setBlock(x, y - heightIter, z + 1, NContent.bloodwood, 2, 0);
-                world.setBlock(x + 1, y - heightIter, z + 1, NContent.bloodwood, 3, 0);
+                setBlockAndNotifyAdequately(world, x, y - heightIter, z, NContent.bloodwood, 0);
+                setBlockAndNotifyAdequately(world, x + 1, y - heightIter, z, NContent.bloodwood, 1);
+                setBlockAndNotifyAdequately(world, x, y - heightIter, z + 1, NContent.bloodwood, 2);
+                setBlockAndNotifyAdequately(world, x + 1, y - heightIter, z + 1, NContent.bloodwood, 3);
             }
         }
 
@@ -192,7 +191,7 @@ public class BloodTreeLargeGen extends WorldGenerator
 
     public boolean generateNode (World world, Random random, int x, int y, int z)
     {
-        world.setBlock(x, y, z, NContent.bloodwood, 15, 0);
+        setBlockAndNotifyAdequately(world, x, y, z, NContent.bloodwood, 15);
         for (int l = x - 1; l <= x + 1; l++)
         {
             for (int k1 = z - 1; k1 <= z + 1; k1++)
@@ -200,9 +199,9 @@ public class BloodTreeLargeGen extends WorldGenerator
                 for (int j2 = y - 1; j2 <= y + 1; j2++)
                 {
                     Block i3 = world.getBlock(l, j2, k1);
-                    if (i3 != NContent.floraLeaves && !i3.isOpaqueCube())
+                    if (i3 != NContent.floraLeaves && !i3.func_149730_j())
                     {
-                        world.setBlock(l, j2, k1, NContent.floraLeavesNoColor, mdLeaves, 0);
+                        setBlockAndNotifyAdequately(world, l, j2, k1, NContent.floraLeavesNoColor, mdLeaves);
                     }
                 }
             }
@@ -213,9 +212,9 @@ public class BloodTreeLargeGen extends WorldGenerator
             for (int l1 = z - 2; l1 <= z + 2; l1++)
             {
                 Block k2 = world.getBlock(i1, y, l1);
-                if (k2 != NContent.floraLeaves && !k2.isOpaqueCube())
+                if (k2 != NContent.floraLeaves && !k2.func_149730_j())
                 {
-                    world.setBlock(i1, y, l1, NContent.floraLeavesNoColor, mdLeaves, 0);
+                    setBlockAndNotifyAdequately(world, i1, y, l1, NContent.floraLeavesNoColor, mdLeaves);
                 }
             }
         }
@@ -225,9 +224,9 @@ public class BloodTreeLargeGen extends WorldGenerator
             for (int i2 = z - 1; i2 <= z + 1; i2++)
             {
                 Block l2 = world.getBlock(j1, y + 1, i2);
-                if (l2 != NContent.floraLeaves && !l2.isOpaqueCube())
+                if (l2 != NContent.floraLeaves && !l2.func_149730_j())
                 {
-                    world.setBlock(j1, y, i2, NContent.floraLeavesNoColor, mdLeaves, 0);
+                    setBlockAndNotifyAdequately(world, j1, y, i2, NContent.floraLeavesNoColor, mdLeaves);
                 }
             }
         }

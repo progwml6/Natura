@@ -2,6 +2,7 @@ package mods.natura.worldgen;
 
 import java.util.Random;
 
+import mods.natura.blocks.trees.NSaplingBlock;
 import mods.natura.common.NContent;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
@@ -46,7 +47,6 @@ public class DarkwoodGen extends WorldGenerator
         return height + 1;
     }
 
-    @Override
     public boolean generate (World world, Random random, int xPos, int yPos, int zPos)
     {
         int treeHeight = random.nextInt(3) + this.minTreeHeight;
@@ -84,9 +84,10 @@ public class DarkwoodGen extends WorldGenerator
                     {
                         if (i1 >= 0 && i1 < 256)
                         {
+
                             Block block = world.getBlock(l1, i1, j1);
 
-                            if (block != null && !block.isLeaves(world, l1, i1, j1) && block != Blocks.netherrack && block != Blocks.soul_sand && block != NContent.taintedSoil
+                            if (block != Blocks.air && !block.isLeaves(world, l1, i1, j1) && block != Blocks.netherrack && block != Blocks.soul_sand && block != NContent.taintedSoil
                                     && !block.isWood(world, l1, i1, j1))
                             {
                                 flag = false;
@@ -107,7 +108,7 @@ public class DarkwoodGen extends WorldGenerator
             else
             {
                 Block soil = world.getBlock(xPos, yPos - 1, zPos);
-                boolean isSoil = (soil != null && soil.canSustainPlant(world, xPos, yPos - 1, zPos, ForgeDirection.UP, NContent.floraSapling)) || soil == Blocks.netherrack;
+                boolean isSoil = (soil != null && soil.canSustainPlant(world, xPos, yPos - 1, zPos, ForgeDirection.UP, (NSaplingBlock) NContent.floraSapling)) || soil == Blocks.netherrack;
 
                 if (isSoil && yPos < 256 - treeHeight - 1)
                 {
@@ -137,7 +138,7 @@ public class DarkwoodGen extends WorldGenerator
 
                                     if (block == null || block.canBeReplacedByLeaves(world, j2, j1, l2))
                                     {
-                                        world.setBlock(j2, j1, l2, NContent.darkLeaves, random.nextInt(25) == 0 ? 2 : random.nextInt(15) == 0 ? 1 : 0, 0);
+                                        this.setBlockAndNotifyAdequately(world, j2, j1, l2, NContent.darkLeaves, random.nextInt(25) == 0 ? 2 : random.nextInt(15) == 0 ? 1 : 0);
                                     }
                                 }
                             }
@@ -148,9 +149,10 @@ public class DarkwoodGen extends WorldGenerator
                     {
                         Block block = world.getBlock(xPos, yPos + j1, zPos);
 
-                        if (block == null || block.isLeaves(world, xPos, yPos + j1, zPos))
+                        if (block == Blocks.air || block == null || block.isLeaves(world, xPos, yPos + j1, zPos))
                         {
-                            world.setBlock(xPos, yPos + j1, zPos, NContent.darkTree, this.metaWood, 0);
+                            this.setBlockAndNotifyAdequately(world, xPos, yPos + j1, zPos, NContent.darkTree, this.metaWood);
+
                         }
                     }
 

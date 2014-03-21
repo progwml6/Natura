@@ -28,7 +28,6 @@ public class RareTreeGen extends WorldGenerator
         this.seekHeight = !notify;
     }
 
-    @Override
     public boolean generate (World world, Random random, int xPos, int yPos, int zPos)
     {
         int height = random.nextInt(this.treeHeightRange) + this.minTreeHeight;
@@ -76,7 +75,7 @@ public class RareTreeGen extends WorldGenerator
                 {
                     Block block = world.getBlock(x + xPos, y + yPos, z + zPos);
                     if (block != null && block != NContent.rareSapling && !block.isLeaves(world, x + xPos, y + yPos, z + zPos))
-                        return false;
+                        return true;
                 }
             }
         }
@@ -90,7 +89,7 @@ public class RareTreeGen extends WorldGenerator
         do
         {
             Block heightID = world.getBlock(x, height, z);
-            if ((heightID == Blocks.dirt || heightID == Blocks.grass) && !world.getBlock(x, height + 1, z).isOpaqueCube())
+            if ((heightID == Blocks.dirt || heightID == Blocks.grass) && !world.getBlock(x, height + 1, z).func_149730_j())
             {
                 ret = height + 1;
                 break;
@@ -121,7 +120,7 @@ public class RareTreeGen extends WorldGenerator
 
                         if (block == null || block.canBeReplacedByLeaves(world, x, y, z))
                         {
-                            world.setBlock(x, y, z, NContent.rareLeaves, this.metaLeaves, 0);
+                            this.setBlockAndNotifyAdequately(world, x, y, z, NContent.rareLeaves, this.metaLeaves);
                         }
                     }
                 }
@@ -135,9 +134,9 @@ public class RareTreeGen extends WorldGenerator
         {
             Block block = world.getBlock(xPos, yPos + localHeight, zPos);
 
-            if (block == null || block.isLeaves(world, xPos, yPos + localHeight, zPos))
+            if (block == Blocks.air || block == null || block.isLeaves(world, xPos, yPos + localHeight, zPos))
             {
-                world.setBlock(xPos, yPos + localHeight, zPos, NContent.rareTree, this.metaWood, 0);
+                this.setBlockAndNotifyAdequately(world, xPos, yPos + localHeight, zPos, NContent.rareTree, this.metaWood);
             }
         }
     }

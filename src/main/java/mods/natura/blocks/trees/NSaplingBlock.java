@@ -3,6 +3,7 @@ package mods.natura.blocks.trees;
 import java.util.List;
 import java.util.Random;
 
+import mods.natura.Natura;
 import mods.natura.common.NContent;
 import mods.natura.common.NaturaTab;
 import mods.natura.worldgen.BloodTreeLargeGen;
@@ -25,6 +26,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.common.EnumPlantType;
+import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.common.util.ForgeDirection;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -60,7 +62,6 @@ public class NSaplingBlock extends BlockSapling
     public boolean canPlaceBlockAt (World world, int x, int y, int z)
     {
         Block block = world.getBlock(x, y, z);
-        ;
         if (block == null || block.isReplaceable(world, x, y, z))
         {
             Block lowerID = world.getBlock(x, y - 1, z);
@@ -115,7 +116,7 @@ public class NSaplingBlock extends BlockSapling
         else
             return EnumPlantType.Nether;
     }
-
+    
     @Override
     public void updateTick (World world, int x, int y, int z, Random random)
     {
@@ -160,7 +161,7 @@ public class NSaplingBlock extends BlockSapling
                                 }
                             }
                         }
-                        growTree(world, x, y, z, random);
+                        func_149879_c(world, x, y, z, random);
                     }
                 }
             }
@@ -173,7 +174,7 @@ public class NSaplingBlock extends BlockSapling
                     world.setBlockMetadataWithNotify(x, y, z, md | 8, 4);
 
                 else
-                    growTree(world, x, y, z, random);
+                    func_149879_c(world, x, y, z, random);
             }
         }
         else if (random.nextInt(10) == 0)
@@ -182,43 +183,32 @@ public class NSaplingBlock extends BlockSapling
                 world.setBlockMetadataWithNotify(x, y, z, md | 8, 4);
 
             else
-                growTree(world, x, y, z, random);
+                func_149879_c(world, x, y, z, random);
         }
     }
-
+    
     @Override
     @SideOnly(Side.CLIENT)
     public IIcon getIcon (int side, int meta)
     {
         return icons[meta % 8];
     }
-
-    @Override
-    public void func_149879_c (World world, int x, int y, int z, Random random)
+    
+    public void func_149879_c(World p_149879_1_, int p_149879_2_, int p_149879_3_, int p_149879_4_, Random p_149879_5_)
     {
-        boneFertilize(world, x, y, z, random);
-    }
+        int l = p_149879_1_.getBlockMetadata(p_149879_2_, p_149879_3_, p_149879_4_);
 
-    public boolean boneFertilize (World world, int x, int y, int z, Random random)
-    {
-        int meta = world.getBlockMetadata(x, y, z);
-
-        /*if (meta % 8 == 0)
-            return false;*/
-
-        if ((meta & 8) == 0)
+        if ((l & 8) == 0)
         {
-            world.setBlockMetadataWithNotify(x, y, z, meta | 8, 4);
+            p_149879_1_.setBlockMetadataWithNotify(p_149879_2_, p_149879_3_, p_149879_4_, l | 8, 4);
         }
         else
         {
-            this.growTree(world, x, y, z, random);
+            this.func_149878_d(p_149879_1_, p_149879_2_, p_149879_3_, p_149879_4_, p_149879_5_);
         }
-
-        return true;
     }
-
-    public void growTree (World world, int x, int y, int z, Random random)
+    
+    public void func_149878_d(World world, int x, int y, int z, Random random)
     {
         int md = world.getBlockMetadata(x, y, z) % 8;
         world.setBlock(x, y, z, Blocks.air);
@@ -264,5 +254,20 @@ public class NSaplingBlock extends BlockSapling
     {
         for (int i = 0; i < 8; i++)
             par3List.add(new ItemStack(par1, 1, i));
+    }
+    
+    public boolean func_149851_a(World p_149851_1_, int p_149851_2_, int p_149851_3_, int p_149851_4_, boolean p_149851_5_)
+    {
+        return true;
+    }
+
+    public boolean func_149852_a(World p_149852_1_, Random p_149852_2_, int p_149852_3_, int p_149852_4_, int p_149852_5_)
+    {
+        return (double)p_149852_1_.rand.nextFloat() < 0.45D;
+    }
+
+    public void func_149853_b(World p_149853_1_, Random p_149853_2_, int p_149853_3_, int p_149853_4_, int p_149853_5_)
+    {
+        this.func_149879_c(p_149853_1_, p_149853_3_, p_149853_4_, p_149853_5_, p_149853_2_);
     }
 }

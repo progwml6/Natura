@@ -16,7 +16,7 @@ public class TreeItem extends MultiItemBlock
 
     public TreeItem(Block i)
     {
-        super(i, "", "log", blockType);
+        super(i, "block", "log", blockType);
         setMaxDamage(0);
         setHasSubtypes(true);
     }
