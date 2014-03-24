@@ -90,7 +90,7 @@ public class NLeavesNocolor extends NLeaves
     @Override
     public void registerBlockIcons (IIconRegister iconRegister)
     {
-        String[] textureNames = new String[] { "sakura", "eucalyptus", "bloodwood", "willow" };
+        String[] textureNames = new String[] { "sakura", "ghostwood", "bloodwood", "willow" };
         this.fastIcons = new IIcon[textureNames.length];
         this.fancyIcons = new IIcon[textureNames.length];
 
@@ -113,6 +113,7 @@ public class NLeavesNocolor extends NLeaves
             return fastIcons[meta];
     }
 
+    @Override
     public void getSubBlocks (Item par1, CreativeTabs par2CreativeTabs, List par3List)
     {
         par3List.add(new ItemStack(par1, 1, 0));

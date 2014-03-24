@@ -16,7 +16,7 @@ public class PlanksItem extends MultiItemBlock
 
     public PlanksItem(Block i)
     {
-        super(i, "", "NPlanks", blockType);
+        super(i, "block", "NPlanks", blockType);
         setMaxDamage(0);
         setHasSubtypes(true);
     }

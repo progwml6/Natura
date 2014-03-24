@@ -32,7 +32,7 @@ public class NLeaves extends BlockLeaves
         this.setLightOpacity(1);
         this.setStepSound(Block.soundTypeGrass);
         this.setBlockName("floraLeaves");
-        setCreativeTab(CreativeTabs.tabDecorations);
+        setCreativeTab(NaturaTab.woodTab);
         //Blocks.fire.setFireInfo(this, 30, 60);
         this.setCreativeTab(NaturaTab.tab);
     }
@@ -191,7 +191,7 @@ public class NLeaves extends BlockLeaves
     /**
      * returns a list of blocks with the same ID, but different meta (eg: wood returns 4 blocks)
      */
-    public void getSubBlocks (Block par1, CreativeTabs par2CreativeTabs, List par3List)
+    public void getSubBlocks (Item par1, CreativeTabs par2CreativeTabs, List par3List)
     {
         par3List.add(new ItemStack(par1, 1, 0));
         par3List.add(new ItemStack(par1, 1, 1));

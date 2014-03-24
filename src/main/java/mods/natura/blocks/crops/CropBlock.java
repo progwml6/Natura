@@ -13,6 +13,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
@@ -309,7 +310,8 @@ public class CropBlock extends BlockCrops
     /**
      * only called by clickMiddleMouseButton , and passed to inventory.setCurrentItem (along with isCreative)
      */
-    public Item idPicked (World world, int x, int y, int z)
+    @Override
+    public Item getItem (World world, int x, int y, int z)
     {
         return this.getSeedItem(world.getBlockMetadata(x, y, z));
     }

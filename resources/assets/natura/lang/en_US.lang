@@ -37,10 +37,10 @@ item.berry.dusk.name=Duskberry
 item.berry.sky.name=Skyberry
 item.berry.sting.name=Stingberry
 
-block.raspberryBush.name=Raspberry Bush
-block.blueberryBush.name=Blueberry Bush
-block.blackberryBush.name=Blackberry Bush
-block.geoberryBush.name=Maloberry Bush
+block.rasp.berryBush.name=Raspberry Bush
+block.blue.berryBush.name=Blueberry Bush
+block.black.berryBush.name=Blackberry Bush
+block.geo.berryBush.name=Maloberry Bush
 
 block.bush.berry.blight.name=Blightberry Bush
 block.bush.berry.dusk.name=Duskberry Bush
@@ -72,10 +72,10 @@ block.leaves.purpleheart.name=Amaranth Leaves
 block.leaves.tiger.name=Tiger Leaves
 block.leaves.willow.name=Willow Leaves
 
-normalcloud.name=Cloud
-darkcloud.name=Dark Cloud
-ashcloud.name=Ash Cloud
-sulfurcloud.name=Sulfur Cloud
+block.normal.cloud.name=Cloud
+block.dark.cloud.name=Dark Cloud
+block.ash.cloud.name=Ash Cloud
+block.sulfur.cloud.name=Sulfur Cloud
 
 redwoodNDoor.name=Redwood Door
 eucalyptusNDoor.name=Eucalyptus Door
@@ -85,23 +85,23 @@ ghostNDoor.name=Ghostwood Door
 bloodNDoor.name=Bloodwood Door
 redwoodBarkNDoor.name=Redwood Bark Door
 
-barkRedwood.name=Redwood Bark
-heartRedwood.name=Redwood
-rootRedwood.name=Redwood Root
+block.bark.redwood.name=Redwood Bark
+block.heart.redwood.name=Redwood
+block.root.redwood.name=Redwood Root
 
-eucalyptusNPlanks.name=Eucalyptus Planks
-sakuraNPlanks.name=Sakura Planks
-ghostNPlanks.name=Ghostwood Planks
-bushNPlanks.name=Hopseed Planks
-bloodNPlanks.name=Bloodwood Planks
-redwoodNPlanks.name=Redwood Planks
-mapleNPlanks.name=Maple Planks
-silverbellNPlanks.name=Silverbell Planks
-tigerNPlanks.name=Tigerwood Planks
-purpleheartNPlanks.name=Amaranth Planks
-willowNPlanks.name=Willow Planks
-darkwoodNPlanks.name=Darkwood Planks
-fusewoodNPlanks.name=Fusewood Planks
+block.eucalyptus.NPlanks.name=Eucalyptus Planks
+block.sakura.NPlanks.name=Sakura Planks
+block.ghost.NPlanks.name=Ghostwood Planks
+block.bush.NPlanks.name=Hopseed Planks
+block.blood.NPlanks.name=Bloodwood Planks
+block.redwood.NPlanks.name=Redwood Planks
+block.maple.NPlanks.name=Maple Planks
+block.silverbell.NPlanks.name=Silverbell Planks
+block.tiger.NPlanks.name=Tigerwood Planks
+block.purpleheart.NPlanks.name=Amaranth Planks
+block.willow.NPlanks.name=Willow Planks
+block.darkwood.NPlanks.name=Darkwood Planks
+block.fusewood.NPlanks.name=Fusewood Planks
 
 block.sapling.eucalyptus.name=Eucalyptus Sapling
 block.sapling.sakura.name=Sakura Sapling
@@ -217,17 +217,17 @@ block.glowshroom.green.name=Green Glowshroom
 block.glowshroom.purple.name=Purple Glowshroom
 block.glowshroom.blue.name=Blue Glowshroom
 
-eucalyptusNLeaves.name=Eucalyptus Leaves
+block.eucalyptus.NLeaves.name=Eucalyptus Leaves
 block.leaves.sakura.name=Sakura Leaves
 block.leaves.ghost.name=Ghostwood Leaves
-bushNLeaves.name=Hopseed Leaves
-redwoodNLeaves.name=Redwood Leaves
+block.bush.NLeaves.name=Hopseed Leaves
+block.redwood.NLeaves.name=Redwood Leaves
 block.leaves.blood.name=Bloodleaves
 
-eucalyptusLog.name=Eucalyptus Wood
-sakuraLog.name=Sakura Wood
-ghostLog.name=Ghostwood
-hopseedLog.name=Hopseed Wood
+block.eucalyptus.log.name=Eucalyptus Wood
+block.sakura.log.name=Sakura Wood
+block.ghost.log.name=Ghostwood
+block.hopseed.log.name=Hopseed Wood
 
 redwoodBoat.name=Redwood Boat
 bloodBoat.name=Bloodwood Boat
@@ -293,7 +293,7 @@ item.natura.armor.impjerkin.name=Impskin Jerkin
 item.natura.armor.impleggings.name=Impskin Leggings
 item.natura.armor.impboots.name=Impskin Boots
 
-item.flintandblaze=Flint and Blaze
+item.flintandblaze.name=Flint and Blaze
 
 entity.Natura.Imp.name=Imp
 entity.Natura.HeatscarSpider.name=Heatscar Spider

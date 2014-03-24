@@ -16,7 +16,7 @@ public class RedwoodItem extends MultiItemBlock
 
     public RedwoodItem(Block i)
     {
-        super(i, "", "redwood", blockType);
+        super(i, "block", "redwood", blockType);
         setMaxDamage(0);
         setHasSubtypes(true);
     }
