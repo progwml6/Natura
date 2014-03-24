@@ -16,7 +16,7 @@ public class CloudItem extends MultiItemBlock
 
     public CloudItem(Block i)
     {
-        super(i, "", "cloud", blockType);
+        super(i, "block", "cloud", blockType);
         setMaxDamage(0);
         setHasSubtypes(true);
     }
