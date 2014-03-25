@@ -37,10 +37,10 @@ item.berry.dusk.name=Dämmerbeere
 item.berry.sky.name=Himmelsbeere
 item.berry.sting.name=Fadenbeere
 
-block.raspberryBush.name=Himbeerbusch
-block.blueberryBush.name=Blaubeerbusch
-block.blackberryBush.name=Brombeerbusch
-block.geoberryBush.name=Maulbeerbusch
+block.rasp.berryBush.name=Himbeerbusch
+block.blue.berryBush.name=Blaubeerbusch
+block.black.berryBush.name=Brombeerbusch
+block.geo.berryBush.name=Maulbeerbusch
 
 block.bush.berry.blight.name=Plagbeerenbusch
 block.bush.berry.dusk.name=Dämmerbeerenbusch
@@ -72,10 +72,10 @@ block.leaves.purpleheart.name=Amarantblätter
 block.leaves.tiger.name=Tigerholzblätter
 block.leaves.willow.name=Weidenblätter
 
-normalcloud.name=Wolke
-darkcloud.name=Dunkle Wolke
-ashcloud.name=Aschewolke
-sulfurcloud.name=Schwefelwolke
+block.normal.cloud.name=Wolke
+block.dark.cloud.name=Dunkle Wolke
+block.ash.cloud.name=Aschewolke
+block.sulfur.cloud.name=Schwefelwolke
 
 redwoodNDoor.name=Mammutbaumtür
 eucalyptusNDoor.name=Eukalyptustür
@@ -85,23 +85,23 @@ ghostNDoor.name=Geisterholztür
 bloodNDoor.name=Blutholztür
 redwoodBarkNDoor.name=Mammutbaumrindentür
 
-barkRedwood.name=Mammutbaumrine
-heartRedwood.name=Mammutbaumstamm
-rootRedwood.name=Mammutbaumwurzel
+block.bark.redwood.name=Mammutbaumrinde
+block.heart.redwood.name=Mammutbaumstamm
+block.root.redwood.name=Mammutbaumwurzel
 
-eucalyptusNPlanks.name=Eukalyptusholzplanken
-sakuraNPlanks.name=Japanische Blütenkirschholzplanken
-ghostNPlanks.name=Geisterholzplanken
-bushNPlanks.name=Hopseed-Holzplanken
-bloodNPlanks.name=Blutholzplanken
-redwoodNPlanks.name=Mammutbaumholzplanken
-mapleNPlanks.name=Ahornholzplanken
-silverbellNPlanks.name=Halesiaholzplanken
-tigerNPlanks.name=Tigerholzplanken
-purpleheartNPlanks.name=Amarantholzplanken
-willowNPlanks.name=Weidenholzplanken
-darkwoodNPlanks.name=Dunkelholzplanken
-fusewoodNPlanks.name=Zündholzplanken
+block.eucalyptus.NPlanks.name=Eukalyptusholzplanken
+block.sakura.NPlanks.name=Japanische Blütenkirschholzplanken
+block.ghost.NPlanks.name=Geisterholzplanken
+block.bush.NPlanks.name=Hopseed-Holzplanken
+block.blood.NPlanks.name=Blutholzplanken
+block.redwood.NPlanks.name=Mammutbaumholzplanken
+block.maple.NPlanks.name=Ahornholzplanken
+block.silverbell.NPlanks.name=Halesiaholzplanken
+block.tiger.NPlanks.name=Tigerholzplanken
+block.purpleheart.NPlanks.name=Amarantholzplanken
+block.willow.NPlanks.name=Weidenholzplanken
+block.darkwood.NPlanks.name=Dunkelholzplanken
+block.fusewood.NPlanks.name=Zündholzplanken
 
 block.sapling.eucalyptus.name=Eukalyptussetzling
 block.sapling.sakura.name=Japanischer Blütenkirschsetzling
@@ -217,17 +217,17 @@ block.glowshroom.green.name=Grüner Leuchtpilz
 block.glowshroom.purple.name=Violetter Leuchtpilz
 block.glowshroom.blue.name=Blauer Leuchtpilz
 
-eucalyptusNLeaves.name=Eukalyptusblätter
+block.eucalyptus.NLeaves.name=Eukalyptusblätter
 block.leaves.sakura.name=Japanische Blütenkirschblätter
 block.leaves.ghost.name=Geisterholzblätter
-bushNLeaves.name=Hopseed-Blätter
-redwoodNLeaves.name=Mammutbaumblätter
+block.bush.NLeaves.name=Hopseed-Blätter
+block.redwood.NLeaves.name=Mammutbaumblätter
 block.leaves.blood.name=Blutholzblätter
 
-eucalyptusLog.name=Eukalyptusholz
-sakuraLog.name=Japanisches Blütenkirschholz
-ghostLog.name=Geisterholz
-hopseedLog.name=Hopseed-Holz
+block.eucalyptus.log.name=Eukalyptusholz
+block.sakura.log.name=Japanisches Blütenkirschholz
+block.ghost.log.name=Geisterholz
+block.hopseed.log.name=Hopseed-Holz
 
 redwoodBoat.name=Mammutbaumboot
 bloodBoat.name=Blutholzboot
@@ -293,7 +293,7 @@ item.natura.armor.impjerkin.name=Koboldhautwams
 item.natura.armor.impleggings.name=Koboldhauthose
 item.natura.armor.impboots.name=Koboldhautstiefel
 
-item.flintandblaze=Lohenfeuerzeug
+item.flintandblaze.name=Lohenfeuerzeug
 
 entity.Natura.Imp.name=Kobold
 entity.Natura.HeatscarSpider.name=Hitznarbenspinne
