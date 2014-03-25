@@ -1,7 +1,6 @@
 package mods.natura.blocks.trees;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import mods.natura.common.NaturaTab;
@@ -69,11 +68,12 @@ public class OverworldTreeBlock extends BlockLog
         }
     }
 
-    // TODO 1.7 check this
     @Override
     public ArrayList<ItemStack> getDrops (World world, int x, int y, int z, int metadata, int fortune)
     {
-        return (ArrayList<ItemStack>) Arrays.asList(new ItemStack(this));
+        ArrayList<ItemStack> ret = new ArrayList<ItemStack>();
+        ret.add(new ItemStack(this));
+        return ret;
     }
 
     /*@Override
