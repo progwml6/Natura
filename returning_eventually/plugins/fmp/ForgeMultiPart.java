@@ -2,7 +2,6 @@ package mods.natura.plugins.fmp;
 
 import mods.natura.Natura;
 import mods.natura.common.NContent;
-import mods.natura.plugins.ICompatPlugin;
 import mods.natura.plugins.fmp.register.RegisterWithFMP;
 
 public class ForgeMultiPart implements ICompatPlugin

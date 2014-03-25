@@ -1,7 +1,7 @@
 package mods.natura.plugins.imc;
 
+import mantle.module.ILoadableModule;
 import mods.natura.common.NContent;
-import mods.natura.plugins.ICompatPlugin;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.nbt.NBTTagCompound;
@@ -9,14 +9,11 @@ import net.minecraft.nbt.NBTTagList;
 import cpw.mods.fml.common.event.FMLInterModComms;
 import cpw.mods.fml.common.registry.GameData;
 
-public class TreeCapitator implements ICompatPlugin
+public class TreeCapitator implements ILoadableModule
 {
 
-    @Override
-    public String getModId ()
-    {
-        return "TreeCapitator";
-    }
+    @SuppressWarnings("unused")
+    public static String modId = "TreeCapitator";
 
     @Override
     public void preInit ()

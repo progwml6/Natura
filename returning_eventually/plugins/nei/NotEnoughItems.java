@@ -1,11 +1,8 @@
 package mods.natura.plugins.nei;
 
 import cpw.mods.fml.common.*;
-import cpw.mods.fml.common.Mod.EventHandler;
-import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 import mods.natura.Natura;
-import mods.natura.plugins.ICompatPlugin;
 
 public class NotEnoughItems implements ICompatPlugin
 {

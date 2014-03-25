@@ -3,10 +3,10 @@ package mods.natura.plugins.te3;
 import java.util.Arrays;
 import java.util.List;
 
+import mantle.module.ILoadableModule;
 import mods.natura.blocks.trees.Planks;
 import mods.natura.common.NContent;
 import mods.natura.items.blocks.NDoorItem;
-import mods.natura.plugins.ICompatPlugin;
 import net.minecraft.block.Block;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -14,9 +14,11 @@ import net.minecraft.nbt.NBTTagCompound;
 import cpw.mods.fml.common.event.FMLInterModComms;
 import cpw.mods.fml.common.registry.GameRegistry;
 
-public class ThermalExpansion3 implements ICompatPlugin
+public class ThermalExpansion3 implements ILoadableModule
 {
     private List<String> list;
+
+    public static String modId = "ThermalExpansion";
 
     public int findPlankForName (String name)
     {
@@ -40,7 +42,7 @@ public class ThermalExpansion3 implements ICompatPlugin
             toSend.setInteger("secondaryChance", chance);
         }
 
-        FMLInterModComms.sendMessage(getModId(), "SawmillRecipe", toSend);
+        FMLInterModComms.sendMessage(modId, "SawmillRecipe", toSend);
     }
 
     public void createSawmillRecipe (int energy, ItemStack input, ItemStack primaryOutput)
@@ -66,12 +68,6 @@ public class ThermalExpansion3 implements ICompatPlugin
     public void addPressurePlate (Block input, String type)
     {
         createSawmillRecipe(2400, new ItemStack(input, 1), new ItemStack(NContent.planks, 2, findPlankForName(type)));
-    }
-
-    @Override
-    public String getModId ()
-    {
-        return "ThermalExpansion";
     }
 
     @Override

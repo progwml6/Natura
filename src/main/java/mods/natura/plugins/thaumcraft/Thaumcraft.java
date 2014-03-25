@@ -1,18 +1,15 @@
 package mods.natura.plugins.thaumcraft;
 
+import mantle.module.ILoadableModule;
 import mods.natura.common.NContent;
-import mods.natura.plugins.ICompatPlugin;
 import net.minecraft.item.ItemStack;
 import cpw.mods.fml.common.event.FMLInterModComms;
 
-public class Thaumcraft implements ICompatPlugin
+public class Thaumcraft implements ILoadableModule
 {
 
-    @Override
-    public String getModId ()
-    {
-        return "Thaumcraft";
-    }
+    @SuppressWarnings("unused")
+    public static String modId = "Thaumcraft";
 
     @Override
     public void preInit ()
@@ -23,7 +20,6 @@ public class Thaumcraft implements ICompatPlugin
     @Override
     public void init ()
     {
-        //Thaumcraft
         FMLInterModComms.sendMessage("Thaumcraft", "harvestClickableCrop", new ItemStack(NContent.berryBush, 1, 12));
         FMLInterModComms.sendMessage("Thaumcraft", "harvestClickableCrop", new ItemStack(NContent.berryBush, 1, 13));
         FMLInterModComms.sendMessage("Thaumcraft", "harvestClickableCrop", new ItemStack(NContent.berryBush, 1, 14));

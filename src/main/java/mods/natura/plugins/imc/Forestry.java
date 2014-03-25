@@ -1,15 +1,12 @@
 package mods.natura.plugins.imc;
 
-import mods.natura.plugins.ICompatPlugin;
+import mantle.module.ILoadableModule;
 
-public class Forestry implements ICompatPlugin
+public class Forestry implements ILoadableModule
 {
 
-    @Override
-    public String getModId ()
-    {
-        return "Forestry";
-    }
+    @SuppressWarnings("unused")
+    public static String modId = "Forestry";
 
     @Override
     public void preInit ()

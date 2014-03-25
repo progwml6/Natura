@@ -1,19 +1,16 @@
 package mods.natura.plugins.imc;
 
+import mantle.module.ILoadableModule;
 import mods.natura.common.NContent;
-import mods.natura.plugins.ICompatPlugin;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 import cpw.mods.fml.common.event.FMLInterModComms;
 
-public class BuildCraft implements ICompatPlugin
+public class BuildCraft implements ILoadableModule
 {
 
-    @Override
-    public String getModId ()
-    {
-        return "BuildCraft|Transport";
-    }
+    @SuppressWarnings("unused")
+    public static String modId = "BuildCraft|Transport";
 
     @Override
     public void preInit ()

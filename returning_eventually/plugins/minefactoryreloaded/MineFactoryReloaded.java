@@ -1,7 +1,6 @@
 package mods.natura.plugins.minefactoryreloaded;
 
 import mods.natura.Natura;
-import mods.natura.plugins.ICompatPlugin;
 
 public class MineFactoryReloaded implements ICompatPlugin
 {

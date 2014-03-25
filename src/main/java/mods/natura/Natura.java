@@ -3,6 +3,7 @@ package mods.natura;
 import java.util.Random;
 
 import mantle.lib.TabTools;
+import mantle.module.ModuleController;
 import mods.natura.common.NContent;
 import mods.natura.common.NProxyCommon;
 import mods.natura.common.NaturaTab;
@@ -62,12 +63,14 @@ public class Natura
 
     public static Logger logger = LogManager.getLogger("Natura");
 
+    public static final ModuleController moduleLoader = new ModuleController("Natura-Dynamic.cfg", "Natura");
+
     @EventHandler
     public void preInit (FMLPreInitializationEvent evt)
     {
         MinecraftForge.EVENT_BUS.register(this);
 
-        PluginController.getController().registerBuiltins();
+        PluginController.registerBuiltins();
 
         PHNatura.initProps(evt.getSuggestedConfigurationFile());
         NaturaTab.tab = new TabTools("natura.plants");
@@ -81,7 +84,7 @@ public class Natura
         NaturaTab.woodTab.init(new ItemStack(NContent.floraSapling, 1, 3));
         NaturaTab.netherTab.init(new ItemStack(NContent.floraSapling, 1, 5));
 
-        PluginController.getController().preInit();
+        moduleLoader.preInit();
     }
 
     public static BaseCropWorldgen crops;
@@ -117,7 +120,7 @@ public class Natura
         OreDictionary.registerOre("cropVine", new ItemStack(NContent.thornVines));
         random.setSeed(2 ^ 16 + 2 ^ 8 + (4 * 3 * 271));
 
-        PluginController.getController().init();
+        moduleLoader.init();
     }
 
     @EventHandler
@@ -126,7 +129,7 @@ public class Natura
         content.createEntities();
         content.modIntegration();
 
-        PluginController.getController().postInit();
+        moduleLoader.postInit();
     }
 
     @SubscribeEvent
