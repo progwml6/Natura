@@ -59,6 +59,7 @@ public class MRFRegistering
         FactoryRegistry.registerPlantable(new PlantableNaturaNetherBerry(netherBerryBushId, netherBerryBushId));
         FactoryRegistry.registerPlantable(new PlantableStandard(saguaroFruitId, saguaroId));
         FactoryRegistry.registerPlantable(new PlantableStandard(floraSaplingId, floraSaplingId));
+        FactoryRegistry.registerPlantable(new PlantableStandard(rareSaplingId, rareSaplingId));
 
         //misc plants
         FactoryRegistry.registerHarvestable(new HarvestableStandard(bluebellsId, HarvestType.Normal));
