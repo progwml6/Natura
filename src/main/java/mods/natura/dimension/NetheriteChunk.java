@@ -1,6 +1,7 @@
 package mods.natura.dimension;
 
 import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.storage.ExtendedBlockStorage;
@@ -8,7 +9,7 @@ import net.minecraft.world.chunk.storage.ExtendedBlockStorage;
 public class NetheriteChunk extends Chunk
 {
 
-    public NetheriteChunk(World world, byte[] lowerIDs, int chunkX, int chunkZ)
+    public NetheriteChunk(World world, Block[] lowerIDs, int chunkX, int chunkZ)
     {
         super(world, chunkX, chunkZ);
         ExtendedBlockStorage[] storage = getBlockStorageArray();
@@ -20,9 +21,9 @@ public class NetheriteChunk extends Chunk
             {
                 for (int y = 0; y < height; ++y)
                 {
-                    int id = lowerIDs[x << 11 | z << 7 | y] & 0xFF;
+                    Block id = lowerIDs[x << 11 | z << 7 | y];
 
-                    if (id != 0)
+                    if (id != null && id != Blocks.air)
                     {
                         int k1 = y >> 4;
 
@@ -31,7 +32,7 @@ public class NetheriteChunk extends Chunk
                             storage[k1] = new ExtendedBlockStorage(k1 << 4, !world.provider.hasNoSky);
                         }
 
-                        storage[k1].func_150818_a(x, y & 15, z, Block.getBlockById(id));
+                        storage[k1].func_150818_a(x, y & 15, z, id);
                     }
                 }
             }
