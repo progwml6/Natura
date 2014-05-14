@@ -8,7 +8,7 @@ While we search for herbs to grow
 Heyo, Redwood trees! Chop them all day long~ 	 
 Heyo, Redwood trees! Chop them all day long~ 	
 
-##Development
+##Development 
 Install Forge as usual, and setup your IDE as with any other Forge project. Forge Multipart, and CClib must be installed to `forge/mcp/jars/mods/` from the  Forge File Server: [ForgeMultipart](http://files.minecraftforge.net/ForgeMultipart/). [CClib](http://files.minecraftforge.net/CodeChickenLib/).  The DEVELOPMENT version of NEI must be installed to the same directory from [Chicken Bones Site](http://www.chickenbones.craftsaddle.org/Files/New_Versions/links.php). Tinkers' Construct must be installed as well from [Kalen](tanis.sunstrike.io/TConstruct/development/)
 
 ##Issue reporting
