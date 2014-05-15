@@ -76,13 +76,13 @@ public class OverworldTreeBlock extends BlockLog
         return ret;
     }
 
-    /*@Override
+    @Override
     public int damageDropped(int meta)
     {
         return meta % 4;
     }
 
-    public int getFlammability(IBlockAccess world, int x, int y, int z, int metadata, ForgeDirection face)
+   /* public int getFlammability(IBlockAccess world, int x, int y, int z, int metadata, ForgeDirection face)
     {
         return metadata % 4 != 2 ? blockFlammability[blockID] : 0;
     }
