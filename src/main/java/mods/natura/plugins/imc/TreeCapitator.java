@@ -108,7 +108,9 @@ public class TreeCapitator implements ILoadableModule
 
         tpModCfg.setTag("trees", treeList);
 
+        // bspkrs: added second line for new mod ID. Can be removed in 1.7.9 I guess?
         FMLInterModComms.sendMessage("TreeCapitator", "ThirdPartyModConfig", tpModCfg);
+        FMLInterModComms.sendMessage("Treecapitator", "ThirdPartyModConfig", tpModCfg);
 
     }
 
