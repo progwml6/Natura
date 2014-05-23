@@ -37,10 +37,10 @@ item.berry.dusk.name=Сумеречная ягода
 item.berry.sky.name=Небесная ягода
 item.berry.sting.name=Ядовитая ягода
 
-block.raspberryBush.name=Куст малины
-block.blueberryBush.name=Куст черники
-block.blackberryBush.name=Куст ежевики
-block.geoberryBush.name=Куст вредной ягоды
+block.rasp.berryBush.name=Куст малины
+block.blue.berryBush.name=Куст черники
+block.black.berryBush.name=Куст ежевики
+block.geo.berryBush.name=Куст вредной ягоды
 
 block.bush.berry.blight.name=Куст губительной ягоды
 block.bush.berry.dusk.name=Куст сумеречной ягоды
@@ -72,10 +72,10 @@ block.leaves.purpleheart.name=Листва щирицы
 block.leaves.tiger.name=Листва тигрового дерева
 block.leaves.willow.name=Листва ивы
 
-normalcloud.name=Облако
-darkcloud.name=Тёмное облако
-ashcloud.name=Пепельное облако
-sulfurcloud.name=Облако серы
+block.normal.cloud.name=Облако
+block.dark.cloud.name=Тёмное облако
+block.ash.cloud.name=Пепельное облако
+block.sulfur.cloud.name=Облако серы
 
 redwoodNDoor.name=Дверь из древесины красного дерева
 eucalyptusNDoor.name=Дверь из древесины эвкалипта
@@ -85,23 +85,23 @@ ghostNDoor.name=Дверь из древесины призрачного дер
 bloodNDoor.name=Дверь из древесины кровавого дерева
 redwoodBarkNDoor.name=Дверь из коры красного дерева
 
-barkRedwood.name=Кора красного дерева
-heartRedwood.name=Красное дерево
-rootRedwood.name=Корень красного дерева
+block.bark.redwood.name=Кора красного дерева
+block.heart.redwood.name=Красное дерево
+block.root.redwood.name=Корень красного дерева
 
-eucalyptusNPlanks.name=Доски из древесины эвкалипта
-sakuraNPlanks.name=Доски из древесины сакуры
-ghostNPlanks.name=Доски из древесины призрачного дерева
-bushNPlanks.name=Доски из древесины хмельного дерева
-bloodNPlanks.name=Доски из древесины кровавого дерева
-redwoodNPlanks.name=Доски из древесины красного дерева
-mapleNPlanks.name=Доски из древесины клёна
-silverbellNPlanks.name=Доски из древесины галезии
-tigerNPlanks.name=Доски из древесины тигрового дерева
-purpleheartNPlanks.name=Доски из древесины щирицы
-willowNPlanks.name=Доски из древесины ивы
-darkwoodNPlanks.name=Доски из древесины тёмного дерева
-fusewoodNPlanks.name=Доски из древесины плавкого дерева
+block.eucalyptus.NPlanks.name=Доски из древесины эвкалипта
+block.sakura.NPlanks.name=Доски из древесины сакуры
+block.ghost.NPlanks.name=Доски из древесины призрачного дерева
+block.bush.NPlanks.name=Доски из древесины хмельного дерева
+block.blood.NPlanks.name=Доски из древесины кровавого дерева
+block.redwood.NPlanks.name=Доски из древесины красного дерева
+block.maple.NPlanks.name=Доски из древесины клёна
+block.silverbell.NPlanks.name=Доски из древесины галезии
+block.tiger.NPlanks.name=Доски из древесины тигрового дерева
+block.purpleheart.NPlanks.name=Доски из древесины щирицы
+block.willow.NPlanks.name=Доски из древесины ивы
+block.darkwood.NPlanks.name=Доски из древесины тёмного дерева
+block.fusewood.NPlanks.name=Доски из древесины плавкого дерева
 
 block.sapling.eucalyptus.name=Саженец эвкалипта
 block.sapling.sakura.name=Саженец сакуры
@@ -218,17 +218,17 @@ block.glowshroom.green.name=Зелёный светогриб
 block.glowshroom.purple.name=Фиолетовый светогриб
 block.glowshroom.blue.name=Синий светогриб
 
-eucalyptusNLeaves.name=Листва эвкалипта
+block.eucalyptus.NLeaves.name=Листва эвкалипта
 block.leaves.sakura.name=Листва сакуры
 block.leaves.ghost.name=Листва призрачного дерева
-bushNLeaves.name=Листва хмельного дерева
-redwoodNLeaves.name=Листва красного дерева
+block.bush.NLeaves.name=Листва хмельного дерева
+block.redwood.NLeaves.name=Листва красного дерева
 block.leaves.blood.name=Листва кровавого дерева
 
-eucalyptusLog.name=Древесина эвкалипта
-sakuraLog.name=Древесина сакуры
-ghostLog.name=Древесина призрачного дерева
-hopseedLog.name=Древесина хмельного дерева
+block.eucalyptus.log.name=Древесина эвкалипта
+block.sakura.log.name=Древесина сакуры
+block.ghost.log.name=Древесина призрачного дерева
+block.hopseed.log.name=Древесина хмельного дерева
 
 redwoodBoat.name=Лодка из древесины красного дерева
 bloodBoat.name=Лодка из древесины кровавого дерева
@@ -294,7 +294,7 @@ item.natura.armor.impjerkin.name=Безрукавка дьяволёнка
 item.natura.armor.impleggings.name=Поножи дьяволёнка
 item.natura.armor.impboots.name=Ботинки дьяволёнка
 
-item.flintandblaze=Кремень и пламя
+item.flintandblaze.name=Кремень и пламя
 
 entity.Natura.Imp.name=Дьяволёнок
 entity.Natura.HeatscarSpider.name=Паук с тепловым шрамом
@@ -309,8 +309,8 @@ tooltip.glass.soul=Призрачный
 tooltip.glass.heat=
 tooltip.tree1=Розовая древесина
 tooltip.tree2=Цветущая вишня
-tooltip.tree3=Бледная, как призрак
-tooltip.tree4=Гигантский секвойя
+tooltip.tree3=Бледный, как призрак
+tooltip.tree4=Гигантская секвойя
 tooltip.tree5=Огнеупорные доски
 tooltip.tree6=Вознесённый глюк
 tooltip.tree7=Отчасти сладкий
@@ -332,7 +332,7 @@ tooltip.saguroplant1=Растёт, как дерево
 tooltip.saguroplant2=Даёт плоды после дождя
 tooltip.fireleaves=Огнеупорные листья
 tooltip.cloud1=Такой лёгкий и пушистый!
-tooltip.cloud2=Спасает Вас, когда Вы попадаете
+tooltip.cloud2=Спасает Вас, когда Вы падаете
 tooltip.cloud3=Причина ударов молний
 tooltip.cloud4=Превращает в древесный уголь область 3x3
 tooltip.cloud5=Превращает в серу область 2x2
