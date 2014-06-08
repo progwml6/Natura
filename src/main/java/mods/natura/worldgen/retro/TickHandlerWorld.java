@@ -42,11 +42,4 @@ public class TickHandlerWorld
         }
     }
 
-    /* @Override
-     public String getLabel ()
-     {
-
-         return "NaturaWorld";
-     }*/
-
 }

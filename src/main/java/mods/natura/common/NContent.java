@@ -138,7 +138,9 @@ import tconstruct.library.crafting.PatternBuilder;
 import cpw.mods.fml.common.IFuelHandler;
 import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
+import cpw.mods.fml.common.registry.GameRegistry.ObjectHolder;
 
+@ObjectHolder(Natura.modID)
 public class NContent implements IFuelHandler
 {
 

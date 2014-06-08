@@ -2,6 +2,7 @@ package mods.natura.common;
 
 import java.io.File;
 
+import cpw.mods.fml.common.Loader;
 import mods.natura.Natura;
 import net.minecraftforge.common.config.Configuration;
 
@@ -19,14 +20,8 @@ public class PHNatura
         Natura.retrogen = config.get("Retrogen", "Retroactive Generation", false).getBoolean(false);
 
         boolean BoP = false;
-        try
-        {
-            Class c = Class.forName("biomesoplenty.BiomesOPlenty");
+        if(Loader.isModLoaded("BiomesOPlenty"))
             BoP = true;
-        }
-        catch (Exception e)
-        {
-        }
 
         babyHeatscarMinimum = config.get("Mob Changes", "Minimum Baby Heatscar Spiders on Spider Death", 2).getInt(2);
         if (babyHeatscarMinimum < 0)
@@ -76,7 +71,7 @@ public class PHNatura
 
         try
         {
-            Class c = Class.forName("chococraft.common.ModChocoCraft");
+            Class.forName("chococraft.common.ModChocoCraft");
             enableWheatRecipe = config.get("Disabler", "Enable wheat to flour recipe", false).getBoolean(false);
         }
         catch (Exception e)
@@ -141,13 +136,13 @@ public class PHNatura
         seaLevel = config.get("general", "Sea level", 64).getInt(64);
 
         /* Save the configuration file */
-        config.save();
+        if(config.hasChanged())
+             config.save();
     }
 
     /* Prototype fields, used elsewhere */
 
     public static int seaLevel;
-    public static int spawnEgg;
 
     //Overworld
     public static boolean generateBarley;
@@ -163,13 +158,7 @@ public class PHNatura
     public static boolean generateSkyberries;
     public static boolean generateStingberries;
 
-    public static int seedFood;
-
     public static int saguaroSpawnRarity;
-    public static int saguaroSpawnHeight;
-    public static int saguaroSpawnRange;
-
-    public static int cactusJuice;
 
     public static int raspSpawnRarity;
     public static int raspSpawnRange;
@@ -188,12 +177,6 @@ public class PHNatura
     public static int skySpawnRange;
     public static int stingSpawnRarity;
     public static int stingSpawnRange;
-
-    public static int netherBerryItem;
-    public static int berryItemID;
-    public static int berryMedley;
-    public static int berryBlockID;
-    public static int netherBerryBlock;
 
     public static int thornSpawnRarity;
 
@@ -243,7 +226,6 @@ public class PHNatura
     public static boolean canRespawnInNether;
 
     public static int redwoodSpawnRarity;
-    public static int redwoodSpawnRange;
     public static int bloodSpawnRarity;
     public static int eucalyptusShortSpawnRarity;
     public static int eucalyptusShortSpawnRange;

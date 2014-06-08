@@ -15,11 +15,8 @@ import net.minecraftforge.common.util.ForgeDirection;
 
 public class SakuraTreeGen extends WorldGenAbstractTree
 {
-    // JAVADOC FIELD $$ field_76507_a
     static final byte[] otherCoordPairs = new byte[] {(byte)2, (byte)0, (byte)0, (byte)1, (byte)2, (byte)1};
-    // JAVADOC FIELD $$ field_76505_b
     Random rand = new Random();
-    // JAVADOC FIELD $$ field_76506_c
     World worldObj;
     int[] basePos = new int[] {0, 0, 0};
     int heightLimit;
@@ -29,13 +26,9 @@ public class SakuraTreeGen extends WorldGenAbstractTree
     double branchSlope = 0.381D;
     double scaleWidth = 1.0D;
     double leafDensity = 1.0D;
-    // JAVADOC FIELD $$ field_76510_l
     int trunkSize = 1;
-    // JAVADOC FIELD $$ field_76511_m
     int heightLimitLimit = 12;
-    // JAVADOC FIELD $$ field_76508_n
     int leafDistanceLimit = 4;
-    // JAVADOC FIELD $$ field_76509_o
     int[][] leafNodes;
     
     int metaWood;
@@ -52,7 +45,6 @@ public class SakuraTreeGen extends WorldGenAbstractTree
         metaLeaves = mdleaves;
     }
 
-    // JAVADOC METHOD $$ func_76489_a
     void generateLeafNodeList()
     {
         this.height = (int)((double)this.heightLimit * this.heightAttenuation);
@@ -289,7 +281,6 @@ public class SakuraTreeGen extends WorldGenAbstractTree
         }
     }
 
-    // JAVADOC METHOD $$ func_76498_b
     void generateLeaves()
     {
         int i = 0;
@@ -303,13 +294,11 @@ public class SakuraTreeGen extends WorldGenAbstractTree
         }
     }
 
-    // JAVADOC METHOD $$ func_76493_c
     boolean leafNodeNeedsBase(int par1)
     {
         return (double)par1 >= (double)this.heightLimit * 0.2D;
     }
 
-    // JAVADOC METHOD $$ func_76499_c
     void generateTrunk()
     {
         int i = this.basePos[0];
@@ -401,7 +390,6 @@ public class SakuraTreeGen extends WorldGenAbstractTree
                 aint3[b1] = par1ArrayOfInteger[b1] + i;
                 aint3[b2] = MathHelper.floor_double((double)par1ArrayOfInteger[b2] + (double)i * d0);
                 aint3[b3] = MathHelper.floor_double((double)par1ArrayOfInteger[b3] + (double)i * d1);
-                Block block = this.worldObj.getBlock(aint3[0], aint3[1], aint3[2]);
 
                 if (!this.isReplaceable(worldObj, aint3[0], aint3[1], aint3[2]))
                 {
@@ -445,7 +433,6 @@ public class SakuraTreeGen extends WorldGenAbstractTree
         }
     }
 
-    // JAVADOC METHOD $$ func_76487_a
     public void setScale(double par1, double par3, double par5)
     {
         this.heightLimitLimit = (int)(par1 * 12.0D);

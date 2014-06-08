@@ -55,15 +55,15 @@ public class Natura
     /* Proxies for sides, used for graphics processing */
     @SidedProxy(clientSide = "mods.natura.client.NProxyClient", serverSide = "mods.natura.common.NProxyCommon")
     public static NProxyCommon proxy;
-
+    public static final String modID = "Natura";
     /* Instance of this mod, used for grabbing prototype fields */
-    @Instance("Natura")
+    @Instance(modID)
     public static Natura instance;
     public static Material cloud = new CloudMaterial();
 
-    public static Logger logger = LogManager.getLogger("Natura");
+    public static Logger logger = LogManager.getLogger(modID);
 
-    public static final ModuleController moduleLoader = new ModuleController("Natura-Dynamic.cfg", "Natura");
+    public static final ModuleController moduleLoader = new ModuleController("Natura-Dynamic.cfg", modID);
 
     @EventHandler
     public void preInit (FMLPreInitializationEvent evt)
@@ -97,7 +97,6 @@ public class Natura
         GameRegistry.registerWorldGenerator(crops = new BaseCropWorldgen(), 20); // TODO 1.7 Find correct weight (param 2)
         GameRegistry.registerWorldGenerator(clouds = new BaseCloudWorldgen(), 20); // TODO 1.7 Find correct weight (param 2)
         GameRegistry.registerWorldGenerator(trees = new BaseTreeWorldgen(), 20); // TODO 1.7 Find correct weight (param 2)
-        //NaturaTab.init(NContent.wheatBag);
 
         proxy.registerRenderer();
         proxy.addNames();
@@ -137,11 +136,6 @@ public class Natura
     {
         if (!event.world.isRemote)
         {
-            /*if (event.block == content.crops.blockID)
-            {
-            	if (content.crops.boneFertilize(event.world, event.X, event.y, event.z, event.world.rand))
-            		event.setResult(event.getResult().ALLOW);
-            }*/
             if (event.block == NContent.glowshroom)
             {
                 if (NContent.glowshroom.fertilizeMushroom(event.world, event.x, event.y, event.z, event.world.rand))

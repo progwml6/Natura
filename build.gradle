@@ -20,7 +20,7 @@ buildscript {
 
     }
     dependencies {
-        classpath 'net.minecraftforge.gradle:ForgeGradle:1.1-SNAPSHOT'
+        classpath 'net.minecraftforge.gradle:ForgeGradle:1.2-SNAPSHOT'
     }
 }
 
@@ -31,12 +31,16 @@ repositories {
         url "http://chickenbones.net/maven/"
     }
 	maven {
+         name "ProfMobius Maven FS"
+         url "http://mobiusstrip.eu/maven"
+     }
+    maven {
         name 'DVS1 Maven FS'
         url 'http://dvs1.progwml6.com/files/maven'
-	}
-	maven {
-          name 'ForgeFS'
-          url 'http://files.minecraftforge.net/maven'
+    }
+    maven {
+        name 'ForgeFS'
+        url 'http://files.minecraftforge.net/maven'
      }
 }
 

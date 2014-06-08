@@ -7,7 +7,7 @@ import net.minecraft.world.chunk.Chunk;
 
 /**
  * Standardized implementation for representing and manipulating Chunk Coordinates. Provides standard Java Collection interaction.
- * From COFH LIB
+ * From COFH LIB(modified to use mantle's coordtuple instead)
  * @author King Lemming
  * 
  */
