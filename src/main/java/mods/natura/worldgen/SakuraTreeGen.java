@@ -6,7 +6,6 @@ import mods.natura.common.NContent;
 import mods.natura.common.PHNatura;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockSapling;
-import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
@@ -34,8 +33,6 @@ public class SakuraTreeGen extends WorldGenAbstractTree
     int metaWood;
     int metaLeaves;
     boolean dontFindHeight;
-    
-    private static final String __OBFID = "CL_00000400";
 
     public SakuraTreeGen(boolean par1, int mdwood, int mdleaves)
     {
@@ -128,12 +125,12 @@ public class SakuraTreeGen extends WorldGenAbstractTree
         System.arraycopy(aint, 0, this.leafNodes, 0, k);
     }
 
-    void func_150529_a(int p_150529_1_, int p_150529_2_, int p_150529_3_, float p_150529_4_, byte p_150529_5_, Block p_150529_6_)
+    void func_150529_a(int x, int y, int z, float p_150529_4_, byte p_150529_5_, Block block)
     {
         int l = (int)((double)p_150529_4_ + 0.618D);
         byte b1 = otherCoordPairs[p_150529_5_];
         byte b2 = otherCoordPairs[p_150529_5_ + 3];
-        int[] aint = new int[] {p_150529_1_, p_150529_2_, p_150529_3_};
+        int[] aint = new int[] {x, y, z};
         int[] aint1 = new int[] {0, 0, 0};
         int i1 = -l;
         int j1 = -l;
@@ -162,7 +159,7 @@ public class SakuraTreeGen extends WorldGenAbstractTree
                     }
                     else
                     {
-                        this.setBlockAndNotifyAdequately(this.worldObj, aint1[0], aint1[1], aint1[2], p_150529_6_, metaLeaves);
+                        this.setBlockAndNotifyAdequately(this.worldObj, aint1[0], aint1[1], aint1[2], block, metaLeaves);
                         ++j1;
                     }
                 }
@@ -170,7 +167,6 @@ public class SakuraTreeGen extends WorldGenAbstractTree
         }
     }
 
-    // JAVADOC METHOD $$ func_76490_a
     float layerSize(int par1)
     {
         if ((double)par1 < (double)((float)this.heightLimit) * 0.3D)
@@ -206,7 +202,6 @@ public class SakuraTreeGen extends WorldGenAbstractTree
         return par1 >= 0 && par1 < this.leafDistanceLimit ? (par1 != 0 && par1 != this.leafDistanceLimit - 1 ? 3.0F : 2.0F) : -1.0F;
     }
 
-    // JAVADOC METHOD $$ func_76491_a
     void generateLeafNode(int par1, int par2, int par3)
     {
         int l = par2;
@@ -218,7 +213,7 @@ public class SakuraTreeGen extends WorldGenAbstractTree
         }
     }
 
-    void func_150530_a(int[] p_150530_1_, int[] p_150530_2_, Block p_150530_3_)
+    void func_150530_a(int[] p_150530_1_, int[] p_150530_2_, Block block)
     {
         int[] aint2 = new int[] {0, 0, 0};
         byte b0 = 0;
@@ -268,15 +263,15 @@ public class SakuraTreeGen extends WorldGenAbstractTree
                 {
                     if (k == i1)
                     {
-                        metadata = 4;
+                        metadata = metaWood + 4;
                     }
                     else if (l == i1)
                     {
-                        metadata = 8;
+                        metadata = metaWood +  8;
                     }
                 }
 
-                this.setBlockAndNotifyAdequately(this.worldObj, aint3[0], aint3[1], aint3[2], p_150530_3_, metadata);
+                this.setBlockAndNotifyAdequately(this.worldObj, aint3[0], aint3[1], aint3[2], block, metadata);
             }
         }
     }
@@ -323,7 +318,6 @@ public class SakuraTreeGen extends WorldGenAbstractTree
         }
     }
 
-    // JAVADOC METHOD $$ func_76494_d
     void generateLeafNodeBases()
     {
         int i = 0;
@@ -343,7 +337,6 @@ public class SakuraTreeGen extends WorldGenAbstractTree
         }
     }
 
-    // JAVADOC METHOD $$ func_76496_a
     int checkBlockLine(int[] par1ArrayOfInteger, int[] par2ArrayOfInteger)
     {
         int[] aint2 = new int[] {0, 0, 0};
@@ -401,7 +394,6 @@ public class SakuraTreeGen extends WorldGenAbstractTree
         }
     }
 
-    // JAVADOC METHOD $$ func_76497_e
     boolean validTreeLocation()
     {
         int[] aint = new int[] {this.basePos[0], this.basePos[1], this.basePos[2]};
@@ -445,7 +437,7 @@ public class SakuraTreeGen extends WorldGenAbstractTree
         this.scaleWidth = par3;
         this.leafDensity = par5;
     }
-    
+
     int findGround (World world, int x, int y, int z)
     {
         boolean foundGround = false;
