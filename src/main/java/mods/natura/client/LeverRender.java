@@ -98,14 +98,14 @@ public class LeverRender implements ISimpleBlockRenderingHandler
             float f4 = 0.0625F;
             float f5 = 0.0625F;
             float f6 = 0.625F;
-            avec3[0] = renderer.blockAccess.getWorldVec3Pool().getVecFromPool((-f4), 0.0D, (-f5));
-            avec3[1] = renderer.blockAccess.getWorldVec3Pool().getVecFromPool(f4, 0.0D, (-f5));
-            avec3[2] = renderer.blockAccess.getWorldVec3Pool().getVecFromPool(f4, 0.0D, f5);
-            avec3[3] = renderer.blockAccess.getWorldVec3Pool().getVecFromPool((-f4), 0.0D, f5);
-            avec3[4] = renderer.blockAccess.getWorldVec3Pool().getVecFromPool((-f4), f6, (-f5));
-            avec3[5] = renderer.blockAccess.getWorldVec3Pool().getVecFromPool(f4, f6, (-f5));
-            avec3[6] = renderer.blockAccess.getWorldVec3Pool().getVecFromPool(f4, f6, f5);
-            avec3[7] = renderer.blockAccess.getWorldVec3Pool().getVecFromPool((-f4), f6, f5);
+            avec3[0] = Vec3.createVectorHelper((-f4), 0.0D, (-f5));
+            avec3[1] = Vec3.createVectorHelper(f4, 0.0D, (-f5));
+            avec3[2] = Vec3.createVectorHelper(f4, 0.0D, f5);
+            avec3[3] = Vec3.createVectorHelper((-f4), 0.0D, f5);
+            avec3[4] = Vec3.createVectorHelper((-f4), f6, (-f5));
+            avec3[5] = Vec3.createVectorHelper(f4, f6, (-f5));
+            avec3[6] = Vec3.createVectorHelper(f4, f6, f5);
+            avec3[7] = Vec3.createVectorHelper((-f4), f6, f5);
 
             for (int j1 = 0; j1 < 8; ++j1)
             {

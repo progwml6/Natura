@@ -117,7 +117,7 @@ public class NetherGlass extends Block
         else if (meta == 1)
         {
             float f = 0.125F;
-            return AxisAlignedBB.getAABBPool().getAABB(x, y, z, x + 1, y + 1 - f, z + 1);
+            return AxisAlignedBB.getBoundingBox(x, y, z, x + 1, y + 1 - f, z + 1);
         }
         return super.getCollisionBoundingBoxFromPool(world, x, y, z);
     }
