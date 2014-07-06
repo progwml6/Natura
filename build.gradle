@@ -13,37 +13,40 @@ buildscript {
             name = 'ForgeFS'
             url = 'http://files.minecraftforge.net/maven'
         }
-	}
+		maven {
+            name = "sonatype"
+            url = "https://oss.sonatype.org/content/repositories/snapshots/"
+        }
+
+    }
     dependencies {
-        classpath 'net.minecraftforge.gradle:ForgeGradle:1.0-SNAPSHOT'
+        classpath 'net.minecraftforge.gradle:ForgeGradle:1.2-SNAPSHOT'
     }
 }
 
+
 repositories {
-	ivy {
-		name 'Forge FS legacy'
-		artifactPattern "http://files.minecraftforge.net/[module]/[module]-dev-[revision].[ext]"
-	}
-	ivy {
-		name 'CB FS'
-		artifactPattern "http://www.chickenbones.craftsaddle.org/Files/New_Versions/1.6.4/[module]-dev%20[revision].[ext]"
-	}
+    maven {
+        name 'CB Maven FS'
+        url "http://chickenbones.net/maven/"
+    }
 	maven {
-	      name 'SlimeKnights Maven FS'
-          url 'http://aeon.sunstrike.io'
-	}
-	maven {
-          name 'ForgeFS'
-          url 'http://files.minecraftforge.net/maven'
+         name "ProfMobius Maven FS"
+         url "http://mobiusstrip.eu/maven"
      }
-     maven {
-          name 'MinecraftS3'
-          url 'http://s3.amazonaws.com/Minecraft.Download/libraries'
+    maven {
+        name 'DVS1 Maven FS'
+        url 'http://dvs1.progwml6.com/files/maven'
+    }
+    maven {
+        name 'ForgeFS'
+        url 'http://files.minecraftforge.net/maven'
      }
 }
 
 
 apply plugin: 'forge'
+group = 'mods.natura'
 
 // define the properties file
 ext.configFile = file "build.properties"
@@ -56,12 +59,12 @@ configFile.withReader {
 }
 
 dependencies {
-     compile "mantle:Mantle:${config.mantle_version}:dev"
-     compile "tconstruct:TConstruct:${config.tconstruct_version}:dev"
-     compile name: 'ForgeMultipart', version: "${config.minecraft_version}-${config.FMP_version}", ext: 'jar'
-     compile name: 'CodeChickenLib', version: "${config.minecraft_version}-${config.CCLIB_version}", ext: 'jar'
-     compile name: 'NotEnoughItems', version: "${config.NEI_version}", type: 'jar'
-
+    compile "mantle:Mantle:${config.minecraft_version}-${config.mantle_version}:deobf"
+	compile "tconstruct:TConstruct:${config.minecraft_version}-${config.tconstruct_version}:deobf"
+	compile "codechicken:CodeChickenLib:${config.minecraft_version_old}-${config.CCLIB_version}:dev"
+    compile "codechicken:ForgeMultipart:${config.minecraft_version_old}-${config.FMP_version}:dev"
+	compile "codechicken:CodeChickenCore:${config.minecraft_version_old}-${config.ccc_version}:dev"
+    compile "codechicken:NotEnoughItems:${config.minecraft_version_old}-${config.NEI_version}:dev"
 }
 
 minecraft {
@@ -90,9 +93,6 @@ version = "${minecraft.version}-${project.buildInfo.buildNum}.${project.buildInf
 
 sourceSets {
 	main {
-		java {
-            srcDir 'src'
-        }
 		resources {
 			srcDir 'resources'
 		}
@@ -119,9 +119,26 @@ processResources
 // because the normal output has been made to be obfuscated
 task devjar(type: Jar) {
         from sourceSets.main.output
-        classifier = 'dev'
+        classifier = 'deobf'
 }
 artifacts {
         archives devjar
 }
+
+task("uploadJars", dependsOn:"reobf") {
+    
+    description = "uploads JARs"
+
+    if (project.hasProperty("local_maven")) {
+	    apply plugin: 'maven'
+            uploadArchives {
+                repositories {
+                    mavenDeployer {
+                        repository(url: "file://${local_maven}")
+                }
+            }
+        }
+    }
+}
+
 
