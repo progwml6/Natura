@@ -49,7 +49,7 @@ import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 
-@Mod(modid = "Natura", name = "Natura", version = "2.2.0", dependencies = "required-after:Mantle")
+@Mod(modid = "Natura", name = "Natura", version = "2.2.0", acceptedMinecraftVersions = "[1.7.10]", dependencies = "required-after:Mantle")
 public class Natura
 {
     /* Proxies for sides, used for graphics processing */
