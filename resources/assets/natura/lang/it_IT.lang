@@ -37,10 +37,10 @@ item.berry.dusk.name=Bacche del tramonto
 item.berry.sky.name=Bacche del cielo
 item.berry.sting.name=Bacche appuntite
 
-block.raspberryBush.name=Cespuglio di lamponi
-block.blueberryBush.name=Cespuglio di mirtilli
-block.blackberryBush.name=Cespuglio di more
-block.geoberryBush.name=Cespuglio di malobacche
+block.rasp.berryBush.name=Cespuglio di lamponi
+block.blue.berryBush.name=Cespuglio di mirtilli
+block.black.berryBush.name=Cespuglio di more
+block.geo.berryBush.name=Cespuglio di malobacche
 
 block.bush.berry.blight.name=Cespuglio di bacche degradate
 block.bush.berry.dusk.name=Cespuglio di bacche del tramonto
@@ -72,10 +72,10 @@ block.leaves.purpleheart.name=Foglie di amaranto
 block.leaves.tiger.name=Foglie tigrate
 block.leaves.willow.name=Foglie di salice
 
-normalcloud.name=Nuvola
-darkcloud.name=Nuvola scura
-ashcloud.name=Nuvola di cenere
-sulfurcloud.name=Nuvola di zolfo
+block.normal.cloud.name=Nuvola
+block.dark.cloud.name=Nuvola scura
+block.ash.cloud.name=Nuvola di cenere
+block.sulfur.cloud.name=Nuvola di zolfo
 
 redwoodNDoor.name=Porta di sequia
 eucalyptusNDoor.name=Porta di eucalipto
@@ -85,23 +85,23 @@ ghostNDoor.name=Porta fantasma
 bloodNDoor.name=Porta insanguinata
 redwoodBarkNDoor.name=Porta di corteccia
 
-barkredwood.name=Corteccia di sequia
-heartredwood.name=Legno di sequia
-rootredwood.name=Radice di sequia
+block.bark.redwood.name=Corteccia di sequia
+block.heart.redwood.name=Legno di sequia
+block.root.redwood.name=Radice di sequia
 
-eucalyptusNPlanks.name=Assi di eucalipto
-sakuraNPlanks.name=Assi di ciliegio
-ghostNPlanks.name=Assi fantasmi
-bushNPlanks.name=Assi di hopseed
-bloodNPlanks.name=Assi insanguinati
-redwoodNPlanks.name=Assi di sequia
-mapleNPlanks.name=Assi d'acero
-silverbellNPlanks.name=Assi di halesia
-tigerNPlanks.name=Assi tigrati
-purpleheartNPlanks.name=Assi di amaranto
-willowNPlanks.name=Assi di salice
-darkwoodNPlanks.name=Assi oscuri
-fusewoodNPlanks.name=Assi esplosivi
+block.eucalyptus.NPlanks.name=Assi di eucalipto
+block.sakura.NPlanks.name=Assi di ciliegio
+block.ghost.NPlanks.name=Assi fantasmi
+block.bush.NPlanks.name=Assi di hopseed
+block.blood.NPlanks.name=Assi insanguinati
+block.redwood.NPlanks.name=Assi di sequia
+block.maple.NPlanks.name=Assi d'acero
+block.silverbell.NPlanks.name=Assi di halesia
+block.tiger.NPlanks.name=Assi tigrati
+block.purpleheart.NPlanks.name=Assi di amaranto
+block.willow.NPlanks.name=Assi di salice
+block.darkwood.NPlanks.name=Assi oscuri
+block.fusewood.NPlanks.name=Assi esplosivi
 
 block.sapling.eucalyptus.name=Arboscello di eucalipto
 block.sapling.sakura.name=Arboscello di ciliegio
@@ -218,17 +218,17 @@ block.glowshroom.blue.name=Brillantfungo blu
 
 tile.nether.hopper.name=Tramoggia
 
-eucalyptusNLeaves.name=Foglie di eucalipto
+block.eucalyptus.NLeaves.name=Foglie di eucalipto
 block.leaves.sakura.name=Foglie di ciliegio
 block.leaves.ghost.name=Foglie fantasma
-bushNLeaves.name=Foglie di hopseed
-redwoodNLeaves.name=Foglie di redwood
+block.bush.NLeaves.name=Foglie di hopseed
+block.redwood.NLeaves.name=Foglie di redwood
 block.leaves.blood.name=Foglie insanguinate
 
-eucalyptusLog.name=Legno di eucalipto
-sakuraLog.name=Legno di ciliegio
-ghostLog.name=Legno fantasma
-hopseedLog.name=Legno di hopseed
+block.eucalyptus.log.name=Eucalyptus Wood=Legno di eucalipto
+block.sakura.log.name=Legno di ciliegio
+block.ghost.log.name=Legno fantasma
+block.hopseed.log.name=Legno di hopseed
 
 redwoodBoat.name=Barca di redwood
 bloodBoat.name=Barca insanguinata
@@ -294,7 +294,7 @@ item.natura.armor.impjerkin.name=Farsetto di imp
 item.natura.armor.impleggings.name=Braghe di imp
 item.natura.armor.impboots.name=Stivali di imp
 
-item.flintandblaze=Selce e Vampata
+item.flintandblaze.name=Selce e Vampo
 
 entity.Natura.imp.name=Imp
 entity.Natura.HeatscarSpider.name=Ragno fiammeggiante
