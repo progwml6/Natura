@@ -86,7 +86,6 @@ public class AlternateWorkbench extends BlockWorkbench
         }
         else
         {
-            System.out.println("Workbench");
             player.openGui(Natura.instance, NGuiHandler.craftingGui, world, x, y, z);
             //player.displayGUIWorkbench(par2, par3, par4);
             return true;
