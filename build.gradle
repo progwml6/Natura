@@ -13,7 +13,7 @@ buildscript {
             name = 'ForgeFS'
             url = 'http://files.minecraftforge.net/maven'
         }
-		maven {
+	maven {
             name = "sonatype"
             url = "https://oss.sonatype.org/content/repositories/snapshots/"
         }
@@ -30,10 +30,10 @@ repositories {
         name 'CB Maven FS'
         url "http://chickenbones.net/maven/"
     }
-	maven {
+    maven {
          name "ProfMobius Maven FS"
          url "http://mobiusstrip.eu/maven"
-     }
+    }
     maven {
         name 'DVS1 Maven FS'
         url 'http://dvs1.progwml6.com/files/maven'
@@ -41,7 +41,7 @@ repositories {
     maven {
         name 'ForgeFS'
         url 'http://files.minecraftforge.net/maven'
-     }
+    }
 }
 
 
@@ -60,16 +60,16 @@ configFile.withReader {
 
 dependencies {
     compile "mantle:Mantle:${config.minecraft_version}-${config.mantle_version}:deobf"
-	compile "tconstruct:TConstruct:${config.minecraft_version}-${config.tconstruct_version}:deobf"
-	compile "codechicken:CodeChickenLib:${config.minecraft_version}-${config.CCLIB_version}:dev"
+    compile "tconstruct:TConstruct:${config.minecraft_version}-${config.tconstruct_version}:deobf"
+    compile "codechicken:CodeChickenLib:${config.minecraft_version}-${config.CCLIB_version}:dev"
     compile "codechicken:ForgeMultipart:${config.minecraft_version}-${config.FMP_version}:dev"
-	compile "codechicken:CodeChickenCore:${config.minecraft_version}-${config.ccc_version}:dev"
+    compile "codechicken:CodeChickenCore:${config.minecraft_version}-${config.ccc_version}:dev"
     compile "codechicken:NotEnoughItems:${config.minecraft_version}-${config.NEI_version}:dev"
 }
 
 minecraft {
     version = config.minecraft_version + "-" + config.forge_version
-    assetDir = 'run/assets'
+    runDir = 'run'
 }
 
 // sets version to the slimeKnights version format
@@ -92,11 +92,11 @@ task buildInfo {
 version = "${minecraft.version}-${project.buildInfo.buildNum}.${project.buildInfo.revision}"
 
 sourceSets {
-	main {
-		resources {
-			srcDir 'resources'
-		}
-	}
+    main {
+        resources {
+            srcDir 'resources'
+        }
+    }
 }
 processResources
 {
@@ -114,15 +114,20 @@ processResources
     }
 }
 
-
-
 // because the normal output has been made to be obfuscated
 task devjar(type: Jar) {
-        from sourceSets.main.output
-        classifier = 'deobf'
+    from sourceSets.main.output
+    classifier = 'deobf'
 }
+
+task sourcesjar(type: Jar) {
+    from sourceSets.main.allJava
+    classifier = 'sources'
+}
+
 artifacts {
-        archives devjar
+    archives devjar
+    archives sourcesjar
 }
 
 task("uploadJars", dependsOn:"reobf") {
