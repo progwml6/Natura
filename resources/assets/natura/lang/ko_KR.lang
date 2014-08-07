@@ -1,0 +1,374 @@
+itemGroup.natura.plants=나추라의 식물들
+itemGroup.natura.trees=나추라의 나무들
+itemGroup.natura.nether=나추라의 지옥
+
+
+item.natura.spawnegg.name=스폰 
+
+item.wheatBag.name=밀 씨앗 봉투
+item.barleyBag.name=보리 씨앗 봉투
+item.potatoBag.name=감자 봉투
+item.carrotBag.name=당근 봉투
+item.wartBag.name=네더 와트 봉투
+item.cottonBag.name=목화 씨앗 봉투
+item.boneBag.name=뼛가루 봉투
+
+item.barley.seed.name=보리 씨앗
+item.barley.plant.name=보리
+item.barley.flour.name=보릿가루
+item.wheat.flour.name=밀가루
+item.cotton.plant.name=목화
+item.fletching.ghostwood.name=유령나무 깃
+item.leather.imp.name=임프 가죽
+item.string.flame.name=화염 실
+item.dye.blue.name=푸른색 염료
+
+item.cotton.seed.name=목화 씨앗
+item.powder.sulfur.name=유황
+item.waterdrop.name=선인장 수액
+item.saguaro.fruit.name=사와로 선인장 열매
+
+item.berry.rasp.name=라즈베리
+item.berry.blue.name=블루베리
+item.berry.black.name=블랙베리
+item.berry.geo.name=말로베리
+item.berry.medley.name=베리 화채
+item.berry.blight.name=암흑베리
+item.berry.dusk.name=황혼베리
+item.berry.sky.name=하늘베리
+item.berry.sting.name=따끔베리
+
+block.rasp.berryBush.name=라즈베리 덤불
+block.blue.berryBush.name=블루베리 덤불
+block.black.berryBush.name=블랙베리 덤불
+block.geo.berryBush.name=말로베리 덤불
+
+block.bush.berry.blight.name=암흑베리 덤불
+block.bush.berry.dusk.name=황혼베리 덤불
+block.bush.berry.sky.name=하늘베리 덤불
+block.bush.berry.sting.name=따끔베리 덤불
+
+block.log.maple.name=단풍나무 원목
+block.log.silverbell.name=때죽나무 원목
+block.log.purpleheart.name=아마란스 원목
+block.log.tiger.name=호랑나무 원목
+block.log.willow.name=버드나무 원목
+
+block.log.darkwood.name=암흑나무 원목
+block.log.fusewood.name=퓨즈나무 원목
+
+item.bowl.mushroom.name=버섯 스튜
+item.bowl.glowshroom.name=발광버섯 스튜
+
+block.leaves.darkwood.name=암흑나무 잎
+block.leaves.darkwood.flowering.name=암흑나무 잎
+block.leaves.darkwood.fruit.name=암흑나무 잎
+block.leaves.fusewood.name=퓨즈나무 잎
+
+item.food.nether.potashapple.name=탄산칼슘 사과
+
+block.leaves.maple.name=단풍 잎
+block.leaves.silverbell.name=때죽나무 잎
+block.leaves.purpleheart.name=아마란스 잎
+block.leaves.tiger.name=호랑나무 잎
+block.leaves.willow.name=버드나무 잎
+
+block.normal.cloud.name=구름
+block.dark.cloud.name=먹구름
+block.ash.cloud.name=재구름
+block.sulfur.cloud.name=유황구름
+
+redwoodNDoor.name=삼나무 문
+eucalyptusNDoor.name=유칼립투스 문
+hopseedNDoor.name=호프씨 문
+sakuraNDoor.name=벚나무 문
+ghostNDoor.name=유령나무 문
+bloodNDoor.name=피 유칼립투스 문
+redwoodBarkNDoor.name=삼나무 껍질 문
+
+block.bark.redwood.name=삼나무 껍질
+block.heart.redwood.name=삼나무 원목
+block.root.redwood.name=삼나무 뿌리
+
+block.eucalyptus.NPlanks.name=유칼립투스 판자
+block.sakura.NPlanks.name=벚나무 판자
+block.ghost.NPlanks.name=유령나무 판자
+block.bush.NPlanks.name=호프씨나무 판자
+block.blood.NPlanks.name=피 유칼립투스 판자
+block.redwood.NPlanks.name=삼나무 판자
+block.maple.NPlanks.name=단풍나무 판자
+block.silverbell.NPlanks.name=때죽나무 판자
+block.tiger.NPlanks.name=호랑나무 판자
+block.purpleheart.NPlanks.name=아마란스 판자
+block.willow.NPlanks.name=버드나무 판자
+block.darkwood.NPlanks.name=암흑나무 판자
+block.fusewood.NPlanks.name=퓨즈나무 판자
+
+block.sapling.eucalyptus.name=유칼립투스 묘목
+block.sapling.sakura.name=벚나무 묘목
+block.sapling.ghost.name=유령나무 묘목
+block.sapling.bush.name=호프씨나무 묘목
+block.sapling.redwood.name=삼나무 묘목
+block.sapling.blood.name=피 유칼립투스 묘목
+block.sapling.darkwood.name=암흑나무 묘목
+block.sapling.fusewood.name=퓨즈나무 묘목
+block.sapling.willow.name=버드나무 묘목
+block.sapling.tiger.name=호랑나무 묘목
+block.sapling.maple.name=단풍나무 묘목
+block.sapling.purpleheart.name=아마란스 묘목
+block.sapling.silverbell.name=때죽나무 묘목
+
+block.wood.eucalyptus.slab.name=유칼립투스 판자 반 블럭
+block.wood.sakura.slab.name=벚나무 판자 반 블럭
+block.wood.ghost.slab.name=유령나무 판자 반 블럭
+block.wood.bush.slab.name=호프씨나무 판자 반 블럭
+block.wood.redwood.slab.name=삼나무 판자 반 블럭
+block.wood.blood.slab.name=피 유칼립투스 판자 반 블럭
+block.wood.darkwood.slab.name=암흑나무 판자 반 블럭
+block.wood.fusewood.slab.name=퓨즈나무 판자 반 블럭
+block.wood.willow.slab.name=버드나무 판자 반 블럭
+block.wood.tiger.slab.name=호랑나무 판자 반 블럭
+block.wood.maple.slab.name=단풍나무 판자 반 블럭
+block.wood.purpleheart.slab.name=아마란스 판자 반 블럭
+block.wood.silverbell.slab.name=때죽나무 판자 반 블럭
+
+tile.pressureplate.eucalyptus.name=유칼립투스 감압판
+tile.pressureplate.sakura.name=벚나무 감압판
+tile.pressureplate.ghostwood.name=유령나무 감압판
+tile.pressureplate.hopseed.name=호프씨나무 감압판
+tile.pressureplate.redwood.name=삼나무 감압판
+tile.pressureplate.bloodwood.name=피 유칼립투스 감압판
+tile.pressureplate.darkwood.name=암흑나무 감압판
+tile.pressureplate.fusewood.name=퓨즈나무 감압판
+tile.pressureplate.willow.name=버드나무 감압판
+tile.pressureplate.tiger.name=호랑나무 감압판
+tile.pressureplate.maple.name=단풍나무 감압판
+tile.pressureplate.amaranth.name=아마란스 감압판
+tile.pressureplate.silverbell.name=때죽나무 감압판
+
+tile.fenceGate.eucalyptus.name=유칼립투스 울타리문
+tile.fenceGate.sakura.name=벚나무 울타리문
+tile.fenceGate.ghostwood.name=유령나무 울타리문
+tile.fenceGate.hopseed.name=호프씨나무 울타리문
+tile.fenceGate.redwood.name=삼나무 울타리문
+tile.fenceGate.bloodwood.name=피나무 울타리문
+tile.fenceGate.darkwood.name=암흑나무 울타리문
+tile.fenceGate.fusewood.name=퓨즈나무 울타리문
+tile.fenceGate.willow.name=버드나무 울타리문
+tile.fenceGate.tiger.name=호랑나무 울타리문
+tile.fenceGate.maple.name=단풍나무 울타리문
+tile.fenceGate.amaranth.name=아마란스 울타리문
+tile.fenceGate.silverbell.name=때죽나무 울타리문
+
+tile.stair.eucalyptus.name=유칼립투스 계단
+tile.stair.sakura.name=벚나무 계단
+tile.stair.ghostwood.name=유령나무 계단
+tile.stair.hopseed.name=호프씨나무 계단
+tile.stair.redwood.name=삼나무 계단
+tile.stair.bloodwood.name=피 유칼립투스 계단
+tile.stair.darkwood.name=암흑나무 계단
+tile.stair.fusewood.name=퓨즈나무 계단
+tile.stair.willow.name=버드나무 계단
+tile.stair.tiger.name=호랑나무 계단
+tile.stair.maple.name=단풍나무 계단
+tile.stair.amaranth.name=아마란스 계단
+tile.stair.silverbell.name=때죽나무 계단
+
+tile.button.eucalyptus.name=유칼립투스 버튼
+tile.button.sakura.name=벚나무 버튼
+tile.button.ghostwood.name=유령나무 버튼
+tile.button.hopseed.name=호프씨나무 버튼
+tile.button.redwood.name=삼나무 버튼
+tile.button.bloodwood.name=피 유칼립투스 버튼
+tile.button.darkwood.name=암흑나무 버튼
+tile.button.fusewood.name=퓨즈나무 버튼
+tile.button.willow.name=버드나무 버튼
+tile.button.tiger.name=호랑나무 버튼
+tile.button.maple.name=단풍나무 버튼
+tile.button.amaranth.name=아마란스 버튼
+tile.button.silverbell.name=때죽나무 버튼
+
+tile.trapdoor.eucalyptus.name=유칼립투스 다락문
+tile.trapdoor.sakura.name=벚나무 다락문
+tile.trapdoor.ghostwood.name=유령나무 다락문
+tile.trapdoor.hopseed.name=호프씨나무 다락문
+tile.trapdoor.redwood.name=삼나무 다락문
+tile.trapdoor.bloodwood.name=피 유칼립투스 다락문
+tile.trapdoor.darkwood.name=암흑나무 다락문
+tile.trapdoor.fusewood.name=퓨즈나무 다락문
+tile.trapdoor.willow.name=버드나무 다락문
+tile.trapdoor.tiger.name=호랑나무 다락문
+tile.trapdoor.maple.name=단풍나무 다락문
+tile.trapdoor.amaranth.name=아마란스 다락문
+tile.trapdoor.silverbell.name=때죽나무 다락문
+
+tile.blazerail.name=블레이즈 레일
+tile.blazerail.powered.name=블레이즈 파워 레일
+tile.blazerail.detector.name=블레이즈 디텍터 레일
+tile.blazerail.activator.name=블레이즈 활성화 레일
+
+tile.furnace.netherrack.name=지옥 화로
+tile.nether.obelisk.name=오벨리스크
+tile.nether.hopper.name=깔대기
+
+tile.glass.soul.name=영혼 유리
+tile.glass.heat.name=열 유리
+
+block.glowshroom.green.name=초록색 발광버섯
+block.glowshroom.purple.name=보라색 발광버섯
+block.glowshroom.blue.name=파란색 발광버섯
+
+block.eucalyptus.NLeaves.name=유칼립투스 잎
+block.leaves.sakura.name=벚나무 잎
+block.leaves.ghost.name=유령나무 잎
+block.bush.NLeaves.name=호프씨나무 잎
+block.redwood.NLeaves.name=삼나무 잎
+block.leaves.blood.name=피 유칼립투스 잎
+
+block.eucalyptus.log.name=유칼립투스 원목
+block.sakura.log.name=벚나무 원목
+block.ghost.log.name=유령나무 원목
+block.hopseed.log.name=호프씨나무 원목
+
+redwoodBoat.name=삼나무 보트
+bloodBoat.name=피 유칼립투스 보트
+whiteBoat.name=흰색 보트
+eucalyptusBoat.name=유칼립투스 보트
+
+item.impmeat.raw.name=생 임프고기
+item.impmeat.cooked.name=구운 임프고기
+
+block.soil.grass.name=장식된 잔디
+block.soil.bluegrass.name=파란 잔디
+block.soil.autumngrass.name=가을 잔디
+block.soil.grass.slab.name=장식된 잔디 반 블럭
+block.soil.bluegrass.slab.name=파란잔디 반 블럭
+block.soil.autumngrass.slab.name=가을 잔디 반 블럭
+
+tile.bloodwood.name=피 유칼립투스
+tile.saguaro.block.name=사와로 선인장
+tile.bluebells.name=블루벨
+
+tile.TaintedSoil.name=오염된 흙
+tile.HeatSand.name=열 모래
+tile.Thornvines.name=가시덤불
+tile.potashApple.name=탄산칼륨 사과
+item.natura.stick.name=막대기
+
+item.natura.sword.ghostwood.name=유령나무 검
+item.natura.pickaxe.ghostwood.name=유령나무 곡괭이
+item.natura.shovel.ghostwood.name=유령나무 삽
+item.natura.axe.ghostwood.name=유령나무 도끼
+item.natura.kama.ghostwood.name=유령나무 낫
+item.natura.bow.ghostwood.name=유령나무 활
+
+item.natura.sword.bloodwood.name=피 유칼립투스 검
+item.natura.pickaxe.bloodwood.name=피 유칼립투스 곡괭이
+item.natura.shovel.bloodwood.name=피 유칼립투스 삽
+item.natura.axe.bloodwood.name=피 유칼립투스 도끼
+item.natura.kama.bloodwood.name=피 유칼립투스 괭이
+item.natura.bow.bloodwood.name=피 유칼립투스 활
+
+item.natura.sword.darkwood.name=암흑나무 검
+item.natura.pickaxe.darkwood.name=암흑나무 곡괭이
+item.natura.shovel.darkwood.name=암흑나무 삽
+item.natura.axe.darkwood.name=암흑나무 도끼
+item.natura.kama.darkwood.name=암흑나무 낫
+item.natura.bow.darkwood.name=암흑나무 활
+
+item.natura.sword.fusewood.name=퓨즈나무 검
+item.natura.pickaxe.fusewood.name=퓨즈나무 곡괭이
+item.natura.shovel.fusewood.name=퓨즈나무 삽
+item.natura.axe.fusewood.name=퓨즈나무 도끼
+item.natura.kama.fusewood.name=퓨즈나무 낫
+item.natura.bow.fusewood.name=퓨즈나무 활
+
+item.natura.sword.netherquartz.name=석영 검
+item.natura.pickaxe.netherquartz.name=석영 곡괭이
+item.natura.shovel.netherquartz.name=석영 삽
+item.natura.axe.netherquartz.name=석영 손도끼
+item.natura.kama.netherquartz.name=석영 낫
+
+item.natura.armor.imphelmet.name=임프가죽 투구
+item.natura.armor.impjerkin.name=임프가죽 갑옷
+item.natura.armor.impleggings.name=임프가죽 바지
+item.natura.armor.impboots.name=임프가죽 신발
+
+item.flintandblaze.name=블레이즈 라이터
+
+entity.Natura.Imp.name=임프
+entity.Natura.HeatscarSpider.name=지옥 거미
+entity.Natura.BabyHeatscarSpider.name=아기 지옥 거미
+entity.Natura.FlameSpider.name=화염 거미
+entity.Natura.FlameSpiderBaby.name=아기 화염 거미
+entity.Natura.NitroCreeper.name=니트로 크리퍼
+
+tooltip.nethertree=지옥 나무
+tooltip.fusewood.log=폭발성
+tooltip.glass.soul=유령같은
+tooltip.glass.heat=뜨거운
+tooltip.tree1=분홍색 나무
+tooltip.tree2=벛꽃이 핌
+tooltip.tree3=유령처럼 창백함
+tooltip.tree4=메타세콰이아
+tooltip.tree5=내열 목재
+tooltip.tree6=승천하는 버그
+tooltip.tree7=무언가 단 것
+tooltip.tree8=때죽나무
+tooltip.tree9=나무의 심장부
+tooltip.tree10=야생 곡물
+tooltip.tree11=통곡하는 사람
+tooltip.barley=밀과 비슷하지만, 야생에서 자랍니다.
+tooltip.flour1=나를 구워서 빵을 만드세요.
+tooltip.flour2=케이크를 만드는 데도 쓰입니다.
+tooltip.cotton=모든 실과 솜의 공급원
+tooltip.sulfur=2x2로 조합하면 화약이 됩니다.
+tooltip.fletching=화살의 재료
+tooltip.imp=지옥의 열에도 견딥니다.
+tooltip.string=일반 실보다 튼튼한 것
+tooltip.darkwood1=꽃이다!
+tooltip.darkwood2=사과가 열립니다.
+tooltip.saguroplant1=나무처럼 자랍니다.
+tooltip.saguroplant2=비가 온 뒤에 열매를 맺습니다.
+tooltip.fireleaves=화염저항 잎사귀
+tooltip.cloud1=정말 가볍고 푹신해!
+tooltip.cloud2=네가 떨어질 때 보호해 주지.
+tooltip.cloud3=번개를 치게 합니다.
+tooltip.cloud4=3x3으로 조합하면 목탄이 됩니다.
+tooltip.cloud5=2x2로 조합하면 유황이 됩니다.
+tooltip.tree12=내열 목재
+tooltip.redwood1=태워서 목탄을 얻으세요.
+tooltip.redwood2=아니면 비밀 나무 문을 만드세요.
+tooltip.redwood3=나무의 심장부
+tooltip.redwood4=나무의 뿌리
+tooltip.berrybush1=빨갛고 달아
+tooltip.berrybush2=따뜻한 곳에서 발견됨
+tooltip.berrybush3=파랗고 시큼해
+tooltip.berrybush4=온대 지역에서 발견됨
+tooltip.berrybush5=까맣고 달아
+tooltip.berrybush6=습한 지역에서 발견됨
+tooltip.berrybush7=귤색에 맛있어
+tooltip.berrybush8=추운 지역에서 발견됨
+tooltip.shroom=네온 주스
+tooltip.netherberrybush1=약간 사악해
+tooltip.netherberrybush2=병주고 약주고
+tooltip.netherberrybush3=야간 투시
+tooltip.netherberrybush4=천천히 다이빙
+tooltip.netherberrybush5=트럭처럼 세게 때려
+tooltip.netherfood=분필 맛이 난다
+tooltip.sapling1=7x7로 심으세요
+tooltip.sapling2=자라는 데 하루가 걸립니다.
+tooltip.sapling3=용암 저항
+tooltip.sapling4=천장에 자람.
+tooltip.sapling5=탄산칼슘 사과가 열립니다.
+tooltip.impmeat1=이걸 먹는 건 너에게 그리 좋지 않아.
+tooltip.impmeat2=만져 보니 따뜻해.
+tooltip.berry=맛있어!
+tooltip.cactusjuice=상쾌해!
+tooltip.barkdoor=비밀 터널
+tooltip.firedoor=내열 문
+tooltip.sagurofruit=먹거나 씨로 뿌리세요.
+tooltip.berrymedley=거부할 수 없는 베리의 조합
+tooltip.seedbag=3x3범위로 씨앗을 심습니다
+tooltip.kama=강력한 잎 수확기
+tooltip.bonebag=3x3범위에 뼛가루를 뿌립니다.
