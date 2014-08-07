@@ -2,6 +2,7 @@ itemGroup.natura.plants=나추라의 식물들
 itemGroup.natura.trees=나추라의 나무들
 itemGroup.natura.nether=나추라의 지옥
 
+
 item.natura.spawnegg.name=스폰 
 
 item.wheatBag.name=밀 씨앗 봉투
@@ -14,7 +15,7 @@ item.boneBag.name=뼛가루 봉투
 
 item.barley.seed.name=보리 씨앗
 item.barley.plant.name=보리
-item.barley.flour.name=보리가루
+item.barley.flour.name=보릿가루
 item.wheat.flour.name=밀가루
 item.cotton.plant.name=목화
 item.fletching.ghostwood.name=유령나무 깃
@@ -66,11 +67,11 @@ block.leaves.fusewood.name=퓨즈나무 잎
 
 item.food.nether.potashapple.name=탄산칼슘 사과
 
-block.leaves.maple.name=단풍잎
+block.leaves.maple.name=단풍 잎
 block.leaves.silverbell.name=때죽나무 잎
 block.leaves.purpleheart.name=아마란스 잎
 block.leaves.tiger.name=호랑나무 잎
-block.leaves.willow.name=버들잎
+block.leaves.willow.name=버드나무 잎
 
 block.normal.cloud.name=구름
 block.dark.cloud.name=먹구름
@@ -79,7 +80,7 @@ block.sulfur.cloud.name=유황구름
 
 redwoodNDoor.name=삼나무 문
 eucalyptusNDoor.name=유칼립투스 문
-hopseedNDoor.name=호프씨나무 문
+hopseedNDoor.name=호프씨 문
 sakuraNDoor.name=벚나무 문
 ghostNDoor.name=유령나무 문
 bloodNDoor.name=피 유칼립투스 문
@@ -98,17 +99,17 @@ block.redwood.NPlanks.name=삼나무 판자
 block.maple.NPlanks.name=단풍나무 판자
 block.silverbell.NPlanks.name=때죽나무 판자
 block.tiger.NPlanks.name=호랑나무 판자
-block.purpleheart.NPlanks.name=아마란스 나무 판자
+block.purpleheart.NPlanks.name=아마란스 판자
 block.willow.NPlanks.name=버드나무 판자
 block.darkwood.NPlanks.name=암흑나무 판자
 block.fusewood.NPlanks.name=퓨즈나무 판자
 
-block.sapling.eucalyptus.name=유칼립투스 나무 묘목
+block.sapling.eucalyptus.name=유칼립투스 묘목
 block.sapling.sakura.name=벚나무 묘목
 block.sapling.ghost.name=유령나무 묘목
-block.sapling.bush.name=호프시드 나무 묘목
+block.sapling.bush.name=호프씨나무 묘목
 block.sapling.redwood.name=삼나무 묘목
-block.sapling.blood.name=피나무 묘목
+block.sapling.blood.name=피 유칼립투스 묘목
 block.sapling.darkwood.name=암흑나무 묘목
 block.sapling.fusewood.name=퓨즈나무 묘목
 block.sapling.willow.name=버드나무 묘목
