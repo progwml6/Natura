@@ -74,7 +74,7 @@ public class BaseCloudWorldgen implements IWorldGenerator
         }
 
         //End Generation
-        if (PHNatura.generateDarkClouds && biome == BiomeGenBase.sky && random.nextInt(4) == 0)
+        if (PHNatura.generateDarkClouds && biome == BiomeGenBase.sky && world.provider.dimensionId == 1 && random.nextInt(4) == 0)
         {
             xCh = xChunk + random.nextInt(16);
             zCh = zChunk + random.nextInt(16);
