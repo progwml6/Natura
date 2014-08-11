@@ -3,7 +3,7 @@ package mods.natura.worldgen.retro;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Random;
-
+import mantle.world.ChunkCoord;
 import mods.natura.Natura;
 import mods.natura.worldgen.BaseTreeWorldgen;
 import net.minecraft.nbt.NBTTagCompound;

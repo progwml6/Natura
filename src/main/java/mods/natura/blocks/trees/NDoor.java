@@ -91,10 +91,6 @@ public class NDoor extends BlockDoor
         return new ItemStack(NContent.doorItem, 1, meta);
     }
 
-    public void getSubBlocks (int par1, CreativeTabs par2CreativeTabs, List par3List)
-    {
-    }
-
     @Override
     public int getRenderType ()
     {
