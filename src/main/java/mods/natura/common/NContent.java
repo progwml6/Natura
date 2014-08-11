@@ -138,7 +138,6 @@ import tconstruct.library.crafting.PatternBuilder;
 import cpw.mods.fml.common.IFuelHandler;
 import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
-import cpw.mods.fml.common.registry.GameRegistry.ObjectHolder;
 
 public class NContent implements IFuelHandler
 {
@@ -151,7 +150,7 @@ public class NContent implements IFuelHandler
         plantItem = new PlantItem().setUnlocalizedName("barleyFood");
         GameRegistry.registerItem(plantItem, "barleyFood");
         crops = new CropBlock();
-        GameRegistry.registerBlock(crops, "N Crops");
+        GameRegistry.registerBlock(crops, "N Crops");//TODO 1.8 this MUST be renamed to get rid of the space
         seeds = new NaturaSeeds(crops, Blocks.farmland).setUnlocalizedName("barley.seed");
         GameRegistry.registerItem(seeds, "barley.seed");
         GameRegistry.registerCustomItemStack("seedBarley", new ItemStack(seeds, 1, 0));
@@ -229,9 +228,10 @@ public class NContent implements IFuelHandler
         ghostDoor = new NDoor(Material.wood, 4, "ghostwood").setBlockName("door.ghostwood");
         bloodDoor = new NDoor(Material.wood, 5, "bloodwood").setBlockName("door.bloodwood");
         redwoodBarkDoor = new NDoor(Material.wood, 6, "redwoodbark").setBlockName("door.redwoodbark");
-
-        MinecraftForge.addGrassSeed(new ItemStack(seeds, 1, 0), 3);
-        MinecraftForge.addGrassSeed(new ItemStack(seeds, 1, 1), 3);
+        if(PHNatura.dropBarley)
+            MinecraftForge.addGrassSeed(new ItemStack(seeds, 1, 0), 3);
+        if(PHNatura.dropCotton)
+            MinecraftForge.addGrassSeed(new ItemStack(seeds, 1, 1), 3);
 
         //floraBoat = new NBoat(PHNatura.boatItemID).setIconCoord(0, 3).setBlockName("floraBoat");
 
@@ -1213,18 +1213,9 @@ public class NContent implements IFuelHandler
     public static BerryBush berryBush;
     public static NetherBerryBush netherBerryBush;
 
-    public static Block baseHerb;
-    public static Block bloodyHerb;
-    public static Block manaHerb;
-    public static Block whiteHerb;
-    public static Block poisonHerb;
-    public static Block leafyHerb;
-    public static Block orangeHerb;
 
     //Others
     public static Block cloud;
-    public static Block ivy;
-    public static Block flower;
 
     //Trees    
     public static Block tree;
@@ -1272,8 +1263,6 @@ public class NContent implements IFuelHandler
     public static Block respawnObelisk;
     public static NetherGlass netherGlass;
     public static BlazeHopper netherHopper;
-    public static Block netherDropper;
-    public static Block netherDispenser;
     public static Block netherPressurePlate;
     public static Block netherButton;
     public static Block netherLever;
@@ -1350,12 +1339,9 @@ public class NContent implements IFuelHandler
     //Golem type things
     public static Block grassBlock;
     public static Block grassSlab;
-    public static Block miniDoor;
 
     public static Block plankSlab1;
     public static Block plankSlab2;
-
-    public static Block logSlab;
 
     public static Block stairEucalyptus;
     public static Block stairSakura;
