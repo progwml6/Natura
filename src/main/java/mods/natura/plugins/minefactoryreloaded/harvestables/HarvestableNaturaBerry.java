@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
+import net.minecraft.block.Block;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import powercrystals.minefactoryreloaded.api.HarvestType;
@@ -12,17 +14,17 @@ import powercrystals.minefactoryreloaded.api.IFactoryHarvestable;
 
 public class HarvestableNaturaBerry implements IFactoryHarvestable
 {
-    private int _sourceBlockId;
-    private int _berryItemId;
+    private Block _sourceBlockId;
+    private Item _berryItemId;
 
-    public HarvestableNaturaBerry(int sourceBlockId, int berryItemId)
+    public HarvestableNaturaBerry(Block sourceBlockId, Item berryItemId)
     {
         _sourceBlockId = sourceBlockId;
         _berryItemId = berryItemId;
     }
 
     @Override
-    public int getPlantId ()
+    public Block getPlant ()
     {
         return _sourceBlockId;
     }

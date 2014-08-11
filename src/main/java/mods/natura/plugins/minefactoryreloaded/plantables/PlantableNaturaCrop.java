@@ -1,15 +1,17 @@
 package mods.natura.plugins.minefactoryreloaded.plantables;
 
 import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-import net.minecraftforge.common.ForgeDirection;
+import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.common.IPlantable;
 
 public class PlantableNaturaCrop extends PlantableStandard
 {
 
-    public PlantableNaturaCrop(int sourceId, int plantedBlockId)
+    public PlantableNaturaCrop(Item sourceId, Block plantedBlockId)
     {
         super(sourceId, plantedBlockId);
     }
@@ -19,13 +21,13 @@ public class PlantableNaturaCrop extends PlantableStandard
     {
         if (stack.getItemDamage() == 0 || stack.getItemDamage() == 1)
         {
-            int groundId = world.getBlockId(x, y - 1, z);
+            Block groundId = world.getBlock(x, y - 1, z);
             if (!world.isAirBlock(x, y, z))
             {
                 return false;
             }
-            return (groundId == Block.dirt.blockID || groundId == Block.grass.blockID || groundId == Block.tilledField.blockID || (Block.blocksList[_plantedBlockId] instanceof IPlantable
-                    && Block.blocksList[groundId] != null && Block.blocksList[groundId].canSustainPlant(world, x, y, z, ForgeDirection.UP, ((IPlantable) Block.blocksList[_plantedBlockId]))));
+            return (groundId == Blocks.dirt || groundId == Blocks.grass || groundId == Blocks.farmland || (_plantedBlockId instanceof IPlantable
+                    && groundId != null && groundId.canSustainPlant(world, x, y, z, ForgeDirection.UP, ((IPlantable) _plantedBlockId))));
         }
         return false;
     }
@@ -33,15 +35,15 @@ public class PlantableNaturaCrop extends PlantableStandard
     @Override
     public void prePlant (World world, int x, int y, int z, ItemStack stack)
     {
-        int groundId = world.getBlockId(x, y - 1, z);
-        if (groundId == Block.dirt.blockID || groundId == Block.grass.blockID)
+        Block groundId = world.getBlock(x, y - 1, z);
+        if (groundId == Blocks.dirt || groundId == Blocks.grass)
         {
-            world.setBlock(x, y - 1, z, Block.tilledField.blockID);
+            world.setBlock(x, y - 1, z, Blocks.farmland);
         }
     }
 
     @Override
-    public int getPlantedBlockMetadata (World world, int x, int y, int z, ItemStack stack)
+    public int getMeta (ItemStack stack)
     {
         return stack.getItemDamage() == 0 ? 0 : 4;
     }

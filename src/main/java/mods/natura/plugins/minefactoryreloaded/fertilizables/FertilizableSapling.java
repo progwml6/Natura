@@ -10,21 +10,21 @@ import powercrystals.minefactoryreloaded.api.IFactoryFertilizable;
 
 public class FertilizableSapling implements IFactoryFertilizable
 {
-    private int _blockId;
+    private Block _blockId;
 
-    public FertilizableSapling(int blockId)
+    public FertilizableSapling(Block blockId)
     {
         _blockId = blockId;
     }
 
     @Override
-    public int getFertilizableBlockId ()
+    public Block getPlant ()
     {
         return _blockId;
     }
 
     @Override
-    public boolean canFertilizeBlock (World world, int x, int y, int z, FertilizerType fertilizerType)
+    public boolean canFertilize (World world, int x, int y, int z, FertilizerType fertilizerType)
     {
         return fertilizerType == FertilizerType.GrowPlant;
     }
@@ -32,7 +32,7 @@ public class FertilizableSapling implements IFactoryFertilizable
     @Override
     public boolean fertilize (World world, Random rand, int x, int y, int z, FertilizerType fertilizerType)
     {
-        ((BlockSapling) Block.blocksList[world.getBlockId(x, y, z)]).growTree(world, x, y, z, world.rand);
-        return world.getBlockId(x, y, z) != _blockId;
+        ((BlockSapling) world.getBlock(x, y, z)).func_149878_d(world, x, y, z, world.rand);
+        return world.getBlock(x, y, z) != _blockId;
     }
 }

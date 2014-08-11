@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
+import com.google.common.collect.Lists;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
@@ -12,7 +13,7 @@ import powercrystals.minefactoryreloaded.api.HarvestType;
 
 public class HarvestableNaturaTreeLeaves extends HarvestableStandard
 {
-    public HarvestableNaturaTreeLeaves(int id)
+    public HarvestableNaturaTreeLeaves(Block id)
     {
         super(id, HarvestType.TreeLeaf);
     }
@@ -22,13 +23,13 @@ public class HarvestableNaturaTreeLeaves extends HarvestableStandard
     {
         if (harvesterSettings.get("silkTouch") != null && harvesterSettings.get("silkTouch"))
         {
-            ArrayList<ItemStack> drops = new ArrayList<ItemStack>();
-            drops.add(new ItemStack(getPlantId(), 1, world.getBlockMetadata(x, y, z)));
+            ArrayList<ItemStack> drops = Lists.newArrayList();
+            drops.add(new ItemStack(getPlant(), 1, world.getBlockMetadata(x, y, z)));
             return drops;
         }
         else
         {
-            return Block.blocksList[getPlantId()].getBlockDropped(world, x, y, z, world.getBlockMetadata(x, y, z), 0);
+            return getPlant().getDrops(world, x, y, z, world.getBlockMetadata(x, y, z), 0);
         }
     }
 }

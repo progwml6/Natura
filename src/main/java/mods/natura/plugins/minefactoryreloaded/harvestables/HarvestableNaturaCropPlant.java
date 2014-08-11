@@ -6,6 +6,7 @@ import java.util.Map;
 import java.util.Random;
 
 import net.minecraft.block.Block;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import powercrystals.minefactoryreloaded.api.HarvestType;
@@ -13,17 +14,17 @@ import powercrystals.minefactoryreloaded.api.IFactoryHarvestable;
 
 public class HarvestableNaturaCropPlant implements IFactoryHarvestable
 {
-    private int _sourceId;
-    private int _cottonItemId;
+    private Block _sourceId;
+    private Item _cottonItemId;
 
-    public HarvestableNaturaCropPlant(int sourceId, int cottonItemId)
+    public HarvestableNaturaCropPlant(Block sourceId, Item cottonItemId)
     {
         _sourceId = sourceId;
         _cottonItemId = cottonItemId;
     }
 
     @Override
-    public int getPlantId ()
+    public Block getPlant ()
     {
         return _sourceId;
     }
@@ -56,7 +57,7 @@ public class HarvestableNaturaCropPlant implements IFactoryHarvestable
         }
         else
         {
-            return Block.blocksList[_sourceId].getBlockDropped(world, x, y, z, world.getBlockMetadata(x, y, z), 0);
+            return _sourceId.getDrops(world, x, y, z, world.getBlockMetadata(x, y, z), 0);
         }
     }
 
