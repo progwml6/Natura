@@ -45,6 +45,7 @@ import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.eventhandler.Event.Result;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -134,22 +135,22 @@ public class Natura
     @SubscribeEvent
     public void bonemealEvent (BonemealEvent event)
     {
-        if (!event.world.isRemote)
+        if (!event.world.isRemote && !event.isCanceled() && event.getResult() != Result.ALLOW)
         {
             if (event.block == NContent.glowshroom)
             {
                 if (NContent.glowshroom.fertilizeMushroom(event.world, event.x, event.y, event.z, event.world.rand))
-                    event.setResult(event.getResult().ALLOW);
+                    event.setResult(Result.ALLOW);
             }
             if (event.block == NContent.berryBush)
             {
                 if (NContent.berryBush.boneFertilize(event.world, event.x, event.y, event.z, event.world.rand))
-                    event.setResult(event.getResult().ALLOW);
+                    event.setResult(Result.ALLOW);
             }
             if (event.block == NContent.netherBerryBush)
             {
                 if (NContent.netherBerryBush.boneFertilize(event.world, event.x, event.y, event.z, event.world.rand))
-                    event.setResult(event.getResult().ALLOW);
+                    event.setResult(Result.ALLOW);
             }
         }
     }
