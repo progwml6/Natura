@@ -216,7 +216,8 @@ public class CropBlock extends BlockCrops
         return CropRender.model;
     }
 
-    public Item itemDropped (int meta, Random random, int fortune)
+    @Override
+    public Item getItemDropped(int meta, Random random, int fortune)
     {
         if (meta == 3 || meta == 8)
             return this.getCropItem(meta);
@@ -267,7 +268,7 @@ public class CropBlock extends BlockCrops
             int count = quantityDropped(metadata, fortune, world.rand);
             for (int i = 0; i < count; i++)
             {
-                Item id = itemDropped(metadata, world.rand, 0);
+                Item id = getItemDropped(metadata, world.rand, 0);
                 if (id != null)
                 {
                     ret.add(new ItemStack(id, 1, damageDropped(metadata)));
