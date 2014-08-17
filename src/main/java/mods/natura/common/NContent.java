@@ -871,7 +871,7 @@ public class NContent implements IFuelHandler
             addShapedRecipeFirst(recipes, new ItemStack(alternateFence, 2, i), "###", "###", '#', new ItemStack(stickItem, 1, i));
             OreDictionary.registerOre("crafterWood", new ItemStack(alternateWorkbench, 1, i));
             OreDictionary.registerOre("craftingTableWood", new ItemStack(alternateWorkbench, 1, i));
-            if (i != 4 && i != 12)
+            if (i != 12)
             {
                 OreDictionary.registerOre("plankWood", new ItemStack(planks, 1, i));
                 OreDictionary.registerOre("stickWood", new ItemStack(stickItem, 1, i));
