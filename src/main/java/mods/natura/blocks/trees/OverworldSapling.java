@@ -124,7 +124,7 @@ public class OverworldSapling extends BlockSapling
     @SideOnly(Side.CLIENT)
     public IIcon getIcon (int side, int meta)
     {
-        return icons[meta % 8];
+        return icons[meta % 8 % icons.length];
     }
     
     public void func_149879_c(World p_149879_1_, int p_149879_2_, int p_149879_3_, int p_149879_4_, Random p_149879_5_)
