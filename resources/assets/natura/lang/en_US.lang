@@ -247,6 +247,7 @@ block.soil.autumngrass.slab.name=Autumnal Grass Slab
 tile.bloodwood.name=Bloodwood
 tile.saguaro.block.name=Saguaro Cactus
 tile.bluebells.name=Bluebells
+tile.natura.crops.name=Crops
 
 tile.TaintedSoil.name=Tainted Soil
 tile.HeatSand.name=Heat Sand

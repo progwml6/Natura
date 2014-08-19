@@ -149,7 +149,7 @@ public class NContent implements IFuelHandler
         //Crops
         plantItem = new PlantItem().setUnlocalizedName("barleyFood");
         GameRegistry.registerItem(plantItem, "barleyFood");
-        crops = new CropBlock();
+        crops = (CropBlock) new CropBlock().setBlockName("natura.crops");
         GameRegistry.registerBlock(crops, "N Crops");//TODO 1.8 this MUST be renamed to get rid of the space
         seeds = new NaturaSeeds(crops, Blocks.farmland).setUnlocalizedName("barley.seed");
         GameRegistry.registerItem(seeds, "barley.seed");
