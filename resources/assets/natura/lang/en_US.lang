@@ -248,6 +248,9 @@ tile.bloodwood.name=Bloodwood
 tile.saguaro.block.name=Saguaro Cactus
 tile.bluebells.name=Bluebells
 tile.natura.crops.name=Crops
+tile.greenGlowshroom.name=Green Glowshroom
+tile.blueGlowshroom.name=Blue Glowshroom
+tile.purpleGlowshroom.name=Purple Glowshroom
 
 tile.TaintedSoil.name=Tainted Soil
 tile.HeatSand.name=Heat Sand
