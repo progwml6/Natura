@@ -9,7 +9,6 @@ import cpw.mods.fml.common.event.FMLInterModComms;
 public class BuildCraft implements ILoadableModule
 {
 
-    @SuppressWarnings("unused")
     public static String modId = "BuildCraft|Transport";
 
     @Override
