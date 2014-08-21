@@ -163,7 +163,7 @@ public class Natura
         {
             ItemStack equipped = event.entityPlayer.getCurrentEquippedItem();
             EntityAnimal creature = (EntityAnimal) event.target;
-            if (equipped != null && equipped.getItem() == NContent.plantItem && equipped.getItemDamage() == 0 && creature.getGrowingAge() == 0 && creature.isInLove())
+            if (equipped != null && equipped.getItem() == NContent.plantItem && equipped.getItemDamage() == 0 && creature.getGrowingAge() == 0 && !creature.isInLove())
             {
                 EntityPlayer player = event.entityPlayer;
                 if (!player.capabilities.isCreativeMode)
@@ -172,21 +172,11 @@ public class Natura
 
                     if (equipped.stackSize <= 0)
                     {
-                        player.inventory.setInventorySlotContents(player.inventory.currentItem, (ItemStack) null);
+                        player.inventory.setInventorySlotContents(player.inventory.currentItem, null);
                     }
                 }
 
                 creature.func_146082_f(event.entityPlayer);
-                creature.setTarget(null);
-
-                for (int i = 0; i < 7; ++i)
-                {
-                    double d0 = random.nextGaussian() * 0.02D;
-                    double d1 = random.nextGaussian() * 0.02D;
-                    double d2 = random.nextGaussian() * 0.02D;
-                    creature.worldObj.spawnParticle("heart", creature.posX + random.nextFloat() * creature.width * 2.0F - creature.width, creature.posY + 0.5D + random.nextFloat() * creature.height,
-                            creature.posZ + random.nextFloat() * creature.width * 2.0F - creature.width, d0, d1, d2);
-                }
             }
         }
     }
