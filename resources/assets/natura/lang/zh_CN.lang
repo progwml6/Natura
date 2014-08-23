@@ -247,6 +247,10 @@ block.soil.autumngrass.slab.name=秋光草地台阶
 tile.bloodwood.name=血树
 tile.saguaro.block.name=巨型仙人掌
 tile.bluebells.name=蓝铃草
+tile.natura.crops.name=谷物
+tile.greenGlowshroom.name=绿色荧光蘑菇
+tile.blueGlowshroom.name=蓝色荧光蘑菇
+tile.purpleGlowshroom.name=紫色荧光蘑菇
 
 tile.TaintedSoil.name=腐沙
 tile.HeatSand.name=热沙
