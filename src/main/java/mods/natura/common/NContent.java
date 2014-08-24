@@ -150,7 +150,8 @@ public class NContent implements IFuelHandler
         plantItem = new PlantItem().setUnlocalizedName("barleyFood");
         GameRegistry.registerItem(plantItem, "barleyFood");
         crops = (CropBlock) new CropBlock().setBlockName("natura.crops");
-        GameRegistry.registerBlock(crops, "N Crops");//TODO 1.8 this MUST be renamed to get rid of the space
+        GameRegistry.registerBlock(crops, "NCrops");
+        Natura.naturaRemapper.addMigration("N Crops", crops);//TODO 1.8 remove
         seeds = new NaturaSeeds(crops, Blocks.farmland).setUnlocalizedName("barley.seed");
         GameRegistry.registerItem(seeds, "barley.seed");
         GameRegistry.registerCustomItemStack("seedBarley", new ItemStack(seeds, 1, 0));
@@ -320,11 +321,13 @@ public class NContent implements IFuelHandler
 
         //Rare overworld
         rareTree = new OverworldTreeBlock().setBlockName("RareTree");
-        GameRegistry.registerBlock(rareTree, OverworldTreeItem.class, "Rare Tree");
+        GameRegistry.registerBlock(rareTree, OverworldTreeItem.class, "RareTree");
+        Natura.naturaRemapper.addMigration("Rare Tree", rareTree);//TODO 1.8 remove
         rareLeaves = (NLeaves) new OverworldLeaves().setBlockName("RareLeaves");
         GameRegistry.registerBlock(rareLeaves, OverworldLeavesItem.class, "Rare Leaves");
         rareSapling = (OverworldSapling) new OverworldSapling().setBlockName("RareSapling");
-        GameRegistry.registerBlock(rareSapling, OverworldSaplingItem.class, "Rare Sapling");
+        GameRegistry.registerBlock(rareSapling, OverworldSaplingItem.class, "RareSapling");
+        Natura.naturaRemapper.addMigration("Rare Sapling", rareSapling);//TODO 1.8 remove
         bluebells = (FlowerBlock) new FlowerBlock().setBlockName("bluebells");
         GameRegistry.registerBlock(bluebells, "Bluebells");
 
