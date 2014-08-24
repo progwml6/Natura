@@ -9,6 +9,7 @@ import net.minecraft.block.BlockDoor;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
@@ -37,9 +38,10 @@ public class NDoor extends BlockDoor
         this.disableStats();
     }
 
-    public int idDropped (int i, Random random, int j)
+    @Override
+    public Item getItemDropped (int i, Random random, int j)
     {
-        return (i & 8) != 0 ? 0 : Item.getIdFromItem(NContent.doorItem);
+        return (i & 8) != 0 ? Item.getItemFromBlock(Blocks.air) : NContent.doorItem;
     }
 
     @Override
