@@ -248,6 +248,10 @@ block.soil.autumngrass.slab.name=Lastra di erba autunnale
 tile.bloodwood.name=Legno insanguinato
 tile.saguaro.block.name=Saguaro cactus
 tile.bluebells.name=Campanule
+tile.natura.crops.name=Pianta
+tile.greenGlowshroom.name=Brillantfungo verde
+tile.blueGlowshroom.name=Brillantfungo blu
+tile.purpleGlowshroom.name=Brillantfungo viola
 
 tile.TaintedSoil.name=Terreno corrotto
 tile.HeatSand.name=Sabbia calda
@@ -289,9 +293,9 @@ item.natura.shovel.netherquartz.name=Pala di quarzo
 item.natura.axe.netherquartz.name=Accetta di quarzo
 item.natura.kama.netherquartz.name=Kama di quarzo
 
-item.natura.armor.imphelmet.name=Elmo di Imp
-item.natura.armor.impjerkin.name=Farsetto di Imp
-item.natura.armor.impleggings.name=Braghe di Imp
+item.natura.armor.imphelmet.name=Berretto di Imp
+item.natura.armor.impjerkin.name=Giubba di Imp
+item.natura.armor.impleggings.name=Gambiera di Imp
 item.natura.armor.impboots.name=Stivali di Imp
 
 item.flintandblaze.name=Selce e Vampo
