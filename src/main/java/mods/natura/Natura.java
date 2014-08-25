@@ -2,7 +2,7 @@ package mods.natura;
 
 import java.util.Random;
 
-import cpw.mods.fml.common.ModContainer;
+import cpw.mods.fml.common.*;
 import mantle.lib.TabTools;
 import mantle.module.ModuleController;
 import mods.natura.common.NContent;
@@ -39,11 +39,8 @@ import net.minecraftforge.oredict.OreDictionary;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
-import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
@@ -72,7 +69,8 @@ public class Natura
     @EventHandler
     public void preInit (FMLPreInitializationEvent evt)
     {
-        naturaRemapper = new Remapper((ModContainer)this);
+
+        naturaRemapper = new Remapper(Loader.instance().activeModContainer());
         FMLCommonHandler.instance().bus().register(naturaRemapper);
         MinecraftForge.EVENT_BUS.register(this);
 
