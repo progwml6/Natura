@@ -3,6 +3,7 @@ package mods.natura;
 import java.util.Random;
 
 import cpw.mods.fml.common.*;
+import cpw.mods.fml.common.event.FMLMissingMappingsEvent;
 import mantle.lib.TabTools;
 import mantle.module.ModuleController;
 import mods.natura.common.NContent;
@@ -71,7 +72,6 @@ public class Natura
     {
 
         naturaRemapper = new Remapper(Loader.instance().activeModContainer());
-        FMLCommonHandler.instance().bus().register(naturaRemapper);
         MinecraftForge.EVENT_BUS.register(this);
 
         PluginController.registerBuiltins();
@@ -134,7 +134,10 @@ public class Natura
 
         moduleLoader.postInit();
     }
-
+    @EventHandler
+    public void remapEvent (FMLMissingMappingsEvent event) {
+        naturaRemapper.processMigrationEvent(event);
+    }
     @SubscribeEvent
     public void bonemealEvent (BonemealEvent event)
     {
