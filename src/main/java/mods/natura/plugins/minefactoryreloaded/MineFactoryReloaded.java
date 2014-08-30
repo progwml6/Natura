@@ -6,7 +6,6 @@ import mods.natura.Natura;
 public class MineFactoryReloaded implements ILoadableModule
 {
 
-    @SuppressWarnings("unused")
     public static String modId = "MineFactoryReloaded";
 
     @Override
