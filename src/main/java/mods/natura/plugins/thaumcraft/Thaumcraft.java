@@ -8,7 +8,6 @@ import cpw.mods.fml.common.event.FMLInterModComms;
 public class Thaumcraft implements ILoadableModule
 {
 
-    @SuppressWarnings("unused")
     public static String modId = "Thaumcraft";
 
     @Override

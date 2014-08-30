@@ -10,7 +10,6 @@ import mods.natura.gui.WorkbenchGui;
 
 public class NotEnoughItems implements ILoadableModule
 {
-    @SuppressWarnings("unused")
     public static String modId = "NotEnoughItems";
 
     @Override

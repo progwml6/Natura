@@ -5,7 +5,6 @@ import mantle.module.ILoadableModule;
 public class Forestry implements ILoadableModule
 {
 
-    @SuppressWarnings("unused")
     public static String modId = "Forestry";
 
     @Override
