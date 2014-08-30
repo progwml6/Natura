@@ -12,7 +12,6 @@ import cpw.mods.fml.common.registry.GameData;
 public class TreeCapitator implements ILoadableModule
 {
 
-    @SuppressWarnings("unused")
     public static String modId = "TreeCapitator";
 
     @Override
