@@ -131,6 +131,14 @@ block.wood.maple.slab.name=Maple Slab
 block.wood.purpleheart.slab.name=Amaranth Slab
 block.wood.silverbell.slab.name=Silverbell Slab
 
+tile.door.eucalyptus.name=Eucalyptus Door
+tile.door.sakura.name=Sakura Door
+tile.door.ghostwood.name=Ghostwood Door
+tile.door.hopseed.name=Hopseed Door
+tile.door.redwood.name=Redwood Door
+tile.door.bloodwood.name=Bloodwood Door
+tile.door.redwoodbark.name=Redwood Bark Door
+
 tile.pressureplate.eucalyptus.name=Eucalyptus Pressure Plate
 tile.pressureplate.sakura.name=Sakura Pressure Plate
 tile.pressureplate.ghostwood.name=Ghostwood Pressure Plate
