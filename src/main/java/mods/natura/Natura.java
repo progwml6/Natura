@@ -66,7 +66,7 @@ public class Natura
 
     public static Logger logger = LogManager.getLogger(modID);
     
-    public static final PulseManager pulsar = new PulseManager(modID, new ForgeCFG("Natura-Dynamic", "Modules: Disabling these will disable a chunk of the mod"));
+    public static final PulseManager pulsar = new PulseManager(modID, "Natura-Dynamic");
 
     @EventHandler
     public void preInit (FMLPreInitializationEvent evt)
