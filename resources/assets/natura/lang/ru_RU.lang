@@ -131,6 +131,14 @@ block.wood.maple.slab.name=Плита из древесины клёна
 block.wood.purpleheart.slab.name=Плита из древесины щирицы
 block.wood.silverbell.slab.name=Плита из древесины галезии
 
+tile.door.eucalyptus.name=Дверь из древесины эвкалипта
+tile.door.sakura.name=Дверь из древесины сакуры
+tile.door.ghostwood.name=Дверь из древесины призрачного дерева
+tile.door.hopseed.name=Дверь из древесины хмельного дерева
+tile.door.redwood.name=Дверь из древесины красного дерева
+tile.door.bloodwood.name=Дверь из древесины кровавого дерева
+tile.door.redwoodbark.name=Дверь из коры красного дерева
+
 tile.pressureplate.eucalyptus.name=Нажимная плита из древесины эвкалипта
 tile.pressureplate.sakura.name=Нажимная плита из древесины сакуры
 tile.pressureplate.ghostwood.name=Нажимная плита из древесины призрачного дерева
