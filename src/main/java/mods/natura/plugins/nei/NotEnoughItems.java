@@ -3,23 +3,20 @@ package mods.natura.plugins.nei;
 import codechicken.nei.api.API;
 import codechicken.nei.recipe.DefaultOverlayHandler;
 import cpw.mods.fml.common.*;
+import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.relauncher.Side;
-import mantle.module.ILoadableModule;
+import mantle.pulsar.pulse.Handler;
+import mantle.pulsar.pulse.Pulse;
 import mods.natura.Natura;
 import mods.natura.gui.WorkbenchGui;
 
-public class NotEnoughItems implements ILoadableModule
+@Pulse(id = "Natura NEI Compatibility", modsRequired = NotEnoughItems.modId)
+public class NotEnoughItems
 {
-    public static String modId = "NotEnoughItems";
+    public static final String modId = "NotEnoughItems";
 
-    @Override
-    public void preInit ()
-    {
-        // Nothing
-    }
-
-    @Override
-    public void init ()
+    @Handler
+    public void init (FMLInitializationEvent evt)
     {
         if (FMLCommonHandler.instance().getSide().isServer())
             return;
@@ -33,12 +30,6 @@ public class NotEnoughItems implements ILoadableModule
         {
             e.printStackTrace();
         }
-    }
-
-    @Override
-    public void postInit ()
-    {
-
     }
 
     public static void registerNEICompat ()

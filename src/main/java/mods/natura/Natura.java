@@ -5,7 +5,8 @@ import java.util.Random;
 import cpw.mods.fml.common.*;
 import cpw.mods.fml.common.event.FMLMissingMappingsEvent;
 import mantle.lib.TabTools;
-import mantle.module.ModuleController;
+import mantle.pulsar.config.ForgeCFG;
+import mantle.pulsar.control.PulseManager;
 import mods.natura.common.NContent;
 import mods.natura.common.NProxyCommon;
 import mods.natura.common.NaturaTab;
@@ -64,8 +65,8 @@ public class Natura
     public static Material cloud = new CloudMaterial();
 
     public static Logger logger = LogManager.getLogger(modID);
-
-    public static final ModuleController moduleLoader = new ModuleController("Natura-Dynamic.cfg", modID);
+    
+    public static final PulseManager pulsar = new PulseManager(modID, "Natura-Dynamic");
 
     @EventHandler
     public void preInit (FMLPreInitializationEvent evt)
@@ -88,7 +89,7 @@ public class Natura
         NaturaTab.woodTab.init(new ItemStack(NContent.floraSapling, 1, 3));
         NaturaTab.netherTab.init(new ItemStack(NContent.floraSapling, 1, 5));
 
-        moduleLoader.preInit();
+        pulsar.preInit(evt);
     }
 
     public static BaseCropWorldgen crops;
@@ -123,7 +124,7 @@ public class Natura
         OreDictionary.registerOre("cropVine", new ItemStack(NContent.thornVines));
         random.setSeed(2 ^ 16 + 2 ^ 8 + (4 * 3 * 271));
 
-        moduleLoader.init();
+        pulsar.init(evt);
     }
 
     @EventHandler
@@ -132,7 +133,7 @@ public class Natura
         content.createEntities();
         content.modIntegration();
 
-        moduleLoader.postInit();
+        pulsar.postInit(evt);
     }
     @EventHandler
     public void remapEvent (FMLMissingMappingsEvent event) {
