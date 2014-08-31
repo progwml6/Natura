@@ -20,7 +20,7 @@ public class MineFactoryReloaded
         }
         catch (Throwable t)
         {
-            Natura.logger.debug("Something went wrong in Natura plugin MineFactoryReloaded.", t);
+            Natura.logger.warn("Something went wrong in Natura plugin MineFactoryReloaded.", t);
         }
     }
 
