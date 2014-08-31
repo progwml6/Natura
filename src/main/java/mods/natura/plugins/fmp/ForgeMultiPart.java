@@ -4,8 +4,6 @@ import net.minecraft.block.Block;
 import codechicken.microblock.BlockMicroMaterial;
 import codechicken.microblock.MicroMaterialRegistry;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
-import cpw.mods.fml.common.event.FMLPostInitializationEvent;
-import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import mantle.pulsar.pulse.Handler;
 import mantle.pulsar.pulse.Pulse;
 import mods.natura.Natura;
@@ -16,12 +14,6 @@ public class ForgeMultiPart
 {
 
     public static final String modId = "ForgeMultipart";
-
-    @Handler
-    public void preInit (FMLPreInitializationEvent evt)
-    {
-        // Nothing
-    }
 
     @Handler
     public void init (FMLInitializationEvent evt)
@@ -42,14 +34,8 @@ public class ForgeMultiPart
         }
         catch (Exception e)
         {
-            e.printStackTrace();
+            Natura.logger.catching(e);
         }
-    }
-
-    @Handler
-    public void postInit (FMLPostInitializationEvent evt)
-    {
-
     }
 
     //For blocks with metadata values only

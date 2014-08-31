@@ -7,19 +7,12 @@ import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLInterModComms;
-import cpw.mods.fml.common.event.FMLPostInitializationEvent;
-import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 
 @Pulse(id = "Natura BuildCraft Compatibility", modsRequired = BuildCraft.modId)
 public class BuildCraft
 {
 
     public static final String modId = "BuildCraft|Transport";
-
-    @Handler
-    public void preInit (FMLPreInitializationEvent evt)
-    {
-    }
 
     @Handler
     public void init (FMLInitializationEvent evt)
@@ -31,11 +24,6 @@ public class BuildCraft
         }
 
         addFacade(NContent.saguaro, 0);
-    }
-
-    @Handler
-    public void postInit (FMLPostInitializationEvent evt)
-    {
     }
 
     private void addFacade (Block b, int meta)

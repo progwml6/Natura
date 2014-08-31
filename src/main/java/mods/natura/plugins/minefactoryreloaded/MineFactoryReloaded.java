@@ -1,8 +1,6 @@
 package mods.natura.plugins.minefactoryreloaded;
 
 import cpw.mods.fml.common.event.FMLInitializationEvent;
-import cpw.mods.fml.common.event.FMLPostInitializationEvent;
-import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import mantle.pulsar.pulse.Handler;
 import mantle.pulsar.pulse.Pulse;
 import mods.natura.Natura;
@@ -12,11 +10,6 @@ public class MineFactoryReloaded
 {
 
     public static final String modId = "MineFactoryReloaded";
-
-    @Handler
-    public void preInit(FMLPreInitializationEvent evt) {
-
-    }
 
     @Handler
     public void init(FMLInitializationEvent evt) {
@@ -29,11 +22,6 @@ public class MineFactoryReloaded
         {
             Natura.logger.debug("Something went wrong in Natura plugin MineFactoryReloaded.", t);
         }
-    }
-
-    @Handler
-    public void postInit(FMLPostInitializationEvent evt) {
-
     }
 
 }

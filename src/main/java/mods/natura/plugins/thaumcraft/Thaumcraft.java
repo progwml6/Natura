@@ -11,19 +11,12 @@ import net.minecraft.item.ItemStack;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLInterModComms;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
-import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 
 @Pulse(id = "Natura Thaumcraft Compatibility", modsRequired = Thaumcraft.modId)
 public class Thaumcraft
 {
 
     public static final String modId = "Thaumcraft";
-
-    @Handler
-    public void preInit (FMLPreInitializationEvent evt)
-    {
-
-    }
 
     @Handler
     public void init (FMLInitializationEvent evt)

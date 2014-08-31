@@ -14,8 +14,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLInterModComms;
-import cpw.mods.fml.common.event.FMLPostInitializationEvent;
-import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 @Pulse(id = "Natura TE4 Compatibility", modsRequired = ThermalExpansion4.modId)
@@ -73,12 +71,6 @@ public class ThermalExpansion4
     public void addPressurePlate (Block input, String type)
     {
         createSawmillRecipe(2400, new ItemStack(input, 1), new ItemStack(NContent.planks, 2, findPlankForName(type)));
-    }
-
-    @Handler
-    public void preInit (FMLPreInitializationEvent evt)
-    {
-
     }
 
     @Handler
@@ -164,11 +156,6 @@ public class ThermalExpansion4
         addWood(NContent.rareTree, 1, "silverbell");
         addWood(NContent.rareTree, 3, "tiger");
         addWood(NContent.willow, 0, "willow");
-    }
-
-    @Handler
-    public void postInit (FMLPostInitializationEvent evt)
-    {
     }
 
 }

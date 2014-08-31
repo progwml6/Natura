@@ -9,8 +9,6 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLInterModComms;
-import cpw.mods.fml.common.event.FMLPostInitializationEvent;
-import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.registry.GameData;
 
 @Pulse(id = "Natura TreeCapitator Compatibility", modsRequired = TreeCapitator.modId)
@@ -18,11 +16,6 @@ public class TreeCapitator
 {
 
     public static final String modId = "Treecapitator";
-
-    @Handler
-    public void preInit (FMLPreInitializationEvent evt)
-    {
-    }
 
     @Handler
     public void init (FMLInitializationEvent evt)
@@ -116,18 +109,13 @@ public class TreeCapitator
 
     }
 
-    @Handler
-    public void postInit (FMLPostInitializationEvent evt)
-    {
-    }
-
     public static String getUniqueName (Block block)
     {
-        return GameData.blockRegistry.getNameForObject(block);
+        return GameData.getBlockRegistry().getNameForObject(block);
     }
 
     public static String getUniqueName (Item item)
     {
-        return GameData.itemRegistry.getNameForObject(item);
+        return GameData.getItemRegistry().getNameForObject(item);
     }
 }

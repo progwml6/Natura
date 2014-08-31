@@ -4,8 +4,6 @@ import codechicken.nei.api.API;
 import codechicken.nei.recipe.DefaultOverlayHandler;
 import cpw.mods.fml.common.*;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
-import cpw.mods.fml.common.event.FMLPostInitializationEvent;
-import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.relauncher.Side;
 import mantle.pulsar.pulse.Handler;
 import mantle.pulsar.pulse.Pulse;
@@ -16,12 +14,6 @@ import mods.natura.gui.WorkbenchGui;
 public class NotEnoughItems
 {
     public static final String modId = "NotEnoughItems";
-
-    @Handler
-    public void preInit (FMLPreInitializationEvent evt)
-    {
-        // Nothing
-    }
 
     @Handler
     public void init (FMLInitializationEvent evt)
@@ -38,12 +30,6 @@ public class NotEnoughItems
         {
             e.printStackTrace();
         }
-    }
-
-    @Handler
-    public void postInit (FMLPostInitializationEvent evt)
-    {
-
     }
 
     public static void registerNEICompat ()
