@@ -1,19 +1,24 @@
 package mods.natura.plugins.imc;
 
-import mantle.module.ILoadableModule;
+import cpw.mods.fml.common.event.FMLInitializationEvent;
+import cpw.mods.fml.common.event.FMLPostInitializationEvent;
+import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import mantle.pulsar.pulse.Handler;
+import mantle.pulsar.pulse.Pulse;
 
-public class Forestry implements ILoadableModule
+@Pulse(id = "Natura Forestry Compatibility", modsRequired = Forestry.modId)
+public class Forestry
 {
 
-    public static String modId = "Forestry";
+    public static final String modId = "Forestry";
 
-    @Override
-    public void preInit ()
+    @Handler
+    public void preInit (FMLPreInitializationEvent evt)
     {
     }
 
-    @Override
-    public void init ()
+    @Handler
+    public void init (FMLInitializationEvent evt)
     {
         /*
         //Forestry
@@ -26,8 +31,8 @@ public class Forestry implements ILoadableModule
          */
     }
 
-    @Override
-    public void postInit ()
+    @Handler
+    public void postInit (FMLPostInitializationEvent evt)
     {
     }
 

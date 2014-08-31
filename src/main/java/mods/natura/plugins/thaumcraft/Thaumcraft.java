@@ -3,24 +3,30 @@ package mods.natura.plugins.thaumcraft;
 import thaumcraft.api.ThaumcraftApi;
 import thaumcraft.api.aspects.Aspect;
 import thaumcraft.api.aspects.AspectList;
-import mantle.module.ILoadableModule;
+import mantle.pulsar.pulse.Handler;
+import mantle.pulsar.pulse.Pulse;
+import mods.natura.Natura;
 import mods.natura.common.NContent;
 import net.minecraft.item.ItemStack;
+import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLInterModComms;
+import cpw.mods.fml.common.event.FMLPostInitializationEvent;
+import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 
-public class Thaumcraft implements ILoadableModule
+@Pulse(id = "Natura Thaumcraft Compatibility", modsRequired = Thaumcraft.modId)
+public class Thaumcraft
 {
 
-    public static String modId = "Thaumcraft";
+    public static final String modId = "Thaumcraft";
 
-    @Override
-    public void preInit ()
+    @Handler
+    public void preInit (FMLPreInitializationEvent evt)
     {
 
     }
 
-    @Override
-    public void init ()
+    @Handler
+    public void init (FMLInitializationEvent evt)
     {
         FMLInterModComms.sendMessage("Thaumcraft", "harvestClickableCrop", new ItemStack(NContent.berryBush, 1, 12));
         FMLInterModComms.sendMessage("Thaumcraft", "harvestClickableCrop", new ItemStack(NContent.berryBush, 1, 13));
@@ -34,14 +40,13 @@ public class Thaumcraft implements ILoadableModule
         FMLInterModComms.sendMessage("Thaumcraft", "harvestStandardCrop", new ItemStack(NContent.crops, 1, 3));
     }
 
-    @Override
-    public void postInit ()
+    @Handler
+    public void postInit (FMLPostInitializationEvent evt)
     {
-        //TODO update this once Thaumcraft is 1.7.x
-    	
         try
         {
             Class.forName("thaumcraft.api.ThaumcraftApi");
+
             // Registering seeds
             AspectList seedTags = new AspectList();
             seedTags.add(Aspect.PLANT, 1);
@@ -203,7 +208,7 @@ public class Thaumcraft implements ILoadableModule
         }
         catch (Exception e)
         {
-            System.out.println("ThaumCraft integration failed.");
+            Natura.logger.warn("ThaumCraft integration failed.", e);
         }
 
     }

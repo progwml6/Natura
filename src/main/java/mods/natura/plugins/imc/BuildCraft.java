@@ -1,23 +1,28 @@
 package mods.natura.plugins.imc;
 
-import mantle.module.ILoadableModule;
+import mantle.pulsar.pulse.Handler;
+import mantle.pulsar.pulse.Pulse;
 import mods.natura.common.NContent;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
+import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLInterModComms;
+import cpw.mods.fml.common.event.FMLPostInitializationEvent;
+import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 
-public class BuildCraft implements ILoadableModule
+@Pulse(id = "Natura BuildCraft Compatibility", modsRequired = BuildCraft.modId)
+public class BuildCraft
 {
 
-    public static String modId = "BuildCraft|Transport";
+    public static final String modId = "BuildCraft|Transport";
 
-    @Override
-    public void preInit ()
+    @Handler
+    public void preInit (FMLPreInitializationEvent evt)
     {
     }
 
-    @Override
-    public void init ()
+    @Handler
+    public void init (FMLInitializationEvent evt)
     {
         for (int i = 0; i < 4; i++)
         {
@@ -28,8 +33,8 @@ public class BuildCraft implements ILoadableModule
         addFacade(NContent.saguaro, 0);
     }
 
-    @Override
-    public void postInit ()
+    @Handler
+    public void postInit (FMLPostInitializationEvent evt)
     {
     }
 
