@@ -1,34 +1,27 @@
 package mods.natura.plugins.minefactoryreloaded;
 
-import mantle.module.ILoadableModule;
+import cpw.mods.fml.common.event.FMLInitializationEvent;
+import mantle.pulsar.pulse.Handler;
+import mantle.pulsar.pulse.Pulse;
 import mods.natura.Natura;
 
-public class MineFactoryReloaded implements ILoadableModule
+@Pulse(id = "Natura MFR Compatibility", modsRequired = MineFactoryReloaded.modId)
+public class MineFactoryReloaded
 {
 
-    public static String modId = "MineFactoryReloaded";
+    public static final String modId = "MineFactoryReloaded";
 
-    @Override
-    public void preInit() {
-
-    }
-
-    @Override
-    public void init() {
+    @Handler
+    public void init(FMLInitializationEvent evt) {
         try
         {
-            Natura.logger.warn("[MFR] Registering Natura trees/plants/crops with MFR Farming Registry.");
+            Natura.logger.debug("[MFR] Registering Natura trees/plants/crops with MFR Farming Registry.");
             MRFRegistering.registerWithMFR();
         }
         catch (Throwable t)
         {
             Natura.logger.warn("Something went wrong in Natura plugin MineFactoryReloaded.", t);
         }
-    }
-
-    @Override
-    public void postInit() {
-
     }
 
 }

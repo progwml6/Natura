@@ -3,24 +3,20 @@ package mods.natura.plugins.fmp;
 import net.minecraft.block.Block;
 import codechicken.microblock.BlockMicroMaterial;
 import codechicken.microblock.MicroMaterialRegistry;
-import mantle.module.ILoadableModule;
+import cpw.mods.fml.common.event.FMLInitializationEvent;
+import mantle.pulsar.pulse.Handler;
+import mantle.pulsar.pulse.Pulse;
 import mods.natura.Natura;
 import mods.natura.common.NContent;
 
-public class ForgeMultiPart implements ILoadableModule
+@Pulse(id = "Natura FMP Compatibility", modsRequired = ForgeMultiPart.modId)
+public class ForgeMultiPart
 {
 
-    @SuppressWarnings("unused")
-    public static String modId = "ForgeMultipart";
+    public static final String modId = "ForgeMultipart";
 
-    @Override
-    public void preInit ()
-    {
-        // Nothing
-    }
-
-    @Override
-    public void init ()
+    @Handler
+    public void init (FMLInitializationEvent evt)
     {
         try
         {
@@ -38,14 +34,8 @@ public class ForgeMultiPart implements ILoadableModule
         }
         catch (Exception e)
         {
-            e.printStackTrace();
+            Natura.logger.catching(e);
         }
-    }
-
-    @Override
-    public void postInit ()
-    {
-
     }
 
     //For blocks with metadata values only
