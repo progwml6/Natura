@@ -1,9 +1,10 @@
-package mods.natura.plugins.te3;
+package mods.natura.plugins.te4;
 
 import java.util.Arrays;
 import java.util.List;
 
-import mantle.module.ILoadableModule;
+import mantle.pulsar.pulse.Handler;
+import mantle.pulsar.pulse.Pulse;
 import mods.natura.blocks.trees.Planks;
 import mods.natura.common.NContent;
 import mods.natura.items.blocks.NDoorItem;
@@ -11,14 +12,16 @@ import net.minecraft.block.Block;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLInterModComms;
 import cpw.mods.fml.common.registry.GameRegistry;
 
-public class ThermalExpansion3 implements ILoadableModule
+@Pulse(id = "Natura TE4 Compatibility", modsRequired = TE4Pulse.modId)
+public class TE4Pulse
 {
     private List<String> list;
 
-    public static String modId = "ThermalExpansion";
+    public static final String modId = "ThermalExpansion";
 
     public int findPlankForName (String name)
     {
@@ -70,14 +73,8 @@ public class ThermalExpansion3 implements ILoadableModule
         createSawmillRecipe(2400, new ItemStack(input, 1), new ItemStack(NContent.planks, 2, findPlankForName(type)));
     }
 
-    @Override
-    public void preInit ()
-    {
-
-    }
-
-    @Override
-    public void init ()
+    @Handler
+    public void init (FMLInitializationEvent evt)
     {
         list = Arrays.asList(Planks.textureNames);
         // Sawmill recipes
@@ -159,11 +156,6 @@ public class ThermalExpansion3 implements ILoadableModule
         addWood(NContent.rareTree, 1, "silverbell");
         addWood(NContent.rareTree, 3, "tiger");
         addWood(NContent.willow, 0, "willow");
-    }
-
-    @Override
-    public void postInit ()
-    {
     }
 
 }

@@ -1,11 +1,12 @@
 package mods.natura.plugins;
 
-import static mods.natura.Natura.moduleLoader;
-import mods.natura.plugins.fmp.ForgeMultiPart;
+import static mods.natura.Natura.pulsar;
+import mods.natura.plugins.fmp.FMPPulse;
 import mods.natura.plugins.imc.*;
-import mods.natura.plugins.nei.NotEnoughItems;
-import mods.natura.plugins.te3.ThermalExpansion3;
-import mods.natura.plugins.thaumcraft.Thaumcraft;
+import mods.natura.plugins.minefactoryreloaded.MFRPulse;
+import mods.natura.plugins.nei.NEIPulse;
+import mods.natura.plugins.te4.TE4Pulse;
+import mods.natura.plugins.thaumcraft.ThaumcraftPulse;
 
 /**
  * Master controller for Natura compat plugins.
@@ -21,14 +22,14 @@ public class PluginController
 
     public static void registerBuiltins ()
     {
-        moduleLoader.registerModule(ThermalExpansion3.class);
-        moduleLoader.registerModule(BuildCraft.class);
-        moduleLoader.registerModule(Forestry.class);
-        moduleLoader.registerModule(TreeCapitator.class);
-        moduleLoader.registerModule(Thaumcraft.class);
-        moduleLoader.registerModule(ForgeMultiPart.class);
-        moduleLoader.registerModule(NotEnoughItems.class);
-
+    	pulsar.registerPulse(new TE4Pulse());
+    	pulsar.registerPulse(new BuildCraftPulse());
+    	pulsar.registerPulse(new ForestryPulse());
+    	pulsar.registerPulse(new TreeCapitatorPulse());
+    	pulsar.registerPulse(new ThaumcraftPulse());
+    	pulsar.registerPulse(new FMPPulse());
+    	pulsar.registerPulse(new NEIPulse());
+    	pulsar.registerPulse(new MFRPulse());
     }
 
 }

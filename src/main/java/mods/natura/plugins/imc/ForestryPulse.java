@@ -1,19 +1,17 @@
 package mods.natura.plugins.imc;
 
-import mantle.module.ILoadableModule;
+import cpw.mods.fml.common.event.FMLInitializationEvent;
+import mantle.pulsar.pulse.Handler;
+import mantle.pulsar.pulse.Pulse;
 
-public class Forestry implements ILoadableModule
+@Pulse(id = "Natura Forestry Compatibility", modsRequired = ForestryPulse.modId)
+public class ForestryPulse
 {
 
-    public static String modId = "Forestry";
+    public static final String modId = "Forestry";
 
-    @Override
-    public void preInit ()
-    {
-    }
-
-    @Override
-    public void init ()
+    @Handler
+    public void init (FMLInitializationEvent evt)
     {
         /*
         //Forestry
@@ -24,11 +22,6 @@ public class Forestry implements ILoadableModule
         string = builder.append("farmWheat@").append(seeds.itemID).append(".1.").append(crops.blockID).append(".8").toString();
         FMLInterModComms.sendMessage("Forestry", "add-farmable-crop", string);
          */
-    }
-
-    @Override
-    public void postInit ()
-    {
     }
 
 }

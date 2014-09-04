@@ -4,42 +4,10 @@ import codechicken.nei.api.API;
 import codechicken.nei.recipe.DefaultOverlayHandler;
 import cpw.mods.fml.common.*;
 import cpw.mods.fml.relauncher.Side;
-import mantle.module.ILoadableModule;
-import mods.natura.Natura;
 import mods.natura.gui.WorkbenchGui;
 
-public class NotEnoughItems implements ILoadableModule
+public class NotEnoughItems
 {
-    public static String modId = "NotEnoughItems";
-
-    @Override
-    public void preInit ()
-    {
-        // Nothing
-    }
-
-    @Override
-    public void init ()
-    {
-        if (FMLCommonHandler.instance().getSide().isServer())
-            return;
-
-        try
-        {
-            Natura.logger.debug("[NEI] Registering Natura NEI plugin.");
-            registerNEICompat();
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-        }
-    }
-
-    @Override
-    public void postInit ()
-    {
-
-    }
 
     public static void registerNEICompat ()
     {

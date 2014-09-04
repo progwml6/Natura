@@ -1,26 +1,24 @@
 package mods.natura.plugins.imc;
 
-import mantle.module.ILoadableModule;
+import mantle.pulsar.pulse.Handler;
+import mantle.pulsar.pulse.Pulse;
 import mods.natura.common.NContent;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
+import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLInterModComms;
 import cpw.mods.fml.common.registry.GameData;
 
-public class TreeCapitator implements ILoadableModule
+@Pulse(id = "Natura TreeCapitator Compatibility", modsRequired = TreeCapitatorPulse.modId)
+public class TreeCapitatorPulse
 {
 
-    public static String modId = "TreeCapitator";
+    public static final String modId = "Treecapitator";
 
-    @Override
-    public void preInit ()
-    {
-    }
-
-    @Override
-    public void init ()
+    @Handler
+    public void init (FMLInitializationEvent evt)
     {
         NBTTagCompound tpModCfg = new NBTTagCompound();
         tpModCfg.setString("modID", "Natura");
@@ -107,24 +105,17 @@ public class TreeCapitator implements ILoadableModule
 
         tpModCfg.setTag("trees", treeList);
 
-        // bspkrs: added second line for new mod ID. Can be removed in 1.7.9 I guess?
-        FMLInterModComms.sendMessage("TreeCapitator", "ThirdPartyModConfig", tpModCfg);
-        FMLInterModComms.sendMessage("Treecapitator", "ThirdPartyModConfig", tpModCfg);
+        FMLInterModComms.sendMessage(modId, "ThirdPartyModConfig", tpModCfg);
 
-    }
-
-    @Override
-    public void postInit ()
-    {
     }
 
     public static String getUniqueName (Block block)
     {
-        return GameData.blockRegistry.getNameForObject(block);
+        return GameData.getBlockRegistry().getNameForObject(block);
     }
 
     public static String getUniqueName (Item item)
     {
-        return GameData.itemRegistry.getNameForObject(item);
+        return GameData.getItemRegistry().getNameForObject(item);
     }
 }
