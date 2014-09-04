@@ -7,13 +7,13 @@ import mods.natura.Natura;
 import mods.natura.client.CropRender;
 import mods.natura.common.NContent;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockCrops;
+import net.minecraft.block.BlockBush;
+import net.minecraft.block.IGrowable;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
@@ -23,7 +23,7 @@ import net.minecraftforge.common.EnumPlantType;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class CropBlock extends BlockCrops
+public class CropBlock extends BlockBush implements IGrowable
 {
     public CropBlock()
     {
@@ -35,6 +35,16 @@ public class CropBlock extends BlockCrops
         this.setHardness(0.0F);
         this.setStepSound(soundTypeGrass);
         this.disableStats();
+    }
+    
+    public int getMaxGrowth(int meta)
+    {
+        return (meta < 4) ? 3 : 8;
+    }
+    
+    public int getStartGrowth(int meta)
+    {
+        return (meta < 4) ? 0 : 4;
     }
 
     /**
@@ -50,7 +60,7 @@ public class CropBlock extends BlockCrops
         {
             int meta = world.getBlockMetadata(x, y, z);
 
-            if (meta != 3 && meta != 8)
+            if (this.getMaxGrowth(meta) != meta)
             {
                 float grow = this.getGrowthRate(world, x, y, z, meta, light);
 
@@ -62,57 +72,6 @@ public class CropBlock extends BlockCrops
             }
         }
     }
-
-    /**
-     * Apply bonemeal to the crops.
-     */
-    @Override
-    public void func_149863_m (World world, int x, int y, int z)
-    {
-        int meta = world.getBlockMetadata(x, y, z);
-        if (meta != 3 && meta != 8)
-        {
-            if (meta < 3)
-            {
-                int output = Natura.random.nextInt(3) + 1 + meta;
-                if (output > 3)
-                    output = 3;
-                world.setBlockMetadataWithNotify(x, y, z, output, 3);
-            }
-            else
-            {
-                int output = Natura.random.nextInt(4) + 1 + meta;
-                if (output > 8)
-                    output = 8;
-                world.setBlockMetadataWithNotify(x, y, z, output, 3);
-            }
-        }
-    }
-
-    /*public boolean boneFertilize (World world, int x, int y, int z, Random random)
-    {
-        int meta = world.getBlockMetadata(x, y, z);
-        if (meta != 3 && meta != 8)
-        {
-            System.out.println("Meta: "+meta);
-        	if (meta < 3)
-        	{
-        		int output = random.nextInt(3) + 1 + meta;
-        		if (output > 3)
-        			output = 3;
-        		world.setBlockMetadataWithNotify(x, y, z, output, 3);
-        	}
-        	else
-        	{
-        		int output = random.nextInt(4) + 1 + meta;
-        		if (output > 7)
-        			output = 7;
-        		world.setBlockMetadataWithNotify(x, y, z, output, 3);
-        	}
-            return true;
-        }
-        return false;
-    }*/
 
     protected float getGrowthRate (World world, int x, int y, int z, int meta, int light)
     {
@@ -224,12 +183,12 @@ public class CropBlock extends BlockCrops
         return this.getSeedItem(meta);
     }
 
-    protected Item getCropItem (int meta)
+    public Item getCropItem (int meta)
     {
         return NContent.plantItem;
     }
 
-    protected Item getSeedItem (int meta)
+    public Item getSeedItem (int meta)
     {
         return NContent.seeds;
     }
@@ -350,5 +309,40 @@ public class CropBlock extends BlockCrops
             return 0;
         else
             return 4;
+    }
+
+    // isNotFullyGrown
+    @Override
+    public boolean func_149851_a(World world, int x, int y, int z, boolean isRemote)
+    {
+        int meta = world.getBlockMetadata(x, y, z);
+
+        return this.getMaxGrowth(meta) != meta;
+    }
+
+    // canUseBonemeal
+    @Override
+    public boolean func_149852_a(World world, Random random, int x, int y, int z)
+    {
+        return true;
+    }
+
+    // onUseBonemeal
+    @Override
+    public void func_149853_b(World world, Random random, int x, int y, int z)
+    {
+        int meta = world.getBlockMetadata(x, y, z);
+        if (this.getMaxGrowth(meta) != meta)
+        {
+            int maxGrowth = this.getMaxGrowth(meta);
+            int growthSpan = maxGrowth - this.getStartGrowth(meta);
+            int output = Natura.random.nextInt(growthSpan) + 1 + meta;
+            
+            if (output > maxGrowth)
+                output = maxGrowth;
+            
+            if (output != meta)
+                world.setBlockMetadataWithNotify(x, y, z, output, 3);
+        }
     }
 }

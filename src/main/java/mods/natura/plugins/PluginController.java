@@ -7,6 +7,7 @@ import mods.natura.plugins.minefactoryreloaded.MFRPulse;
 import mods.natura.plugins.nei.NEIPulse;
 import mods.natura.plugins.te4.TE4Pulse;
 import mods.natura.plugins.thaumcraft.ThaumcraftPulse;
+import mods.natura.plugins.waila.WailaPulse;
 
 /**
  * Master controller for Natura compat plugins.
@@ -30,6 +31,7 @@ public class PluginController
     	pulsar.registerPulse(new FMPPulse());
     	pulsar.registerPulse(new NEIPulse());
     	pulsar.registerPulse(new MFRPulse());
+    	pulsar.registerPulse(new WailaPulse());
     }
 
 }
