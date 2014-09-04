@@ -73,13 +73,13 @@ public class HerbBlock extends CropBlock
     }
 
     @Override
-    protected Item getCropItem (int meta)
+    public Item getCropItem (int meta)
     {
         return NContent.plantItem;
     }
 
     @Override
-    protected Item getSeedItem (int meta)
+    public Item getSeedItem (int meta)
     {
         return NContent.seeds;
     }
