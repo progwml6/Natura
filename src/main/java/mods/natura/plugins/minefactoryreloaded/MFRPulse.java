@@ -5,8 +5,8 @@ import mantle.pulsar.pulse.Handler;
 import mantle.pulsar.pulse.Pulse;
 import mods.natura.Natura;
 
-@Pulse(id = "Natura MFR Compatibility", modsRequired = MineFactoryReloaded.modId)
-public class MineFactoryReloaded
+@Pulse(id = "Natura MFR Compatibility", modsRequired = MFRPulse.modId)
+public class MFRPulse
 {
 
     public static final String modId = "MineFactoryReloaded";

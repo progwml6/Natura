@@ -4,8 +4,8 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import mantle.pulsar.pulse.Handler;
 import mantle.pulsar.pulse.Pulse;
 
-@Pulse(id = "Natura Forestry Compatibility", modsRequired = Forestry.modId)
-public class Forestry
+@Pulse(id = "Natura Forestry Compatibility", modsRequired = ForestryPulse.modId)
+public class ForestryPulse
 {
 
     public static final String modId = "Forestry";

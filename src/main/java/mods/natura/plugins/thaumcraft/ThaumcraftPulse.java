@@ -12,8 +12,8 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLInterModComms;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 
-@Pulse(id = "Natura Thaumcraft Compatibility", modsRequired = Thaumcraft.modId)
-public class Thaumcraft
+@Pulse(id = "Natura Thaumcraft Compatibility", modsRequired = ThaumcraftPulse.modId)
+public class ThaumcraftPulse
 {
 
     public static final String modId = "Thaumcraft";

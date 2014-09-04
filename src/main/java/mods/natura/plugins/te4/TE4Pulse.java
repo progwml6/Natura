@@ -16,8 +16,8 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLInterModComms;
 import cpw.mods.fml.common.registry.GameRegistry;
 
-@Pulse(id = "Natura TE4 Compatibility", modsRequired = ThermalExpansion4.modId)
-public class ThermalExpansion4
+@Pulse(id = "Natura TE4 Compatibility", modsRequired = TE4Pulse.modId)
+public class TE4Pulse
 {
     private List<String> list;
 

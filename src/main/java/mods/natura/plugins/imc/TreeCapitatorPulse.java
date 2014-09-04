@@ -11,8 +11,8 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLInterModComms;
 import cpw.mods.fml.common.registry.GameData;
 
-@Pulse(id = "Natura TreeCapitator Compatibility", modsRequired = TreeCapitator.modId)
-public class TreeCapitator
+@Pulse(id = "Natura TreeCapitator Compatibility", modsRequired = TreeCapitatorPulse.modId)
+public class TreeCapitatorPulse
 {
 
     public static final String modId = "Treecapitator";
