@@ -81,8 +81,16 @@ public class NLeavesNocolor extends NLeaves
     public ArrayList<ItemStack> getDrops (World world, int x, int y, int z, int metadata, int fortune)
     {
         ArrayList<ItemStack> ret = super.getDrops(world, x, y, z, metadata, fortune);
-        if (metadata % 4 == 2 && Natura.random.nextInt(40 - fortune * 10) == 0)
-            ret.add(new ItemStack(Items.redstone));
+        
+        if (metadata % 4 == 2)
+        {
+            if (fortune > 3 || Natura.random.nextInt(40 - fortune * 10) == 0)
+            {
+                ret.add(new ItemStack(Items.redstone));
+            }
+
+        }
+            
         return ret;
     }
     
