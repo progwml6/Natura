@@ -209,29 +209,29 @@ public class NetherrackFurnaceBlock extends BlockContainer
         NetherrackFurnaceLogic logic = (NetherrackFurnaceLogic) world.getTileEntity(x, y, z);
         if (logic.getActive())
         {
-            int l = world.getBlockMetadata(x, y, z);
+            int direction = logic.getRenderDirection();
             float f = x + 0.5F;
             float f1 = y + 0.0F + par5Random.nextFloat() * 6.0F / 16.0F;
             float f2 = z + 0.5F;
             float f3 = 0.52F;
             float f4 = par5Random.nextFloat() * 0.6F - 0.3F;
 
-            if (l == 4)
+            if (direction == 4)
             {
                 world.spawnParticle("smoke", f - f3, f1, f2 + f4, 0.0D, 0.0D, 0.0D);
                 world.spawnParticle("flame", f - f3, f1, f2 + f4, 0.0D, 0.0D, 0.0D);
             }
-            else if (l == 5)
+            else if (direction == 5)
             {
                 world.spawnParticle("smoke", f + f3, f1, f2 + f4, 0.0D, 0.0D, 0.0D);
                 world.spawnParticle("flame", f + f3, f1, f2 + f4, 0.0D, 0.0D, 0.0D);
             }
-            else if (l == 2)
+            else if (direction == 2)
             {
                 world.spawnParticle("smoke", f + f4, f1, f2 - f3, 0.0D, 0.0D, 0.0D);
                 world.spawnParticle("flame", f + f4, f1, f2 - f3, 0.0D, 0.0D, 0.0D);
             }
-            else if (l == 3)
+            else if (direction == 3)
             {
                 world.spawnParticle("smoke", f + f4, f1, f2 + f3, 0.0D, 0.0D, 0.0D);
                 world.spawnParticle("flame", f + f4, f1, f2 + f3, 0.0D, 0.0D, 0.0D);
