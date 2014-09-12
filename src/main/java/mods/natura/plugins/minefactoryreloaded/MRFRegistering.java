@@ -31,6 +31,7 @@ public class MRFRegistering
         //blocks -- tried to imitate the sorting of PHNatura, but grabbed the block IDs from NContent
         Block saguaroId = NContent.saguaro  ;
 
+        Block netherSaplingId = NContent.netherSapling  ;
         Block netherBerryBushId = NContent.netherBerryBush  ;
         Block floraSaplingId = NContent.floraSapling  ;
         Block berryBushId = NContent.berryBush  ;
@@ -62,6 +63,7 @@ public class MRFRegistering
         FactoryRegistry.sendMessage("registerPlantable",new PlantableNaturaNetherBerry(Item.getItemFromBlock(netherBerryBushId), netherBerryBushId));
         FactoryRegistry.sendMessage("registerPlantable",new PlantableStandard(saguaroFruitId, saguaroId));
         FactoryRegistry.sendMessage("registerPlantable",new PlantableStandard(Item.getItemFromBlock(floraSaplingId), floraSaplingId));
+        FactoryRegistry.sendMessage("registerPlantable",new PlantableStandard(Item.getItemFromBlock(netherSaplingId), netherSaplingId));
 
         //misc plants
         FactoryRegistry.sendMessage("registerHarvestable",new HarvestableStandard(bluebellsId, HarvestType.Normal));

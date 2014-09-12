@@ -3,7 +3,8 @@ package mods.natura.items.blocks;
 import java.util.List;
 
 import mantle.blocks.abstracts.MultiItemBlock;
-import mods.natura.common.NContent;
+import mods.natura.blocks.trees.EnumSaplingType;
+import mods.natura.blocks.trees.NSaplingBlock;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -14,65 +15,34 @@ import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class NSaplingItem extends MultiItemBlock
+public abstract class NSaplingItem extends MultiItemBlock
 {
-    public static final String blockType[] = { "redwood", "eucalyptus", "bush", "sakura", "ghost", "blood", "darkwood", "fusewood", "", "", "", "", "", "", "", "", "" };
     private Block bID;
+    protected NSaplingBlock saplingBlock;
+    private static final String unlocalizedName = "block.sapling";
 
-    public NSaplingItem(Block block)
+    public NSaplingItem(Block block, String[] blockType, NSaplingBlock saplingBlock)
     {
-        super(block, "block.sapling", blockType);
+        super(block, unlocalizedName, blockType);
         setMaxDamage(0);
         setHasSubtypes(true);
         this.bID = block;
+        this.saplingBlock = saplingBlock;
     }
 
     @Override
-    public IIcon getIconFromDamage (int i)
-    {
-        return NContent.floraSapling.getIcon(0, i);
+    public IIcon getIconFromDamage(int i) {
+        return saplingBlock.getIcon(0, i);
     }
-
-    /*@Override
-    public String getUnlocalizedName (ItemStack itemstack)
-    {
-        return (new StringBuilder()).append("block.sapling.").append(blockType[itemstack.getItemDamage()]).toString();
-    }*/
 
     @Override
-    @SideOnly(Side.CLIENT)
-    public void addInformation (ItemStack stack, EntityPlayer player, List list, boolean par4)
-    {
-        switch (stack.getItemDamage())
-        {
-        case 0:
-            list.add(StatCollector.translateToLocal("tooltip.sapling1"));
-            list.add(StatCollector.translateToLocal("tooltip.sapling2"));
-            break;
-        case 1:
-            list.add(StatCollector.translateToLocal("tooltip.tree1"));
-            break;
-        case 2:
-            list.add(StatCollector.translateToLocal("tooltip.tree6"));
-            break;
-        case 3:
-            list.add(StatCollector.translateToLocal("tooltip.tree2"));
-            break;
-        case 4:
-            list.add(StatCollector.translateToLocal("tooltip.tree3"));
-            break;
-        case 5:
-            list.add(StatCollector.translateToLocal("tooltip.sapling3"));
-            list.add(StatCollector.translateToLocal("tooltip.sapling4"));
-            break;
-        case 6:
-            list.add(StatCollector.translateToLocal("tooltip.sapling5"));
-            break;
-        case 7:
-            list.add(StatCollector.translateToLocal("tooltip.fusewood.log"));
-            break;
-        }
+    public String getUnlocalizedName (ItemStack itemstack) {
+        int meta = itemstack.getItemDamage();
+        EnumSaplingType saplingType = saplingBlock.getSaplingType(meta);
+        return (new StringBuilder()).append(unlocalizedName).append(".").append(saplingType).toString();
     }
+
+    public abstract void addInformation (ItemStack stack, EntityPlayer player, List list, boolean par4);
 
     @Override
     public boolean onItemUse (ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side, float par8, float par9, float par10)

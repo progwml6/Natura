@@ -48,7 +48,7 @@ import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 
-@Mod(modid = "Natura", name = "Natura", version = "2.2.0", acceptedMinecraftVersions = "[1.7.10]", dependencies = "required-after:Mantle")
+@Mod(modid = "Natura", name = "Natura", version = "2.2.0", acceptedMinecraftVersions = "[1.7.10]", dependencies = "required-after:Mantle@[0.3.1,)")
 public class Natura
 {
     /* Proxies for sides, used for graphics processing */
@@ -82,7 +82,7 @@ public class Natura
         content.addOredictSupport();
         NaturaTab.tab.init(new ItemStack(NContent.boneBag, 0));
         NaturaTab.woodTab.init(new ItemStack(NContent.floraSapling, 1, 3));
-        NaturaTab.netherTab.init(new ItemStack(NContent.floraSapling, 1, 5));
+        NaturaTab.netherTab.init(new ItemStack(NContent.netherSapling, 1, 1));
 
         pulsar.preInit(evt);
     }

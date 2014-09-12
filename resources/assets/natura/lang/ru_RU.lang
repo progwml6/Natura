@@ -105,10 +105,10 @@ block.fusewood.NPlanks.name=Доски из древесины плавкого 
 
 block.sapling.eucalyptus.name=Саженец эвкалипта
 block.sapling.sakura.name=Саженец сакуры
-block.sapling.ghost.name=Саженец призрачного дерева
-block.sapling.bush.name=Саженец хмельного дерева
+block.sapling.ghostwood.name=Саженец призрачного дерева
+block.sapling.hopseed.name=Саженец хмельного дерева
 block.sapling.redwood.name=Саженец красного дерева
-block.sapling.blood.name=Саженец кровавого дерева
+block.sapling.bloodwood.name=Саженец кровавого дерева
 block.sapling.darkwood.name=Саженец тёмного дерева
 block.sapling.fusewood.name=Саженец плавкого дерева
 block.sapling.willow.name=Саженец ивы

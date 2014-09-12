@@ -158,10 +158,10 @@ public class ThaumcraftPulse
             ThaumcraftApi.registerObjectTag(new ItemStack(NContent.cloud, 0, 0), new AspectList().add(Aspect.AIR, 1).add(Aspect.FLIGHT, 1).add(Aspect.WATER, 1).add(Aspect.WEATHER, 1));
 
             // Nether saplings
-            ThaumcraftApi.registerObjectTag(new ItemStack(NContent.floraSapling, 0, 4), new AspectList().add(Aspect.SOUL, 1).add(Aspect.PLANT, 2).add(Aspect.TREE, 2));
-            ThaumcraftApi.registerObjectTag(new ItemStack(NContent.floraSapling, 0, 5), new AspectList().add(Aspect.TREE, 2).add(Aspect.PLANT, 2));
-            ThaumcraftApi.registerObjectTag(new ItemStack(NContent.floraSapling, 0, 6), new AspectList().add(Aspect.TREE, 2).add(Aspect.PLANT, 2));
-            ThaumcraftApi.registerObjectTag(new ItemStack(NContent.floraSapling, 0, 7), new AspectList().add(Aspect.TREE, 2).add(Aspect.PLANT, 2).add(Aspect.ENTROPY, 2));
+            ThaumcraftApi.registerObjectTag(new ItemStack(NContent.netherSapling, 0, 0), new AspectList().add(Aspect.SOUL, 1).add(Aspect.PLANT, 2).add(Aspect.TREE, 2));
+            ThaumcraftApi.registerObjectTag(new ItemStack(NContent.netherSapling, 0, 1), new AspectList().add(Aspect.TREE, 2).add(Aspect.PLANT, 2));
+            ThaumcraftApi.registerObjectTag(new ItemStack(NContent.netherSapling, 0, 2), new AspectList().add(Aspect.TREE, 2).add(Aspect.PLANT, 2));
+            ThaumcraftApi.registerObjectTag(new ItemStack(NContent.netherSapling, 0, 3), new AspectList().add(Aspect.TREE, 2).add(Aspect.PLANT, 2).add(Aspect.ENTROPY, 2));
 
             // Nether blocks
             ThaumcraftApi.registerObjectTag(new ItemStack(NContent.heatSand, 0, 0), new AspectList().add(Aspect.FIRE, 2).add(Aspect.EARTH, 1));

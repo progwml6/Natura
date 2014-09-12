@@ -105,10 +105,10 @@ block.fusewood.NPlanks.name=Zündholzplanken
 
 block.sapling.eucalyptus.name=Eukalyptussetzling
 block.sapling.sakura.name=Japanischer Blütenkirschsetzling
-block.sapling.ghost.name=Geisterholzsetzling
-block.sapling.bush.name=Hopseed-Setzling
+block.sapling.ghostwood.name=Geisterholzsetzling
+block.sapling.hopseed.name=Hopseed-Setzling
 block.sapling.redwood.name=Mammutbaumsetzling
-block.sapling.blood.name=Blutholzsetzling
+block.sapling.bloodwood.name=Blutholzsetzling
 block.sapling.darkwood.name=Dunkelholzsetzling
 block.sapling.fusewood.name=Zündholzsetzling
 block.sapling.willow.name=Weidensetzling

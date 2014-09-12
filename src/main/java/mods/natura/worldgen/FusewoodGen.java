@@ -107,7 +107,7 @@ public class FusewoodGen extends WorldGenerator
             else
             {
                 Block soil = world.getBlock(xPos, yPos - 1, zPos);
-                boolean isSoil = (soil != null && soil.canSustainPlant(world, xPos, yPos - 1, zPos, ForgeDirection.UP, (NSaplingBlock) NContent.floraSapling)) || soil == Blocks.netherrack;
+                boolean isSoil = (soil != null && soil.canSustainPlant(world, xPos, yPos - 1, zPos, ForgeDirection.UP, NContent.netherSapling)) || soil == Blocks.netherrack;
 
                 if (isSoil && yPos < 256 - treeHeight - 1)
                 {
