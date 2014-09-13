@@ -169,7 +169,8 @@ public class HeatscarSpider extends EntitySpider
         return NContent.plantItem;
     }
 
-    public EntityItem dropItemWithOffset (Item par1, int par2, float par3)
+    @Override
+    public EntityItem func_145778_a (Item par1, int par2, float par3)
     {
         return this.entityDropItem(new ItemStack(par1, par2, 7), par3);
     }
