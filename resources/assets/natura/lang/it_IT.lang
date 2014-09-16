@@ -131,6 +131,14 @@ block.wood.maple.slab.name=Lastra d'acero
 block.wood.purpleheart.slab.name=Lastra di amaranto
 block.wood.silverbell.slab.name=Lastra di halesia
 
+tile.door.eucalyptus.name=Porta di eucalipto
+tile.door.sakura.name=Porta di ciliegio
+tile.door.ghostwood.name=Porta di legno fantasma
+tile.door.hopseed.name=Porta di hopseed
+tile.door.redwood.name=Porta di sequia
+tile.door.bloodwood.name=Porta di legno insanguinato
+tile.door.redwoodbark.name=Porta di corteccia
+
 tile.pressureplate.eucalyptus.name=Pedana a pressione di eucalipto
 tile.pressureplate.sakura.name=Pedana a pressione di ciliegio
 tile.pressureplate.ghostwood.name=Pedana a pressione di legno fantasma
