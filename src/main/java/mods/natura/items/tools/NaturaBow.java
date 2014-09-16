@@ -21,6 +21,7 @@ public class NaturaBow extends ItemBow
         this.setMaxDamage(damage);
         this.woodType = type;
         this.setCreativeTab(NaturaTab.tab);
+        this.setFull3D();
     }
 
     @Override
