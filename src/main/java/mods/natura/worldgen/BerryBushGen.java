@@ -123,7 +123,7 @@ public class BerryBushGen extends WorldGenerator
         do
         {
             block = world.getBlock(x, y, z);
-            if (block != null && !block.isLeaves(world, x, y, z))
+            if (!world.isAirBlock(x, y, z) && !block.isLeaves(world, x, y, z))
             {
                 break;
             }
