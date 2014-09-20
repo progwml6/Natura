@@ -47,7 +47,7 @@ public class NetherBerryBushGen extends WorldGenerator
     {
         int returnHeight = -1;
         Block blockID = world.getBlock(x, y - 1, z);
-        if (blockID != null && !world.getBlock(x, y, z).isOpaqueCube() && (blockID == Blocks.netherrack || blockID.canSustainPlant(world, x, y - 1, z, ForgeDirection.UP, (IPlantable) blockGen)))
+        if (!world.isAirBlock(x, y - 1, z) && !world.getBlock(x, y, z).isOpaqueCube() && (blockID == Blocks.netherrack || blockID.canSustainPlant(world, x, y - 1, z, ForgeDirection.UP, (IPlantable) blockGen)))
         {
             //System.out.println("Returning "+y);
             return y;
@@ -57,7 +57,7 @@ public class NetherBerryBushGen extends WorldGenerator
         do
         {
             Block bID = world.getBlock(x, height, z);
-            if (bID != null)
+            if (!world.isAirBlock(x, height, z))
             {
                 if (bID == Blocks.netherrack || bID.canSustainPlant(world, x, height, z, ForgeDirection.UP, (IPlantable) blockGen))
                 {
@@ -128,7 +128,7 @@ public class NetherBerryBushGen extends WorldGenerator
         do
         {
             block = world.getBlock(x, y, z);
-            if (block != null && !block.isLeaves(world, x, y, z))
+            if (!world.isAirBlock(x, y, z) && !block.isLeaves(world, x, y, z))
             {
                 break;
             }

@@ -26,7 +26,7 @@ public class SaguaroGen extends WorldGenerator
     {
         int yPos = findGround(world, x, y, z, useHeight);
         Block currentID = world.getBlock(x, yPos, z);
-        if (currentID != null)
+        if (!world.isAirBlock(x, yPos, z))
         {
             if (currentID == NContent.saguaro)
             {
@@ -151,7 +151,7 @@ public class SaguaroGen extends WorldGenerator
         {
             height--;
             Block underID = world.getBlock(x, height, z);
-            if (underID == Blocks.dirt || underID == Blocks.grass || height < PHNatura.seaLevel)
+            if (underID == Blocks.sand || underID == Blocks.dirt || underID == Blocks.grass || height < PHNatura.seaLevel)
                 foundGround = true;
         } while (!foundGround);
         return height + 1;
