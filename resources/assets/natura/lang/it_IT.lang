@@ -20,7 +20,7 @@ item.cotton.plant.name=Cotone
 item.fletching.ghostwood.name=Impennaggio di foglie fantasma
 item.leather.imp.name=Pelle di Imp
 item.string.flame.name=Cordicella ardente
-item.dye.blue.name=Tintura blu
+item.dye.blue.name=Colorante blu
 
 item.cotton.seed.name=Semi di cotone
 item.powder.sulfur.name=Zolfo
@@ -265,7 +265,7 @@ tile.TaintedSoil.name=Terreno corrotto
 tile.HeatSand.name=Sabbia calda
 tile.Thornvines.name=Rampicante pungente
 tile.potashApple.name=Mela potassa
-item.natura.stick.name=Bastone
+item.natura.stick.name=Stecca
 
 item.natura.sword.ghostwood.name=Spada di legno fantasma
 item.natura.pickaxe.ghostwood.name=Piccone di legno fantasma
