@@ -1,4 +1,4 @@
-#[Natura](http://www.minecraftforum.net/topic/1753754-natura/)
+#[Natura](http://www.minecraftforum.net/forums/mapping-and-modding/minecraft-mods/1294968-natura)
 
 We work all day and we work all night 	 
 The mandrake gives us quite a fright 	 
