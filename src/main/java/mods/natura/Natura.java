@@ -3,7 +3,6 @@ package mods.natura;
 import java.util.Random;
 
 import cpw.mods.fml.common.*;
-import cpw.mods.fml.common.event.FMLMissingMappingsEvent;
 import mantle.lib.TabTools;
 import mantle.pulsar.control.PulseManager;
 import mods.natura.common.NContent;
@@ -13,7 +12,6 @@ import mods.natura.common.PHNatura;
 import mods.natura.dimension.NetheriteWorldProvider;
 import mods.natura.gui.NGuiHandler;
 import mods.natura.plugins.PluginController;
-import mods.natura.util.Remapper;
 import mods.natura.worldgen.BaseCloudWorldgen;
 import mods.natura.worldgen.BaseCropWorldgen;
 import mods.natura.worldgen.BaseTreeWorldgen;
@@ -57,7 +55,6 @@ public class Natura
     @SidedProxy(clientSide = "mods.natura.client.NProxyClient", serverSide = "mods.natura.common.NProxyCommon")
     public static NProxyCommon proxy;
     public static final String modID = "Natura";
-    public static Remapper naturaRemapper;
     /* Instance of this mod, used for grabbing prototype fields */
     @Instance(modID)
     public static Natura instance;
@@ -71,7 +68,6 @@ public class Natura
     public void preInit (FMLPreInitializationEvent evt)
     {
 
-        naturaRemapper = new Remapper(Loader.instance().activeModContainer());
         MinecraftForge.EVENT_BUS.register(this);
 
         PluginController.registerBuiltins();
@@ -133,10 +129,6 @@ public class Natura
         content.modIntegration();
 
         pulsar.postInit(evt);
-    }
-    @EventHandler
-    public void remapEvent (FMLMissingMappingsEvent event) {
-        naturaRemapper.processMigrationEvent(event);
     }
     @SubscribeEvent
     public void bonemealEvent (BonemealEvent event)
