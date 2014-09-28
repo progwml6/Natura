@@ -20,7 +20,7 @@ item.cotton.plant.name=Cotone
 item.fletching.ghostwood.name=Impennaggio di foglie fantasma
 item.leather.imp.name=Pelle di Imp
 item.string.flame.name=Cordicella ardente
-item.dye.blue.name=Tintura blu
+item.dye.blue.name=Colorante blu
 
 item.cotton.seed.name=Semi di cotone
 item.powder.sulfur.name=Zolfo
@@ -130,6 +130,14 @@ block.wood.tiger.slab.name=Lastra di legno tigrato
 block.wood.maple.slab.name=Lastra d'acero
 block.wood.purpleheart.slab.name=Lastra di amaranto
 block.wood.silverbell.slab.name=Lastra di halesia
+
+tile.door.eucalyptus.name=Porta di eucalipto
+tile.door.sakura.name=Porta di ciliegio
+tile.door.ghostwood.name=Porta di legno fantasma
+tile.door.hopseed.name=Porta di hopseed
+tile.door.redwood.name=Porta di sequia
+tile.door.bloodwood.name=Porta di legno insanguinato
+tile.door.redwoodbark.name=Porta di corteccia
 
 tile.pressureplate.eucalyptus.name=Pedana a pressione di eucalipto
 tile.pressureplate.sakura.name=Pedana a pressione di ciliegio
@@ -257,7 +265,7 @@ tile.TaintedSoil.name=Terreno corrotto
 tile.HeatSand.name=Sabbia calda
 tile.Thornvines.name=Rampicante pungente
 tile.potashApple.name=Mela potassa
-item.natura.stick.name=Bastone
+item.natura.stick.name=Stecca
 
 item.natura.sword.ghostwood.name=Spada di legno fantasma
 item.natura.pickaxe.ghostwood.name=Piccone di legno fantasma
