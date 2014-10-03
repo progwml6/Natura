@@ -152,7 +152,7 @@ public class NContent implements IFuelHandler
         plantItem = new PlantItem().setUnlocalizedName("barleyFood");
         GameRegistry.registerItem(plantItem, "barleyFood");
         crops = (CropBlock) new CropBlock().setBlockName("natura.crops");
-        GameRegistry.registerBlock(crops, "N Crops");//TODO 1.8 RENAME
+        GameRegistry.registerBlock(crops, "crops");
         seeds = new NaturaSeeds(crops, Blocks.farmland).setUnlocalizedName("barley.seed");
         GameRegistry.registerItem(seeds, "barley.seed");
         GameRegistry.registerCustomItemStack("seedBarley", new ItemStack(seeds, 1, 0));
@@ -326,9 +326,9 @@ public class NContent implements IFuelHandler
         rareTree = new OverworldTreeBlock().setBlockName("RareTree");
         GameRegistry.registerBlock(rareTree, OverworldTreeItem.class, "Rare Tree");
         rareLeaves = (NLeaves) new OverworldLeaves().setBlockName("RareLeaves");
-        GameRegistry.registerBlock(rareLeaves, OverworldLeavesItem.class, "Rare Leaves");//TODO 1.8 rename
+        GameRegistry.registerBlock(rareLeaves, OverworldLeavesItem.class, "RareLeaves");
         rareSapling = (RareSaplingBlock) new RareSaplingBlock().setBlockName("RareSapling");
-        GameRegistry.registerBlock(rareSapling, RareSaplingItem.class, "Rare Sapling");//TODO 1.8 rename
+        GameRegistry.registerBlock(rareSapling, RareSaplingItem.class, "RareSapling");
         bluebells = (FlowerBlock) new FlowerBlock().setBlockName("bluebells");
         GameRegistry.registerBlock(bluebells, "Bluebells");
 
@@ -882,9 +882,8 @@ public class NContent implements IFuelHandler
             }
         }
 
-        for (int i = 0; i < logStacks.length; i++)
-        {
-            OreDictionary.registerOre("logWood", logStacks[i]);
+        for (ItemStack logStack : logStacks) {
+            OreDictionary.registerOre("logWood", logStack);
         }
 
         OreDictionary.registerOre("dyeBlue", new ItemStack(plantItem, 1, 8));
@@ -942,7 +941,7 @@ public class NContent implements IFuelHandler
                 OreDictionary.registerOre("bowlWood", new ItemStack(bowlEmpty, 1, i));
                 //TODO 1.7 test this and deal w/ recipes as well, make sure vanilla bowl is registered
                 if (FluidRegistry.isFluidRegistered("mushroomsoup"))
-                    FluidContainerRegistry.registerFluidContainer(FluidRegistry.getFluid("mushroomsoup"), new ItemStack(this.bowlStew, 1, i));
+                    FluidContainerRegistry.registerFluidContainer(FluidRegistry.getFluid("mushroomsoup"), new ItemStack(bowlStew, 1, i));
                 addShapedRecipeFirst(recipes, new ItemStack(bowlEmpty, 4, i), "# #", " # ", '#', new ItemStack(planks, 1, i));
                 GameRegistry.addShapelessRecipe(new ItemStack(bowlStew, 1, i + 1), new ItemStack(bowlEmpty, 1, i), new ItemStack(Blocks.brown_mushroom), new ItemStack(Blocks.red_mushroom_block));
                 GameRegistry.addShapelessRecipe(new ItemStack(bowlStew, 1, i + 15), new ItemStack(bowlEmpty, 1, i), new ItemStack(glowshroom, 1, 0), new ItemStack(glowshroom, 1, 1), new ItemStack(
@@ -1033,9 +1032,7 @@ public class NContent implements IFuelHandler
         {
             String[] var7 = ((String[]) objArray[var4++]);
 
-            for (int var8 = 0; var8 < var7.length; ++var8)
-            {
-                String var9 = var7[var8];
+            for (String var9 : var7) {
                 ++var6;
                 var5 = var9.length();
                 var3 = var3 + var9;
@@ -1148,8 +1145,7 @@ public class NContent implements IFuelHandler
 
         OreDictionary.registerOre("slabWood", new ItemStack(plankSlab1, 1, Short.MAX_VALUE));
         OreDictionary.registerOre("slabWood", new ItemStack(plankSlab2, 1, Short.MAX_VALUE));
-        //TODO 1.8 saplingTree is not the common name for saplings will be removed in 1.8
-        OreDictionary.registerOre("saplingTree", new ItemStack(floraSapling, 1, Short.MAX_VALUE));
+
         OreDictionary.registerOre("treeSapling", new ItemStack(floraSapling, 1, Short.MAX_VALUE));
         OreDictionary.registerOre("saplingTree", new ItemStack(rareSapling, 1, Short.MAX_VALUE));
         OreDictionary.registerOre("treeSapling", new ItemStack(rareSapling, 1, Short.MAX_VALUE));

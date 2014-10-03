@@ -68,13 +68,13 @@ public class WorldHandler
 
             if (chunks == null)
             {
-                TickHandlerWorld.chunksToGen.put(Integer.valueOf(dim), new ArrayList());
+                TickHandlerWorld.chunksToGen.put(dim, new ArrayList());
                 chunks = (ArrayList) TickHandlerWorld.chunksToGen.get(Integer.valueOf(dim));
             }
             if (chunks != null)
             {
                 chunks.add(cCoord);
-                TickHandlerWorld.chunksToGen.put(Integer.valueOf(dim), chunks);
+                TickHandlerWorld.chunksToGen.put(dim, chunks);
             }
         }
     }

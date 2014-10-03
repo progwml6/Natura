@@ -164,11 +164,7 @@ public class NetherrackFurnaceBlock extends BlockContainer
     public static boolean isActive (IBlockAccess world, int x, int y, int z)
     {
         TileEntity logic = world.getTileEntity(x, y, z);
-        if (logic instanceof NetherrackFurnaceLogic)
-        {
-            return ((NetherrackFurnaceLogic) logic).getActive();
-        }
-        return false;
+        return logic instanceof NetherrackFurnaceLogic && ((NetherrackFurnaceLogic) logic).getActive();
     }
 
     @Override

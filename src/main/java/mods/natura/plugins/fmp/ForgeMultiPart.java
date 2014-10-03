@@ -29,7 +29,7 @@ public class ForgeMultiPart
     {
         for (int meta = metastart; meta <= metaend; meta++)
         {
-            String identifier = new String(block.getUnlocalizedName());
+            String identifier = block.getUnlocalizedName();
             MicroMaterialRegistry.registerMaterial(new BlockMicroMaterial(block, meta), identifier + meta);
         }
     }
@@ -45,7 +45,7 @@ public class ForgeMultiPart
     {
         for (int meta = metastart; meta <= metaend; meta++)
         {
-            String identifier = new String(block.getUnlocalizedName());
+            String identifier = block.getUnlocalizedName();
             MicroMaterialRegistry.registerMaterial(material, identifier + meta);
         }
     }
@@ -53,7 +53,7 @@ public class ForgeMultiPart
     //For blocks without metadata values and special MicroMaterial only.
     public static void registerBlock (Block block, MicroMaterialRegistry.IMicroMaterial material)
     {
-        MicroMaterialRegistry.registerMaterial(material, new String(block.getUnlocalizedName()));
+        MicroMaterialRegistry.registerMaterial(material, block.getUnlocalizedName());
     }
 
 }

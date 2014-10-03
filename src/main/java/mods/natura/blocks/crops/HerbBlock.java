@@ -20,7 +20,7 @@ public class HerbBlock extends CropBlock
         this.setTickRandomly(true);
         float var3 = 0.5F;
         this.setBlockBounds(0.5F - var3, 0.0F, 0.5F - var3, 0.5F + var3, 0.25F, 0.5F + var3);
-        this.setCreativeTab((CreativeTabs) null);
+        this.setCreativeTab(null);
         this.setHardness(0.0F);
         this.setStepSound(soundTypeGrass);
         this.disableStats();

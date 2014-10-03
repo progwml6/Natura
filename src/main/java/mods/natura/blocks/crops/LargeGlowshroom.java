@@ -99,14 +99,8 @@ public class LargeGlowshroom extends Block
     public boolean shouldSideBeRendered (IBlockAccess iblockaccess, int x, int y, int z, int side)
     {
         Block blockID = iblockaccess.getBlock(x, y, z);
-        if (blockID == NContent.glowshroomBlue || blockID == NContent.glowshroomPurple)
-        {
-            return false;
-        }
-        else
-        {
-            return super.shouldSideBeRendered(iblockaccess, x, y, z, side);
-        }
+        return !(blockID == NContent.glowshroomBlue || blockID == NContent.glowshroomPurple) && super
+                .shouldSideBeRendered(iblockaccess, x, y, z, side);
     }
 
     /**

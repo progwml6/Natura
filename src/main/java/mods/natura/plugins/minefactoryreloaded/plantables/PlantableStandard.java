@@ -32,25 +32,19 @@ public class PlantableStandard implements IFactoryPlantable
     public boolean canBePlantedHere (World world, int x, int y, int z, ItemStack stack)
     {
         Block groundId = world.getBlock(x, y - 1, z);
-        if (!world.isAirBlock(x, y, z))
-        {
-            return false;
-        }
-        return (_plantedBlockId.canPlaceBlockAt(world, x, y, z) && _plantedBlockId.canBlockStay(world, x, y, z))
-                || (_plantedBlockId instanceof IPlantable &&  groundId != null &&  groundId.canSustainPlant(world, x, y, z, ForgeDirection.UP,
-                        ((IPlantable)  _plantedBlockId)));
+        return world.isAirBlock(x, y, z) && ((_plantedBlockId.canPlaceBlockAt(world, x, y, z) && _plantedBlockId.canBlockStay(world, x, y, z)) || (
+                _plantedBlockId instanceof IPlantable && groundId != null && groundId
+                        .canSustainPlant(world, x, y, z, ForgeDirection.UP, ((IPlantable) _plantedBlockId))));
     }
 
     @Override
     public void prePlant (World world, int x, int y, int z, ItemStack stack)
     {
-        return;
     }
 
     @Override
     public void postPlant (World world, int x, int y, int z, ItemStack stack)
     {
-        return;
     }
     @Override
     public ReplacementBlock getPlantedBlock (World world, int x, int y, int z, ItemStack stack)

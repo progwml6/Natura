@@ -22,12 +22,9 @@ public class PlantableNaturaCrop extends PlantableStandard
         if (stack.getItemDamage() == 0 || stack.getItemDamage() == 1)
         {
             Block groundId = world.getBlock(x, y - 1, z);
-            if (!world.isAirBlock(x, y, z))
-            {
-                return false;
-            }
-            return (groundId == Blocks.dirt || groundId == Blocks.grass || groundId == Blocks.farmland || (_plantedBlockId instanceof IPlantable
-                    && groundId != null && groundId.canSustainPlant(world, x, y, z, ForgeDirection.UP, ((IPlantable) _plantedBlockId))));
+            return world.isAirBlock(x, y, z) && (groundId == Blocks.dirt || groundId == Blocks.grass || groundId == Blocks.farmland || (
+                    _plantedBlockId instanceof IPlantable && groundId != null && groundId
+                            .canSustainPlant(world, x, y, z, ForgeDirection.UP, ((IPlantable) _plantedBlockId))));
         }
         return false;
     }

@@ -111,11 +111,6 @@ public class EucalyptusTreeGenShort extends WorldGenerator
         world.setBlock(posX, posY - 1, posZ, Blocks.dirt);
         world.setBlock(posX, posY, posZ, Blocks.air);
         Block test = world.getBlock(posX, posY, posZ);
-        boolean test1;
-        if (test == Blocks.air)
-        {
-            test1 = world.setBlock(posX, posY, posZ, NContent.tree, mdWood, 3);
-        }
         for (int k1 = 0; k1 < height; k1++)
         {
             Block i2 = world.getBlock(posX, posY + k1, posZ);

@@ -235,14 +235,7 @@ public class NetherBerryBush extends BlockLeavesBase implements IPlantable
     @Override
     public boolean shouldSideBeRendered (IBlockAccess iblockaccess, int i, int j, int k, int l)
     {
-        if (l > 7 || field_150121_P)
-        {
-            return super.shouldSideBeRendered(iblockaccess, i, j, k, l);
-        }
-        else
-        {
-            return true;
-        }
+        return !(l > 7 || field_150121_P) || super.shouldSideBeRendered(iblockaccess, i, j, k, l);
     }
 
     /* Bush growth */

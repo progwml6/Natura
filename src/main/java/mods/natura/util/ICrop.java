@@ -13,7 +13,7 @@ public interface ICrop
         BREAK, USE, MACHINE
     }
 
-    public static final List<ItemStack> NO_YIELD = Collections.<ItemStack> emptyList();
+    public static final List<ItemStack> NO_YIELD = Collections.emptyList();
 
     /** 
      * 

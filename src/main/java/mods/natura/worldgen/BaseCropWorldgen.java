@@ -189,10 +189,8 @@ public class BaseCropWorldgen implements IWorldGenerator
     {
         float temp = biome.temperature;
         float rain = biome.rainfall;
-        if (minTemp <= temp && temp <= maxTemp && minRain <= rain && rain <= maxRain)
-            return true;
+        return minTemp <= temp && temp <= maxTemp && minRain <= rain && rain <= maxRain;
 
-        return false;
     }
 
     BerryBushGen raspgen;

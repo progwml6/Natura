@@ -22,7 +22,7 @@ public class PlantableNaturaNetherBerry extends PlantableStandard
     {
         Block groundBlock = world.getBlock(x, y - 1, z);
 
-        return (groundBlock != null && (groundBlock.canSustainPlant(world, x, y - 1, z, ForgeDirection.UP, (IPlantable) NContent.netherBerryBush) || groundBlock == Blocks.netherrack) && world
+        return (groundBlock != null && (groundBlock.canSustainPlant(world, x, y - 1, z, ForgeDirection.UP, NContent.netherBerryBush) || groundBlock == Blocks.netherrack) && world
                 .isAirBlock(x, y, z));
     }
 

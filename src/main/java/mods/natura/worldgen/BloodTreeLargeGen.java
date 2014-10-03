@@ -22,10 +22,8 @@ public class BloodTreeLargeGen extends WorldGenerator
     public boolean generate (World world, Random random, int x, int y, int z)
     {
         int height = findCeiling(world, x, y, z);
-        if (height == -1)
-            return false;
+        return height != -1 && generateRandomTree(world, random, x, height, z);
 
-        return generateRandomTree(world, random, x, height, z);
     }
 
     int findCeiling (World world, int x, int y, int z)

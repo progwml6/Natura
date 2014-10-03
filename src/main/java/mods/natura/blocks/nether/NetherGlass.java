@@ -63,7 +63,7 @@ public class NetherGlass extends Block
     public boolean shouldSideBeRendered (IBlockAccess par1IBlockAccess, int par2, int par3, int par4, int par5)
     {
         Block i1 = par1IBlockAccess.getBlock(par2, par3, par4);
-        return i1 == this ? false : super.shouldSideBeRendered(par1IBlockAccess, par2, par3, par4, par5);
+        return i1 != this && super.shouldSideBeRendered(par1IBlockAccess, par2, par3, par4, par5);
     }
 
     @Override

@@ -92,14 +92,7 @@ public class CloudBlock extends NBlock
     public boolean shouldSideBeRendered (IBlockAccess iblockaccess, int x, int y, int z, int side)
     {
         Block block = iblockaccess.getBlock(x, y, z);
-        if (block == NContent.cloud)
-        {
-            return false;
-        }
-        else
-        {
-            return super.shouldSideBeRendered(iblockaccess, x, y, z, side);
-        }
+        return block != NContent.cloud && super.shouldSideBeRendered(iblockaccess, x, y, z, side);
     }
 
     @Override
@@ -124,14 +117,7 @@ public class CloudBlock extends NBlock
     public boolean isBlockSolid (IBlockAccess iblockaccess, int x, int y, int z, int l)
     {
         Block block = iblockaccess.getBlock(x, y, z);
-        if (block == NContent.cloud)
-        {
-            return false;
-        }
-        else
-        {
-            return super.isBlockSolid(iblockaccess, x, y, z, l);
-        }
+        return block != NContent.cloud && super.isBlockSolid(iblockaccess, x, y, z, l);
     }
 
     @Override

@@ -34,9 +34,7 @@ public class TaintedSoil extends NBlock
     public boolean canSustainPlant (World world, int x, int y, int z, ForgeDirection direction, IPlantable plant)
     {
         EnumPlantType plantType = plant.getPlantType(world, x, y + 1, z);
-        if (plantType == EnumPlantType.Nether)
-            return true;
-        return super.canSustainPlant(world, x, y, z, direction, plant);
+        return plantType == EnumPlantType.Nether || super.canSustainPlant(world, x, y, z, direction, plant);
     }
 
     public boolean isFireSource (World world, int x, int y, int z, int metadata, ForgeDirection side)

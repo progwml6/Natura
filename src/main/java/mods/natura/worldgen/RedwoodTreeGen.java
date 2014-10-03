@@ -2168,11 +2168,10 @@ public class RedwoodTreeGen extends WorldGenerator
 
     void generateLeaves ()
     {
-        for (int iter = 0; iter < this.leafNodes.length; iter++)
-        {
-            int posX = this.leafNodes[iter][0];
-            int posY = this.leafNodes[iter][1];
-            int posZ = this.leafNodes[iter][2];
+        for (int[] leafNode : this.leafNodes) {
+            int posX = leafNode[0];
+            int posY = leafNode[1];
+            int posZ = leafNode[2];
             this.generateLeafNode(posX, posY, posZ);
         }
     }

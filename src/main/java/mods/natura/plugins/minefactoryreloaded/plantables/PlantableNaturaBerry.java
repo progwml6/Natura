@@ -21,7 +21,7 @@ public class PlantableNaturaBerry extends PlantableStandard
     {
         Block groundBlock = world.getBlock(x, y - 1, z);
 
-        return (groundBlock != null && groundBlock.canSustainPlant(world, x, y - 1, z, ForgeDirection.UP, (IPlantable) NContent.berryBush) && world.isAirBlock(x, y, z));
+        return (groundBlock != null && groundBlock.canSustainPlant(world, x, y - 1, z, ForgeDirection.UP, NContent.berryBush) && world.isAirBlock(x, y, z));
     }
 
     @Override

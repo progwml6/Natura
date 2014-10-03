@@ -59,14 +59,12 @@ public class NetherSaplingBlock extends NSaplingBlock {
             case DARKWOOD:
             case FUSEWOOD:
                 Block netherSoil = world.getBlock(x, y - 1, z);
-                if (netherSoil == null)
-                    return false;
-                return netherSoil == Blocks.netherrack || netherSoil.canSustainPlant(world, x, y - 1, z, ForgeDirection.UP, this);
+                return netherSoil != null && (netherSoil == Blocks.netherrack || netherSoil
+                        .canSustainPlant(world, x, y - 1, z, ForgeDirection.UP, this));
             case BLOODWOOD:
                 Block netherCeiling = world.getBlock(x, y + 1, z);
-                if (netherCeiling == null)
-                    return false;
-                return canGrowOnBlock(netherCeiling) || netherCeiling.canSustainPlant(world, x, y + 1, z, ForgeDirection.DOWN, this);
+                return netherCeiling != null && (canGrowOnBlock(netherCeiling) || netherCeiling
+                        .canSustainPlant(world, x, y + 1, z, ForgeDirection.DOWN, this));
             default:
                 return true;
         }

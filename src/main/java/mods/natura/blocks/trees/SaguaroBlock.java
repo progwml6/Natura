@@ -232,14 +232,7 @@ public class SaguaroBlock extends Block implements IPlantable
     @Override
     public boolean canPlaceBlockAt (World world, int i, int j, int k)
     {
-        if (!super.canPlaceBlockAt(world, i, j, k))
-        {
-            return false;
-        }
-        else
-        {
-            return canBlockStay(world, i, j, k);
-        }
+        return super.canPlaceBlockAt(world, i, j, k) && canBlockStay(world, i, j, k);
     }
 
     public void onNeighborBlockChange (World world, int i, int j, int k, int l)
@@ -268,10 +261,8 @@ public class SaguaroBlock extends Block implements IPlantable
 
     public boolean canConnectSuguaroTo (IBlockAccess world, int x, int y, int z)
     {
-        if (world.getBlock(x, y, z) == this && world.getBlockMetadata(x, y, z) == 0)
-            return true;
+        return world.getBlock(x, y, z) == this && world.getBlockMetadata(x, y, z) == 0;
 
-        return false;
     }
 
     @Override

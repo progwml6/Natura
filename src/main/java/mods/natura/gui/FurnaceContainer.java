@@ -59,22 +59,18 @@ public class FurnaceContainer extends Container
     {
         super.detectAndSendChanges();
 
-        for (int i = 0; i < this.crafters.size(); ++i)
-        {
-            ICrafting icrafting = (ICrafting) this.crafters.get(i);
+        for (Object crafter : this.crafters) {
+            ICrafting icrafting = (ICrafting) crafter;
 
-            if (this.lastCookTime != this.furnace.furnaceCookTime)
-            {
+            if (this.lastCookTime != this.furnace.furnaceCookTime) {
                 icrafting.sendProgressBarUpdate(this, 0, this.furnace.furnaceCookTime);
             }
 
-            if (this.lastBurnTime != this.furnace.furnaceBurnTime)
-            {
+            if (this.lastBurnTime != this.furnace.furnaceBurnTime) {
                 icrafting.sendProgressBarUpdate(this, 1, this.furnace.furnaceBurnTime);
             }
 
-            if (this.lastItemBurnTime != this.furnace.currentItemBurnTime)
-            {
+            if (this.lastItemBurnTime != this.furnace.currentItemBurnTime) {
                 icrafting.sendProgressBarUpdate(this, 2, this.furnace.currentItemBurnTime);
             }
         }
@@ -168,7 +164,7 @@ public class FurnaceContainer extends Container
 
             if (itemstack1.stackSize == 0)
             {
-                slot.putStack((ItemStack) null);
+                slot.putStack(null);
             }
             else
             {

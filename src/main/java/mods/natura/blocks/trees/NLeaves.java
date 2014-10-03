@@ -184,7 +184,7 @@ public class NLeaves extends BlockLeaves
     @Override
     public boolean shouldSideBeRendered (IBlockAccess var1, int var2, int var3, int var4, int var5)
     {
-        return this.field_150121_P ? super.shouldSideBeRendered(var1, var2, var3, var4, var5) : true;
+        return !this.field_150121_P || super.shouldSideBeRendered(var1, var2, var3, var4, var5);
     }
 
     @SideOnly(Side.CLIENT)

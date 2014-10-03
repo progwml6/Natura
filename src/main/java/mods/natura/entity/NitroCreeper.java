@@ -188,7 +188,7 @@ public class NitroCreeper extends EntityCreeper
 
     public boolean attackEntityFrom (DamageSource source, int damage)
     {
-        if (source instanceof EntityDamageSource && ((EntityDamageSource) source).getEntity() instanceof EntityIronGolem)
+        if (source instanceof EntityDamageSource && source.getEntity() instanceof EntityIronGolem)
         {
             damage = 1000;
         }

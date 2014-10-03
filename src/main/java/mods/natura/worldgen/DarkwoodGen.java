@@ -2,7 +2,6 @@ package mods.natura.worldgen;
 
 import java.util.Random;
 
-import mods.natura.blocks.trees.NSaplingBlock;
 import mods.natura.common.NContent;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;

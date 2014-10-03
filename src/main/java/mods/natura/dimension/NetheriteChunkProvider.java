@@ -322,7 +322,7 @@ public class NetheriteChunkProvider implements IChunkProvider
         this.netherCaveGenerator.func_151539_a(this, this.worldObj, chunkX, chunkZ, aBlock);
         this.genNetherBridge.func_151539_a(this, this.worldObj, chunkX, chunkZ, aBlock);
         Chunk chunk = new NetheriteChunk(this.worldObj, lowerArray, chunkX, chunkZ);
-        BiomeGenBase[] abiomegenbase = this.worldObj.getWorldChunkManager().loadBlockGeneratorData((BiomeGenBase[]) null, chunkX * 16, chunkZ * 16, 16, 16);
+        BiomeGenBase[] abiomegenbase = this.worldObj.getWorldChunkManager().loadBlockGeneratorData(null, chunkX * 16, chunkZ * 16, 16, 16);
         byte[] abyte1 = chunk.getBiomeArray();
 
         for (int k = 0; k < abyte1.length; ++k)

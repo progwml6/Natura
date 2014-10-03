@@ -10,6 +10,7 @@ import cpw.mods.fml.common.gameevent.TickEvent.Phase;
 import cpw.mods.fml.common.gameevent.TickEvent.Type;
 import cpw.mods.fml.common.gameevent.TickEvent.WorldTickEvent;
 
+@SuppressWarnings("UnnecessaryBoxing")
 public class TickHandlerWorld
 {
 

@@ -19,11 +19,7 @@ public class FenceRender implements ISimpleBlockRenderingHandler
     public boolean renderWorldBlock (IBlockAccess world, int x, int y, int z, Block block, int modelId, RenderBlocks renderer)
     {
 
-        if (modelId == model)
-        {
-            return renderer.renderBlockFence((BlockFence) block, x, y, z);
-        }
-        return true;
+        return modelId != model || renderer.renderBlockFence((BlockFence) block, x, y, z);
     }
 
     @Override
