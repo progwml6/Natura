@@ -68,8 +68,8 @@ public class PHNatura
         generateDuskberries = config.get("Disabler", "Generate Duskberry Bushes", true).getBoolean(true);
         generateSkyberries = config.get("Disabler", "Generate Skyberry Bushes", true).getBoolean(true);
         generateStingberries = config.get("Disabler", "Generate Stingberry Bushes", true).getBoolean(true);
-        dropBarley = config.get("Disabler", "Drop cotton seeds from grass", true).getBoolean(true);
-        dropCotton = config.get("Disabler", "Drop barley seeds from grass", true).getBoolean(true);
+        dropCotton = config.get("Disabler", "Drop cotton seeds from grass", true).getBoolean(true);
+        dropBarley = config.get("Disabler", "Drop barley seeds from grass", true).getBoolean(true);
         try
         {
             Class.forName("chococraft.common.ModChocoCraft");
