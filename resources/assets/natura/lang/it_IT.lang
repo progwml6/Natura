@@ -10,7 +10,7 @@ item.potatoBag.name=Sacchetto di patate
 item.carrotBag.name=Sacchetto di carote
 item.wartBag.name=Sacchetto di verruche degli Inferi
 item.cottonBag.name=Sacchetto di semi di cotone
-item.boneBag.name=Sacchetto di farina d'osso
+item.boneBag.name=Sacchetto di farina d'ossa
 
 item.barley.seed.name=Semi d'orzo
 item.barley.plant.name=Orzo
@@ -209,10 +209,10 @@ tile.trapdoor.maple.name=Botola d'acero
 tile.trapdoor.amaranth.name=Botola di amaranto
 tile.trapdoor.silverbell.name=Botola di halesia
 
-tile.blazerail.name=Binario di Vampo
-tile.blazerail.powered.name=Binario di Vampo alimentato
-tile.blazerail.detector.name=Binario di Vampo rivelatore
-tile.blazerail.activator.name=Binario di Vampo attivatore
+tile.blazerail.name=Rotaia di Vampo
+tile.blazerail.powered.name=Rotaia di Vampo booster
+tile.blazerail.detector.name=Rotaia di Vampo "detector"
+tile.blazerail.activator.name=Rotaia di Vampo attivatrice
 
 tile.furnace.netherrack.name=Fornace degli Inferi
 tile.nether.obelisk.name=Obelisco
@@ -233,7 +233,7 @@ block.bush.NLeaves.name=Foglie di hopseed
 block.redwood.NLeaves.name=Foglie di redwood
 block.leaves.blood.name=Foglie insanguinate
 
-block.eucalyptus.log.name=Eucalyptus Wood=Legno di eucalipto
+block.eucalyptus.log.name=Legno di eucalipto
 block.sakura.log.name=Legno di ciliegio
 block.ghost.log.name=Legno di legno fantasma
 block.hopseed.log.name=Legno di hopseed
@@ -384,4 +384,4 @@ tooltip.sagurofruit=Usabile come cibo o seme
 tooltip.berrymedley=Un'irristibile combinazione di bacche
 tooltip.seedbag=Pianta in un area di 3x3
 tooltip.kama=Il grande mietitore di foglie
-tooltip.bonebag=Cresce piante in un area di 3x3
+tooltip.bonebag=Cresce le piante in un area di 3x3
