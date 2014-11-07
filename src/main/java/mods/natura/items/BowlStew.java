@@ -25,7 +25,7 @@ public class BowlStew extends ItemFood
 
     public BowlStew()
     {
-        super(6, false);
+        super(6, 0.6f, false);
     }
 
     @SideOnly(Side.CLIENT)
@@ -60,12 +60,10 @@ public class BowlStew extends ItemFood
                 this.icons[i] = iconRegister.registerIcon("natura:stew_" + textureNames[i]);
         }
     }
-
     @Override
     public ItemStack onEaten (ItemStack stack, World world, EntityPlayer player)
     {
-        // TODO 1.7 check this
-        player.getFoodStats().addStats(6, 0.6f);
+        player.getFoodStats().func_151686_a(this, stack);
         world.playSoundAtEntity(player, "random.burp", 0.5F, world.rand.nextFloat() * 0.1F + 0.9F);
         this.onFoodEaten(stack, world, player);
 
