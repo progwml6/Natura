@@ -1,13 +1,13 @@
 package mods.natura.worldgen;
 
-import java.util.Random;
-
+import cpw.mods.fml.common.IWorldGenerator;
 import mods.natura.common.NContent;
 import mods.natura.common.PHNatura;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.chunk.IChunkProvider;
-import cpw.mods.fml.common.IWorldGenerator;
+
+import java.util.Random;
 
 /* Generates clouds in every dimension
  * Current clouds: Normal, Dark, Sulfur, Ash
@@ -16,11 +16,28 @@ import cpw.mods.fml.common.IWorldGenerator;
  * End: Normal, Dark
  */
 
-public class BaseCloudWorldgen implements IWorldGenerator
-{
+public class BaseCloudWorldgen implements IWorldGenerator {
 
-    public BaseCloudWorldgen()
-    {
+    CloudGen smallcloud;
+    CloudGen mediumcloud;
+    CloudGen largecloud;
+    CloudGen hugecloud;
+    CloudGen smalldarkcloud;
+    CloudGen mediumdarkcloud;
+    CloudGen largedarkcloud;
+    CloudGen hugedarkcloud;
+    CloudGen tinyashcloud;
+    CloudGen smallashcloud;
+    CloudGen mediumashcloud;
+    CloudGen largeashcloud;
+    CloudGen hugeashcloud;
+    CloudGen tinysulfurcloud;
+    CloudGen smallsulfurcloud;
+    CloudGen mediumsulfurcloud;
+    CloudGen largesulfurcloud;
+    CloudGen hugesulfurcloud;
+
+    public BaseCloudWorldgen () {
         smallcloud = new CloudGen(NContent.cloud, 0, 10, false);
         mediumcloud = new CloudGen(NContent.cloud, 0, 20, false);
         largecloud = new CloudGen(NContent.cloud, 0, 30, false);
@@ -42,146 +59,109 @@ public class BaseCloudWorldgen implements IWorldGenerator
     }
 
     @Override
-    public void generate (Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider)
-    {
+    public void generate (Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider) {
         //Overworld
         int xCh, yCh, zCh;
         int xChunk = chunkX * 16 + 8, zChunk = chunkZ * 16 + 8;
         BiomeGenBase biome = world.getWorldChunkManager().getBiomeGenAt(xChunk + 16, zChunk + 16);
 
-        if (PHNatura.generateOverworldClouds && biome.rainfall > 0.15f && random.nextInt(PHNatura.cloudSpawnRarity) == 0 && world.provider.dimensionId != 1 && shouldGenerateInDim(world.provider.dimensionId))
-        {
+        if (PHNatura.generateOverworldClouds && biome.rainfall > 0.15f && random.nextInt(PHNatura.cloudSpawnRarity) == 0 && world.provider.dimensionId != 1 && shouldGenerateInDim(
+                world.provider.dimensionId)) {
             xCh = xChunk + random.nextInt(16);
             zCh = zChunk + random.nextInt(16);
             yCh = random.nextInt(PHNatura.cloudSpawnRange) + PHNatura.cloudSpawnHeight;
             int size = random.nextInt(12);
-            if (size < 5)
-            {
+            if (size < 5) {
                 smallcloud.generate(world, random, xCh, yCh, zCh);
-            }
-            else if (size < 9)
-            {
+            } else if (size < 9) {
                 mediumcloud.generate(world, random, xCh, yCh, zCh);
-            }
-            else if (size < 11)
-            {
+            } else if (size < 11) {
                 largecloud.generate(world, random, xCh, yCh, zCh);
-            }
-            else
-            {
+            } else {
                 hugecloud.generate(world, random, xCh, yCh, zCh);
             }
         }
 
         //End Generation
-        if (PHNatura.generateDarkClouds && biome == BiomeGenBase.sky && world.provider.dimensionId == 1 && random.nextInt(4) == 0 && shouldGenerateDarkInDim(world.provider.dimensionId))
-        {
+        if (PHNatura.generateDarkClouds && biome == BiomeGenBase.sky && world.provider.dimensionId == 1 && random.nextInt(4) == 0 && shouldGenerateDarkInDim(world.provider.dimensionId)) {
             xCh = xChunk + random.nextInt(16);
             zCh = zChunk + random.nextInt(16);
-            for (int iter = 0; iter < PHNatura.darkCloudSpawnRarity; iter++)
-            {
+            for (int iter = 0; iter < PHNatura.darkCloudSpawnRarity; iter++) {
                 int height = random.nextInt(PHNatura.darkCloudSpawnRange);
-                if (random.nextInt(5) == 0)
-                {
+                if (random.nextInt(5) == 0) {
                     smalldarkcloud.generate(world, random, xCh, height + PHNatura.darkCloudSpawnHeight, zCh);
-                }
-                else if (random.nextInt(7) == 0)
-                {
+                } else if (random.nextInt(7) == 0) {
                     mediumcloud.generate(world, random, xCh, height + PHNatura.darkCloudSpawnHeight, zCh);
-                }
-                else if (random.nextInt(9) == 0)
-                {
+                } else if (random.nextInt(9) == 0) {
                     largedarkcloud.generate(world, random, xCh, height + PHNatura.darkCloudSpawnHeight, zCh);
                 }
-                if (random.nextInt(12) == 0)
-                {
+                if (random.nextInt(12) == 0) {
                     hugedarkcloud.generate(world, random, xCh, height + PHNatura.darkCloudSpawnHeight, zCh);
                 }
             }
         }
 
         //Nether
-        if (world.provider.isHellWorld)
-        {
-            if (PHNatura.generateAshClouds && random.nextInt(PHNatura.ashSpawnRarity) == 0)
-            {
+        if (world.provider.isHellWorld) {
+            if (PHNatura.generateAshClouds && random.nextInt(PHNatura.ashSpawnRarity) == 0) {
                 xCh = xChunk + random.nextInt(16);
                 yCh = random.nextInt(PHNatura.ashSpawnRange) + PHNatura.ashSpawnHeight;
                 zCh = zChunk + random.nextInt(16);
                 int size = random.nextInt(12);
-                if (size < 5)
-                {
+                if (size < 5) {
                     tinyashcloud.generate(world, random, xCh, yCh, zCh);
-                }
-                else if (size < 9)
-                {
+                } else if (size < 9) {
                     smallashcloud.generate(world, random, xCh, yCh, zCh);
-                }
-                else if (size < 11)
-                {
+                } else if (size < 11) {
                     largeashcloud.generate(world, random, xCh, yCh, zCh);
-                }
-                else
-                {
+                } else {
                     hugeashcloud.generate(world, random, xCh, yCh, zCh);
                 }
             }
 
-            if (PHNatura.generateSulfurClouds && random.nextInt(PHNatura.sulfurSpawnRarity) == 0 && shouldGenerateSulfurInDim(world.provider.dimensionId))
-            {
+            if (PHNatura.generateSulfurClouds && random.nextInt(PHNatura.sulfurSpawnRarity) == 0 && shouldGenerateSulfurInDim(world.provider.dimensionId)) {
                 xCh = xChunk + random.nextInt(16);
                 yCh = random.nextInt(PHNatura.sulfurSpawnRange) + PHNatura.sulfurSpawnHeight;
                 zCh = zChunk + random.nextInt(16);
                 int size = random.nextInt(12);
-                if (size < 5)
-                {
+                if (size < 5) {
                     tinysulfurcloud.generate(world, random, xCh, yCh, zCh);
-                }
-                else if (size < 9)
-                {
+                } else if (size < 9) {
                     smallsulfurcloud.generate(world, random, xCh, yCh, zCh);
-                }
-                else if (size < 11)
-                {
+                } else if (size < 11) {
                     largesulfurcloud.generate(world, random, xCh, yCh, zCh);
-                }
-                else
-                {
+                } else {
                     hugesulfurcloud.generate(world, random, xCh, yCh, zCh);
                 }
             }
         }
     }
 
-    public boolean shouldGenerateInDim (int i) {
-        return !PHNatura.cloudBlacklist.contains(i);
-    }
-    public boolean shouldGenerateSulfurInDim (int i) {
-        return !PHNatura.sulfurCloudBlacklist.contains(i);
-
-    }
-    public boolean shouldGenerateDarkInDim (int i) {
-        return !PHNatura.darkCloudBlacklist.contains(i);
-
+    public boolean shouldGenerateInDim (int dim) {
+        for (int i : PHNatura.cloudBlacklist) {
+            if (dim == i) {
+                return false;
+            }
+        }
+        return true;
     }
 
-    CloudGen smallcloud;
-    CloudGen mediumcloud;
-    CloudGen largecloud;
-    CloudGen hugecloud;
-    CloudGen smalldarkcloud;
-    CloudGen mediumdarkcloud;
-    CloudGen largedarkcloud;
-    CloudGen hugedarkcloud;
-    CloudGen tinyashcloud;
-    CloudGen smallashcloud;
-    CloudGen mediumashcloud;
-    CloudGen largeashcloud;
-    CloudGen hugeashcloud;
-    CloudGen tinysulfurcloud;
-    CloudGen smallsulfurcloud;
-    CloudGen mediumsulfurcloud;
-    CloudGen largesulfurcloud;
-    CloudGen hugesulfurcloud;
+    public boolean shouldGenerateSulfurInDim (int dim) {
+        for (int i : PHNatura.sulfurCloudBlacklist) {
+            if (dim == i) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public boolean shouldGenerateDarkInDim (int dim) {
+        for (int i : PHNatura.darkCloudBlacklist) {
+            if (dim == i) {
+                return false;
+            }
+        }
+        return true;
+    }
 
 }
