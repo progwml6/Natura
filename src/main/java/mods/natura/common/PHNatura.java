@@ -133,6 +133,9 @@ public class PHNatura
         stingSpawnRange = config.get("Worldgen", "Stingberry Spawn Range", 100).getInt(100);
 
         thornSpawnRarity = config.get("Worldgen", "Thornvines Spawn Rarity", 40).getInt(40);
+        darkCloudBlacklist = config.get("Worldgen","dimension blacklist(dark clouds)", new int[]{}).getIntList();
+        cloudBlacklist = config.get("Worldgen","dimension blacklist(clouds)", new int[]{}).getIntList();
+        sulfurCloudBlacklist = config.get("Worldgen","dimension blacklist(sulfur clouds)", new int[]{}).getIntList();
 
         seaLevel = config.get("general", "Sea level", 64).getInt(64);
 
@@ -141,6 +144,9 @@ public class PHNatura
              config.save();
     }
 
+    public static int[] darkCloudBlacklist;
+    public static int[] cloudBlacklist;
+    public static int[] sulfurCloudBlacklist;
     /* Prototype fields, used elsewhere */
 
     public static int seaLevel;

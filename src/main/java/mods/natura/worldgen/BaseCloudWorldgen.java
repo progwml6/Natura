@@ -49,7 +49,7 @@ public class BaseCloudWorldgen implements IWorldGenerator
         int xChunk = chunkX * 16 + 8, zChunk = chunkZ * 16 + 8;
         BiomeGenBase biome = world.getWorldChunkManager().getBiomeGenAt(xChunk + 16, zChunk + 16);
 
-        if (PHNatura.generateOverworldClouds && biome.rainfall > 0.15f && random.nextInt(PHNatura.cloudSpawnRarity) == 0 && world.provider.dimensionId != 1)
+        if (PHNatura.generateOverworldClouds && biome.rainfall > 0.15f && random.nextInt(PHNatura.cloudSpawnRarity) == 0 && world.provider.dimensionId != 1 && shouldGenerateInDim(world.provider.dimensionId))
         {
             xCh = xChunk + random.nextInt(16);
             zCh = zChunk + random.nextInt(16);
@@ -74,7 +74,7 @@ public class BaseCloudWorldgen implements IWorldGenerator
         }
 
         //End Generation
-        if (PHNatura.generateDarkClouds && biome == BiomeGenBase.sky && world.provider.dimensionId == 1 && random.nextInt(4) == 0)
+        if (PHNatura.generateDarkClouds && biome == BiomeGenBase.sky && world.provider.dimensionId == 1 && random.nextInt(4) == 0 && shouldGenerateDarkInDim(world.provider.dimensionId))
         {
             xCh = xChunk + random.nextInt(16);
             zCh = zChunk + random.nextInt(16);
@@ -127,7 +127,7 @@ public class BaseCloudWorldgen implements IWorldGenerator
                 }
             }
 
-            if (PHNatura.generateSulfurClouds && random.nextInt(PHNatura.sulfurSpawnRarity) == 0)
+            if (PHNatura.generateSulfurClouds && random.nextInt(PHNatura.sulfurSpawnRarity) == 0 && shouldGenerateSulfurInDim(world.provider.dimensionId))
             {
                 xCh = xChunk + random.nextInt(16);
                 yCh = random.nextInt(PHNatura.sulfurSpawnRange) + PHNatura.sulfurSpawnHeight;
@@ -151,6 +151,18 @@ public class BaseCloudWorldgen implements IWorldGenerator
                 }
             }
         }
+    }
+
+    public boolean shouldGenerateInDim (int i) {
+        return !PHNatura.cloudBlacklist.contains(i);
+    }
+    public boolean shouldGenerateSulfurInDim (int i) {
+        return !PHNatura.sulfurCloudBlacklist.contains(i);
+
+    }
+    public boolean shouldGenerateDarkInDim (int i) {
+        return !PHNatura.darkCloudBlacklist.contains(i);
+
     }
 
     CloudGen smallcloud;
