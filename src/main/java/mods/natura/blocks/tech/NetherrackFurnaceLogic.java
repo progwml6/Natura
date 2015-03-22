@@ -20,10 +20,11 @@ import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntityFurnace;
+import net.minecraft.util.BlockPos;
 import net.minecraft.util.MathHelper;
-import cpw.mods.fml.common.registry.GameRegistry;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class NetherrackFurnaceLogic extends TileEntityFurnace
 {
@@ -232,15 +233,15 @@ public class NetherrackFurnaceLogic extends TileEntityFurnace
     {
         NBTTagCompound tag = new NBTTagCompound();
         writeNetworkNBT(tag);
-        return new S35PacketUpdateTileEntity(xCoord, yCoord, zCoord, 1, tag);
+        return new S35PacketUpdateTileEntity(this.getPos(), 1, tag);
     }
 
     @Override
     public void onDataPacket (NetworkManager net, S35PacketUpdateTileEntity pkt)
     {
         // Probably has deobf now, check on forge 1029
-        readNetworkNBT(pkt.func_148857_g());
-        worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
+        readNetworkNBT(pkt.getNbtCompound());
+        worldObj.markBlockForUpdate(this.getPos());
     }
 
     /**
@@ -337,7 +338,7 @@ public class NetherrackFurnaceLogic extends TileEntityFurnace
                     if (!active)
                     {
                         this.active = true;
-                        worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
+                        worldObj.markBlockForUpdate(this.getPos());
                     }
                     flag1 = true;
                 }
@@ -356,7 +357,7 @@ public class NetherrackFurnaceLogic extends TileEntityFurnace
             {
                 flag1 = true;
                 this.active = true;
-                worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
+                worldObj.markBlockForUpdate(this.getPos());
                 //BlockFurnace.updateFurnaceBlockState(this.furnaceBurnTime > 0, this.worldObj, this.xCoord, this.yCoord, this.zCoord);
             }
         }
@@ -378,7 +379,7 @@ public class NetherrackFurnaceLogic extends TileEntityFurnace
         }
         else
         {
-            ItemStack itemstack = FurnaceRecipes.smelting().getSmeltingResult(this.inventory[0]);
+            ItemStack itemstack = FurnaceRecipes.instance().getSmeltingResult(this.inventory[0]);
             if (itemstack == null)
                 return false;
             if (this.inventory[2] == null)
@@ -398,7 +399,7 @@ public class NetherrackFurnaceLogic extends TileEntityFurnace
     {
         if (this.canSmelt())
         {
-            ItemStack itemstack = FurnaceRecipes.smelting().getSmeltingResult(this.inventory[0]);
+            ItemStack itemstack = FurnaceRecipes.instance().getSmeltingResult(this.inventory[0]);
 
             if (this.inventory[2] == null)
             {
@@ -491,8 +492,8 @@ public class NetherrackFurnaceLogic extends TileEntityFurnace
     @Override
     public boolean isUseableByPlayer (EntityPlayer par1EntityPlayer)
     {
-        return this.worldObj.getTileEntity(this.xCoord, this.yCoord, this.zCoord) == this
-               && par1EntityPlayer.getDistanceSq(this.xCoord + 0.5D, this.yCoord + 0.5D, this.zCoord + 0.5D) <= 64.0D;
+        return this.worldObj.getTileEntity(this.getPos()) == this
+               && par1EntityPlayer.getDistanceSq(new BlockPos(this.getPos().getX() + 0.5D, this.getPos().getY() + 0.5D, this.getPos().getZ() + 0.5D)) <= 64.0D;
     }
 
     public void openChest ()

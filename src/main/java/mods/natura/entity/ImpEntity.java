@@ -155,7 +155,7 @@ public class ImpEntity extends EntityAnimal
     public boolean getCanSpawnHere ()
     {
         //return true;
-        return this.worldObj.provider instanceof WorldProviderHell && this.worldObj.checkNoEntityCollision(this.boundingBox)
-                && this.worldObj.getCollidingBoundingBoxes(this, this.boundingBox).isEmpty() && !this.worldObj.isAnyLiquid(this.boundingBox);
+        return this.worldObj.provider instanceof WorldProviderHell && this.worldObj.checkNoEntityCollision(this.getBoundingBox())
+                && this.worldObj.getCollidingBoundingBoxes(this, this.getBoundingBox()).isEmpty() && !this.worldObj.isAnyLiquid(this.getBoundingBox());
     }
 }

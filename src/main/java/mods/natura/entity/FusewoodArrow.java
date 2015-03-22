@@ -20,8 +20,8 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class FusewoodArrow extends EntityArrow
 {
@@ -76,7 +76,7 @@ public class FusewoodArrow extends EntityArrow
 
         this.posY = par2EntityLiving.posY + par2EntityLiving.getEyeHeight() - 0.10000000149011612D;
         double d0 = par3EntityLiving.posX - par2EntityLiving.posX;
-        double d1 = par3EntityLiving.boundingBox.minY + par3EntityLiving.height / 3.0F - this.posY;
+        double d1 = par3EntityLiving.getBoundingBox().minY + par3EntityLiving.height / 3.0F - this.posY;
         double d2 = par3EntityLiving.posZ - par2EntityLiving.posZ;
         double d3 = MathHelper.sqrt_double(d0 * d0 + d2 * d2);
 
@@ -256,7 +256,7 @@ public class FusewoodArrow extends EntityArrow
             }
 
             Entity entity = null;
-            List list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.boundingBox.addCoord(this.motionX, this.motionY, this.motionZ).expand(1.0D, 1.0D, 1.0D));
+            List list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.getBoundingBox().addCoord(this.motionX, this.motionY, this.motionZ).expand(1.0D, 1.0D, 1.0D));
             double d0 = 0.0D;
             int l;
             float f1;
@@ -268,7 +268,7 @@ public class FusewoodArrow extends EntityArrow
                 if (entity1.canBeCollidedWith() && (entity1 != this.shootingEntity || this.ticksInAir >= 5))
                 {
                     f1 = 0.3F;
-                    AxisAlignedBB axisalignedbb1 = entity1.boundingBox.expand(f1, f1, f1);
+                    AxisAlignedBB axisalignedbb1 = entity1.getBoundingBox().expand(f1, f1, f1);
                     MovingObjectPosition movingobjectposition1 = axisalignedbb1.calculateIntercept(vec3, vec31);
 
                     if (movingobjectposition1 != null)
@@ -469,7 +469,7 @@ public class FusewoodArrow extends EntityArrow
             this.motionZ *= f4;
             this.motionY -= f1;
             this.setPosition(this.posX, this.posY, this.posZ);
-            this.func_145775_I(); // doBlockCollisions
+            this.doBlockCollisions();
         }
     }
 

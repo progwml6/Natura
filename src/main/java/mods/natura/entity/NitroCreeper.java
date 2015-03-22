@@ -57,7 +57,7 @@ public class NitroCreeper extends EntityCreeper
                 this.setDead();
             }
             else
-                super.fall(distance);
+                super.fall(distance, 2);//TODO 1.8port what should the damage be set to
         }
     }
 
@@ -99,7 +99,7 @@ public class NitroCreeper extends EntityCreeper
                 this.timeSinceIgnited = 0;
             }
 
-            int difficulty = worldObj.difficultySetting.getDifficultyId();
+            int difficulty = worldObj.getDifficulty().getDifficultyId();
             int lengthBoost = 4 * (3 - difficulty);
             int powered = this.getPowered() ? 12 : 0;
 

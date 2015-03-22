@@ -2,7 +2,7 @@ package mods.natura.common;
 
 import java.io.File;
 
-import cpw.mods.fml.common.Loader;
+import net.minecraftforge.fml.common.Loader;
 import mods.natura.Natura;
 import net.minecraftforge.common.config.Configuration;
 

@@ -97,12 +97,12 @@ public class BabyHeatscarSpider extends EntitySpider
             }
 
             this.attackEntityFrom(DamageSource.fall, i);
-            Block j = this.worldObj.getBlock(MathHelper.floor_double(this.posX), MathHelper.floor_double(this.posY - 0.20000000298023224D - this.yOffset), MathHelper.floor_double(this.posZ));
+            Block j = this.worldObj.getBlockState(MathHelper.floor_double(this.posX), MathHelper.floor_double(this.posY - 0.20000000298023224D - this.yOffset), MathHelper.floor_double(this.posZ));
 
             if (j != null)
             {
                 SoundType stepsound = j.stepSound;
-                this.playSound(stepsound.soundName, stepsound.getVolume() * 0.5F, stepsound.getPitch() * 0.75F);
+                this.playSound(stepsound.soundName, stepsound.getVolume() * 0.5F, stepsound.getFrequency() * 0.75F);
             }
         }
     }
@@ -116,13 +116,13 @@ public class BabyHeatscarSpider extends EntitySpider
             {
                 byte b0 = 0;
 
-                if (this.worldObj.difficultySetting != EnumDifficulty.PEACEFUL)
+                if (this.worldObj.getDifficulty() != EnumDifficulty.PEACEFUL)
                 {
-                    if (this.worldObj.difficultySetting == EnumDifficulty.NORMAL)
+                    if (this.worldObj.getDifficulty() == EnumDifficulty.NORMAL)
                     {
                         b0 = 5;
                     }
-                    else if (this.worldObj.difficultySetting == EnumDifficulty.HARD)
+                    else if (this.worldObj.getDifficulty() == EnumDifficulty.HARD)
                     {
                         b0 = 10;
                     }
@@ -154,8 +154,7 @@ public class BabyHeatscarSpider extends EntitySpider
     }
 
     @Override
-    // dropItemWithOffset
-    public EntityItem func_145778_a (Item item, int par2, float offset)
+    public EntityItem dropItemWithOffset (Item item, int par2, float offset)
     {
         return this.entityDropItem(new ItemStack(item, par2, 7), offset);
     }
@@ -184,7 +183,7 @@ public class BabyHeatscarSpider extends EntitySpider
     @Override
     public boolean getCanSpawnHere ()
     {
-        return this.worldObj.difficultySetting != EnumDifficulty.PEACEFUL && this.worldObj.checkNoEntityCollision(this.boundingBox)
-                && this.worldObj.getCollidingBoundingBoxes(this, this.boundingBox).isEmpty() && !this.worldObj.isAnyLiquid(this.boundingBox);
+        return this.worldObj.getDifficulty() != EnumDifficulty.PEACEFUL && this.worldObj.checkNoEntityCollision(this.getBoundingBox())
+                && this.worldObj.getCollidingBoundingBoxes(this, this.getBoundingBox()).isEmpty() && !this.worldObj.isAnyLiquid(this.getBoundingBox());
     }
 }

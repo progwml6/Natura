@@ -7,7 +7,7 @@ import mods.natura.common.PHNatura;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.chunk.IChunkProvider;
-import cpw.mods.fml.common.IWorldGenerator;
+import net.minecraftforge.fml.common.IWorldGenerator;
 
 /* Generates clouds in every dimension
  * Current clouds: Normal, Dark, Sulfur, Ash

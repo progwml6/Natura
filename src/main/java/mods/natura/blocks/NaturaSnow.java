@@ -4,6 +4,7 @@ import java.util.Random;
 
 import net.minecraft.block.BlockSnow;
 import net.minecraft.init.Blocks;
+import net.minecraft.util.BlockPos;
 import net.minecraft.world.EnumSkyBlock;
 import net.minecraft.world.World;
 
@@ -16,35 +17,35 @@ public class NaturaSnow extends BlockSnow
     }
 
     @Override
-    public void updateTick (World world, int x, int y, int z, Random random)
+    public void updateTick (World world, BlockPos pos, Random random)
     {
         int meta;
 
-        if (world.getSavedLightValue(EnumSkyBlock.Block, x, y, z) > 11)
+        if (world.getSavedLightValue(EnumSkyBlock.Block, pos) > 11)
         {
-            meta = world.getBlockMetadata(x, y, z);
+            meta = world.getBlockMetadata(pos);
 
             if (meta > 0)
             {
-                world.setBlockMetadataWithNotify(x, y, z, meta - 1, 4);
+                world.setBlockMetadataWithNotify(pos, meta - 1, 4);
             }
             else
             {
-                world.setBlockToAir(x, y, z);
+                world.setBlockToAir(pos);
             }
         }
 
         else if (world.getWorldInfo().isRaining() && random.nextInt(10) == 0)
         {
-            meta = world.getBlockMetadata(x, y, z);
+            meta = world.getBlockMetadata(pos);
 
             if (meta < 8)
             {
-                world.setBlockMetadataWithNotify(x, y, z, meta + 1, 2);
+                world.setBlockMetadataWithNotify(pos, meta + 1, 2);
             }
             else
             {
-                this.scanHeight(world, x, y, z, random);
+                this.scanHeight(world, pos, random);
             }
         }
     }

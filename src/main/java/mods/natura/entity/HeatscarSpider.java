@@ -17,8 +17,8 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeHooks;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class HeatscarSpider extends EntitySpider
 {
@@ -132,13 +132,13 @@ public class HeatscarSpider extends EntitySpider
             {
                 byte b0 = 0;
 
-                if (this.worldObj.difficultySetting != EnumDifficulty.PEACEFUL)
+                if (this.worldObj.getDifficulty() != EnumDifficulty.PEACEFUL)
                 {
-                    if (this.worldObj.difficultySetting == EnumDifficulty.NORMAL)
+                    if (this.worldObj.getDifficulty() == EnumDifficulty.NORMAL)
                     {
                         b0 = 5;
                     }
-                    else if (this.worldObj.difficultySetting == EnumDifficulty.HARD)
+                    else if (this.worldObj.getDifficulty() == EnumDifficulty.HARD)
                     {
                         b0 = 10;
                     }
@@ -170,7 +170,7 @@ public class HeatscarSpider extends EntitySpider
     }
 
     @Override
-    public EntityItem func_145778_a (Item par1, int par2, float par3)
+    public EntityItem dropItemWithOffset (Item par1, int par2, float par3)
     {
         return this.entityDropItem(new ItemStack(par1, par2, 7), par3);
     }
@@ -199,8 +199,8 @@ public class HeatscarSpider extends EntitySpider
     @Override
     public boolean getCanSpawnHere ()
     {
-        return this.worldObj.difficultySetting != EnumDifficulty.PEACEFUL && this.worldObj.checkNoEntityCollision(this.boundingBox)
-                && this.worldObj.getCollidingBoundingBoxes(this, this.boundingBox).isEmpty() && !this.worldObj.isAnyLiquid(this.boundingBox);
+        return this.worldObj.getDifficulty() != EnumDifficulty.PEACEFUL && this.worldObj.checkNoEntityCollision(this.getBoundingBox())
+                && this.worldObj.getCollidingBoundingBoxes(this, this.getBoundingBox()).isEmpty() && !this.worldObj.isAnyLiquid(this.getBoundingBox());
     }
 
     protected BabyHeatscarSpider createBabyInstance ()

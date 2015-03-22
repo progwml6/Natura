@@ -4,6 +4,7 @@ import java.util.Collections;
 import java.util.List;
 
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.BlockPos;
 import net.minecraft.world.IBlockAccess;
 
 public interface ICrop
@@ -18,17 +19,15 @@ public interface ICrop
     /** 
      * 
      * @param world
-     * @param x
-     * @param y
-     * @param z
+     * @param pos
      * @param type
      * @return A list of items harvested. If no items are returned, NO_YIELD should be passed.
      */
-    public List<ItemStack> harvestCrop (IBlockAccess world, int x, int y, int z, HarvestType type);
+    public List<ItemStack> harvestCrop (IBlockAccess world, BlockPos pos, HarvestType type);
 
-    public boolean isFullyGrown (IBlockAccess world, int x, int y, int z);
+    public boolean isFullyGrown (IBlockAccess world, BlockPos pos);
 
-    public boolean hasYield (IBlockAccess world, int x, int y, int z);
+    public boolean hasYield (IBlockAccess world, BlockPos pos);
 
-    public void growthTick (IBlockAccess world, int x, int y, int z);
+    public void growthTick (IBlockAccess world, BlockPos pos);
 }

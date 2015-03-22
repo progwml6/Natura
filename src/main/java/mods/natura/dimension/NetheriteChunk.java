@@ -29,10 +29,10 @@ public class NetheriteChunk extends Chunk
 
                         if (storage[k1] == null)
                         {
-                            storage[k1] = new ExtendedBlockStorage(k1 << 4, !world.provider.hasNoSky);
+                            storage[k1] = new ExtendedBlockStorage(k1 << 4, !world.provider.getHasNoSky());
                         }
 
-                        storage[k1].func_150818_a(x, y & 15, z, id);
+                        storage[k1].set(x, y & 15, z, id.getDefaultState());
                     }
                 }
             }

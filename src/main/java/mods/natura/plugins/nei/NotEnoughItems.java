@@ -2,8 +2,8 @@ package mods.natura.plugins.nei;
 
 import codechicken.nei.api.API;
 import codechicken.nei.recipe.DefaultOverlayHandler;
-import cpw.mods.fml.common.*;
-import cpw.mods.fml.relauncher.Side;
+import net.minecraftforge.fml.common.*;
+import net.minecraftforge.fml.relauncher.Side;
 import mods.natura.gui.WorkbenchGui;
 
 public class NotEnoughItems

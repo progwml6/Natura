@@ -11,8 +11,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class NSpecialFood extends ItemFood
 {
@@ -33,13 +33,13 @@ public class NSpecialFood extends ItemFood
     }
 
     @Override
-    public int func_150905_g(ItemStack stack)
+    public int getHealAmount(ItemStack stack)
     {
         return hunger[stack.getItemDamage()];
     }
 
     @Override
-    public float func_150906_h(ItemStack stack)
+    public float getSaturationModifier(ItemStack stack)
     {
         return saturation[stack.getItemDamage()];
     }

@@ -9,11 +9,12 @@ import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.BlockPos;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class HeatSand extends BlockFalling
 {
@@ -36,10 +37,10 @@ public class HeatSand extends BlockFalling
     }
 
     @Override
-    public AxisAlignedBB getCollisionBoundingBoxFromPool (World par1World, int par2, int par3, int par4)
+    public AxisAlignedBB getCollisionBoundingBoxFromPool (World par1World,BlockPos pos)
     {
         float f = 0.125F;
-        return AxisAlignedBB.getBoundingBox(par2, par3, par4, par2 + 1, par3 + 1 - f, par4 + 1);
+        return AxisAlignedBB.getBoundingBox(pos, new BlockPos(pos.getX() + 1, pos.getY() + 1 - f, pos.getZ() + 1));
     }
 
     @Override

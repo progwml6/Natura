@@ -7,6 +7,6 @@ public class AlternatePressurePlate extends BlockPressurePlate
 {
     public AlternatePressurePlate(String par1Str, Material par2Material, Sensitivity par3sensitivity)
     {
-        super(par1Str, par2Material, par3sensitivity);
+        super(par2Material, par3sensitivity);
     }
 }

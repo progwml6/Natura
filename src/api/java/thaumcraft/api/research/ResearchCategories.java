@@ -8,7 +8,7 @@ import net.minecraft.util.StatCollector;
 
 import org.apache.logging.log4j.Level;
 
-import cpw.mods.fml.common.FMLLog;
+import net.minecraftforge.fml.common.FMLLog;
 
 public class ResearchCategories {
 	

@@ -9,7 +9,7 @@ import mods.natura.worldgen.BaseTreeWorldgen;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 import net.minecraftforge.event.world.ChunkDataEvent;
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class WorldHandler
 {

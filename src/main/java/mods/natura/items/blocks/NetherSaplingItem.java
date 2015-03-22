@@ -1,7 +1,7 @@
 package mods.natura.items.blocks;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import mods.natura.blocks.trees.EnumSaplingType;
 import mods.natura.common.NContent;
 import net.minecraft.block.Block;

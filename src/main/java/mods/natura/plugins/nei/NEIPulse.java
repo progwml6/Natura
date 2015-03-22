@@ -3,8 +3,8 @@ package mods.natura.plugins.nei;
 import mantle.pulsar.pulse.Handler;
 import mantle.pulsar.pulse.Pulse;
 import mods.natura.Natura;
-import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.FMLCommonHandler;
+import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 
 @Pulse(id = "Natura NEI Compatibility", modsRequired = NEIPulse.modId)
 public class NEIPulse

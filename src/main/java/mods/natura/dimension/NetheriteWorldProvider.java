@@ -2,6 +2,7 @@ package mods.natura.dimension;
 
 import mods.natura.common.PHNatura;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.util.BlockPos;
 import net.minecraft.util.ChunkCoordinates;
 import net.minecraft.world.WorldProviderHell;
 import net.minecraft.world.biome.BiomeGenBase;
@@ -44,7 +45,7 @@ public class NetheriteWorldProvider extends WorldProviderHell
     {
         if (PHNatura.canRespawnInNether)
         {
-            ChunkCoordinates coords = player.getBedLocation(-1);
+            BlockPos coords = player.getBedLocation(-1);
             if (coords != null)
                 return -1;
         }

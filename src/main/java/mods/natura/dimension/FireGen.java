@@ -4,26 +4,29 @@ import java.util.Random;
 
 import mods.natura.common.NContent;
 import net.minecraft.block.Block;
+import net.minecraft.block.state.BlockState;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
+import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 
 public class FireGen extends WorldGenerator
 {
     @Override
-    public boolean generate (World world, Random par2Random, int x, int y, int z)
+    public boolean generate (World world, Random par2Random, BlockPos pos)
     {
         for (int l = 0; l < 64; ++l)
         {
-            int xPos = x + par2Random.nextInt(8) - par2Random.nextInt(8);
-            int yPos = y + par2Random.nextInt(4) - par2Random.nextInt(4);
-            int zPos = z + par2Random.nextInt(8) - par2Random.nextInt(8);
-
-            if (world.isAirBlock(xPos, yPos, zPos))
+            int xPos = pos.getX() + par2Random.nextInt(8) - par2Random.nextInt(8);
+            int yPos = pos.getY() + par2Random.nextInt(4) - par2Random.nextInt(4);
+            int zPos = pos.getZ() + par2Random.nextInt(8) - par2Random.nextInt(8);
+            BlockPos temp = new BlockPos(xPos, yPos, zPos);
+            if (world.isAirBlock(temp))
             {
-                Block blockID = world.getBlock(xPos, yPos - 1, zPos);
-                if (blockID == Blocks.netherrack || blockID == NContent.taintedSoil)
-                    world.setBlock(xPos, yPos, zPos, Blocks.fire, 0, 2);
+                IBlockState blockID = world.getBlockState(new BlockPos(xPos, yPos - 1, zPos));
+                if (blockID.getBlock() == Blocks.netherrack || blockID.getBlock() == NContent.taintedSoil)
+                    world.setBlockState(temp, Blocks.fire, 0, 2);
             }
         }
 

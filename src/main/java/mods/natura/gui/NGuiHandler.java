@@ -2,8 +2,9 @@ package mods.natura.gui;
 
 import mods.natura.blocks.tech.NetherrackFurnaceLogic;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
-import cpw.mods.fml.common.network.IGuiHandler;
+import net.minecraftforge.fml.common.network.IGuiHandler;
 
 public class NGuiHandler implements IGuiHandler
 {
@@ -19,7 +20,7 @@ public class NGuiHandler implements IGuiHandler
         }
         if (ID == furnaceGui)
         {
-            return new FurnaceGui(player.inventory, (NetherrackFurnaceLogic) world.getTileEntity(x, y, z));
+            return new FurnaceGui(player.inventory, (NetherrackFurnaceLogic) world.getTileEntity(new BlockPos(x, y, z)));
         }
         return null;
     }
@@ -33,7 +34,7 @@ public class NGuiHandler implements IGuiHandler
         }
         if (ID == furnaceGui)
         {
-            return new FurnaceContainer(player.inventory, (NetherrackFurnaceLogic) world.getTileEntity(x, y, z));
+            return new FurnaceContainer(player.inventory, (NetherrackFurnaceLogic) world.getTileEntity(new BlockPos(x, y, z)));
         }
         return null;
     }

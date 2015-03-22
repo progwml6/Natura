@@ -8,7 +8,7 @@ import java.util.HashMap;
 import net.minecraft.world.World;
 import thaumcraft.api.WorldCoordinates;
 import thaumcraft.api.aspects.Aspect;
-import cpw.mods.fml.common.FMLLog;
+import net.minecraftforge.fml.common.FMLLog;
 
 public class VisNetHandler {
 
