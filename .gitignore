@@ -1,7 +1,7 @@
 #ant stuff
 build.xml
-/bin/
-/download/
+bin/
+download/
 #Remove OS generated garbage
 */.DS_Store
 .DS_Store
@@ -12,17 +12,18 @@ Icon?
 ehthumbs.db
 Thumbs.db
 #gradle stuff
-/.gradle
-/build/
-/run/
+.gradle
+build/
+run/
+libs/
 #IDEA files from Gradle
 .idea/
-/*.iml
-/*.ipr
-/*.iws
+*.iml
+*.ipr
+*.iws
 #Vim backups
 *~
 #eclipse stuffs
-/.classpath
-/.project
-/.settings/
+.classpath
+.project
+.settings/

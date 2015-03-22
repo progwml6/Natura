@@ -420,7 +420,8 @@ public class WhiteTreeGen extends WorldGenAbstractTree
         int[] aint1 = new int[] {this.basePos[0], this.basePos[1] + this.heightLimit - 1, this.basePos[2]};
         Block block = this.worldObj.getBlock(this.basePos[0], this.basePos[1] - 1, this.basePos[2]);
 
-        boolean isSoil = block.canSustainPlant(worldObj, basePos[0], basePos[1] - 1, basePos[2], ForgeDirection.UP, (BlockSapling)Blocks.sapling);
+        boolean isSoil = block != null && (block.canSustainPlant(worldObj, basePos[0], basePos[1] - 1, basePos[2], ForgeDirection.UP, (BlockSapling)Blocks.sapling)
+        		|| block == Blocks.netherrack);
         if (!isSoil)
         {
             return false;
@@ -462,12 +463,12 @@ public class WhiteTreeGen extends WorldGenAbstractTree
     int findGround (World world, int x, int y, int z)
     {
         boolean foundGround = false;
-        int height = PHNatura.seaLevel + 64;
+        int height = y;
         do
         {
             height--;
             Block underID = world.getBlock(x, height, z);
-            if (underID == Blocks.dirt || underID == Blocks.grass || height < PHNatura.seaLevel)
+            if (underID == Blocks.netherrack || underID == Blocks.soul_sand || underID == NContent.taintedSoil || height < 0)
                 foundGround = true;
         } while (!foundGround);
         return height + 1;
