@@ -4,7 +4,6 @@ import java.util.List;
 
 import mods.natura.common.NContent;
 import mods.natura.common.NaturaTab;
-import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.Item;
@@ -24,13 +23,6 @@ public class NaturaArmor extends ItemArmor
         this.itemTexture = itemTexture;
         this.armorTexture = armorTexture;
         this.setCreativeTab(NaturaTab.tab);
-    }
-
-    @Override
-    @SideOnly(Side.CLIENT)
-    public void registerIcons (IIconRegister par1IconRegister)
-    {
-        this.itemIcon = par1IconRegister.registerIcon("natura:armor_" + itemTexture);
     }
 
     @Override

@@ -1,6 +1,9 @@
 package mods.natura.entity;
 
+import com.google.common.base.Predicate;
+
 import mods.natura.common.NContent;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIAvoidEntity;
@@ -13,9 +16,11 @@ import net.minecraft.entity.ai.EntityAITempt;
 import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.passive.EntityAnimal;
+import net.minecraft.entity.passive.EntityOcelot;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.pathfinding.PathNavigateGround;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldProviderHell;
 
@@ -26,27 +31,29 @@ public class ImpEntity extends EntityAnimal
         super(par1World);
         //this.texture = "/mods/natura/textures/mob/imp.png";
         this.setSize(0.9F, 0.9F);
-        this.getNavigator().setAvoidsWater(true);
+        ((PathNavigateGround) this.getNavigator()).setAvoidsWater(true);
         this.isImmuneToFire = true;
         float f = 0.25F;
         this.tasks.addTask(0, new EntityAISwimming(this));
         this.tasks.addTask(1, new EntityAIPanic(this, 0.38F));
         this.tasks.addTask(2, new EntityAITempt(this, 0.3F, NContent.bowlStew, false));
         this.tasks.addTask(3, new EntityAIMate(this, f));
-        this.tasks.addTask(4, new EntityAIAvoidEntity(this, EntityPlayer.class, 8.0F, 0.25F, 0.3F));
+        this.tasks.addTask(3, new EntityAIAvoidEntity(this, new Predicate()
+        {
+            public boolean apply (Entity entity)
+            {
+                return entity instanceof EntityPlayer;
+            }
+
+            public boolean apply (Object p_apply_1_)
+            {
+                return this.apply((Entity) p_apply_1_);
+            }
+        }, 8.0F, 0.25F, 0.3F));
         this.tasks.addTask(5, new EntityAIFollowParent(this, 0.28F));
         this.tasks.addTask(6, new EntityAIWander(this, f));
         this.tasks.addTask(7, new EntityAIWatchClosest(this, EntityPlayer.class, 6.0F));
         this.tasks.addTask(8, new EntityAILookIdle(this));
-    }
-
-    /**
-     * Returns true if the newer Entity AI code should be run
-     */
-    @Override
-    public boolean isAIEnabled ()
-    {
-        return true;
     }
 
     @Override

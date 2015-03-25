@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
-import net.minecraft.world.ChunkPosition;
+import net.minecraft.util.BlockPos;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.biome.WorldChunkManager;
 
@@ -28,7 +28,7 @@ public class NetheriteChunkManager extends WorldChunkManager
      * Returns the BiomeGenBase related to the x, z position on the world.
      */
     @Override
-    public BiomeGenBase getBiomeGenAt (int par1, int par2)
+    public BiomeGenBase getBiomeGenerator(BlockPos par1)
     {
         return this.biomeGenerator;
     }
@@ -108,9 +108,9 @@ public class NetheriteChunkManager extends WorldChunkManager
      * Strongly favors positive y positions.
      */
     @Override
-    public ChunkPosition findBiomePosition (int par1, int par2, int par3, List par4List, Random par5Random)
+    public BlockPos findBiomePosition (int par1, int par2, int par3, List par4List, Random par5Random)
     {
-        return par4List.contains(this.biomeGenerator) ? new ChunkPosition(par1 - par3 + par5Random.nextInt(par3 * 2 + 1), 0, par2 - par3 + par5Random.nextInt(par3 * 2 + 1)) : null;
+        return par4List.contains(this.biomeGenerator) ? new BlockPos(par1 - par3 + par5Random.nextInt(par3 * 2 + 1), 0, par2 - par3 + par5Random.nextInt(par3 * 2 + 1)) : null;
     }
 
     /**

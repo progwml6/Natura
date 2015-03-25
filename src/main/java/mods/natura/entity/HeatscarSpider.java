@@ -12,6 +12,7 @@ import net.minecraft.entity.monster.EntitySpider;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
+import net.minecraft.util.BlockPos;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.EnumDifficulty;
@@ -46,7 +47,8 @@ public class HeatscarSpider extends EntitySpider
         this.getEntityAttribute(SharedMonsterAttributes.attackDamage).setBaseValue(4.0); //Base damage
     }
 
-    @Override
+    // TODO: WHAT IS THIS USED FOR?!?
+    /**@Override
     protected void attackEntity (Entity par1Entity, float par2)
     {
         if (par2 > 2.0F && par2 < 6.0F && this.rand.nextInt(10) == 0)
@@ -66,7 +68,7 @@ public class HeatscarSpider extends EntitySpider
             super.attackEntity(par1Entity, par2);
         }
 
-    }
+    }*/
 
     @Override
     public void jump ()
@@ -90,16 +92,16 @@ public class HeatscarSpider extends EntitySpider
     }
 
     @Override
-    protected void fall (float par1)
+    public void fall(float distance, float damageMultiplier)
     {
-        par1 = ForgeHooks.onLivingFall(this, par1);
-        if (par1 <= 0)
+        float[] ret = ForgeHooks.onLivingFall(this, distance, damageMultiplier);
+        if (ret == null)
         {
             return;
         }
 
-        super.fall(par1);
-        int i = MathHelper.ceiling_float_int(par1 - 5.0F);
+        super.fall(distance, damageMultiplier);
+        int i = MathHelper.ceiling_float_int(distance - 5.0F);
 
         if (i > 0)
         {
@@ -113,12 +115,12 @@ public class HeatscarSpider extends EntitySpider
             }
 
             this.attackEntityFrom(DamageSource.fall, i);
-            Block j = this.worldObj.getBlock(MathHelper.floor_double(this.posX), MathHelper.floor_double(this.posY - 0.20000000298023224D - this.yOffset), MathHelper.floor_double(this.posZ));
+            Block j = this.worldObj.getBlockState(new BlockPos(MathHelper.floor_double(this.posX), MathHelper.floor_double(this.posY - 0.20000000298023224D), MathHelper.floor_double(this.posZ))).getBlock();
 
             if (j != null)
             {
                 SoundType stepsound = j.stepSound;
-                this.playSound(stepsound.func_150496_b(), stepsound.getVolume() * 0.5F, stepsound.getPitch() * 0.75F);
+                this.playSound(stepsound.soundName, stepsound.getVolume() * 0.5F, stepsound.getFrequency() * 0.75F);
             }
         }
     }

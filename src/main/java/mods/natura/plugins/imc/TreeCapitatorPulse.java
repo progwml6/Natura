@@ -111,11 +111,11 @@ public class TreeCapitatorPulse
 
     public static String getUniqueName (Block block)
     {
-        return GameData.getBlockRegistry().getNameForObject(block);
+        return GameData.getBlockRegistry().getNameForObject(block).toString();
     }
 
     public static String getUniqueName (Item item)
     {
-        return GameData.getItemRegistry().getNameForObject(item);
+        return GameData.getItemRegistry().getNameForObject(item).toString();
     }
 }

@@ -37,7 +37,7 @@ public class NitroCreeper extends EntityCreeper
     }*/
 
     @Override
-    protected void fall (float distance)
+    public void fall (float distance, float damageMultiplier)
     {
         if (!this.worldObj.isRemote)
         {

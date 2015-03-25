@@ -10,11 +10,14 @@ import net.minecraft.block.BlockDirectional;
 import net.minecraft.block.BlockMushroom;
 import net.minecraft.block.BlockSapling;
 import net.minecraft.block.BlockStem;
-import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.block.IGrowable;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
@@ -25,224 +28,270 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class BoneBag extends Item
 {
-    String textureName;
+	String textureName;
 
-    public BoneBag(String texture)
-    {
-        super();
-        textureName = texture;
-        this.setCreativeTab(NaturaTab.tab);
-    }
+	public BoneBag(String texture)
+	{
+		super();
+		textureName = texture;
+		this.setCreativeTab(NaturaTab.tab);
+	}
 
-    @Override
-    public boolean onItemUse (ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side, float par8, float par9, float par10)
-    {
-        if (side != 1)
-            return false;
+	@Override
+	public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ)
+	{
+		if (!player.canPlayerEdit(pos.offset(side), side, stack))
+		{
+			return false;
+		}
+		else
+		{
+			if (applyBonemeal(stack, world, pos, player))
+			{
+				if (!world.isRemote)
+				{
+					world.playAuxSFX(2005, pos, 0);
+				}
 
-        boolean planted = false;
-        for (int posX = x - 1; posX <= x + 1; posX++)
-        {
-            for (int posZ = z - 1; posZ <= z + 1; posZ++)
-            {
-                if (player.canPlayerEdit(posX, y, posZ, side, stack) && player.canPlayerEdit(posX, y + 1, posZ, side, stack))
-                {
-                    if (applyBonemeal(stack, world, posX, y, posZ, player))
-                    {
-                        planted = true;
-                        if (!world.isRemote)
-                        {
-                            world.playAuxSFX(2005, posX, y, posZ, 0);
-                        }
-                    }
-                }
-            }
-        }
-        if (planted)
-        {
-            if (!player.capabilities.isCreativeMode)
-                stack.stackSize--;
-            if (stack.stackSize < 1)
-                player.destroyCurrentEquippedItem();
-        }
-        return planted;
-    }
+				return true;
+			}
+			return false;
+		}
 
-    public static boolean applyBonemeal (ItemStack par0ItemStack, World par1World, int par2, int par3, int par4, EntityPlayer player)
-    {
-        Block l = par1World.getBlock(par2, par3, par4);
+		/**boolean planted = false;
+		for (int posX = x - 1; posX <= x + 1; posX++)
+		{
+		    for (int posZ = z - 1; posZ <= z + 1; posZ++)
+		    {
+		        if (player.canPlayerEdit(posX, y, posZ, side, stack) && player.canPlayerEdit(posX, y + 1, posZ, side, stack))
+		        {
+		            if (applyBonemeal(stack, world, posX, y, posZ, player))
+		            {
+		                planted = true;
+		                if (!world.isRemote)
+		                {
+		                    world.playAuxSFX(2005, posX, y, posZ, 0);
+		                }
+		            }
+		        }
+		    }
+		}
+		if (planted)
+		{
+		    if (!player.capabilities.isCreativeMode)
+		        stack.stackSize--;
+		    if (stack.stackSize < 1)
+		        player.destroyCurrentEquippedItem();
+		}
+		return planted;*/
+	}
 
-        BonemealEvent event = new BonemealEvent(player, par1World, l, par2, par3, par4);
-        if (MinecraftForge.EVENT_BUS.post(event))
-        {
-            return false;
-        }
+	public static boolean applyBonemeal(ItemStack stack, World worldIn, BlockPos target)
+	{
+		if (worldIn instanceof net.minecraft.world.WorldServer)
+			return applyBonemeal(stack, worldIn, target, net.minecraftforge.common.util.FakePlayerFactory.getMinecraft((net.minecraft.world.WorldServer) worldIn));
+		return false;
+	}
 
-        event.getResult();
-        if (event.getResult() == Result.ALLOW)
-        {
-            /*if (!par1World.isRemote)
-            {
-                par0ItemStack.stackSize--;
-            }*/
-            return true;
-        }
+	public static boolean applyBonemeal(ItemStack stack, World worldIn, BlockPos target, EntityPlayer player)
+	{
+		IBlockState iblockstate = worldIn.getBlockState(target);
 
-        if (l == Blocks.sapling)
-        {
-            if (!par1World.isRemote)
-            {
-                if (par1World.rand.nextFloat() < 0.45D)
-                {
-                    ((BlockSapling) Blocks.sapling).func_149879_c/*markOrGrowMarked*/(par1World, par2, par3, par4, par1World.rand);
-                }
+		int hook = net.minecraftforge.event.ForgeEventFactory.onApplyBonemeal(player, worldIn, target, iblockstate, stack);
+		if (hook != 0)
+			return hook > 0;
 
-                //--par0ItemStack.stackSize;
-            }
+		if (iblockstate.getBlock() instanceof IGrowable)
+		{
+			IGrowable igrowable = (IGrowable) iblockstate.getBlock();
 
-            return true;
-        }
-        else if (l != Blocks.brown_mushroom && l != Blocks.red_mushroom)
-        {
-            if (l != Blocks.melon_stem && l != Blocks.pumpkin_stem)
-            {
-                if (l != null && l instanceof BlockCrops)
-                {
-                    if (par1World.getBlockMetadata(par2, par3, par4) == 7)
-                    {
-                        return false;
-                    }
-                    else
-                    {
-                        if (!par1World.isRemote)
-                        {
-                            ((BlockCrops) l).func_149863_m/*fertilize*/(par1World, par2, par3, par4);
-                            //--par0ItemStack.stackSize;
-                        }
+			if (igrowable.canGrow(worldIn, target, iblockstate, worldIn.isRemote))
+			{
+				if (!worldIn.isRemote)
+				{
+					if (igrowable.canUseBonemeal(worldIn, worldIn.rand, target, iblockstate))
+					{
+						igrowable.grow(worldIn, worldIn.rand, target, iblockstate);
+					}
 
-                        return true;
-                    }
-                }
-                else
-                {
-                    int i1;
-                    int j1;
-                    int k1;
+					--stack.stackSize;
+				}
 
-                    if (l == Blocks.cocoa)
-                    {
-                        i1 = par1World.getBlockMetadata(par2, par3, par4);
-                        j1 = BlockDirectional.getDirection(i1);
-                        k1 = BlockCocoa.func_149987_c(i1);
+				return true;
+			}
+		}
 
-                        if (k1 >= 2)
-                        {
-                            return false;
-                        }
-                        else
-                        {
-                            if (!par1World.isRemote)
-                            {
-                                ++k1;
-                                par1World.setBlockMetadataWithNotify(par2, par3, par4, k1 << 2 | j1, 2);
-                                //--par0ItemStack.stackSize;
-                            }
+		return false;
+	}
 
-                            return true;
-                        }
-                    }
-                    else if (l != Blocks.grass)
-                    {
-                        return false;
-                    }
-                    else
-                    {
-                        if (!par1World.isRemote)
-                        {
-                            --par0ItemStack.stackSize;
-                            label102:
+	/**public static boolean applyBonemeal (ItemStack par0ItemStack, World par1World, int par2, int par3, int par4, EntityPlayer player)
+	{
+	    Block l = par1World.getBlock(par2, par3, par4);
 
-                            for (i1 = 0; i1 < 128; ++i1)
-                            {
-                                j1 = par2;
-                                k1 = par3 + 1;
-                                int l1 = par4;
+	    BonemealEvent event = new BonemealEvent(player, par1World, l, par2, par3, par4);
+	    if (MinecraftForge.EVENT_BUS.post(event))
+	    {
+	        return false;
+	    }
 
-                                for (int i2 = 0; i2 < i1 / 16; ++i2)
-                                {
-                                    j1 += itemRand.nextInt(3) - 1;
-                                    k1 += (itemRand.nextInt(3) - 1) * itemRand.nextInt(3) / 2;
-                                    l1 += itemRand.nextInt(3) - 1;
+	    event.getResult();
+	    if (event.getResult() == Result.ALLOW)
+	    {
+	        /*if (!par1World.isRemote)
+	        {
+	            par0ItemStack.stackSize--;
+	        }*
+	        return true;
+	    }
 
-                                    if (par1World.getBlock(j1, k1 - 1, l1) != Blocks.grass || par1World.getBlock(j1, k1, l1).isNormalCube())
-                                    {
-                                        continue label102;
-                                    }
-                                }
+	    if (l == Blocks.sapling)
+	    {
+	        if (!par1World.isRemote)
+	        {
+	            if (par1World.rand.nextFloat() < 0.45D)
+	            {
+	                ((BlockSapling) Blocks.sapling).func_149879_c/*markOrGrowMarked*(par1World, par2, par3, par4, par1World.rand);
+	            }
 
-                                if (par1World.getBlock(j1, k1, l1) == Blocks.air)
-                                {
-                                    if (itemRand.nextInt(10) != 0)
-                                    {
-                                        if (Blocks.tallgrass.canBlockStay(par1World, j1, k1, l1))
-                                        {
-                                            par1World.setBlock(j1, k1, l1, Blocks.tallgrass, 1, 3);
-                                        }
-                                    }
-                                    else
-                                    {
-                                        // TODO 1.7 Probably a vanilla method for this now? ForgeHooks.plantGrass(par1World, j1, k1, l1);
-                                    }
-                                }
-                            }
-                        }
+	            //--par0ItemStack.stackSize;
+	        }
 
-                        return true;
-                    }
-                }
-            }
-            else if (par1World.getBlockMetadata(par2, par3, par4) == 7)
-            {
-                return false;
-            }
-            else
-            {
-                if (!par1World.isRemote)
-                {
-                    ((BlockStem) l).func_149874_m/*fertilizeStem*/(par1World, par2, par3, par4);
-                    //--par0ItemStack.stackSize;
-                }
+	        return true;
+	    }
+	    else if (l != Blocks.brown_mushroom && l != Blocks.red_mushroom)
+	    {
+	        if (l != Blocks.melon_stem && l != Blocks.pumpkin_stem)
+	        {
+	            if (l != null && l instanceof BlockCrops)
+	            {
+	                if (par1World.getBlockMetadata(par2, par3, par4) == 7)
+	                {
+	                    return false;
+	                }
+	                else
+	                {
+	                    if (!par1World.isRemote)
+	                    {
+	                        ((BlockCrops) l).func_149863_m/*fertilize*(par1World, par2, par3, par4);
+	                        //--par0ItemStack.stackSize;
+	                    }
 
-                return true;
-            }
-        }
-        else
-        {
-            if (!par1World.isRemote)
-            {
-                if (par1World.rand.nextFloat() < 0.4D)
-                {
-                    ((BlockMushroom) l).func_149884_c/*fertilizeMushroom*/(par1World, par2, par3, par4, par1World.rand);
-                }
+	                    return true;
+	                }
+	            }
+	            else
+	            {
+	                int i1;
+	                int j1;
+	                int k1;
 
-                //--par0ItemStack.stackSize;
-            }
+	                if (l == Blocks.cocoa)
+	                {
+	                    i1 = par1World.getBlockMetadata(par2, par3, par4);
+	                    j1 = BlockDirectional.getDirection(i1);
+	                    k1 = BlockCocoa.func_149987_c(i1);
 
-            return true;
-        }
-    }
+	                    if (k1 >= 2)
+	                    {
+	                        return false;
+	                    }
+	                    else
+	                    {
+	                        if (!par1World.isRemote)
+	                        {
+	                            ++k1;
+	                            par1World.setBlockMetadataWithNotify(par2, par3, par4, k1 << 2 | j1, 2);
+	                            //--par0ItemStack.stackSize;
+	                        }
 
-    @SideOnly(Side.CLIENT)
-    @Override
-    public void registerIcons (IIconRegister par1IconRegister)
-    {
-        this.itemIcon = par1IconRegister.registerIcon("natura:seedbag_" + textureName);
-    }
+	                        return true;
+	                    }
+	                }
+	                else if (l != Blocks.grass)
+	                {
+	                    return false;
+	                }
+	                else
+	                {
+	                    if (!par1World.isRemote)
+	                    {
+	                        --par0ItemStack.stackSize;
+	                        label102:
 
-    @Override
-    @SideOnly(Side.CLIENT)
-    public void addInformation (ItemStack stack, EntityPlayer player, List list, boolean par4)
-    {
-        list.add(StatCollector.translateToLocal("tooltip.bonebag"));
-    }
+	                        for (i1 = 0; i1 < 128; ++i1)
+	                        {
+	                            j1 = par2;
+	                            k1 = par3 + 1;
+	                            int l1 = par4;
+
+	                            for (int i2 = 0; i2 < i1 / 16; ++i2)
+	                            {
+	                                j1 += itemRand.nextInt(3) - 1;
+	                                k1 += (itemRand.nextInt(3) - 1) * itemRand.nextInt(3) / 2;
+	                                l1 += itemRand.nextInt(3) - 1;
+
+	                                if (par1World.getBlock(j1, k1 - 1, l1) != Blocks.grass || par1World.getBlock(j1, k1, l1).isNormalCube())
+	                                {
+	                                    continue label102;
+	                                }
+	                            }
+
+	                            if (par1World.getBlock(j1, k1, l1) == Blocks.air)
+	                            {
+	                                if (itemRand.nextInt(10) != 0)
+	                                {
+	                                    if (Blocks.tallgrass.canBlockStay(par1World, j1, k1, l1))
+	                                    {
+	                                        par1World.setBlock(j1, k1, l1, Blocks.tallgrass, 1, 3);
+	                                    }
+	                                }
+	                                else
+	                                {
+	                                    // TODO 1.7 Probably a vanilla method for this now? ForgeHooks.plantGrass(par1World, j1, k1, l1);
+	                                }
+	                            }
+	                        }
+	                    }
+
+	                    return true;
+	                }
+	            }
+	        }
+	        else if (par1World.getBlockMetadata(par2, par3, par4) == 7)
+	        {
+	            return false;
+	        }
+	        else
+	        {
+	            if (!par1World.isRemote)
+	            {
+	                ((BlockStem) l).func_149874_m/*fertilizeStem*(par1World, par2, par3, par4);
+	                //--par0ItemStack.stackSize;
+	            }
+
+	            return true;
+	        }
+	    }
+	    else
+	    {
+	        if (!par1World.isRemote)
+	        {
+	            if (par1World.rand.nextFloat() < 0.4D)
+	            {
+	                ((BlockMushroom) l).func_149884_c/*fertilizeMushroom*(par1World, par2, par3, par4, par1World.rand);
+	            }
+
+	            //--par0ItemStack.stackSize;
+	        }
+
+	        return true;
+	    }
+	}*/
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4)
+	{
+		list.add(StatCollector.translateToLocal("tooltip.bonebag"));
+	}
 }

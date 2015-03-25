@@ -141,6 +141,7 @@ import net.minecraftforge.fml.common.IFuelHandler;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
+// TODO: FIX/FINISH THIS
 public class NContent implements IFuelHandler
 {
 
@@ -151,53 +152,53 @@ public class NContent implements IFuelHandler
         //Crops
         plantItem = new PlantItem().setUnlocalizedName("barleyFood");
         GameRegistry.registerItem(plantItem, "barleyFood");
-        crops = (CropBlock) new CropBlock().setBlockName("natura.crops");
+        crops = (CropBlock) new CropBlock().setUnlocalizedName("natura.crops");
         GameRegistry.registerBlock(crops, "crops");
         seeds = new NaturaSeeds(crops, Blocks.farmland).setUnlocalizedName("barley.seed");
         GameRegistry.registerItem(seeds, "barley.seed");
-        GameRegistry.registerCustomItemStack("seedBarley", new ItemStack(seeds, 1, 0));
-        GameRegistry.registerCustomItemStack("seedCotton", new ItemStack(seeds, 1, 1));
+        //GameRegistry.registerCustomItemStack("seedBarley", new ItemStack(seeds, 1, 0));
+        //GameRegistry.registerCustomItemStack("seedCotton", new ItemStack(seeds, 1, 1));
 
         waterDrop = new CactusJuice(false).setUnlocalizedName("waterdrop");
         GameRegistry.registerItem(waterDrop, "waterdrop");
 
         wheatBag = new SeedBag(Blocks.wheat, 0, "wheat").setUnlocalizedName("wheatBag");
         GameRegistry.registerItem(wheatBag, "wheatBag");
-        GameRegistry.registerCustomItemStack("bagWheat", new ItemStack(wheatBag, 1, 0));
+        //GameRegistry.registerCustomItemStack("bagWheat", new ItemStack(wheatBag, 1, 0));
         barleyBag = new SeedBag(crops, 0, "barley").setUnlocalizedName("barleyBag");
         GameRegistry.registerItem(barleyBag, "barleyBag");
-        GameRegistry.registerCustomItemStack("bagBarley", new ItemStack(barleyBag, 1, 0));
+        //GameRegistry.registerCustomItemStack("bagBarley", new ItemStack(barleyBag, 1, 0));
         potatoBag = new SeedBag(Blocks.potatoes, 0, "potato").setUnlocalizedName("potatoBag");
         GameRegistry.registerItem(potatoBag, "potatoBag");
-        GameRegistry.registerCustomItemStack("bagPotato", new ItemStack(potatoBag, 1, 0));
+        //GameRegistry.registerCustomItemStack("bagPotato", new ItemStack(potatoBag, 1, 0));
         carrotBag = new SeedBag(Blocks.carrots, 0, "carrot").setUnlocalizedName("carrotBag");
         GameRegistry.registerItem(carrotBag, "carrotBag");
-        GameRegistry.registerCustomItemStack("bagCarrot", new ItemStack(carrotBag, 1, 0));
+        //GameRegistry.registerCustomItemStack("bagCarrot", new ItemStack(carrotBag, 1, 0));
         netherWartBag = new SeedBag(Blocks.nether_wart, 0, "netherwart").setUnlocalizedName("wartBag");
         GameRegistry.registerItem(netherWartBag, "wartBag");
-        GameRegistry.registerCustomItemStack("bagNetherWart", new ItemStack(netherWartBag, 1, 0));
+        //GameRegistry.registerCustomItemStack("bagNetherWart", new ItemStack(netherWartBag, 1, 0));
         cottonBag = new SeedBag(crops, 4, "cotton").setUnlocalizedName("cottonBag");
         GameRegistry.registerItem(cottonBag, "cottonBag");
-        GameRegistry.registerCustomItemStack("bagCotton", new ItemStack(cottonBag, 1, 0));
+        //GameRegistry.registerCustomItemStack("bagCotton", new ItemStack(cottonBag, 1, 0));
         boneBag = new BoneBag("bone").setUnlocalizedName("boneBag");
         GameRegistry.registerItem(boneBag, "boneBag");
-        GameRegistry.registerCustomItemStack("bagBone", new ItemStack(boneBag, 1, 0));
+        //GameRegistry.registerCustomItemStack("bagBone", new ItemStack(boneBag, 1, 0));
 
         netherBerryItem = new NetherBerryItem(1).setUnlocalizedName("berry.nether");
         GameRegistry.registerItem(netherBerryItem, "berry.nether");
-        GameRegistry.registerCustomItemStack("berryBlight", new ItemStack(netherBerryItem, 1, 0));
-        GameRegistry.registerCustomItemStack("berryDusk", new ItemStack(netherBerryItem, 1, 1));
-        GameRegistry.registerCustomItemStack("berrySky", new ItemStack(netherBerryItem, 1, 2));
-        GameRegistry.registerCustomItemStack("berrySting", new ItemStack(netherBerryItem, 1, 3));
+        //GameRegistry.registerCustomItemStack("berryBlight", new ItemStack(netherBerryItem, 1, 0));
+        //GameRegistry.registerCustomItemStack("berryDusk", new ItemStack(netherBerryItem, 1, 1));
+        //GameRegistry.registerCustomItemStack("berrySky", new ItemStack(netherBerryItem, 1, 2));
+        //GameRegistry.registerCustomItemStack("berrySting", new ItemStack(netherBerryItem, 1, 3));
         berryItem = new BerryItem(1).setUnlocalizedName("berry");
         GameRegistry.registerItem(berryItem, "berry");
-        GameRegistry.registerCustomItemStack("berryRasp", new ItemStack(berryItem, 1, 0));
-        GameRegistry.registerCustomItemStack("berryBlue", new ItemStack(berryItem, 1, 1));
-        GameRegistry.registerCustomItemStack("berryBlack", new ItemStack(berryItem, 1, 2));
-        GameRegistry.registerCustomItemStack("berryMalo", new ItemStack(berryItem, 1, 3));
+        //GameRegistry.registerCustomItemStack("berryRasp", new ItemStack(berryItem, 1, 0));
+        //GameRegistry.registerCustomItemStack("berryBlue", new ItemStack(berryItem, 1, 1));
+        //GameRegistry.registerCustomItemStack("berryBlack", new ItemStack(berryItem, 1, 2));
+        //GameRegistry.registerCustomItemStack("berryMalo", new ItemStack(berryItem, 1, 3));
         berryMedley = new BerryMedley(5).setUnlocalizedName("berryMedley");
         GameRegistry.registerItem(berryMedley, "berryMedley");
-        GameRegistry.registerCustomItemStack("berryMedley", new ItemStack(berryMedley, 1, 0));
+        //GameRegistry.registerCustomItemStack("berryMedley", new ItemStack(berryMedley, 1, 0));
 
         berryBush = new BerryBush();
         GameRegistry.registerBlock(berryBush, BerryBushItem.class, "BerryBush");
@@ -209,33 +210,33 @@ public class NContent implements IFuelHandler
         GameRegistry.registerBlock(cloud, CloudItem.class, "Cloud");
 
         //Trees
-        tree = new TreeBlock().setBlockName("natura.treeblock");
-        redwood = new SimpleLog().setBlockName("natura.redwood");
-        planks = new Planks().setBlockName("natura.planks");
-        floraLeaves = (NLeaves) new NLeaves().setBlockName("natura.leaves");
-        floraLeavesNoColor = (NLeaves) new NLeavesNocolor().setBlockName("natura.leavesnocolor");
-        floraSapling = ((FloraSaplingBlock) new FloraSaplingBlock().setBlockName("natura.sapling"));
-        willow = new WillowBlock().setBlockName("willow");
+        tree = new TreeBlock().setUnlocalizedName("natura.treeblock");
+        redwood = new SimpleLog().setUnlocalizedName("natura.redwood");
+        planks = new Planks().setUnlocalizedName("natura.planks");
+        floraLeaves = (NLeaves) new NLeaves().setUnlocalizedName("natura.leaves");
+        floraLeavesNoColor = (NLeaves) new NLeavesNocolor().setUnlocalizedName("natura.leavesnocolor");
+        floraSapling = ((FloraSaplingBlock) new FloraSaplingBlock().setUnlocalizedName("natura.sapling"));
+        willow = new WillowBlock().setUnlocalizedName("willow");
 
-        saguaro = new SaguaroBlock().setBlockName("saguaro.block");
+        saguaro = new SaguaroBlock().setUnlocalizedName("saguaro.block");
         seedFood = new SeedFood(3, 0.3f, saguaro).setUnlocalizedName("saguaro.fruit");
         GameRegistry.registerItem(seedFood, "saguaro.fruit");
 
         doorItem = new NDoorItem().setUnlocalizedName("redwoodDoorItem");
         GameRegistry.registerItem(doorItem, "redwoodDoorItem");
-        redwoodDoor = new NDoor(Material.wood, 0, "redwood").setBlockName("door.redwood");
-        eucalyptusDoor = new NDoor(Material.wood, 1, "eucalyptus").setBlockName("door.eucalyptus");
-        hopseedDoor = new NDoor(Material.wood, 2, "hopseed").setBlockName("door.hopseed");
-        sakuraDoor = new NDoor(Material.wood, 3, "sakura").setBlockName("door.sakura");
-        ghostDoor = new NDoor(Material.wood, 4, "ghostwood").setBlockName("door.ghostwood");
-        bloodDoor = new NDoor(Material.wood, 5, "bloodwood").setBlockName("door.bloodwood");
-        redwoodBarkDoor = new NDoor(Material.wood, 6, "redwoodbark").setBlockName("door.redwoodbark");
+        redwoodDoor = new NDoor(Material.wood, 0, "redwood").setUnlocalizedName("door.redwood");
+        eucalyptusDoor = new NDoor(Material.wood, 1, "eucalyptus").setUnlocalizedName("door.eucalyptus");
+        hopseedDoor = new NDoor(Material.wood, 2, "hopseed").setUnlocalizedName("door.hopseed");
+        sakuraDoor = new NDoor(Material.wood, 3, "sakura").setUnlocalizedName("door.sakura");
+        ghostDoor = new NDoor(Material.wood, 4, "ghostwood").setUnlocalizedName("door.ghostwood");
+        bloodDoor = new NDoor(Material.wood, 5, "bloodwood").setUnlocalizedName("door.bloodwood");
+        redwoodBarkDoor = new NDoor(Material.wood, 6, "redwoodbark").setUnlocalizedName("door.redwoodbark");
         if(PHNatura.dropBarley)
             MinecraftForge.addGrassSeed(new ItemStack(seeds, 1, 0), 3);
         if(PHNatura.dropCotton)
             MinecraftForge.addGrassSeed(new ItemStack(seeds, 1, 1), 3);
 
-        //floraBoat = new NBoat(PHNatura.boatItemID).setIconCoord(0, 3).setBlockName("floraBoat");
+        //floraBoat = new NBoat(PHNatura.boatItemID).setIconCoord(0, 3).setUnlocalizedName("floraBoat");
 
         GameRegistry.registerBlock(tree, TreeItem.class, "tree");
         GameRegistry.registerBlock(redwood, RedwoodItem.class, "redwood");
@@ -256,383 +257,383 @@ public class NContent implements IFuelHandler
         GameRegistry.registerBlock(redwoodBarkDoor, "door.redwoodbark");
 
         //Nether
-        bloodwood = new LogTwoxTwo(8f, Material.wood).setBlockName("bloodwood");
+        bloodwood = new LogTwoxTwo(8f, Material.wood).setUnlocalizedName("bloodwood");
         GameRegistry.registerBlock(bloodwood, LogTwoxTwoItem.class, "bloodwood");
-        taintedSoil = new TaintedSoil().setBlockName("TaintedSoil");
+        taintedSoil = new TaintedSoil().setUnlocalizedName("TaintedSoil");
         GameRegistry.registerBlock(taintedSoil, "soil.tainted");
-        heatSand = new HeatSand().setBlockName("HeatSand");//.setLightLevel(0.375f);
+        heatSand = new HeatSand().setUnlocalizedName("HeatSand");//.setLightLevel(0.375f);
         GameRegistry.registerBlock(heatSand, "heatsand");
-        /*infernalStone = new NBlock(PHNatura.infernalStone, Material.rock, 1.5f, new String[] { "infernal_stone" }).setBlockName("infernalStone");
+        /*infernalStone = new NBlock(PHNatura.infernalStone, Material.rock, 1.5f, new String[] { "infernal_stone" }).setUnlocalizedName("infernalStone");
         GameRegistry.registerBlock(infernalStone, "infernalStone");*/
-        netherSapling = ((NetherSaplingBlock) new NetherSaplingBlock().setBlockName("natura.nethersapling"));
+        netherSapling = ((NetherSaplingBlock) new NetherSaplingBlock().setUnlocalizedName("natura.nethersapling"));
         GameRegistry.registerBlock(netherSapling, NetherSaplingItem.class, "nethersapling");
 
-        darkTree = new DarkTreeBlock().setBlockName("Darktree");
+        darkTree = new DarkTreeBlock().setUnlocalizedName("Darktree");
         GameRegistry.registerBlock(darkTree, DarkTreeItem.class, "Dark Tree");
-        darkLeaves = (NLeaves) new NLeavesDark().setBlockName("Darkleaves");
+        darkLeaves = (NLeaves) new NLeavesDark().setUnlocalizedName("Darkleaves");
         GameRegistry.registerBlock(darkLeaves, NLeavesDarkItem.class, "Dark Leaves");
-        thornVines = new ThornVines().setBlockName("Thornvines").setLightLevel(0.625f);
+        thornVines = new ThornVines().setUnlocalizedName("Thornvines").setLightLevel(0.625f);
         GameRegistry.registerBlock(thornVines, "Thornvines");
-        glowshroom = (Glowshroom) new Glowshroom().setBlockName("Glowshroom").setLightLevel(0.625f);
+        glowshroom = (Glowshroom) new Glowshroom().setUnlocalizedName("Glowshroom").setLightLevel(0.625f);
         GameRegistry.registerBlock(glowshroom, GlowshroomItem.class, "Glowshroom");
-        glowshroomBlue = new LargeGlowshroom(Material.wood, "blue").setBlockName("blueGlowshroom").setLightLevel(0.625f);
+        glowshroomBlue = new LargeGlowshroom(Material.wood, "blue").setUnlocalizedName("blueGlowshroom").setLightLevel(0.625f);
         GameRegistry.registerBlock(glowshroomBlue, "blueGlowshroom");
-        glowshroomPurple = new LargeGlowshroom(Material.wood, "purple").setBlockName("purpleGlowshroom").setLightLevel(0.5f);
+        glowshroomPurple = new LargeGlowshroom(Material.wood, "purple").setUnlocalizedName("purpleGlowshroom").setLightLevel(0.5f);
         GameRegistry.registerBlock(glowshroomPurple, "purpleGlowshroom");
-        glowshroomGreen = new LargeGlowshroom(Material.wood, "green").setBlockName("greenGlowshroom").setLightLevel(0.5f);
+        glowshroomGreen = new LargeGlowshroom(Material.wood, "green").setUnlocalizedName("greenGlowshroom").setLightLevel(0.5f);
         GameRegistry.registerBlock(glowshroomGreen, "greenGlowshroom");
 
         Blocks.netherrack.setResistance(4f);
 
-        brail = new BlazeRail().setHardness(0.7F).setBlockName("blazerail").setBlockTextureName("natura:brail_normal");
+        brail = new BlazeRail().setHardness(0.7F).setUnlocalizedName("blazerail");
         GameRegistry.registerBlock(brail, "Blazerail");
-        brailPowered = new BlazeRailPowered(false).setHardness(0.7F).setBlockName("blazerail.powered").setBlockTextureName("natura:brail_golden");
+        brailPowered = new BlazeRailPowered(false).setHardness(0.7F).setUnlocalizedName("blazerail.powered");
         GameRegistry.registerBlock(brailPowered, "BrailPowered");
-        brailDetector = new BlazeRailDetector().setHardness(0.7F).setBlockName("blazerail.detector").setBlockTextureName("natura:brail_detector");
+        brailDetector = new BlazeRailDetector().setHardness(0.7F).setUnlocalizedName("blazerail.detector");
         GameRegistry.registerBlock(brailDetector, "BrailDetector");
-        brailActivator = new BlazeRailPowered(true).setHardness(0.7F).setBlockName("blazerail.activator").setBlockTextureName("natura:brail_activator");
+        brailActivator = new BlazeRailPowered(true).setHardness(0.7F).setUnlocalizedName("blazerail.activator");
         GameRegistry.registerBlock(brailActivator, "BrailActivator");
 
-        netherrackFurnace = new NetherrackFurnaceBlock().setHardness(3.5F).setCreativeTab(NaturaTab.netherTab).setBlockName("furnace.netherrack");
+        netherrackFurnace = new NetherrackFurnaceBlock().setHardness(3.5F).setCreativeTab(NaturaTab.netherTab).setUnlocalizedName("furnace.netherrack");
         GameRegistry.registerBlock(netherrackFurnace, "NetherFurnace");
         GameRegistry.registerTileEntity(NetherrackFurnaceLogic.class, "netherrackFurnace");
-        respawnObelisk = new RespawnObelisk(Material.wood).setHardness(1.0F).setResistance(1000000F).setCreativeTab(NaturaTab.netherTab).setBlockName("nether.obelisk");
+        respawnObelisk = new RespawnObelisk(Material.wood).setHardness(1.0F).setResistance(1000000F).setCreativeTab(NaturaTab.netherTab).setUnlocalizedName("nether.obelisk");
         GameRegistry.registerBlock(respawnObelisk, "Obelisk");
-        netherGlass = (NetherGlass) new NetherGlass().setHardness(1.0F).setResistance(3000F).setStepSound(Block.soundTypeGlass).setCreativeTab(NaturaTab.netherTab).setBlockName("nether.glass");
+        netherGlass = (NetherGlass) new NetherGlass().setHardness(1.0F).setResistance(3000F).setStepSound(Block.soundTypeGlass).setCreativeTab(NaturaTab.netherTab).setUnlocalizedName("nether.glass");
         GameRegistry.registerBlock(netherGlass, NetherGlassItem.class, "NetherGlass");
-        netherHopper = (BlazeHopper) new BlazeHopper().setHardness(3.0F).setResistance(8.0F).setCreativeTab(NaturaTab.netherTab).setBlockName("nether.hopper");
+        netherHopper = (BlazeHopper) new BlazeHopper().setHardness(3.0F).setResistance(8.0F).setCreativeTab(NaturaTab.netherTab).setUnlocalizedName("nether.hopper");
         GameRegistry.registerBlock(netherHopper, "NetherHopper");
-        netherPressurePlate = new AlternatePressurePlate("netherrack", Material.rock, Sensitivity.mobs).setHardness(0.5F).setStepSound(Block.soundTypeStone).setBlockName("pressurePlate");
+        netherPressurePlate = new AlternatePressurePlate("netherrack", Material.rock, Sensitivity.MOBS).setHardness(0.5F).setStepSound(Block.soundTypeStone).setUnlocalizedName("pressurePlate");
         GameRegistry.registerBlock(netherPressurePlate, "NetherPressurePlate");
-        netherButton = new NetherrackButton().setHardness(0.5F).setStepSound(Block.soundTypeStone).setBlockName("button");
+        netherButton = new NetherrackButton().setHardness(0.5F).setStepSound(Block.soundTypeStone).setUnlocalizedName("button");
         GameRegistry.registerBlock(netherButton, "NetherButton");
-        netherLever = new NetherLever().setHardness(0.5F).setStepSound(Block.soundTypeWood).setBlockName("lever").setBlockTextureName("natura:nlever");
+        netherLever = new NetherLever().setHardness(0.5F).setStepSound(Block.soundTypeWood).setUnlocalizedName("lever");
         GameRegistry.registerBlock(netherLever, "NetherLever");
         /*public static Block netherDropper;
         public static Block netherDispenser;*/
 
-        /*piston = (NetherPistonBase) new NetherPistonBase(PHNatura.piston, false).setBlockName("nether.piston");
+        /*piston = (NetherPistonBase) new NetherPistonBase(PHNatura.piston, false).setUnlocalizedName("nether.piston");
         GameRegistry.registerBlock(piston, "natura.piston");
-        pistonSticky = (NetherPistonBase) new NetherPistonBase(PHNatura.pistonSticky, true).setBlockName("nether.piston.sticky");
+        pistonSticky = (NetherPistonBase) new NetherPistonBase(PHNatura.pistonSticky, true).setUnlocalizedName("nether.piston.sticky");
         GameRegistry.registerBlock(pistonSticky, "natura.piston.sticky");
         pistonExtension = new NetherPistonExtension(PHNatura.pistonExtension);
         GameRegistry.registerBlock(pistonExtension, "natura.piston.extension");*/
 
         potashApple = new NetherFoodItem().setUnlocalizedName("Natura.netherfood");
         GameRegistry.registerItem(potashApple, "Natura.netherfood");
-        GameRegistry.registerCustomItemStack("applePotash", new ItemStack(potashApple, 1, 0));
+        //GameRegistry.registerCustomItemStack("applePotash", new ItemStack(potashApple, 1, 0));
 
         //Rare overworld
-        rareTree = new OverworldTreeBlock().setBlockName("RareTree");
+        rareTree = new OverworldTreeBlock().setUnlocalizedName("RareTree");
         GameRegistry.registerBlock(rareTree, OverworldTreeItem.class, "Rare Tree");
-        rareLeaves = (NLeaves) new OverworldLeaves().setBlockName("RareLeaves");
+        rareLeaves = (NLeaves) new OverworldLeaves().setUnlocalizedName("RareLeaves");
         GameRegistry.registerBlock(rareLeaves, OverworldLeavesItem.class, "RareLeaves");
-        rareSapling = (RareSaplingBlock) new RareSaplingBlock().setBlockName("RareSapling");
+        rareSapling = (RareSaplingBlock) new RareSaplingBlock().setUnlocalizedName("RareSapling");
         GameRegistry.registerBlock(rareSapling, RareSaplingItem.class, "RareSapling");
-        bluebells = (FlowerBlock) new FlowerBlock().setBlockName("bluebells");
+        bluebells = (FlowerBlock) new FlowerBlock().setUnlocalizedName("bluebells");
         GameRegistry.registerBlock(bluebells, "Bluebells");
 
         // TODO 1.7 apparently this isn't so simple anymore
         //MinecraftForge.addGrassPlant(bluebells, 0, 18);
 
         //Vanilla overrides and alternates
-        alternateWorkbench = new AlternateWorkbench().setHardness(2.5F).setStepSound(Block.soundTypeWood).setBlockName("workbench").setCreativeTab(NaturaTab.tab);
+        alternateWorkbench = new AlternateWorkbench().setHardness(2.5F).setStepSound(Block.soundTypeWood).setUnlocalizedName("workbench").setCreativeTab(NaturaTab.tab);
         GameRegistry.registerBlock(alternateWorkbench, NAlternateItem.class, "Natura.workbench");
 
-        alternateBookshelf = new AlternateBookshelf().setHardness(1.5F).setStepSound(Block.soundTypeWood).setBlockName("bookshelf").setCreativeTab(NaturaTab.tab);
+        alternateBookshelf = new AlternateBookshelf().setHardness(1.5F).setStepSound(Block.soundTypeWood).setUnlocalizedName("bookshelf").setCreativeTab(NaturaTab.tab);
         GameRegistry.registerBlock(alternateBookshelf, NAlternateItem.class, "Natura.bookshelf");
 
-        alternateFence = new AlternateFence(Material.wood).setHardness(2.0F).setResistance(5.0F).setStepSound(Block.soundTypeWood).setBlockName("fence").setCreativeTab(NaturaTab.tab);
+        alternateFence = new AlternateFence(Material.wood).setHardness(2.0F).setResistance(5.0F).setStepSound(Block.soundTypeWood).setUnlocalizedName("fence").setCreativeTab(NaturaTab.tab);
         GameRegistry.registerBlock(alternateFence, FenceItem.class, "Natura.fence");
 
-        grassBlock = new GrassBlock().setBlockName("GrassBlock");
+        grassBlock = new GrassBlock().setUnlocalizedName("GrassBlock");
         grassBlock.stepSound = Block.soundTypeGrass;
         GameRegistry.registerBlock(grassBlock, GrassBlockItem.class, "GrassBlock");
 
-        grassSlab = new GrassSlab().setBlockName("GrassSlab");
+        grassSlab = new GrassSlab().setUnlocalizedName("GrassSlab");
         grassSlab.stepSound = Block.soundTypeGrass;
         GameRegistry.registerBlock(grassSlab, GrassSlabItem.class, "GrassSlab");
 
-        plankSlab1 = new NSlabBase(Material.wood, planks, 0, 8).setHardness(2.0f).setBlockName("plankSlab1");
+        plankSlab1 = new NSlabBase(Material.wood, planks, 0, 8).setHardness(2.0f).setUnlocalizedName("plankSlab1");
         plankSlab1.stepSound = Block.soundTypeWood;
         GameRegistry.registerBlock(plankSlab1, PlankSlab1Item.class, "plankSlab1");
 
-        plankSlab2 = new NSlabBase(Material.wood, planks, 8, 5).setHardness(2.0f).setBlockName("plankSlab2");
+        plankSlab2 = new NSlabBase(Material.wood, planks, 8, 5).setHardness(2.0f).setUnlocalizedName("plankSlab2");
         plankSlab2.stepSound = Block.soundTypeWood;
         GameRegistry.registerBlock(plankSlab2, PlankSlab2Item.class, "plankSlab2");
 
         //Stairs
-        stairEucalyptus = new NStairs(planks, 0).setBlockName("stair.eucalyptus");
+        stairEucalyptus = new NStairs(planks, 0).setUnlocalizedName("stair.eucalyptus");
         stairEucalyptus.stepSound = Block.soundTypeWood;
         GameRegistry.registerBlock(stairEucalyptus, "stair.eucalyptus");
 
-        stairSakura = new NStairs(planks, 1).setBlockName("stair.sakura");
+        stairSakura = new NStairs(planks, 1).setUnlocalizedName("stair.sakura");
         stairSakura.stepSound = Block.soundTypeWood;
         GameRegistry.registerBlock(stairSakura, "stair.sakura");
 
-        stairGhostwood = new NStairs(planks, 2).setBlockName("stair.ghostwood");
+        stairGhostwood = new NStairs(planks, 2).setUnlocalizedName("stair.ghostwood");
         stairGhostwood.stepSound = Block.soundTypeWood;
         GameRegistry.registerBlock(stairGhostwood, "stair.ghostwood");
 
-        stairRedwood = new NStairs(planks, 3).setBlockName("stair.redwood");
+        stairRedwood = new NStairs(planks, 3).setUnlocalizedName("stair.redwood");
         stairRedwood.stepSound = Block.soundTypeWood;
         GameRegistry.registerBlock(stairRedwood, "stair.redwood");
 
-        stairBloodwood = new NStairs(planks, 4).setBlockName("stair.bloodwood");
+        stairBloodwood = new NStairs(planks, 4).setUnlocalizedName("stair.bloodwood");
         stairBloodwood.stepSound = Block.soundTypeWood;
         GameRegistry.registerBlock(stairBloodwood, "stair.bloodwood");
 
-        stairHopseed = new NStairs(planks, 5).setBlockName("stair.hopseed");
+        stairHopseed = new NStairs(planks, 5).setUnlocalizedName("stair.hopseed");
         stairHopseed.stepSound = Block.soundTypeWood;
         GameRegistry.registerBlock(stairHopseed, "stair.hopseed");
 
-        stairMaple = new NStairs(planks, 6).setBlockName("stair.maple");
+        stairMaple = new NStairs(planks, 6).setUnlocalizedName("stair.maple");
         stairMaple.stepSound = Block.soundTypeWood;
         GameRegistry.registerBlock(stairMaple, "stair.maple");
 
-        stairSilverbell = new NStairs(planks, 7).setBlockName("stair.silverbell");
+        stairSilverbell = new NStairs(planks, 7).setUnlocalizedName("stair.silverbell");
         stairSilverbell.stepSound = Block.soundTypeWood;
         GameRegistry.registerBlock(stairSilverbell, "stair.silverbell");
 
-        stairAmaranth = new NStairs(planks, 8).setBlockName("stair.amaranth");
+        stairAmaranth = new NStairs(planks, 8).setUnlocalizedName("stair.amaranth");
         stairAmaranth.stepSound = Block.soundTypeWood;
         GameRegistry.registerBlock(stairAmaranth, "stair.amaranth");
 
-        stairTiger = new NStairs(planks, 9).setBlockName("stair.tiger");
+        stairTiger = new NStairs(planks, 9).setUnlocalizedName("stair.tiger");
         stairTiger.stepSound = Block.soundTypeWood;
         GameRegistry.registerBlock(stairTiger, "stair.tiger");
 
-        stairWillow = new NStairs(planks, 10).setBlockName("stair.willow");
+        stairWillow = new NStairs(planks, 10).setUnlocalizedName("stair.willow");
         stairWillow.stepSound = Block.soundTypeWood;
         GameRegistry.registerBlock(stairWillow, "stair.willow");
 
-        stairDarkwood = new NStairs(planks, 11).setBlockName("stair.darkwood");
+        stairDarkwood = new NStairs(planks, 11).setUnlocalizedName("stair.darkwood");
         stairDarkwood.stepSound = Block.soundTypeWood;
         GameRegistry.registerBlock(stairDarkwood, "stair.darkwood");
 
-        stairFusewood = new NStairs(planks, 12).setBlockName("stair.fusewood");
+        stairFusewood = new NStairs(planks, 12).setUnlocalizedName("stair.fusewood");
         stairFusewood.stepSound = Block.soundTypeWood;
         GameRegistry.registerBlock(stairFusewood, "stair.fusewood");
 
         //Eucalyptus
-        pressurePlateEucalyptus = new NPressurePlate(Material.wood, Sensitivity.everything, planks, 0);
-        pressurePlateEucalyptus.setHardness(0.5F).setStepSound(Block.soundTypeWood).setBlockName("pressureplate.eucalyptus");
+        pressurePlateEucalyptus = new NPressurePlate(Material.wood, Sensitivity.EVERYTHING, planks, 0);
+        pressurePlateEucalyptus.setHardness(0.5F).setStepSound(Block.soundTypeWood).setUnlocalizedName("pressureplate.eucalyptus");
         GameRegistry.registerBlock(pressurePlateEucalyptus, "pressureplate.eucalyptus");
 
         trapdoorEucalyptus = new NTrapdoor(Material.wood, "eucalyptus_trapdoor");
-        trapdoorEucalyptus.setHardness(3.0F).setStepSound(Block.soundTypeWood).setBlockName("trapdoor.eucalyptus");
+        trapdoorEucalyptus.setHardness(3.0F).setStepSound(Block.soundTypeWood).setUnlocalizedName("trapdoor.eucalyptus");
         GameRegistry.registerBlock(trapdoorEucalyptus, "trapdoor.eucalyptus");
 
         buttonEucalyptus = new NButton(planks, 0);
-        buttonEucalyptus.setHardness(0.5F).setStepSound(Block.soundTypeWood).setBlockName("button.eucalyptus");
+        buttonEucalyptus.setHardness(0.5F).setStepSound(Block.soundTypeWood).setUnlocalizedName("button.eucalyptus");
         GameRegistry.registerBlock(buttonEucalyptus, "button.eucalyptus");
 
         fenceGateEucalyptus = new NFenceGate(planks, 0);
-        fenceGateEucalyptus.setHardness(2.0F).setResistance(5.0F).setStepSound(Block.soundTypeWood).setBlockName("fenceGate.eucalyptus");
+        fenceGateEucalyptus.setHardness(2.0F).setResistance(5.0F).setStepSound(Block.soundTypeWood).setUnlocalizedName("fenceGate.eucalyptus");
         GameRegistry.registerBlock(fenceGateEucalyptus, "fenceGate.eucalyptus");
 
         //Sakura
-        pressurePlateSakura = new NPressurePlate(Material.wood, Sensitivity.everything, planks, 1);
-        pressurePlateSakura.setHardness(0.5F).setStepSound(Block.soundTypeWood).setBlockName("pressureplate.sakura");
+        pressurePlateSakura = new NPressurePlate(Material.wood, Sensitivity.EVERYTHING, planks, 1);
+        pressurePlateSakura.setHardness(0.5F).setStepSound(Block.soundTypeWood).setUnlocalizedName("pressureplate.sakura");
         GameRegistry.registerBlock(pressurePlateSakura, "pressureplate.sakura");
 
         trapdoorSakura = new NTrapdoor(Material.wood, "sakura_trapdoor");
-        trapdoorSakura.setHardness(3.0F).setStepSound(Block.soundTypeWood).setBlockName("trapdoor.sakura");
+        trapdoorSakura.setHardness(3.0F).setStepSound(Block.soundTypeWood).setUnlocalizedName("trapdoor.sakura");
         GameRegistry.registerBlock(trapdoorSakura, "trapdoor.sakura");
 
         buttonSakura = new NButton(planks, 1);
-        buttonSakura.setHardness(0.5F).setStepSound(Block.soundTypeWood).setBlockName("button.sakura");
+        buttonSakura.setHardness(0.5F).setStepSound(Block.soundTypeWood).setUnlocalizedName("button.sakura");
         GameRegistry.registerBlock(buttonSakura, "button.sakura");
 
         fenceGateSakura = new NFenceGate(planks, 1);
-        fenceGateSakura.setHardness(2.0F).setResistance(5.0F).setStepSound(Block.soundTypeWood).setBlockName("fenceGate.sakura");
+        fenceGateSakura.setHardness(2.0F).setResistance(5.0F).setStepSound(Block.soundTypeWood).setUnlocalizedName("fenceGate.sakura");
         GameRegistry.registerBlock(fenceGateSakura, "fenceGate.sakura");
 
         //Ghostwood
-        pressurePlateGhostwood = new NPressurePlate(Material.wood, Sensitivity.everything, planks, 2);
-        pressurePlateGhostwood.setHardness(0.5F).setStepSound(Block.soundTypeWood).setBlockName("pressureplate.ghostwood");
+        pressurePlateGhostwood = new NPressurePlate(Material.wood, Sensitivity.EVERYTHING, planks, 2);
+        pressurePlateGhostwood.setHardness(0.5F).setStepSound(Block.soundTypeWood).setUnlocalizedName("pressureplate.ghostwood");
         GameRegistry.registerBlock(pressurePlateGhostwood, "pressureplate.ghostwood");
 
         trapdoorGhostwood = new NTrapdoor(Material.wood, "ghostwood_trapdoor");
-        trapdoorGhostwood.setHardness(3.0F).setStepSound(Block.soundTypeWood).setBlockName("trapdoor.ghostwood");
+        trapdoorGhostwood.setHardness(3.0F).setStepSound(Block.soundTypeWood).setUnlocalizedName("trapdoor.ghostwood");
         GameRegistry.registerBlock(trapdoorGhostwood, "trapdoor.ghostwood");
 
         buttonGhostwood = new NButton(planks, 2);
-        buttonGhostwood.setHardness(0.5F).setStepSound(Block.soundTypeWood).setBlockName("button.ghostwood");
+        buttonGhostwood.setHardness(0.5F).setStepSound(Block.soundTypeWood).setUnlocalizedName("button.ghostwood");
         GameRegistry.registerBlock(buttonGhostwood, "button.ghostwood");
 
         fenceGateGhostwood = new NFenceGate(planks, 2);
-        fenceGateGhostwood.setHardness(2.0F).setResistance(5.0F).setStepSound(Block.soundTypeWood).setBlockName("fenceGate.ghostwood");
+        fenceGateGhostwood.setHardness(2.0F).setResistance(5.0F).setStepSound(Block.soundTypeWood).setUnlocalizedName("fenceGate.ghostwood");
         GameRegistry.registerBlock(fenceGateGhostwood, "fenceGate.ghostwood");
 
         //Redwood
-        pressurePlateRedwood = new NPressurePlate(Material.wood, Sensitivity.everything, planks, 3);
-        pressurePlateRedwood.setHardness(0.5F).setStepSound(Block.soundTypeWood).setBlockName("pressureplate.redwood");
+        pressurePlateRedwood = new NPressurePlate(Material.wood, Sensitivity.EVERYTHING, planks, 3);
+        pressurePlateRedwood.setHardness(0.5F).setStepSound(Block.soundTypeWood).setUnlocalizedName("pressureplate.redwood");
         GameRegistry.registerBlock(pressurePlateRedwood, "pressureplate.redwood");
 
         trapdoorRedwood = new NTrapdoor(Material.wood, "redwood_trapdoor");
-        trapdoorRedwood.setHardness(3.0F).setStepSound(Block.soundTypeWood).setBlockName("trapdoor.redwood");
+        trapdoorRedwood.setHardness(3.0F).setStepSound(Block.soundTypeWood).setUnlocalizedName("trapdoor.redwood");
         GameRegistry.registerBlock(trapdoorRedwood, "trapdoor.redwood");
 
         buttonRedwood = new NButton(planks, 3);
-        buttonRedwood.setHardness(0.5F).setStepSound(Block.soundTypeWood).setBlockName("button.redwood");
+        buttonRedwood.setHardness(0.5F).setStepSound(Block.soundTypeWood).setUnlocalizedName("button.redwood");
         GameRegistry.registerBlock(buttonRedwood, "button.redwood");
 
         fenceGateRedwood = new NFenceGate(planks, 3);
-        fenceGateRedwood.setHardness(2.0F).setResistance(5.0F).setStepSound(Block.soundTypeWood).setBlockName("fenceGate.redwood");
+        fenceGateRedwood.setHardness(2.0F).setResistance(5.0F).setStepSound(Block.soundTypeWood).setUnlocalizedName("fenceGate.redwood");
         GameRegistry.registerBlock(fenceGateRedwood, "fenceGate.redwood");
 
         //Bloodwood
-        pressurePlateBloodwood = new NPressurePlate(Material.wood, Sensitivity.everything, planks, 4);
-        pressurePlateBloodwood.setHardness(0.5F).setStepSound(Block.soundTypeWood).setBlockName("pressureplate.bloodwood");
+        pressurePlateBloodwood = new NPressurePlate(Material.wood, Sensitivity.EVERYTHING, planks, 4);
+        pressurePlateBloodwood.setHardness(0.5F).setStepSound(Block.soundTypeWood).setUnlocalizedName("pressureplate.bloodwood");
         GameRegistry.registerBlock(pressurePlateBloodwood, "pressureplate.bloodwood");
 
         trapdoorBloodwood = new NTrapdoor(Material.wood, "bloodwood_trapdoor");
-        trapdoorBloodwood.setHardness(3.0F).setStepSound(Block.soundTypeWood).setBlockName("trapdoor.bloodwood");
+        trapdoorBloodwood.setHardness(3.0F).setStepSound(Block.soundTypeWood).setUnlocalizedName("trapdoor.bloodwood");
         GameRegistry.registerBlock(trapdoorBloodwood, "trapdoor.bloodwood");
 
         buttonBloodwood = new NButton(planks, 4);
-        buttonBloodwood.setHardness(0.5F).setStepSound(Block.soundTypeWood).setBlockName("button.bloodwood");
+        buttonBloodwood.setHardness(0.5F).setStepSound(Block.soundTypeWood).setUnlocalizedName("button.bloodwood");
         GameRegistry.registerBlock(buttonBloodwood, "button.bloodwood");
 
         fenceGateBloodwood = new NFenceGate(planks, 4);
-        fenceGateBloodwood.setHardness(2.0F).setResistance(5.0F).setStepSound(Block.soundTypeWood).setBlockName("fenceGate.bloodwood");
+        fenceGateBloodwood.setHardness(2.0F).setResistance(5.0F).setStepSound(Block.soundTypeWood).setUnlocalizedName("fenceGate.bloodwood");
         GameRegistry.registerBlock(fenceGateBloodwood, "fenceGate.bloodwood");
 
         //Hopseed
-        pressurePlateHopseed = new NPressurePlate(Material.wood, Sensitivity.everything, planks, 5);
-        pressurePlateHopseed.setHardness(0.5F).setStepSound(Block.soundTypeWood).setBlockName("pressureplate.hopseed");
+        pressurePlateHopseed = new NPressurePlate(Material.wood, Sensitivity.EVERYTHING, planks, 5);
+        pressurePlateHopseed.setHardness(0.5F).setStepSound(Block.soundTypeWood).setUnlocalizedName("pressureplate.hopseed");
         GameRegistry.registerBlock(pressurePlateHopseed, "pressureplate.hopseed");
 
         trapdoorHopseed = new NTrapdoor(Material.wood, "hopseed_trapdoor");
-        trapdoorHopseed.setHardness(3.0F).setStepSound(Block.soundTypeWood).setBlockName("trapdoor.hopseed");
+        trapdoorHopseed.setHardness(3.0F).setStepSound(Block.soundTypeWood).setUnlocalizedName("trapdoor.hopseed");
         GameRegistry.registerBlock(trapdoorHopseed, "trapdoor.hopseed");
 
         buttonHopseed = new NButton(planks, 5);
-        buttonHopseed.setHardness(0.5F).setStepSound(Block.soundTypeWood).setBlockName("button.hopseed");
+        buttonHopseed.setHardness(0.5F).setStepSound(Block.soundTypeWood).setUnlocalizedName("button.hopseed");
         GameRegistry.registerBlock(buttonHopseed, "button.hopseed");
 
         fenceGateHopseed = new NFenceGate(planks, 5);
-        fenceGateHopseed.setHardness(2.0F).setResistance(5.0F).setStepSound(Block.soundTypeWood).setBlockName("fenceGate.hopseed");
+        fenceGateHopseed.setHardness(2.0F).setResistance(5.0F).setStepSound(Block.soundTypeWood).setUnlocalizedName("fenceGate.hopseed");
         GameRegistry.registerBlock(fenceGateHopseed, "fenceGate.hopseed");
 
         //Maple
-        pressurePlateMaple = new NPressurePlate(Material.wood, Sensitivity.everything, planks, 6);
-        pressurePlateMaple.setHardness(0.5F).setStepSound(Block.soundTypeWood).setBlockName("pressureplate.maple");
+        pressurePlateMaple = new NPressurePlate(Material.wood, Sensitivity.EVERYTHING, planks, 6);
+        pressurePlateMaple.setHardness(0.5F).setStepSound(Block.soundTypeWood).setUnlocalizedName("pressureplate.maple");
         GameRegistry.registerBlock(pressurePlateMaple, "pressureplate.maple");
 
         trapdoorMaple = new NTrapdoor(Material.wood, "maple_trapdoor");
-        trapdoorMaple.setHardness(3.0F).setStepSound(Block.soundTypeWood).setBlockName("trapdoor.maple");
+        trapdoorMaple.setHardness(3.0F).setStepSound(Block.soundTypeWood).setUnlocalizedName("trapdoor.maple");
         GameRegistry.registerBlock(trapdoorMaple, "trapdoor.maple");
 
         buttonMaple = new NButton(planks, 6);
-        buttonMaple.setHardness(0.5F).setStepSound(Block.soundTypeWood).setBlockName("button.maple");
+        buttonMaple.setHardness(0.5F).setStepSound(Block.soundTypeWood).setUnlocalizedName("button.maple");
         GameRegistry.registerBlock(buttonMaple, "button.maple");
 
         fenceGateMaple = new NFenceGate(planks, 6);
-        fenceGateMaple.setHardness(2.0F).setResistance(5.0F).setStepSound(Block.soundTypeWood).setBlockName("fenceGate.maple");
+        fenceGateMaple.setHardness(2.0F).setResistance(5.0F).setStepSound(Block.soundTypeWood).setUnlocalizedName("fenceGate.maple");
         GameRegistry.registerBlock(fenceGateMaple, "fenceGate.maple");
 
         //Amaranth
-        pressurePlateAmaranth = new NPressurePlate(Material.wood, Sensitivity.everything, planks, 8);
-        pressurePlateAmaranth.setHardness(0.5F).setStepSound(Block.soundTypeWood).setBlockName("pressureplate.amaranth");
+        pressurePlateAmaranth = new NPressurePlate(Material.wood, Sensitivity.EVERYTHING, planks, 8);
+        pressurePlateAmaranth.setHardness(0.5F).setStepSound(Block.soundTypeWood).setUnlocalizedName("pressureplate.amaranth");
         GameRegistry.registerBlock(pressurePlateAmaranth, "pressureplate.amaranth");
 
         trapdoorAmaranth = new NTrapdoor(Material.wood, "purpleheart_trapdoor");
-        trapdoorAmaranth.setHardness(3.0F).setStepSound(Block.soundTypeWood).setBlockName("trapdoor.amaranth");
+        trapdoorAmaranth.setHardness(3.0F).setStepSound(Block.soundTypeWood).setUnlocalizedName("trapdoor.amaranth");
         GameRegistry.registerBlock(trapdoorAmaranth, "trapdoor.amaranth");
 
         buttonAmaranth = new NButton(planks, 8);
-        buttonAmaranth.setHardness(0.5F).setStepSound(Block.soundTypeWood).setBlockName("button.amaranth");
+        buttonAmaranth.setHardness(0.5F).setStepSound(Block.soundTypeWood).setUnlocalizedName("button.amaranth");
         GameRegistry.registerBlock(buttonAmaranth, "button.amaranth");
 
         fenceGateAmaranth = new NFenceGate(planks, 8);
-        fenceGateAmaranth.setHardness(2.0F).setResistance(5.0F).setStepSound(Block.soundTypeWood).setBlockName("fenceGate.amaranth");
+        fenceGateAmaranth.setHardness(2.0F).setResistance(5.0F).setStepSound(Block.soundTypeWood).setUnlocalizedName("fenceGate.amaranth");
         GameRegistry.registerBlock(fenceGateAmaranth, "fenceGate.amaranth");
 
         //Silverbell
-        pressurePlateSilverbell = new NPressurePlate(Material.wood, Sensitivity.everything, planks, 7);
-        pressurePlateSilverbell.setHardness(0.5F).setStepSound(Block.soundTypeWood).setBlockName("pressureplate.silverbell");
+        pressurePlateSilverbell = new NPressurePlate(Material.wood, Sensitivity.EVERYTHING, planks, 7);
+        pressurePlateSilverbell.setHardness(0.5F).setStepSound(Block.soundTypeWood).setUnlocalizedName("pressureplate.silverbell");
         GameRegistry.registerBlock(pressurePlateSilverbell, "pressureplate.silverbell");
 
         trapdoorSilverbell = new NTrapdoor(Material.wood, "silverbell_trapdoor");
-        trapdoorSilverbell.setHardness(3.0F).setStepSound(Block.soundTypeWood).setBlockName("trapdoor.silverbell");
+        trapdoorSilverbell.setHardness(3.0F).setStepSound(Block.soundTypeWood).setUnlocalizedName("trapdoor.silverbell");
         GameRegistry.registerBlock(trapdoorSilverbell, "trapdoor.silverbell");
 
         buttonSilverbell = new NButton(planks, 7);
-        buttonSilverbell.setHardness(0.5F).setStepSound(Block.soundTypeWood).setBlockName("button.silverbell");
+        buttonSilverbell.setHardness(0.5F).setStepSound(Block.soundTypeWood).setUnlocalizedName("button.silverbell");
         GameRegistry.registerBlock(buttonSilverbell, "button.silverbell");
 
         fenceGateSilverbell = new NFenceGate(planks, 7);
-        fenceGateSilverbell.setHardness(2.0F).setResistance(5.0F).setStepSound(Block.soundTypeWood).setBlockName("fenceGate.silverbell");
+        fenceGateSilverbell.setHardness(2.0F).setResistance(5.0F).setStepSound(Block.soundTypeWood).setUnlocalizedName("fenceGate.silverbell");
         GameRegistry.registerBlock(fenceGateSilverbell, "fenceGate.silverbell");
 
         //Tigerwood
-        pressurePlateTiger = new NPressurePlate(Material.wood, Sensitivity.everything, planks, 9);
-        pressurePlateTiger.setHardness(0.5F).setStepSound(Block.soundTypeWood).setBlockName("pressureplate.tiger");
+        pressurePlateTiger = new NPressurePlate(Material.wood, Sensitivity.EVERYTHING, planks, 9);
+        pressurePlateTiger.setHardness(0.5F).setStepSound(Block.soundTypeWood).setUnlocalizedName("pressureplate.tiger");
         GameRegistry.registerBlock(pressurePlateTiger, "pressureplate.tiger");
 
         trapdoorTiger = new NTrapdoor(Material.wood, "tiger_trapdoor");
-        trapdoorTiger.setHardness(3.0F).setStepSound(Block.soundTypeWood).setBlockName("trapdoor.tiger");
+        trapdoorTiger.setHardness(3.0F).setStepSound(Block.soundTypeWood).setUnlocalizedName("trapdoor.tiger");
         GameRegistry.registerBlock(trapdoorTiger, "trapdoor.tiger");
 
         buttonTiger = new NButton(planks, 9);
-        buttonTiger.setHardness(0.5F).setStepSound(Block.soundTypeWood).setBlockName("button.tiger");
+        buttonTiger.setHardness(0.5F).setStepSound(Block.soundTypeWood).setUnlocalizedName("button.tiger");
         GameRegistry.registerBlock(buttonTiger, "button.tiger");
 
         fenceGateTiger = new NFenceGate(planks, 9);
-        fenceGateTiger.setHardness(2.0F).setResistance(5.0F).setStepSound(Block.soundTypeWood).setBlockName("fenceGate.tiger");
+        fenceGateTiger.setHardness(2.0F).setResistance(5.0F).setStepSound(Block.soundTypeWood).setUnlocalizedName("fenceGate.tiger");
         GameRegistry.registerBlock(fenceGateTiger, "fenceGate.tiger");
 
         //Willow
-        pressurePlateWillow = new NPressurePlate(Material.wood, Sensitivity.everything, planks, 10);
-        pressurePlateWillow.setHardness(0.5F).setStepSound(Block.soundTypeWood).setBlockName("pressureplate.willow");
+        pressurePlateWillow = new NPressurePlate(Material.wood, Sensitivity.EVERYTHING, planks, 10);
+        pressurePlateWillow.setHardness(0.5F).setStepSound(Block.soundTypeWood).setUnlocalizedName("pressureplate.willow");
         GameRegistry.registerBlock(pressurePlateWillow, "pressureplate.willow");
 
         trapdoorWillow = new NTrapdoor(Material.wood, "willow_trapdoor");
-        trapdoorWillow.setHardness(3.0F).setStepSound(Block.soundTypeWood).setBlockName("trapdoor.willow");
+        trapdoorWillow.setHardness(3.0F).setStepSound(Block.soundTypeWood).setUnlocalizedName("trapdoor.willow");
         GameRegistry.registerBlock(trapdoorWillow, "trapdoor.willow");
 
         buttonWillow = new NButton(planks, 10);
-        buttonWillow.setHardness(0.5F).setStepSound(Block.soundTypeWood).setBlockName("button.willow");
+        buttonWillow.setHardness(0.5F).setStepSound(Block.soundTypeWood).setUnlocalizedName("button.willow");
         GameRegistry.registerBlock(buttonWillow, "button.willow");
 
         fenceGateWillow = new NFenceGate(planks, 10);
-        fenceGateWillow.setHardness(2.0F).setResistance(5.0F).setStepSound(Block.soundTypeWood).setBlockName("fenceGate.willow");
+        fenceGateWillow.setHardness(2.0F).setResistance(5.0F).setStepSound(Block.soundTypeWood).setUnlocalizedName("fenceGate.willow");
         GameRegistry.registerBlock(fenceGateWillow, "fenceGate.willow");
 
         //Darkwood
-        pressurePlateDarkwood = new NPressurePlate(Material.wood, Sensitivity.everything, planks, 11);
-        pressurePlateDarkwood.setHardness(0.5F).setStepSound(Block.soundTypeWood).setBlockName("pressureplate.darkwood");
+        pressurePlateDarkwood = new NPressurePlate(Material.wood, Sensitivity.EVERYTHING, planks, 11);
+        pressurePlateDarkwood.setHardness(0.5F).setStepSound(Block.soundTypeWood).setUnlocalizedName("pressureplate.darkwood");
         GameRegistry.registerBlock(pressurePlateDarkwood, "pressureplate.darkwood");
 
         trapdoorDarkwood = new NTrapdoor(Material.wood, "darkwood_trapdoor");
-        trapdoorDarkwood.setHardness(3.0F).setStepSound(Block.soundTypeWood).setBlockName("trapdoor.darkwood");
+        trapdoorDarkwood.setHardness(3.0F).setStepSound(Block.soundTypeWood).setUnlocalizedName("trapdoor.darkwood");
         GameRegistry.registerBlock(trapdoorDarkwood, "trapdoor.darkwood");
 
         buttonDarkwood = new NButton(planks, 11);
-        buttonDarkwood.setHardness(0.5F).setStepSound(Block.soundTypeWood).setBlockName("button.darkwood");
+        buttonDarkwood.setHardness(0.5F).setStepSound(Block.soundTypeWood).setUnlocalizedName("button.darkwood");
         GameRegistry.registerBlock(buttonDarkwood, "button.darkwood");
 
         fenceGateDarkwood = new NFenceGate(planks, 11);
-        fenceGateDarkwood.setHardness(2.0F).setResistance(5.0F).setStepSound(Block.soundTypeWood).setBlockName("fenceGate.darkwood");
+        fenceGateDarkwood.setHardness(2.0F).setResistance(5.0F).setStepSound(Block.soundTypeWood).setUnlocalizedName("fenceGate.darkwood");
         GameRegistry.registerBlock(fenceGateDarkwood, "fenceGate.darkwood");
 
         //Fusewood
-        pressurePlateFusewood = new NPressurePlate(Material.wood, Sensitivity.everything, planks, 12);
-        pressurePlateFusewood.setHardness(0.5F).setStepSound(Block.soundTypeWood).setBlockName("pressureplate.fusewood");
+        pressurePlateFusewood = new NPressurePlate(Material.wood, Sensitivity.EVERYTHING, planks, 12);
+        pressurePlateFusewood.setHardness(0.5F).setStepSound(Block.soundTypeWood).setUnlocalizedName("pressureplate.fusewood");
         GameRegistry.registerBlock(pressurePlateFusewood, "pressureplate.fusewood");
 
         trapdoorFusewood = new NTrapdoor(Material.wood, "fusewood_trapdoor");
-        trapdoorFusewood.setHardness(3.0F).setStepSound(Block.soundTypeWood).setBlockName("trapdoor.fusewood");
+        trapdoorFusewood.setHardness(3.0F).setStepSound(Block.soundTypeWood).setUnlocalizedName("trapdoor.fusewood");
         GameRegistry.registerBlock(trapdoorFusewood, "trapdoor.fusewood");
 
         buttonFusewood = new NButton(planks, 12);
-        buttonFusewood.setHardness(0.5F).setStepSound(Block.soundTypeWood).setBlockName("button.fusewood");
+        buttonFusewood.setHardness(0.5F).setStepSound(Block.soundTypeWood).setUnlocalizedName("button.fusewood");
         GameRegistry.registerBlock(buttonFusewood, "button.fusewood");
 
         fenceGateFusewood = new NFenceGate(planks, 12);
-        fenceGateFusewood.setHardness(2.0F).setResistance(5.0F).setStepSound(Block.soundTypeWood).setBlockName("fenceGate.fusewood");
+        fenceGateFusewood.setHardness(2.0F).setResistance(5.0F).setStepSound(Block.soundTypeWood).setUnlocalizedName("fenceGate.fusewood");
         GameRegistry.registerBlock(fenceGateFusewood, "fenceGate.fusewood");
 
         //Item.itemsList[24] = null;
@@ -641,7 +642,7 @@ public class NContent implements IFuelHandler
         GameRegistry.registerItem(stickItem, "natura.stick");
 
         ToolMaterial Bloodwood = EnumHelper.addToolMaterial("Bloodwood", 3, 350, 7f, 3, 24);
-        ArmorMaterial Imp = EnumHelper.addArmorMaterial("Imp", 33, new int[] { 1, 3, 2, 1 }, 15);
+        ArmorMaterial Imp = EnumHelper.addArmorMaterial("Imp", "Imp", 33, new int[] { 1, 3, 2, 1 }, 15);
 
         ghostwoodSword = new NaturaSword(ToolMaterial.WOOD, "ghostwood").setUnlocalizedName("natura.sword.ghostwood");
         GameRegistry.registerItem(ghostwoodSword, "natura.sword.ghostwood");
@@ -717,13 +718,13 @@ public class NContent implements IFuelHandler
         impBoots = new NaturaArmor(Imp, 1, 3, "imp_boots", "imp").setUnlocalizedName("natura.armor.impboots");
         GameRegistry.registerItem(impBoots, "natura.armor.impboots");
 
-        flintAndBlaze = new FlintAndBlaze().setUnlocalizedName("flintandblaze").setTextureName("natura:flint_and_blaze");
+        flintAndBlaze = new FlintAndBlaze().setUnlocalizedName("flintandblaze");
         GameRegistry.registerItem(flintAndBlaze, "natura.flintandblaze");
 
         impMeat = new ImpMeat().setUnlocalizedName("impmeat");
         GameRegistry.registerItem(impMeat, "impmeat");
-        GameRegistry.registerCustomItemStack("rawImphide", new ItemStack(impMeat, 1, 0));
-        GameRegistry.registerCustomItemStack("cookedImphide", new ItemStack(impMeat, 1, 1));
+        //GameRegistry.registerCustomItemStack("rawImphide", new ItemStack(impMeat, 1, 0));
+        //GameRegistry.registerCustomItemStack("cookedImphide", new ItemStack(impMeat, 1, 1));
 
         ghostwoodPickaxe.setHarvestLevel("pickaxe", 0);
         ghostwoodShovel.setHarvestLevel("shovel", 0);
@@ -746,8 +747,8 @@ public class NContent implements IFuelHandler
         netherquartzAxe.setHarvestLevel("axe", 1);
         //Material.vine.setRequiresTool();
         bloodwood.setHarvestLevel("axe", 2);
-        darkTree.setHarvestLevel("axe", 1, 1);
-        darkTree.setHarvestLevel("axe", -1, 0);
+        darkTree.setHarvestLevel("axe", 1);// TODO: FIX! , 1);
+        darkTree.setHarvestLevel("axe", -1);// TODO: FIX!, 0);
         tree.setHarvestLevel("axe", -1);
         redwood.setHarvestLevel("axe", -1);
         taintedSoil.setHarvestLevel("shovel", 0);
@@ -792,12 +793,12 @@ public class NContent implements IFuelHandler
 
         GameRegistry.addRecipe(new ItemStack(plantItem, 2, 8), "X", 'X', new ItemStack(bluebells));
 
-        FurnaceRecipes.smelting().func_151394_a(new ItemStack(saguaro, 1, 0), new ItemStack(Items.dye, 1, 2), 0.2F);
-        FurnaceRecipes.smelting().func_151394_a(new ItemStack(impMeat, 1, 0), new ItemStack(impMeat, 1, 1), 0.2F);
+        FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(saguaro, 1, 0), new ItemStack(Items.dye, 1, 2), 0.2F);
+        FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(impMeat, 1, 0), new ItemStack(impMeat, 1, 1), 0.2F);
 
         for (int i = 1; i <= 2; i++)
         {
-            FurnaceRecipes.smelting().func_151394_a(new ItemStack(plantItem, 1, i), new ItemStack(Items.bread, 1), 0.5f);
+            FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(plantItem, 1, i), new ItemStack(Items.bread, 1), 0.5f);
             GameRegistry.addRecipe(new ItemStack(Items.cake, 1), "AAA", "BEB", " C ", 'A', Items.milk_bucket, 'B', Items.sugar, 'C', new ItemStack(plantItem, 1, i), 'E', Items.egg);
         }
 
@@ -956,13 +957,13 @@ public class NContent implements IFuelHandler
         bowlStew = new BowlStew(PHNatura.bowlStew).setUnlocalizedName("natura.stewbowl");*/
 
         //Turn logs into charcoal
-        FurnaceRecipes.smelting().func_151394_a(new ItemStack(tree, 1, 0), new ItemStack(Items.coal, 1, 1), 0.15f);
-        FurnaceRecipes.smelting().func_151394_a(new ItemStack(tree, 1, 1), new ItemStack(Items.coal, 1, 1), 0.15f);
-        FurnaceRecipes.smelting().func_151394_a(new ItemStack(tree, 1, 2), new ItemStack(Items.coal, 1, 1), 0.15f);
-        FurnaceRecipes.smelting().func_151394_a(new ItemStack(tree, 1, 3), new ItemStack(Items.coal, 1, 1), 0.15f);
-        FurnaceRecipes.smelting().func_151394_a(new ItemStack(redwood, 1, 0), new ItemStack(Items.coal, 1, 1), 0.15f);
-        FurnaceRecipes.smelting().func_151394_a(new ItemStack(redwood, 1, 1), new ItemStack(Items.coal, 1, 1), 0.15f);
-        FurnaceRecipes.smelting().func_151394_a(new ItemStack(redwood, 1, 2), new ItemStack(Items.coal, 1, 1), 0.15f);
+        FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(tree, 1, 0), new ItemStack(Items.coal, 1, 1), 0.15f);
+        FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(tree, 1, 1), new ItemStack(Items.coal, 1, 1), 0.15f);
+        FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(tree, 1, 2), new ItemStack(Items.coal, 1, 1), 0.15f);
+        FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(tree, 1, 3), new ItemStack(Items.coal, 1, 1), 0.15f);
+        FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(redwood, 1, 0), new ItemStack(Items.coal, 1, 1), 0.15f);
+        FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(redwood, 1, 1), new ItemStack(Items.coal, 1, 1), 0.15f);
+        FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(redwood, 1, 2), new ItemStack(Items.coal, 1, 1), 0.15f);
 
         GameRegistry.addRecipe(new ItemStack(grassBlock, 1, 0), " s ", "s#s", " s ", 's', new ItemStack(Items.wheat_seeds), '#', new ItemStack(Blocks.dirt));
         GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(grassBlock, 1, 1), new ItemStack(grassBlock, 1, 0), "dyeBlue"));
@@ -1005,8 +1006,8 @@ public class NContent implements IFuelHandler
 
         GameRegistry.addRecipe(new ItemStack(NContent.netherrackFurnace), "###", "# #", "###", '#', Blocks.netherrack);
         GameRegistry.addRecipe(new ItemStack(NContent.respawnObelisk), "###", "# #", "###", '#', new ItemStack(tree, 1, 2));
-        FurnaceRecipes.smelting().func_151394_a(new ItemStack(Blocks.soul_sand, 1, 0), new ItemStack(netherGlass, 1, 0), 0.3f);
-        FurnaceRecipes.smelting().func_151394_a(new ItemStack(heatSand, 1, 0), new ItemStack(netherGlass, 1, 1), 0.3f);
+        FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(Blocks.soul_sand, 1, 0), new ItemStack(netherGlass, 1, 0), 0.3f);
+        FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(heatSand, 1, 0), new ItemStack(netherGlass, 1, 1), 0.3f);
         OreDictionary.registerOre("chestWood", new ItemStack(Blocks.chest));
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(NContent.netherHopper), "# #", "#C#", " # ", '#', new ItemStack(Items.blaze_rod), 'C', "chestWood"));
         GameRegistry.addRecipe(new ItemStack(NContent.netherPressurePlate), "##", '#', new ItemStack(Blocks.netherrack));
@@ -1172,10 +1173,10 @@ public class NContent implements IFuelHandler
 
         BiomeGenBase[] nether = BiomeDictionary.getBiomesForType(BiomeDictionary.Type.NETHER);
 
-        EntityRegistry.addSpawn(ImpEntity.class, 10, 8, 12, EnumCreatureType.creature, nether);
-        EntityRegistry.addSpawn(HeatscarSpider.class, 10, 4, 4, EnumCreatureType.monster, nether);
-        EntityRegistry.addSpawn(NitroCreeper.class, 8, 4, 6, EnumCreatureType.monster, nether);
-        EntityRegistry.addSpawn(BabyHeatscarSpider.class, 7, 4, 4, EnumCreatureType.monster, nether);
+        EntityRegistry.addSpawn(ImpEntity.class, 10, 8, 12, EnumCreatureType.CREATURE, nether);
+        EntityRegistry.addSpawn(HeatscarSpider.class, 10, 4, 4, EnumCreatureType.MONSTER, nether);
+        EntityRegistry.addSpawn(NitroCreeper.class, 8, 4, 6, EnumCreatureType.MONSTER, nether);
+        EntityRegistry.addSpawn(BabyHeatscarSpider.class, 7, 4, 4, EnumCreatureType.MONSTER, nether);
 
         BlockDispenser.dispenseBehaviorRegistry.putObject(spawnEgg, new DispenserBehaviorSpawnEgg());
     }
@@ -1185,8 +1186,8 @@ public class NContent implements IFuelHandler
         try
         {
             Class.forName("tconstruct.TConstruct");
-            PatternBuilder pb = PatternBuilder.instance;
-            pb.registerMaterial(new ItemStack(saguaro), 2, "Cactus");
+            //PatternBuilder pb = PatternBuilder.instance;
+            //pb.registerMaterial(new ItemStack(saguaro), 2, "Cactus");
         }
         catch (Exception e)
         {

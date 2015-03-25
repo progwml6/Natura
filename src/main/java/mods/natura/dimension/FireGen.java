@@ -26,7 +26,7 @@ public class FireGen extends WorldGenerator
             {
                 IBlockState blockID = world.getBlockState(new BlockPos(xPos, yPos - 1, zPos));
                 if (blockID.getBlock() == Blocks.netherrack || blockID.getBlock() == NContent.taintedSoil)
-                    world.setBlockState(temp, Blocks.fire, 0, 2);
+                    world.setBlockState(temp, Blocks.fire.getDefaultState(), 2);
             }
         }
 

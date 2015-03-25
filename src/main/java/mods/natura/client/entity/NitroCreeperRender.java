@@ -1,15 +1,16 @@
 package mods.natura.client.entity;
 
 import net.minecraft.client.renderer.entity.RenderCreeper;
+import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 
 public class NitroCreeperRender extends RenderCreeper
 {
 
-    public NitroCreeperRender()
+    public NitroCreeperRender(RenderManager renderManagerIn)
     {
-        super();
+        super(renderManagerIn);
     }
 
     @Override

@@ -137,7 +137,7 @@ public class Natura
         {
             if (event.block == NContent.glowshroom)
             {
-                if (NContent.glowshroom.fertilizeMushroom(event.world, event.x, event.y, event.z, event.world.rand))
+                if (NContent.glowshroom.fertilizeMushroom(event.world, event.pos, event.world.rand))
                     event.setResult(Result.ALLOW);
             }
             if (event.block == NContent.berryBush)

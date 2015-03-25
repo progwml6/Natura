@@ -3,11 +3,9 @@ package mods.natura.items;
 import java.util.List;
 
 import mods.natura.common.NaturaTab;
-import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.IIcon;
 import net.minecraft.util.StatCollector;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -16,7 +14,6 @@ public class CactusJuice extends ItemFood
 {
     public String[] textureNames = new String[] { "waterdrop" };
     public String[] unlocalizedNames;
-    public IIcon[] icons;
 
     public CactusJuice(boolean flag)
     {
@@ -42,13 +39,6 @@ public class CactusJuice extends ItemFood
             this.icons[i] = iconRegister.registerIcon("natura:"+textureNames[i]);
         }
     }*/
-
-    @SideOnly(Side.CLIENT)
-    @Override
-    public void registerIcons (IIconRegister par1IconRegister)
-    {
-        this.itemIcon = par1IconRegister.registerIcon("natura:waterdrop");
-    }
 
     @Override
     @SideOnly(Side.CLIENT)

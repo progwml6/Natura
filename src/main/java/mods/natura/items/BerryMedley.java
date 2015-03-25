@@ -3,12 +3,10 @@ package mods.natura.items;
 import java.util.List;
 
 import mods.natura.common.NaturaTab;
-import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.IIcon;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
@@ -16,83 +14,64 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class BerryMedley extends ItemFood
 {
-    public IIcon[] icons;
-    public String[] textureNames = new String[] { "medley" };
 
-    public BerryMedley(int heal)
-    {
-        super(heal, 1.4F, false);
-        setHasSubtypes(true);
-        setMaxDamage(0);
-        this.setCreativeTab(NaturaTab.tab);
-        this.setAlwaysEdible();
-    }
+	public String[] textureNames = new String[] { "medley" };
 
-    @Override
-    public ItemStack onItemRightClick (ItemStack par1ItemStack, World par2World, EntityPlayer player)
-    {
-        if (player.canEat(true) && player.getFoodStats().getSaturationLevel() < 18F)
-        {
-            player.setItemInUse(par1ItemStack, this.getMaxItemUseDuration(par1ItemStack));
-        }
+	public BerryMedley(int heal)
+	{
+		super(heal, 1.4F, false);
+		setHasSubtypes(true);
+		setMaxDamage(0);
+		this.setCreativeTab(NaturaTab.tab);
+		this.setAlwaysEdible();
+	}
 
-        return par1ItemStack;
-    }
+	@Override
+	public ItemStack onItemRightClick(ItemStack par1ItemStack, World par2World, EntityPlayer player)
+	{
+		if (player.canEat(true) && player.getFoodStats().getSaturationLevel() < 18F)
+		{
+			player.setItemInUse(par1ItemStack, this.getMaxItemUseDuration(par1ItemStack));
+		}
 
-    @Override
-    public ItemStack onEaten (ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
-    {
-        ItemStack stack = super.onEaten(par1ItemStack, par2World, par3EntityPlayer);
+		return par1ItemStack;
+	}
 
-        if (!par3EntityPlayer.capabilities.isCreativeMode)
-        {
-            if (par1ItemStack.stackSize <= 0)
-            {
-                return new ItemStack(Items.bowl);
-            }
+	@Override
+	public ItemStack onItemUseFinish(ItemStack par1ItemStack, World par2World, EntityPlayer par3EntityPlayer)
+	{
+		ItemStack stack = super.onItemUseFinish(par1ItemStack, par2World, par3EntityPlayer);
 
-            par3EntityPlayer.inventory.addItemStackToInventory(new ItemStack(Items.bowl));
-        }
+		if (!par3EntityPlayer.capabilities.isCreativeMode)
+		{
+			if (par1ItemStack.stackSize <= 0)
+			{
+				return new ItemStack(Items.bowl);
+			}
 
-        return stack;
-    }
+			par3EntityPlayer.inventory.addItemStackToInventory(new ItemStack(Items.bowl));
+		}
 
-    @Override
-    public int getMaxItemUseDuration (ItemStack itemstack)
-    {
-        return 32;
-    }
+		return stack;
+	}
 
-    @SideOnly(Side.CLIENT)
-    @Override
-    public IIcon getIconFromDamage (int meta)
-    {
-        return icons[meta];
-    }
+	@Override
+	public int getMaxItemUseDuration(ItemStack itemstack)
+	{
+		return 32;
+	}
 
-    @SideOnly(Side.CLIENT)
-    @Override
-    public void registerIcons (IIconRegister iconRegister)
-    {
-        this.icons = new IIcon[textureNames.length];
+	@Override
+	@SideOnly(Side.CLIENT)
+	public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4)
+	{
+		list.add(StatCollector.translateToLocal("tooltip.berrymedley"));
+	}
 
-        for (int i = 0; i < this.icons.length; ++i)
-        {
-            this.icons[i] = iconRegister.registerIcon("natura:berry_" + textureNames[i]);
-        }
-    }
-
-    @Override
-    @SideOnly(Side.CLIENT)
-    public void addInformation (ItemStack stack, EntityPlayer player, List list, boolean par4)
-    {
-        list.add(StatCollector.translateToLocal("tooltip.berrymedley"));
-    }
-
-    /* Name override */
-    @Override
-    public String getUnlocalizedName (ItemStack itemstack)
-    {
-        return (new StringBuilder()).append("item.berry.").append(textureNames[itemstack.getItemDamage()]).toString();
-    }
+	/* Name override */
+	@Override
+	public String getUnlocalizedName(ItemStack itemstack)
+	{
+		return (new StringBuilder()).append("item.berry.").append(textureNames[itemstack.getItemDamage()]).toString();
+	}
 }

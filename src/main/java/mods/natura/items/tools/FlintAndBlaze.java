@@ -5,6 +5,8 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
 
 public class FlintAndBlaze extends Item
@@ -64,51 +66,23 @@ public class FlintAndBlaze extends Item
 
     //Right-click on blocks
     @Override
-    public boolean onItemUse (ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ)
+    public boolean onItemUse(ItemStack stack, EntityPlayer playerIn, World worldIn, BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ)
     {
-        if (side == 0)
-        {
-            --y;
-        }
+        pos = pos.offset(side);
 
-        if (side == 1)
-        {
-            ++y;
-        }
-
-        if (side == 2)
-        {
-            --z;
-        }
-
-        if (side == 3)
-        {
-            ++z;
-        }
-
-        if (side == 4)
-        {
-            --x;
-        }
-
-        if (side == 5)
-        {
-            ++x;
-        }
-
-        if (!player.canPlayerEdit(x, y, z, side, stack))
+        if (!playerIn.canPlayerEdit(pos, side, stack))
         {
             return false;
         }
         else
         {
-            if (world.isAirBlock(x, y, z))
+            if (worldIn.isAirBlock(pos))
             {
-                world.playSoundEffect(x + 0.5D, y + 0.5D, z + 0.5D, "fire.ignite", 1.0F, itemRand.nextFloat() * 0.4F + 0.8F);
-                world.setBlock(x, y, z, Blocks.fire);
+                worldIn.playSoundEffect((double)pos.getX() + 0.5D, (double)pos.getY() + 0.5D, (double)pos.getZ() + 0.5D, "fire.ignite", 1.0F, itemRand.nextFloat() * 0.4F + 0.8F);
+                worldIn.setBlockState(pos, Blocks.fire.getDefaultState());
             }
 
-            stack.damageItem(1, player);
+            stack.damageItem(1, playerIn);
             return true;
         }
     }

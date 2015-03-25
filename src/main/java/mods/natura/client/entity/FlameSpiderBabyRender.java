@@ -1,6 +1,7 @@
 package mods.natura.client.entity;
 
 import mods.natura.entity.BabyHeatscarSpider;
+import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.entity.RenderSpider;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -11,9 +12,9 @@ import org.lwjgl.opengl.GL11;
 public class FlameSpiderBabyRender extends RenderSpider
 {
 
-    public FlameSpiderBabyRender()
+    public FlameSpiderBabyRender(RenderManager renderManagerIn)
     {
-        super();
+        super(renderManagerIn);
     }
 
     @Override

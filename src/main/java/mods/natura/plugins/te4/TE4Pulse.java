@@ -55,7 +55,7 @@ public class TE4Pulse
 
     public void addFenceGate (Block input, String type)
     {
-        createSawmillRecipe(2400, new ItemStack(input, 1), new ItemStack(NContent.planks, 2, findPlankForName(type)), GameRegistry.findItemStack("ThermalExpansion", "sawdust", 1), 100);
+        createSawmillRecipe(2400, new ItemStack(input, 1), new ItemStack(NContent.planks, 2, findPlankForName(type)), new ItemStack(GameRegistry.findItem("ThermalExpansion", "sawdust"), 1, 1), 100);
     }
 
     public void addTrapdoor (Block input, String type)
@@ -65,7 +65,7 @@ public class TE4Pulse
 
     public void addWood (Block log, int meta, String type)
     {
-        createSawmillRecipe(800, new ItemStack(log, 1, meta), new ItemStack(NContent.planks, 6, findPlankForName(type)), GameRegistry.findItemStack("ThermalExpansion", "sawdust", 1), 100);
+        createSawmillRecipe(800, new ItemStack(log, 1, meta), new ItemStack(NContent.planks, 6, findPlankForName(type)), new ItemStack(GameRegistry.findItem("ThermalExpansion", "sawdust"), 1, 1), 100);
     }
 
     public void addPressurePlate (Block input, String type)
