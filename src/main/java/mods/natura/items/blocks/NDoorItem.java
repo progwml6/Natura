@@ -5,13 +5,15 @@ import java.util.List;
 import mods.natura.common.NContent;
 import mods.natura.common.NaturaTab;
 import net.minecraft.block.Block;
-import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.block.BlockDoor;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.IIcon;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
@@ -40,16 +42,22 @@ public class NDoorItem extends Item
     }
 
     @Override
-    public boolean onItemUse (ItemStack itemstack, EntityPlayer player, World world, int x, int y, int z, int side, float clickX, float clickY, float clickZ)
+    public boolean onItemUse (ItemStack stack, EntityPlayer playerIn, World worldIn, BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ)
     {
-        if (side != 1)
+    	if (side != EnumFacing.UP)
         {
             return false;
         }
-        y++;
+    	
+    	IBlockState iblockstate = worldIn.getBlockState(pos);
+        Block block = iblockstate.getBlock();
 
-        Block block;
-        switch (itemstack.getItemDamage())
+        if (!block.isReplaceable(worldIn, pos))
+        {
+            pos = pos.offset(side);
+        }
+
+        switch (stack.getItemDamage())
         {
         case 0:
             block = NContent.redwoodDoor;
@@ -73,70 +81,46 @@ public class NDoorItem extends Item
             block = NContent.redwoodBarkDoor;
             break;
         default:
-            block = Blocks.wooden_door;
+            block = Blocks.oak_door;
             break;
         }
-        if (!player.canPlayerEdit(x, y, z, side, itemstack) || !player.canPlayerEdit(x, y + 1, z, side, itemstack))
+        if (!playerIn.canPlayerEdit(pos, side, stack))
         {
             return false;
         }
-        if (!block.canPlaceBlockAt(world, x, y, z))
+        else if (!block.canPlaceBlockAt(worldIn, pos))
         {
             return false;
         }
         else
         {
-            int rotate = MathHelper.floor_double(((player.rotationYaw + 180F) * 4F) / 360F - 0.5D) & 3;
-            placeDoorBlock(world, x, y, z, rotate, block);
-            itemstack.stackSize--;
+        	placeDoor(worldIn, pos, EnumFacing.fromAngle((double)playerIn.rotationYaw), block);
+            --stack.stackSize;
             return true;
         }
     }
 
-    public static void placeDoorBlock (World world, int x, int y, int z, int rotate, Block block)
+    public static void placeDoor(World worldIn, BlockPos pos, EnumFacing facing, Block door)
     {
-        byte var6 = 0;
-        byte var7 = 0;
+        BlockPos blockpos1 = pos.offset(facing.rotateY());
+        BlockPos blockpos2 = pos.offset(facing.rotateYCCW());
+        int i = (worldIn.getBlockState(blockpos2).getBlock().isNormalCube() ? 1 : 0) + (worldIn.getBlockState(blockpos2.up()).getBlock().isNormalCube() ? 1 : 0);
+        int j = (worldIn.getBlockState(blockpos1).getBlock().isNormalCube() ? 1 : 0) + (worldIn.getBlockState(blockpos1.up()).getBlock().isNormalCube() ? 1 : 0);
+        boolean flag = worldIn.getBlockState(blockpos2).getBlock() == door || worldIn.getBlockState(blockpos2.up()).getBlock() == door;
+        boolean flag1 = worldIn.getBlockState(blockpos1).getBlock() == door || worldIn.getBlockState(blockpos1.up()).getBlock() == door;
+        boolean flag2 = false;
 
-        if (rotate == 0)
+        if (flag && !flag1 || j > i)
         {
-            var7 = 1;
+            flag2 = true;
         }
 
-        if (rotate == 1)
-        {
-            var6 = -1;
-        }
-
-        if (rotate == 2)
-        {
-            var7 = -1;
-        }
-
-        if (rotate == 3)
-        {
-            var6 = 1;
-        }
-
-        int var8 = (world.getBlock(x - var6, y, z - var7).isNormalCube() ? 1 : 0) + (world.getBlock(x - var6, y + 1, z - var7).isNormalCube() ? 1 : 0);
-        int var9 = (world.getBlock(x + var6, y, z + var7).isNormalCube() ? 1 : 0) + (world.getBlock(x + var6, y + 1, z + var7).isNormalCube() ? 1 : 0);
-        boolean var10 = world.getBlock(x - var6, y, z - var7) == block || world.getBlock(x - var6, y + 1, z - var7) == block;
-        boolean var11 = world.getBlock(x + var6, y, z + var7) == block || world.getBlock(x + var6, y + 1, z + var7) == block;
-        boolean var12 = false;
-
-        if (var10 && !var11)
-        {
-            var12 = true;
-        }
-        else if (var9 > var8)
-        {
-            var12 = true;
-        }
-
-        world.setBlock(x, y, z, block, rotate, 2);
-        world.setBlock(x, y + 1, z, block, 8 | (var12 ? 1 : 0), 2);
-        world.notifyBlocksOfNeighborChange(x, y, z, block);
-        world.notifyBlocksOfNeighborChange(x, y + 1, z, block);
+        BlockPos blockpos3 = pos.up();
+        IBlockState iblockstate = door.getDefaultState().withProperty(BlockDoor.FACING, facing).withProperty(BlockDoor.HINGE, flag2 ? BlockDoor.EnumHingePosition.RIGHT : BlockDoor.EnumHingePosition.LEFT);
+        worldIn.setBlockState(pos, iblockstate.withProperty(BlockDoor.HALF, BlockDoor.EnumDoorHalf.LOWER), 2);
+        worldIn.setBlockState(blockpos3, iblockstate.withProperty(BlockDoor.HALF, BlockDoor.EnumDoorHalf.UPPER), 2);
+        worldIn.notifyNeighborsOfStateChange(pos, door);
+        worldIn.notifyNeighborsOfStateChange(blockpos3, door);
     }
 
     @SideOnly(Side.CLIENT)

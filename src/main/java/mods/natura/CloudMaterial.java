@@ -37,7 +37,7 @@ public class CloudMaterial extends Material
     }
 
     @Override
-    public boolean getCanBlockGrass ()
+    public boolean blocksLight ()
     {
         return false;
     }

@@ -3,7 +3,7 @@ package mods.natura.blocks.nether;
 import mods.natura.common.NaturaTab;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFalling;
-import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
@@ -11,15 +11,12 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.DamageSource;
-import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class HeatSand extends BlockFalling
 {
-    IIcon[] icons;
-
     public HeatSand()
     {
         super();
@@ -30,31 +27,24 @@ public class HeatSand extends BlockFalling
     }
 
     @Override
-    @SideOnly(Side.CLIENT)
-    public void registerBlockIcons (IIconRegister iconRegister)
-    {
-        this.blockIcon = iconRegister.registerIcon("natura:heatsand");
-    }
-
-    @Override
-    public AxisAlignedBB getCollisionBoundingBoxFromPool (World par1World,BlockPos pos)
+    public AxisAlignedBB getCollisionBoundingBox(World worldIn, BlockPos pos, IBlockState state)
     {
         float f = 0.125F;
-        return AxisAlignedBB.getBoundingBox(pos, new BlockPos(pos.getX() + 1, pos.getY() + 1 - f, pos.getZ() + 1));
+        return new AxisAlignedBB(pos, new BlockPos(pos.getX() + 1, pos.getY() + 1 - f, pos.getZ() + 1));
     }
 
     @Override
-    public void onEntityCollidedWithBlock (World par1World, int x, int y, int z, Entity entity)
+    public void onEntityCollidedWithBlock(World worldIn, BlockPos pos, IBlockState state, Entity entityIn)
     {
-        if (entity instanceof EntityPlayer)
+        if (entityIn instanceof EntityPlayer)
         {
-            ItemStack stack = ((EntityPlayer) entity).inventory.getStackInSlot(36);
+            ItemStack stack = ((EntityPlayer) entityIn).inventory.getStackInSlot(36);
             if (stack == null)
-                entity.attackEntityFrom(DamageSource.inFire, 1);
+            	entityIn.attackEntityFrom(DamageSource.inFire, 1);
         }
-        else if (entity instanceof EntityLiving && !entity.isImmuneToFire())
+        else if (entityIn instanceof EntityLiving && !entityIn.isImmuneToFire())
         {
-            entity.attackEntityFrom(DamageSource.inFire, 1);
+        	entityIn.attackEntityFrom(DamageSource.inFire, 1);
         }
         /*par5Entity.motionX *= 0.4D;
         par5Entity.motionZ *= 0.4D;*/

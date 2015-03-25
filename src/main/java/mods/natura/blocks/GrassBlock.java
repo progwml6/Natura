@@ -6,10 +6,12 @@ import mods.natura.client.GrassColorizerAlternate;
 import mods.natura.common.NaturaTab;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.BlockPos;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.ColorizerGrass;
@@ -61,7 +63,7 @@ public class GrassBlock extends Block
 
     @Override
     @SideOnly(Side.CLIENT)
-    public int getRenderColor (int meta)
+    public int getRenderColor (IBlockState state)
     {
         /*if (par1 % 8 == 0)
             return this.getBlockColor();
@@ -77,12 +79,12 @@ public class GrassBlock extends Block
 
     @Override
     @SideOnly(Side.CLIENT)
-    public int colorMultiplier (IBlockAccess world, int x, int y, int z)
+    public int colorMultiplier (IBlockAccess worldIn, BlockPos pos, int renderPass)
     {
         int l = 0;
         int i1 = 0;
         int j1 = 0;
-        int meta = world.getBlockMetadata(x, y, z);
+        int meta = worldIn.getBlockMetadata(x, y, z);
 
         for (int k1 = -1; k1 <= 1; ++k1)
         {
