@@ -16,7 +16,7 @@ public class GrassColorizerAlternate
         if (par0ArrayOfInteger.length == 65536)
         {
             blueGrassBuffer = par0ArrayOfInteger;
-        } 
+        }
         else
         {
             Natura.logger.warn("Invalid texture for blue grass biome colors: expected 256x256 (65536) pixels, got {}!", par0ArrayOfInteger.length);
@@ -36,7 +36,7 @@ public class GrassColorizerAlternate
         if (par0ArrayOfInteger.length == 65536)
         {
             orangeGrassBuffer = par0ArrayOfInteger;
-        } 
+        }
         else
         {
             Natura.logger.warn("Invalid texture for orange grass biome colors: expected 256x256 (65536) pixels, got {}!", par0ArrayOfInteger.length);

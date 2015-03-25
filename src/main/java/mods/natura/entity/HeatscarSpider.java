@@ -92,7 +92,7 @@ public class HeatscarSpider extends EntitySpider
     }
 
     @Override
-    public void fall(float distance, float damageMultiplier)
+    public void fall (float distance, float damageMultiplier)
     {
         float[] ret = ForgeHooks.onLivingFall(this, distance, damageMultiplier);
         if (ret == null)
@@ -115,7 +115,8 @@ public class HeatscarSpider extends EntitySpider
             }
 
             this.attackEntityFrom(DamageSource.fall, i);
-            Block j = this.worldObj.getBlockState(new BlockPos(MathHelper.floor_double(this.posX), MathHelper.floor_double(this.posY - 0.20000000298023224D), MathHelper.floor_double(this.posZ))).getBlock();
+            Block j = this.worldObj.getBlockState(new BlockPos(MathHelper.floor_double(this.posX), MathHelper.floor_double(this.posY - 0.20000000298023224D), MathHelper.floor_double(this.posZ)))
+                    .getBlock();
 
             if (j != null)
             {
