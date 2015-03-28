@@ -2,13 +2,11 @@ package mods.natura.items;
 
 import java.util.List;
 
-import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
@@ -19,16 +17,13 @@ public class NSpecialFood extends ItemFood
     int[] hunger;
     float[] saturation;
     String[] unlocalizedNames;
-    String[] iconNames;
-    IIcon[] icons;
 
-    public NSpecialFood(int[] hunger, float[] saturation, String[] textureNames, String[] iconNames)
+    public NSpecialFood(int[] hunger, float[] saturation, String[] textureNames)
     {
         super(0, 0, false);
         this.hunger = hunger;
         this.saturation = saturation;
         this.unlocalizedNames = textureNames;
-        this.iconNames = iconNames;
         this.setHasSubtypes(true);
     }
 
@@ -42,25 +37,6 @@ public class NSpecialFood extends ItemFood
     public float getSaturationModifier(ItemStack stack)
     {
         return saturation[stack.getItemDamage()];
-    }
-
-    @Override
-    @SideOnly(Side.CLIENT)
-    public IIcon getIconFromDamage (int meta)
-    {
-        return icons[meta];
-    }
-
-    @SideOnly(Side.CLIENT)
-    @Override
-    public void registerIcons (IIconRegister iconRegister)
-    {
-        this.icons = new IIcon[iconNames.length];
-
-        for (int i = 0; i < this.icons.length; ++i)
-        {
-            this.icons[i] = iconRegister.registerIcon("natura:" + iconNames[i]);
-        }
     }
 
     @Override

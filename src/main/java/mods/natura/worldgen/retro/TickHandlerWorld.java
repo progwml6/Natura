@@ -25,7 +25,7 @@ public class TickHandlerWorld
         if (event.phase.equals(Phase.END) && event.type.equals(Type.WORLD))
         {
             World world = event.world;
-            int dim = world.provider.dimensionId;
+            int dim = world.provider.getDimensionId();
             ArrayList chunks = (ArrayList) chunksToGen.get(Integer.valueOf(dim));
 
             if (chunks != null && chunks.size() > 0)

@@ -5,56 +5,62 @@ import java.util.List;
 import mods.natura.common.NaturaTab;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.block.properties.IProperty;
+import net.minecraft.block.properties.PropertyInteger;
+import net.minecraft.block.state.BlockState;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.IIcon;
+import net.minecraft.util.EnumWorldBlockLayer;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class NBlock extends Block
 {
     public String[] textureNames;
-    public IIcon[] icons;
+    public static PropertyInteger METADATA = PropertyInteger.create("Metadata", 0, 15);
 
     public NBlock(Material material, float hardness, String[] tex)
     {
         super(material);
         setHardness(hardness);
+        this.setDefaultState(this.blockState.getBaseState().withProperty(METADATA, 0));
         this.setCreativeTab(NaturaTab.tab);
         textureNames = tex;
     }
 
     @Override
-    public int damageDropped (int meta)
+    public int damageDropped (IBlockState meta)
     {
-        return meta;
+        return this.getMetaFromState(meta);
     }
 
-    @Override
-    @SideOnly(Side.CLIENT)
-    public void registerBlockIcons (IIconRegister iconRegister)
+    /**
+     * Convert the given metadata into a BlockState for this Block
+     */
+    public IBlockState getStateFromMeta (int meta)
     {
-        this.icons = new IIcon[textureNames.length];
-
-        for (int i = 0; i < this.icons.length; ++i)
-        {
-            this.icons[i] = iconRegister.registerIcon("natura:" + textureNames[i]);
-        }
+        return this.getDefaultState().withProperty(METADATA, Integer.valueOf(meta));
     }
 
-    @Override
-    @SideOnly(Side.CLIENT)
-    public IIcon getIcon (int side, int meta)
+    /**
+     * Convert the BlockState into the correct metadata value
+     */
+    public int getMetaFromState (IBlockState state)
     {
-        return icons[meta];
+        return ((Integer) state.getValue(METADATA)).intValue();
+    }
+
+    protected BlockState createBlockState ()
+    {
+        return new BlockState(this, new IProperty[] { METADATA });
     }
 
     @Override
     public void getSubBlocks (Item id, CreativeTabs tab, List list)
     {
-        for (int iter = 0; iter < icons.length; iter++)
+        for (int iter = 0; iter < textureNames.length; iter++)
         {
             list.add(new ItemStack(id, 1, iter));
         }

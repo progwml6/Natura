@@ -14,6 +14,8 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.Facing;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.StatCollector;
@@ -83,12 +85,12 @@ public class SpawnEgg extends Item
     }
 
     @Override
-    public boolean onItemUse (ItemStack stack, EntityPlayer player, World world, int posX, int posY, int posZ, int par7, float par8, float par9, float par10)
+    public boolean onItemUse(ItemStack stack, EntityPlayer playerIn, World worldIn, BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ)
     {
-        if (!world.isRemote)
+        if (!worldIn.isRemote)
         {
             activateSpawnEgg(stack, world, posX, posY, posZ, par7);
-            if (!player.capabilities.isCreativeMode)
+            if (!playerIn.capabilities.isCreativeMode)
             {
                 --stack.stackSize;
             }

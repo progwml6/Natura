@@ -22,7 +22,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class NDoorItem extends Item
 {
-    public IIcon[] icons;
     public String[] textureNames = new String[] { "redwood", "eucalyptus", "hopseed", "sakura", "ghostwood", "bloodwood", "redwoodbark" };
 
     public NDoorItem()
@@ -121,25 +120,6 @@ public class NDoorItem extends Item
         worldIn.setBlockState(blockpos3, iblockstate.withProperty(BlockDoor.HALF, BlockDoor.EnumDoorHalf.UPPER), 2);
         worldIn.notifyNeighborsOfStateChange(pos, door);
         worldIn.notifyNeighborsOfStateChange(blockpos3, door);
-    }
-
-    @SideOnly(Side.CLIENT)
-    @Override
-    public IIcon getIconFromDamage (int meta)
-    {
-        return icons[meta];
-    }
-
-    @SideOnly(Side.CLIENT)
-    @Override
-    public void registerIcons (IIconRegister iconRegister)
-    {
-        this.icons = new IIcon[textureNames.length];
-
-        for (int i = 0; i < this.icons.length; ++i)
-        {
-            this.icons[i] = iconRegister.registerIcon("natura:" + textureNames[i] + "_door_item");
-        }
     }
 
     @Override

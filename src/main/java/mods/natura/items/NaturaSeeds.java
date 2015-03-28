@@ -4,24 +4,22 @@ import java.util.List;
 
 import mods.natura.common.NaturaTab;
 import net.minecraft.block.Block;
-import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemSeeds;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.IIcon;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
-import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class NaturaSeeds extends ItemSeeds
 {
     public String[] textureNames = new String[] { "barley", "cotton" };
-    public IIcon[] icons;
 
     public Block blockType;
 
@@ -33,18 +31,6 @@ public class NaturaSeeds extends ItemSeeds
         this.setHasSubtypes(true);
     }
 
-    @SideOnly(Side.CLIENT)
-    @Override
-    public void registerIcons (IIconRegister iconRegister)
-    {
-        this.icons = new IIcon[textureNames.length];
-
-        for (int i = 0; i < this.icons.length; ++i)
-        {
-            this.icons[i] = iconRegister.registerIcon("natura:" + textureNames[i] + "_seeds");
-        }
-    }
-
     @Override
     public void getSubItems (Item id, CreativeTabs tab, List list)
     {
@@ -52,34 +38,22 @@ public class NaturaSeeds extends ItemSeeds
             list.add(new ItemStack(id, 1, i));
     }
 
-    @SideOnly(Side.CLIENT)
     @Override
-    public IIcon getIconFromDamage (int meta)
+    public boolean onItemUse (ItemStack stack, EntityPlayer playerIn, World worldIn, BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ)
     {
-        return icons[meta];
-    }
-
-    @Override
-    public boolean onItemUse (ItemStack stack, EntityPlayer player, World world, int xPos, int yPos, int zPos, int side, float xClick, float yClick, float zClick)
-    {
-        if (side != 1)
+        if (side != EnumFacing.UP)
         {
             return false;
         }
-        else if (player.canPlayerEdit(xPos, yPos, zPos, side, stack) && player.canPlayerEdit(xPos, yPos + 1, zPos, side, stack))
+        else if (!playerIn.canPlayerEdit(pos.offset(side), side, stack))
         {
-            Block soil = world.getBlock(xPos, yPos, zPos);
-
-            if (soil != null && soil.canSustainPlant(world, xPos, yPos, zPos, ForgeDirection.UP, this) && world.isAirBlock(xPos, yPos + 1, zPos))
-            {
-                world.setBlock(xPos, yPos + 1, zPos, this.blockType, stack.getItemDamage() * 4, 3);
-                --stack.stackSize;
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return false;
+        }
+        else if (worldIn.getBlockState(pos).getBlock().canSustainPlant(worldIn, pos, EnumFacing.UP, this) && worldIn.isAirBlock(pos.up()))
+        {
+            worldIn.setBlockState(pos.up(), this.blockType.getDefaultState());
+            --stack.stackSize;
+            return true;
         }
         else
         {

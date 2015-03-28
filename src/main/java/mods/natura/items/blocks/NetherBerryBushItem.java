@@ -5,12 +5,14 @@ import java.util.List;
 import mantle.blocks.abstracts.MultiItemBlock;
 import mods.natura.common.NContent;
 import net.minecraft.block.Block;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
-import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -34,22 +36,23 @@ public class NetherBerryBushItem extends MultiItemBlock
 
     /* Place bushes on dirt, grass, or other bushes only */
     @Override
-    public boolean onItemUse (ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side, float par8, float par9, float par10)
+    public boolean onItemUse(ItemStack stack, EntityPlayer playerIn, World worldIn, BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ)
     {
-        if (side != 1)
+        if (side != EnumFacing.UP)
             return false;
 
-        else if (player.canPlayerEdit(x, y, z, side, stack) && player.canPlayerEdit(x, y + 1, z, side, stack))
+        else if (playerIn.canPlayerEdit(pos, side, stack) && playerIn.canPlayerEdit(new BlockPos(pos.getX(), pos.getY() + 1, pos.getZ()), side, stack))
         {
-            Block block = world.getBlock(x, y, z);
+            IBlockState iBlockState = worldIn.getBlockState(pos);
+            Block block = iBlockState.getBlock();
 
-            if (block != null && (block.canSustainPlant(world, x, y, z, ForgeDirection.UP, NContent.netherBerryBush) || block == Blocks.netherrack) && world.isAirBlock(x, y + 1, z))
+            if (block != null && (block.canSustainPlant(worldIn, pos, EnumFacing.UP, NContent.netherBerryBush) || block == Blocks.netherrack) && worldIn.isAirBlock(new BlockPos(pos.getX(), pos.getY() + 1, pos.getZ())))
             {
-                world.setBlock(x, y + 1, z, NContent.netherBerryBush, stack.getItemDamage() % 4, 3);
-                if (!player.capabilities.isCreativeMode)
+                worldIn.setBlockState(new BlockPos(pos.getX(), pos.getY() + 1, pos.getZ()), NContent.netherBerryBush.getStateFromMeta(stack.getItemDamage() % 4), 3);
+                if (!playerIn.capabilities.isCreativeMode)
                     stack.stackSize--;
-                if (!world.isRemote)
-                    world.playAuxSFX(2001, x, y, z, Block.getIdFromBlock(NContent.netherBerryBush));
+                if (!worldIn.isRemote)
+                    worldIn.playAuxSFX(2001, pos, Block.getIdFromBlock(NContent.netherBerryBush));
                 return true;
             }
             else

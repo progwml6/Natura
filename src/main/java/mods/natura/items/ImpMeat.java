@@ -16,7 +16,7 @@ public class ImpMeat extends NSpecialFood
 {
     public ImpMeat()
     {
-        super(new int[] { 3, 8 }, new float[] { 0.2f, 0.6f }, new String[] { "raw", "cooked" }, new String[] { "impmeat_raw", "impmeat_cooked" });
+        super(new int[] { 3, 8 }, new float[] { 0.2f, 0.6f }, new String[] { "raw", "cooked" });
     }
 
     @Override

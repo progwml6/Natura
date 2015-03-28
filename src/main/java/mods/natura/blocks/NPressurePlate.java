@@ -4,8 +4,6 @@ import mods.natura.common.NaturaTab;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockPressurePlate;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.util.IIcon;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -16,22 +14,9 @@ public class NPressurePlate extends BlockPressurePlate
 
     public NPressurePlate(Material material, Sensitivity s, Block block, int meta)
     {
-        super("", material, s);
+        super(material, s);
         modelBlock = block;
         modelMeta = meta;
         this.setCreativeTab(NaturaTab.tab);
-    }
-
-    @Override
-    @SideOnly(Side.CLIENT)
-    public void registerBlockIcons (IIconRegister iconRegister)
-    {
-    }
-
-    @Override
-    @SideOnly(Side.CLIENT)
-    public IIcon getIcon (int side, int meta)
-    {
-        return modelBlock.getIcon(side, modelMeta);
     }
 }

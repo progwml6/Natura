@@ -37,7 +37,7 @@ public class WorldHandler
     public void handleChunkLoadEvent (ChunkDataEvent.Load event)
     {
 
-        int dim = event.world.provider.dimensionId;
+        int dim = event.world.provider.getDimensionId();
 
         if (dimensionBlacklist.contains(dim))
         {
@@ -87,7 +87,7 @@ public class WorldHandler
         {
             return;
         }
-        if (world.provider.dimensionId == 1)
+        if (world.provider.getDimensionId() == 1)
         {//|| world.provider.dimensionId == -1) {
             return;
         }

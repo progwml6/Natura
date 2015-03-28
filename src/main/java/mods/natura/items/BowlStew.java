@@ -3,7 +3,6 @@ package mods.natura.items;
 import java.util.List;
 
 import mods.natura.common.NContent;
-import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
@@ -12,7 +11,6 @@ import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
@@ -20,7 +18,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class BowlStew extends ItemFood
 {
-    IIcon[] icons;
     public static String[] textureNames = new String[] { "mushroom", "glowshroom" };
 
     public BowlStew()
@@ -28,41 +25,8 @@ public class BowlStew extends ItemFood
         super(6, false);
     }
 
-    @SideOnly(Side.CLIENT)
     @Override
-    public boolean requiresMultipleRenderPasses ()
-    {
-        return true;
-    }
-
-    @Override
-    public IIcon getIcon (ItemStack stack, int renderPass)
-    {
-        if (renderPass == 0)
-        {
-            int stackDamage = stack.getItemDamage() % 14;
-            if (stackDamage == 0)
-                return Items.bowl.getIconFromDamage(0);
-            return NContent.bowlEmpty.getIconFromDamage(stack.getItemDamage() % 14 - 1);
-        }
-        else
-            return icons[stack.getItemDamage() / 14];
-    }
-
-    @SideOnly(Side.CLIENT)
-    @Override
-    public void registerIcons (IIconRegister iconRegister)
-    {
-        this.icons = new IIcon[textureNames.length];
-        for (int i = 0; i < BowlStew.textureNames.length; ++i)
-        {
-            if (!textureNames[i].equals(""))
-                this.icons[i] = iconRegister.registerIcon("natura:stew_" + textureNames[i]);
-        }
-    }
-
-    @Override
-    public ItemStack onEaten (ItemStack stack, World world, EntityPlayer player)
+    public ItemStack onItemUseFinish (ItemStack stack, World world, EntityPlayer player)
     {
         // TODO 1.7 check this
         player.getFoodStats().addStats(6, 0.6f);

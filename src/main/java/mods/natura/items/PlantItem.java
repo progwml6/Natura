@@ -14,8 +14,7 @@ public class PlantItem extends NCraftingItem
 {
     public PlantItem()
     {
-        super(new String[] { "barley.plant", "barley.flour", "wheat.flour", "cotton.plant", "powder.sulfur", "fletching.ghostwood", "leather.imp", "string.flame", "dye.blue" }, new String[] {
-                "barley_plant", "barley_flour", "wheat_flour", "cotton_plant", "sulfur", "ghostwood_fletching", "leather_imp", "flamestring", "dye_blue" });
+        super(new String[] { "barley.plant", "barley.flour", "wheat.flour", "cotton.plant", "powder.sulfur", "fletching.ghostwood", "leather.imp", "string.flame", "dye.blue" });
         this.setCreativeTab(NaturaTab.tab);
     }
 

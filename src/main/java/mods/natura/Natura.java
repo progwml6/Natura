@@ -99,7 +99,6 @@ public class Natura
         GameRegistry.registerWorldGenerator(trees = new BaseTreeWorldgen(), 20); // TODO 1.7 Find correct weight (param 2)
 
         proxy.registerRenderer();
-        proxy.addNames();
         NetworkRegistry.INSTANCE.registerGuiHandler(instance, new NGuiHandler());
 
         GameRegistry.registerFuelHandler(content);

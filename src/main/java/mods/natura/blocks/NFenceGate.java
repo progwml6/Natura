@@ -3,8 +3,6 @@ package mods.natura.blocks;
 import mods.natura.common.NaturaTab;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFenceGate;
-import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.util.IIcon;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -19,18 +17,5 @@ public class NFenceGate extends BlockFenceGate
         modelBlock = block;
         modelMeta = meta;
         this.setCreativeTab(NaturaTab.tab);
-    }
-
-    @Override
-    @SideOnly(Side.CLIENT)
-    public void registerBlockIcons (IIconRegister iconRegister)
-    {
-    }
-
-    @Override
-    @SideOnly(Side.CLIENT)
-    public IIcon getIcon (int side, int meta)
-    {
-        return modelBlock.getIcon(side, modelMeta);
     }
 }

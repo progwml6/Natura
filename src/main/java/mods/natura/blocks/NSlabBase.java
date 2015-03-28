@@ -5,13 +5,19 @@ import java.util.List;
 import mods.natura.common.NaturaTab;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.block.properties.IProperty;
+import net.minecraft.block.properties.PropertyInteger;
+import net.minecraft.block.state.BlockState;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.IIcon;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumWorldBlockLayer;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
@@ -19,6 +25,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class NSlabBase extends Block
 {
+    public static PropertyInteger METADATA = PropertyInteger.create("Metadata", 0, 15);
     Block modelBlock;
     int startingMeta;
     int totalSize;
@@ -27,22 +34,24 @@ public class NSlabBase extends Block
     {
         super(material);
         this.setCreativeTab(NaturaTab.tab);
+        this.setDefaultState(this.blockState.getBaseState().withProperty(METADATA, 0));
     }
 
     public NSlabBase(Material material, Block model, int meta, int totalSize)
     {
         super(material);
         this.setCreativeTab(NaturaTab.tab);
+        this.setDefaultState(this.blockState.getBaseState().withProperty(METADATA, 0));
         this.modelBlock = model;
         this.startingMeta = meta;
         this.totalSize = totalSize;
     }
 
     @Override
-    public void addCollisionBoxesToList (World world, int x, int y, int z, AxisAlignedBB axisalignedbb, List arraylist, Entity entity)
+    public void addCollisionBoxesToList (World worldIn, BlockPos pos, IBlockState state, AxisAlignedBB mask, List list, Entity collidingEntity)
     {
-        setBlockBoundsBasedOnState(world, x, y, z);
-        super.addCollisionBoxesToList(world, x, y, z, axisalignedbb, arraylist, entity);
+        setBlockBoundsBasedOnState(worldIn, pos);
+        super.addCollisionBoxesToList(worldIn, pos, state, mask, list, collidingEntity);
     }
 
     @Override
@@ -52,23 +61,23 @@ public class NSlabBase extends Block
     }
 
     @Override
-    public void setBlockBoundsBasedOnState (IBlockAccess world, int x, int y, int z)
+    public void setBlockBoundsBasedOnState (IBlockAccess world, BlockPos pos)
     {
-        int meta = world.getBlockMetadata(x, y, z) / 8;
+        int meta = this.getMetaFromState(world.getBlockState(pos)) / 8;
         float minY = meta == 1 ? 0.5F : 0.0F;
         float maxY = meta == 1 ? 1.0F : 0.5F;
         setBlockBounds(0.0F, minY, 0F, 1.0F, maxY, 1.0F);
     }
 
     @Override
-    public int onBlockPlaced (World par1World, int blockX, int blockY, int blockZ, int side, float clickX, float clickY, float clickZ, int metadata)
+    public IBlockState onBlockPlaced (World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
     {
-        if (side == 1)
-            return metadata;
-        if (side == 0 || clickY >= 0.5F)
-            return metadata | 8;
+        if (facing == EnumFacing.UP)
+            return this.getStateFromMeta(meta);
+        if (facing == EnumFacing.DOWN || hitY >= 0.5F)
+            return this.getStateFromMeta(meta | 8);
 
-        return metadata;
+        return this.getStateFromMeta(meta);
     }
 
     @Override
@@ -78,23 +87,9 @@ public class NSlabBase extends Block
     }
 
     @Override
-    public boolean renderAsNormalBlock ()
+    public boolean isFullCube ()
     {
         return false;
-    }
-
-    @Override
-    @SideOnly(Side.CLIENT)
-    public void registerBlockIcons (IIconRegister iconRegister)
-    {
-    }
-
-    @Override
-    @SideOnly(Side.CLIENT)
-    public IIcon getIcon (int side, int meta)
-    {
-        meta = meta % 8 + startingMeta;
-        return modelBlock.getIcon(side, meta);
     }
 
     @Override
@@ -107,8 +102,29 @@ public class NSlabBase extends Block
     }
 
     @Override
-    public int damageDropped (int meta)
+    public int damageDropped (IBlockState meta)
     {
-        return meta % 8;
+        return this.getMetaFromState(meta) % 8;
+    }
+
+    /**
+     * Convert the given metadata into a BlockState for this Block
+     */
+    public IBlockState getStateFromMeta (int meta)
+    {
+        return this.getDefaultState().withProperty(METADATA, Integer.valueOf(meta));
+    }
+
+    /**
+     * Convert the BlockState into the correct metadata value
+     */
+    public int getMetaFromState (IBlockState state)
+    {
+        return ((Integer) state.getValue(METADATA)).intValue();
+    }
+
+    protected BlockState createBlockState ()
+    {
+        return new BlockState(this, new IProperty[] { METADATA });
     }
 }

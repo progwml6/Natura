@@ -3,12 +3,13 @@ package mods.natura.blocks;
 import mods.natura.common.NaturaTab;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockStairs;
+import net.minecraft.block.state.IBlockState;
 
 public class NStairs extends BlockStairs
 {
-    public NStairs(Block par2Block, int par3)
+    public NStairs(IBlockState modelState)
     {
-        super(par2Block, par3);
+        super(modelState);
         this.setCreativeTab(NaturaTab.tab);
         this.setLightOpacity(0);
     }
