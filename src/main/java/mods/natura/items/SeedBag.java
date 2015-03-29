@@ -4,76 +4,71 @@ import java.util.List;
 
 import mods.natura.common.NaturaTab;
 import net.minecraft.block.Block;
-import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IPlantable;
-import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class SeedBag extends Item
 {
-    Block crop;
-    int cropMetadata;
-    String textureName;
+	Block crop;
 
-    public SeedBag(Block block, int cMD, String texture)
-    {
-        super();
-        crop = block;
-        cropMetadata = cMD;
-        textureName = texture;
-        this.setCreativeTab(NaturaTab.tab);
-    }
+	int cropMetadata;
 
-    @Override
-    public boolean onItemUse (ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side, float par8, float par9, float par10)
-    {
-        if (side != 1)
-            return false;
+	String textureName;
 
-        boolean planted = false;
-        for (int posX = x - 1; posX <= x + 1; posX++)
-        {
-            for (int posZ = z - 1; posZ <= z + 1; posZ++)
-            {
-                if (player.canPlayerEdit(posX, y, posZ, side, stack) && player.canPlayerEdit(posX, y + 1, posZ, side, stack))
-                {
-                    Block block = world.getBlock(posX, y, posZ);
+	public SeedBag(Block block, int cMD, String texture)
+	{
+		super();
+		crop = block;
+		cropMetadata = cMD;
+		textureName = texture;
+		this.setCreativeTab(NaturaTab.tab);
+	}
 
-                    if (block != null && block.canSustainPlant(world, posX, y, posZ, ForgeDirection.UP, (IPlantable) crop) && world.isAirBlock(posX, y + 1, posZ))
-                    {
-                        world.setBlock(posX, y + 1, posZ, crop, cropMetadata, 3);
-                        planted = true;
-                    }
-                }
-            }
-        }
-        if (planted)
-        {
-            if (!player.capabilities.isCreativeMode)
-                stack.stackSize--;
-            if (!world.isRemote)
-                world.playAuxSFX(2001, x, y, z, Block.getIdFromBlock(crop));
-        }
-        return planted;
-    }
+	@Override
+	public boolean onItemUse(ItemStack stack, EntityPlayer playerIn, World worldIn, BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ)
+	{
+		if (side != EnumFacing.UP)
+			return false;
 
-    @SideOnly(Side.CLIENT)
-    @Override
-    public void registerIcons (IIconRegister par1IconRegister)
-    {
-        this.itemIcon = par1IconRegister.registerIcon("natura:seedbag_" + textureName);
-    }
+		boolean planted = false;
+		for (int posX = pos.getX() - 1; posX <= pos.getX() + 1; posX++)
+		{
+			for (int posZ = pos.getZ() - 1; posZ <= pos.getZ() + 1; posZ++)
+			{
+				if (playerIn.canPlayerEdit(new BlockPos(posX, pos.getY(), posZ), side, stack) && playerIn.canPlayerEdit(new BlockPos(posX, pos.getY() + 1, posZ), side, stack))
+				{
+					Block block = worldIn.getBlockState(new BlockPos(posX, pos.getY(), posZ)).getBlock();
 
-    @Override
-    @SideOnly(Side.CLIENT)
-    public void addInformation (ItemStack stack, EntityPlayer player, List list, boolean par4)
-    {
-        list.add(StatCollector.translateToLocal("tooltip.seedbag"));
-    }
+					if (block != null && block.canSustainPlant(worldIn, new BlockPos(posX, pos.getY(), posZ), EnumFacing.UP, (IPlantable) crop) && worldIn.isAirBlock(new BlockPos(posX, pos.getY() + 1, posZ)))
+					{
+						worldIn.setBlockState(new BlockPos(posX, pos.getY() + 1, posZ), crop.getDefaultState(), 3);//, cropMetadata, 3);
+						planted = true;
+					}
+				}
+			}
+		}
+		if (planted)
+		{
+			if (!playerIn.capabilities.isCreativeMode)
+				stack.stackSize--;
+			if (!worldIn.isRemote)
+				worldIn.playAuxSFX(2001, pos, Block.getIdFromBlock(crop));
+		}
+		return planted;
+	}
+
+	@Override
+	@SideOnly(Side.CLIENT)
+	public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4)
+	{
+		list.add(StatCollector.translateToLocal("tooltip.seedbag"));
+	}
 }

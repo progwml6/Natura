@@ -80,16 +80,16 @@ public class PlankSlab1Item extends MultiItemBlock
 	@Override
 	public boolean onItemUse(ItemStack stack, EntityPlayer playerIn, World worldIn, BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ)
 	{
-		Block id = world.getBlock(x, y, z);
-		int meta = world.getBlockMetadata(x, y, z);
+		Block id = worldIn.getBlockState(pos).getBlock();
+		int meta = id.getMetaFromState(worldIn.getBlockState(pos));
 		int trueMeta = meta % 8;
 		boolean flag = id != null;
 
 		if ((side == EnumFacing.UP && !flag || side == EnumFacing.DOWN && flag) && id == this.block && trueMeta == stack.getItemDamage())
 		{
-			if (world.setBlock(x, y, z, NContent.planks, trueMeta, 3))
+			if (worldIn.setBlockState(pos, NContent.planks.getStateFromMeta(trueMeta), 3))
 			{
-				world.playSoundEffect(x + 0.5F, y + 0.5F, z + 0.5F, this.block.stepSound.getBreakSound(), (this.block.stepSound.getVolume() + 1.0F) / 2.0F, this.block.stepSound.getPitch() * 0.8F);
+				worldIn.playSoundEffect(pos.getX() + 0.5F, pos.getY() + 0.5F, pos.getZ() + 0.5F, this.block.stepSound.getBreakSound(), (this.block.stepSound.getVolume() + 1.0F) / 2.0F, this.block.stepSound.getFrequency() * 0.8F);
 				--stack.stackSize;
 				return true;
 			}

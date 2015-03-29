@@ -11,82 +11,81 @@ import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
-import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class BerryBushItem extends MultiItemBlock
 {
-    public static final String blockType[] = { "rasp", "blue", "black", "geo", "rasp", "blue", "black", "geo", "rasp", "blue", "black", "geo", "rasp", "blue", "black", "geo" };
+	public static final String blockType[] = { "rasp", "blue", "black", "geo", "rasp", "blue", "black", "geo", "rasp", "blue", "black", "geo", "rasp", "blue", "black", "geo" };
 
-    public BerryBushItem(Block block)
-    {
-        super(block, "block", "berryBush", blockType);
-        setHasSubtypes(true);
-    }
+	public BerryBushItem(Block block)
+	{
+		super(block, "block", "berryBush", blockType);
+		setHasSubtypes(true);
+	}
 
-    @Override
-    public int getMetadata (int meta)
-    {
-        return meta % 4;
-    }
+	@Override
+	public int getMetadata(int meta)
+	{
+		return meta % 4;
+	}
 
-    /* Place bushes on dirt, grass, or other bushes only */
-    @Override
-    public boolean onItemUse (ItemStack stack, EntityPlayer playerIn, World worldIn, BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ)
-    {
-        if (side != 1)
-            return false;
+	/* Place bushes on dirt, grass, or other bushes only */
+	@Override
+	public boolean onItemUse(ItemStack stack, EntityPlayer playerIn, World worldIn, BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ)
+	{
+		if (side != EnumFacing.UP)
+			return false;
 
-        else if (player.canPlayerEdit(x, y, z, side, stack) && player.canPlayerEdit(x, y + 1, z, side, stack))
-        {
-            Block block = world.getBlock(x, y, z);
+		else if (playerIn.canPlayerEdit(pos, side, stack) && playerIn.canPlayerEdit(pos.up(), side, stack))
+		{
+			Block block = worldIn.getBlockState(pos).getBlock();
 
-            if (block != null && block.canSustainPlant(world, x, y, z, ForgeDirection.UP, NContent.berryBush) && world.isAirBlock(x, y + 1, z))
-            {
-                world.setBlock(x, y + 1, z, NContent.berryBush, stack.getItemDamage() % 4, 3);
-                if (!player.capabilities.isCreativeMode)
-                    stack.stackSize--;
-                if (!world.isRemote)
-                    world.playAuxSFX(2001, x, y, z, Block.getIdFromBlock(NContent.berryBush));
-                return true;
-            }
-            else
-                return false;
-        }
-        else
-            return false;
-    }
+			if (block != null && block.canSustainPlant(worldIn, pos, EnumFacing.UP, NContent.berryBush) && worldIn.isAirBlock(pos.up()))
+			{
+				worldIn.setBlockState(pos.up(), NContent.berryBush.getDefaultState(), 3);//, stack.getItemDamage() % 4, 3);
+				if (!playerIn.capabilities.isCreativeMode)
+					stack.stackSize--;
+				if (!worldIn.isRemote)
+					worldIn.playAuxSFX(2001, pos, Block.getIdFromBlock(NContent.berryBush));
+				return true;
+			}
+			else
+				return false;
+		}
+		else
+			return false;
+	}
 
-    /* Block name in inventory */
-    /* @Override
-     public String getUnlocalizedName (ItemStack itemstack)
-     {
-         return (new StringBuilder()).append("block.").append(blockType[itemstack.getItemDamage()]).append("berryBush").toString();
-     }*/
+	/* Block name in inventory */
+	/* @Override
+	 public String getUnlocalizedName (ItemStack itemstack)
+	 {
+	     return (new StringBuilder()).append("block.").append(blockType[itemstack.getItemDamage()]).append("berryBush").toString();
+	 }*/
 
-    @Override
-    @SideOnly(Side.CLIENT)
-    public void addInformation (ItemStack stack, EntityPlayer player, List list, boolean par4)
-    {
-        switch (stack.getItemDamage() % 4)
-        {
-        case 0:
-            list.add(StatCollector.translateToLocal("tooltip.berrybush1"));
-            list.add(StatCollector.translateToLocal("tooltip.berrybush2"));
-            break;
-        case 1:
-            list.add(StatCollector.translateToLocal("tooltip.berrybush3"));
-            list.add(StatCollector.translateToLocal("tooltip.berrybush4"));
-            break;
-        case 2:
-            list.add(StatCollector.translateToLocal("tooltip.berrybush5"));
-            list.add(StatCollector.translateToLocal("tooltip.berrybush6"));
-            break;
-        case 3:
-            list.add(StatCollector.translateToLocal("tooltip.berrybush7"));
-            list.add(StatCollector.translateToLocal("tooltip.berrybush8"));
-            break;
-        }
-    }
+	@Override
+	@SideOnly(Side.CLIENT)
+	public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4)
+	{
+		switch (stack.getItemDamage() % 4)
+		{
+		case 0:
+			list.add(StatCollector.translateToLocal("tooltip.berrybush1"));
+			list.add(StatCollector.translateToLocal("tooltip.berrybush2"));
+			break;
+		case 1:
+			list.add(StatCollector.translateToLocal("tooltip.berrybush3"));
+			list.add(StatCollector.translateToLocal("tooltip.berrybush4"));
+			break;
+		case 2:
+			list.add(StatCollector.translateToLocal("tooltip.berrybush5"));
+			list.add(StatCollector.translateToLocal("tooltip.berrybush6"));
+			break;
+		case 3:
+			list.add(StatCollector.translateToLocal("tooltip.berrybush7"));
+			list.add(StatCollector.translateToLocal("tooltip.berrybush8"));
+			break;
+		}
+	}
 }

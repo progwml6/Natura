@@ -141,12 +141,12 @@ public class Natura
             }
             if (event.block == NContent.berryBush)
             {
-                if (NContent.berryBush.boneFertilize(event.world, event.x, event.y, event.z, event.world.rand))
+                if (NContent.berryBush.boneFertilize(event.world, event.pos, event.world.rand))
                     event.setResult(Result.ALLOW);
             }
             if (event.block == NContent.netherBerryBush)
             {
-                if (NContent.netherBerryBush.boneFertilize(event.world, event.x, event.y, event.z, event.world.rand))
+                if (NContent.netherBerryBush.boneFertilize(event.world, event.pos, event.world.rand))
                     event.setResult(Result.ALLOW);
             }
         }

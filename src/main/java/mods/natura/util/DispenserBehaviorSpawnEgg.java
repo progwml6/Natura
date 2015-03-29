@@ -6,6 +6,7 @@ import net.minecraft.dispenser.BehaviorDefaultDispenseItem;
 import net.minecraft.dispenser.IBlockSource;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
 
 public class DispenserBehaviorSpawnEgg extends BehaviorDefaultDispenseItem
@@ -20,7 +21,7 @@ public class DispenserBehaviorSpawnEgg extends BehaviorDefaultDispenseItem
         double d0 = par1IBlockSource.getX() + enumfacing.getFrontOffsetX();
         double d1 = par1IBlockSource.getY() + 0.2F;
         double d2 = par1IBlockSource.getZ() + enumfacing.getFrontOffsetZ();
-        EntityLiving entity = SpawnEgg.activateSpawnEgg(par2ItemStack, par1IBlockSource.getWorld(), d0, d1, d2, 0);
+        EntityLiving entity = SpawnEgg.activateSpawnEgg(par2ItemStack, par1IBlockSource.getWorld(), new BlockPos(d0, d1, d2), EnumFacing.DOWN);
 
         if (par2ItemStack.hasDisplayName())
         {
