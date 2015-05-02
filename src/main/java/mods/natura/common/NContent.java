@@ -1162,20 +1162,33 @@ public class NContent implements IFuelHandler
 
     public void createEntities ()
     {
-        EntityRegistry.registerModEntity(ImpEntity.class, "Imp", 0, Natura.instance, 32, 5, true);
-        EntityRegistry.registerModEntity(HeatscarSpider.class, "FlameSpider", 1, Natura.instance, 32, 5, true);
-        EntityRegistry.registerModEntity(NitroCreeper.class, "NitroCreeper", 2, Natura.instance, 64, 5, true);
-        EntityRegistry.registerModEntity(FusewoodArrow.class, "FusewoodArrow", 3, Natura.instance, 64, 3, true);
-        EntityRegistry.registerModEntity(BabyHeatscarSpider.class, "FlameSpiderBaby", 4, Natura.instance, 32, 5, true);
+		EntityRegistry.registerModEntity(ImpEntity.class, "Imp", 0,
+				Natura.instance, 32, 5, true);
+		EntityRegistry.registerModEntity(HeatscarSpider.class, "FlameSpider",
+				1, Natura.instance, 32, 5, true);
+		EntityRegistry.registerModEntity(BabyHeatscarSpider.class,
+				"FlameSpiderBaby", 4, Natura.instance, 32, 5, true);
+		EntityRegistry.registerModEntity(NitroCreeper.class, "NitroCreeper", 2,
+				Natura.instance, 64, 5, true);
+		EntityRegistry.registerModEntity(FusewoodArrow.class, "FusewoodArrow",
+				3, Natura.instance, 64, 3, true);
 
-        BiomeGenBase[] nether = BiomeDictionary.getBiomesForType(BiomeDictionary.Type.NETHER);
+		BiomeGenBase[] nether = BiomeDictionary.getBiomesForType(BiomeDictionary.Type.NETHER);
 
-        EntityRegistry.addSpawn(ImpEntity.class, 10, 8, 12, EnumCreatureType.creature, nether);
-        EntityRegistry.addSpawn(HeatscarSpider.class, 10, 4, 4, EnumCreatureType.monster, nether);
-        EntityRegistry.addSpawn(NitroCreeper.class, 8, 4, 6, EnumCreatureType.monster, nether);
-        EntityRegistry.addSpawn(BabyHeatscarSpider.class, 7, 4, 4, EnumCreatureType.monster, nether);
-
-        BlockDispenser.dispenseBehaviorRegistry.putObject(spawnEgg, new DispenserBehaviorSpawnEgg());
+    	if (PHNatura.spawnImps) {
+            EntityRegistry.addSpawn(ImpEntity.class, 10, 8, 12, EnumCreatureType.creature, nether);
+    	}
+    	if (PHNatura.spawnHeatscarSpiders) {
+			EntityRegistry.addSpawn(HeatscarSpider.class, 10, 4, 4,
+					EnumCreatureType.monster, nether);
+			EntityRegistry.addSpawn(BabyHeatscarSpider.class, 7, 4, 4,
+					EnumCreatureType.monster, nether);
+    	}
+    	if (PHNatura.spawnNitroCreepers) {
+			EntityRegistry.addSpawn(NitroCreeper.class, 8, 4, 6,
+					EnumCreatureType.monster, nether);
+    	}
+         BlockDispenser.dispenseBehaviorRegistry.putObject(spawnEgg, new DispenserBehaviorSpawnEgg());
     }
 
     public void modIntegration ()
