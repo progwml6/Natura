@@ -143,7 +143,7 @@ public class TE4Pulse
         addTrapdoor(NContent.trapdoorTiger, "tiger");
         addTrapdoor(NContent.trapdoorWillow, "willow");
         // - Wood
-        addWood(NContent.rareTree, 2, "amaranth");
+        addWood(NContent.rareTree, 2, "purpleheart");
         addWood(NContent.bloodwood, 0, "bloodwood");
         addWood(NContent.darkTree, 0, "darkwood");
         addWood(NContent.tree, 0, "eucalyptus");
