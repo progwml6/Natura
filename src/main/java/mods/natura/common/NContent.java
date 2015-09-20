@@ -760,11 +760,11 @@ public class NContent implements IFuelHandler
     {
         //Crops
         GameRegistry.addRecipe(new ItemStack(wheatBag, 1, 0), "sss", "sss", "sss", 's', Items.wheat_seeds);
-        GameRegistry.addRecipe(new ItemStack(barleyBag, 1, 0), "sss", "sss", "sss", 's', seeds);
-        GameRegistry.addRecipe(new ItemStack(potatoBag, 1, 0), "sss", "sss", "sss", 's', Items.potato);
-        GameRegistry.addRecipe(new ItemStack(carrotBag, 1, 0), "sss", "sss", "sss", 's', Items.carrot);
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(barleyBag, 1, 0), "sss", "sss", "sss", 's', "seedBarley"));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(potatoBag, 1, 0), "sss", "sss", "sss", 's', "cropPotato"));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(carrotBag, 1, 0), "sss", "sss", "sss", 's', "cropCarrot"));
         GameRegistry.addRecipe(new ItemStack(netherWartBag, 1, 0), "sss", "sss", "sss", 's', Items.nether_wart);
-        GameRegistry.addRecipe(new ItemStack(cottonBag, 1, 0), "sss", "sss", "sss", 's', new ItemStack(seeds, 1, 1));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(cottonBag, 1, 0), "sss", "sss", "sss", 's', "seedCotton"));
         GameRegistry.addRecipe(new ItemStack(boneBag, 1, 0), "sss", "sss", "sss", 's', new ItemStack(Items.dye, 1, 15));
 
         GameRegistry.addRecipe(new ItemStack(Items.wheat_seeds, 9, 0), "s", 's', wheatBag);
@@ -775,16 +775,16 @@ public class NContent implements IFuelHandler
         GameRegistry.addRecipe(new ItemStack(seeds, 9, 1), "s", 's', cottonBag);
         GameRegistry.addRecipe(new ItemStack(Items.dye, 9, 15), "s", 's', boneBag);
 
-        GameRegistry.addRecipe(new ItemStack(Items.string), "sss", 's', new ItemStack(plantItem, 1, 3));
-        GameRegistry.addRecipe(new ItemStack(Blocks.wool), "sss", "sss", "sss", 's', new ItemStack(plantItem, 1, 3));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Items.string), "sss", 's', "cropCotton"));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Blocks.wool), "sss", "sss", "sss", 's', "cropCotton"));
 
         GameRegistry.addRecipe(new ItemStack(waterDrop, 1), "X", 'X', Blocks.cactus);
         GameRegistry.addRecipe(new ItemStack(Items.water_bucket, 1), "www", "wBw", "www", 'w', waterDrop, 'B', Items.bucket);
 
-        GameRegistry.addRecipe(new ItemStack(Items.bread), "bbb", 'b', new ItemStack(plantItem, 1, 0));
-        GameRegistry.addRecipe(new ItemStack(plantItem, 1, 1), "X", 'X', new ItemStack(plantItem, 1, 0));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Items.bread), "bbb", 'b', "cropBarley"));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(plantItem, 1, 1), "X", 'X', "cropBarley"));
         if (PHNatura.enableWheatRecipe)
-            GameRegistry.addRecipe(new ItemStack(plantItem, 1, 2), "X", 'X', new ItemStack(Items.wheat));
+            GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(plantItem, 1, 2), "X", 'X', "cropWheat"));
 
         GameRegistry.addRecipe(new ItemStack(plantItem, 2, 8), "X", 'X', new ItemStack(bluebells));
 
@@ -802,14 +802,13 @@ public class NContent implements IFuelHandler
         for (int iter1 = 0; iter1 < berryTypes.length - 2; iter1++)
             for (int iter2 = iter1 + 1; iter2 < berryTypes.length - 1; iter2++)
                 for (int iter3 = iter2 + 1; iter3 < berryTypes.length; iter3++)
-                    GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(berryMedley, 1, 0), new ItemStack(Items.bowl), berryTypes[iter1], berryTypes[iter2], berryTypes[iter3]));
+                    GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(berryMedley, 1, 0), "bowlWood", berryTypes[iter1], berryTypes[iter2], berryTypes[iter3]));
 
         for (int iter1 = 0; iter1 < berryTypes.length - 3; iter1++)
             for (int iter2 = iter1 + 1; iter2 < berryTypes.length - 2; iter2++)
                 for (int iter3 = iter2 + 1; iter3 < berryTypes.length - 1; iter3++)
                     for (int iter4 = iter3 + 1; iter4 < berryTypes.length; iter4++)
-                        GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(berryMedley, 2, 0), new ItemStack(Items.bowl), new ItemStack(Items.bowl), berryTypes[iter1], berryTypes[iter2],
-                                berryTypes[iter3], berryTypes[iter4]));
+                        GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(berryMedley, 2, 0), "bowlWood", "bowlWood", berryTypes[iter1], berryTypes[iter2], berryTypes[iter3], berryTypes[iter4]));
 
         //GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(toolStationWood, 1, 1), "p", "w", 'p', new ItemStack(blankPattern, 1, 0), 'w', "logWood"));
         /*GameRegistry.addShapelessRecipe(new ItemStack(berryMedley, 1), new ItemStack(berryItem, 1, 0), new ItemStack(berryItem, 1, 1), new ItemStack(berryItem, 1, 2), new ItemStack(Item.bowlEmpty));
@@ -824,7 +823,7 @@ public class NContent implements IFuelHandler
         //Clouds
         GameRegistry.addRecipe(new ItemStack(Items.coal, 1, 1), "ccc", "ccc", "ccc", 'c', new ItemStack(cloud, 1, 2));
         GameRegistry.addRecipe(new ItemStack(plantItem, 1, 4), "cc", "cc", 'c', new ItemStack(cloud, 1, 3));
-        GameRegistry.addRecipe(new ItemStack(Items.gunpowder, 1, 0), "cc", "cc", 'c', new ItemStack(plantItem, 1, 4));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Items.gunpowder, 1, 0), "cc", "cc", 'c', "dustSulfur"));
 
         //Trees
         for (int i = 0; i < 3; i++)
@@ -842,17 +841,11 @@ public class NContent implements IFuelHandler
         GameRegistry.addRecipe(new ItemStack(planks, 4, 11), "w", 'w', new ItemStack(darkTree, 1, 0));
         GameRegistry.addRecipe(new ItemStack(planks, 4, 12), "w", 'w', new ItemStack(darkTree, 1, 1));
 
-        GameRegistry.addRecipe(new ItemStack(plantItem, 1, 1), "X", 'X', new ItemStack(plantItem, 1, 0));
-
-        /*ItemStack[] plankStacks = new ItemStack[] { new ItemStack(planks, 1, 0), new ItemStack(planks, 1, 1), new ItemStack(planks, 1, 2), new ItemStack(planks, 1, 3), new ItemStack(planks, 1, 5),
-                new ItemStack(planks, 1, 6), new ItemStack(planks, 1, 7), new ItemStack(planks, 1, 8), new ItemStack(planks, 1, 9), new ItemStack(planks, 1, 10), new ItemStack(planks, 1, 11) };*/
-        ItemStack[] logStacks = new ItemStack[] { new ItemStack(tree, 1, 0), new ItemStack(tree, 1, 1), new ItemStack(tree, 1, 2), new ItemStack(tree, 1, 3), new ItemStack(redwood, 1, 1),
-                new ItemStack(rareTree, 1, 0), new ItemStack(rareTree, 1, 1), new ItemStack(rareTree, 1, 2), new ItemStack(rareTree, 1, 3), new ItemStack(willow, 1, 0), new ItemStack(darkTree, 1, 0),
-                new ItemStack(darkTree, 1, 1) };
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(plantItem, 1, 1), "X", 'X', "cropBarley"));
 
         GameRegistry.addRecipe(new ItemStack(plantItem, 1, 5), " s ", "#s#", "#s#", 's', new ItemStack(stickItem, 1, 2), '#', new ItemStack(floraLeavesNoColor, 1, 1));
         GameRegistry.addRecipe(new ItemStack(Items.arrow, 4, 0), " f ", "#s#", " # ", 's', new ItemStack(stickItem, 1, Short.MAX_VALUE), '#', new ItemStack(plantItem, 1, 5), 'f', Items.flint);
-        GameRegistry.addRecipe(new ItemStack(Items.arrow, 4, 0), " f ", "#s#", " # ", 's', Items.stick, '#', new ItemStack(plantItem, 1, 5), 'f', Items.flint);
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Items.arrow, 4, 0), " f ", "#s#", " # ", 's', "stickWood", '#', new ItemStack(plantItem, 1, 5), 'f', Items.flint));
 
         List recipes = CraftingManager.getInstance().getRecipeList();
         addShapedRecipeFirst(recipes, new ItemStack(doorItem, 1, 0), "##", "##", "##", '#', new ItemStack(planks, 1, 3));
@@ -869,22 +862,7 @@ public class NContent implements IFuelHandler
             addShapedRecipeFirst(recipes, new ItemStack(alternateWorkbench, 1, i), "##", "##", '#', new ItemStack(planks, 1, i));
             addShapedRecipeFirst(recipes, new ItemStack(alternateBookshelf, 1, i), "###", "bbb", "###", '#', new ItemStack(planks, 1, i), 'b', Items.book);
             addShapedRecipeFirst(recipes, new ItemStack(alternateFence, 2, i), "###", "###", '#', new ItemStack(stickItem, 1, i));
-            OreDictionary.registerOre("crafterWood", new ItemStack(alternateWorkbench, 1, i));
-            OreDictionary.registerOre("craftingTableWood", new ItemStack(alternateWorkbench, 1, i));
-            if (i != 12)
-            {
-                OreDictionary.registerOre("plankWood", new ItemStack(planks, 1, i));
-                OreDictionary.registerOre("stickWood", new ItemStack(stickItem, 1, i));
-            }
         }
-
-        for (int i = 0; i < logStacks.length; i++)
-        {
-            OreDictionary.registerOre("logWood", logStacks[i]);
-        }
-
-        OreDictionary.registerOre("dyeBlue", new ItemStack(plantItem, 1, 8));
-        OreDictionary.registerOre("glassSoul", new ItemStack(netherGlass, 1, 0));
 
         //Tools
         int[] toolMeta = { 2, 4, 11, 12 };
@@ -935,19 +913,16 @@ public class NContent implements IFuelHandler
         {
             if (!(BowlEmpty.textureNames[i].equals("")))
             {
-                OreDictionary.registerOre("bowlWood", new ItemStack(bowlEmpty, 1, i));
-                //TODO 1.7 test this and deal w/ recipes as well, make sure vanilla bowl is registered
                 if (FluidRegistry.isFluidRegistered("mushroomsoup"))
                     FluidContainerRegistry.registerFluidContainer(FluidRegistry.getFluid("mushroomsoup"), new ItemStack(this.bowlStew, 1, i));
                 addShapedRecipeFirst(recipes, new ItemStack(bowlEmpty, 4, i), "# #", " # ", '#', new ItemStack(planks, 1, i));
-                GameRegistry.addShapelessRecipe(new ItemStack(bowlStew, 1, i + 1), new ItemStack(bowlEmpty, 1, i), new ItemStack(Blocks.brown_mushroom), new ItemStack(Blocks.red_mushroom_block));
-                GameRegistry.addShapelessRecipe(new ItemStack(bowlStew, 1, i + 15), new ItemStack(bowlEmpty, 1, i), new ItemStack(glowshroom, 1, 0), new ItemStack(glowshroom, 1, 1), new ItemStack(
-                        glowshroom, 1, 2));
+                GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(bowlStew, 1, i + 1), "bowlWood", new ItemStack(Blocks.brown_mushroom), new ItemStack(Blocks.red_mushroom_block)));
+                GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(bowlStew, 1, i + 15), "bowlWood", new ItemStack(glowshroom, 1, 0), new ItemStack(glowshroom, 1, 1), new ItemStack(glowshroom, 1, 2)));
             }
         }
 
         addShapelessRecipeFirst(recipes, new ItemStack(bowlStew, 1, 0), new ItemStack(Blocks.brown_mushroom), new ItemStack(Blocks.red_mushroom), new ItemStack(Items.bowl));
-        GameRegistry.addShapelessRecipe(new ItemStack(bowlStew, 1, 14), new ItemStack(glowshroom, 1, 0), new ItemStack(glowshroom, 1, 1), new ItemStack(glowshroom, 1, 2), new ItemStack(Items.bowl));
+        GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(bowlStew, 1, 14), new ItemStack(glowshroom, 1, 0), new ItemStack(glowshroom, 1, 1), new ItemStack(glowshroom, 1, 2), "bowlWood"));
 
         /*bowlEmpty = new BowlEmpty(PHNatura.bowlEmpty).setUnlocalizedName("natura.emptybowl");
         bowlStew = new BowlStew(PHNatura.bowlStew).setUnlocalizedName("natura.stewbowl");*/
@@ -996,25 +971,21 @@ public class NContent implements IFuelHandler
             addShapedRecipeFirst(recipes, new ItemStack(plankSlab2, 6, i), "###", '#', new ItemStack(planks, 1, 8 + i));
 
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(NContent.brail, 16), "X X", "X#X", "X X", 'X', Items.blaze_rod, '#', "stickWood"));
-        GameRegistry.addRecipe(new ItemStack(NContent.brailPowered, 6), "X X", "X#X", "XRX", 'X', Items.blaze_rod, 'R', Items.redstone, '#', new ItemStack(darkTree, 1, 1));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(NContent.brailPowered, 6), "X X", "X#X", "XRX", 'X', Items.blaze_rod, 'R', "dustRedstone", '#', new ItemStack(darkTree, 1, 1)));
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(NContent.brailActivator, 6), "XSX", "X#X", "XSX", 'X', Items.blaze_rod, '#', Blocks.redstone_torch, 'S', "stickWood"));
-        GameRegistry.addRecipe(new ItemStack(NContent.brailDetector, 6), "X X", "X#X", "XRX", 'X', Items.blaze_rod, 'R', Items.redstone, '#', netherPressurePlate);
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(NContent.brailDetector, 6), "X X", "X#X", "XRX", 'X', Items.blaze_rod, 'R', "dustRedstone", '#', netherPressurePlate));
 
         GameRegistry.addRecipe(new ItemStack(NContent.netherrackFurnace), "###", "# #", "###", '#', Blocks.netherrack);
         GameRegistry.addRecipe(new ItemStack(NContent.respawnObelisk), "###", "# #", "###", '#', new ItemStack(tree, 1, 2));
         FurnaceRecipes.smelting().func_151394_a(new ItemStack(Blocks.soul_sand, 1, 0), new ItemStack(netherGlass, 1, 0), 0.3f);
         FurnaceRecipes.smelting().func_151394_a(new ItemStack(heatSand, 1, 0), new ItemStack(netherGlass, 1, 1), 0.3f);
-        OreDictionary.registerOre("chestWood", new ItemStack(Blocks.chest));
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(NContent.netherHopper), "# #", "#C#", " # ", '#', new ItemStack(Items.blaze_rod), 'C', "chestWood"));
         GameRegistry.addRecipe(new ItemStack(NContent.netherPressurePlate), "##", '#', new ItemStack(Blocks.netherrack));
         GameRegistry.addRecipe(new ItemStack(NContent.netherButton), "#", '#', new ItemStack(Blocks.netherrack));
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(NContent.netherLever), "S", "#", '#', new ItemStack(Blocks.netherrack), 'S', "stickWood"));
 
-        OreDictionary.registerOre("glass", new ItemStack(Blocks.glass));
-        OreDictionary.registerOre("glass", new ItemStack(netherGlass, 1, 0));
-        OreDictionary.registerOre("glass", new ItemStack(netherGlass, 1, 1));
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Items.glass_bottle, 3), "# #", " # ", '#', "glass"));
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Blocks.daylight_detector), "GGG", "QQQ", "WWW", 'G', "glass", 'Q', Items.quartz, 'W', "slabWood"));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Blocks.daylight_detector), "GGG", "QQQ", "WWW", 'G', "glass", 'Q', "gemQuartz", 'W', "slabWood"));
 
     }
 
@@ -1113,7 +1084,7 @@ public class NContent implements IFuelHandler
             {
                 if (!(object1 instanceof Block))
                 {
-                    throw new RuntimeException("Invalid shapeless recipy!");
+                    throw new RuntimeException("Invalid shapeless recipe!");
                 }
 
                 arraylist.add(new ItemStack((Block) object1));
@@ -1130,10 +1101,32 @@ public class NContent implements IFuelHandler
 
     public void addOredictSupport ()
     {
+        //Food
         OreDictionary.registerOre("cropRaspberry", new ItemStack(berryItem, 1, 0));
         OreDictionary.registerOre("cropBlueberry", new ItemStack(berryItem, 1, 1));
         OreDictionary.registerOre("cropBlackberry", new ItemStack(berryItem, 1, 2));
         OreDictionary.registerOre("cropMaloberry", new ItemStack(berryItem, 1, 3));
+		
+        OreDictionary.registerOre("cropBarley", new ItemStack(plantItem, 1, 0));
+        OreDictionary.registerOre("cropCotton", new ItemStack(plantItem, 1, 3));
+		
+        OreDictionary.registerOre("listAllgrain", new ItemStack(plantItem, 1, 0));
+		
+        OreDictionary.registerOre("foodFlour", new ItemStack(plantItem, 1, 1));
+        OreDictionary.registerOre("foodFlour", new ItemStack(plantItem, 1, 2));
+		
+        OreDictionary.registerOre("foodEqualswheat", new ItemStack(plantItem, 1, 2));
+		
+        //Dusts
+        OreDictionary.registerOre("dustSulphur", new ItemStack(plantItem, 1, 4));
+        OreDictionary.registerOre("dustSulfur", new ItemStack(plantItem, 1, 4));
+		
+        //For Harvestcraft
+        OreDictionary.registerOre("listAllseed", new ItemStack(seeds, 1, 0));
+        OreDictionary.registerOre("listAllseed", new ItemStack(seeds, 1, 1));
+		
+        OreDictionary.registerOre("seedBarley", new ItemStack(seeds, 1, 0));
+        OreDictionary.registerOre("seedCotton", new ItemStack(seeds, 1, 1));
 
         OreDictionary.registerOre("cropBlightberry", new ItemStack(netherBerryItem, 1, 0));
         OreDictionary.registerOre("cropDuskberry", new ItemStack(netherBerryItem, 1, 1));
@@ -1142,22 +1135,67 @@ public class NContent implements IFuelHandler
 
         OreDictionary.registerOre("taintedSoil", new ItemStack(taintedSoil, 1));
 
+        //Slabs
         OreDictionary.registerOre("slabWood", new ItemStack(plankSlab1, 1, Short.MAX_VALUE));
         OreDictionary.registerOre("slabWood", new ItemStack(plankSlab2, 1, Short.MAX_VALUE));
-        //TODO 1.8 saplingTree is not the common name for saplings will be removed in 1.8
-        OreDictionary.registerOre("saplingTree", new ItemStack(floraSapling, 1, Short.MAX_VALUE));
+		
+        //Saplings
         OreDictionary.registerOre("treeSapling", new ItemStack(floraSapling, 1, Short.MAX_VALUE));
-        OreDictionary.registerOre("saplingTree", new ItemStack(rareSapling, 1, Short.MAX_VALUE));
         OreDictionary.registerOre("treeSapling", new ItemStack(rareSapling, 1, Short.MAX_VALUE));
 
-        OreDictionary.registerOre("leavesTree", new ItemStack(floraLeaves, 1, Short.MAX_VALUE));
-        OreDictionary.registerOre("leavesTree", new ItemStack(floraLeavesNoColor, 1, Short.MAX_VALUE));
-        OreDictionary.registerOre("leavesTree", new ItemStack(rareLeaves, 1, Short.MAX_VALUE));
-        OreDictionary.registerOre("leavesTree", new ItemStack(darkLeaves, 1, Short.MAX_VALUE));
+        //Leaves
         OreDictionary.registerOre("treeLeaves", new ItemStack(floraLeaves, 1, Short.MAX_VALUE));
         OreDictionary.registerOre("treeLeaves", new ItemStack(floraLeavesNoColor, 1, Short.MAX_VALUE));
         OreDictionary.registerOre("treeLeaves", new ItemStack(rareLeaves, 1, Short.MAX_VALUE));
         OreDictionary.registerOre("treeLeaves", new ItemStack(darkLeaves, 1, Short.MAX_VALUE));
+		
+        //Crafting table
+        OreDictionary.registerOre("crafterWood", new ItemStack(alternateWorkbench, 1, OreDictionary.WILDCARD_VALUE));
+        OreDictionary.registerOre("craftingTableWood", new ItemStack(alternateWorkbench, 1, OreDictionary.WILDCARD_VALUE));
+		
+        //Planks
+        OreDictionary.registerOre("plankWood", new ItemStack(NContent.planks, 1, OreDictionary.WILDCARD_VALUE));
+		
+        //Logs
+        OreDictionary.registerOre("logWood", new ItemStack(NContent.tree, 1, OreDictionary.WILDCARD_VALUE));
+        OreDictionary.registerOre("logWood", new ItemStack(NContent.darkTree, 1, OreDictionary.WILDCARD_VALUE));
+        OreDictionary.registerOre("logWood", new ItemStack(NContent.rareTree, 1, OreDictionary.WILDCARD_VALUE));
+        OreDictionary.registerOre("logWood", new ItemStack(NContent.bloodwood, 1, OreDictionary.WILDCARD_VALUE));
+        OreDictionary.registerOre("logWood", new ItemStack(NContent.redwood, 1, OreDictionary.WILDCARD_VALUE));
+        OreDictionary.registerOre("logWood", new ItemStack(NContent.willow, 1, OreDictionary.WILDCARD_VALUE));
+		
+        //Stairs
+        OreDictionary.registerOre("stairWood", new ItemStack(NContent.stairEucalyptus, 1, OreDictionary.WILDCARD_VALUE));
+        OreDictionary.registerOre("stairWood", new ItemStack(NContent.stairSakura, 1, OreDictionary.WILDCARD_VALUE));
+        OreDictionary.registerOre("stairWood", new ItemStack(NContent.stairGhostwood, 1, OreDictionary.WILDCARD_VALUE));
+        OreDictionary.registerOre("stairWood", new ItemStack(NContent.stairRedwood, 1, OreDictionary.WILDCARD_VALUE));
+        OreDictionary.registerOre("stairWood", new ItemStack(NContent.stairBloodwood, 1, OreDictionary.WILDCARD_VALUE));
+        OreDictionary.registerOre("stairWood", new ItemStack(NContent.stairHopseed, 1, OreDictionary.WILDCARD_VALUE));
+        OreDictionary.registerOre("stairWood", new ItemStack(NContent.stairMaple, 1, OreDictionary.WILDCARD_VALUE));
+        OreDictionary.registerOre("stairWood", new ItemStack(NContent.stairSilverbell, 1, OreDictionary.WILDCARD_VALUE));
+        OreDictionary.registerOre("stairWood", new ItemStack(NContent.stairAmaranth, 1, OreDictionary.WILDCARD_VALUE));
+        OreDictionary.registerOre("stairWood", new ItemStack(NContent.stairTiger, 1, OreDictionary.WILDCARD_VALUE));
+        OreDictionary.registerOre("stairWood", new ItemStack(NContent.stairWillow, 1, OreDictionary.WILDCARD_VALUE));
+        OreDictionary.registerOre("stairWood", new ItemStack(NContent.stairDarkwood, 1, OreDictionary.WILDCARD_VALUE));
+        OreDictionary.registerOre("stairWood", new ItemStack(NContent.stairFusewood, 1, OreDictionary.WILDCARD_VALUE));
+		
+        //Dye
+        OreDictionary.registerOre("dyeBlue", new ItemStack(plantItem, 1, 8));
+		
+        //Glass
+        OreDictionary.registerOre("glassSoul", new ItemStack(netherGlass, 1, 0));
+        OreDictionary.registerOre("glass", new ItemStack(netherGlass, 1, 0));
+        OreDictionary.registerOre("glass", new ItemStack(netherGlass, 1, 1));
+		
+        //Chest
+        OreDictionary.registerOre("chestWood", new ItemStack(Blocks.chest));
+		
+        //Bowl
+        OreDictionary.registerOre("bowlWood", new ItemStack(bowlEmpty, 1, 0));
+        OreDictionary.registerOre("bowlWood", new ItemStack(Items.bowl, 1, 0));
+		
+        //Stick
+        OreDictionary.registerOre("stickWood", new ItemStack(stickItem, 1, OreDictionary.WILDCARD_VALUE));
     }
 
     public void createEntities ()
