@@ -209,7 +209,6 @@ tile.trapdoor.maple.name=Люк из древесины клёна
 tile.trapdoor.amaranth.name=Люк из древесины щирицы
 tile.trapdoor.silverbell.name=Люк из древесины галезии
 
-
 tile.blazerail.name=Пламенные рельсы
 tile.blazerail.powered.name=Пламенные электрические рельсы
 tile.blazerail.detector.name=Пламенные нажимные рельсы
@@ -256,6 +255,7 @@ block.soil.autumngrass.slab.name=Плита из осенней травы
 tile.bloodwood.name=Кровавое дерево
 tile.saguaro.block.name=Кактус сагуаро
 tile.bluebells.name=Синие колокольчики
+tile.natura.crops.name=Ростки
 tile.greenGlowshroom.name=Зелёный светогриб
 tile.blueGlowshroom.name=Синий светогриб
 tile.purpleGlowshroom.name=Фиолетовый светогриб
@@ -383,3 +383,6 @@ tooltip.berrymedley=Неотразимое сочетание ягод
 tooltip.seedbag=Сажает область 3x3
 tooltip.kama=Великий собиратель
 tooltip.bonebag=Выращивает растения в области 3х3
+
+tooltip.waila.growth.percentage=Рост : %d
+tooltip.waila.growth.mature=Рост : Выросло

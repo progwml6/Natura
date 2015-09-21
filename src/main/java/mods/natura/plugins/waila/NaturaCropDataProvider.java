@@ -4,6 +4,7 @@ import java.util.List;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.StatCollector;
 import mcp.mobius.waila.api.IWailaConfigHandler;
 import mcp.mobius.waila.api.IWailaDataAccessor;
 import mcp.mobius.waila.api.IWailaDataProvider;
@@ -48,9 +49,9 @@ public class NaturaCropDataProvider implements IWailaDataProvider
                 growthValue = ((meta - startGrowth) / maxGrowth) * 100.0F;
 
                 if (growthValue < 100.0)
-                    currenttip.add(String.format("Growth : %.0f %%", growthValue));
+                    currenttip.add(StatCollector.translateToLocalFormatted("tooltip.waila.growth.percentage", growthValue));
                 else
-                    currenttip.add("Growth : Mature");
+                    currenttip.add(StatCollector.translateToLocal("tooltip.waila.growth.mature"));
 
                 return currenttip;
             }
