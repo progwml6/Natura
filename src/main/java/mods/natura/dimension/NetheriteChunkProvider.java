@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Random;
 
 import mods.natura.common.NContent;
+import mods.natura.common.PHNatura;
 import mods.natura.worldgen.FlowerGen;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFalling;
@@ -587,21 +588,21 @@ public class NetheriteChunkProvider implements IChunkProvider
             (new WorldGenFlowers(Block.mushroomRed.blockID)).generate(this.worldObj, this.hellRNG, xPos, yPos, zPos);
         }*/
 
-        if (doGen && hellRNG.nextInt(7) == 0)
+        if (PHNatura.generateGreenglowshroom && doGen && hellRNG.nextInt(7) == 0)
         {
             int l2 = blockX + hellRNG.nextInt(16) + 8;
             int k4 = hellRNG.nextInt(128);
             int j6 = blockZ + hellRNG.nextInt(16) + 8;
             (new FlowerGen(NContent.glowshroom, 0)).generate(worldObj, hellRNG, l2, k4, j6);
         }
-        if (doGen && hellRNG.nextInt(8) == 0)
+        if (PHNatura.generatePurpleglowshroom && doGen && hellRNG.nextInt(8) == 0)
         {
             int i3 = blockX + hellRNG.nextInt(16) + 8;
             int l4 = hellRNG.nextInt(128);
             int k6 = blockZ + hellRNG.nextInt(16) + 8;
             (new FlowerGen(NContent.glowshroom, 1)).generate(worldObj, hellRNG, i3, l4, k6);
         }
-        if (doGen && hellRNG.nextInt(9) == 0)
+        if (PHNatura.generateBlueglowshroom && doGen && hellRNG.nextInt(9) == 0)
         {
             int i3 = blockX + hellRNG.nextInt(16) + 8;
             int l4 = hellRNG.nextInt(128);

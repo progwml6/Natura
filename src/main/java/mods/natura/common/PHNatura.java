@@ -68,6 +68,11 @@ public class PHNatura
         generateDuskberries = config.get("Disabler", "Generate Duskberry Bushes", true).getBoolean(true);
         generateSkyberries = config.get("Disabler", "Generate Skyberry Bushes", true).getBoolean(true);
         generateStingberries = config.get("Disabler", "Generate Stingberry Bushes", true).getBoolean(true);
+
+        generateGreenglowshroom = config.get("Disabler", "Generate Green Glowshroom", true).getBoolean(true);
+        generatePurpleglowshroom = config.get("Disabler", "Generate Purple Glowshroom", true).getBoolean(true);
+        generateBlueglowshroom = config.get("Disabler", "Generate Blue Glowshroom", true).getBoolean(true);
+        generateGlowshroomtree = config.get("Disabler", "Generate Glowshroom Trees", true).getBoolean(true);
         dropCotton = config.get("Disabler", "Drop cotton seeds from grass", true).getBoolean(true);
         dropBarley = config.get("Disabler", "Drop barley seeds from grass", true).getBoolean(true);
         try
@@ -164,6 +169,11 @@ public class PHNatura
     public static boolean generateDuskberries;
     public static boolean generateSkyberries;
     public static boolean generateStingberries;
+
+    public static boolean generateGreenglowshroom;
+    public static boolean generatePurpleglowshroom;
+    public static boolean generateBlueglowshroom;
+    public static boolean generateGlowshroomtree;
 
     public static int saguaroSpawnRarity;
 
