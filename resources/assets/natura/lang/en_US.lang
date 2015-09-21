@@ -384,5 +384,5 @@ tooltip.seedbag=Plants in a 3x3 area
 tooltip.kama=The great leaf harvester
 tooltip.bonebag=Grows plants in a 3x3 area
 
-tooltip.waila.growth.percentage=Growth : %d
+tooltip.waila.growth.percentage=Growth : %d %%
 tooltip.waila.growth.mature=Growth : Mature
