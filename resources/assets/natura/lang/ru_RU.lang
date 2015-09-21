@@ -384,5 +384,5 @@ tooltip.seedbag=Сажает область 3x3
 tooltip.kama=Великий собиратель
 tooltip.bonebag=Выращивает растения в области 3х3
 
-tooltip.waila.growth.percentage=Рост : %d
+tooltip.waila.growth.percentage=Рост : %d %%
 tooltip.waila.growth.mature=Рост : Выросло
