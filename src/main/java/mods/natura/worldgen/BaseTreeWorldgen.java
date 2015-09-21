@@ -253,7 +253,7 @@ public class BaseTreeWorldgen implements IWorldGenerator
                     }
                 }
             }
-            if (random.nextInt(35) == 0)
+            if (PHNatura.generateGlowshroomtree && random.nextInt(35) == 0)
             {
                 for (int i = 0; i < 5; i++)
                 {
