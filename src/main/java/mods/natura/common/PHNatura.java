@@ -75,6 +75,7 @@ public class PHNatura
         generateGlowshroomtree = config.get("Disabler", "Generate Glowshroom Trees", true).getBoolean(true);
         dropCotton = config.get("Disabler", "Drop cotton seeds from grass", true).getBoolean(true);
         dropBarley = config.get("Disabler", "Drop barley seeds from grass", true).getBoolean(true);
+        enableSeedBags = config.get("Disabler", "Enable Seed Bags", true).getBoolean(true);
         try
         {
             Class.forName("chococraft.common.ModChocoCraft");
@@ -170,11 +171,6 @@ public class PHNatura
     public static boolean generateSkyberries;
     public static boolean generateStingberries;
 
-    public static boolean generateGreenglowshroom;
-    public static boolean generatePurpleglowshroom;
-    public static boolean generateBlueglowshroom;
-    public static boolean generateGlowshroomtree;
-
     public static int saguaroSpawnRarity;
 
     public static int raspSpawnRarity;
@@ -199,6 +195,11 @@ public class PHNatura
 
     //Clouds
 
+    public static boolean generateOverworldClouds;
+    public static boolean generateSulfurClouds;
+    public static boolean generateAshClouds;
+    public static boolean generateDarkClouds;
+
     public static int cloudSpawnRarity;
     public static int cloudSpawnHeight;
     public static int cloudSpawnRange;
@@ -211,6 +212,12 @@ public class PHNatura
     public static int ashSpawnRarity;
     public static int ashSpawnHeight;
     public static int ashSpawnRange;
+
+    //Glowshrooms
+	
+    public static boolean generateGreenglowshroom;
+    public static boolean generatePurpleglowshroom;
+    public static boolean generateBlueglowshroom;
 
     //Trees
 
@@ -230,19 +237,9 @@ public class PHNatura
 
     public static boolean generateDarkwood;
     public static boolean generateFusewood;
+    public static boolean generateGlowshroomtree;
 
     public static boolean generateThornvines;
-
-    public static boolean generateOverworldClouds;
-    public static boolean generateSulfurClouds;
-    public static boolean generateAshClouds;
-    public static boolean generateDarkClouds;
-    public static boolean enableWheatRecipe;
-    public static boolean dropBarley;
-    public static boolean dropCotton;
-
-    public static boolean overrideNether;
-    public static boolean canRespawnInNether;
 
     public static int redwoodSpawnRarity;
     public static int bloodSpawnRarity;
@@ -260,6 +257,16 @@ public class PHNatura
     public static int willowRarity;
     public static int tigerRarity;
     public static int silverbellRarity;
+
+    //Other
+
+    public static boolean enableSeedBags;
+    public static boolean enableWheatRecipe;
+    public static boolean dropBarley;
+    public static boolean dropCotton;
+
+    public static boolean overrideNether;
+    public static boolean canRespawnInNether;
 
     public static int babyHeatscarMinimum;
     public static int babyHeatscarMaximum;

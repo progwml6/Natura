@@ -159,6 +159,8 @@ public class NContent implements IFuelHandler
         waterDrop = new CactusJuice(false).setUnlocalizedName("waterdrop");
         GameRegistry.registerItem(waterDrop, "waterdrop");
 
+        if (PHNatura.enableSeedBags)
+        {
         wheatBag = new SeedBag(Blocks.wheat, 0, "wheat").setUnlocalizedName("wheatBag");
         GameRegistry.registerItem(wheatBag, "wheatBag");
         GameRegistry.registerCustomItemStack("bagWheat", new ItemStack(wheatBag, 1, 0));
@@ -177,6 +179,8 @@ public class NContent implements IFuelHandler
         cottonBag = new SeedBag(crops, 4, "cotton").setUnlocalizedName("cottonBag");
         GameRegistry.registerItem(cottonBag, "cottonBag");
         GameRegistry.registerCustomItemStack("bagCotton", new ItemStack(cottonBag, 1, 0));
+        }
+
         boneBag = new BoneBag("bone").setUnlocalizedName("boneBag");
         GameRegistry.registerItem(boneBag, "boneBag");
         GameRegistry.registerCustomItemStack("bagBone", new ItemStack(boneBag, 1, 0));
@@ -759,6 +763,8 @@ public class NContent implements IFuelHandler
     public void addRecipes ()
     {
         //Crops
+        if (PHNatura.enableSeedBags)
+        {
         GameRegistry.addRecipe(new ItemStack(wheatBag, 1, 0), "sss", "sss", "sss", 's', Items.wheat_seeds);
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(barleyBag, 1, 0), "sss", "sss", "sss", 's', "seedBarley"));
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(potatoBag, 1, 0), "sss", "sss", "sss", 's', "cropPotato"));
@@ -774,6 +780,7 @@ public class NContent implements IFuelHandler
         GameRegistry.addRecipe(new ItemStack(Items.nether_wart, 9, 0), "s", 's', netherWartBag);
         GameRegistry.addRecipe(new ItemStack(seeds, 9, 1), "s", 's', cottonBag);
         GameRegistry.addRecipe(new ItemStack(Items.dye, 9, 15), "s", 's', boneBag);
+        }
 
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Items.string), "sss", 's', "cropCotton"));
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Blocks.wool), "sss", "sss", "sss", 's', "cropCotton"));
