@@ -22,8 +22,7 @@ public class EucalyptusTreeGenShort extends WorldGenerator
     public boolean generate (World world, Random random, int x, int y, int z)
     {
         int height = findGround(world, x, y, z);
-        generateRandomTree(world, random, x, height, z);
-        return true;
+		return generateRandomTree(world, random, x, height, z);
     }
 
     int findGround (World world, int x, int y, int z)

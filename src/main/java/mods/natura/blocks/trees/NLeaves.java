@@ -22,7 +22,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class NLeaves extends BlockLeaves
 {
-    int[] adjacentTreeBlocks;
+    int[] adjacentTreeBlockPos;
 
     public NLeaves()
     {
@@ -73,6 +73,8 @@ public class NLeaves extends BlockLeaves
         return (l / 9 & 255) << 16 | (i1 / 9 & 255) << 8 | j1 / 9 & 255;
     }
 
+
+
     @Override
     public void updateTick (World world, int x, int y, int z, Random random)
     {
@@ -82,23 +84,45 @@ public class NLeaves extends BlockLeaves
 
             if ((meta & 4) == 0)
             {
-                boolean nearbyTree = false;
-                byte range = 4;
-                for (int posX = x - range; posX <= x + range; posX++)
-                {
-                    for (int posY = y - range; posY <= y + range; posY++)
-                    {
-                        for (int posZ = z - range; posZ <= z + range; posZ++)
-                        {
-                            Block block = world.getBlock(posX, posY, posZ);
-                            if (block != null && block.canSustainLeaves(world, posX, posY, posZ))
-                                nearbyTree = true;
-                        }
-                    }
-                }
 
-                if (!nearbyTree)
-                    this.removeLeaves(world, x, y, z);
+				if(this.adjacentTreeBlockPos != null){
+					// Validate the Cache.
+					Block block = world.getBlock(this.adjacentTreeBlockPos[0], this.adjacentTreeBlockPos[1], this.adjacentTreeBlockPos[2]);
+					if ((block == null) || (block.canSustainLeaves(world, this.adjacentTreeBlockPos[0], this.adjacentTreeBlockPos[1], this.adjacentTreeBlockPos[2]) == false)) {
+						this.adjacentTreeBlockPos = null; // simply free the cached position, as the further code will try to determine a new Log (oro decay the leaves if none found)
+					}
+				}
+
+				// 
+				if(this.adjacentTreeBlockPos == null){
+
+	                byte range = 4;
+					outer: for (int posX = x - range; posX <= x + range; posX++)
+					{
+						for (int posY = y - range; posY <= y + range; posY++)
+						{
+							for (int posZ = z - range; posZ <= z + range; posZ++)
+							{
+								Block block = world.getBlock(posX, posY, posZ);
+								if (block != null && block.canSustainLeaves(world, posX, posY, posZ)) 
+								{	
+									// Cache the position so further calls to updateTick wont have to 
+									// search again.
+									this.adjacentTreeBlockPos = new int[]{posX, posY, posZ};
+
+									break outer;
+								}
+							}
+						}
+					}
+	
+					
+					// If adjacentTreeBlockPos is still null, no adjacent block was found.
+					if(this.adjacentTreeBlockPos == null)
+						this.removeLeaves(world, x, y, z);
+				}
+				
+                
             }
         }
     }
