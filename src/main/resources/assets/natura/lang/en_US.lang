@@ -1,0 +1,77 @@
+################
+#    Blocks    #
+################
+tile.natura.clouds.white.name=Cloud
+tile.natura.clouds.white.tooltip=So light and fluffy!\nSaves you when you fall
+tile.natura.clouds.gray.name=Dark Cloud
+tile.natura.clouds.gray.tooltip=So light and fluffy!\nCauses lightning strikes
+tile.natura.clouds.dark.name=Ash Cloud
+tile.natura.clouds.dark.tooltip=So light and fluffy!\n3x3 Converts into charcoal
+tile.natura.clouds.sulfur.name=Sulfur Cloud
+tile.natura.clouds.sulfur.tooltip=So light and fluffy!\n2x2 Converts into sulfur
+
+tile.natura.overworld_logs.maple.name=Maple Wood
+tile.natura.overworld_logs.maple.tooltip=Somewhat Sweet
+tile.natura.overworld_logs.silverbell.name=Silverbell Wood
+tile.natura.overworld_logs.silverbell.tooltip=Silver Bells
+tile.natura.overworld_logs.purpleheart.name=Amaranth Wood
+tile.natura.overworld_logs.purpleheart.tooltip=Heart of Wood
+tile.natura.overworld_logs.tiger.name=Tiger Wood
+tile.natura.overworld_logs.tiger.tooltip=Wild Grain
+
+################
+#    Items     #
+################
+item.natura.edibles.impmeat_raw.name=Raw Imphide
+item.natura.edibles.impmeat_raw.tooltip=Eating this probably isn't good for you
+item.natura.edibles.impmeat_cooked.name=Cooked Imphide
+item.natura.edibles.impmeat_cooked.tooltip=It's warm to the touch
+
+item.natura.materials.barley.name=Barley
+item.natura.materials.barley.tooltip=Similar to wheat, it grows in the wild
+item.natura.materials.barley_flour.name=Barley Flour
+item.natura.materials.barley_flour.tooltip=Bake me to make bread\nAlso used in baking cake
+item.natura.materials.wheat_flour.name=Wheat Flour
+item.natura.materials.wheat_flour.tooltip=Bake me to make bread\nAlso used in baking cake
+item.natura.materials.cotton.name=Cotton
+item.natura.materials.cotton.tooltip=The source of all string and wool
+item.natura.materials.sulfur_powder.name=Sulfur
+item.natura.materials.sulfur_powder.tooltip=2x2 converts into gunpowder
+item.natura.materials.ghostwood_fletching.name=Ghostwood Fletching
+item.natura.materials.ghostwood_fletching.tooltip=Arrow crafting component
+item.natura.materials.imp_leather.name=Imp Leather
+item.natura.materials.imp_leather.tooltip=Resist the heat of the Nether
+item.natura.materials.flame_string.name=Flamestring
+item.natura.materials.flame_string.tooltip=Somewhat more durable than string
+item.natura.materials.blue_dye.name=Blue Dye
+
+item.natura.empty_bowls.ghostwood_bowl.name=Empty Ghostwood Bowl
+item.natura.empty_bowls.bloodwood_bowl.name=Empty Bloodwood Bowl
+item.natura.empty_bowls.darkwood_bowl.name=Empty Darkwood Bowl
+item.natura.empty_bowls.fusewood_bowl.name=Empty Fusewood Bowl
+
+item.natura.soups.ghostwood_mushroomstew.name=Mushroom Stew
+item.natura.soups.bloodwood_mushroomstew.name=Mushroom Stew
+item.natura.soups.darkwood_mushroomstew.name=Mushroom Stew
+item.natura.soups.fusewood_mushroomstew.name=Mushroom Stew
+
+item.natura.soups.vanilla_glowshroomstew.name=Glowshroom Stew
+item.natura.soups.ghostwood_glowshroomstew.name=Glowshroom Stew
+item.natura.soups.bloodwood_glowshroomstew.name=Glowshroom Stew
+item.natura.soups.darkwood_glowshroomstew.name=Glowshroom Stew
+item.natura.soups.fusewood_glowshroomstew.name=Glowshroom Stew
+
+#################
+#   Entities    #
+#################
+entity.natura.imp.name=Imp
+entity.natura.heatscarspider.name=Heatscar Spider
+entity.natura.babyheatscarspider.name=Baby Heatscar Spider
+entity.natura.nitrocreeper.name=Nitro Creeper
+
+################
+#     GUIs     #
+################
+
+# Creative Tabs
+itemGroup.naturaMisc=Natura

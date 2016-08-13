@@ -1,0 +1,11 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "transform": "forge:default-item",
+        "model": "forge:item-layer"
+    },
+    "variants": {
+        "impmeat_raw": [{ "textures": { "layer0": "natura:items/food/impmeat_raw" }}],
+        "impmeat_cooked": [{ "textures": { "layer0": "natura:items/food/impmeat_cooked" }}]
+    }
+}

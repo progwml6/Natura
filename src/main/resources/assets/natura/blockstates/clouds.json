@@ -1,0 +1,35 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "transform": "forge:default-block",
+        "model": "cube_all",
+        "textures": {
+            "all": "natura:blocks/clouds/cloud_dark",
+            "particle": "#all"
+        }
+    },
+	"variants": {
+        "type": {
+            "white": {
+                "textures": {
+                    "all": "natura:blocks/clouds/cloud_white"
+                }
+            },
+            "gray": {
+                "textures": {
+                    "all": "natura:blocks/clouds/cloud_gray"
+                }
+            },
+            "sulfur": {
+                "textures": {
+                    "all": "natura:blocks/clouds/cloud_sulfur"
+                }
+            },
+            "dark": {
+                "textures": {
+                    "all": "natura:blocks/clouds/cloud_dark"
+                }
+            }
+        }
+    }
+}

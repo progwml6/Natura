@@ -1,0 +1,63 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "transform": "forge:default-block",
+        "model": "cube_all",
+        "textures": {
+            "all": "natura:blocks/logs/overworld/maple_log",
+            "particle": "#all"
+        }
+    },
+	"variants": {
+        "type": {
+            "maple": {
+                "model": "cube_column",
+                "textures": {
+                    "end": "natura:blocks/logs/overworld/maple_log_top",
+                    "side": "natura:blocks/logs/overworld/maple_log"
+                }
+            },
+            "silverbell": {
+                "model": "cube_column",
+                "textures": {
+                    "end": "natura:blocks/logs/overworld/silverbell_log_top",
+                    "side": "natura:blocks/logs/overworld/silverbell_log"
+                }
+            },
+            "purpleheart": {
+                "model": "cube_column",
+                "textures": {
+                    "end": "natura:blocks/logs/overworld/purpleheart_log_top",
+                    "side": "natura:blocks/logs/overworld/purpleheart_log"
+                }
+            },
+            "tiger": {
+                "model": "cube_column",
+                "textures": {
+                    "end": "natura:blocks/logs/overworld/tiger_log_top",
+                    "side": "natura:blocks/logs/overworld/tiger_log"
+                }
+            }
+        },
+        "axis": {
+            "none": {
+                "model": "cube_all",
+                "textures": {
+                    "all": "natura:blocks/logs/overworld/tiger_log",
+                    "particle": "#all"
+                },
+                "__comment": "nothing to rotate"
+            },
+            "y": {
+                "__comment": "nothing to rotate"
+            },
+            "z": {
+                "x": 90
+            },
+            "x": {
+                "x": 90,
+                "y": 90
+            }
+        }
+    }
+}

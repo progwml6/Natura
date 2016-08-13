@@ -1,0 +1,63 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "transform": "forge:default-block",
+        "model": "cube_all",
+        "textures": {
+            "all": "natura:blocks/logs/eucalyptus_log",
+            "particle": "#all"
+        }
+    },
+	"variants": {
+        "type": {
+            "eucalyptus": {
+                "model": "cube_column",
+                "textures": {
+                    "end": "natura:blocks/logs/eucalyptus_log_top",
+                    "side": "natura:blocks/logs/eucalyptus_log"
+                }
+            },
+            "sakura": {
+                "model": "cube_column",
+                "textures": {
+                    "end": "natura:blocks/logs/sakura_log_top",
+                    "side": "natura:blocks/logs/sakura_log"
+                }
+            },
+            "ghostwood": {
+                "model": "cube_column",
+                "textures": {
+                    "end": "natura:blocks/logs/ghostwood_log_top",
+                    "side": "natura:blocks/logs/ghostwood_log"
+                }
+            },
+            "hopseed": {
+                "model": "cube_column",
+                "textures": {
+                    "end": "natura:blocks/logs/hopseed_log_top",
+                    "side": "natura:blocks/logs/hopseed_log"
+                }
+            }
+        },
+        "axis": {
+            "none": {
+                "model": "cube_all",
+                "textures": {
+                    "all": "natura:blocks/logs/hopseed_log",
+                    "particle": "#all"
+                },
+                "__comment": "nothing to rotate"
+            },
+            "y": {
+                "__comment": "nothing to rotate"
+            },
+            "z": {
+                "x": 90
+            },
+            "x": {
+                "x": 90,
+                "y": 90
+            }
+        }
+    }
+}

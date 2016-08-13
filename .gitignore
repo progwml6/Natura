@@ -26,3 +26,5 @@ Thumbs.db
 /.classpath
 /.project
 /.settings/
+/eclipse/
+/*.launch

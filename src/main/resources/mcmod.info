@@ -1,0 +1,19 @@
+[
+  {
+    "modid": "natura",
+    "name": "Natura",
+    "description": "Heyo, Redwood trees! Chop them all day long!",
+    "version": "${version}",
+    "mcversion": "${mcversion}",
+    "url": "http://www.minecraftforum.net/forums/mapping-and-modding/minecraft-mods/1294968-natura",
+    "updateUrl": "",
+    "authorList": ["mDiyo, Slime Knights"],
+    "credits": "Samtrion, tterrag",
+    "logoFile": "",
+    "screenshots": [
+    ],
+    "parent":"",
+    "dependencies": [
+    ]
+  }
+]
