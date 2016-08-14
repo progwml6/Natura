@@ -19,6 +19,22 @@ tile.natura.overworld_logs.purpleheart.tooltip=Heart of Wood
 tile.natura.overworld_logs.tiger.name=Tiger Wood
 tile.natura.overworld_logs.tiger.tooltip=Wild Grain
 
+tile.natura.overworld_leaves.maple.name=Maple Leaves
+tile.natura.overworld_leaves.maple.tooltip=Somewhat Sweet
+tile.natura.overworld_leaves.silverbell.name=Silverbell Leaves
+tile.natura.overworld_leaves.silverbell.tooltip=Silver Bells
+tile.natura.overworld_leaves.purpleheart.name=Amaranth Leaves
+tile.natura.overworld_leaves.purpleheart.tooltip=Heart of Wood
+tile.natura.overworld_leaves.tiger.name=Tiger Leaves
+tile.natura.overworld_leaves.tiger.tooltip=Wild Grain
+
+tile.natura.redwood_logs.bark.name=Redwood Bark
+tile.natura.redwood_logs.bark.tooltip=Burn it for charcoal\nor make a hidden tree door
+tile.natura.redwood_logs.heart.name=Redwood
+tile.natura.redwood_logs.heart.tooltip=Heart of the tree
+tile.natura.redwood_logs.root.name=Redwood Root
+tile.natura.redwood_logs.root.tooltip=Root of the tree
+
 ################
 #    Items     #
 ################

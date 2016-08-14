@@ -2,61 +2,36 @@
     "forge_marker": 1,
     "defaults": {
         "transform": "forge:default-block",
-        "model": "cube_all",
+        "model": "leaves",
         "textures": {
-            "all": "natura:blocks/logs/eucalyptus_log",
-            "particle": "#all"
+            "all": "natura:blocks/leaves/overworld/maple_leaves"
         }
     },
 	"variants": {
         "type": {
-            "eucalyptus": {
-                "model": "cube_column",
+            "maple": {
+                "model": "leaves",
                 "textures": {
-                    "end": "natura:blocks/logs/eucalyptus_log_top",
-                    "side": "natura:blocks/logs/eucalyptus_log"
+                    "all": "natura:blocks/leaves/overworld/maple_leaves"
                 }
             },
-            "sakura": {
-                "model": "cube_column",
+            "silverbell": {
+                "model": "leaves",
                 "textures": {
-                    "end": "natura:blocks/logs/sakura_log_top",
-                    "side": "natura:blocks/logs/sakura_log"
+                    "all": "natura:blocks/leaves/overworld/silverbell_leaves"
                 }
             },
-            "ghostwood": {
-                "model": "cube_column",
+            "purpleheart": {
+                "model": "leaves",
                 "textures": {
-                    "end": "natura:blocks/logs/ghostwood_log_top",
-                    "side": "natura:blocks/logs/ghostwood_log"
+                    "all": "natura:blocks/leaves/overworld/purpleheart_leaves"
                 }
             },
-            "hopseed": {
-                "model": "cube_column",
+            "tiger": {
+                "model": "leaves",
                 "textures": {
-                    "end": "natura:blocks/logs/hopseed_log_top",
-                    "side": "natura:blocks/logs/hopseed_log"
+                    "all": "natura:blocks/leaves/overworld/tiger_leaves"
                 }
-            }
-        },
-        "axis": {
-            "none": {
-                "model": "cube_all",
-                "textures": {
-                    "all": "natura:blocks/logs/hopseed_log",
-                    "particle": "#all"
-                },
-                "__comment": "nothing to rotate"
-            },
-            "y": {
-                "__comment": "nothing to rotate"
-            },
-            "z": {
-                "x": 90
-            },
-            "x": {
-                "x": 90,
-                "y": 90
             }
         }
     }

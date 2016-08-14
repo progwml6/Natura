@@ -1,6 +1,7 @@
 package com.progwml6.natura.plugin.waila;
 
 import static com.progwml6.natura.world.NaturaWorld.overworldLog;
+import static com.progwml6.natura.world.NaturaWorld.overworldLeaves;
 
 import java.util.List;
 
@@ -26,7 +27,7 @@ public class BlocksDataProvider implements IWailaDataProvider
 
         if (Util.isWorldLoaded())
         {
-            if (block == overworldLog)
+            if (block == overworldLeaves || block == overworldLog)
             {
                 return new ItemStack(block, 1, accessor.getMetadata() % 4);
             }

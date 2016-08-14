@@ -8,10 +8,7 @@ import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumFacing;
 import net.minecraft.util.IStringSerializable;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IBlockAccess;
 import slimeknights.mantle.block.EnumBlock;
 
 public class BlockOverworldLog extends BlockEnumLog<BlockOverworldLog.LogType>
@@ -22,18 +19,6 @@ public class BlockOverworldLog extends BlockEnumLog<BlockOverworldLog.LogType>
     {
         super(TYPE, BlockOverworldLog.LogType.class);
         this.setDefaultState(this.blockState.getBaseState().withProperty(LOG_AXIS, BlockEnumLog.EnumAxis.Y));
-    }
-
-    @Override
-    public int getFlammability(IBlockAccess world, BlockPos pos, EnumFacing face)
-    {
-        return this.getMetaFromState(world.getBlockState(pos)) % 4 != 2 ? this.getFlammability(world, pos, face) : 0;
-    }
-
-    @Override
-    public int getFireSpreadSpeed(IBlockAccess world, BlockPos pos, EnumFacing face)
-    {
-        return this.getMetaFromState(world.getBlockState(pos)) % 4 != 2 ? this.getFireSpreadSpeed(world, pos, face) : 0;
     }
 
     /**
