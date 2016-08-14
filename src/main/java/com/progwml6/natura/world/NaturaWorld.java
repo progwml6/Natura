@@ -9,6 +9,7 @@ import com.progwml6.natura.library.NaturaRegistry;
 import com.progwml6.natura.library.Util;
 import com.progwml6.natura.world.block.BlockCloud;
 import com.progwml6.natura.world.block.logs.BlockOverworldLog;
+import com.progwml6.natura.world.block.logs.BlockRedwoodLog;
 
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
@@ -30,12 +31,14 @@ public class NaturaWorld extends NaturaPulse
 
     public static BlockCloud cloudBlock;
     public static BlockOverworldLog overworldLog;
+    public static BlockRedwoodLog redwoodLog;
 
     @Subscribe
     public void preInit(FMLPreInitializationEvent event)
     {
         cloudBlock = registerEnumBlock(new BlockCloud(), "clouds");
         overworldLog = registerEnumBlock(new BlockOverworldLog(), "overworld_logs");
+        redwoodLog = registerEnumBlock(new BlockRedwoodLog(), "redwood_logs");
 
         proxy.preInit();
 

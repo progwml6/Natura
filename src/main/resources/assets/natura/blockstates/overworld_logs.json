@@ -41,11 +41,6 @@
         },
         "axis": {
             "none": {
-                "model": "cube_all",
-                "textures": {
-                    "all": "natura:blocks/logs/overworld/tiger_log",
-                    "particle": "#all"
-                },
                 "__comment": "nothing to rotate"
             },
             "y": {

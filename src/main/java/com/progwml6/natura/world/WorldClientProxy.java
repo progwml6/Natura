@@ -21,6 +21,7 @@ public class WorldClientProxy extends ClientProxy
     {
         // blocks
         registerItemBlockMeta(NaturaWorld.cloudBlock);
+        registerItemBlockMeta(NaturaWorld.redwoodLog);
 
         //@formatter:off
         Item log = Item.getItemFromBlock(NaturaWorld.overworldLog);
