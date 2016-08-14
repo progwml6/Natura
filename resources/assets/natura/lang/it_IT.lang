@@ -105,10 +105,10 @@ block.fusewood.NPlanks.name=Assi di legno esplosivo
 
 block.sapling.eucalyptus.name=Arboscello di eucalipto
 block.sapling.sakura.name=Arboscello di ciliegio
-block.sapling.ghost.name=Arboscello di albero fantasma
-block.sapling.bush.name=Arboscello di hopseed
+block.sapling.ghostwood.name=Arboscello di albero fantasma
+block.sapling.hopseed.name=Arboscello di hopseed
 block.sapling.redwood.name=Arboscello di sequia
-block.sapling.blood.name=Arboscello di albero insanguinato
+block.sapling.bloodwood.name=Arboscello di albero insanguinato
 block.sapling.darkwood.name=Arboscello di albero oscuro
 block.sapling.fusewood.name=Arboscello di albero esplosivo
 block.sapling.willow.name=Arboscello di salice

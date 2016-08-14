@@ -105,10 +105,10 @@ block.fusewood.NPlanks.name=Fusewood Planks
 
 block.sapling.eucalyptus.name=Eucalyptus Sapling
 block.sapling.sakura.name=Sakura Sapling
-block.sapling.ghost.name=Ghostwood Sapling
-block.sapling.bush.name=Hopseed Sapling
+block.sapling.ghostwood.name=Ghostwood Sapling
+block.sapling.hopseed.name=Hopseed Sapling
 block.sapling.redwood.name=Redwood Sapling
-block.sapling.blood.name=Blood Sapling
+block.sapling.bloodwood.name=Blood Sapling
 block.sapling.darkwood.name=Darkwood Sapling
 block.sapling.fusewood.name=Fusewood Sapling
 block.sapling.willow.name=Willow Sapling

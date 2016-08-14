@@ -2,6 +2,7 @@ package mods.natura.worldgen;
 
 import java.util.Random;
 
+import mods.natura.blocks.trees.EnumSaplingType;
 import mods.natura.common.NContent;
 import mods.natura.common.PHNatura;
 import net.minecraft.block.Block;
@@ -84,12 +85,12 @@ public class RedwoodTreeGen extends WorldGenerator
     int leafNodes[][];
     Block genWoodID;
     int genWoodMetadata = 0;
-    boolean useHeight;
+    boolean genFromSaplings;
 
     public RedwoodTreeGen(boolean flag, Block bID)
     {
         super(flag);
-        useHeight = flag;
+        genFromSaplings = flag;
         rand = new Random();
         heightLimit = 0;
         heightAttenuation = 0.61799999999999999D;
@@ -122,17 +123,59 @@ public class RedwoodTreeGen extends WorldGenerator
         Block bID = world.getBlock(x, y, z);
         boolean ground = bID == Blocks.dirt || bID == Blocks.grass;
         boolean transparent = !world.getBlock(x, y + 1, z).func_149730_j();
-        boolean valid = ground && transparent;
         return ground && transparent;
+    }
+
+    private boolean hasEnoughSaplings(World world, int x, int y, int z) {
+        int numSaplings = 1; // center sapling is removed before tree gen
+        for (int xPos = -3; xPos <= 3; xPos++)
+        {
+            for (int zPos = -3; zPos <= 3; zPos++)
+            {
+                Block blockAtPos = world.getBlock(x + xPos, y, z + zPos);
+                if (blockAtPos == NContent.floraSapling) {
+                    int metaAtPos = world.getBlockMetadata(x + xPos, y, z + zPos);
+                    EnumSaplingType saplingTypeAtPos = NContent.floraSapling.getSaplingType(metaAtPos);
+                    if (saplingTypeAtPos == EnumSaplingType.REDWOOD)
+                        numSaplings++;
+                }
+            }
+        }
+
+        return numSaplings >= 40;
+    }
+
+    private void removeSaplings (World world, int x, int y, int z)
+    {
+        for (int xPos = -4; xPos <= 4; xPos++)
+        {
+            for (int zPos = -4; zPos <= 4; zPos++)
+            {
+                Block blockAtPos = world.getBlock(x + xPos, y, z + zPos);
+                if (blockAtPos == NContent.floraSapling) {
+                    int metaAtPos = world.getBlockMetadata(x + xPos, y, z + zPos);
+                    EnumSaplingType saplingTypeAtPos = NContent.floraSapling.getSaplingType(metaAtPos);
+                    if (saplingTypeAtPos == EnumSaplingType.REDWOOD)
+                        world.setBlock(x + xPos, y, z + zPos, Blocks.air, 0, 4);
+                }
+            }
+        }
     }
 
     public boolean generate (World world, Random random, int x, int yPos, int z)
     {
         int groundPoint = yPos;
-        if (!useHeight)
+        if (!genFromSaplings)
         {
             groundPoint = findGround(world, x, yPos, z);
             if (!isValidSpawn(world, x, groundPoint, z))
+                return false;
+        }
+        else
+        {
+            if (hasEnoughSaplings(world, x, groundPoint, z))
+                removeSaplings(world, x, groundPoint, z);
+            else
                 return false;
         }
 

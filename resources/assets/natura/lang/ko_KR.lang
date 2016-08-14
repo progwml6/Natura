@@ -106,10 +106,10 @@ block.fusewood.NPlanks.name=퓨즈나무 판자
 
 block.sapling.eucalyptus.name=유칼립투스 묘목
 block.sapling.sakura.name=벚나무 묘목
-block.sapling.ghost.name=유령나무 묘목
-block.sapling.bush.name=호프씨나무 묘목
+block.sapling.ghostwood.name=유령나무 묘목
+block.sapling.hopseed.name=호프씨나무 묘목
 block.sapling.redwood.name=삼나무 묘목
-block.sapling.blood.name=피 유칼립투스 묘목
+block.sapling.bloodwood.name=피 유칼립투스 묘목
 block.sapling.darkwood.name=암흑나무 묘목
 block.sapling.fusewood.name=퓨즈나무 묘목
 block.sapling.willow.name=버드나무 묘목

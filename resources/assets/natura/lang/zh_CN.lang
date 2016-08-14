@@ -105,10 +105,10 @@ block.fusewood.NPlanks.name=熔融树木板
 
 block.sapling.eucalyptus.name=桉树树苗
 block.sapling.sakura.name=樱花树树苗
-block.sapling.ghost.name=幽魂树树苗
-block.sapling.bush.name=车桑子树树苗
+block.sapling.ghostwood.name=幽魂树树苗
+block.sapling.hopseed.name=车桑子树树苗
 block.sapling.redwood.name=红木树树苗
-block.sapling.blood.name=血树树苗
+block.sapling.bloodwood.name=血树树苗
 block.sapling.darkwood.name=黑暗树树苗
 block.sapling.fusewood.name=熔融树树苗
 block.sapling.willow.name=柳树树苗

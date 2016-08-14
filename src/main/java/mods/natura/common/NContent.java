@@ -40,16 +40,17 @@ import mods.natura.blocks.tech.NetherrackFurnaceBlock;
 import mods.natura.blocks.tech.NetherrackFurnaceLogic;
 import mods.natura.blocks.tech.RespawnObelisk;
 import mods.natura.blocks.trees.DarkTreeBlock;
+import mods.natura.blocks.trees.FloraSaplingBlock;
 import mods.natura.blocks.trees.LogTwoxTwo;
 import mods.natura.blocks.trees.NDoor;
 import mods.natura.blocks.trees.NLeaves;
 import mods.natura.blocks.trees.NLeavesDark;
 import mods.natura.blocks.trees.NLeavesNocolor;
-import mods.natura.blocks.trees.NSaplingBlock;
+import mods.natura.blocks.trees.NetherSaplingBlock;
 import mods.natura.blocks.trees.OverworldLeaves;
-import mods.natura.blocks.trees.OverworldSapling;
 import mods.natura.blocks.trees.OverworldTreeBlock;
 import mods.natura.blocks.trees.Planks;
+import mods.natura.blocks.trees.RareSaplingBlock;
 import mods.natura.blocks.trees.SaguaroBlock;
 import mods.natura.blocks.trees.SimpleLog;
 import mods.natura.blocks.trees.TreeBlock;
@@ -78,6 +79,7 @@ import mods.natura.items.blocks.BerryBushItem;
 import mods.natura.items.blocks.CloudItem;
 import mods.natura.items.blocks.DarkTreeItem;
 import mods.natura.items.blocks.FenceItem;
+import mods.natura.items.blocks.FloraSaplingItem;
 import mods.natura.items.blocks.GlowshroomItem;
 import mods.natura.items.blocks.GrassBlockItem;
 import mods.natura.items.blocks.GrassSlabItem;
@@ -86,16 +88,16 @@ import mods.natura.items.blocks.NAlternateItem;
 import mods.natura.items.blocks.NDoorItem;
 import mods.natura.items.blocks.NLeavesDarkItem;
 import mods.natura.items.blocks.NLeavesItem;
-import mods.natura.items.blocks.NSaplingItem;
 import mods.natura.items.blocks.NetherBerryBushItem;
 import mods.natura.items.blocks.NetherGlassItem;
+import mods.natura.items.blocks.NetherSaplingItem;
 import mods.natura.items.blocks.NoColorLeavesItem;
 import mods.natura.items.blocks.OverworldLeavesItem;
-import mods.natura.items.blocks.OverworldSaplingItem;
 import mods.natura.items.blocks.OverworldTreeItem;
 import mods.natura.items.blocks.PlankSlab1Item;
 import mods.natura.items.blocks.PlankSlab2Item;
 import mods.natura.items.blocks.PlanksItem;
+import mods.natura.items.blocks.RareSaplingItem;
 import mods.natura.items.blocks.RedwoodItem;
 import mods.natura.items.blocks.SaguaroItem;
 import mods.natura.items.blocks.TreeItem;
@@ -212,7 +214,7 @@ public class NContent implements IFuelHandler
         planks = new Planks().setBlockName("natura.planks");
         floraLeaves = (NLeaves) new NLeaves().setBlockName("natura.leaves");
         floraLeavesNoColor = (NLeaves) new NLeavesNocolor().setBlockName("natura.leavesnocolor");
-        floraSapling = ((NSaplingBlock) new NSaplingBlock().setBlockName("natura.sapling"));
+        floraSapling = ((FloraSaplingBlock) new FloraSaplingBlock().setBlockName("natura.sapling"));
         willow = new WillowBlock().setBlockName("willow");
 
         saguaro = new SaguaroBlock().setBlockName("saguaro.block");
@@ -240,7 +242,7 @@ public class NContent implements IFuelHandler
         GameRegistry.registerBlock(planks, PlanksItem.class, "planks");
         GameRegistry.registerBlock(floraLeaves, NLeavesItem.class, "floraleaves");
         GameRegistry.registerBlock(floraLeavesNoColor, NoColorLeavesItem.class, "floraleavesnocolor");
-        GameRegistry.registerBlock(floraSapling, NSaplingItem.class, "florasapling");
+        GameRegistry.registerBlock(floraSapling, FloraSaplingItem.class, "florasapling");
         //GameRegistry.registerBlock(redwoodDoor, "Redwood Door");
         GameRegistry.registerBlock(saguaro, SaguaroItem.class, "Saguaro");
         GameRegistry.registerBlock(willow, WillowItem.class, "willow");
@@ -262,6 +264,8 @@ public class NContent implements IFuelHandler
         GameRegistry.registerBlock(heatSand, "heatsand");
         /*infernalStone = new NBlock(PHNatura.infernalStone, Material.rock, 1.5f, new String[] { "infernal_stone" }).setBlockName("infernalStone");
         GameRegistry.registerBlock(infernalStone, "infernalStone");*/
+        netherSapling = ((NetherSaplingBlock) new NetherSaplingBlock().setBlockName("natura.nethersapling"));
+        GameRegistry.registerBlock(netherSapling, NetherSaplingItem.class, "nethersapling");
 
         darkTree = new DarkTreeBlock().setBlockName("Darktree");
         GameRegistry.registerBlock(darkTree, DarkTreeItem.class, "Dark Tree");
@@ -323,8 +327,8 @@ public class NContent implements IFuelHandler
         GameRegistry.registerBlock(rareTree, OverworldTreeItem.class, "Rare Tree");
         rareLeaves = (NLeaves) new OverworldLeaves().setBlockName("RareLeaves");
         GameRegistry.registerBlock(rareLeaves, OverworldLeavesItem.class, "Rare Leaves");//TODO 1.8 rename
-        rareSapling = (OverworldSapling) new OverworldSapling().setBlockName("RareSapling");
-        GameRegistry.registerBlock(rareSapling, OverworldSaplingItem.class, "Rare Sapling");//TODO 1.8 rename
+        rareSapling = (RareSaplingBlock) new RareSaplingBlock().setBlockName("RareSapling");
+        GameRegistry.registerBlock(rareSapling, RareSaplingItem.class, "Rare Sapling");//TODO 1.8 rename
         bluebells = (FlowerBlock) new FlowerBlock().setBlockName("bluebells");
         GameRegistry.registerBlock(bluebells, "Bluebells");
 
@@ -1142,6 +1146,8 @@ public class NContent implements IFuelHandler
         //Saplings
         OreDictionary.registerOre("treeSapling", new ItemStack(floraSapling, 1, Short.MAX_VALUE));
         OreDictionary.registerOre("treeSapling", new ItemStack(rareSapling, 1, Short.MAX_VALUE));
+        OreDictionary.registerOre("saplingTree", new ItemStack(netherSapling, 1, Short.MAX_VALUE));
+        OreDictionary.registerOre("treeSapling", new ItemStack(netherSapling, 1, Short.MAX_VALUE));
 
         //Leaves
         OreDictionary.registerOre("treeLeaves", new ItemStack(floraLeaves, 1, Short.MAX_VALUE));
@@ -1268,7 +1274,7 @@ public class NContent implements IFuelHandler
 
     public static NLeaves floraLeaves;
     public static NLeaves floraLeavesNoColor;
-    public static NSaplingBlock floraSapling;
+    public static FloraSaplingBlock floraSapling;
 
     public static Block saguaro;
 
@@ -1291,6 +1297,7 @@ public class NContent implements IFuelHandler
     public static Block darkTree;
     public static NLeaves darkLeaves;
     public static Block thornVines;
+    public static NetherSaplingBlock netherSapling;
 
     public static Block glowshroomBlue;
     public static Block glowshroomGreen;
@@ -1364,7 +1371,7 @@ public class NContent implements IFuelHandler
     //Extra overworld
     public static Block rareTree;
     public static NLeaves rareLeaves;
-    public static OverworldSapling rareSapling;
+    public static RareSaplingBlock rareSapling;
     public static FlowerBlock bluebells;
 
     public static Item stickItem;
@@ -1458,7 +1465,7 @@ public class NContent implements IFuelHandler
     @Override
     public int getBurnTime (ItemStack fuel)
     {
-        if (fuel.getItem() == new ItemStack(floraSapling).getItem() || fuel.getItem() == new ItemStack(rareSapling).getItem())
+        if (fuel.getItem() == new ItemStack(floraSapling).getItem() || fuel.getItem() == new ItemStack(rareSapling).getItem() || fuel.getItem() == new ItemStack(netherSapling).getItem())
             return 100;
         return 0;
     }
