@@ -10,6 +10,7 @@ import slimeknights.mantle.pulsar.pulse.Pulse;
 public class Waila
 {
     public static final String modid = "Waila";
+
     public static final String PulseId = modid + "Integration";// "Natura" + modid + "Integration";
 
     @Subscribe

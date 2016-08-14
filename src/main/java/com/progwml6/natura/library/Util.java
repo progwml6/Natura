@@ -6,7 +6,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.progwml6.natura.Natura;
-import com.progwml6.natura.world.NaturaWorld;
 
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
@@ -58,10 +57,5 @@ public class Util
         }
 
         return (ResourceLocation) o;
-    }
-
-    public static boolean isWorldLoaded()
-    {
-        return Natura.pulseManager.isPulseLoaded(NaturaWorld.PulseId);
     }
 }
