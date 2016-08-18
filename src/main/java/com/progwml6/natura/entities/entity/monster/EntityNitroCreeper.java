@@ -113,7 +113,7 @@ public class EntityNitroCreeper extends EntityCreeper
                 this.timeSinceIgnited = 0;
             }
 
-            int difficulty = worldObj.getDifficulty().getDifficultyId();
+            int difficulty = this.worldObj.getDifficulty().getDifficultyId();
             int powered = this.getPowered() ? 12 : 0;
 
             if (this.timeSinceIgnited >= this.fuseTime + difficulty + powered)

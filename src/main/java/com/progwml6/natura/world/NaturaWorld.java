@@ -7,10 +7,18 @@ import com.progwml6.natura.common.CommonProxy;
 import com.progwml6.natura.common.NaturaPulse;
 import com.progwml6.natura.library.NaturaRegistry;
 import com.progwml6.natura.library.Util;
-import com.progwml6.natura.world.block.BlockCloud;
+import com.progwml6.natura.world.block.clouds.BlockCloud;
+import com.progwml6.natura.world.block.grass.BlockColoredGrass;
+import com.progwml6.natura.world.block.grass.BlockColoredGrassSlab;
 import com.progwml6.natura.world.block.leaves.BlockOverworldLeaves;
+import com.progwml6.natura.world.block.leaves.BlockOverworldLeaves2;
 import com.progwml6.natura.world.block.logs.BlockOverworldLog;
+import com.progwml6.natura.world.block.logs.BlockOverworldLog2;
 import com.progwml6.natura.world.block.logs.BlockRedwoodLog;
+import com.progwml6.natura.world.block.planks.BlockOverworldPlanks;
+import com.progwml6.natura.world.block.saplings.BlockOverworldSapling;
+import com.progwml6.natura.world.block.saplings.BlockOverworldSapling2;
+import com.progwml6.natura.world.block.saplings.BlockRedwoodSapling;
 import com.progwml6.natura.world.item.ItemBlockLeaves;
 
 import net.minecraft.item.ItemStack;
@@ -32,22 +40,43 @@ public class NaturaWorld extends NaturaPulse
     @SidedProxy(clientSide = "com.progwml6.natura.world.WorldClientProxy", serverSide = "com.progwml6.natura.common.CommonProxy")
     public static CommonProxy proxy;
 
+    //@formatter:off
     public static BlockCloud cloudBlock;
-
+    public static BlockColoredGrass coloredGrass;
+    public static BlockColoredGrassSlab coloredGrassSlab;
     public static BlockOverworldLog overworldLog;
-
+    public static BlockOverworldLog2 overworldLog2;
     public static BlockOverworldLeaves overworldLeaves;
-
+    public static BlockOverworldLeaves2 overworldLeaves2;
+    public static BlockOverworldSapling overworldSapling;
+    public static BlockOverworldSapling2 overworldSapling2;
+    public static BlockOverworldPlanks overworldPlanks;
     public static BlockRedwoodLog redwoodLog;
+    public static BlockRedwoodSapling redwoodSapling;
+    //@formatter:on
 
     @Subscribe
     public void preInit(FMLPreInitializationEvent event)
     {
         cloudBlock = registerEnumBlock(new BlockCloud(), "clouds");
+
+        coloredGrass = registerEnumBlock(new BlockColoredGrass(), "colored_grass");
+        coloredGrassSlab = registerEnumBlockSlab(new BlockColoredGrassSlab(), "colored_grass_slab");
+
         overworldLog = registerEnumBlock(new BlockOverworldLog(), "overworld_logs");
+        overworldLog2 = registerEnumBlock(new BlockOverworldLog2(), "overworld_logs2");
         redwoodLog = registerEnumBlock(new BlockRedwoodLog(), "redwood_logs");
+
         overworldLeaves = registerBlock(new ItemBlockLeaves(new BlockOverworldLeaves()), "overworld_leaves");
         ItemBlockMeta.setMappingProperty(overworldLeaves, BlockOverworldLog.TYPE);
+        overworldLeaves2 = registerBlock(new ItemBlockLeaves(new BlockOverworldLeaves2()), "overworld_leaves2");
+        ItemBlockMeta.setMappingProperty(overworldLeaves2, BlockOverworldLog2.TYPE);
+
+        overworldSapling = registerBlock(new BlockOverworldSapling(), "overworld_sapling", BlockOverworldSapling.FOLIAGE);
+        overworldSapling2 = registerBlock(new BlockOverworldSapling2(), "overworld_sapling2", BlockOverworldSapling2.FOLIAGE);
+        redwoodSapling = registerBlock(new BlockRedwoodSapling(), "redwood_sapling", BlockRedwoodSapling.FOLIAGE);
+
+        overworldPlanks = registerEnumBlock(new BlockOverworldPlanks(), "overworld_planks");
 
         proxy.preInit();
 

@@ -19,7 +19,7 @@ public class ClientProxy extends CommonProxy
 {
     protected ResourceLocation registerModel(Item item, String... customVariants)
     {
-        return registerModel(item, 0, customVariants);
+        return this.registerModel(item, 0, customVariants);
     }
 
     protected ResourceLocation registerModel(Item item, int meta, String... customVariants)
@@ -81,7 +81,7 @@ public class ClientProxy extends CommonProxy
 
     public ResourceLocation registerItemModel(Block block)
     {
-        return registerItemModel(Item.getItemFromBlock(block));
+        return this.registerItemModel(Item.getItemFromBlock(block));
     }
 
     public void registerItemModel(Item item, int meta, String variant)

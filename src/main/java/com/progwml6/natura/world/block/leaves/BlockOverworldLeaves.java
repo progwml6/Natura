@@ -7,6 +7,7 @@ import javax.annotation.Nonnull;
 
 import com.google.common.collect.Lists;
 import com.progwml6.natura.library.NaturaRegistry;
+import com.progwml6.natura.world.NaturaWorld;
 import com.progwml6.natura.world.block.logs.BlockOverworldLog;
 import com.progwml6.natura.world.block.logs.BlockOverworldLog.LogType;
 
@@ -25,15 +26,14 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import slimeknights.tconstruct.world.TinkerWorld;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 public class BlockOverworldLeaves extends BlockLeaves
 {
     public BlockOverworldLeaves()
     {
-        this.setCreativeTab(NaturaRegistry.tabGeneral);
-        this.setHardness(0.3f);
+        this.setCreativeTab(NaturaRegistry.tabWorld);
+
+        Blocks.FIRE.setFireInfo(this, 5, 20);
 
         this.setDefaultState(this.blockState.getBaseState().withProperty(CHECK_DECAY, false).withProperty(DECAYABLE, true));
     }
@@ -50,7 +50,7 @@ public class BlockOverworldLeaves extends BlockLeaves
     {
         for (LogType type : LogType.values())
         {
-            list.add(new ItemStack(this, 1, getMetaFromState(this.getDefaultState().withProperty(BlockOverworldLog.TYPE, type))));
+            list.add(new ItemStack(this, 1, this.getMetaFromState(this.getDefaultState().withProperty(BlockOverworldLog.TYPE, type))));
         }
     }
 
@@ -87,7 +87,7 @@ public class BlockOverworldLeaves extends BlockLeaves
     @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune)
     {
-        return Item.getItemFromBlock(TinkerWorld.slimeSapling);
+        return Item.getItemFromBlock(NaturaWorld.overworldSapling);
     }
 
     @Override
@@ -178,14 +178,14 @@ public class BlockOverworldLeaves extends BlockLeaves
     @Override
     public BlockPlanks.EnumType getWoodType(int meta)
     {
-        throw new NotImplementedException(); // unused by our code.
+        throw new UnsupportedOperationException(); // unused by our code.
     }
 
     @Override
     public List<ItemStack> onSheared(ItemStack item, IBlockAccess world, BlockPos pos, int fortune)
     {
         IBlockState state = world.getBlockState(pos);
-        return Lists.newArrayList(createStackedBlock(state));
+        return Lists.newArrayList(this.createStackedBlock(state));
     }
 
     @Override

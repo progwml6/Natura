@@ -19,6 +19,7 @@ public final class NaturaRegistry
     ---------------------------------------------------------------------------*/
 
     public static CreativeTab tabGeneral = new CreativeTab("NaturaGeneral", new ItemStack(Item.getItemFromBlock(Blocks.SLIME_BLOCK)));
+
     public static CreativeTab tabWorld = new CreativeTab("NaturaWorld", new ItemStack(Item.getItemFromBlock(Blocks.SLIME_BLOCK)));
 
     /*---------------------------------------------------------------------------

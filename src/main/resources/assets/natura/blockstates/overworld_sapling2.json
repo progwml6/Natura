@@ -1,0 +1,31 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "transform": "forge:default-block",
+        "model": "cross"
+    },
+	"variants": {
+        "foliage": {
+            "willow": {
+                "textures": {
+                    "cross": "natura:blocks/saplings/overworld/willow_sapling"
+                }
+            },
+            "eucalyptus": {
+                "textures": {
+                    "cross": "natura:blocks/saplings/overworld/eucalyptus_sapling"
+                }
+            },
+            "hopseed": {
+                "textures": {
+                    "cross": "natura:blocks/saplings/overworld/hopseed_sapling"
+                }
+            },
+            "sakura": {
+                "textures": {
+                    "cross": "natura:blocks/saplings/overworld/sakura_sapling"
+                }
+            }
+        }
+    }
+}

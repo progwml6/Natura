@@ -11,7 +11,7 @@ public class Waila
 {
     public static final String modid = "Waila";
 
-    public static final String PulseId = modid + "Integration";// "Natura" + modid + "Integration";
+    public static final String PulseId = modid + "Integration";
 
     @Subscribe
     public void preInit(FMLPreInitializationEvent event)

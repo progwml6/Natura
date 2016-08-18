@@ -1,7 +1,12 @@
 package com.progwml6.natura.plugin.waila;
 
 import static com.progwml6.natura.world.NaturaWorld.overworldLeaves;
+import static com.progwml6.natura.world.NaturaWorld.overworldLeaves2;
 import static com.progwml6.natura.world.NaturaWorld.overworldLog;
+import static com.progwml6.natura.world.NaturaWorld.overworldLog2;
+import static com.progwml6.natura.world.NaturaWorld.overworldSapling;
+import static com.progwml6.natura.world.NaturaWorld.overworldSapling2;
+import static com.progwml6.natura.world.NaturaWorld.redwoodSapling;
 
 import java.util.List;
 
@@ -27,9 +32,14 @@ public class BlocksDataProvider extends NaturaPulse implements IWailaDataProvide
 
         if (isWorldLoaded())
         {
-            if (block == overworldLeaves || block == overworldLog)
+            if (block == overworldLog || block == overworldLog2 || block == overworldLeaves || block == overworldLeaves2)
             {
                 return new ItemStack(block, 1, accessor.getMetadata() % 4);
+            }
+
+            if (block == overworldSapling || block == overworldSapling2 || block == redwoodSapling)
+            {
+                return new ItemStack(block, 1, accessor.getMetadata() % 8);
             }
         }
 

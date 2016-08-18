@@ -28,7 +28,7 @@ public class BlockEnumLog<T extends Enum<T> & EnumBlock.IEnumMeta & IStringSeria
         this.setResistance(5F);
         this.setSoundType(SoundType.WOOD);
         Blocks.FIRE.setFireInfo(this, 5, 20);
-        this.setCreativeTab(NaturaRegistry.tabGeneral);
+        this.setCreativeTab(NaturaRegistry.tabWorld);
     }
 
     @Override

@@ -31,26 +31,41 @@ public final class Config
     public static boolean enableRetrogen = true;
 
     public static int whiteCloudSpawnRarity = 10;
+
     public static int whiteCloudSpawnHeight = 192;
+
     public static int whiteCloudSpawnRange = 48;
+
     public static int darkCloudSpawnRarity = 10;
+
     public static int darkCloudSpawnHeight = 0;
+
     public static int darkCloudSpawnRange = 256;
+
     public static int sulfurCloudSpawnRarity = 8;
+
     public static int sulfurCloudSpawnHeight = 40;
+
     public static int sulfurCloudSpawnRange = 78;
+
     public static int ashCloudSpawnRarity = 8;
+
     public static int ashCloudSpawnHeight = 40;
+
     public static int ashCloudSpawnRange = 78;
 
     public static int babyHeatscarMinimum = 2;
+
     public static int babyHeatscarMaximum = 4;
 
     static Configuration configFile;
 
     static ConfigCategory Gameplay;
+
     static ConfigCategory Entities;
+
     static ConfigCategory Worldgen;
+
     static ConfigCategory Clouds;
 
     public static void load(FMLPreInitializationEvent event)

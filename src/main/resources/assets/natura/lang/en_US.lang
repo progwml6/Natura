@@ -19,6 +19,15 @@ tile.natura.overworld_logs.purpleheart.tooltip=Heart of Wood
 tile.natura.overworld_logs.tiger.name=Tiger Wood
 tile.natura.overworld_logs.tiger.tooltip=Wild Grain
 
+tile.natura.overworld_logs2.willow.name=Willow Wood
+tile.natura.overworld_logs2.willow.tooltip=The Weeper
+tile.natura.overworld_logs2.eucalyptus.name=Eucalyptus Wood
+tile.natura.overworld_logs2.eucalyptus.tooltip=The pink wood
+tile.natura.overworld_logs2.sakura.name=Sakura Wood
+tile.natura.overworld_logs2.sakura.tooltip=Flowering Cherry
+tile.natura.overworld_logs2.hopseed.name=Hopseed Wood
+tile.natura.overworld_logs2.hopseed.tooltip=Ascended Glitch
+
 tile.natura.overworld_leaves.maple.name=Maple Leaves
 tile.natura.overworld_leaves.maple.tooltip=Somewhat Sweet
 tile.natura.overworld_leaves.silverbell.name=Silverbell Leaves
@@ -28,12 +37,50 @@ tile.natura.overworld_leaves.purpleheart.tooltip=Heart of Wood
 tile.natura.overworld_leaves.tiger.name=Tiger Leaves
 tile.natura.overworld_leaves.tiger.tooltip=Wild Grain
 
+tile.natura.overworld_leaves2.willow.name=Willow Leaves
+tile.natura.overworld_leaves2.willow.tooltip=The Weeper
+tile.natura.overworld_leaves2.eucalyptus.name=Eucalyptus Leaves
+tile.natura.overworld_leaves2.eucalyptus.tooltip=The pink wood
+tile.natura.overworld_leaves2.sakura.name=Sakura Leaves
+tile.natura.overworld_leaves2.sakura.tooltip=Flowering Cherry
+tile.natura.overworld_leaves2.hopseed.name=Hopseed Leaves
+tile.natura.overworld_leaves2.hopseed.tooltip=Ascended Glitch
+
+tile.natura.overworld_sapling.maple.name=Maple Sapling
+tile.natura.overworld_sapling.maple.tooltip=Somewhat Sweet
+tile.natura.overworld_sapling.silverbell.name=Silverbell Sapling
+tile.natura.overworld_sapling.silverbell.tooltip=Silver Bells
+tile.natura.overworld_sapling.purpleheart.name=Amaranth Sapling
+tile.natura.overworld_sapling.purpleheart.tooltip=Heart of Wood
+tile.natura.overworld_sapling.tiger.name=Tigerwood Sapling
+tile.natura.overworld_sapling.tiger.tooltip=Wild Grain
+
+tile.natura.overworld_sapling2.willow.name=Willow Sapling
+tile.natura.overworld_sapling2.willow.tooltip=The Weeper
+tile.natura.overworld_sapling2.eucalyptus.name=Eucalyptus Sapling
+tile.natura.overworld_sapling2.eucalyptus.tooltip=The pink wood
+tile.natura.overworld_sapling2.sakura.name=Sakura Sapling
+tile.natura.overworld_sapling2.sakura.tooltip=Flowering Cherry
+tile.natura.overworld_sapling2.hopseed.name=Hopseed Sapling
+tile.natura.overworld_sapling2.hopseed.tooltip=Ascended Glitch
+
 tile.natura.redwood_logs.bark.name=Redwood Bark
 tile.natura.redwood_logs.bark.tooltip=Burn it for charcoal\nor make a hidden tree door
 tile.natura.redwood_logs.heart.name=Redwood
 tile.natura.redwood_logs.heart.tooltip=Heart of the tree
 tile.natura.redwood_logs.root.name=Redwood Root
 tile.natura.redwood_logs.root.tooltip=Root of the tree
+
+tile.natura.redwood_sapling.redwood.name=Redwood Sapling
+tile.natura.redwood_sapling.redwood.tooltip=Plant these in a 7x7\nIt takes days to grow
+
+tile.natura.colored_grass.topiary.name=Topiary Grass
+tile.natura.colored_grass.bluegrass.name=Bluegrass
+tile.natura.colored_grass.autumnal.name=Autumnal Grass
+
+tile.natura.colored_grass_slab.topiary.name=Topiary Grass Slab
+tile.natura.colored_grass_slab.bluegrass.name=Bluegrass Slab
+tile.natura.colored_grass_slab.autumnal.name=Autumnal Grass Slab
 
 ################
 #    Items     #

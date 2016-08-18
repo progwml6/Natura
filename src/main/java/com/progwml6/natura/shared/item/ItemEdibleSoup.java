@@ -16,17 +16,17 @@ public class ItemEdibleSoup extends ItemEdible
     public ItemEdibleSoup()
     {
         super();
-        bowlsList = new TIntObjectHashMap<ItemStack>();
+        this.bowlsList = new TIntObjectHashMap<ItemStack>();
     }
 
     public ItemStack addFood(int meta, int food, float saturation, String name, ItemStack bowl, PotionEffect... effects)
     {
-        return addFood(meta, food, saturation, name, bowl, effects.length > 0, effects);
+        return this.addFood(meta, food, saturation, name, bowl, effects.length > 0, effects);
     }
 
     public ItemStack addFood(int meta, int food, float saturation, String name, ItemStack bowl, boolean alwaysEdible, PotionEffect... effects)
     {
-        bowlsList.put(meta, bowl);
+        this.bowlsList.put(meta, bowl);
 
         return super.addFood(meta, food, saturation, name, alwaysEdible, effects);
     }

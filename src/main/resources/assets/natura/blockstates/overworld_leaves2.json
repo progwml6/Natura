@@ -1,0 +1,34 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "transform": "forge:default-block"
+    },
+	"variants": {
+        "type": {
+            "willow": {
+                "model": "leaves",
+                "textures": {
+                    "all": "natura:blocks/leaves/overworld/willow_leaves"
+                }
+            },
+            "eucalyptus": {
+                "model": "leaves",
+                "textures": {
+                    "all": "natura:blocks/leaves/overworld/eucalyptus_leaves"
+                }
+            },
+            "hopseed": {
+                "model": "leaves",
+                "textures": {
+                    "all": "natura:blocks/leaves/overworld/hopseed_leaves"
+                }
+            },
+            "sakura": {
+                "model": "leaves",
+                "textures": {
+                    "all": "natura:blocks/leaves/overworld/sakura_leaves"
+                }
+            }
+        }
+    }
+}

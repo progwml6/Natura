@@ -8,17 +8,17 @@
         "type": {
             "bark": {
                 "textures": {
-                    "all": "natura:blocks/logs/redwood/redwood_bark"
+                    "all": "natura:blocks/logs/overworld/redwood_bark"
                 }
             },
             "heart": {
                 "textures": {
-                    "all": "natura:blocks/logs/redwood/redwood_heart"
+                    "all": "natura:blocks/logs/overworld/redwood_heart"
                 }
             },
             "root": {
                 "textures": {
-                    "all": "natura:blocks/logs/redwood/redwood_root"
+                    "all": "natura:blocks/logs/overworld/redwood_root"
                 }
             }
         }

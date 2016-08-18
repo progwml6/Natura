@@ -39,7 +39,7 @@ public class BlockRedwoodLog extends EnumBlock<BlockRedwoodLog.RedwoodType>
 
         RedwoodType()
         {
-            meta = ordinal();
+            this.meta = this.ordinal();
         }
 
         @Override
@@ -51,7 +51,7 @@ public class BlockRedwoodLog extends EnumBlock<BlockRedwoodLog.RedwoodType>
         @Override
         public int getMeta()
         {
-            return meta;
+            return this.meta;
         }
     }
 }

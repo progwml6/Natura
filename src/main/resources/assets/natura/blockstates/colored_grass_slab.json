@@ -1,0 +1,34 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "transform": "forge:default-block",
+        "model": "natura:half_slab",
+        "textures": {
+            "bottom": "#all",
+            "top": "#all",
+            "side": "#all",
+            "particle": "#all"
+        }
+    },
+    "variants": {
+        "type": {
+            "topiary": {
+                "textures": { "all": "natura:blocks/grass/grass" }
+            },
+            "bluegrass": {
+                "textures": { "all": "natura:blocks/grass/grass" }
+            },
+            "autumnal": {
+                "textures": { "all": "natura:blocks/grass/grass" }
+            }
+        },
+        "half": {
+            "bottom": {
+                "model": "natura:half_slab"
+            },
+            "top": {
+                "model": "natura:upper_slab"
+            }
+        }
+    }
+}

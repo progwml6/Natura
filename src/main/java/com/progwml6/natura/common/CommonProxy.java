@@ -4,7 +4,7 @@ public class CommonProxy
 {
     public void preInit()
     {
-        registerModels();
+        this.registerModels();
     }
 
     public void init()

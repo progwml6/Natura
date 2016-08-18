@@ -1,0 +1,31 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "transform": "forge:default-block",
+        "model": "cross"
+    },
+	"variants": {
+        "foliage": {
+            "maple": {
+                "textures": {
+                    "cross": "natura:blocks/saplings/overworld/maple_sapling"
+                }
+            },
+            "silverbell": {
+                "textures": {
+                    "cross": "natura:blocks/saplings/overworld/silverbell_sapling"
+                }
+            },
+            "purpleheart": {
+                "textures": {
+                    "cross": "natura:blocks/saplings/overworld/purpleheart_sapling"
+                }
+            },
+            "tiger": {
+                "textures": {
+                    "cross": "natura:blocks/saplings/overworld/tiger_sapling"
+                }
+            }
+        }
+    }
+}

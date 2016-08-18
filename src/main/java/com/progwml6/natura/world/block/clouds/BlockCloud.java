@@ -1,4 +1,4 @@
-package com.progwml6.natura.world.block;
+package com.progwml6.natura.world.block.clouds;
 
 import java.util.Locale;
 
@@ -150,7 +150,7 @@ public class BlockCloud extends EnumBlock<BlockCloud.CloudType>
 
         CloudType()
         {
-            meta = ordinal();
+            this.meta = this.ordinal();
         }
 
         @Override
@@ -162,7 +162,7 @@ public class BlockCloud extends EnumBlock<BlockCloud.CloudType>
         @Override
         public int getMeta()
         {
-            return meta;
+            return this.meta;
         }
     }
 }

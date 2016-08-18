@@ -18,6 +18,7 @@ public class BlockOverworldLog extends BlockEnumLog<BlockOverworldLog.LogType>
     public BlockOverworldLog()
     {
         super(TYPE, BlockOverworldLog.LogType.class);
+
         this.setDefaultState(this.blockState.getBaseState().withProperty(LOG_AXIS, BlockEnumLog.EnumAxis.Y));
     }
 
@@ -27,7 +28,7 @@ public class BlockOverworldLog extends BlockEnumLog<BlockOverworldLog.LogType>
     @Override
     public IBlockState getStateFromMeta(int meta)
     {
-        IBlockState iblockstate = this.getDefaultState().withProperty(TYPE, fromMeta((meta & 3)));
+        IBlockState iblockstate = this.getDefaultState().withProperty(TYPE, this.fromMeta((meta & 3)));
 
         switch (meta & 12)
         {
@@ -102,7 +103,7 @@ public class BlockOverworldLog extends BlockEnumLog<BlockOverworldLog.LogType>
 
         LogType()
         {
-            this.meta = ordinal();
+            this.meta = this.ordinal();
         }
 
         @Override
