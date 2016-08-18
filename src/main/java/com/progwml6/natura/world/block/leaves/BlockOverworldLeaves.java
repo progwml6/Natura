@@ -111,7 +111,7 @@ public class BlockOverworldLeaves extends BlockLeaves
                     stack = new ItemStack(Items.SLIME_BALL);
                 }
             }
-        
+
             if (stack != null)
             {
                 spawnAsEntity(worldIn, pos, stack);

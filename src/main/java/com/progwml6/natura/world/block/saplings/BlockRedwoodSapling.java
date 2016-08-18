@@ -130,7 +130,7 @@ public class BlockRedwoodSapling extends BlockSapling
         switch (state.getValue(FOLIAGE))
         {
         case REDWOOD:
-            int numSaplings = checkRedwoodSaplings(worldIn, pos);
+            int numSaplings = this.checkRedwoodSaplings(worldIn, pos);
 
             if (numSaplings >= 40)
             {

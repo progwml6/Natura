@@ -1,0 +1,29 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "transform": "forge:default-block",
+        "model": "natura:natura_hopper_down"
+    },
+	"variants": {
+        "facing": {
+            "down": {
+                "model": "natura:natura_hopper_down"
+            },
+            "north": {
+                "model": "natura:natura_hopper_side"
+            },
+            "south": {
+                "model": "natura:natura_hopper_side",
+                "y": 180
+            },
+            "west": {
+                "model": "natura:natura_hopper_side",
+                "y": 270
+            },
+            "east": {
+                "model": "natura:natura_hopper_side",
+                "y": 90
+            }
+        }
+    }
+}

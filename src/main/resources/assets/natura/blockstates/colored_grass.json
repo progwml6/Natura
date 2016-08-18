@@ -2,7 +2,7 @@
     "forge_marker": 1,
     "defaults": {
         "transform": "forge:default-block",
-        "model": "natura:grass"
+        "model": "natura:natura_grass"
     },
 	"variants": {
         "type": {

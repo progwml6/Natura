@@ -2,7 +2,7 @@
     "forge_marker": 1,
     "defaults": {
         "transform": "forge:default-block",
-        "model": "natura:half_slab",
+        "model": "natura:natura_half_slab",
         "textures": {
             "bottom": "#all",
             "top": "#all",
@@ -24,10 +24,10 @@
         },
         "half": {
             "bottom": {
-                "model": "natura:half_slab"
+                "model": "natura:natura_half_slab"
             },
             "top": {
-                "model": "natura:upper_slab"
+                "model": "natura:natura_upper_slab"
             }
         }
     }

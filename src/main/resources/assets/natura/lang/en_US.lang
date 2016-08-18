@@ -1,6 +1,9 @@
 ################
 #    Blocks    #
 ################
+
+tile.natura.blaze_hopper.name=Blaze Hopper
+
 tile.natura.clouds.white.name=Cloud
 tile.natura.clouds.white.tooltip=So light and fluffy!\nSaves you when you fall
 tile.natura.clouds.gray.name=Dark Cloud
@@ -82,9 +85,29 @@ tile.natura.colored_grass_slab.topiary.name=Topiary Grass Slab
 tile.natura.colored_grass_slab.bluegrass.name=Bluegrass Slab
 tile.natura.colored_grass_slab.autumnal.name=Autumnal Grass Slab
 
+tile.natura.overworld_planks.maple.name=Maple Planks
+tile.natura.overworld_planks.maple.tooltip=Somewhat Sweet
+tile.natura.overworld_planks.silverbell.name=Silverbell Planks
+tile.natura.overworld_planks.silverbell.tooltip=Silver Bells
+tile.natura.overworld_planks.purpleheart.name=Amaranth Planks
+tile.natura.overworld_planks.purpleheart.tooltip=Heart of Wood
+tile.natura.overworld_planks.tiger.name=Tigerwood Planks
+tile.natura.overworld_planks.tiger.tooltip=Wild Grain
+tile.natura.overworld_planks.willow.name=Willow Planks
+tile.natura.overworld_planks.willow.tooltip=The Weeper
+tile.natura.overworld_planks.eucalyptus.name=Eucalyptus Planks
+tile.natura.overworld_planks.eucalyptus.tooltip=The pink wood
+tile.natura.overworld_planks.sakura.name=Sakura Planks
+tile.natura.overworld_planks.sakura.tooltip=Flowering Cherry
+tile.natura.overworld_planks.hopseed.name=Hopseed Planks
+tile.natura.overworld_planks.hopseed.tooltip=Ascended Glitch
+tile.natura.overworld_planks.redwood.name=Redwood Planks
+tile.natura.overworld_planks.redwood.tooltip=Giant Sequoia
+
 ################
 #    Items     #
 ################
+
 item.natura.edibles.impmeat_raw.name=Raw Imphide
 item.natura.edibles.impmeat_raw.tooltip=Eating this probably isn't good for you
 item.natura.edibles.impmeat_cooked.name=Cooked Imphide
@@ -127,6 +150,7 @@ item.natura.soups.fusewood_glowshroomstew.name=Glowshroom Stew
 #################
 #   Entities    #
 #################
+
 entity.natura.imp.name=Imp
 entity.natura.heatscarspider.name=Heatscar Spider
 entity.natura.babyheatscarspider.name=Baby Heatscar Spider

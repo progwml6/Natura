@@ -6,7 +6,6 @@ import static com.progwml6.natura.world.NaturaWorld.overworldLog;
 import static com.progwml6.natura.world.NaturaWorld.overworldLog2;
 import static com.progwml6.natura.world.NaturaWorld.overworldSapling;
 import static com.progwml6.natura.world.NaturaWorld.overworldSapling2;
-import static com.progwml6.natura.world.NaturaWorld.redwoodSapling;
 
 import java.util.List;
 
@@ -37,7 +36,7 @@ public class BlocksDataProvider extends NaturaPulse implements IWailaDataProvide
                 return new ItemStack(block, 1, accessor.getMetadata() % 4);
             }
 
-            if (block == overworldSapling || block == overworldSapling2 || block == redwoodSapling)
+            if (block == overworldSapling || block == overworldSapling2)// || block == redwoodSapling) TODO: FIX REDWOOD
             {
                 return new ItemStack(block, 1, accessor.getMetadata() % 8);
             }

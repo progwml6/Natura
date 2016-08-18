@@ -18,7 +18,6 @@ import com.progwml6.natura.world.block.logs.BlockRedwoodLog;
 import com.progwml6.natura.world.block.planks.BlockOverworldPlanks;
 import com.progwml6.natura.world.block.saplings.BlockOverworldSapling;
 import com.progwml6.natura.world.block.saplings.BlockOverworldSapling2;
-import com.progwml6.natura.world.block.saplings.BlockRedwoodSapling;
 import com.progwml6.natura.world.item.ItemBlockLeaves;
 
 import net.minecraft.item.ItemStack;
@@ -52,7 +51,7 @@ public class NaturaWorld extends NaturaPulse
     public static BlockOverworldSapling2 overworldSapling2;
     public static BlockOverworldPlanks overworldPlanks;
     public static BlockRedwoodLog redwoodLog;
-    public static BlockRedwoodSapling redwoodSapling;
+    //public static BlockRedwoodSapling redwoodSapling; TODO: FIX REDWOOD
     //@formatter:on
 
     @Subscribe
@@ -74,7 +73,7 @@ public class NaturaWorld extends NaturaPulse
 
         overworldSapling = registerBlock(new BlockOverworldSapling(), "overworld_sapling", BlockOverworldSapling.FOLIAGE);
         overworldSapling2 = registerBlock(new BlockOverworldSapling2(), "overworld_sapling2", BlockOverworldSapling2.FOLIAGE);
-        redwoodSapling = registerBlock(new BlockRedwoodSapling(), "redwood_sapling", BlockRedwoodSapling.FOLIAGE);
+        //redwoodSapling = registerBlock(new BlockRedwoodSapling(), "redwood_sapling", BlockRedwoodSapling.FOLIAGE); TODO: FIX REDWOOD
 
         overworldPlanks = registerEnumBlock(new BlockOverworldPlanks(), "overworld_planks");
 

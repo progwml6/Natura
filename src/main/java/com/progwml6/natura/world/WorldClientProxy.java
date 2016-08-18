@@ -9,7 +9,6 @@ import com.progwml6.natura.world.block.logs.BlockOverworldLog;
 import com.progwml6.natura.world.block.logs.BlockOverworldLog2;
 import com.progwml6.natura.world.block.saplings.BlockOverworldSapling;
 import com.progwml6.natura.world.block.saplings.BlockOverworldSapling2;
-import com.progwml6.natura.world.block.saplings.BlockRedwoodSapling;
 import com.progwml6.natura.world.client.GrassColorizer;
 import com.progwml6.natura.world.client.LeavesColorizer;
 
@@ -135,7 +134,9 @@ public class WorldClientProxy extends ClientProxy
         ModelLoader.setCustomStateMapper(NaturaWorld.overworldLeaves2, (new StateMap.Builder()).ignore(BlockLeaves.CHECK_DECAY, BlockLeaves.DECAYABLE).build());
         ModelLoader.setCustomStateMapper(NaturaWorld.overworldSapling, (new StateMap.Builder()).ignore(BlockOverworldSapling.STAGE, BlockSapling.TYPE).build());
         ModelLoader.setCustomStateMapper(NaturaWorld.overworldSapling2, (new StateMap.Builder()).ignore(BlockOverworldSapling2.STAGE, BlockSapling.TYPE).build());
-        ModelLoader.setCustomStateMapper(NaturaWorld.redwoodSapling, (new StateMap.Builder()).ignore(BlockRedwoodSapling.STAGE, BlockSapling.TYPE).build());
+        /**ModelLoader.setCustomStateMapper(NaturaWorld.redwoodSapling, (new StateMap.Builder()).ignore(BlockRedwoodSapling.STAGE, BlockSapling.TYPE).build());
+         * TODO: FIX REDWOOD
+         */
 
         this.registerItemBlockMeta(NaturaWorld.cloudBlock);
         this.registerItemBlockMeta(NaturaWorld.redwoodLog);
@@ -193,7 +194,9 @@ public class WorldClientProxy extends ClientProxy
         stack = new ItemStack(Item.getItemFromBlock(NaturaWorld.overworldSapling2), 1, NaturaWorld.overworldSapling2.getMetaFromState(NaturaWorld.overworldSapling2.getDefaultState().withProperty(BlockOverworldSapling2.FOLIAGE, BlockOverworldSapling2.SaplingType.SAKURA)));
         this.registerItemModel(stack, "overworld_sapling_sakura");
 
-        stack = new ItemStack(Item.getItemFromBlock(NaturaWorld.redwoodSapling), 1, NaturaWorld.redwoodSapling.getMetaFromState(NaturaWorld.redwoodSapling.getDefaultState().withProperty(BlockRedwoodSapling.FOLIAGE, BlockRedwoodSapling.SaplingType.REDWOOD)));
-        registerItemModel(stack, "overworld_sapling_redwood");
+        /**stack = new ItemStack(Item.getItemFromBlock(NaturaWorld.redwoodSapling), 1, NaturaWorld.redwoodSapling.getMetaFromState(NaturaWorld.redwoodSapling.getDefaultState().withProperty(BlockRedwoodSapling.FOLIAGE, BlockRedwoodSapling.SaplingType.REDWOOD)));
+        this.registerItemModel(stack, "overworld_sapling_redwood");
+        TODO: FIX REDWOOD
+        */
     }
 }

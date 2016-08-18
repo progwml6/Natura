@@ -5,7 +5,9 @@ import org.apache.logging.log4j.Logger;
 import com.google.common.eventbus.Subscribe;
 import com.progwml6.natura.common.CommonProxy;
 import com.progwml6.natura.common.NaturaPulse;
+import com.progwml6.natura.library.NaturaRegistry;
 import com.progwml6.natura.library.Util;
+import com.progwml6.natura.shared.block.hopper.BlockBlazeHopper;
 import com.progwml6.natura.shared.item.ItemEdibleSoup;
 
 import net.minecraft.init.Items;
@@ -38,6 +40,7 @@ public class NaturaCommons extends NaturaPulse
     public static ItemMetaDynamic empty_bowls;
     public static ItemEdible edibles;
     public static ItemEdibleSoup soups;
+    public static BlockBlazeHopper blaze_hopper;
 
     // Material Itemstacks
     public static ItemStack barleyPlant;
@@ -81,6 +84,12 @@ public class NaturaCommons extends NaturaPulse
         empty_bowls = registerItem(new ItemMetaDynamic(), "empty_bowls");
         edibles = registerItem(new ItemEdible(), "edibles");
         soups = registerItem(new ItemEdibleSoup(), "soups");
+        blaze_hopper = registerBlock(new BlockBlazeHopper(), "blaze_hopper");
+
+        materials.setCreativeTab(NaturaRegistry.tabGeneral);
+        empty_bowls.setCreativeTab(NaturaRegistry.tabGeneral);
+        edibles.setCreativeTab(NaturaRegistry.tabGeneral);
+        soups.setCreativeTab(NaturaRegistry.tabGeneral);
 
         barleyPlant = materials.addMeta(0, "barley");
         barleyFlour = materials.addMeta(1, "barley_flour");
@@ -123,6 +132,8 @@ public class NaturaCommons extends NaturaPulse
                 new PotionEffect(MobEffects.POISON, 16 * 25, 0), new PotionEffect(MobEffects.MINING_FATIGUE, 8 * 25, 0));
 
         proxy.preInit();
+
+        NaturaRegistry.tabGeneral.setDisplayIcon(cotton);
     }
 
     @Subscribe

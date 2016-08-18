@@ -7,7 +7,10 @@ import static com.progwml6.natura.shared.NaturaCommons.soups;
 
 import com.progwml6.natura.common.ClientProxy;
 
+import net.minecraft.block.BlockHopper;
+import net.minecraft.client.renderer.block.statemap.StateMap;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.client.model.ModelLoader;
 
 public class CommonsClientProxy extends ClientProxy
 {
@@ -20,6 +23,10 @@ public class CommonsClientProxy extends ClientProxy
     @Override
     protected void registerModels()
     {
+        ModelLoader.setCustomStateMapper(NaturaCommons.blaze_hopper, (new StateMap.Builder()).ignore(BlockHopper.ENABLED).build());
+
+        this.registerItemModel(NaturaCommons.blaze_hopper);
+
         materials.registerItemModels();
         empty_bowls.registerItemModels();
         soups.registerItemModels();
