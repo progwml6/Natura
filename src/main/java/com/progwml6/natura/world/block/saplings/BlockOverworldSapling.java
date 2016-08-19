@@ -140,9 +140,9 @@ public class BlockOverworldSapling extends BlockSapling
             gen = new OverworldTreeGenerator(4, 2, log, leaves);
 
             break;
-        case PURPLEHEART:
-            log = NaturaWorld.overworldLog.getDefaultState().withProperty(BlockOverworldLog.TYPE, BlockOverworldLog.LogType.PURPLEHEART);
-            leaves = NaturaWorld.overworldLeaves.getDefaultState().withProperty(BlockOverworldLog.TYPE, BlockOverworldLog.LogType.PURPLEHEART);
+        case AMARANTHA:
+            log = NaturaWorld.overworldLog.getDefaultState().withProperty(BlockOverworldLog.TYPE, BlockOverworldLog.LogType.AMARANTHA);
+            leaves = NaturaWorld.overworldLeaves.getDefaultState().withProperty(BlockOverworldLog.TYPE, BlockOverworldLog.LogType.AMARANTHA);
 
             gen = new OverworldTreeGenerator(9, 8, log, leaves);
 
@@ -175,7 +175,7 @@ public class BlockOverworldSapling extends BlockSapling
 
     public enum SaplingType implements IStringSerializable, EnumBlock.IEnumMeta
     {
-        MAPLE, SILVERBELL, PURPLEHEART, TIGER;
+        MAPLE, SILVERBELL, AMARANTHA, TIGER;
 
         public final int meta;
 

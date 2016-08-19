@@ -9,6 +9,6 @@ public class BlockBlazeHopper extends BlockHopper
     public BlockBlazeHopper()
     {
         super();
-        this.setCreativeTab(NaturaRegistry.tabWorld);
+        this.setCreativeTab(NaturaRegistry.tabGeneral);
     }
 }

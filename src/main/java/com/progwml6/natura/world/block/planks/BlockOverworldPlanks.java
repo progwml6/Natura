@@ -28,7 +28,7 @@ public class BlockOverworldPlanks extends EnumBlock<BlockOverworldPlanks.PlankTy
 
     public enum PlankType implements IStringSerializable, EnumBlock.IEnumMeta
     {
-        MAPLE, SILVERBELL, PURPLEHEART, TIGER, WILLOW, EUCALYPTUS, HOPSEED, SAKURA, REDWOOD;
+        MAPLE, SILVERBELL, AMARANTHA, TIGER, WILLOW, EUCALYPTUS, HOPSEED, SAKURA, REDWOOD;
 
         public final int meta;
 

@@ -180,8 +180,8 @@ public class WorldClientProxy extends ClientProxy
         this.registerItemModel(stack, "overworld_sapling_maple");
         stack = new ItemStack(Item.getItemFromBlock(NaturaWorld.overworldSapling), 1, NaturaWorld.overworldSapling.getMetaFromState(NaturaWorld.overworldSapling.getDefaultState().withProperty(BlockOverworldSapling.FOLIAGE, BlockOverworldSapling.SaplingType.SILVERBELL)));
         this.registerItemModel(stack, "overworld_sapling_silverbell");
-        stack = new ItemStack(Item.getItemFromBlock(NaturaWorld.overworldSapling), 1, NaturaWorld.overworldSapling.getMetaFromState(NaturaWorld.overworldSapling.getDefaultState().withProperty(BlockOverworldSapling.FOLIAGE, BlockOverworldSapling.SaplingType.PURPLEHEART)));
-        this.registerItemModel(stack, "overworld_sapling_purpleheart");
+        stack = new ItemStack(Item.getItemFromBlock(NaturaWorld.overworldSapling), 1, NaturaWorld.overworldSapling.getMetaFromState(NaturaWorld.overworldSapling.getDefaultState().withProperty(BlockOverworldSapling.FOLIAGE, BlockOverworldSapling.SaplingType.AMARANTHA)));
+        this.registerItemModel(stack, "overworld_sapling_amarantha");
         stack = new ItemStack(Item.getItemFromBlock(NaturaWorld.overworldSapling), 1, NaturaWorld.overworldSapling.getMetaFromState(NaturaWorld.overworldSapling.getDefaultState().withProperty(BlockOverworldSapling.FOLIAGE, BlockOverworldSapling.SaplingType.TIGER)));
         this.registerItemModel(stack, "overworld_sapling_tiger");
 
