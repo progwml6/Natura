@@ -16,9 +16,9 @@
                     "cross": "natura:blocks/saplings/overworld/silverbell_sapling"
                 }
             },
-            "amarantha": {
+            "amaranth": {
                 "textures": {
-                    "cross": "natura:blocks/saplings/overworld/amarantha_sapling"
+                    "cross": "natura:blocks/saplings/overworld/amaranth_sapling"
                 }
             },
             "tiger": {

@@ -11,7 +11,7 @@ public class LeavesColorizer
 {
     public static int mapleColor = 0xcc5718;
 
-    public static int amaranthaColor = 10079569;
+    public static int amaranthColor = 10079569;
 
     public static int noColor = 16777215;
 
@@ -25,8 +25,8 @@ public class LeavesColorizer
         {
         case MAPLE:
             return LeavesColorizer.mapleColor;
-        case AMARANTHA:
-            return LeavesColorizer.amaranthaColor;
+        case AMARANTH:
+            return LeavesColorizer.amaranthColor;
         case SILVERBELL:
             return LeavesColorizer.leavesColor;
         case TIGER:
@@ -42,7 +42,7 @@ public class LeavesColorizer
         {
         case MAPLE:
             return LeavesColorizer.mapleColor;
-        case AMARANTHA:
+        case AMARANTH:
             return BiomeColorHelper.getFoliageColorAtPos(access, pos) + 0x222222;
         case SILVERBELL:
             return LeavesColorizer.leavesColor;

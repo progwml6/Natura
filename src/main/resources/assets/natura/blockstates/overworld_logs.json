@@ -24,11 +24,11 @@
                     "side": "natura:blocks/logs/overworld/silverbell_log"
                 }
             },
-            "amarantha": {
+            "amaranth": {
                 "model": "cube_column",
                 "textures": {
-                    "end": "natura:blocks/logs/overworld/amarantha_log_top",
-                    "side": "natura:blocks/logs/overworld/amarantha_log"
+                    "end": "natura:blocks/logs/overworld/amaranth_log_top",
+                    "side": "natura:blocks/logs/overworld/amaranth_log"
                 }
             },
             "tiger": {

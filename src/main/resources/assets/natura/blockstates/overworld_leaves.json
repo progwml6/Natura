@@ -21,10 +21,10 @@
                     "all": "natura:blocks/leaves/overworld/silverbell_leaves"
                 }
             },
-            "amarantha": {
+            "amaranth": {
                 "model": "leaves",
                 "textures": {
-                    "all": "natura:blocks/leaves/overworld/amarantha_leaves"
+                    "all": "natura:blocks/leaves/overworld/amaranth_leaves"
                 }
             },
             "tiger": {

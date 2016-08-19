@@ -97,7 +97,7 @@ public class BlockOverworldLog extends BlockEnumLog<BlockOverworldLog.LogType>
 
     public enum LogType implements IStringSerializable, EnumBlock.IEnumMeta
     {
-        MAPLE, SILVERBELL, AMARANTHA, TIGER;
+        MAPLE, SILVERBELL, AMARANTH, TIGER;
 
         public final int meta;
 

@@ -20,9 +20,9 @@
                     "all": "natura:blocks/planks/overworld/silverbell_planks"
                 }
             },
-            "amarantha": {
+            "amaranth": {
                 "textures": {
-                    "all": "natura:blocks/planks/overworld/amarantha_planks"
+                    "all": "natura:blocks/planks/overworld/amaranth_planks"
                 }
             },
             "tiger": {
