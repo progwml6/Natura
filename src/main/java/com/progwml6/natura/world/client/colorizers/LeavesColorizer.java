@@ -1,7 +1,8 @@
-package com.progwml6.natura.world.client;
+package com.progwml6.natura.world.client.colorizers;
 
-import com.progwml6.natura.world.block.logs.BlockOverworldLog;
-import com.progwml6.natura.world.block.logs.BlockOverworldLog2;
+import com.progwml6.natura.world.block.leaves.overworld.BlockRedwoodLeaves;
+import com.progwml6.natura.world.block.logs.overworld.BlockOverworldLog;
+import com.progwml6.natura.world.block.logs.overworld.BlockOverworldLog2;
 
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
@@ -19,7 +20,7 @@ public class LeavesColorizer
 
     public static int leavesColor = 0xffffff;
 
-    public static int getOverworldColorStatic(BlockOverworldLog.LogType type)
+    public static int getOverworldLeavesColorStatic(BlockOverworldLog.LogType type)
     {
         switch (type)
         {
@@ -36,7 +37,7 @@ public class LeavesColorizer
         }
     }
 
-    public static int getOverworldColorForPos(IBlockAccess access, BlockPos pos, BlockOverworldLog.LogType type)
+    public static int getOverworldLeavesColorForPos(IBlockAccess access, BlockPos pos, BlockOverworldLog.LogType type)
     {
         switch (type)
         {
@@ -53,7 +54,7 @@ public class LeavesColorizer
         }
     }
 
-    public static int getOverworld2ColorStatic(BlockOverworldLog2.LogType type)
+    public static int getSecondOverworldLeavesColorStatic(BlockOverworldLog2.LogType type)
     {
         switch (type)
         {
@@ -70,7 +71,7 @@ public class LeavesColorizer
         }
     }
 
-    public static int getOverworld2ColorForPos(IBlockAccess access, BlockPos pos, BlockOverworldLog2.LogType type)
+    public static int getSecondOverworldLeavesColorForPos(IBlockAccess access, BlockPos pos, BlockOverworldLog2.LogType type)
     {
         switch (type)
         {
@@ -82,6 +83,50 @@ public class LeavesColorizer
             return BiomeColorHelper.getFoliageColorAtPos(access, pos);
         case SAKURA:
             return LeavesColorizer.noColor;
+        default:
+            return LeavesColorizer.leaves2Color;
+        }
+    }
+
+    public static int getRedwoodLeavesColorStatic(BlockRedwoodLeaves.RedwoodType type)
+    {
+        switch (type)
+        {
+        case NORMAL:
+            return LeavesColorizer.leaves2Color;
+        default:
+            return LeavesColorizer.leaves2Color;
+        }
+    }
+
+    public static int getRedwoodLeavesColorForPos(IBlockAccess access, BlockPos pos, BlockRedwoodLeaves.RedwoodType type)
+    {
+        switch (type)
+        {
+        case NORMAL:
+            return BiomeColorHelper.getFoliageColorAtPos(access, pos);
+        default:
+            return LeavesColorizer.leaves2Color;
+        }
+    }
+
+    public static int getNetherLeavesColorStatic(BlockRedwoodLeaves.RedwoodType type)
+    {
+        switch (type)
+        {
+        case NORMAL:
+            return LeavesColorizer.leaves2Color;
+        default:
+            return LeavesColorizer.leaves2Color;
+        }
+    }
+
+    public static int getRedwoodColorForPos(IBlockAccess access, BlockPos pos, BlockRedwoodLeaves.RedwoodType type)
+    {
+        switch (type)
+        {
+        case NORMAL:
+            return BiomeColorHelper.getFoliageColorAtPos(access, pos);
         default:
             return LeavesColorizer.leaves2Color;
         }

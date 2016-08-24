@@ -16,7 +16,6 @@ import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import slimeknights.mantle.pulsar.control.PulseManager;
 
-//@Mod(modid = Util.MODID, name = "Natura", version = "3.0.0", guiFactory = "com.progwml6.natura.common.config.ConfigGui$ConfigGuiFactory", dependencies = "required-after:Forge@[12.16.0.1850,);" + "required-after:mantle@[1.9-0.9.4,)", acceptedMinecraftVersions = "[1.9,]")
 @Mod(modid = Natura.modID, name = Natura.modName, version = Natura.modVersion, guiFactory = "com.progwml6.natura.common.config.ConfigGui$ConfigGuiFactory", dependencies = "required-after:Forge@[12.18.0.1993,);"
         + "required-after:mantle@[1.10-0.10.3,)", acceptedMinecraftVersions = "[1.10, 1.11)")
 public class Natura

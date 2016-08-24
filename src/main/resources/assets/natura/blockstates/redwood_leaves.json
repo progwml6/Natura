@@ -1,0 +1,20 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "transform": "forge:default-block",
+        "model": "leaves",
+        "textures": {
+            "all": "natura:blocks/leaves/overworld/redwood_leaves"
+        }
+    },
+	"variants": {
+        "type": {
+            "normal": {
+                "model": "leaves",
+                "textures": {
+                    "all": "natura:blocks/leaves/overworld/redwood_leaves"
+                }
+            }
+        }
+    }
+}

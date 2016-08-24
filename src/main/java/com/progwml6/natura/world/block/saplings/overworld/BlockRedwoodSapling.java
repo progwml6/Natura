@@ -1,4 +1,4 @@
-package com.progwml6.natura.world.block.saplings;
+package com.progwml6.natura.world.block.saplings.overworld;
 
 import java.util.List;
 import java.util.Locale;
@@ -6,12 +6,7 @@ import java.util.Random;
 
 import javax.annotation.Nonnull;
 
-import com.progwml6.natura.Natura;
 import com.progwml6.natura.library.NaturaRegistry;
-import com.progwml6.natura.world.NaturaWorld;
-import com.progwml6.natura.world.block.logs.BlockOverworldLog2;
-import com.progwml6.natura.world.worldgen.BaseTreeGenerator;
-import com.progwml6.natura.world.worldgen.WillowTreeGenerator;
 
 import net.minecraft.block.BlockSapling;
 import net.minecraft.block.SoundType;
@@ -30,11 +25,11 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.EnumPlantType;
 import slimeknights.mantle.block.EnumBlock;
 
-public class BlockOverworldSapling2 extends BlockSapling
+public class BlockRedwoodSapling extends BlockSapling
 {
     public static PropertyEnum<SaplingType> FOLIAGE = PropertyEnum.create("foliage", SaplingType.class);
 
-    public BlockOverworldSapling2()
+    public BlockRedwoodSapling()
     {
         this.setCreativeTab(NaturaRegistry.tabWorld);
         this.setDefaultState(this.blockState.getBaseState());
@@ -116,54 +111,123 @@ public class BlockOverworldSapling2 extends BlockSapling
     @Override
     public void generateTree(@Nonnull World worldIn, @Nonnull BlockPos pos, @Nonnull IBlockState state, @Nonnull Random rand)
     {
-        if (!net.minecraftforge.event.terraingen.TerrainGen.saplingGrowTree(worldIn, rand, pos))
+        /**if (!net.minecraftforge.event.terraingen.TerrainGen.saplingGrowTree(worldIn, rand, pos))
         {
             return;
         }
+        
         BaseTreeGenerator gen = new BaseTreeGenerator();
+        
         IBlockState log;
         IBlockState leaves;
-
+        
+        int x = 0;
+        int z = 0;
+        boolean correctNumber = false;
+        
         switch (state.getValue(FOLIAGE))
         {
-        case WILLOW:
-            log = NaturaWorld.overworldLog2.getDefaultState().withProperty(BlockOverworldLog2.TYPE, BlockOverworldLog2.LogType.WILLOW);
-            leaves = NaturaWorld.overworldLeaves2.getDefaultState().withProperty(BlockOverworldLog2.TYPE, BlockOverworldLog2.LogType.WILLOW);
-
-            gen = new WillowTreeGenerator(4, 5, log, leaves);
-
-            break;
-        case EUCALYPTUS:
-            break;
-        case HOPSEED:
-            break;
-        case SAKURA:
+        case REDWOOD:
+            int numSaplings = this.checkRedwoodSaplings(worldIn, pos);
+        
+            if (numSaplings >= 40)
+            {
+                for (x = -4; x <= 4; x++)
+                {
+                    for (z = -4; z <= 4; z++)
+                    {
+                        if (this.isRedwoodComplete(worldIn, pos.add(x, 0, z), SaplingType.REDWOOD))
+                        {
+                            worldIn.setBlockToAir(pos);
+                        }
+                    }
+                }
+                break;
+            }
             break;
         default:
-            Natura.log.warn("BlockOverworldLog2 Warning: Invalid sapling meta/foliage, " + state.getValue(FOLIAGE) + ". Please report!");
+            Natura.log.warn("BlockRedwoodSapling Warning: Invalid sapling meta/foliage, " + state.getValue(FOLIAGE) + ". Please report!");
             break;
         }
-
-        // replace sapling with air
-        worldIn.setBlockToAir(pos);
-
+        
+        // replace saplings with air
+        for (x = -4; x <= 4; x++)
+        {
+            for (z = -4; z <= 4; z++)
+            {
+                if (this.isRedwoodComplete(worldIn, pos.add(x, 0, z), SaplingType.REDWOOD))
+                {
+                    worldIn.setBlockToAir(pos.add(x, 0, z));
+                }
+                System.out.println(pos.add(x, 0, z));
+            }
+        }
+        
         // try generating
         gen.generateTree(rand, worldIn, pos);
-
+        
         // check if it generated
-        if (worldIn.isAirBlock(pos))
+        for (x = -4; x <= 4; x++)
         {
-            // nope, set sapling again
-            worldIn.setBlockState(pos, state, 4);
+            for (z = -4; z <= 4; z++)
+            {
+                if (worldIn.isAirBlock(pos))
+                {
+                    worldIn.setBlockState(pos.add(x, 0, z), state, 4);
+                }
+            }
+        }
+        
+        /*for (x = -4; x <= 4; x++)
+        {
+            for (z = -4; z <= 4; z++)
+            {
+                if (worldIn.isAirBlock(pos.add(x, 0, z)))
+                {
+                    // nope, set sapling again
+                    worldIn.setBlockState(pos.add(x, 0, z), state, 4);
+                }
+            }
+        }*
+        
+        System.out.println(state.getValue(FOLIAGE));
+        System.out.println(state.getValue(STAGE));*/
+        // TODO: FIX REDWOOD
+    }
+
+    /**
+     * Check whether the given BlockPos has a Sapling of the given type
+     */
+    public int checkRedwoodSaplings(World worldIn, BlockPos pos)
+    {
+        int numSaplings = 0;
+
+        for (int x = -3; x <= 3; x++)
+        {
+            for (int z = -3; z <= 3; z++)
+            {
+                if (this.isRedwoodComplete(worldIn, pos.add(x, 0, z), SaplingType.REDWOOD))
+                {
+                    numSaplings++;
+                }
+            }
         }
 
-        System.out.println(state.getValue(FOLIAGE));
-        System.out.println(state.getValue(STAGE));
+        return numSaplings;
+    }
+
+    /**
+     * Check whether the given BlockPos has a Sapling of the given type
+     */
+    public boolean isRedwoodComplete(World worldIn, BlockPos pos, SaplingType type)
+    {
+        IBlockState iblockstate = worldIn.getBlockState(pos);
+        return iblockstate.getBlock() == this && iblockstate.getValue(FOLIAGE) == type;
     }
 
     public enum SaplingType implements IStringSerializable, EnumBlock.IEnumMeta
     {
-        WILLOW, EUCALYPTUS, HOPSEED, SAKURA;
+        REDWOOD;
 
         public final int meta;
 

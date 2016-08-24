@@ -1,4 +1,4 @@
-package com.progwml6.natura.world.block.leaves;
+package com.progwml6.natura.world.block.leaves.overworld;
 
 import java.util.List;
 import java.util.Random;
@@ -8,8 +8,8 @@ import javax.annotation.Nonnull;
 import com.google.common.collect.Lists;
 import com.progwml6.natura.library.NaturaRegistry;
 import com.progwml6.natura.world.NaturaWorld;
-import com.progwml6.natura.world.block.logs.BlockOverworldLog2;
-import com.progwml6.natura.world.block.logs.BlockOverworldLog2.LogType;
+import com.progwml6.natura.world.block.logs.overworld.BlockOverworldLog2;
+import com.progwml6.natura.world.block.logs.overworld.BlockOverworldLog2.LogType;
 
 import net.minecraft.block.BlockLeaves;
 import net.minecraft.block.BlockPlanks;

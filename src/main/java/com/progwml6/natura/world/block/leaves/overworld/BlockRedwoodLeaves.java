@@ -1,6 +1,7 @@
-package com.progwml6.natura.world.block.leaves;
+package com.progwml6.natura.world.block.leaves.overworld;
 
 import java.util.List;
+import java.util.Locale;
 import java.util.Random;
 
 import javax.annotation.Nonnull;
@@ -8,11 +9,11 @@ import javax.annotation.Nonnull;
 import com.google.common.collect.Lists;
 import com.progwml6.natura.library.NaturaRegistry;
 import com.progwml6.natura.world.NaturaWorld;
-import com.progwml6.natura.world.block.logs.BlockOverworldLog;
-import com.progwml6.natura.world.block.logs.BlockOverworldLog.LogType;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockLeaves;
 import net.minecraft.block.BlockPlanks;
+import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
@@ -21,15 +22,20 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.BlockPos.MutableBlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import slimeknights.mantle.block.EnumBlock;
 
-public class BlockOverworldLeaves extends BlockLeaves
+public class BlockRedwoodLeaves extends BlockLeaves
 {
-    public BlockOverworldLeaves()
+    public final static PropertyEnum<RedwoodType> TYPE = PropertyEnum.create("type", RedwoodType.class);
+
+    public BlockRedwoodLeaves()
     {
         this.setCreativeTab(NaturaRegistry.tabWorld);
 
@@ -41,16 +47,49 @@ public class BlockOverworldLeaves extends BlockLeaves
     @Override
     public void updateTick(World worldIn, @Nonnull BlockPos pos, @Nonnull IBlockState state, Random rand)
     {
-        super.updateTick(worldIn, pos, state, rand);
+        if (!worldIn.isRemote)
+        {
+            if (state.getValue(CHECK_DECAY).booleanValue() && state.getValue(DECAYABLE).booleanValue())
+            {
+                boolean nearbyTree = false;
+                byte range = 4;
+
+                for (int posX = pos.getX() - range; posX <= pos.getX() + range; posX++)
+                {
+                    for (int posY = pos.getY() - range; posY <= pos.getY() + range; posY++)
+                    {
+                        for (int posZ = pos.getZ() - range; posZ <= pos.getZ() + range; posZ++)
+                        {
+                            MutableBlockPos mutableblockpos = new MutableBlockPos();
+
+                            IBlockState iblockstate = worldIn.getBlockState(mutableblockpos.setPos(posX, posY, posZ));
+                            Block block = iblockstate.getBlock();
+
+                            if (block != null && block.canSustainLeaves(iblockstate, worldIn, pos.add(posX, posY, posZ)))
+                                nearbyTree = true;
+                        }
+                    }
+                }
+
+                if (!nearbyTree)
+                    this.destroy(worldIn, pos);
+            }
+        }
+    }
+
+    private void destroy(World worldIn, BlockPos pos)
+    {
+        this.dropBlockAsItem(worldIn, pos, worldIn.getBlockState(pos), 0);
+        worldIn.setBlockToAir(pos);
     }
 
     @SideOnly(Side.CLIENT)
     @Override
     public void getSubBlocks(@Nonnull Item itemIn, CreativeTabs tab, List<ItemStack> list)
     {
-        for (LogType type : LogType.values())
+        for (RedwoodType type : RedwoodType.values())
         {
-            list.add(new ItemStack(this, 1, this.getMetaFromState(this.getDefaultState().withProperty(BlockOverworldLog.TYPE, type))));
+            list.add(new ItemStack(this, 1, this.getMetaFromState(this.getDefaultState().withProperty(TYPE, type))));
         }
     }
 
@@ -87,7 +126,7 @@ public class BlockOverworldLeaves extends BlockLeaves
     @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune)
     {
-        return Item.getItemFromBlock(NaturaWorld.overworldSapling);
+        return Item.getItemFromBlock(NaturaWorld.redwoodSapling);
     }
 
     @Override
@@ -111,7 +150,7 @@ public class BlockOverworldLeaves extends BlockLeaves
                     stack = new ItemStack(Items.SLIME_BALL);
                 }
             }
-
+        
             if (stack != null)
             {
                 spawnAsEntity(worldIn, pos, stack);
@@ -123,21 +162,21 @@ public class BlockOverworldLeaves extends BlockLeaves
     @Override
     public int damageDropped(IBlockState state)
     {
-        return (state.getValue(BlockOverworldLog.TYPE)).ordinal() & 3; // only first 2 bits
+        return (state.getValue(TYPE)).ordinal() & 3; // only first 2 bits
     }
 
     // item dropped on silktouching
     @Override
     protected ItemStack createStackedBlock(@Nonnull IBlockState state)
     {
-        return new ItemStack(Item.getItemFromBlock(this), 1, (state.getValue(BlockOverworldLog.TYPE)).ordinal() & 3);
+        return new ItemStack(Item.getItemFromBlock(this), 1, (state.getValue(TYPE)).ordinal() & 3);
     }
 
     @Nonnull
     @Override
     protected BlockStateContainer createBlockState()
     {
-        return new BlockStateContainer(this, BlockOverworldLog.TYPE, CHECK_DECAY, DECAYABLE);
+        return new BlockStateContainer(this, TYPE, CHECK_DECAY, DECAYABLE);
     }
 
     @Nonnull
@@ -145,13 +184,13 @@ public class BlockOverworldLeaves extends BlockLeaves
     public IBlockState getStateFromMeta(int meta)
     {
         int type = meta % 4;
-        if (type < 0 || type >= LogType.values().length)
+        if (type < 0 || type >= RedwoodType.values().length)
         {
             type = 0;
         }
-        LogType logtype = LogType.values()[type];
+        RedwoodType logtype = RedwoodType.values()[type];
         return this.getDefaultState()
-                .withProperty(BlockOverworldLog.TYPE, logtype)
+                .withProperty(TYPE, logtype)
                 .withProperty(DECAYABLE, (meta & 4) == 0)
                 .withProperty(CHECK_DECAY, (meta & 8) > 0);
     }
@@ -159,7 +198,7 @@ public class BlockOverworldLeaves extends BlockLeaves
     @Override
     public int getMetaFromState(IBlockState state)
     {
-        int meta = (state.getValue(BlockOverworldLog.TYPE)).ordinal() & 3; // only first 2 bits
+        int meta = (state.getValue(TYPE)).ordinal() & 3; // only first 2 bits
 
         if (!state.getValue(DECAYABLE))
         {
@@ -194,4 +233,27 @@ public class BlockOverworldLeaves extends BlockLeaves
         return true;
     }
 
+    public enum RedwoodType implements IStringSerializable, EnumBlock.IEnumMeta
+    {
+        NORMAL;
+
+        public final int meta;
+
+        RedwoodType()
+        {
+            this.meta = this.ordinal();
+        }
+
+        @Override
+        public String getName()
+        {
+            return this.toString().toLowerCase(Locale.US);
+        }
+
+        @Override
+        public int getMeta()
+        {
+            return this.meta;
+        }
+    }
 }

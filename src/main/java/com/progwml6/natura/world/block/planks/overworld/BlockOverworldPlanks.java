@@ -1,4 +1,4 @@
-package com.progwml6.natura.world.block.planks;
+package com.progwml6.natura.world.block.planks.overworld;
 
 import java.util.Locale;
 

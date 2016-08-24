@@ -35,12 +35,14 @@ public class NaturaCommons extends NaturaPulse
     public static CommonProxy proxy;
 
     //@formatter:off
+    // Blocks
+    public static BlockBlazeHopper blaze_hopper;
+    
     // Items
     public static ItemMetaDynamic materials;
     public static ItemMetaDynamic empty_bowls;
     public static ItemEdible edibles;
     public static ItemEdibleSoup soups;
-    public static BlockBlazeHopper blaze_hopper;
 
     // Material Itemstacks
     public static ItemStack barleyPlant;
@@ -80,11 +82,14 @@ public class NaturaCommons extends NaturaPulse
     @Subscribe
     public void preInit(FMLPreInitializationEvent event)
     {
+        // Blocks
+        blaze_hopper = registerBlock(new BlockBlazeHopper(), "blaze_hopper");
+
+        // Items
         materials = registerItem(new ItemMetaDynamic(), "materials");
         empty_bowls = registerItem(new ItemMetaDynamic(), "empty_bowls");
         edibles = registerItem(new ItemEdible(), "edibles");
         soups = registerItem(new ItemEdibleSoup(), "soups");
-        blaze_hopper = registerBlock(new BlockBlazeHopper(), "blaze_hopper");
 
         materials.setCreativeTab(NaturaRegistry.tabGeneral);
         empty_bowls.setCreativeTab(NaturaRegistry.tabGeneral);

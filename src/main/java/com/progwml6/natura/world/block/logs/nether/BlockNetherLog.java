@@ -1,24 +1,53 @@
-package com.progwml6.natura.world.block.logs;
+package com.progwml6.natura.world.block.logs.nether;
 
 import java.util.Locale;
+
+import com.progwml6.natura.world.block.logs.BlockEnumLog;
 
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IStringSerializable;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.EnumDifficulty;
+import net.minecraft.world.World;
 import slimeknights.mantle.block.EnumBlock;
 
-public class BlockOverworldLog2 extends BlockEnumLog<BlockOverworldLog2.LogType>
+public class BlockNetherLog extends BlockEnumLog<BlockNetherLog.LogType>
 {
-    public static PropertyEnum<BlockOverworldLog2.LogType> TYPE = PropertyEnum.create("type", BlockOverworldLog2.LogType.class);
+    public static PropertyEnum<BlockNetherLog.LogType> TYPE = PropertyEnum.create("type", BlockNetherLog.LogType.class);
 
-    public BlockOverworldLog2()
+    public BlockNetherLog()
     {
-        super(TYPE, BlockOverworldLog2.LogType.class);
+        super(TYPE, BlockNetherLog.LogType.class);
+
+        this.setHardness(3.5F);
+        this.setResistance(40F);
+
         this.setDefaultState(this.blockState.getBaseState().withProperty(LOG_AXIS, BlockEnumLog.EnumAxis.Y));
+    }
+
+    @Override
+    public void onBlockHarvested(World worldIn, BlockPos pos, IBlockState state, EntityPlayer player)
+    {
+        if (state.getValue(BlockNetherLog.TYPE) == BlockNetherLog.LogType.FUSEWOOD)
+        {
+            if (worldIn.getDifficulty() == EnumDifficulty.HARD)
+            {
+                worldIn.createExplosion(null, pos.getX(), pos.getY(), pos.getZ(), 2.0f, false);
+            }
+            else if (worldIn.getDifficulty() == EnumDifficulty.NORMAL || worldIn.getDifficulty() == EnumDifficulty.EASY)
+            {
+                worldIn.createExplosion(null, pos.getX(), pos.getY(), pos.getZ(), 1.75f, false);
+            }
+            else if (worldIn.getDifficulty() == EnumDifficulty.PEACEFUL)
+            {
+            }
+        }
     }
 
     /**
@@ -96,7 +125,7 @@ public class BlockOverworldLog2 extends BlockEnumLog<BlockOverworldLog2.LogType>
 
     public enum LogType implements IStringSerializable, EnumBlock.IEnumMeta
     {
-        WILLOW, EUCALYPTUS, HOPSEED, SAKURA;
+        GHOSTWOOD, DARKWOOD, FUSEWOOD;
 
         public final int meta;
 
@@ -117,4 +146,5 @@ public class BlockOverworldLog2 extends BlockEnumLog<BlockOverworldLog2.LogType>
             return this.meta;
         }
     }
+
 }

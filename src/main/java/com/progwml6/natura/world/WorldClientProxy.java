@@ -5,12 +5,18 @@ import javax.annotation.Nonnull;
 import com.progwml6.natura.common.ClientProxy;
 import com.progwml6.natura.world.block.grass.BlockColoredGrass;
 import com.progwml6.natura.world.block.grass.BlockColoredGrassSlab;
-import com.progwml6.natura.world.block.logs.BlockOverworldLog;
-import com.progwml6.natura.world.block.logs.BlockOverworldLog2;
-import com.progwml6.natura.world.block.saplings.BlockOverworldSapling;
-import com.progwml6.natura.world.block.saplings.BlockOverworldSapling2;
-import com.progwml6.natura.world.client.GrassColorizer;
-import com.progwml6.natura.world.client.LeavesColorizer;
+import com.progwml6.natura.world.block.leaves.nether.BlockNetherLeaves;
+import com.progwml6.natura.world.block.leaves.nether.BlockNetherLeaves2;
+import com.progwml6.natura.world.block.leaves.overworld.BlockRedwoodLeaves;
+import com.progwml6.natura.world.block.logs.nether.BlockNetherLog;
+import com.progwml6.natura.world.block.logs.overworld.BlockOverworldLog;
+import com.progwml6.natura.world.block.logs.overworld.BlockOverworldLog2;
+import com.progwml6.natura.world.block.saplings.nether.BlockNetherSapling;
+import com.progwml6.natura.world.block.saplings.overworld.BlockOverworldSapling;
+import com.progwml6.natura.world.block.saplings.overworld.BlockOverworldSapling2;
+import com.progwml6.natura.world.block.saplings.overworld.BlockRedwoodSapling;
+import com.progwml6.natura.world.client.colorizers.GrassColorizer;
+import com.progwml6.natura.world.client.colorizers.LeavesColorizer;
 
 import net.minecraft.block.BlockLeaves;
 import net.minecraft.block.BlockSapling;
@@ -89,10 +95,10 @@ public class WorldClientProxy extends ClientProxy
 
                 if (pos == null)
                 {
-                    return LeavesColorizer.getOverworldColorStatic(type);
+                    return LeavesColorizer.getOverworldLeavesColorStatic(type);
                 }
 
-                return LeavesColorizer.getOverworldColorForPos(access, pos, type);
+                return LeavesColorizer.getOverworldLeavesColorForPos(access, pos, type);
             }
         }, NaturaWorld.overworldLeaves);
 
@@ -105,12 +111,46 @@ public class WorldClientProxy extends ClientProxy
 
                 if (pos == null)
                 {
-                    return LeavesColorizer.getOverworld2ColorStatic(type);
+                    return LeavesColorizer.getSecondOverworldLeavesColorStatic(type);
                 }
 
-                return LeavesColorizer.getOverworld2ColorForPos(access, pos, type);
+                return LeavesColorizer.getSecondOverworldLeavesColorForPos(access, pos, type);
             }
         }, NaturaWorld.overworldLeaves2);
+
+        blockColors.registerBlockColorHandler(new IBlockColor()
+        {
+            @Override
+            public int colorMultiplier(@Nonnull IBlockState state, IBlockAccess access, BlockPos pos, int tintIndex)
+            {
+                BlockRedwoodLeaves.RedwoodType type = state.getValue(BlockRedwoodLeaves.TYPE);
+
+                if (pos == null)
+                {
+                    return LeavesColorizer.getRedwoodLeavesColorStatic(type);
+                }
+
+                return LeavesColorizer.getRedwoodLeavesColorForPos(access, pos, type);
+            }
+        }, NaturaWorld.redwoodLeaves);
+
+        blockColors.registerBlockColorHandler(new IBlockColor()
+        {
+            @Override
+            public int colorMultiplier(@Nonnull IBlockState state, IBlockAccess access, BlockPos pos, int tintIndex)
+            {
+                return LeavesColorizer.noColor;
+            }
+        }, NaturaWorld.netherLeaves);
+
+        blockColors.registerBlockColorHandler(new IBlockColor()
+        {
+            @Override
+            public int colorMultiplier(@Nonnull IBlockState state, IBlockAccess access, BlockPos pos, int tintIndex)
+            {
+                return LeavesColorizer.noColor;
+            }
+        }, NaturaWorld.netherLeaves2);
 
         minecraft.getItemColors().registerItemColorHandler(new IItemColor()
         {
@@ -121,7 +161,7 @@ public class WorldClientProxy extends ClientProxy
                 IBlockState iblockstate = ((ItemBlock) stack.getItem()).getBlock().getStateFromMeta(stack.getMetadata());
                 return blockColors.colorMultiplier(iblockstate, null, null, tintIndex);
             }
-        }, NaturaWorld.overworldLeaves, NaturaWorld.overworldLeaves2, NaturaWorld.coloredGrass, NaturaWorld.coloredGrassSlab);
+        }, NaturaWorld.overworldLeaves, NaturaWorld.overworldLeaves2, NaturaWorld.redwoodLeaves, NaturaWorld.netherLeaves, NaturaWorld.netherLeaves2, NaturaWorld.coloredGrass, NaturaWorld.coloredGrassSlab);
 
         super.init();
     }
@@ -132,15 +172,18 @@ public class WorldClientProxy extends ClientProxy
         // blocks
         ModelLoader.setCustomStateMapper(NaturaWorld.overworldLeaves, (new StateMap.Builder()).ignore(BlockLeaves.CHECK_DECAY, BlockLeaves.DECAYABLE).build());
         ModelLoader.setCustomStateMapper(NaturaWorld.overworldLeaves2, (new StateMap.Builder()).ignore(BlockLeaves.CHECK_DECAY, BlockLeaves.DECAYABLE).build());
+        ModelLoader.setCustomStateMapper(NaturaWorld.redwoodLeaves, (new StateMap.Builder()).ignore(BlockLeaves.CHECK_DECAY, BlockLeaves.DECAYABLE).build());
+        ModelLoader.setCustomStateMapper(NaturaWorld.netherLeaves, (new StateMap.Builder()).ignore(BlockLeaves.CHECK_DECAY, BlockLeaves.DECAYABLE).build());
+        ModelLoader.setCustomStateMapper(NaturaWorld.netherLeaves2, (new StateMap.Builder()).ignore(BlockLeaves.CHECK_DECAY, BlockLeaves.DECAYABLE).build());
+
         ModelLoader.setCustomStateMapper(NaturaWorld.overworldSapling, (new StateMap.Builder()).ignore(BlockOverworldSapling.STAGE, BlockSapling.TYPE).build());
         ModelLoader.setCustomStateMapper(NaturaWorld.overworldSapling2, (new StateMap.Builder()).ignore(BlockOverworldSapling2.STAGE, BlockSapling.TYPE).build());
-        /**ModelLoader.setCustomStateMapper(NaturaWorld.redwoodSapling, (new StateMap.Builder()).ignore(BlockRedwoodSapling.STAGE, BlockSapling.TYPE).build());
-         * TODO: FIX REDWOOD
-         */
+        ModelLoader.setCustomStateMapper(NaturaWorld.redwoodSapling, (new StateMap.Builder()).ignore(BlockRedwoodSapling.STAGE, BlockSapling.TYPE).build());
+        ModelLoader.setCustomStateMapper(NaturaWorld.netherSapling, (new StateMap.Builder()).ignore(BlockNetherSapling.STAGE, BlockSapling.TYPE).build());
 
-        this.registerItemBlockMeta(NaturaWorld.cloudBlock);
         this.registerItemBlockMeta(NaturaWorld.redwoodLog);
         this.registerItemBlockMeta(NaturaWorld.overworldPlanks);
+        this.registerItemBlockMeta(NaturaWorld.netherPlanks);
         this.registerItemBlockMeta(NaturaWorld.coloredGrass);
         this.registerItemBlockMeta(NaturaWorld.coloredGrassSlab);
 
@@ -161,6 +204,15 @@ public class WorldClientProxy extends ClientProxy
             ModelLoader.setCustomModelResourceLocation(overworld_log2, type.meta, new ModelResourceLocation(overworld_log2.getRegistryName(), variant));
         }
 
+        Item nether_log = Item.getItemFromBlock(NaturaWorld.netherLog);
+        for (BlockNetherLog.LogType type : BlockNetherLog.LogType.values())
+        {
+            String variant = String.format("%s=%s,%s=%s", BlockNetherLog.LOG_AXIS.getName(),
+                    BlockNetherLog.LOG_AXIS.getName(BlockNetherLog.EnumAxis.Y), BlockNetherLog.TYPE.getName(),
+                    BlockNetherLog.TYPE.getName(type));
+            ModelLoader.setCustomModelResourceLocation(nether_log, type.meta, new ModelResourceLocation(nether_log.getRegistryName(), variant));
+        }
+
         // leaves
         Item overworld_leaves = Item.getItemFromBlock(NaturaWorld.overworldLeaves);
         for (BlockOverworldLog.LogType type : BlockOverworldLog.LogType.values())
@@ -175,6 +227,29 @@ public class WorldClientProxy extends ClientProxy
             String variant = String.format("%s=%s", BlockOverworldLog2.TYPE.getName(), BlockOverworldLog2.TYPE.getName(type));
             ModelLoader.setCustomModelResourceLocation(overworld_leaves2, type.getMeta(), new ModelResourceLocation(overworld_leaves2.getRegistryName(), variant));
         }
+
+        Item redwood_leaves = Item.getItemFromBlock(NaturaWorld.redwoodLeaves);
+        for (BlockRedwoodLeaves.RedwoodType type : BlockRedwoodLeaves.RedwoodType.values())
+        {
+            String variant = String.format("%s=%s", BlockRedwoodLeaves.TYPE.getName(), BlockRedwoodLeaves.TYPE.getName(type));
+            ModelLoader.setCustomModelResourceLocation(redwood_leaves, type.getMeta(), new ModelResourceLocation(redwood_leaves.getRegistryName(), variant));
+        }
+
+        Item nether_leaves = Item.getItemFromBlock(NaturaWorld.netherLeaves);
+        for (BlockNetherLeaves.LeavesType type : BlockNetherLeaves.LeavesType.values())
+        {
+            String variant = String.format("%s=%s", BlockNetherLeaves.TYPE.getName(), BlockNetherLeaves.TYPE.getName(type));
+            ModelLoader.setCustomModelResourceLocation(nether_leaves, type.getMeta(), new ModelResourceLocation(nether_leaves.getRegistryName(), variant));
+        }
+
+        Item nether_leaves2 = Item.getItemFromBlock(NaturaWorld.netherLeaves2);
+        for (BlockNetherLeaves2.LeavesType type : BlockNetherLeaves2.LeavesType.values())
+        {
+            String variant = String.format("%s=%s", BlockNetherLeaves2.TYPE.getName(), BlockNetherLeaves2.TYPE.getName(type));
+            ModelLoader.setCustomModelResourceLocation(nether_leaves2, type.getMeta(), new ModelResourceLocation(nether_leaves2.getRegistryName(), variant));
+        }
+
+        // saplings
 
         ItemStack stack = new ItemStack(Item.getItemFromBlock(NaturaWorld.overworldSapling), 1, NaturaWorld.overworldSapling.getMetaFromState(NaturaWorld.overworldSapling.getDefaultState().withProperty(BlockOverworldSapling.FOLIAGE, BlockOverworldSapling.SaplingType.MAPLE)));
         this.registerItemModel(stack, "overworld_sapling_maple");
@@ -194,9 +269,17 @@ public class WorldClientProxy extends ClientProxy
         stack = new ItemStack(Item.getItemFromBlock(NaturaWorld.overworldSapling2), 1, NaturaWorld.overworldSapling2.getMetaFromState(NaturaWorld.overworldSapling2.getDefaultState().withProperty(BlockOverworldSapling2.FOLIAGE, BlockOverworldSapling2.SaplingType.SAKURA)));
         this.registerItemModel(stack, "overworld_sapling_sakura");
 
-        /**stack = new ItemStack(Item.getItemFromBlock(NaturaWorld.redwoodSapling), 1, NaturaWorld.redwoodSapling.getMetaFromState(NaturaWorld.redwoodSapling.getDefaultState().withProperty(BlockRedwoodSapling.FOLIAGE, BlockRedwoodSapling.SaplingType.REDWOOD)));
+        stack = new ItemStack(Item.getItemFromBlock(NaturaWorld.redwoodSapling), 1, NaturaWorld.redwoodSapling.getMetaFromState(NaturaWorld.redwoodSapling.getDefaultState().withProperty(BlockRedwoodSapling.FOLIAGE, BlockRedwoodSapling.SaplingType.REDWOOD)));
         this.registerItemModel(stack, "overworld_sapling_redwood");
-        TODO: FIX REDWOOD
-        */
+
+        stack = new ItemStack(Item.getItemFromBlock(NaturaWorld.netherSapling), 1, NaturaWorld.netherSapling.getMetaFromState(NaturaWorld.netherSapling.getDefaultState().withProperty(BlockNetherSapling.FOLIAGE, BlockNetherSapling.SaplingType.GHOSTWOOD)));
+        this.registerItemModel(stack, "nether_sapling_ghostwood");
+        stack = new ItemStack(Item.getItemFromBlock(NaturaWorld.netherSapling), 1, NaturaWorld.netherSapling.getMetaFromState(NaturaWorld.netherSapling.getDefaultState().withProperty(BlockNetherSapling.FOLIAGE, BlockNetherSapling.SaplingType.BLOODWOOD)));
+        this.registerItemModel(stack, "nether_sapling_bloodwood");
+        stack = new ItemStack(Item.getItemFromBlock(NaturaWorld.netherSapling), 1, NaturaWorld.netherSapling.getMetaFromState(NaturaWorld.netherSapling.getDefaultState().withProperty(BlockNetherSapling.FOLIAGE, BlockNetherSapling.SaplingType.FUSEWOOD)));
+        this.registerItemModel(stack, "nether_sapling_fusewood");
+        stack = new ItemStack(Item.getItemFromBlock(NaturaWorld.netherSapling), 1, NaturaWorld.netherSapling.getMetaFromState(NaturaWorld.netherSapling.getDefaultState().withProperty(BlockNetherSapling.FOLIAGE, BlockNetherSapling.SaplingType.DARKWOOD)));
+        this.registerItemModel(stack, "nether_sapling_darkwood");
+
     }
 }

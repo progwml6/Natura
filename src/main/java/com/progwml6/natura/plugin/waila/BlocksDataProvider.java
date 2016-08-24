@@ -1,11 +1,17 @@
 package com.progwml6.natura.plugin.waila;
 
+import static com.progwml6.natura.world.NaturaWorld.netherLeaves;
+import static com.progwml6.natura.world.NaturaWorld.netherLeaves2;
+import static com.progwml6.natura.world.NaturaWorld.netherLog;
+import static com.progwml6.natura.world.NaturaWorld.netherSapling;
 import static com.progwml6.natura.world.NaturaWorld.overworldLeaves;
 import static com.progwml6.natura.world.NaturaWorld.overworldLeaves2;
 import static com.progwml6.natura.world.NaturaWorld.overworldLog;
 import static com.progwml6.natura.world.NaturaWorld.overworldLog2;
 import static com.progwml6.natura.world.NaturaWorld.overworldSapling;
 import static com.progwml6.natura.world.NaturaWorld.overworldSapling2;
+import static com.progwml6.natura.world.NaturaWorld.redwoodLeaves;
+import static com.progwml6.natura.world.NaturaWorld.redwoodSapling;
 
 import java.util.List;
 
@@ -31,12 +37,17 @@ public class BlocksDataProvider extends NaturaPulse implements IWailaDataProvide
 
         if (isWorldLoaded())
         {
-            if (block == overworldLog || block == overworldLog2 || block == overworldLeaves || block == overworldLeaves2)
+            if (block == overworldLog || block == overworldLog2 || block == overworldLeaves || block == netherLog)
             {
                 return new ItemStack(block, 1, accessor.getMetadata() % 4);
             }
 
-            if (block == overworldSapling || block == overworldSapling2)// || block == redwoodSapling) TODO: FIX REDWOOD
+            if (block == overworldLeaves || block == overworldLeaves2 || block == redwoodLeaves || block == netherLeaves || block == netherLeaves2)
+            {
+                return new ItemStack(block, 1, accessor.getMetadata() % 4);
+            }
+
+            if (block == overworldSapling || block == overworldSapling2 || block == redwoodSapling || block == netherSapling)
             {
                 return new ItemStack(block, 1, accessor.getMetadata() % 8);
             }

@@ -1,6 +1,9 @@
-package com.progwml6.natura.world.block.logs;
+package com.progwml6.natura.world.block.logs.overworld;
 
 import java.util.Locale;
+
+import com.progwml6.natura.world.block.logs.BlockEnumLog;
+import com.progwml6.natura.world.block.logs.BlockEnumLog.EnumAxis;
 
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyEnum;
@@ -11,14 +14,13 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.IStringSerializable;
 import slimeknights.mantle.block.EnumBlock;
 
-public class BlockOverworldLog extends BlockEnumLog<BlockOverworldLog.LogType>
+public class BlockOverworldLog2 extends BlockEnumLog<BlockOverworldLog2.LogType>
 {
-    public static PropertyEnum<BlockOverworldLog.LogType> TYPE = PropertyEnum.create("type", BlockOverworldLog.LogType.class);
+    public static PropertyEnum<BlockOverworldLog2.LogType> TYPE = PropertyEnum.create("type", BlockOverworldLog2.LogType.class);
 
-    public BlockOverworldLog()
+    public BlockOverworldLog2()
     {
-        super(TYPE, BlockOverworldLog.LogType.class);
-
+        super(TYPE, BlockOverworldLog2.LogType.class);
         this.setDefaultState(this.blockState.getBaseState().withProperty(LOG_AXIS, BlockEnumLog.EnumAxis.Y));
     }
 
@@ -97,7 +99,7 @@ public class BlockOverworldLog extends BlockEnumLog<BlockOverworldLog.LogType>
 
     public enum LogType implements IStringSerializable, EnumBlock.IEnumMeta
     {
-        MAPLE, SILVERBELL, AMARANTH, TIGER;
+        WILLOW, EUCALYPTUS, HOPSEED, SAKURA;
 
         public final int meta;
 

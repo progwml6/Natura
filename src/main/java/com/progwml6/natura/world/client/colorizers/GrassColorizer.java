@@ -1,4 +1,4 @@
-package com.progwml6.natura.world.client;
+package com.progwml6.natura.world.client.colorizers;
 
 import java.io.IOException;
 

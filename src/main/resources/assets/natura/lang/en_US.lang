@@ -74,6 +74,9 @@ tile.natura.redwood_logs.heart.tooltip=Heart of the tree
 tile.natura.redwood_logs.root.name=Redwood Root
 tile.natura.redwood_logs.root.tooltip=Root of the tree
 
+tile.natura.redwood_leaves.normal.name=Redwood Leaves
+tile.natura.redwood_leaves.normal.tooltip=Giant Sequoia
+
 tile.natura.redwood_sapling.redwood.name=Redwood Sapling
 tile.natura.redwood_sapling.redwood.tooltip=Plant these in a 7x7\nIt takes days to grow
 
@@ -103,6 +106,45 @@ tile.natura.overworld_planks.hopseed.name=Hopseed Planks
 tile.natura.overworld_planks.hopseed.tooltip=Ascended Glitch
 tile.natura.overworld_planks.redwood.name=Redwood Planks
 tile.natura.overworld_planks.redwood.tooltip=Giant Sequoia
+
+tile.natura.nether_logs.ghostwood.name=Ghostwood
+tile.natura.nether_logs.ghostwood.tooltip=Nether Tree\nPale as a ghost
+tile.natura.nether_logs.darkwood.name=Darkwood
+tile.natura.nether_logs.darkwood.tooltip=Nether Tree
+tile.natura.nether_logs.fusewood.name=Fusewood
+tile.natura.nether_logs.fusewood.tooltip=Nether Tree\nExplosive Personality
+
+tile.natura.nether_leaves.ghostwood.name=Ghostwood Leaves
+tile.natura.nether_leaves.ghostwood.tooltip=Nether Tree\nPale as a ghost
+tile.natura.nether_leaves.bloodwood.name=Blood Leaves
+tile.natura.nether_leaves.bloodwood.tooltip=Nether Tree\nFire-resistant leaves
+tile.natura.nether_leaves.fusewood.name=Fusewood Leaves
+tile.natura.nether_leaves.fusewood.tooltip=Nether Tree\nExplosive Personality
+
+tile.natura.nether_leaves2.darkwood.name=Darkwood Leaves
+tile.natura.nether_leaves2.darkwood.tooltip=Nether Tree\nPale as a ghost
+tile.natura.nether_leaves2.darkwood_flowering.name=Darkwood Leaves
+tile.natura.nether_leaves2.darkwood_flowering.tooltip=Nether Tree\nFlowers
+tile.natura.nether_leaves2.darkwood_fruit.name=Darkwood Leaves
+tile.natura.nether_leaves2.darkwood_fruit.tooltip=Nether Tree\nContains an apple
+
+tile.natura.nether_sapling.ghostwood.name=Ghostwood Sapling
+tile.natura.nether_sapling.ghostwood.tooltip=Pale as a ghost
+tile.natura.nether_sapling.bloodwood.name=Bloodwood Sapling
+tile.natura.nether_sapling.bloodwood.tooltip=Fire-resistant planks
+tile.natura.nether_sapling.fusewood.name=Fusewood Sapling
+tile.natura.nether_sapling.fusewood.tooltip=Explosive Personality
+tile.natura.nether_sapling.darkwood.name=Darkwood Sapling
+tile.natura.nether_sapling.darkwood.tooltip=Produces chalky apples
+
+tile.natura.nether_planks.ghostwood.name=Ghostwood Planks
+tile.natura.nether_planks.ghostwood.tooltip=Pale as a ghost
+tile.natura.nether_planks.bloodwood.name=Bloodwood Planks
+tile.natura.nether_planks.bloodwood.tooltip=Lava-resistant\nGrows on the ceiling
+tile.natura.nether_planks.fusewood.name=Fusewood Planks
+tile.natura.nether_planks.fusewood.tooltip=Nether Tree\nExplosive Personality
+tile.natura.nether_planks.darkwood.name=Darkwood Planks
+tile.natura.nether_planks.darkwood.tooltip=Nether Tree
 
 ################
 #    Items     #
