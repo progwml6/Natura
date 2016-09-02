@@ -1,0 +1,35 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "transform": "forge:default-block",
+        "model": "half_slab",
+        "textures": {
+            "bottom": "#all",
+            "top": "#all",
+            "side": "#all",
+            "particle": "#all"
+        }
+    },
+    "variants": {
+        "type": {
+            "ghostwood": {
+                "textures": { "all": "natura:blocks/planks/nether/ghostwood_planks" }
+            },
+            "bloodwood": {
+                "textures": { "all": "natura:blocks/planks/nether/bloodwood_planks" }
+            },
+            "darkwood": {
+                "textures": { "all": "natura:blocks/planks/nether/darkwood_planks" }
+            },
+            "fusewood": {
+                "textures": { "all": "natura:blocks/planks/nether/fusewood_planks" }
+            }
+        },
+        "half": {
+            "bottom": {},
+            "top": {
+                "model": "upper_slab"
+            }
+        }
+    }
+}

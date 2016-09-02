@@ -5,6 +5,8 @@ import java.util.Locale;
 import com.progwml6.natura.Natura;
 import com.progwml6.natura.entities.NaturaEntities;
 import com.progwml6.natura.library.Util;
+import com.progwml6.natura.nether.NaturaNether;
+import com.progwml6.natura.overworld.NaturaOverworld;
 import com.progwml6.natura.world.NaturaWorld;
 
 import net.minecraft.block.Block;
@@ -39,6 +41,16 @@ public abstract class NaturaPulse
     protected static boolean isWorldLoaded()
     {
         return Natura.pulseManager.isPulseLoaded(NaturaWorld.PulseId);
+    }
+
+    protected static boolean isOverworldLoaded()
+    {
+        return Natura.pulseManager.isPulseLoaded(NaturaOverworld.PulseId);
+    }
+
+    protected static boolean isNetherLoaded()
+    {
+        return Natura.pulseManager.isPulseLoaded(NaturaNether.PulseId);
     }
 
     /**

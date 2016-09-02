@@ -2,7 +2,7 @@ package com.progwml6.natura.world.worldgen;
 
 import java.util.Random;
 
-import com.progwml6.natura.world.NaturaWorld;
+import com.progwml6.natura.overworld.NaturaOverworld;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -64,7 +64,7 @@ public class WillowTreeGenerator extends BaseTreeGenerator
         {
             IBlockState state = world.getBlockState(pos.down());
             Block soil = state.getBlock();
-            boolean isSoil = (soil != null && soil.canSustainPlant(state, world, pos.down(), EnumFacing.UP, NaturaWorld.overworldSapling));
+            boolean isSoil = (soil != null && soil.canSustainPlant(state, world, pos.down(), EnumFacing.UP, NaturaOverworld.overworldSapling));
 
             if (isSoil)
             {

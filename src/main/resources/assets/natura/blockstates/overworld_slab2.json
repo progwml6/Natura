@@ -1,0 +1,35 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "transform": "forge:default-block",
+        "model": "half_slab",
+        "textures": {
+            "bottom": "#all",
+            "top": "#all",
+            "side": "#all",
+            "particle": "#all"
+        }
+    },
+    "variants": {
+        "type": {
+            "eucalyptus": {
+                "textures": { "all": "natura:blocks/planks/overworld/eucalyptus_planks" }
+            },
+            "hopseed": {
+                "textures": { "all": "natura:blocks/planks/overworld/hopseed_planks" }
+            },
+            "sakura": {
+                "textures": { "all": "natura:blocks/planks/overworld/sakura_planks" }
+            },
+            "redwood": {
+                "textures": { "all": "natura:blocks/planks/overworld/redwood_planks" }
+            }
+        },
+        "half": {
+            "bottom": {},
+            "top": {
+                "model": "upper_slab"
+            }
+        }
+    }
+}

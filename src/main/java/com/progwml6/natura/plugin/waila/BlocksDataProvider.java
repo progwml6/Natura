@@ -1,17 +1,17 @@
 package com.progwml6.natura.plugin.waila;
 
-import static com.progwml6.natura.world.NaturaWorld.netherLeaves;
-import static com.progwml6.natura.world.NaturaWorld.netherLeaves2;
-import static com.progwml6.natura.world.NaturaWorld.netherLog;
-import static com.progwml6.natura.world.NaturaWorld.netherSapling;
-import static com.progwml6.natura.world.NaturaWorld.overworldLeaves;
-import static com.progwml6.natura.world.NaturaWorld.overworldLeaves2;
-import static com.progwml6.natura.world.NaturaWorld.overworldLog;
-import static com.progwml6.natura.world.NaturaWorld.overworldLog2;
-import static com.progwml6.natura.world.NaturaWorld.overworldSapling;
-import static com.progwml6.natura.world.NaturaWorld.overworldSapling2;
-import static com.progwml6.natura.world.NaturaWorld.redwoodLeaves;
-import static com.progwml6.natura.world.NaturaWorld.redwoodSapling;
+import static com.progwml6.natura.nether.NaturaNether.netherLeaves;
+import static com.progwml6.natura.nether.NaturaNether.netherLeaves2;
+import static com.progwml6.natura.nether.NaturaNether.netherLog;
+import static com.progwml6.natura.nether.NaturaNether.netherSapling;
+import static com.progwml6.natura.overworld.NaturaOverworld.overworldLeaves;
+import static com.progwml6.natura.overworld.NaturaOverworld.overworldLeaves2;
+import static com.progwml6.natura.overworld.NaturaOverworld.overworldLog;
+import static com.progwml6.natura.overworld.NaturaOverworld.overworldLog2;
+import static com.progwml6.natura.overworld.NaturaOverworld.overworldSapling;
+import static com.progwml6.natura.overworld.NaturaOverworld.overworldSapling2;
+import static com.progwml6.natura.overworld.NaturaOverworld.redwoodLeaves;
+import static com.progwml6.natura.overworld.NaturaOverworld.redwoodSapling;
 
 import java.util.List;
 
@@ -35,19 +35,37 @@ public class BlocksDataProvider extends NaturaPulse implements IWailaDataProvide
     {
         Block block = accessor.getBlock();
 
-        if (isWorldLoaded())
+        if (isOverworldLoaded())
         {
-            if (block == overworldLog || block == overworldLog2 || block == overworldLeaves || block == netherLog)
+            if (block == overworldLog || block == overworldLog2 || block == overworldLeaves)
             {
                 return new ItemStack(block, 1, accessor.getMetadata() % 4);
             }
 
-            if (block == overworldLeaves || block == overworldLeaves2 || block == redwoodLeaves || block == netherLeaves || block == netherLeaves2)
+            if (block == overworldLeaves || block == overworldLeaves2 || block == redwoodLeaves)
             {
                 return new ItemStack(block, 1, accessor.getMetadata() % 4);
             }
 
-            if (block == overworldSapling || block == overworldSapling2 || block == redwoodSapling || block == netherSapling)
+            if (block == overworldSapling || block == overworldSapling2 || block == redwoodSapling)
+            {
+                return new ItemStack(block, 1, accessor.getMetadata() % 8);
+            }
+        }
+
+        if (isNetherLoaded())
+        {
+            if (block == netherLog)
+            {
+                return new ItemStack(block, 1, accessor.getMetadata() % 4);
+            }
+
+            if (block == netherLeaves || block == netherLeaves2)
+            {
+                return new ItemStack(block, 1, accessor.getMetadata() % 4);
+            }
+
+            if (block == netherSapling)
             {
                 return new ItemStack(block, 1, accessor.getMetadata() % 8);
             }

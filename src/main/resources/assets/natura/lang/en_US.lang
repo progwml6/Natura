@@ -107,6 +107,25 @@ tile.natura.overworld_planks.hopseed.tooltip=Ascended Glitch
 tile.natura.overworld_planks.redwood.name=Redwood Planks
 tile.natura.overworld_planks.redwood.tooltip=Giant Sequoia
 
+tile.natura.overworld_slab.maple.name=Maple Slab
+tile.natura.overworld_slab.maple.tooltip=Somewhat Sweet
+tile.natura.overworld_slab.silverbell.name=Silverbell Slab
+tile.natura.overworld_slab.silverbell.tooltip=Silver Bells
+tile.natura.overworld_slab.amaranth.name=Amaranth Slab
+tile.natura.overworld_slab.amaranth.tooltip=Heart of Wood
+tile.natura.overworld_slab.tiger.name=Tigerwood Slab
+tile.natura.overworld_slab.tiger.tooltip=Wild Grain
+tile.natura.overworld_slab.willow.name=Willow Slab
+tile.natura.overworld_slab.willow.tooltip=The Weeper
+tile.natura.overworld_slab2.eucalyptus.name=Eucalyptus Slab
+tile.natura.overworld_slab2.eucalyptus.tooltip=The pink wood
+tile.natura.overworld_slab2.sakura.name=Sakura Slab
+tile.natura.overworld_slab2.sakura.tooltip=Flowering Cherry
+tile.natura.overworld_slab2.hopseed.name=Hopseed Slab
+tile.natura.overworld_slab2.hopseed.tooltip=Ascended Glitch
+tile.natura.overworld_slab2.redwood.name=Redwood Slab
+tile.natura.overworld_slab2.redwood.tooltip=Giant Sequoia
+
 tile.natura.nether_logs.ghostwood.name=Ghostwood
 tile.natura.nether_logs.ghostwood.tooltip=Nether Tree\nPale as a ghost
 tile.natura.nether_logs.darkwood.name=Darkwood
@@ -140,11 +159,30 @@ tile.natura.nether_sapling.darkwood.tooltip=Produces chalky apples
 tile.natura.nether_planks.ghostwood.name=Ghostwood Planks
 tile.natura.nether_planks.ghostwood.tooltip=Pale as a ghost
 tile.natura.nether_planks.bloodwood.name=Bloodwood Planks
-tile.natura.nether_planks.bloodwood.tooltip=Lava-resistant\nGrows on the ceiling
+tile.natura.nether_planks.bloodwood.tooltip=Fire-resistant planks
 tile.natura.nether_planks.fusewood.name=Fusewood Planks
 tile.natura.nether_planks.fusewood.tooltip=Nether Tree\nExplosive Personality
 tile.natura.nether_planks.darkwood.name=Darkwood Planks
 tile.natura.nether_planks.darkwood.tooltip=Nether Tree
+
+tile.natura.nether_slab.ghostwood.name=Ghostwood Slab
+tile.natura.nether_slab.ghostwood.tooltip=Pale as a ghost
+tile.natura.nether_slab.bloodwood.name=Blood Slab
+tile.natura.nether_slab.bloodwood.tooltip=Fire-resistant planks
+tile.natura.nether_slab.fusewood.name=Fusewood Slab
+tile.natura.nether_slab.fusewood.tooltip=Nether Tree\nExplosive Personality
+tile.natura.nether_slab.darkwood.name=Darkwood Slab
+tile.natura.nether_slab.darkwood.tooltip=Nether Tree
+
+tile.natura.nether_glass.soul.name=Soul Glass
+tile.natura.nether_glass.soul.tooltip=Ghostly
+tile.natura.nether_glass.heat.name=Heat Glass
+
+tile.natura.nether_tainted_soil.tainted_soil.name=Tainted Soil
+tile.natura.nether_tainted_soil.tainted_farmland_dry.name=Tainted Soil
+tile.natura.nether_tainted_soil.tainted_farmland_heated.name=Tainted Soil
+
+tile.natura.nether_heat_sand.name=Heat Sand
 
 ################
 #    Items     #

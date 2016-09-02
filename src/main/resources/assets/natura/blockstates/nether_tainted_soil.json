@@ -1,0 +1,26 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "transform": "forge:default-block",
+        "model": "cube_all"
+    },
+	"variants": {
+        "type": {
+            "tainted_soil": {
+                "textures": {
+                    "all": "natura:blocks/soil/tainted_soil"
+                }
+            },
+            "tainted_farmland_dry": {
+                "textures": {
+                    "all": "natura:blocks/soil/tainted_farmland_dry"
+                }
+            },
+            "tainted_farmland_heated": {
+                "textures": {
+                    "all": "natura:blocks/soil/tainted_farmland_heated"
+                }
+            }
+        }
+    }
+}
