@@ -19,4 +19,9 @@ public class CommonProxy
     protected void registerModels()
     {
     }
+
+    public boolean fancyGraphicsEnabled()
+    {
+        return false;
+    }
 }

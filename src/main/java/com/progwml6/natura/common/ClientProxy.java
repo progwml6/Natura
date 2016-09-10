@@ -6,6 +6,7 @@ import com.progwml6.natura.Natura;
 import com.progwml6.natura.library.Util;
 
 import net.minecraft.block.Block;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.ItemMeshDefinition;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
@@ -117,5 +118,11 @@ public class ClientProxy extends CommonProxy
     public static ResourceLocation getItemLocation(Item item)
     {
         return Util.getItemLocation(item);
+    }
+
+    @Override
+    public boolean fancyGraphicsEnabled()
+    {
+        return Minecraft.getMinecraft().gameSettings.fancyGraphics;
     }
 }

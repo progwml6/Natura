@@ -126,6 +126,16 @@ tile.natura.overworld_slab2.hopseed.tooltip=Ascended Glitch
 tile.natura.overworld_slab2.redwood.name=Redwood Slab
 tile.natura.overworld_slab2.redwood.tooltip=Giant Sequoia
 
+tile.natura.overworld_stairs_maple.name=Maple Stairs
+tile.natura.overworld_stairs_silverbell.name=Silverbell Stairs
+tile.natura.overworld_stairs_amaranth.name=Amaranth Stairs
+tile.natura.overworld_stairs_tiger.name=Tiger Stairs
+tile.natura.overworld_stairs_willow.name=Willow Stairs
+tile.natura.overworld_stairs_eucalyptus.name=Eucalyptus Stairs
+tile.natura.overworld_stairs_hopseed.name=Hopseed Stairs
+tile.natura.overworld_stairs_sakura.name=Sakura Stairs
+tile.natura.overworld_stairs_redwood.name=Redwood Stairs
+
 tile.natura.nether_logs.ghostwood.name=Ghostwood
 tile.natura.nether_logs.ghostwood.tooltip=Nether Tree\nPale as a ghost
 tile.natura.nether_logs.darkwood.name=Darkwood
@@ -173,6 +183,11 @@ tile.natura.nether_slab.fusewood.name=Fusewood Slab
 tile.natura.nether_slab.fusewood.tooltip=Nether Tree\nExplosive Personality
 tile.natura.nether_slab.darkwood.name=Darkwood Slab
 tile.natura.nether_slab.darkwood.tooltip=Nether Tree
+
+tile.natura.nether_stairs_ghostwood.name=Ghostwood Stairs
+tile.natura.nether_stairs_bloodwood.name=Blood Stairs
+tile.natura.nether_stairs_darkwood.name=Darkwood Stairs
+tile.natura.nether_stairs_fusewood.name=Fusewood Stairs
 
 tile.natura.nether_glass.soul.name=Soul Glass
 tile.natura.nether_glass.soul.tooltip=Ghostly
