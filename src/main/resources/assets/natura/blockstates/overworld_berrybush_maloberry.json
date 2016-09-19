@@ -1,0 +1,37 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "transform": "forge:default-block",
+        "textures": {
+            "particle": "#all"
+        }
+    },
+	"variants": {
+	    "age": {
+            "0": {
+                "model": "natura:natura_bush_small",
+                "textures": {
+                    "all": "natura:blocks/berrybush/overworld/maloberry"
+                }
+            },
+            "1": {
+                "model": "natura:natura_bush_medium",
+                "textures": {
+                    "all": "natura:blocks/berrybush/overworld/maloberry"
+                }
+            },
+            "2": {
+                "model": "natura:natura_bush_large",
+                "textures": {
+                    "all": "natura:blocks/berrybush/overworld/maloberry"
+                }
+            },
+            "3": {
+                "model": "natura:natura_bush_large",
+                "textures": {
+                    "all": "natura:blocks/berrybush/overworld/maloberry_ripe"
+                }
+            }
+        }
+    }
+}

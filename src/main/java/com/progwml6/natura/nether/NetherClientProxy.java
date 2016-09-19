@@ -3,6 +3,7 @@ package com.progwml6.natura.nether;
 import javax.annotation.Nonnull;
 
 import com.progwml6.natura.common.ClientProxy;
+import com.progwml6.natura.common.block.BlockEnumBerryBush;
 import com.progwml6.natura.common.client.LeavesColorizer;
 import com.progwml6.natura.library.Util;
 import com.progwml6.natura.nether.block.leaves.BlockNetherLeaves;
@@ -122,7 +123,6 @@ public class NetherClientProxy extends ClientProxy
         }
 
         // saplings
-
         ItemStack stack = new ItemStack(Item.getItemFromBlock(NaturaNether.netherSapling), 1, NaturaNether.netherSapling.getMetaFromState(NaturaNether.netherSapling.getDefaultState().withProperty(BlockNetherSapling.FOLIAGE, BlockNetherSapling.SaplingType.GHOSTWOOD)));
         this.registerItemModel(stack, "nether_sapling_ghostwood");
         stack = new ItemStack(Item.getItemFromBlock(NaturaNether.netherSapling), 1, NaturaNether.netherSapling.getMetaFromState(NaturaNether.netherSapling.getDefaultState().withProperty(BlockNetherSapling.FOLIAGE, BlockNetherSapling.SaplingType.BLOODWOOD)));
@@ -131,5 +131,34 @@ public class NetherClientProxy extends ClientProxy
         this.registerItemModel(stack, "nether_sapling_fusewood");
         stack = new ItemStack(Item.getItemFromBlock(NaturaNether.netherSapling), 1, NaturaNether.netherSapling.getMetaFromState(NaturaNether.netherSapling.getDefaultState().withProperty(BlockNetherSapling.FOLIAGE, BlockNetherSapling.SaplingType.DARKWOOD)));
         this.registerItemModel(stack, "nether_sapling_darkwood");
+
+        // Bushes
+        Item blightberry_berrybush = Item.getItemFromBlock(NaturaNether.netherBerryBushBlightberry);
+        for (int meta = 0; meta <= 3; meta++)
+        {
+            String variant = String.format("%s=%s", BlockEnumBerryBush.AGE.getName(), Integer.valueOf(meta));
+            ModelLoader.setCustomModelResourceLocation(blightberry_berrybush, meta, new ModelResourceLocation(blightberry_berrybush.getRegistryName(), variant));
+        }
+
+        Item duskberry_berrybush = Item.getItemFromBlock(NaturaNether.netherBerryBushDuskberry);
+        for (int meta = 0; meta <= 3; meta++)
+        {
+            String variant = String.format("%s=%s", BlockEnumBerryBush.AGE.getName(), Integer.valueOf(meta));
+            ModelLoader.setCustomModelResourceLocation(duskberry_berrybush, meta, new ModelResourceLocation(duskberry_berrybush.getRegistryName(), variant));
+        }
+
+        Item skyberry_berrybush = Item.getItemFromBlock(NaturaNether.netherBerryBushSkyberry);
+        for (int meta = 0; meta <= 3; meta++)
+        {
+            String variant = String.format("%s=%s", BlockEnumBerryBush.AGE.getName(), Integer.valueOf(meta));
+            ModelLoader.setCustomModelResourceLocation(skyberry_berrybush, meta, new ModelResourceLocation(skyberry_berrybush.getRegistryName(), variant));
+        }
+
+        Item stingberry_berrybush = Item.getItemFromBlock(NaturaNether.netherBerryBushStingberry);
+        for (int meta = 0; meta <= 3; meta++)
+        {
+            String variant = String.format("%s=%s", BlockEnumBerryBush.AGE.getName(), Integer.valueOf(meta));
+            ModelLoader.setCustomModelResourceLocation(stingberry_berrybush, meta, new ModelResourceLocation(stingberry_berrybush.getRegistryName(), variant));
+        }
     }
 }

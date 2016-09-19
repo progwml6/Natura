@@ -3,6 +3,7 @@ package com.progwml6.natura.overworld;
 import javax.annotation.Nonnull;
 
 import com.progwml6.natura.common.ClientProxy;
+import com.progwml6.natura.common.block.BlockEnumBerryBush;
 import com.progwml6.natura.common.client.GrassColorizer;
 import com.progwml6.natura.common.client.LeavesColorizer;
 import com.progwml6.natura.overworld.block.grass.BlockColoredGrass;
@@ -235,5 +236,33 @@ public class OverworldClientProxy extends ClientProxy
 
         stack = new ItemStack(Item.getItemFromBlock(NaturaOverworld.redwoodSapling), 1, NaturaOverworld.redwoodSapling.getMetaFromState(NaturaOverworld.redwoodSapling.getDefaultState().withProperty(BlockRedwoodSapling.FOLIAGE, BlockRedwoodSapling.SaplingType.REDWOOD)));
         this.registerItemModel(stack, "overworld_sapling_redwood");
+
+        Item raspberry_berrybush = Item.getItemFromBlock(NaturaOverworld.overworldBerryBushRaspberry);
+        for (int meta = 0; meta <= 3; meta++)
+        {
+            String variant = String.format("%s=%s", BlockEnumBerryBush.AGE.getName(), Integer.valueOf(meta));
+            ModelLoader.setCustomModelResourceLocation(raspberry_berrybush, meta, new ModelResourceLocation(raspberry_berrybush.getRegistryName(), variant));
+        }
+
+        Item blueberry_berrybush = Item.getItemFromBlock(NaturaOverworld.overworldBerryBushBlueberry);
+        for (int meta = 0; meta <= 3; meta++)
+        {
+            String variant = String.format("%s=%s", BlockEnumBerryBush.AGE.getName(), Integer.valueOf(meta));
+            ModelLoader.setCustomModelResourceLocation(blueberry_berrybush, meta, new ModelResourceLocation(blueberry_berrybush.getRegistryName(), variant));
+        }
+
+        Item blackberry_berrybush = Item.getItemFromBlock(NaturaOverworld.overworldBerryBushBlackberry);
+        for (int meta = 0; meta <= 3; meta++)
+        {
+            String variant = String.format("%s=%s", BlockEnumBerryBush.AGE.getName(), Integer.valueOf(meta));
+            ModelLoader.setCustomModelResourceLocation(blackberry_berrybush, meta, new ModelResourceLocation(blackberry_berrybush.getRegistryName(), variant));
+        }
+
+        Item maloberry_berrybush = Item.getItemFromBlock(NaturaOverworld.overworldBerryBushMaloberry);
+        for (int meta = 0; meta <= 3; meta++)
+        {
+            String variant = String.format("%s=%s", BlockEnumBerryBush.AGE.getName(), Integer.valueOf(meta));
+            ModelLoader.setCustomModelResourceLocation(maloberry_berrybush, meta, new ModelResourceLocation(maloberry_berrybush.getRegistryName(), variant));
+        }
     }
 }

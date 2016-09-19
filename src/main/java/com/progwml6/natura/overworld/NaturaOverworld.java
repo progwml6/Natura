@@ -8,6 +8,7 @@ import com.progwml6.natura.common.NaturaPulse;
 import com.progwml6.natura.common.item.ItemBlockLeaves;
 import com.progwml6.natura.library.NaturaRegistry;
 import com.progwml6.natura.library.Util;
+import com.progwml6.natura.overworld.block.bush.BlockOverworldBerryBush;
 import com.progwml6.natura.overworld.block.grass.BlockColoredGrass;
 import com.progwml6.natura.overworld.block.leaves.BlockOverworldLeaves;
 import com.progwml6.natura.overworld.block.leaves.BlockOverworldLeaves2;
@@ -22,6 +23,7 @@ import com.progwml6.natura.overworld.block.saplings.BlockRedwoodSapling;
 import com.progwml6.natura.overworld.block.slabs.BlockColoredGrassSlab;
 import com.progwml6.natura.overworld.block.slabs.BlockOverworldSlab;
 import com.progwml6.natura.overworld.block.slabs.BlockOverworldSlab2;
+import com.progwml6.natura.shared.NaturaCommons;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
@@ -72,6 +74,11 @@ public class NaturaOverworld extends NaturaPulse
     public static Block overworldStairsHopseed;
     public static Block overworldStairsSakura;
     public static Block overworldStairsRedwood;
+
+    public static Block overworldBerryBushRaspberry;
+    public static Block overworldBerryBushBlueberry;
+    public static Block overworldBerryBushBlackberry;
+    public static Block overworldBerryBushMaloberry;
     //@formatter:on
 
     @Subscribe
@@ -109,6 +116,11 @@ public class NaturaOverworld extends NaturaPulse
         overworldStairsHopseed = registerBlockStairsFrom(overworldPlanks, BlockOverworldPlanks.PlankType.HOPSEED, "overworld_stairs_hopseed");
         overworldStairsSakura = registerBlockStairsFrom(overworldPlanks, BlockOverworldPlanks.PlankType.SAKURA, "overworld_stairs_sakura");
         overworldStairsRedwood = registerBlockStairsFrom(overworldPlanks, BlockOverworldPlanks.PlankType.REDWOOD, "overworld_stairs_redwood");
+
+        overworldBerryBushRaspberry = registerBlock(new BlockOverworldBerryBush(NaturaCommons.raspberry), "overworld_berrybush_raspberry");
+        overworldBerryBushBlueberry = registerBlock(new BlockOverworldBerryBush(NaturaCommons.blueberry), "overworld_berrybush_blueberry");
+        overworldBerryBushBlackberry = registerBlock(new BlockOverworldBerryBush(NaturaCommons.blackberry), "overworld_berrybush_blackberry");
+        overworldBerryBushMaloberry = registerBlock(new BlockOverworldBerryBush(NaturaCommons.maloberry), "overworld_berrybush_maloberry");
 
         proxy.preInit();
 

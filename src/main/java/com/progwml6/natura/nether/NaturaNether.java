@@ -7,6 +7,7 @@ import com.progwml6.natura.common.CommonProxy;
 import com.progwml6.natura.common.NaturaPulse;
 import com.progwml6.natura.common.item.ItemBlockLeaves;
 import com.progwml6.natura.library.Util;
+import com.progwml6.natura.nether.block.bush.BlockNetherBerryBush;
 import com.progwml6.natura.nether.block.glass.BlockNetherGlass;
 import com.progwml6.natura.nether.block.leaves.BlockNetherLeaves;
 import com.progwml6.natura.nether.block.leaves.BlockNetherLeaves2;
@@ -16,6 +17,7 @@ import com.progwml6.natura.nether.block.sand.BlockHeatSand;
 import com.progwml6.natura.nether.block.saplings.BlockNetherSapling;
 import com.progwml6.natura.nether.block.slabs.BlockNetherSlab;
 import com.progwml6.natura.nether.block.soil.BlockTaintedSoil;
+import com.progwml6.natura.shared.NaturaCommons;
 
 import net.minecraft.block.Block;
 import net.minecraftforge.fml.common.SidedProxy;
@@ -52,6 +54,11 @@ public class NaturaNether extends NaturaPulse
     public static Block netherStairsBloodwood;
     public static Block netherStairsDarkwood;
     public static Block netherStairsFusewood;
+    
+    public static Block netherBerryBushBlightberry;
+    public static Block netherBerryBushDuskberry;
+    public static Block netherBerryBushSkyberry;
+    public static Block netherBerryBushStingberry;
     //@formatter:on
 
     @Subscribe
@@ -79,6 +86,11 @@ public class NaturaNether extends NaturaPulse
         netherStairsBloodwood = registerBlockStairsFrom(netherPlanks, BlockNetherPlanks.PlankType.BLOODWOOD, "nether_stairs_bloodwood");
         netherStairsDarkwood = registerBlockStairsFrom(netherPlanks, BlockNetherPlanks.PlankType.DARKWOOD, "nether_stairs_darkwood");
         netherStairsFusewood = registerBlockStairsFrom(netherPlanks, BlockNetherPlanks.PlankType.FUSEWOOD, "nether_stairs_fusewood");
+
+        netherBerryBushBlightberry = registerBlock(new BlockNetherBerryBush(NaturaCommons.blightberry), "nether_berrybush_blightberry");
+        netherBerryBushDuskberry = registerBlock(new BlockNetherBerryBush(NaturaCommons.duskberry), "nether_berrybush_duskberry");
+        netherBerryBushSkyberry = registerBlock(new BlockNetherBerryBush(NaturaCommons.skyberry), "nether_berrybush_skyberry");
+        netherBerryBushStingberry = registerBlock(new BlockNetherBerryBush(NaturaCommons.stingberry), "nether_berrybush_stingberry");
 
         proxy.preInit();
     }

@@ -136,6 +136,15 @@ tile.natura.overworld_stairs_hopseed.name=Hopseed Stairs
 tile.natura.overworld_stairs_sakura.name=Sakura Stairs
 tile.natura.overworld_stairs_redwood.name=Redwood Stairs
 
+tile.natura.overworld_berrybush_raspberry.name=Raspberry Bush
+tile.natura.overworld_berrybush_raspberry.tooltip=Sweet and red\nFound in warm areas
+tile.natura.overworld_berrybush_blueberry.name=Blueberry Bush
+tile.natura.overworld_berrybush_blueberry.tooltip=Tart and blue\nFound in temperate areas
+tile.natura.overworld_berrybush_blackberry.name=Blackberry Bush
+tile.natura.overworld_berrybush_blackberry.tooltip=Sweet and black\nFound in wet areas
+tile.natura.overworld_berrybush_maloberry.name=Maloberry Bush
+tile.natura.overworld_berrybush_maloberry.tooltip=Tasty and yellow-orange\nFound in cold areas
+
 tile.natura.nether_logs.ghostwood.name=Ghostwood
 tile.natura.nether_logs.ghostwood.tooltip=Nether Tree\nPale as a ghost
 tile.natura.nether_logs.darkwood.name=Darkwood
@@ -199,6 +208,15 @@ tile.natura.nether_tainted_soil.tainted_farmland_heated.name=Tainted Soil
 
 tile.natura.nether_heat_sand.name=Heat Sand
 
+tile.natura.nether_berrybush_blightberry.name=Blightberry Bush
+tile.natura.nether_berrybush_blightberry.tooltip=A little bit evil\nKiller healing
+tile.natura.nether_berrybush_duskberry.name=DuskBerry Bush
+tile.natura.nether_berrybush_duskberry.tooltip=A little bit evil\nVisible night
+tile.natura.nether_berrybush_skyberry.name=Skyberry Bush
+tile.natura.nether_berrybush_skyberry.tooltip=A little bit evil\nSlow dive
+tile.natura.nether_berrybush_stingberry.name=Stingberry Bush
+tile.natura.nether_berrybush_stingberry.tooltip=A little bit evil\nHit like a truck
+
 ################
 #    Items     #
 ################
@@ -207,6 +225,24 @@ item.natura.edibles.impmeat_raw.name=Raw Imphide
 item.natura.edibles.impmeat_raw.tooltip=Eating this probably isn't good for you
 item.natura.edibles.impmeat_cooked.name=Cooked Imphide
 item.natura.edibles.impmeat_cooked.tooltip=It's warm to the touch
+
+item.natura.edibles.raspberry.name=Raspberry
+item.natura.edibles.raspberry.tooltip=Saturating!
+item.natura.edibles.blueberry.name=Blueberry
+item.natura.edibles.blueberry.tooltip=Saturating!
+item.natura.edibles.blackberry.name=Blackberry
+item.natura.edibles.blackberry.tooltip=Saturating!
+item.natura.edibles.maloberry.name=Maloberry
+item.natura.edibles.maloberry.tooltip=Saturating!
+
+item.natura.edibles.blightberry.name=Blightberry
+item.natura.edibles.blightberry.tooltip=A little bit evil\nKiller healing
+item.natura.edibles.duskberry.name=Duskberry
+item.natura.edibles.duskberry.tooltip=A little bit evil\nVisible night
+item.natura.edibles.skyberry.name=Skyberry
+item.natura.edibles.skyberry.tooltip=A little bit evil\nSlow dive
+item.natura.edibles.stingberry.name=Stingberry
+item.natura.edibles.stingberry.tooltip=A little bit evil\nHit like a truck
 
 item.natura.materials.barley.name=Barley
 item.natura.materials.barley.tooltip=Similar to wheat, it grows in the wild
@@ -241,6 +277,9 @@ item.natura.soups.ghostwood_glowshroomstew.name=Glowshroom Stew
 item.natura.soups.bloodwood_glowshroomstew.name=Glowshroom Stew
 item.natura.soups.darkwood_glowshroomstew.name=Glowshroom Stew
 item.natura.soups.fusewood_glowshroomstew.name=Glowshroom Stew
+
+item.natura.soups.berry_medley.name=Berry Medley
+item.natura.soups.berry_medley.tooltip=An irresistable combination of berries
 
 #################
 #   Entities    #
