@@ -147,21 +147,36 @@ public class NaturaOverworld extends NaturaPulse {
                 new ItemStack(overworldLog, 1, BlockOverworldLog.LogType.AMARANTH.getMeta()));
         GameRegistry.addRecipe(new ItemStack(overworldPlanks, 4, BlockOverworldPlanks.PlankType.TIGER.getMeta()), "w", 'w', new ItemStack(overworldLog, 1, BlockOverworldLog.LogType.TIGER.getMeta()));
         GameRegistry
-                .addRecipe(new ItemStack(overworldPlanks, 4, BlockOverworldPlanks.PlankType.WILLOW.getMeta()), "w", 'w', new ItemStack(overworldLog, 1, BlockOverworldLog2.LogType.WILLOW.getMeta()));
+                .addRecipe(new ItemStack(overworldPlanks, 4, BlockOverworldPlanks.PlankType.WILLOW.getMeta()), "w", 'w', new ItemStack(overworldLog2, 1, BlockOverworldLog2.LogType.WILLOW.getMeta()));
         GameRegistry.addRecipe(new ItemStack(overworldPlanks, 4, BlockOverworldPlanks.PlankType.EUCALYPTUS.getMeta()), "w", 'w',
-                new ItemStack(overworldLog, 1, BlockOverworldLog2.LogType.EUCALYPTUS.getMeta()));
+                new ItemStack(overworldLog2, 1, BlockOverworldLog2.LogType.EUCALYPTUS.getMeta()));
         GameRegistry
-                .addRecipe(new ItemStack(overworldPlanks, 4, BlockOverworldPlanks.PlankType.HOPSEED.getMeta()), "w", 'w', new ItemStack(overworldLog2, 1, BlockOverworldLog2.LogType.HOPSEED.getMeta()));
+                .addRecipe(new ItemStack(overworldPlanks, 4, BlockOverworldPlanks.PlankType.HOPSEED.getMeta()), "w", 'w',
+                        new ItemStack(overworldLog2, 1, BlockOverworldLog2.LogType.HOPSEED.getMeta()));
         GameRegistry
                 .addRecipe(new ItemStack(overworldPlanks, 4, BlockOverworldPlanks.PlankType.SAKURA.getMeta()), "w", 'w', new ItemStack(overworldLog2, 1, BlockOverworldLog2.LogType.SAKURA.getMeta()));
         GameRegistry
                 .addRecipe(new ItemStack(overworldPlanks, 4, BlockOverworldPlanks.PlankType.REDWOOD.getMeta()), "w", 'w', new ItemStack(redwoodLog, 1, BlockRedwoodLog.RedwoodType.HEART.getMeta()));
         //TODO test these
-        for (int i = 0; i < 8; i++)
-            addShapedRecipeFirst(recipes, new ItemStack(overworldSlab, 6, i), "###", '#', new ItemStack(overworldPlanks, 1, i));
-        for (int i = 0; i < 5; i++)
-            addShapedRecipeFirst(recipes, new ItemStack(overworldSlab2, 6, i), "###", '#', new ItemStack(overworldPlanks, 1, 8 + i));
-
-
+        //SLABS
+        addSlabRecipe(overworldSlab, BlockOverworldSlab.PlankType.AMARANTH.getMeta(), new ItemStack(overworldPlanks, 1, BlockOverworldPlanks.PlankType.AMARANTH.getMeta()));
+        addSlabRecipe(overworldSlab, BlockOverworldSlab.PlankType.MAPLE.getMeta(), new ItemStack(overworldPlanks, 1, BlockOverworldPlanks.PlankType.MAPLE.getMeta()));
+        addSlabRecipe(overworldSlab, BlockOverworldSlab.PlankType.SILVERBELL.getMeta(), new ItemStack(overworldPlanks, 1, BlockOverworldPlanks.PlankType.SILVERBELL.getMeta()));
+        addSlabRecipe(overworldSlab, BlockOverworldSlab.PlankType.TIGER.getMeta(), new ItemStack(overworldPlanks, 1, BlockOverworldPlanks.PlankType.TIGER.getMeta()));
+        addSlabRecipe(overworldSlab, BlockOverworldSlab.PlankType.WILLOW.getMeta(), new ItemStack(overworldPlanks, 1, BlockOverworldPlanks.PlankType.WILLOW.getMeta()));
+        addSlabRecipe(overworldSlab2, BlockOverworldSlab2.PlankType.EUCALYPTUS.getMeta(), new ItemStack(overworldPlanks, 1, BlockOverworldPlanks.PlankType.EUCALYPTUS.getMeta()));
+        addSlabRecipe(overworldSlab2, BlockOverworldSlab2.PlankType.HOPSEED.getMeta(), new ItemStack(overworldPlanks, 1, BlockOverworldPlanks.PlankType.HOPSEED.getMeta()));
+        addSlabRecipe(overworldSlab2, BlockOverworldSlab2.PlankType.REDWOOD.getMeta(), new ItemStack(overworldPlanks, 1, BlockOverworldPlanks.PlankType.REDWOOD.getMeta()));
+        addSlabRecipe(overworldSlab2, BlockOverworldSlab2.PlankType.SAKURA.getMeta(), new ItemStack(overworldPlanks, 1, BlockOverworldPlanks.PlankType.SAKURA.getMeta()));
+        //STAIRS
+        addStairRecipe(overworldStairsAmaranth, new ItemStack(overworldPlanks, 1, BlockOverworldPlanks.PlankType.AMARANTH.getMeta()));
+        addStairRecipe(overworldStairsMaple, new ItemStack(overworldPlanks, 1, BlockOverworldPlanks.PlankType.MAPLE.getMeta()));
+        addStairRecipe(overworldStairsSilverbell, new ItemStack(overworldPlanks, 1, BlockOverworldPlanks.PlankType.SILVERBELL.getMeta()));
+        addStairRecipe(overworldStairsTiger, new ItemStack(overworldPlanks, 1, BlockOverworldPlanks.PlankType.TIGER.getMeta()));
+        addStairRecipe(overworldStairsWillow, new ItemStack(overworldPlanks, 1, BlockOverworldPlanks.PlankType.WILLOW.getMeta()));
+        addStairRecipe(overworldStairsEucalyptus, new ItemStack(overworldPlanks, 1, BlockOverworldPlanks.PlankType.EUCALYPTUS.getMeta()));
+        addStairRecipe(overworldStairsHopseed, new ItemStack(overworldPlanks, 1, BlockOverworldPlanks.PlankType.HOPSEED.getMeta()));
+        addStairRecipe(overworldStairsRedwood, new ItemStack(overworldPlanks, 1, BlockOverworldPlanks.PlankType.REDWOOD.getMeta()));
+        addStairRecipe(overworldStairsSakura, new ItemStack(overworldPlanks, 1, BlockOverworldPlanks.PlankType.SAKURA.getMeta()));
     }
 }

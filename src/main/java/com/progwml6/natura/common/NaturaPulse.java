@@ -225,6 +225,9 @@ public abstract class NaturaPulse {
     protected static void addSlabRecipe(ItemStack slab, ItemStack input) {
         GameRegistry.addShapedRecipe(new ItemStack(slab.getItem(), 6, slab.getItemDamage()), "BBB", 'B', input);
     }
+    protected static void addSlabRecipe(Block slab, int slabMeta, ItemStack input) {
+        GameRegistry.addShapedRecipe(new ItemStack(slab, 6, slabMeta), "BBB", 'B', input);
+    }
 
     protected static void addStairRecipe(Block stairs, ItemStack input) {
         GameRegistry.addShapedRecipe(new ItemStack(stairs, 4, 0), "B  ", "BB ", "BBB", 'B', input);
