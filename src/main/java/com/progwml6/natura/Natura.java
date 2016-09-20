@@ -1,10 +1,10 @@
 package com.progwml6.natura;
 
-import com.progwml6.natura.common.NaturaOredict;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.progwml6.natura.common.CommonProxy;
+import com.progwml6.natura.common.NaturaOredict;
 import com.progwml6.natura.common.config.Config;
 import com.progwml6.natura.entities.NaturaEntities;
 import com.progwml6.natura.library.Util;

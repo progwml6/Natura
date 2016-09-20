@@ -34,7 +34,9 @@ public class BlockTaintedSoil extends EnumBlock<BlockTaintedSoil.SoilType>
     public boolean isFertile(World world, BlockPos pos)
     {
         if (world.getBlockState(pos).getValue(TYPE) == SoilType.TAINTED_FARMLAND_HEATED)
+        {
             return true;
+        }
 
         return false;
     }
@@ -45,7 +47,9 @@ public class BlockTaintedSoil extends EnumBlock<BlockTaintedSoil.SoilType>
         EnumPlantType plantType = plantable.getPlantType(world, pos.add(0, 1, 0));
 
         if (plantType == EnumPlantType.Nether)
+        {
             return true;
+        }
 
         return super.canSustainPlant(state, world, pos, direction, plantable);
     }

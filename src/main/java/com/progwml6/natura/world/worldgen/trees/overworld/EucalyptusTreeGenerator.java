@@ -155,12 +155,16 @@ public class EucalyptusTreeGenerator extends BaseTreeGenerator
             BlockPos blockpos = new BlockPos(posX, posY, posZ);
 
             if (branch == 2)
+            {
                 this.setBlockAndMetadata(world, blockpos.down(), this.log);
+            }
 
             this.setBlockAndMetadata(world, blockpos, this.log);
 
             if (bIter == 1)
-                generateNode(world, random, blockpos);
+            {
+                this.generateNode(world, random, blockpos);
+            }
 
             heightShift = random.nextInt(6);
         }
@@ -221,12 +225,16 @@ public class EucalyptusTreeGenerator extends BaseTreeGenerator
             BlockPos blockpos = new BlockPos(posX, posY, posZ);
 
             if (branch == 2)
+            {
                 this.setBlockAndMetadata(world, blockpos.down(), this.log);
+            }
 
             this.setBlockAndMetadata(world, blockpos, this.log);
 
             if (j2 == 1)
-                generateNode(world, random, blockpos);
+            {
+                this.generateNode(world, random, blockpos);
+            }
 
             heightShift = random.nextInt(6);
         }

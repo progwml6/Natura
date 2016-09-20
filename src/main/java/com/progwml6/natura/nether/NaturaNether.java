@@ -1,5 +1,7 @@
 package com.progwml6.natura.nether;
 
+import org.apache.logging.log4j.Logger;
+
 import com.google.common.eventbus.Subscribe;
 import com.progwml6.natura.common.CommonProxy;
 import com.progwml6.natura.common.NaturaPulse;
@@ -16,6 +18,7 @@ import com.progwml6.natura.nether.block.saplings.BlockNetherSapling;
 import com.progwml6.natura.nether.block.slabs.BlockNetherSlab;
 import com.progwml6.natura.nether.block.soil.BlockTaintedSoil;
 import com.progwml6.natura.shared.NaturaCommons;
+
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.SidedProxy;
@@ -23,12 +26,12 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
-import org.apache.logging.log4j.Logger;
 import slimeknights.mantle.item.ItemBlockMeta;
 import slimeknights.mantle.pulsar.pulse.Pulse;
 
 @Pulse(id = NaturaNether.PulseId, description = "All of the nether blocks including trees")
-public class NaturaNether extends NaturaPulse {
+public class NaturaNether extends NaturaPulse
+{
     public static final String PulseId = "NaturaNether";
 
     static final Logger log = Util.getLogger(PulseId);
@@ -61,7 +64,8 @@ public class NaturaNether extends NaturaPulse {
     //@formatter:on
 
     @Subscribe
-    public void preInit (FMLPreInitializationEvent event) {
+    public void preInit(FMLPreInitializationEvent event)
+    {
         netherLog = registerEnumBlock(new BlockNetherLog(), "nether_logs");
 
         netherLeaves = registerBlock(new ItemBlockLeaves(new BlockNetherLeaves()), "nether_leaves");
@@ -94,17 +98,20 @@ public class NaturaNether extends NaturaPulse {
     }
 
     @Subscribe
-    public void init (FMLInitializationEvent event) {
+    public void init(FMLInitializationEvent event)
+    {
         proxy.init();
-        registerRecipes();
+        this.registerRecipes();
     }
 
     @Subscribe
-    public void postInit (FMLPostInitializationEvent event) {
+    public void postInit(FMLPostInitializationEvent event)
+    {
         proxy.postInit();
     }
 
-    private void registerRecipes () {
+    private void registerRecipes()
+    {
         GameRegistry.addRecipe(new ItemStack(netherPlanks, 4, BlockNetherPlanks.PlankType.DARKWOOD.getMeta()), "w", 'w', new ItemStack(netherLog, 1, BlockNetherLog.LogType.DARKWOOD.getMeta()));
         //TODO enable this when fixed
         //GameRegistry.addRecipe(new ItemStack(netherPlanks, 4, BlockNetherPlanks.PlankType.BLOODWOOD.getMeta()), "w", 'w', new ItemStack(netherLog, 1, BlockNetherLog.LogType.BLOODWOOD.getMeta()));

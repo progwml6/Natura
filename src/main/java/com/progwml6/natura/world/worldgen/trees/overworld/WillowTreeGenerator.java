@@ -179,22 +179,22 @@ public class WillowTreeGenerator extends BaseTreeGenerator
                                 BlockPos blockpos1 = blockpos$mutableblockpos1.north();
                                 BlockPos blockpos2 = blockpos$mutableblockpos1.south();
 
-                                if (random.nextInt(4) == 0 && isAir(worldIn, blockpos3))
+                                if (random.nextInt(4) == 0 && this.isAir(worldIn, blockpos3))
                                 {
                                     this.addVine(worldIn, blockpos3, BlockVine.EAST);
                                 }
 
-                                if (random.nextInt(4) == 0 && isAir(worldIn, blockpos4))
+                                if (random.nextInt(4) == 0 && this.isAir(worldIn, blockpos4))
                                 {
                                     this.addVine(worldIn, blockpos4, BlockVine.WEST);
                                 }
 
-                                if (random.nextInt(4) == 0 && isAir(worldIn, blockpos1))
+                                if (random.nextInt(4) == 0 && this.isAir(worldIn, blockpos1))
                                 {
                                     this.addVine(worldIn, blockpos1, BlockVine.SOUTH);
                                 }
 
-                                if (random.nextInt(4) == 0 && isAir(worldIn, blockpos2))
+                                if (random.nextInt(4) == 0 && this.isAir(worldIn, blockpos2))
                                 {
                                     this.addVine(worldIn, blockpos2, BlockVine.NORTH);
                                 }
@@ -229,7 +229,7 @@ public class WillowTreeGenerator extends BaseTreeGenerator
         this.setBlockAndMetadata(worldIn, pos, this.leaves);
         int i = 4;
 
-        for (pos = pos.down(); isAir(worldIn, pos) && i > 0; --i)
+        for (pos = pos.down(); this.isAir(worldIn, pos) && i > 0; --i)
         {
             this.setBlockAndMetadata(worldIn, pos, this.leaves);
             pos = pos.down();

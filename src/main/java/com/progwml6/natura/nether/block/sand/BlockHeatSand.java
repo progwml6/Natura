@@ -46,7 +46,9 @@ public class BlockHeatSand extends BlockFalling
             ItemStack stack = ((EntityPlayer) entityIn).inventory.getStackInSlot(36);
 
             if (stack == null)
+            {
                 entityIn.attackEntityFrom(DamageSource.inFire, 1);
+            }
         }
         else if (entityIn instanceof EntityLiving && !entityIn.isImmuneToFire())
         {

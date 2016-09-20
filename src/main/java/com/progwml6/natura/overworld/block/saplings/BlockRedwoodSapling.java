@@ -117,21 +117,21 @@ public class BlockRedwoodSapling extends BlockSapling
         {
             return;
         }
-        
+
         BaseTreeGenerator gen = new BaseTreeGenerator();
-        
+
         IBlockState log;
         IBlockState leaves;
-        
+
         int x = 0;
         int z = 0;
         boolean correctNumber = false;
-        
+
         switch (state.getValue(FOLIAGE))
         {
         case REDWOOD:
             int numSaplings = this.checkRedwoodSaplings(worldIn, pos);
-        
+
             if (numSaplings >= 40)
             {
                 for (x = -4; x <= 4; x++)
@@ -151,7 +151,7 @@ public class BlockRedwoodSapling extends BlockSapling
             Natura.log.warn("BlockRedwoodSapling Warning: Invalid sapling meta/foliage, " + state.getValue(FOLIAGE) + ". Please report!");
             break;
         }
-        
+
         // replace saplings with air
         for (x = -4; x <= 4; x++)
         {
@@ -164,10 +164,10 @@ public class BlockRedwoodSapling extends BlockSapling
                 System.out.println(pos.add(x, 0, z));
             }
         }
-        
+
         // try generating
         gen.generateTree(rand, worldIn, pos);
-        
+
         // check if it generated
         for (x = -4; x <= 4; x++)
         {
@@ -179,7 +179,7 @@ public class BlockRedwoodSapling extends BlockSapling
                 }
             }
         }
-        
+
         /*for (x = -4; x <= 4; x++)
         {
             for (z = -4; z <= 4; z++)
@@ -191,7 +191,7 @@ public class BlockRedwoodSapling extends BlockSapling
                 }
             }
         }*
-        
+
         System.out.println(state.getValue(FOLIAGE));
         System.out.println(state.getValue(STAGE));*/
         // TODO: FIX REDWOOD

@@ -68,13 +68,21 @@ public class BlockEnumBerryBush extends Block implements IPlantable, IGrowable
         int age = state.getValue(AGE).intValue();
 
         if (age == 0)
+        {
             return SMALL_BUSH_AABB;
+        }
         if (age == 1)
+        {
             return MEDIUM_BUSH_AABB;
+        }
         if (age == 2)
+        {
             return FULL_BUSH_AABB;
+        }
         if (age == 3)
+        {
             return FULL_BUSH_AABB;
+        }
 
         return FULL_BUSH_AABB;
     }
@@ -90,7 +98,9 @@ public class BlockEnumBerryBush extends Block implements IPlantable, IGrowable
     {
         IBlockState state = world.getBlockState(pos);
         if (state.getBlock() != this)
-            return getDefaultState();
+        {
+            return this.getDefaultState();
+        }
         return state;
     }
 
@@ -171,13 +181,21 @@ public class BlockEnumBerryBush extends Block implements IPlantable, IGrowable
         int age = state.getValue(AGE).intValue();
 
         if (age == 0)
+        {
             return false;
+        }
         if (age == 1)
+        {
             return false;
+        }
         if (age == 2)
+        {
             return true;
+        }
         if (age == 3)
+        {
             return true;
+        }
 
         return false;
     }
@@ -202,7 +220,7 @@ public class BlockEnumBerryBush extends Block implements IPlantable, IGrowable
         {
             worldIn.setBlockState(pos, this.getDefaultState().withProperty(AGE, Integer.valueOf(2)), 2);
 
-            EntityItem entityitem = new EntityItem(worldIn, playerIn.posX, playerIn.posY - 1.0D, playerIn.posZ, itemDrop);
+            EntityItem entityitem = new EntityItem(worldIn, playerIn.posX, playerIn.posY - 1.0D, playerIn.posZ, this.itemDrop);
             worldIn.spawnEntityInWorld(entityitem);
             if (!(playerIn instanceof FakePlayer))
             {
@@ -225,7 +243,7 @@ public class BlockEnumBerryBush extends Block implements IPlantable, IGrowable
 
             worldIn.setBlockState(pos, this.getDefaultState().withProperty(AGE, Integer.valueOf(2)), 2);
 
-            EntityItem entityitem = new EntityItem(worldIn, playerIn.posX, playerIn.posY - 1.0D, playerIn.posZ, itemDrop);
+            EntityItem entityitem = new EntityItem(worldIn, playerIn.posX, playerIn.posY - 1.0D, playerIn.posZ, this.itemDrop);
             worldIn.spawnEntityInWorld(entityitem);
             if (!(playerIn instanceof FakePlayer))
             {

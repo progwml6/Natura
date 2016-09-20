@@ -1,11 +1,17 @@
 package com.progwml6.natura.common;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
+
 import com.progwml6.natura.Natura;
 import com.progwml6.natura.entities.NaturaEntities;
 import com.progwml6.natura.library.Util;
 import com.progwml6.natura.nether.NaturaNether;
 import com.progwml6.natura.overworld.NaturaOverworld;
 import com.progwml6.natura.world.NaturaWorld;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.item.Item;
@@ -23,11 +29,6 @@ import slimeknights.mantle.block.EnumBlockSlab;
 import slimeknights.mantle.item.ItemBlockMeta;
 import slimeknights.mantle.item.ItemBlockSlab;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Locale;
-
 /**
  * Just a small helper class that provides some function for cleaner Pulses.
  *
@@ -36,28 +37,35 @@ import java.util.Locale;
  * Models should be registered during Init
  */
 // THANKS TINKERS
-public abstract class NaturaPulse {
-    protected static boolean isEntitiesLoaded () {
+public abstract class NaturaPulse
+{
+    protected static boolean isEntitiesLoaded()
+    {
         return Natura.pulseManager.isPulseLoaded(NaturaEntities.PulseId);
     }
 
-    protected static boolean isWorldLoaded () {
+    protected static boolean isWorldLoaded()
+    {
         return Natura.pulseManager.isPulseLoaded(NaturaWorld.PulseId);
     }
 
-    protected static boolean isOverworldLoaded () {
+    protected static boolean isOverworldLoaded()
+    {
         return Natura.pulseManager.isPulseLoaded(NaturaOverworld.PulseId);
     }
 
-    protected static boolean isNetherLoaded () {
+    protected static boolean isNetherLoaded()
+    {
         return Natura.pulseManager.isPulseLoaded(NaturaNether.PulseId);
     }
 
     /**
      * Sets the correct unlocalized name and registers the item.
      */
-    protected static <T extends Item> T registerItem (T item, String name) {
-        if (!name.equals(name.toLowerCase(Locale.US))) {
+    protected static <T extends Item> T registerItem(T item, String name)
+    {
+        if (!name.equals(name.toLowerCase(Locale.US)))
+        {
             throw new IllegalArgumentException(String.format("Unlocalized names need to be all lowercase! Item: %s", name));
         }
 
@@ -67,43 +75,51 @@ public abstract class NaturaPulse {
         return item;
     }
 
-    protected static <T extends Block> T registerBlock (T block, String name) {
+    protected static <T extends Block> T registerBlock(T block, String name)
+    {
         ItemBlock itemBlock = new ItemBlockMeta(block);
         registerBlock(block, itemBlock, name);
         return block;
     }
 
-    protected static <T extends EnumBlock<?>> T registerEnumBlock (T block, String name) {
+    protected static <T extends EnumBlock<?>> T registerEnumBlock(T block, String name)
+    {
         registerBlock(block, new ItemBlockMeta(block), name);
         ItemBlockMeta.setMappingProperty(block, block.prop);
         return block;
     }
 
-    protected static <T extends EnumBlockSlab<?>> T registerEnumBlockSlab (T block, String name) {
+    protected static <T extends EnumBlockSlab<?>> T registerEnumBlockSlab(T block, String name)
+    {
         registerBlock(block, new ItemBlockSlab(block), name);
         ItemBlockMeta.setMappingProperty(block, block.prop);
         return block;
     }
 
-    protected static <E extends Enum<E> & EnumBlock.IEnumMeta & IStringSerializable> BlockStairsBase registerBlockStairsFrom (EnumBlock<E> block, E value, String name) {
+    protected static <E extends Enum<E> & EnumBlock.IEnumMeta & IStringSerializable> BlockStairsBase registerBlockStairsFrom(EnumBlock<E> block, E value, String name)
+    {
         return registerBlock(new BlockStairsBase(block.getDefaultState().withProperty(block.prop, value)), name);
     }
 
     @SuppressWarnings("unchecked")
-    protected static <T extends Block> T registerBlock (ItemBlock itemBlock, String name) {
+    protected static <T extends Block> T registerBlock(ItemBlock itemBlock, String name)
+    {
         Block block = itemBlock.getBlock();
         return (T) registerBlock(block, itemBlock, name);
     }
 
-    protected static <T extends Block> T registerBlock (T block, String name, IProperty<?> property) {
+    protected static <T extends Block> T registerBlock(T block, String name, IProperty<?> property)
+    {
         ItemBlockMeta itemBlock = new ItemBlockMeta(block);
         registerBlock(block, itemBlock, name);
         ItemBlockMeta.setMappingProperty(block, property);
         return block;
     }
 
-    protected static <T extends Block> T registerBlock (T block, ItemBlock itemBlock, String name) {
-        if (!name.equals(name.toLowerCase(Locale.US))) {
+    protected static <T extends Block> T registerBlock(T block, ItemBlock itemBlock, String name)
+    {
+        if (!name.equals(name.toLowerCase(Locale.US)))
+        {
             throw new IllegalArgumentException(String.format("Unlocalized names need to be all lowercase! Block: %s", name));
         }
 
@@ -116,8 +132,10 @@ public abstract class NaturaPulse {
         return block;
     }
 
-    protected static <T extends Block> T registerBlockNoItem (T block, String name) {
-        if (!name.equals(name.toLowerCase(Locale.US))) {
+    protected static <T extends Block> T registerBlockNoItem(T block, String name)
+    {
+        if (!name.equals(name.toLowerCase(Locale.US)))
+        {
             throw new IllegalArgumentException(String.format("Unlocalized names need to be all lowercase! Block: %s", name));
         }
 
@@ -128,37 +146,45 @@ public abstract class NaturaPulse {
         return block;
     }
 
-    protected static <T extends IForgeRegistryEntry<?>> T register (T thing, String name) {
+    protected static <T extends IForgeRegistryEntry<?>> T register(T thing, String name)
+    {
         thing.setRegistryName(Util.getResource(name));
         GameRegistry.register(thing);
         return thing;
     }
 
-    protected static void registerTE (Class<? extends TileEntity> teClazz, String name) {
-        if (!name.equals(name.toLowerCase(Locale.US))) {
+    protected static void registerTE(Class<? extends TileEntity> teClazz, String name)
+    {
+        if (!name.equals(name.toLowerCase(Locale.US)))
+        {
             throw new IllegalArgumentException(String.format("Unlocalized names need to be all lowercase! TE: %s", name));
         }
 
         GameRegistry.registerTileEntity(teClazz, Util.prefix(name));
     }
 
-    protected void addShapedRecipeFirst (List recipeList, ItemStack itemstack, Object... objArray) {
+    protected void addShapedRecipeFirst(List recipeList, ItemStack itemstack, Object... objArray)
+    {
         String var3 = "";
         int var4 = 0;
         int var5 = 0;
         int var6 = 0;
 
-        if (objArray[var4] instanceof String[]) {
+        if (objArray[var4] instanceof String[])
+        {
             String[] var7 = ((String[]) objArray[var4++]);
 
-            for (int var8 = 0; var8 < var7.length; ++var8) {
-                String var9 = var7[var8];
+            for (String var9 : var7)
+            {
                 ++var6;
                 var5 = var9.length();
                 var3 = var3 + var9;
             }
-        } else {
-            while (objArray[var4] instanceof String) {
+        }
+        else
+        {
+            while (objArray[var4] instanceof String)
+            {
                 String var11 = (String) objArray[var4++];
                 ++var6;
                 var5 = var11.length();
@@ -168,15 +194,21 @@ public abstract class NaturaPulse {
 
         HashMap var12;
 
-        for (var12 = new HashMap(); var4 < objArray.length; var4 += 2) {
+        for (var12 = new HashMap(); var4 < objArray.length; var4 += 2)
+        {
             Character var13 = (Character) objArray[var4];
             ItemStack var14 = null;
 
-            if (objArray[var4 + 1] instanceof Item) {
+            if (objArray[var4 + 1] instanceof Item)
+            {
                 var14 = new ItemStack((Item) objArray[var4 + 1]);
-            } else if (objArray[var4 + 1] instanceof Block) {
+            }
+            else if (objArray[var4 + 1] instanceof Block)
+            {
                 var14 = new ItemStack((Block) objArray[var4 + 1], 1, Short.MAX_VALUE);
-            } else if (objArray[var4 + 1] instanceof ItemStack) {
+            }
+            else if (objArray[var4 + 1] instanceof ItemStack)
+            {
                 var14 = (ItemStack) objArray[var4 + 1];
             }
 
@@ -185,12 +217,16 @@ public abstract class NaturaPulse {
 
         ItemStack[] var15 = new ItemStack[var5 * var6];
 
-        for (int var16 = 0; var16 < var5 * var6; ++var16) {
+        for (int var16 = 0; var16 < var5 * var6; ++var16)
+        {
             char var10 = var3.charAt(var16);
 
-            if (var12.containsKey(Character.valueOf(var10))) {
+            if (var12.containsKey(Character.valueOf(var10)))
+            {
                 var15[var16] = ((ItemStack) var12.get(Character.valueOf(var10))).copy();
-            } else {
+            }
+            else
+            {
                 var15[var16] = null;
             }
         }
@@ -199,20 +235,28 @@ public abstract class NaturaPulse {
         recipeList.add(0, var17);
     }
 
-    protected void addShapelessRecipeFirst (List recipeList, ItemStack par1ItemStack, Object... par2ArrayOfObj) {
+    protected void addShapelessRecipeFirst(List recipeList, ItemStack par1ItemStack, Object... par2ArrayOfObj)
+    {
         ArrayList arraylist = new ArrayList();
         Object[] aobject = par2ArrayOfObj;
         int i = par2ArrayOfObj.length;
 
-        for (int j = 0; j < i; ++j) {
+        for (int j = 0; j < i; ++j)
+        {
             Object object1 = aobject[j];
 
-            if (object1 instanceof ItemStack) {
+            if (object1 instanceof ItemStack)
+            {
                 arraylist.add(((ItemStack) object1).copy());
-            } else if (object1 instanceof Item) {
+            }
+            else if (object1 instanceof Item)
+            {
                 arraylist.add(new ItemStack((Item) object1));
-            } else {
-                if (!(object1 instanceof Block)) {
+            }
+            else
+            {
+                if (!(object1 instanceof Block))
+                {
                     throw new RuntimeException("Invalid shapeless recipe!");
                 }
 
@@ -222,14 +266,19 @@ public abstract class NaturaPulse {
 
         recipeList.add(0, new ShapelessRecipes(par1ItemStack, arraylist));
     }
-    protected static void addSlabRecipe(ItemStack slab, ItemStack input) {
+
+    protected static void addSlabRecipe(ItemStack slab, ItemStack input)
+    {
         GameRegistry.addShapedRecipe(new ItemStack(slab.getItem(), 6, slab.getItemDamage()), "BBB", 'B', input);
     }
-    protected static void addSlabRecipe(Block slab, int slabMeta, ItemStack input) {
+
+    protected static void addSlabRecipe(Block slab, int slabMeta, ItemStack input)
+    {
         GameRegistry.addShapedRecipe(new ItemStack(slab, 6, slabMeta), "BBB", 'B', input);
     }
 
-    protected static void addStairRecipe(Block stairs, ItemStack input) {
+    protected static void addStairRecipe(Block stairs, ItemStack input)
+    {
         GameRegistry.addShapedRecipe(new ItemStack(stairs, 4, 0), "B  ", "BB ", "BBB", 'B', input);
     }
 

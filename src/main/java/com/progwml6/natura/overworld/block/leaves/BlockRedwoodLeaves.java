@@ -66,13 +66,17 @@ public class BlockRedwoodLeaves extends BlockLeaves
                             Block block = iblockstate.getBlock();
 
                             if (block != null && block.canSustainLeaves(iblockstate, worldIn, pos.add(posX, posY, posZ)))
+                            {
                                 nearbyTree = true;
+                            }
                         }
                     }
                 }
 
                 if (!nearbyTree)
+                {
                     this.destroy(worldIn, pos);
+                }
             }
         }
     }
@@ -150,7 +154,7 @@ public class BlockRedwoodLeaves extends BlockLeaves
                     stack = new ItemStack(Items.SLIME_BALL);
                 }
             }
-        
+
             if (stack != null)
             {
                 spawnAsEntity(worldIn, pos, stack);

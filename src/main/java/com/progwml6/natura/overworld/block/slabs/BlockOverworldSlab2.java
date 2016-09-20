@@ -49,7 +49,7 @@ public class BlockOverworldSlab2 extends EnumBlockSlab<BlockOverworldSlab2.Plank
 
         PlankType()
         {
-            meta = ordinal();
+            this.meta = this.ordinal();
         }
 
         @Override
@@ -78,7 +78,7 @@ public class BlockOverworldSlab2 extends EnumBlockSlab<BlockOverworldSlab2.Plank
         @Override
         public int getMeta()
         {
-            return meta;
+            return this.meta;
         }
     }
 }

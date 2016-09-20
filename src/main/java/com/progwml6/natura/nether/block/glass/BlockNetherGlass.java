@@ -93,9 +93,13 @@ public class BlockNetherGlass extends EnumBlock<BlockNetherGlass.GlassType>
     public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, World worldIn, BlockPos pos)
     {
         if (blockState.getValue(TYPE) == GlassType.SOUL)
+        {
             return NULL_AABB;
+        }
         else
+        {
             return HEAT_SAND_AABB;
+        }
     }
 
     @Override

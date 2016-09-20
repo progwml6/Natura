@@ -5,6 +5,7 @@ import com.progwml6.natura.nether.NaturaNether;
 import com.progwml6.natura.nether.block.glass.BlockNetherGlass;
 import com.progwml6.natura.overworld.NaturaOverworld;
 import com.progwml6.natura.shared.NaturaCommons;
+
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -19,11 +20,13 @@ import slimeknights.mantle.pulsar.pulse.Pulse;
  */
 @Pulse(id = NaturaOredict.PULSE_ID, forced = true)
 
-public class NaturaOredict {
+public class NaturaOredict
+{
     public static final String PULSE_ID = "NaturaOredict";
 
     @Subscribe
-    public static void oreDictAllTheThings (FMLPreInitializationEvent event) {
+    public static void oreDictAllTheThings(FMLPreInitializationEvent event)
+    {
         ensureOredict();
         registerCommons();
         registerOverworld();
@@ -41,14 +44,16 @@ public class NaturaOredict {
      */
 
     // Things that are not from natura but should be oredicted
-    private static void ensureOredict () {
+    private static void ensureOredict()
+    {
         oredict(Items.BOWL, "bowlWood");
         oredict(Blocks.CHEST, "chestWood");
         oredict(Blocks.TRAPPED_CHEST, "chestWood");
 
     }
 
-    private static void registerCommons () {
+    private static void registerCommons()
+    {
         oredict(NaturaCommons.bloodwood_emptybowl, "bowlWood");
         oredict(NaturaCommons.ghostwood_emptybowl, "bowlWood");
         oredict(NaturaCommons.darkwood_emptybowl, "bowlWood");
@@ -86,7 +91,8 @@ public class NaturaOredict {
 
     }
 
-    private static void registerOverworld () {
+    private static void registerOverworld()
+    {
 
         //Planks
         oredict(NaturaOverworld.overworldPlanks, "plankWood");
@@ -119,7 +125,8 @@ public class NaturaOredict {
         oredict(NaturaOverworld.overworldStairsWillow, "stairWood");
     }
 
-    private static void registerNether () {
+    private static void registerNether()
+    {
         //Planks
         oredict(NaturaNether.netherPlanks, "plankWood");
         //Logs
@@ -146,7 +153,8 @@ public class NaturaOredict {
     }
 
     //TODO 1.10 double check the objects in here and finish the rest
-    private static void registerModCompat () {
+    private static void registerModCompat()
+    {
         //For Harvestcraft
         //OreDictionary.registerOre("listAllseed", new ItemStack(seeds, 1, 0));
         //OreDictionary.registerOre("listAllseed", new ItemStack(seeds, 1, 1));
@@ -155,25 +163,32 @@ public class NaturaOredict {
 
     }
 
-    public static void oredict (Item item, String... name) {
+    public static void oredict(Item item, String... name)
+    {
         oredict(item, OreDictionary.WILDCARD_VALUE, name);
     }
 
-    public static void oredict (Block block, String... name) {
+    public static void oredict(Block block, String... name)
+    {
         oredict(block, OreDictionary.WILDCARD_VALUE, name);
     }
 
-    public static void oredict (Item item, int meta, String... name) {
+    public static void oredict(Item item, int meta, String... name)
+    {
         oredict(new ItemStack(item, 1, meta), name);
     }
 
-    public static void oredict (Block block, int meta, String... name) {
+    public static void oredict(Block block, int meta, String... name)
+    {
         oredict(new ItemStack(block, 1, meta), name);
     }
 
-    public static void oredict (ItemStack stack, String... names) {
-        if (stack != null && stack.getItem() != null) {
-            for (String name : names) {
+    public static void oredict(ItemStack stack, String... names)
+    {
+        if (stack != null && stack.getItem() != null)
+        {
+            for (String name : names)
+            {
                 OreDictionary.registerOre(name, stack);
             }
         }
