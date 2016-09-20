@@ -1,4 +1,4 @@
-package com.progwml6.natura.world.worldgen;
+package com.progwml6.natura.world.worldgen.trees;
 
 import java.util.Random;
 

@@ -1,8 +1,9 @@
-package com.progwml6.natura.world.worldgen;
+package com.progwml6.natura.world.worldgen.trees.overworld;
 
 import java.util.Random;
 
 import com.progwml6.natura.overworld.NaturaOverworld;
+import com.progwml6.natura.world.worldgen.trees.BaseTreeGenerator;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -14,7 +15,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkGenerator;
 import net.minecraft.world.chunk.IChunkProvider;
 
-public class WillowTreeGenerator extends BaseTreeGenerator
+public class OverworldTreeGenerator extends BaseTreeGenerator
 {
     public final int minTreeHeight;
 
@@ -26,7 +27,7 @@ public class WillowTreeGenerator extends BaseTreeGenerator
 
     public final boolean seekHeight;
 
-    public WillowTreeGenerator(int treeHeight, int treeRange, IBlockState log, IBlockState leaves, boolean seekHeight)
+    public OverworldTreeGenerator(int treeHeight, int treeRange, IBlockState log, IBlockState leaves, boolean seekHeight)
     {
         this.minTreeHeight = treeHeight;
         this.treeHeightRange = treeRange;
@@ -35,7 +36,7 @@ public class WillowTreeGenerator extends BaseTreeGenerator
         this.seekHeight = seekHeight;
     }
 
-    public WillowTreeGenerator(int treeHeight, int treeRange, IBlockState log, IBlockState leaves)
+    public OverworldTreeGenerator(int treeHeight, int treeRange, IBlockState log, IBlockState leaves)
     {
         this(treeHeight, treeRange, log, leaves, true);
     }
@@ -60,7 +61,7 @@ public class WillowTreeGenerator extends BaseTreeGenerator
 
         int yPos = pos.getY();
 
-        if (yPos >= 1 && yPos + height + 1 <= 128)
+        if (yPos >= 1 && yPos + height + 1 <= 256)
         {
             IBlockState state = world.getBlockState(pos.down());
             Block soil = state.getBlock();
@@ -81,8 +82,8 @@ public class WillowTreeGenerator extends BaseTreeGenerator
         do
         {
             IBlockState state = world.getBlockState(pos);
-            Block heightID = state.getBlock();
-            if ((heightID == Blocks.DIRT || heightID == Blocks.GRASS || heightID == Blocks.SAND) && !world.getBlockState(pos.up()).getBlock().isOpaqueCube(state))
+            Block block = state.getBlock();
+            if ((block == Blocks.DIRT || block == Blocks.GRASS) && !world.getBlockState(pos.up()).getBlock().isOpaqueCube(state))
             {
                 return pos.up();
             }
@@ -113,7 +114,8 @@ public class WillowTreeGenerator extends BaseTreeGenerator
                         BlockPos blockpos = new BlockPos(x, y, z);
                         IBlockState state = world.getBlockState(blockpos);
 
-                        if (state.getBlock().isAir(state, world, blockpos) || state.getBlock().isLeaves(state, world, blockpos) || state.getMaterial() == Material.VINE)
+                        if (state.getBlock().isAir(state, world, blockpos) || state.getBlock().isLeaves(state, world, blockpos)
+                                || state.getMaterial() == Material.VINE)
                         {
                             this.setBlockAndMetadata(world, blockpos, this.leaves);
                         }

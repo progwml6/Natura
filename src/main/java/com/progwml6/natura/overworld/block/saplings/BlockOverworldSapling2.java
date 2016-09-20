@@ -10,8 +10,10 @@ import com.progwml6.natura.Natura;
 import com.progwml6.natura.library.NaturaRegistry;
 import com.progwml6.natura.overworld.NaturaOverworld;
 import com.progwml6.natura.overworld.block.logs.BlockOverworldLog2;
-import com.progwml6.natura.world.worldgen.BaseTreeGenerator;
-import com.progwml6.natura.world.worldgen.WillowTreeGenerator;
+import com.progwml6.natura.world.worldgen.trees.BaseTreeGenerator;
+import com.progwml6.natura.world.worldgen.trees.overworld.EucalyptusTreeGenerator;
+import com.progwml6.natura.world.worldgen.trees.overworld.HopseedTreeGenerator;
+import com.progwml6.natura.world.worldgen.trees.overworld.WillowTreeGenerator;
 
 import net.minecraft.block.BlockSapling;
 import net.minecraft.block.SoundType;
@@ -134,8 +136,18 @@ public class BlockOverworldSapling2 extends BlockSapling
 
             break;
         case EUCALYPTUS:
+            log = NaturaOverworld.overworldLog2.getDefaultState().withProperty(BlockOverworldLog2.TYPE, BlockOverworldLog2.LogType.EUCALYPTUS);
+            leaves = NaturaOverworld.overworldLeaves2.getDefaultState().withProperty(BlockOverworldLog2.TYPE, BlockOverworldLog2.LogType.EUCALYPTUS);
+
+            gen = new EucalyptusTreeGenerator(6, 3, log, leaves);
+
             break;
         case HOPSEED:
+            log = NaturaOverworld.overworldLog2.getDefaultState().withProperty(BlockOverworldLog2.TYPE, BlockOverworldLog2.LogType.HOPSEED);
+            leaves = NaturaOverworld.overworldLeaves2.getDefaultState().withProperty(BlockOverworldLog2.TYPE, BlockOverworldLog2.LogType.HOPSEED);
+
+            gen = new HopseedTreeGenerator(5, 4, log, leaves);
+
             break;
         case SAKURA:
             break;

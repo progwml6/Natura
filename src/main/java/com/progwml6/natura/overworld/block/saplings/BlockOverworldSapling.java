@@ -10,8 +10,8 @@ import com.progwml6.natura.Natura;
 import com.progwml6.natura.library.NaturaRegistry;
 import com.progwml6.natura.overworld.NaturaOverworld;
 import com.progwml6.natura.overworld.block.logs.BlockOverworldLog;
-import com.progwml6.natura.world.worldgen.BaseTreeGenerator;
-import com.progwml6.natura.world.worldgen.OverworldTreeGenerator;
+import com.progwml6.natura.world.worldgen.trees.BaseTreeGenerator;
+import com.progwml6.natura.world.worldgen.trees.overworld.OverworldTreeGenerator;
 
 import net.minecraft.block.BlockSapling;
 import net.minecraft.block.SoundType;
