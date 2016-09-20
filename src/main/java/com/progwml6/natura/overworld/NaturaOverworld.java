@@ -1,5 +1,6 @@
 package com.progwml6.natura.overworld;
 
+import net.minecraftforge.fml.common.registry.GameRegistry;
 import org.apache.logging.log4j.Logger;
 
 import com.google.common.eventbus.Subscribe;
@@ -131,6 +132,7 @@ public class NaturaOverworld extends NaturaPulse
     public void init(FMLInitializationEvent event)
     {
         proxy.init();
+        registerRecipes();
     }
 
     @Subscribe
@@ -138,4 +140,18 @@ public class NaturaOverworld extends NaturaPulse
     {
         proxy.postInit();
     }
-}
+
+    private void registerRecipes() {
+        GameRegistry.addRecipe(new ItemStack(overworldPlanks, 4, BlockOverworldPlanks.PlankType.MAPLE.getMeta()), "w", 'w', new ItemStack(overworldLog, 1, BlockOverworldLog.LogType.MAPLE.getMeta()));
+        GameRegistry.addRecipe(new ItemStack(overworldPlanks, 4, BlockOverworldPlanks.PlankType.SILVERBELL.getMeta()), "w", 'w', new ItemStack(overworldLog, 1, BlockOverworldLog.LogType.SILVERBELL.getMeta()));
+        GameRegistry.addRecipe(new ItemStack(overworldPlanks, 4, BlockOverworldPlanks.PlankType.AMARANTH.getMeta()), "w", 'w', new ItemStack(overworldLog, 1, BlockOverworldLog.LogType.AMARANTH.getMeta()));
+        GameRegistry.addRecipe(new ItemStack(overworldPlanks, 4, BlockOverworldPlanks.PlankType.TIGER.getMeta()), "w", 'w', new ItemStack(overworldLog, 1, BlockOverworldLog.LogType.TIGER.getMeta()));
+        GameRegistry.addRecipe(new ItemStack(overworldPlanks, 4, BlockOverworldPlanks.PlankType.WILLOW.getMeta()), "w", 'w', new ItemStack(overworldLog, 1, BlockOverworldLog2.LogType.WILLOW.getMeta()));
+        GameRegistry.addRecipe(new ItemStack(overworldPlanks, 4, BlockOverworldPlanks.PlankType.EUCALYPTUS.getMeta()), "w", 'w', new ItemStack(overworldLog, 1, BlockOverworldLog2.LogType.EUCALYPTUS.getMeta()));
+        GameRegistry.addRecipe(new ItemStack(overworldPlanks, 4, BlockOverworldPlanks.PlankType.HOPSEED.getMeta()), "w", 'w', new ItemStack(overworldLog, 1, BlockOverworldLog2.LogType.HOPSEED.getMeta()));
+        GameRegistry.addRecipe(new ItemStack(overworldPlanks, 4, BlockOverworldPlanks.PlankType.SAKURA.getMeta()), "w", 'w', new ItemStack(overworldLog, 1, BlockOverworldLog2.LogType.SAKURA.getMeta()));
+        GameRegistry.addRecipe(new ItemStack(overworldPlanks, 4, BlockOverworldPlanks.PlankType.REDWOOD.getMeta()), "w", 'w', new ItemStack(overworldLog, 1, BlockRedwoodLog.RedwoodType.BARK.getMeta()));
+        //TODO 1.10 are we missing redwood log > planks??
+
+    }
+    }
