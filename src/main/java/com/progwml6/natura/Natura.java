@@ -1,5 +1,6 @@
 package com.progwml6.natura;
 
+import com.progwml6.natura.common.NaturaOredict;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -45,7 +46,7 @@ public class Natura
         pulseManager.registerPulse(new NaturaOverworld());
         pulseManager.registerPulse(new NaturaNether());
         pulseManager.registerPulse(new NaturaEntities());
-
+        pulseManager.registerPulse(new NaturaOredict());
         pulseManager.registerPulse(new NaturaWorld());
 
         pulseManager.registerPulse(new Waila());

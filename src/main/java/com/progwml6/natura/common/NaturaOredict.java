@@ -117,7 +117,6 @@ public class NaturaOredict {
         oredict(NaturaOverworld.overworldStairsSilverbell, "stairWood");
         oredict(NaturaOverworld.overworldStairsTiger, "stairWood");
         oredict(NaturaOverworld.overworldStairsWillow, "stairWood");
-
     }
 
     private static void registerNether () {
