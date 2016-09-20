@@ -1,5 +1,7 @@
 package com.progwml6.natura.shared;
 
+import net.minecraft.init.Blocks;
+import net.minecraftforge.oredict.ShapedOreRecipe;
 import org.apache.logging.log4j.Logger;
 
 import com.google.common.eventbus.Subscribe;
@@ -215,6 +217,10 @@ public class NaturaCommons extends NaturaPulse
                 }
             }
         }
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Items.STRING), "sss", 's', "cropCotton"));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Blocks.WOOL), "sss", "sss", "sss", 's', "cropCotton"));
+        GameRegistry.addRecipe(new ItemStack(Items.LEATHER, 2), "##", "##", '#', new ItemStack(impLeather.getItem(), 1, 6));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Items.ARROW, 4, 0), " f ", "#s#", " # ", 's', "stickWood", '#', new ItemStack(ghostwoodFletching.getItem(), 1, 5), 'f', Items.FLINT));
 
     }
 }

@@ -1,5 +1,6 @@
 package com.progwml6.natura.nether;
 
+import net.minecraft.init.Blocks;
 import org.apache.logging.log4j.Logger;
 
 import com.google.common.eventbus.Subscribe;
@@ -127,5 +128,8 @@ public class NaturaNether extends NaturaPulse
         addStairRecipe(netherStairsDarkwood, new ItemStack(netherPlanks, 1, BlockNetherPlanks.PlankType.DARKWOOD.getMeta()));
         addStairRecipe(netherStairsFusewood, new ItemStack(netherPlanks, 1, BlockNetherPlanks.PlankType.FUSEWOOD.getMeta()));
         addStairRecipe(netherStairsGhostwood, new ItemStack(netherPlanks, 1, BlockNetherPlanks.PlankType.GHOSTWOOD.getMeta()));
+
+        GameRegistry.addShapelessRecipe(new ItemStack(Blocks.SOUL_SAND), netherHeatSand, netherTaintedSoil);
+
     }
 }

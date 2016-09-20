@@ -61,6 +61,7 @@ public class NaturaEntities extends NaturaPulse
     @Subscribe
     public void postInit(FMLPostInitializationEvent event)
     {
+        //TODO add way to exclude some of these
         Biome[] nether = BiomeDictionary.getBiomesForType(BiomeDictionary.Type.NETHER);
 
         EntityRegistry.addSpawn(EntityImp.class, 10, 8, 12, EnumCreatureType.CREATURE, nether);

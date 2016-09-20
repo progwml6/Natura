@@ -67,10 +67,8 @@ public class NaturaOredict
         oredict(NaturaCommons.barleyFlour, "foodFlour");
         oredict(NaturaCommons.wheatFlour, "foodFlour");
 
-        //TODO enable when barley plant addded
-        //oredict(NaturaCommons.barleyPlant, "cropBarley");
-        //TODO enable when cotton plant addded
-        //oredict(NaturaCommons.cottonPlant, "cropCotton");
+        oredict(NaturaCommons.barley, "cropBarley");
+        oredict(NaturaCommons.cotton, "cropCotton");
 
         //seeds
         //OreDictionary.registerOre("seedBarley", new ItemStack(seeds, 1, 0));
@@ -159,7 +157,7 @@ public class NaturaOredict
         //OreDictionary.registerOre("listAllseed", new ItemStack(seeds, 1, 0));
         //OreDictionary.registerOre("listAllseed", new ItemStack(seeds, 1, 1));
         oredict(NaturaCommons.wheatFlour, "foodEqualswheat");
-        oredict(NaturaCommons.barley, "listAllGrain");//this name is wrong
+        oredict(NaturaCommons.barley, "listAllGrain");
 
     }
 
