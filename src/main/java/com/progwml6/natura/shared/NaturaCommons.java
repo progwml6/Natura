@@ -1,5 +1,7 @@
 package com.progwml6.natura.shared;
 
+import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.oredict.ShapelessOreRecipe;
 import org.apache.logging.log4j.Logger;
 
 import com.google.common.eventbus.Subscribe;
@@ -179,5 +181,23 @@ public class NaturaCommons extends NaturaPulse
     public void init(FMLInitializationEvent event)
     {
         proxy.init();
+        registerRecipes();
+    }
+    private void registerRecipes() {
+        String[] berryTypes = new String[] { "cropRaspberry", "cropBlueberry", "cropBlackberry", "cropMaloberry", "cropStrawberry", "cropCranberry" };
+
+        for (int iter1 = 0; iter1 < berryTypes.length - 2; iter1++)
+            for (int iter2 = iter1 + 1; iter2 < berryTypes.length - 1; iter2++)
+                for (int iter3 = iter2 + 1; iter3 < berryTypes.length; iter3++)
+                    GameRegistry.addRecipe(new ShapelessOreRecipe(berryMedley.copy(), "bowlWood", berryTypes[iter1], berryTypes[iter2], berryTypes[iter3]));
+        ItemStack twobm = berryMedley.copy();
+        twobm.stackSize = 2;
+
+        for (int iter1 = 0; iter1 < berryTypes.length - 3; iter1++)
+            for (int iter2 = iter1 + 1; iter2 < berryTypes.length - 2; iter2++)
+                for (int iter3 = iter2 + 1; iter3 < berryTypes.length - 1; iter3++)
+                    for (int iter4 = iter3 + 1; iter4 < berryTypes.length; iter4++)
+                        GameRegistry.addRecipe(new ShapelessOreRecipe(twobm.copy(), "bowlWood", "bowlWood", berryTypes[iter1], berryTypes[iter2], berryTypes[iter3], berryTypes[iter4]));
+
     }
 }
