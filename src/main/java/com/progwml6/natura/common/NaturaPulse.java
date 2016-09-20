@@ -142,7 +142,7 @@ public abstract class NaturaPulse {
         GameRegistry.registerTileEntity(teClazz, Util.prefix(name));
     }
 
-    public void addShapedRecipeFirst (List recipeList, ItemStack itemstack, Object... objArray) {
+    protected void addShapedRecipeFirst (List recipeList, ItemStack itemstack, Object... objArray) {
         String var3 = "";
         int var4 = 0;
         int var5 = 0;
@@ -199,7 +199,7 @@ public abstract class NaturaPulse {
         recipeList.add(0, var17);
     }
 
-    public void addShapelessRecipeFirst (List recipeList, ItemStack par1ItemStack, Object... par2ArrayOfObj) {
+    protected void addShapelessRecipeFirst (List recipeList, ItemStack par1ItemStack, Object... par2ArrayOfObj) {
         ArrayList arraylist = new ArrayList();
         Object[] aobject = par2ArrayOfObj;
         int i = par2ArrayOfObj.length;
@@ -221,6 +221,13 @@ public abstract class NaturaPulse {
         }
 
         recipeList.add(0, new ShapelessRecipes(par1ItemStack, arraylist));
+    }
+    protected static void addSlabRecipe(ItemStack slab, ItemStack input) {
+        GameRegistry.addShapedRecipe(new ItemStack(slab.getItem(), 6, slab.getItemDamage()), "BBB", 'B', input);
+    }
+
+    protected static void addStairRecipe(Block stairs, ItemStack input) {
+        GameRegistry.addShapedRecipe(new ItemStack(stairs, 4, 0), "B  ", "BB ", "BBB", 'B', input);
     }
 
 }

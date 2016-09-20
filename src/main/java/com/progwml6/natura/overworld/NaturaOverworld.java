@@ -151,11 +151,11 @@ public class NaturaOverworld extends NaturaPulse {
         GameRegistry.addRecipe(new ItemStack(overworldPlanks, 4, BlockOverworldPlanks.PlankType.EUCALYPTUS.getMeta()), "w", 'w',
                 new ItemStack(overworldLog, 1, BlockOverworldLog2.LogType.EUCALYPTUS.getMeta()));
         GameRegistry
-                .addRecipe(new ItemStack(overworldPlanks, 4, BlockOverworldPlanks.PlankType.HOPSEED.getMeta()), "w", 'w', new ItemStack(overworldLog, 1, BlockOverworldLog2.LogType.HOPSEED.getMeta()));
+                .addRecipe(new ItemStack(overworldPlanks, 4, BlockOverworldPlanks.PlankType.HOPSEED.getMeta()), "w", 'w', new ItemStack(overworldLog2, 1, BlockOverworldLog2.LogType.HOPSEED.getMeta()));
         GameRegistry
-                .addRecipe(new ItemStack(overworldPlanks, 4, BlockOverworldPlanks.PlankType.SAKURA.getMeta()), "w", 'w', new ItemStack(overworldLog, 1, BlockOverworldLog2.LogType.SAKURA.getMeta()));
+                .addRecipe(new ItemStack(overworldPlanks, 4, BlockOverworldPlanks.PlankType.SAKURA.getMeta()), "w", 'w', new ItemStack(overworldLog2, 1, BlockOverworldLog2.LogType.SAKURA.getMeta()));
         GameRegistry
-                .addRecipe(new ItemStack(overworldPlanks, 4, BlockOverworldPlanks.PlankType.REDWOOD.getMeta()), "w", 'w', new ItemStack(overworldLog, 1, BlockRedwoodLog.RedwoodType.HEART.getMeta()));
+                .addRecipe(new ItemStack(overworldPlanks, 4, BlockOverworldPlanks.PlankType.REDWOOD.getMeta()), "w", 'w', new ItemStack(redwoodLog, 1, BlockRedwoodLog.RedwoodType.HEART.getMeta()));
         //TODO test these
         for (int i = 0; i < 8; i++)
             addShapedRecipeFirst(recipes, new ItemStack(overworldSlab, 6, i), "###", '#', new ItemStack(overworldPlanks, 1, i));
