@@ -47,7 +47,6 @@ public class Util
 
     public static ResourceLocation getItemLocation(Item item)
     {
-        @SuppressWarnings("deprecation")
         Object o = GameData.getItemRegistry().getNameForObject(item);
 
         if (o == null)

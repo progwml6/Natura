@@ -45,10 +45,11 @@ public class NaturaCommons extends NaturaPulse
     public static ItemEdibleSoup soups;
 
     // Material Itemstacks
-    public static ItemStack barleyPlant;
+    public static ItemStack barley;
     public static ItemStack barleyFlour;
     public static ItemStack wheatFlour;
     public static ItemStack cotton;
+
     public static ItemStack sulfurPowder;
     public static ItemStack ghostwoodFletching;
     public static ItemStack blueDye;
@@ -108,7 +109,7 @@ public class NaturaCommons extends NaturaPulse
         edibles.setCreativeTab(NaturaRegistry.tabGeneral);
         soups.setCreativeTab(NaturaRegistry.tabGeneral);
 
-        barleyPlant = materials.addMeta(0, "barley");
+        barley = materials.addMeta(0, "barley");
         barleyFlour = materials.addMeta(1, "barley_flour");
         wheatFlour = materials.addMeta(2, "wheat_flour");
         cotton = materials.addMeta(3, "cotton");
