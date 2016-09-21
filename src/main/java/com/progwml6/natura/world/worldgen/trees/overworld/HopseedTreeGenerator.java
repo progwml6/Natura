@@ -2,16 +2,19 @@ package com.progwml6.natura.world.worldgen.trees.overworld;
 
 import java.util.Random;
 
+import com.progwml6.natura.overworld.NaturaOverworld;
 import com.progwml6.natura.world.worldgen.trees.BaseTreeGenerator;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkGenerator;
 import net.minecraft.world.chunk.IChunkProvider;
 
+//TODO: FINISH
 public class HopseedTreeGenerator extends BaseTreeGenerator
 {
     public final int minTreeHeight;
@@ -57,6 +60,20 @@ public class HopseedTreeGenerator extends BaseTreeGenerator
                 return;
             }
         }
+
+        int yPos = position.getY();
+
+        if (yPos >= 1 && yPos + height + 1 <= 256)
+        {
+            IBlockState state = worldIn.getBlockState(position.down());
+            Block soil = state.getBlock();
+            boolean isSoil = (soil != null && soil.canSustainPlant(state, worldIn, position.down(), EnumFacing.UP, NaturaOverworld.overworldSapling2));
+
+            if (isSoil)
+            {
+                soil.onPlantGrow(state, worldIn, position.down(), position);
+            }
+        }
     }
 
     @SuppressWarnings("deprecation")
@@ -66,7 +83,7 @@ public class HopseedTreeGenerator extends BaseTreeGenerator
         {
             IBlockState state = world.getBlockState(pos);
             Block block = state.getBlock();
-            if ((block == Blocks.DIRT || block == Blocks.GRASS || block == Blocks.SAND) && !world.getBlockState(pos.up()).getBlock().isOpaqueCube(state))
+            if ((block == Blocks.DIRT || block == Blocks.GRASS) && !world.getBlockState(pos.up()).getBlock().isOpaqueCube(state))
             {
                 return pos.up();
             }
@@ -77,18 +94,20 @@ public class HopseedTreeGenerator extends BaseTreeGenerator
         return pos;
     }
 
-    private void growLogs(World worldIn, BlockPos position)
+    /*
+     * TODO: FINISH
+     * private void growLogs(World worldIn, BlockPos position)
     {
         this.setBlockAndMetadata(worldIn, position, this.log);
-        //this.setBlockAndMetadata(worldIn, x + 1, y, z, this.log);
-        //this.setBlockAndMetadata(worldIn, x, y, z + 1, this.log);
-        //this.setBlockAndMetadata(worldIn, x + 1, y, z + 1, this.log);
-
-        //this.setBlockAndMetadata(worldIn, x, y + 1, z, this.log);
-        //this.setBlockAndMetadata(worldIn, x + 1, y + 1, z, this.log);
-        //this.setBlockAndMetadata(worldIn, x, y + 1, z + 1, this.log);
-        //this.setBlockAndMetadata(worldIn, x + 1, y + 1, z + 1, this.log);
-    }
+        this.setBlockAndMetadata(worldIn, position.add(+1, 0, 0), this.log);
+        this.setBlockAndMetadata(worldIn, position.add(0, 0, +1), this.log);
+        this.setBlockAndMetadata(worldIn, position.add(+1, 0, +1), this.log);
+    
+        this.setBlockAndMetadata(worldIn, position.add(0, +1, 0), this.log);
+        this.setBlockAndMetadata(worldIn, position.add(+1, +1, 0), this.log);
+        this.setBlockAndMetadata(worldIn, position.add(0, +1, +1), this.log);
+        this.setBlockAndMetadata(worldIn, position.add(+1, +1, +1), this.log);
+    }*/
 
     protected void setBlockAndMetadata(World world, BlockPos pos, IBlockState stateNew)
     {

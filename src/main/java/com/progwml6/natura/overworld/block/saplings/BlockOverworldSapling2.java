@@ -13,6 +13,7 @@ import com.progwml6.natura.overworld.block.logs.BlockOverworldLog2;
 import com.progwml6.natura.world.worldgen.trees.BaseTreeGenerator;
 import com.progwml6.natura.world.worldgen.trees.overworld.EucalyptusTreeGenerator;
 import com.progwml6.natura.world.worldgen.trees.overworld.HopseedTreeGenerator;
+import com.progwml6.natura.world.worldgen.trees.overworld.SakuraTreeGenerator;
 import com.progwml6.natura.world.worldgen.trees.overworld.WillowTreeGenerator;
 
 import net.minecraft.block.BlockSapling;
@@ -150,6 +151,11 @@ public class BlockOverworldSapling2 extends BlockSapling
 
             break;
         case SAKURA:
+            log = NaturaOverworld.overworldLog2.getDefaultState().withProperty(BlockOverworldLog2.TYPE, BlockOverworldLog2.LogType.SAKURA);
+            leaves = NaturaOverworld.overworldLeaves2.getDefaultState().withProperty(BlockOverworldLog2.TYPE, BlockOverworldLog2.LogType.SAKURA);
+
+            gen = new SakuraTreeGenerator(log, leaves);
+
             break;
         default:
             Natura.log.warn("BlockOverworldLog2 Warning: Invalid sapling meta/foliage, " + state.getValue(FOLIAGE) + ". Please report!");
@@ -168,9 +174,6 @@ public class BlockOverworldSapling2 extends BlockSapling
             // nope, set sapling again
             worldIn.setBlockState(pos, state, 4);
         }
-
-        System.out.println(state.getValue(FOLIAGE));
-        System.out.println(state.getValue(STAGE));
     }
 
     public enum SaplingType implements IStringSerializable, EnumBlock.IEnumMeta
