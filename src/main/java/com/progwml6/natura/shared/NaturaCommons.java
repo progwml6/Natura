@@ -1,6 +1,7 @@
 package com.progwml6.natura.shared;
 
 import net.minecraft.init.Blocks;
+import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import org.apache.logging.log4j.Logger;
 
@@ -184,6 +185,7 @@ public class NaturaCommons extends NaturaPulse
     {
         proxy.init();
         this.registerRecipes();
+        this.registerSmelting();
     }
 
     private void registerRecipes()
@@ -221,6 +223,16 @@ public class NaturaCommons extends NaturaPulse
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Blocks.WOOL), "sss", "sss", "sss", 's', "cropCotton"));
         GameRegistry.addRecipe(new ItemStack(Items.LEATHER, 2), "##", "##", '#', new ItemStack(impLeather.getItem(), 1, 6));
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Items.ARROW, 4, 0), " f ", "#s#", " # ", 's', "stickWood", '#', new ItemStack(ghostwoodFletching.getItem(), 1, 5), 'f', Items.FLINT));
+        GameRegistry.addRecipe(new ItemStack(Items.CAKE, 1), "AAA", "BEB", " C ", 'A', Items.MILK_BUCKET, 'B', Items.SUGAR, 'C', wheatFlour.copy(), 'E', Items.EGG);
+        GameRegistry.addRecipe(new ItemStack(Items.CAKE, 1), "AAA", "BEB", " C ", 'A', Items.MILK_BUCKET, 'B', Items.SUGAR, 'C', barleyFlour.copy(), 'E', Items.EGG);
+
+    }
+    private void registerSmelting(){
+        //FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(saguaro, 1, 0), new ItemStack(Items.DYE, 1, 2), 0.2F);
+        FurnaceRecipes.instance().addSmeltingRecipe(impmeatRaw.copy(), impmeatCooked.copy(), 0.2F);
+        FurnaceRecipes.instance().addSmeltingRecipe(barleyFlour.copy(), new ItemStack(Items.BREAD, 1), 0.5f);
+        FurnaceRecipes.instance().addSmeltingRecipe(wheatFlour.copy(), new ItemStack(Items.BREAD, 1), 0.5f);
+
 
     }
 }

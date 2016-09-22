@@ -27,6 +27,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;
+import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -135,6 +136,7 @@ public class NaturaOverworld extends NaturaPulse {
     public void init (FMLInitializationEvent event) {
         proxy.init();
         this.registerRecipes();
+        this.registerSmelting();
     }
 
     @Subscribe
@@ -193,6 +195,21 @@ public class NaturaOverworld extends NaturaPulse {
         addSlabRecipe(coloredGrassSlab, BlockColoredGrass.GrassType.TOPIARY.getMeta(), new ItemStack(coloredGrass, 1, BlockColoredGrass.GrassType.TOPIARY.getMeta()));
         addSlabRecipe(coloredGrassSlab, BlockColoredGrass.GrassType.BLUEGRASS.getMeta(), new ItemStack(coloredGrass, 1, BlockColoredGrass.GrassType.BLUEGRASS.getMeta()));
         addSlabRecipe(coloredGrassSlab, BlockColoredGrass.GrassType.AUTUMNAL.getMeta(), new ItemStack(coloredGrass, 1, BlockColoredGrass.GrassType.AUTUMNAL.getMeta()));
+
+    }
+
+    private void registerSmelting () {
+        FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(overworldLog, 1, BlockOverworldLog.LogType.MAPLE.getMeta()), new ItemStack(Items.COAL, 1, 1), 0.15f);
+        FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(overworldLog, 1, BlockOverworldLog.LogType.AMARANTH.getMeta()), new ItemStack(Items.COAL, 1, 1), 0.15f);
+        FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(overworldLog, 1, BlockOverworldLog.LogType.SILVERBELL.getMeta()), new ItemStack(Items.COAL, 1, 1), 0.15f);
+        FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(overworldLog, 1, BlockOverworldLog.LogType.TIGER.getMeta()), new ItemStack(Items.COAL, 1, 1), 0.15f);
+        FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(overworldLog2, 1, BlockOverworldLog2.LogType.EUCALYPTUS.getMeta()), new ItemStack(Items.COAL, 1, 1), 0.15f);
+        FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(overworldLog2, 1, BlockOverworldLog2.LogType.HOPSEED.getMeta()), new ItemStack(Items.COAL, 1, 1), 0.15f);
+        FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(overworldLog2, 1, BlockOverworldLog2.LogType.SAKURA.getMeta()), new ItemStack(Items.COAL, 1, 1), 0.15f);
+        FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(overworldLog2, 1, BlockOverworldLog2.LogType.WILLOW.getMeta()), new ItemStack(Items.COAL, 1, 1), 0.15f);
+        FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(redwoodLog, 1, BlockRedwoodLog.RedwoodType.BARK.getMeta()), new ItemStack(Items.COAL, 1, 1), 0.15f);
+        FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(redwoodLog, 1, BlockRedwoodLog.RedwoodType.ROOT.getMeta()), new ItemStack(Items.COAL, 1, 1), 0.15f);
+        FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(redwoodLog, 1, BlockRedwoodLog.RedwoodType.HEART.getMeta()), new ItemStack(Items.COAL, 1, 1), 0.15f);
 
     }
 }
