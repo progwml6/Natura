@@ -102,7 +102,7 @@ public class HopseedTreeGenerator extends BaseTreeGenerator
         this.setBlockAndMetadata(worldIn, position.add(+1, 0, 0), this.log);
         this.setBlockAndMetadata(worldIn, position.add(0, 0, +1), this.log);
         this.setBlockAndMetadata(worldIn, position.add(+1, 0, +1), this.log);
-    
+
         this.setBlockAndMetadata(worldIn, position.add(0, +1, 0), this.log);
         this.setBlockAndMetadata(worldIn, position.add(+1, +1, 0), this.log);
         this.setBlockAndMetadata(worldIn, position.add(0, +1, +1), this.log);

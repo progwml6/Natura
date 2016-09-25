@@ -1,23 +1,24 @@
-package com.progwml6.natura.world.worldgen.trees.overworld;
+package com.progwml6.natura.world.worldgen.trees.nether;
 
 import java.util.List;
 import java.util.Random;
 
 import com.google.common.collect.Lists;
 import com.progwml6.natura.common.block.BlockEnumLog;
-import com.progwml6.natura.overworld.NaturaOverworld;
+import com.progwml6.natura.nether.NaturaNether;
 import com.progwml6.natura.world.worldgen.trees.BaseTreeGenerator;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkGenerator;
 import net.minecraft.world.chunk.IChunkProvider;
 
-public class SakuraTreeGenerator extends BaseTreeGenerator
+public class GhostwoodTreeGenerator extends BaseTreeGenerator
 {
     private Random rand;
 
@@ -44,13 +45,13 @@ public class SakuraTreeGenerator extends BaseTreeGenerator
     /** Sets the distance limit for how far away the generator will populate leaves from the base leaf node. */
     int leafDistanceLimit = 4;
 
-    List<SakuraTreeGenerator.FoliageCoordinates> foliageCoords;
+    List<GhostwoodTreeGenerator.FoliageCoordinates> foliageCoords;
 
     public final IBlockState log;
 
     public final IBlockState leaves;
 
-    public SakuraTreeGenerator(IBlockState log, IBlockState leaves)
+    public GhostwoodTreeGenerator(IBlockState log, IBlockState leaves)
     {
         this.log = log;
         this.leaves = leaves;
@@ -77,8 +78,8 @@ public class SakuraTreeGenerator extends BaseTreeGenerator
 
         int j = this.basePos.getY() + this.height;
         int k = this.heightLimit - this.leafDistanceLimit;
-        this.foliageCoords = Lists.<SakuraTreeGenerator.FoliageCoordinates> newArrayList();
-        this.foliageCoords.add(new SakuraTreeGenerator.FoliageCoordinates(this.basePos.up(k), j));
+        this.foliageCoords = Lists.<GhostwoodTreeGenerator.FoliageCoordinates> newArrayList();
+        this.foliageCoords.add(new GhostwoodTreeGenerator.FoliageCoordinates(this.basePos.up(k), j));
 
         for (; k >= 0; --k)
         {
@@ -105,7 +106,7 @@ public class SakuraTreeGenerator extends BaseTreeGenerator
 
                         if (this.checkBlockLine(blockpos2, blockpos) == -1)
                         {
-                            this.foliageCoords.add(new SakuraTreeGenerator.FoliageCoordinates(blockpos, blockpos2.getY()));
+                            this.foliageCoords.add(new GhostwoodTreeGenerator.FoliageCoordinates(blockpos, blockpos2.getY()));
                         }
                     }
                 }
@@ -233,7 +234,7 @@ public class SakuraTreeGenerator extends BaseTreeGenerator
      */
     void generateLeaves()
     {
-        for (SakuraTreeGenerator.FoliageCoordinates SakuraTreeGenerator$foliagecoordinates : this.foliageCoords)
+        for (GhostwoodTreeGenerator.FoliageCoordinates SakuraTreeGenerator$foliagecoordinates : this.foliageCoords)
         {
             this.generateLeafNode(SakuraTreeGenerator$foliagecoordinates);
         }
@@ -270,7 +271,7 @@ public class SakuraTreeGenerator extends BaseTreeGenerator
      */
     void generateLeafNodeBases()
     {
-        for (SakuraTreeGenerator.FoliageCoordinates SakuraTreeGenerator$foliagecoordinates : this.foliageCoords)
+        for (GhostwoodTreeGenerator.FoliageCoordinates SakuraTreeGenerator$foliagecoordinates : this.foliageCoords)
         {
             int i = SakuraTreeGenerator$foliagecoordinates.getBranchBase();
             BlockPos blockpos = new BlockPos(this.basePos.getX(), i, this.basePos.getZ());
@@ -326,8 +327,9 @@ public class SakuraTreeGenerator extends BaseTreeGenerator
     private boolean validTreeLocation()
     {
         BlockPos down = this.basePos.down();
-        net.minecraft.block.state.IBlockState state = this.world.getBlockState(down);
-        boolean isSoil = state.getBlock().canSustainPlant(state, this.world, down, net.minecraft.util.EnumFacing.UP, NaturaOverworld.overworldSapling2);
+        IBlockState state = this.world.getBlockState(down);
+        Block soil = state.getBlock();
+        boolean isSoil = (soil != null && soil.canSustainPlant(state, this.world, down, EnumFacing.UP, NaturaNether.netherSapling) || soil == Blocks.NETHERRACK);
 
         if (!isSoil)
         {
@@ -370,7 +372,7 @@ public class SakuraTreeGenerator extends BaseTreeGenerator
         {
             IBlockState state = world.getBlockState(pos);
             Block block = state.getBlock();
-            if ((block == Blocks.DIRT || block == Blocks.GRASS) && !world.getBlockState(pos.up()).getBlock().isOpaqueCube(state))
+            if ((block == Blocks.NETHERRACK || block == Blocks.SOUL_SAND || block == NaturaNether.netherTaintedSoil) && !world.getBlockState(pos.up()).getBlock().isOpaqueCube(state))
             {
                 return pos.up();
             }
@@ -383,7 +385,7 @@ public class SakuraTreeGenerator extends BaseTreeGenerator
 
     public boolean isReplaceable(World world, BlockPos pos)
     {
-        net.minecraft.block.state.IBlockState state = world.getBlockState(pos);
+        IBlockState state = world.getBlockState(pos);
         return state.getBlock().isAir(state, world, pos) || state.getBlock().isLeaves(state, world, pos);
     }
 

@@ -37,7 +37,7 @@ public class BlockNetherLeaves extends BlockLeaves
     {
         this.setCreativeTab(NaturaRegistry.tabWorld);
 
-        Blocks.FIRE.setFireInfo(this, 5, 20);
+        Blocks.FIRE.setFireInfo(this, 0, 0);
 
         this.setDefaultState(this.blockState.getBaseState().withProperty(CHECK_DECAY, false).withProperty(DECAYABLE, true));
     }

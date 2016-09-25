@@ -1,12 +1,11 @@
-package com.progwml6.natura.world.worldgen.trees.overworld;
+package com.progwml6.natura.world.worldgen.trees.nether;
 
 import java.util.Random;
 
-import com.progwml6.natura.overworld.NaturaOverworld;
+import com.progwml6.natura.nether.NaturaNether;
 import com.progwml6.natura.world.worldgen.trees.BaseTreeGenerator;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.EnumFacing;
@@ -15,11 +14,9 @@ import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkGenerator;
 import net.minecraft.world.chunk.IChunkProvider;
 
-public class OverworldTreeGenerator extends BaseTreeGenerator
+public class FusewoodTreeGenerator extends BaseTreeGenerator
 {
     public final int minTreeHeight;
-
-    public final int treeHeightRange;
 
     public final IBlockState log;
 
@@ -27,29 +24,51 @@ public class OverworldTreeGenerator extends BaseTreeGenerator
 
     public final boolean seekHeight;
 
-    public OverworldTreeGenerator(int treeHeight, int treeRange, IBlockState log, IBlockState leaves, boolean seekHeight)
+    public FusewoodTreeGenerator(int treeHeight, IBlockState log, IBlockState leaves, boolean seekHeight)
     {
         this.minTreeHeight = treeHeight;
-        this.treeHeightRange = treeRange;
         this.log = log;
         this.leaves = leaves;
         this.seekHeight = seekHeight;
     }
 
-    public OverworldTreeGenerator(int treeHeight, int treeRange, IBlockState log, IBlockState leaves)
+    public FusewoodTreeGenerator(int treeHeight, IBlockState log, IBlockState leaves)
     {
-        this(treeHeight, treeRange, log, leaves, true);
+        this(treeHeight, log, leaves, true);
+    }
+
+    @SuppressWarnings("deprecation")
+    BlockPos findGround(World world, BlockPos pos)
+    {
+        do
+        {
+            IBlockState state = world.getBlockState(pos);
+            Block block = state.getBlock();
+            if ((block == Blocks.NETHERRACK || block == Blocks.SOUL_SAND || block == NaturaNether.netherTaintedSoil) && !world.getBlockState(pos.up()).getBlock().isOpaqueCube(state))
+            {
+                return pos.up();
+            }
+            pos = pos.down();
+        }
+        while (pos.getY() > 0);
+
+        return pos;
     }
 
     @Override
     public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider)
     {
+
     }
 
     @Override
     public void generateTree(Random random, World world, BlockPos pos)
     {
-        int height = random.nextInt(this.treeHeightRange) + this.minTreeHeight;
+        int height = random.nextInt(3) + this.minTreeHeight;
+        if (height < 4)
+        {
+            height = 4;
+        }
         if (this.seekHeight)
         {
             pos = this.findGround(world, pos);
@@ -65,33 +84,16 @@ public class OverworldTreeGenerator extends BaseTreeGenerator
         {
             IBlockState state = world.getBlockState(pos.down());
             Block soil = state.getBlock();
-            boolean isSoil = (soil != null && soil.canSustainPlant(state, world, pos.down(), EnumFacing.UP, NaturaOverworld.overworldSapling));
+            boolean isSoil = (soil != null && soil.canSustainPlant(state, world, pos.down(), EnumFacing.UP, NaturaNether.netherSapling) || soil == Blocks.NETHERRACK);
 
             if (isSoil)
             {
                 soil.onPlantGrow(state, world, pos.down(), pos);
+
                 this.placeCanopy(world, random, pos, height);
                 this.placeTrunk(world, pos, height);
             }
         }
-    }
-
-    @SuppressWarnings("deprecation")
-    BlockPos findGround(World world, BlockPos pos)
-    {
-        do
-        {
-            IBlockState state = world.getBlockState(pos);
-            Block block = state.getBlock();
-            if ((block == Blocks.DIRT || block == Blocks.GRASS) && !world.getBlockState(pos.up()).getBlock().isOpaqueCube(state))
-            {
-                return pos.up();
-            }
-            pos = pos.down();
-        }
-        while (pos.getY() > 0);
-
-        return pos;
     }
 
     protected void placeCanopy(World world, Random random, BlockPos pos, int height)
@@ -114,8 +116,7 @@ public class OverworldTreeGenerator extends BaseTreeGenerator
                         BlockPos blockpos = new BlockPos(x, y, z);
                         IBlockState state = world.getBlockState(blockpos);
 
-                        if (state.getBlock().isAir(state, world, blockpos) || state.getBlock().isLeaves(state, world, blockpos)
-                                || state.getMaterial() == Material.VINE)
+                        if (state.getBlock().isAir(state, world, blockpos) || state.getBlock().isLeaves(state, world, blockpos) || state.getBlock().canBeReplacedByLeaves(state, world, blockpos))
                         {
                             this.setBlockAndMetadata(world, blockpos, this.leaves);
                         }

@@ -17,6 +17,7 @@ import net.minecraft.block.properties.IProperty;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.ShapedRecipes;
 import net.minecraft.item.crafting.ShapelessRecipes;
 import net.minecraft.tileentity.TileEntity;
@@ -163,7 +164,7 @@ public abstract class NaturaPulse
         GameRegistry.registerTileEntity(teClazz, Util.prefix(name));
     }
 
-    protected void addShapedRecipeFirst(List recipeList, ItemStack itemstack, Object... objArray)
+    protected void addShapedRecipeFirst(List<IRecipe> recipeList, ItemStack itemstack, Object... objArray)
     {
         String var3 = "";
         int var4 = 0;
@@ -235,7 +236,7 @@ public abstract class NaturaPulse
         recipeList.add(0, var17);
     }
 
-    protected void addShapelessRecipeFirst(List recipeList, ItemStack par1ItemStack, Object... par2ArrayOfObj)
+    protected void addShapelessRecipeFirst(List<IRecipe> recipeList, ItemStack par1ItemStack, Object... par2ArrayOfObj)
     {
         ArrayList arraylist = new ArrayList();
         Object[] aobject = par2ArrayOfObj;

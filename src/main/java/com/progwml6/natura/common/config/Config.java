@@ -1,79 +1,84 @@
 package com.progwml6.natura.common.config;
 
+import org.apache.logging.log4j.Logger;
+
 import com.progwml6.natura.library.Util;
-import net.minecraftforge.common.MinecraftForge;
+
 import net.minecraftforge.common.config.Configuration;
-import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import org.apache.logging.log4j.Logger;
 import slimeknights.mantle.pulsar.config.ForgeCFG;
 
-public final class Config {
+public final class Config
+{
     public static ForgeCFG pulseConfig = new ForgeCFG("NaturaModules", "Modules");
 
     public static Config instance = new Config();
 
     public static Logger log = Util.getLogger("Config");
+
     private static final String ENABLE_DISABLE = "ENABLE-DISABLE";
+
     private static final String WORLDGEN = "Worldgen";
 
-    private Config () {
+    private Config()
+    {
     }
 
-    public static void load (FMLPreInitializationEvent event) {
+    public static void load(FMLPreInitializationEvent event)
+    {
         configFile = new Configuration(event.getSuggestedConfigurationFile(), "0.2", false);
         configFile.load();
-
-        MinecraftForge.EVENT_BUS.register(instance);
 
         syncConfig();
     }
 
-    @SubscribeEvent
-    public void update (ConfigChangedEvent.OnConfigChangedEvent event) {
-        if (event.getModID().equals(Util.MODID)) {
-            syncConfig();
-        }
-    }
-
-    public static boolean syncConfig () {
-
+    public static boolean syncConfig()
+    {
         enableRetrogen = configFile.get("Retrogen", "Retroactive Generation", enableRetrogen).getBoolean(enableRetrogen);
 
         boolean BoP = false;
-        if (Loader.isModLoaded("BiomesOPlenty")) {
+        if (Loader.isModLoaded("BiomesOPlenty"))
+        {
             BoP = true;
         }
 
         babyHeatscarMinimum = configFile.get("Mob Changes", "Minimum Baby Heatscar Spiders on Spider Death", babyHeatscarMinimum).getInt(babyHeatscarMinimum);
-        if (babyHeatscarMinimum < 0) {
+        if (babyHeatscarMinimum < 0)
+        {
             babyHeatscarMinimum = 0;
         }
+
         babyHeatscarMaximum = configFile.get("Mob Changes", "Maximum Baby Heatscar Spiders on Spider Death", babyHeatscarMaximum).getInt(babyHeatscarMaximum);
-        if (babyHeatscarMaximum < 0) {
+        if (babyHeatscarMaximum < 0)
+        {
             babyHeatscarMaximum = 0;
         }
+
         overrideNether = configFile.get(ENABLE_DISABLE, "Override Nether", !BoP).getBoolean(!BoP);
         canRespawnInNether = configFile.get(ENABLE_DISABLE, "Obelisks let players respawn in the Nether", canRespawnInNether).getBoolean(canRespawnInNether);
 
+        // Trees Start
         generateRedwood = configFile.get(ENABLE_DISABLE, "Generate Redwood Trees", generateRedwood).getBoolean(generateRedwood);
-        generateSakura = configFile.get(ENABLE_DISABLE, "Generate Sakura Trees", generateSakura).getBoolean(generateSakura);
-        generateSmallEucalyptus = configFile.get(ENABLE_DISABLE, "Generate Small Eucalyptus Trees", generateSmallEucalyptus).getBoolean(generateSmallEucalyptus);
-        generateHopseed = configFile.get(ENABLE_DISABLE, "Generate Hopseed Trees", generateHopseed).getBoolean(generateHopseed);
-        generateGhost = configFile.get(ENABLE_DISABLE, "Generate Ghost Trees", generateGhost).getBoolean(generateGhost);
-        generateSaguaro = configFile.get(ENABLE_DISABLE, "Generate Saguaro Cactus", generateSaguaro).getBoolean(generateSaguaro);
 
-        generateAmaranth = configFile.get(ENABLE_DISABLE, "Generate Amaranth Trees", generateAmaranth).getBoolean(generateAmaranth);
-        generateWillow = configFile.get(ENABLE_DISABLE, "Generate Willow Trees", generateWillow).getBoolean(generateWillow);
-        generateTiger = configFile.get(ENABLE_DISABLE, "Generate Tigerwood Trees", generateTiger).getBoolean(generateTiger);
-        generateSilverbell = configFile.get(ENABLE_DISABLE, "Generate Silverbell Trees", generateSilverbell).getBoolean(generateSilverbell);
         generateMaple = configFile.get(ENABLE_DISABLE, "Generate Maple Trees", generateMaple).getBoolean(generateMaple);
+        generateSilverbell = configFile.get(ENABLE_DISABLE, "Generate Silverbell Trees", generateSilverbell).getBoolean(generateSilverbell);
+        generateAmaranth = configFile.get(ENABLE_DISABLE, "Generate Amaranth Trees", generateAmaranth).getBoolean(generateAmaranth);
+        generateTiger = configFile.get(ENABLE_DISABLE, "Generate Tigerwood Trees", generateTiger).getBoolean(generateTiger);
+
+        generateWillow = configFile.get(ENABLE_DISABLE, "Generate Willow Trees", generateWillow).getBoolean(generateWillow);
+        generateEucalyptus = configFile.get(ENABLE_DISABLE, "Generate Small Eucalyptus Trees", generateEucalyptus).getBoolean(generateEucalyptus);
+        generateHopseed = configFile.get(ENABLE_DISABLE, "Generate Hopseed Trees", generateHopseed).getBoolean(generateHopseed);
+        generateSakura = configFile.get(ENABLE_DISABLE, "Generate Sakura Trees", generateSakura).getBoolean(generateSakura);
+
+        generateSaguaro = configFile.get(ENABLE_DISABLE, "Generate Saguaro Cactus", generateSaguaro).getBoolean(generateSaguaro);
 
         generateBloodwood = configFile.get(ENABLE_DISABLE, "Generate Bloodwood Trees", generateBloodwood).getBoolean(generateBloodwood);
         generateDarkwood = configFile.get(ENABLE_DISABLE, "Generate Darkwood Trees", generateDarkwood).getBoolean(generateDarkwood);
         generateFusewood = configFile.get(ENABLE_DISABLE, "Generate Fusewood Trees", generateFusewood).getBoolean(generateFusewood);
+        generateGhostwood = configFile.get(ENABLE_DISABLE, "Generate Ghostwood Trees", generateGhostwood).getBoolean(generateGhostwood);
+        // Trees End
+
         generateThornvines = configFile.get(ENABLE_DISABLE, "Generate Thornvines", generateThornvines).getBoolean(generateThornvines);
 
         generateBarley = configFile.get(ENABLE_DISABLE, "Generate Barley Crops", generateBarley).getBoolean(generateBarley);
@@ -96,31 +101,37 @@ public final class Config {
         generateGlowshroomtree = configFile.get(ENABLE_DISABLE, "Generate Glowshroom Trees", generateGlowshroomtree).getBoolean(generateGlowshroomtree);
         dropCotton = configFile.get(ENABLE_DISABLE, "Drop cotton seeds from grass", dropCotton).getBoolean(dropCotton);
         dropBarley = configFile.get(ENABLE_DISABLE, "Drop barley seeds from grass", dropBarley).getBoolean(dropBarley);
-        try {
+        try
+        {
             Class.forName("chococraft.common.ModChocoCraft");
             enableWheatRecipe = configFile.get(ENABLE_DISABLE, "Enable wheat to flour recipe", false).getBoolean(false);
-        } catch (Exception e) {
+        }
+        catch (Exception e)
+        {
             enableWheatRecipe = configFile.get(ENABLE_DISABLE, "Enable wheat to flour recipe", true).getBoolean(true);
         }
 
+        // Trees Start
         redwoodSpawnRarity = configFile.get(WORLDGEN, "Redwood Tree Spawn Rarity", redwoodSpawnRarity).getInt(redwoodSpawnRarity);
-        bloodSpawnRarity = configFile.get(WORLDGEN, "Blood Tree Spawn Rarity", bloodSpawnRarity).getInt(bloodSpawnRarity);
-        eucalyptusShortSpawnRarity = configFile.get(WORLDGEN, "Small Eucalyptus Tree Spawn Rarity", eucalyptusShortSpawnRarity).getInt(eucalyptusShortSpawnRarity);
-        eucalyptusShortSpawnRange = configFile.get(WORLDGEN, "Small Eucalyptus Tree Spawn Range", eucalyptusShortSpawnRange).getInt(eucalyptusShortSpawnRange);
-        sakuraSpawnRarity = configFile.get(WORLDGEN, "Sakura Tree Spawn Rarity", sakuraSpawnRarity).getInt(sakuraSpawnRarity);
-        sakuraSpawnRange = configFile.get(WORLDGEN, "Sakura Tree Spawn Range", sakuraSpawnRange).getInt(sakuraSpawnRange);
-        ghostSpawnRarity = configFile.get(WORLDGEN, "Ghostwood Tree Spawn Rarity", ghostSpawnRarity).getInt(ghostSpawnRarity);
-        bushSpawnRarity = configFile.get(WORLDGEN, "Bush Tree Spawn Rarity", bushSpawnRarity).getInt(bushSpawnRarity);
-        bushSpawnRange = configFile.get(WORLDGEN, "Bush Tree Spawn Range", bushSpawnRange).getInt(bushSpawnRange);
+
+        mapleRarity = configFile.get(WORLDGEN, "Maple Tree Spawn Rarity", mapleRarity).getInt(mapleRarity);
+        silverbellRarity = configFile.get(WORLDGEN, "Silverbell Tree Spawn Rarity", silverbellRarity).getInt(silverbellRarity);
+        amaranthRarity = configFile.get(WORLDGEN, "Amaranth Tree Spawn Rarity", amaranthRarity).getInt(amaranthRarity);
+        tigerRarity = configFile.get(WORLDGEN, "Tigerwood Tree Spawn Rarity", tigerRarity).getInt(tigerRarity);
 
         willowRarity = configFile.get(WORLDGEN, "Willow Tree Spawn Rarity", willowRarity).getInt(willowRarity);
-        amaranthRarity = configFile.get(WORLDGEN, "Amaranth Tree Spawn Rarity", amaranthRarity).getInt(amaranthRarity);
-        mapleRarity = configFile.get(WORLDGEN, "Maple Tree Spawn Rarity", mapleRarity).getInt(mapleRarity);
-        tigerRarity = configFile.get(WORLDGEN, "Tigerwood Tree Spawn Rarity", tigerRarity).getInt(tigerRarity);
-        silverbellRarity = configFile.get(WORLDGEN, "Silverbell Tree Spawn Rarity", silverbellRarity).getInt(silverbellRarity);
+        eucalyptusSpawnRarity = configFile.get(WORLDGEN, "Eucalyptus Tree Spawn Rarity", eucalyptusSpawnRarity).getInt(eucalyptusSpawnRarity);
+        eucalyptusSpawnRange = configFile.get(WORLDGEN, "Eucalyptus Tree Spawn Range", eucalyptusSpawnRange).getInt(eucalyptusSpawnRange);
+        hopseedSpawnRarity = configFile.get(WORLDGEN, "Hopseed Tree Spawn Rarity", hopseedSpawnRarity).getInt(hopseedSpawnRarity);
+        hopseedSpawnRange = configFile.get(WORLDGEN, "Hopseed Tree Spawn Range", hopseedSpawnRange).getInt(hopseedSpawnRange);
+        sakuraSpawnRarity = configFile.get(WORLDGEN, "Sakura Tree Spawn Rarity", sakuraSpawnRarity).getInt(sakuraSpawnRarity);
+        sakuraSpawnRange = configFile.get(WORLDGEN, "Sakura Tree Spawn Range", sakuraSpawnRange).getInt(sakuraSpawnRange);
 
-        darkSpawnRarity = configFile.get(WORLDGEN, "Darkwood Tree Spawn Rarity", darkSpawnRarity).getInt(darkSpawnRarity);
-        fuseSpawnRarity = configFile.get(WORLDGEN, "Fusewood Tree Spawn Rarity", fuseSpawnRarity).getInt(fuseSpawnRarity);
+        bloodwoodSpawnRarity = configFile.get(WORLDGEN, "Bloodwood Tree Spawn Rarity", bloodwoodSpawnRarity).getInt(bloodwoodSpawnRarity);
+        darkwoodSpawnRarity = configFile.get(WORLDGEN, "Darkwood Tree Spawn Rarity", darkwoodSpawnRarity).getInt(darkwoodSpawnRarity);
+        fusewoodSpawnRarity = configFile.get(WORLDGEN, "Fusewood Tree Spawn Rarity", fusewoodSpawnRarity).getInt(fusewoodSpawnRarity);
+        ghostwoodSpawnRarity = configFile.get(WORLDGEN, "Ghostwood Tree Spawn Rarity", ghostwoodSpawnRarity).getInt(ghostwoodSpawnRarity);
+        // Trees End
 
         saguaroSpawnRarity = configFile.get(WORLDGEN, "Saguaro Cactus Spawn Rarity", saguaroSpawnRarity).getInt(saguaroSpawnRarity);
 
@@ -148,7 +159,8 @@ public final class Config {
 
         // save changes if any
         boolean changed = false;
-        if (configFile.hasChanged()) {
+        if (configFile.hasChanged())
+        {
             configFile.save();
             changed = true;
         }
@@ -162,6 +174,48 @@ public final class Config {
     public static int babyHeatscarMaximum = 4;
 
     public static int seaLevel = 64;
+
+    public static boolean overrideNether = true;
+    public static boolean canRespawnInNether = true;
+
+    // Trees Start
+    public static boolean generateRedwood = false;
+
+    public static boolean generateMaple = true;
+    public static boolean generateSilverbell = true;
+    public static boolean generateAmaranth = true;
+    public static boolean generateTiger = true;
+
+    public static boolean generateWillow = true;
+    public static boolean generateEucalyptus = true;
+    public static boolean generateHopseed = true;
+    public static boolean generateSakura = true;
+
+    public static boolean generateBloodwood = true;
+    public static boolean generateDarkwood = true;
+    public static boolean generateFusewood = true;
+    public static boolean generateGhostwood = true;
+
+    public static int redwoodSpawnRarity = 150;
+
+    public static int mapleRarity = 10;
+    public static int silverbellRarity = 70;
+    public static int amaranthRarity = 1;
+    public static int tigerRarity = 30;
+
+    public static int willowRarity = 10;
+    public static int eucalyptusSpawnRarity = 25;
+    public static int eucalyptusSpawnRange = 32;
+    public static int hopseedSpawnRarity = 10;
+    public static int hopseedSpawnRange = 20;
+    public static int sakuraSpawnRarity = 10;
+    public static int sakuraSpawnRange = 32;
+
+    public static int bloodwoodSpawnRarity = 14;
+    public static int darkwoodSpawnRarity = 10;
+    public static int fusewoodSpawnRarity = 50;
+    public static int ghostwoodSpawnRarity = 10;
+    // Trees End
 
     //Overworld
     public static boolean generateBarley = true;
@@ -204,24 +258,7 @@ public final class Config {
 
     public static int thornSpawnRarity = 40;
 
-    //Trees
-
-    public static boolean generateRedwood = false;
-    public static boolean generateSakura = true;
-    public static boolean generateSmallEucalyptus = true;
-    public static boolean generateBloodwood = true;
-    public static boolean generateGhost = true;
-    public static boolean generateHopseed = true;
     public static boolean generateSaguaro = true;
-
-    public static boolean generateAmaranth = true;
-    public static boolean generateWillow = true;
-    public static boolean generateTiger = true;
-    public static boolean generateSilverbell = true;
-    public static boolean generateMaple = true;
-
-    public static boolean generateDarkwood = true;
-    public static boolean generateFusewood = true;
 
     public static boolean generateThornvines = true;
 
@@ -229,27 +266,6 @@ public final class Config {
     public static boolean dropBarley = true;
     public static boolean dropCotton = true;
 
-    public static boolean overrideNether = true;
-    public static boolean canRespawnInNether = true;
-
-    public static int redwoodSpawnRarity = 150;
-    public static int bloodSpawnRarity = 14;
-    public static int eucalyptusShortSpawnRarity = 25;
-    public static int eucalyptusShortSpawnRange = 32;
-    public static int sakuraSpawnRarity = 10;
-    public static int sakuraSpawnRange = 32;
-    public static int ghostSpawnRarity = 10;
-    public static int bushSpawnRarity = 10;
-    public static int bushSpawnRange = 20;
-    public static int darkSpawnRarity = 10;
-    public static int fuseSpawnRarity = 50;
-    public static int amaranthRarity = 1;
-    public static int mapleRarity = 34;
-    public static int willowRarity = 10;
-    public static int tigerRarity = 30;
-    public static int silverbellRarity = 70;
-
     static Configuration configFile;
-
     //@formatter:on
 }

@@ -1,8 +1,5 @@
 package com.progwml6.natura.shared;
 
-import net.minecraft.init.Blocks;
-import net.minecraft.item.crafting.FurnaceRecipes;
-import net.minecraftforge.oredict.ShapedOreRecipe;
 import org.apache.logging.log4j.Logger;
 
 import com.google.common.eventbus.Subscribe;
@@ -13,14 +10,17 @@ import com.progwml6.natura.library.Util;
 import com.progwml6.natura.shared.block.hopper.BlockBlazeHopper;
 import com.progwml6.natura.shared.item.ItemEdibleSoup;
 
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.init.MobEffects;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.potion.PotionEffect;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
 import slimeknights.mantle.item.ItemEdible;
 import slimeknights.mantle.item.ItemMetaDynamic;
@@ -127,10 +127,8 @@ public class NaturaCommons extends NaturaPulse
             impLeather = materials.addMeta(6, "imp_leather");
             flameString = materials.addMeta(7, "flame_string");
 
-            impmeatRaw = edibles.addFood(0, 3, 0.2f, "impmeat_raw", new PotionEffect(MobEffects.HUNGER, 8 * 20, 0),
-                    new PotionEffect(MobEffects.POISON, 5 * 20, 0));
-            impmeatCooked = edibles.addFood(1, 8, 0.6f, "impmeat_cooked", new PotionEffect(MobEffects.FIRE_RESISTANCE, 15 * 20, 0),
-                    new PotionEffect(MobEffects.POISON, 5 * 20, 0));
+            impmeatRaw = edibles.addFood(0, 3, 0.2f, "impmeat_raw", new PotionEffect(MobEffects.HUNGER, 8 * 20, 0), new PotionEffect(MobEffects.POISON, 5 * 20, 0));
+            impmeatCooked = edibles.addFood(1, 8, 0.6f, "impmeat_cooked", new PotionEffect(MobEffects.FIRE_RESISTANCE, 15 * 20, 0), new PotionEffect(MobEffects.POISON, 5 * 20, 0));
         }
 
         if (isOverworldLoaded())
@@ -144,14 +142,10 @@ public class NaturaCommons extends NaturaPulse
 
         if (isNetherLoaded())
         {
-            blightberry = edibles.addFood(6, 1, 0.4F, "blightberry", new PotionEffect(MobEffects.REGENERATION, 8 * 20, 0),
-                    new PotionEffect(MobEffects.POISON, 5 * 20, 0), new PotionEffect(MobEffects.WITHER, 5 * 20, 0));
-            duskberry = edibles.addFood(7, 1, 0.4F, "duskberry", new PotionEffect(MobEffects.NIGHT_VISION, 15 * 20, 0),
-                    new PotionEffect(MobEffects.BLINDNESS, 3 * 20, 0));
-            skyberry = edibles.addFood(8, 1, 0.4F, "skyberry", new PotionEffect(MobEffects.JUMP_BOOST, 8 * 20, 0),
-                    new PotionEffect(MobEffects.SLOWNESS, 3 * 20, 0));
-            stingberry = edibles.addFood(9, 1, 0.4F, "stingberry", new PotionEffect(MobEffects.STRENGTH, 10 * 20, 0),
-                    new PotionEffect(MobEffects.MINING_FATIGUE, 10 * 20, 0));
+            blightberry = edibles.addFood(6, 1, 0.4F, "blightberry", new PotionEffect(MobEffects.REGENERATION, 8 * 20, 0), new PotionEffect(MobEffects.POISON, 5 * 20, 0), new PotionEffect(MobEffects.WITHER, 5 * 20, 0));
+            duskberry = edibles.addFood(7, 1, 0.4F, "duskberry", new PotionEffect(MobEffects.NIGHT_VISION, 15 * 20, 0), new PotionEffect(MobEffects.BLINDNESS, 3 * 20, 0));
+            skyberry = edibles.addFood(8, 1, 0.4F, "skyberry", new PotionEffect(MobEffects.JUMP_BOOST, 8 * 20, 0), new PotionEffect(MobEffects.SLOWNESS, 3 * 20, 0));
+            stingberry = edibles.addFood(9, 1, 0.4F, "stingberry", new PotionEffect(MobEffects.STRENGTH, 10 * 20, 0), new PotionEffect(MobEffects.MINING_FATIGUE, 10 * 20, 0));
         }
 
         ghostwood_emptybowl = empty_bowls.addMeta(0, "ghostwood_bowl");
@@ -164,16 +158,11 @@ public class NaturaCommons extends NaturaPulse
         darkwood_mushroomstew = soups.addFood(2, 6, 0.6f, "darkwood_mushroomstew", darkwood_emptybowl);
         fusewood_mushroomstew = soups.addFood(3, 6, 0.6f, "fusewood_mushroomstew", fusewood_emptybowl);
 
-        vanilla_glowshroomstew = soups.addFood(4, 6, 0.6f, "vanilla_glowshroomstew", new ItemStack(Items.BOWL), new PotionEffect(MobEffects.NIGHT_VISION, 45 * 25, 0),
-                new PotionEffect(MobEffects.POISON, 16 * 25, 0), new PotionEffect(MobEffects.MINING_FATIGUE, 8 * 25, 0));
-        ghostwood_glowshroomstew = soups.addFood(5, 6, 0.6f, "ghostwood_glowshroomstew", ghostwood_emptybowl, new PotionEffect(MobEffects.NIGHT_VISION, 45 * 25, 0),
-                new PotionEffect(MobEffects.POISON, 16 * 25, 0), new PotionEffect(MobEffects.MINING_FATIGUE, 8 * 25, 0));
-        bloodwood_glowshroomstew = soups.addFood(6, 3, 0.2f, "bloodwood_glowshroomstew", bloodwood_emptybowl, new PotionEffect(MobEffects.NIGHT_VISION, 45 * 25, 0),
-                new PotionEffect(MobEffects.POISON, 16 * 25, 0), new PotionEffect(MobEffects.MINING_FATIGUE, 8 * 25, 0));
-        darkwood_glowshroomstew = soups.addFood(7, 3, 0.2f, "darkwood_glowshroomstew", darkwood_emptybowl, new PotionEffect(MobEffects.NIGHT_VISION, 45 * 25, 0),
-                new PotionEffect(MobEffects.POISON, 16 * 25, 0), new PotionEffect(MobEffects.MINING_FATIGUE, 8 * 25, 0));
-        fusewood_glowshroomstew = soups.addFood(8, 3, 0.2f, "fusewood_glowshroomstew", fusewood_emptybowl, new PotionEffect(MobEffects.NIGHT_VISION, 45 * 25, 0),
-                new PotionEffect(MobEffects.POISON, 16 * 25, 0), new PotionEffect(MobEffects.MINING_FATIGUE, 8 * 25, 0));
+        vanilla_glowshroomstew = soups.addFood(4, 6, 0.6f, "vanilla_glowshroomstew", new ItemStack(Items.BOWL), new PotionEffect(MobEffects.NIGHT_VISION, 45 * 25, 0), new PotionEffect(MobEffects.POISON, 16 * 25, 0), new PotionEffect(MobEffects.MINING_FATIGUE, 8 * 25, 0));
+        ghostwood_glowshroomstew = soups.addFood(5, 6, 0.6f, "ghostwood_glowshroomstew", ghostwood_emptybowl, new PotionEffect(MobEffects.NIGHT_VISION, 45 * 25, 0), new PotionEffect(MobEffects.POISON, 16 * 25, 0), new PotionEffect(MobEffects.MINING_FATIGUE, 8 * 25, 0));
+        bloodwood_glowshroomstew = soups.addFood(6, 3, 0.2f, "bloodwood_glowshroomstew", bloodwood_emptybowl, new PotionEffect(MobEffects.NIGHT_VISION, 45 * 25, 0), new PotionEffect(MobEffects.POISON, 16 * 25, 0), new PotionEffect(MobEffects.MINING_FATIGUE, 8 * 25, 0));
+        darkwood_glowshroomstew = soups.addFood(7, 3, 0.2f, "darkwood_glowshroomstew", darkwood_emptybowl, new PotionEffect(MobEffects.NIGHT_VISION, 45 * 25, 0), new PotionEffect(MobEffects.POISON, 16 * 25, 0), new PotionEffect(MobEffects.MINING_FATIGUE, 8 * 25, 0));
+        fusewood_glowshroomstew = soups.addFood(8, 3, 0.2f, "fusewood_glowshroomstew", fusewood_emptybowl, new PotionEffect(MobEffects.NIGHT_VISION, 45 * 25, 0), new PotionEffect(MobEffects.POISON, 16 * 25, 0), new PotionEffect(MobEffects.MINING_FATIGUE, 8 * 25, 0));
 
         proxy.preInit();
 
@@ -225,14 +214,13 @@ public class NaturaCommons extends NaturaPulse
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Items.ARROW, 4, 0), " f ", "#s#", " # ", 's', "stickWood", '#', new ItemStack(ghostwoodFletching.getItem(), 1, 5), 'f', Items.FLINT));
         GameRegistry.addRecipe(new ItemStack(Items.CAKE, 1), "AAA", "BEB", " C ", 'A', Items.MILK_BUCKET, 'B', Items.SUGAR, 'C', wheatFlour.copy(), 'E', Items.EGG);
         GameRegistry.addRecipe(new ItemStack(Items.CAKE, 1), "AAA", "BEB", " C ", 'A', Items.MILK_BUCKET, 'B', Items.SUGAR, 'C', barleyFlour.copy(), 'E', Items.EGG);
-
     }
-    private void registerSmelting(){
+
+    private void registerSmelting()
+    {
         //FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(saguaro, 1, 0), new ItemStack(Items.DYE, 1, 2), 0.2F);
         FurnaceRecipes.instance().addSmeltingRecipe(impmeatRaw.copy(), impmeatCooked.copy(), 0.2F);
         FurnaceRecipes.instance().addSmeltingRecipe(barleyFlour.copy(), new ItemStack(Items.BREAD, 1), 0.5f);
         FurnaceRecipes.instance().addSmeltingRecipe(wheatFlour.copy(), new ItemStack(Items.BREAD, 1), 0.5f);
-
-
     }
 }

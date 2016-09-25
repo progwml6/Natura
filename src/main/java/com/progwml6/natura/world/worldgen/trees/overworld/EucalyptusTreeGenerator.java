@@ -80,7 +80,6 @@ public class EucalyptusTreeGenerator extends BaseTreeGenerator
                 this.genStraightBranch(world, random, pos, height, 3);
                 this.genStraightBranch(world, random, pos, height, 4);
                 this.generateNode(world, random, pos.up(height));
-
             }
         }
     }
@@ -279,7 +278,7 @@ public class EucalyptusTreeGenerator extends BaseTreeGenerator
         {
             for (int zIter = pos.getZ() - 1; zIter <= pos.getZ() + 1; zIter++)
             {
-                BlockPos newPos = new BlockPos(xIter, pos.getY(), zIter);
+                BlockPos newPos = new BlockPos(xIter, pos.getY() + 1, zIter);
                 IBlockState state = world.getBlockState(newPos);
                 Block block = state.getBlock();
 

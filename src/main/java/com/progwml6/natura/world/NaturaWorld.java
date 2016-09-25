@@ -6,12 +6,13 @@ import com.google.common.eventbus.Subscribe;
 import com.progwml6.natura.common.CommonProxy;
 import com.progwml6.natura.common.NaturaPulse;
 import com.progwml6.natura.library.Util;
+import com.progwml6.natura.world.worldgen.TreeGenerator;
 
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 import slimeknights.mantle.pulsar.pulse.Pulse;
 
 @Pulse(id = NaturaWorld.PulseId, description = "Everything that's found in the world and worldgen")
@@ -39,7 +40,8 @@ public class NaturaWorld extends NaturaPulse
     @Subscribe
     public void postInit(FMLPostInitializationEvent event)
     {
-        MinecraftForge.EVENT_BUS.register(new WorldEvents());
+        GameRegistry.registerWorldGenerator(TreeGenerator.INSTANCE, 25);
+        //MinecraftForge.EVENT_BUS.register(new WorldEvents());
 
         proxy.postInit();
     }

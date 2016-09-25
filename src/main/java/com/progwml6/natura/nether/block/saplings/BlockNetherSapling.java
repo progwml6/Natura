@@ -2,10 +2,20 @@ package com.progwml6.natura.nether.block.saplings;
 
 import java.util.List;
 import java.util.Locale;
+import java.util.Random;
 
 import javax.annotation.Nonnull;
 
+import com.progwml6.natura.Natura;
 import com.progwml6.natura.library.NaturaRegistry;
+import com.progwml6.natura.nether.NaturaNether;
+import com.progwml6.natura.nether.block.leaves.BlockNetherLeaves;
+import com.progwml6.natura.nether.block.leaves.BlockNetherLeaves2;
+import com.progwml6.natura.nether.block.logs.BlockNetherLog;
+import com.progwml6.natura.world.worldgen.trees.BaseTreeGenerator;
+import com.progwml6.natura.world.worldgen.trees.nether.DarkwoodTreeGenerator;
+import com.progwml6.natura.world.worldgen.trees.nether.FusewoodTreeGenerator;
+import com.progwml6.natura.world.worldgen.trees.nether.GhostwoodTreeGenerator;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockSapling;
@@ -91,7 +101,7 @@ public class BlockNetherSapling extends BlockSapling
     public boolean canPlaceBlockAt(World worldIn, BlockPos pos)
     {
         Block ground = worldIn.getBlockState(pos.down()).getBlock();
-        return ground == Blocks.SOUL_SAND || ground == Blocks.NETHERRACK;
+        return ground == Blocks.SOUL_SAND || ground == Blocks.NETHERRACK || ground == NaturaNether.netherTaintedSoil;
     }
 
     @Nonnull
@@ -114,6 +124,69 @@ public class BlockNetherSapling extends BlockSapling
         IBlockState iblockstate = world.getBlockState(pos);
         int meta = iblockstate.getBlock().getMetaFromState(iblockstate);
         return new ItemStack(Item.getItemFromBlock(this), 1, meta);
+    }
+
+    @Override
+    public void generateTree(@Nonnull World worldIn, @Nonnull BlockPos pos, @Nonnull IBlockState state, @Nonnull Random rand)
+    {
+        if (!net.minecraftforge.event.terraingen.TerrainGen.saplingGrowTree(worldIn, rand, pos))
+        {
+            return;
+        }
+        BaseTreeGenerator gen = new BaseTreeGenerator();
+
+        IBlockState log;
+        IBlockState leaves;
+
+        // Only used by darkwood.
+        IBlockState flowering;
+        IBlockState fruiting;
+
+        switch (state.getValue(FOLIAGE))
+        {
+        case BLOODWOOD:
+            break;
+        case DARKWOOD:
+            log = NaturaNether.netherLog.getDefaultState().withProperty(BlockNetherLog.TYPE, BlockNetherLog.LogType.DARKWOOD);
+            leaves = NaturaNether.netherLeaves2.getDefaultState().withProperty(BlockNetherLeaves2.TYPE, BlockNetherLeaves2.LeavesType.DARKWOOD);
+            flowering = NaturaNether.netherLeaves2.getDefaultState().withProperty(BlockNetherLeaves2.TYPE, BlockNetherLeaves2.LeavesType.DARKWOOD_FLOWERING);
+            fruiting = NaturaNether.netherLeaves2.getDefaultState().withProperty(BlockNetherLeaves2.TYPE, BlockNetherLeaves2.LeavesType.DARKWOOD_FRUIT);
+
+            gen = new DarkwoodTreeGenerator(3, log, leaves, flowering, fruiting);
+
+            break;
+        case FUSEWOOD:
+            log = NaturaNether.netherLog.getDefaultState().withProperty(BlockNetherLog.TYPE, BlockNetherLog.LogType.FUSEWOOD);
+            leaves = NaturaNether.netherLeaves.getDefaultState().withProperty(BlockNetherLeaves.TYPE, BlockNetherLeaves.LeavesType.FUSEWOOD);
+
+            gen = new FusewoodTreeGenerator(3, log, leaves);
+
+            break;
+        case GHOSTWOOD:
+            log = NaturaNether.netherLog.getDefaultState().withProperty(BlockNetherLog.TYPE, BlockNetherLog.LogType.GHOSTWOOD);
+            leaves = NaturaNether.netherLeaves.getDefaultState().withProperty(BlockNetherLeaves.TYPE, BlockNetherLeaves.LeavesType.GHOSTWOOD);
+
+            gen = new GhostwoodTreeGenerator(log, leaves);
+
+            break;
+        default:
+            Natura.log.warn("BlockNetherSapling Warning: Invalid sapling meta/foliage, " + state.getValue(FOLIAGE) + ". Please report!");
+            break;
+
+        }
+
+        // replace sapling with air
+        worldIn.setBlockToAir(pos);
+
+        // try generating
+        gen.generateTree(rand, worldIn, pos);
+
+        // check if it generated
+        if (worldIn.isAirBlock(pos))
+        {
+            // nope, set sapling again
+            worldIn.setBlockState(pos, state, 4);
+        }
     }
 
     public enum SaplingType implements IStringSerializable, EnumBlock.IEnumMeta

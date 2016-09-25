@@ -37,7 +37,7 @@ public class BlockNetherLeaves2 extends BlockLeaves
     {
         this.setCreativeTab(NaturaRegistry.tabWorld);
 
-        Blocks.FIRE.setFireInfo(this, 5, 20);
+        Blocks.FIRE.setFireInfo(this, 0, 0);
 
         this.setDefaultState(this.blockState.getBaseState().withProperty(CHECK_DECAY, false).withProperty(DECAYABLE, true));
     }
@@ -98,7 +98,7 @@ public class BlockNetherLeaves2 extends BlockLeaves
     @Override
     public int damageDropped(IBlockState state)
     {
-        return 3;
+        return (state.getValue(BlockNetherLeaves2.TYPE)).ordinal();
     }
 
     // item dropped on silktouching

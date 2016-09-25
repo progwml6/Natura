@@ -9,6 +9,7 @@ import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IStringSerializable;
@@ -27,6 +28,7 @@ public class BlockNetherLog extends BlockEnumLog<BlockNetherLog.LogType>
 
         this.setHardness(3.5F);
         this.setResistance(40F);
+        Blocks.FIRE.setFireInfo(this, 0, 0);
 
         this.setDefaultState(this.blockState.getBaseState().withProperty(LOG_AXIS, BlockEnumLog.EnumAxis.Y));
     }

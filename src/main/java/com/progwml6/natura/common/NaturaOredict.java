@@ -19,7 +19,6 @@ import slimeknights.mantle.pulsar.pulse.Pulse;
  * Created by progwml6 on 9/19/16.
  */
 @Pulse(id = NaturaOredict.PULSE_ID, forced = true)
-
 public class NaturaOredict
 {
     public static final String PULSE_ID = "NaturaOredict";
