@@ -100,5 +100,4 @@ public class TickHandlerWorldRetrogen
             this.zCoord = chunk.zPosition;
         }
     }
-
 }

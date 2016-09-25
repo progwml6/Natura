@@ -14,7 +14,6 @@ import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkGenerator;
 import net.minecraft.world.chunk.IChunkProvider;
 
-//TODO: FINISH
 public class HopseedTreeGenerator extends BaseTreeGenerator
 {
     public final int minTreeHeight;
@@ -61,17 +60,106 @@ public class HopseedTreeGenerator extends BaseTreeGenerator
             }
         }
 
-        int yPos = position.getY();
+        boolean flag = true;
 
-        if (yPos >= 1 && yPos + height + 1 <= 256)
+        if (position.getY() >= 1 && position.getY() + height + 1 <= 256)
         {
-            IBlockState state = worldIn.getBlockState(position.down());
-            Block soil = state.getBlock();
-            boolean isSoil = (soil != null && soil.canSustainPlant(state, worldIn, position.down(), EnumFacing.UP, NaturaOverworld.overworldSapling2));
-
-            if (isSoil)
+            for (int j = position.getY(); j <= position.getY() + 1 + height; ++j)
             {
-                soil.onPlantGrow(state, worldIn, position.down(), position);
+                int k = 2;
+
+                if (j == position.getY())
+                {
+                    k = 1;
+                }
+
+                if (j >= position.getY() + 1 + height - 2)
+                {
+                    k = 2;
+                }
+
+                BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
+
+                for (int l = position.getX() - k; l <= position.getX() + k && flag; ++l)
+                {
+                    for (int i1 = position.getZ() - k; i1 <= position.getZ() + k && flag; ++i1)
+                    {
+                        if (j >= 0 && j < 256)
+                        {
+                            IBlockState iblockstate = worldIn.getBlockState(blockpos$mutableblockpos.setPos(l, j, i1));
+                            Block block = iblockstate.getBlock();
+
+                            if (!iblockstate.getBlock().isAir(iblockstate, worldIn, blockpos$mutableblockpos.setPos(l, j, i1)) && !iblockstate.getBlock().isLeaves(iblockstate, worldIn, blockpos$mutableblockpos.setPos(l, j, i1)))
+                            {
+                                if (block != Blocks.WATER && block != Blocks.FLOWING_WATER)
+                                {
+                                    flag = false;
+                                }
+                                else if (j > position.getY())
+                                {
+                                    flag = false;
+                                }
+                            }
+                        }
+                        else
+                        {
+                            flag = false;
+                        }
+                    }
+                }
+            }
+
+            if (!flag)
+            {
+            }
+            else
+            {
+
+                IBlockState state = worldIn.getBlockState(position.down());
+                Block soil = state.getBlock();
+                boolean isSoil = (soil != null && soil.canSustainPlant(state, worldIn, position.down(), EnumFacing.UP, NaturaOverworld.overworldSapling2));
+
+                if (isSoil)
+                {
+                    soil.onPlantGrow(state, worldIn, position.down(), position);
+
+                    this.growLogs(worldIn, position);
+                    this.growLeaves(worldIn, random, position, height);
+
+                    for (int l = 0; l < height; ++l)
+                    {
+                        BlockPos blockpos = new BlockPos(position.getX(), position.getY() + l, position.getZ());
+
+                        if (worldIn.getBlockState(blockpos).getBlock().isAir(worldIn.getBlockState(blockpos), worldIn, blockpos) || worldIn.getBlockState(blockpos).getBlock().canPlaceBlockAt(worldIn, blockpos) || worldIn.getBlockState(blockpos) == this.leaves)
+                        {
+                            this.setBlockAndMetadata(worldIn, blockpos, this.leaves);
+                        }
+
+                        if (l < height - 1)
+                        {
+                            blockpos = new BlockPos(position.getX() + 1, position.getY() + l, position.getZ());
+
+                            if (worldIn.getBlockState(blockpos).getBlock().isAir(worldIn.getBlockState(blockpos), worldIn, blockpos) || worldIn.getBlockState(blockpos).getBlock().canPlaceBlockAt(worldIn, blockpos) || worldIn.getBlockState(blockpos) == this.leaves)
+                            {
+                                this.setBlockAndMetadata(worldIn, blockpos, this.leaves);
+                            }
+
+                            blockpos = new BlockPos(position.getX() + 1, position.getY() + l, position.getZ() + 1);
+
+                            if (worldIn.getBlockState(blockpos).getBlock().isAir(worldIn.getBlockState(blockpos), worldIn, blockpos) || worldIn.getBlockState(blockpos).getBlock().canPlaceBlockAt(worldIn, blockpos) || worldIn.getBlockState(blockpos) == this.leaves)
+                            {
+                                this.setBlockAndMetadata(worldIn, blockpos, this.leaves);
+                            }
+
+                            blockpos = new BlockPos(position.getX(), position.getY() + l, position.getZ() + 1);
+
+                            if (worldIn.getBlockState(blockpos).getBlock().isAir(worldIn.getBlockState(blockpos), worldIn, blockpos) || worldIn.getBlockState(blockpos).getBlock().canPlaceBlockAt(worldIn, blockpos) || worldIn.getBlockState(blockpos) == this.leaves)
+                            {
+                                this.setBlockAndMetadata(worldIn, blockpos, this.leaves);
+                            }
+                        }
+                    }
+                }
             }
         }
     }
@@ -94,9 +182,7 @@ public class HopseedTreeGenerator extends BaseTreeGenerator
         return pos;
     }
 
-    /*
-     * TODO: FINISH
-     * private void growLogs(World worldIn, BlockPos position)
+    private void growLogs(World worldIn, BlockPos position)
     {
         this.setBlockAndMetadata(worldIn, position, this.log);
         this.setBlockAndMetadata(worldIn, position.add(+1, 0, 0), this.log);
@@ -107,7 +193,34 @@ public class HopseedTreeGenerator extends BaseTreeGenerator
         this.setBlockAndMetadata(worldIn, position.add(+1, +1, 0), this.log);
         this.setBlockAndMetadata(worldIn, position.add(0, +1, +1), this.log);
         this.setBlockAndMetadata(worldIn, position.add(+1, +1, +1), this.log);
-    }*/
+    }
+
+    protected void growLeaves(World world, Random random, BlockPos pos, int height)
+    {
+        for (int y = pos.getY() - 2 + height; y <= pos.getY() + height; ++y)
+        {
+            int subract = y - (pos.getY() + height);
+            int subract2 = 2 + 1 - subract;
+
+            for (int x = pos.getX() - subract2; x <= pos.getX() + subract2; ++x)
+            {
+                int mathX = x - pos.getX();
+
+                for (int z = pos.getZ() - subract2; z <= pos.getZ() + subract2; ++z)
+                {
+                    int mathZ = z - pos.getZ();
+
+                    BlockPos blockpos = new BlockPos(x, y, z);
+                    IBlockState state = world.getBlockState(blockpos);
+
+                    if ((mathX >= 0 || mathZ >= 0 || mathX * mathX + mathZ * mathZ <= subract2 * subract2) && (mathX <= 0 && mathZ <= 0 || mathX * mathX + mathZ * mathZ <= (subract2 + 1) * (subract2 + 1)) && (random.nextInt(4) != 0 || mathX * mathX + mathZ * mathZ <= (subract2 - 1) * (subract2 - 1)) && (state.getBlock().isAir(state, world, blockpos) || state.getBlock().isLeaves(state, world, blockpos) || state.getBlock().canBeReplacedByLeaves(state, world, blockpos)))
+                    {
+                        this.setBlockAndMetadata(world, blockpos, this.leaves);
+                    }
+                }
+            }
+        }
+    }
 
     protected void setBlockAndMetadata(World world, BlockPos pos, IBlockState stateNew)
     {

@@ -6,9 +6,7 @@ import com.progwml6.natura.overworld.NaturaOverworld;
 import com.progwml6.natura.world.worldgen.trees.BaseTreeGenerator;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockVine;
 import net.minecraft.block.material.Material;
-import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
@@ -114,90 +112,96 @@ public class WillowTreeGenerator extends BaseTreeGenerator
                 }
             }
 
-            BlockPos down = position.down();
-            IBlockState state = worldIn.getBlockState(down);
-            boolean isSoil = state.getBlock().canSustainPlant(state, worldIn, down, net.minecraft.util.EnumFacing.UP, NaturaOverworld.overworldSapling2);
-
-            if (isSoil && position.getY() < worldIn.getHeight() - height - 1)
+            if (!flag)
             {
-                state.getBlock().onPlantGrow(state, worldIn, position.down(), position);
+            }
+            else
+            {
+                BlockPos down = position.down();
+                IBlockState state = worldIn.getBlockState(down);
+                boolean isSoil = state.getBlock().canSustainPlant(state, worldIn, down, net.minecraft.util.EnumFacing.UP, NaturaOverworld.overworldSapling2);
 
-                for (int k1 = position.getY() - 3 + height; k1 <= position.getY() + height; ++k1)
+                if (isSoil && position.getY() < worldIn.getHeight() - height - 1)
                 {
-                    int j2 = k1 - (position.getY() + height);
-                    int l2 = 2 - j2 / 2;
+                    state.getBlock().onPlantGrow(state, worldIn, position.down(), position);
 
-                    for (int j3 = position.getX() - l2; j3 <= position.getX() + l2; ++j3)
+                    for (int k1 = position.getY() - 3 + height; k1 <= position.getY() + height; ++k1)
                     {
-                        int k3 = j3 - position.getX();
+                        int j2 = k1 - (position.getY() + height);
+                        int l2 = 2 - j2 / 2;
 
-                        for (int i4 = position.getZ() - l2; i4 <= position.getZ() + l2; ++i4)
+                        for (int j3 = position.getX() - l2; j3 <= position.getX() + l2; ++j3)
                         {
-                            int j1 = i4 - position.getZ();
+                            int k3 = j3 - position.getX();
 
-                            if (Math.abs(k3) != l2 || Math.abs(j1) != l2 || random.nextInt(2) != 0 && j2 != 0)
+                            for (int i4 = position.getZ() - l2; i4 <= position.getZ() + l2; ++i4)
                             {
-                                BlockPos blockpos = new BlockPos(j3, k1, i4);
-                                state = worldIn.getBlockState(blockpos);
+                                int j1 = i4 - position.getZ();
 
-                                if (state.getBlock().canBeReplacedByLeaves(state, worldIn, blockpos))
+                                if (Math.abs(k3) != l2 || Math.abs(j1) != l2 || random.nextInt(2) != 0 && j2 != 0)
                                 {
-                                    this.setBlockAndMetadata(worldIn, blockpos, this.leaves);
+                                    BlockPos blockpos = new BlockPos(j3, k1, i4);
+                                    state = worldIn.getBlockState(blockpos);
+
+                                    if (state.getBlock().canBeReplacedByLeaves(state, worldIn, blockpos))
+                                    {
+                                        this.setBlockAndMetadata(worldIn, blockpos, this.leaves);
+                                    }
                                 }
                             }
                         }
                     }
-                }
 
-                for (int l1 = 0; l1 < height; ++l1)
-                {
-                    BlockPos upN = position.up(l1);
-                    IBlockState iblockstate1 = worldIn.getBlockState(upN);
-                    Block block2 = iblockstate1.getBlock();
-
-                    if (block2.isAir(iblockstate1, worldIn, upN) || block2.isLeaves(iblockstate1, worldIn, upN) || block2 == Blocks.FLOWING_WATER || block2 == Blocks.WATER)
+                    for (int l1 = 0; l1 < height; ++l1)
                     {
-                        this.setBlockAndMetadata(worldIn, position.up(l1), this.log);
-                    }
-                }
+                        BlockPos upN = position.up(l1);
+                        IBlockState iblockstate1 = worldIn.getBlockState(upN);
+                        Block block2 = iblockstate1.getBlock();
 
-                for (int i2 = position.getY() - 3 + height; i2 <= position.getY() + height; ++i2)
-                {
-                    int k2 = i2 - (position.getY() + height);
-                    int i3 = 2 - k2 / 2;
-                    BlockPos.MutableBlockPos blockpos$mutableblockpos1 = new BlockPos.MutableBlockPos();
-
-                    for (int l3 = position.getX() - i3; l3 <= position.getX() + i3; ++l3)
-                    {
-                        for (int j4 = position.getZ() - i3; j4 <= position.getZ() + i3; ++j4)
+                        if (block2.isAir(iblockstate1, worldIn, upN) || block2.isLeaves(iblockstate1, worldIn, upN) || block2 == Blocks.FLOWING_WATER || block2 == Blocks.WATER)
                         {
-                            blockpos$mutableblockpos1.setPos(l3, i2, j4);
+                            this.setBlockAndMetadata(worldIn, position.up(l1), this.log);
+                        }
+                    }
 
-                            if (worldIn.getBlockState(blockpos$mutableblockpos1).getMaterial() == Material.LEAVES)
+                    for (int i2 = position.getY() - 3 + height; i2 <= position.getY() + height; ++i2)
+                    {
+                        int k2 = i2 - (position.getY() + height);
+                        int i3 = 2 - k2 / 2;
+                        BlockPos.MutableBlockPos blockpos$mutableblockpos1 = new BlockPos.MutableBlockPos();
+
+                        for (int l3 = position.getX() - i3; l3 <= position.getX() + i3; ++l3)
+                        {
+                            for (int j4 = position.getZ() - i3; j4 <= position.getZ() + i3; ++j4)
                             {
-                                BlockPos blockpos3 = blockpos$mutableblockpos1.west();
-                                BlockPos blockpos4 = blockpos$mutableblockpos1.east();
-                                BlockPos blockpos1 = blockpos$mutableblockpos1.north();
-                                BlockPos blockpos2 = blockpos$mutableblockpos1.south();
+                                blockpos$mutableblockpos1.setPos(l3, i2, j4);
 
-                                if (random.nextInt(4) == 0 && this.isAir(worldIn, blockpos3))
+                                if (worldIn.getBlockState(blockpos$mutableblockpos1).getMaterial() == Material.LEAVES)
                                 {
-                                    this.addVine(worldIn, blockpos3, BlockVine.EAST);
-                                }
+                                    BlockPos blockpos3 = blockpos$mutableblockpos1.west();
+                                    BlockPos blockpos4 = blockpos$mutableblockpos1.east();
+                                    BlockPos blockpos1 = blockpos$mutableblockpos1.north();
+                                    BlockPos blockpos2 = blockpos$mutableblockpos1.south();
 
-                                if (random.nextInt(4) == 0 && this.isAir(worldIn, blockpos4))
-                                {
-                                    this.addVine(worldIn, blockpos4, BlockVine.WEST);
-                                }
+                                    if (random.nextInt(4) == 0 && this.isAir(worldIn, blockpos3))
+                                    {
+                                        this.addDownLeaves(worldIn, blockpos3);
+                                    }
 
-                                if (random.nextInt(4) == 0 && this.isAir(worldIn, blockpos1))
-                                {
-                                    this.addVine(worldIn, blockpos1, BlockVine.SOUTH);
-                                }
+                                    if (random.nextInt(4) == 0 && this.isAir(worldIn, blockpos4))
+                                    {
+                                        this.addDownLeaves(worldIn, blockpos4);
+                                    }
 
-                                if (random.nextInt(4) == 0 && this.isAir(worldIn, blockpos2))
-                                {
-                                    this.addVine(worldIn, blockpos2, BlockVine.NORTH);
+                                    if (random.nextInt(4) == 0 && this.isAir(worldIn, blockpos1))
+                                    {
+                                        this.addDownLeaves(worldIn, blockpos1);
+                                    }
+
+                                    if (random.nextInt(4) == 0 && this.isAir(worldIn, blockpos2))
+                                    {
+                                        this.addDownLeaves(worldIn, blockpos2);
+                                    }
                                 }
                             }
                         }
@@ -225,7 +229,7 @@ public class WillowTreeGenerator extends BaseTreeGenerator
         return pos;
     }
 
-    private void addVine(World worldIn, BlockPos pos, PropertyBool prop)
+    private void addDownLeaves(World worldIn, BlockPos pos)
     {
         this.setBlockAndMetadata(worldIn, pos, this.leaves);
         int i = 4;
