@@ -35,7 +35,9 @@ public final class Config
 
     public static boolean syncConfig()
     {
-        enableRetrogen = configFile.get("Retrogen", "Retroactive Generation", enableRetrogen).getBoolean(enableRetrogen);
+        // Retrogen Start
+        doRetrogen = configFile.get("Retrogen", "Retroactive Generation", doRetrogen).getBoolean(doRetrogen);
+        // Retrogen End
 
         boolean BoP = false;
         if (Loader.isModLoaded("BiomesOPlenty"))
@@ -172,7 +174,9 @@ public final class Config
     }
 
     //@formatter:off
-    public static boolean enableRetrogen = false;
+    // Retrogen Start
+    public static boolean doRetrogen = false;
+    // Retrogen End
 
     public static int babyHeatscarMinimum = 2;
     public static int babyHeatscarMaximum = 4;

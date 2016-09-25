@@ -76,11 +76,18 @@ public class TreeGenerator implements IWorldGenerator
     @Override
     public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider)
     {
-        this.generateOverworld(random, chunkX, chunkZ, world, chunkGenerator, chunkProvider);
-        this.generateNether(random, chunkX, chunkZ, world, chunkGenerator, chunkProvider);
+        this.generateOverworld(random, chunkX, chunkZ, world);
+        this.generateNether(random, chunkX, chunkZ, world);
     }
 
-    public void generateOverworld(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider)
+    public void retroGen(Random random, int chunkX, int chunkZ, World world)
+    {
+        this.generateOverworld(random, chunkX, chunkZ, world);
+        this.generateNether(random, chunkX, chunkZ, world);
+        world.getChunkFromChunkCoords(chunkX, chunkZ).setChunkModified();
+    }
+
+    public void generateOverworld(Random random, int chunkX, int chunkZ, World world)
     {
         int xSpawn, ySpawn, zSpawn;
 
@@ -252,7 +259,7 @@ public class TreeGenerator implements IWorldGenerator
         }
     }
 
-    public void generateNether(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider)
+    public void generateNether(Random random, int chunkX, int chunkZ, World world)
     {
         int xSpawn, ySpawn, zSpawn;
 
@@ -278,9 +285,9 @@ public class TreeGenerator implements IWorldGenerator
                 ySpawn = 72;
                 zSpawn = zPos + random.nextInt(16);
                 position = new BlockPos(xSpawn, ySpawn, zSpawn);
-            
+
                 this.bloodwoodTreeGen.generateTree(random, world, position);
-            
+
                 this.genBlood.generate(world, random, xSpawn, ySpawn, zSpawn);
             }*/
 

@@ -8,7 +8,9 @@ import com.progwml6.natura.common.NaturaPulse;
 import com.progwml6.natura.library.Util;
 import com.progwml6.natura.world.worldgen.BerryBushGenerator;
 import com.progwml6.natura.world.worldgen.TreeGenerator;
+import com.progwml6.natura.world.worldgen.retrogen.TickHandlerWorldRetrogen;
 
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
@@ -41,9 +43,13 @@ public class NaturaWorld extends NaturaPulse
     @Subscribe
     public void postInit(FMLPostInitializationEvent event)
     {
-        GameRegistry.registerWorldGenerator(TreeGenerator.INSTANCE, 25);
-        GameRegistry.registerWorldGenerator(BerryBushGenerator.INSTANCE, 25);
-        //MinecraftForge.EVENT_BUS.register(new WorldEvents());
+        GameRegistry.registerWorldGenerator(TreeGenerator.INSTANCE, 0);
+        GameRegistry.registerWorldGenerator(BerryBushGenerator.INSTANCE, 0);
+
+        //GameRegistry.registerWorldGenerator(TreeGenerator.INSTANCE, 25);
+        //GameRegistry.registerWorldGenerator(BerryBushGenerator.INSTANCE, 25);
+
+        MinecraftForge.EVENT_BUS.register(new TickHandlerWorldRetrogen());
 
         proxy.postInit();
     }
