@@ -193,9 +193,9 @@ public abstract class NaturaPulse
             }
         }
 
-        HashMap var12;
+        HashMap<Character, ItemStack> var12;
 
-        for (var12 = new HashMap(); var4 < objArray.length; var4 += 2)
+        for (var12 = new HashMap<Character, ItemStack>(); var4 < objArray.length; var4 += 2)
         {
             Character var13 = (Character) objArray[var4];
             ItemStack var14 = null;
@@ -224,7 +224,7 @@ public abstract class NaturaPulse
 
             if (var12.containsKey(Character.valueOf(var10)))
             {
-                var15[var16] = ((ItemStack) var12.get(Character.valueOf(var10))).copy();
+                var15[var16] = var12.get(Character.valueOf(var10)).copy();
             }
             else
             {
@@ -238,7 +238,7 @@ public abstract class NaturaPulse
 
     protected void addShapelessRecipeFirst(List<IRecipe> recipeList, ItemStack par1ItemStack, Object... par2ArrayOfObj)
     {
-        ArrayList arraylist = new ArrayList();
+        ArrayList<ItemStack> arraylist = new ArrayList<ItemStack>();
         Object[] aobject = par2ArrayOfObj;
         int i = par2ArrayOfObj.length;
 

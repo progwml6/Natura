@@ -153,6 +153,7 @@ public class NaturaOverworld extends NaturaPulse
 
     private void registerRecipes()
     {
+        @SuppressWarnings("unused")
         List<IRecipe> recipes = CraftingManager.getInstance().getRecipeList();
 
         GameRegistry.addRecipe(new ItemStack(overworldPlanks, 4, BlockOverworldPlanks.PlankType.MAPLE.getMeta()), "w", 'w', new ItemStack(overworldLog, 1, BlockOverworldLog.LogType.MAPLE.getMeta()));

@@ -220,8 +220,11 @@ public class BlockEnumBerryBush extends Block implements IPlantable, IGrowable
         {
             worldIn.setBlockState(pos, this.getDefaultState().withProperty(AGE, Integer.valueOf(2)), 2);
 
-            EntityItem entityitem = new EntityItem(worldIn, playerIn.posX, playerIn.posY - 1.0D, playerIn.posZ, this.itemDrop);
+            ItemStack itemDrop = new ItemStack(this.itemDrop.getItem(), 1, this.itemDrop.getItemDamage());
+            EntityItem entityitem = new EntityItem(worldIn, playerIn.posX, playerIn.posY - 1.0D, playerIn.posZ, itemDrop);
+
             worldIn.spawnEntityInWorld(entityitem);
+
             if (!(playerIn instanceof FakePlayer))
             {
                 entityitem.onCollideWithPlayer(playerIn);
@@ -243,8 +246,11 @@ public class BlockEnumBerryBush extends Block implements IPlantable, IGrowable
 
             worldIn.setBlockState(pos, this.getDefaultState().withProperty(AGE, Integer.valueOf(2)), 2);
 
-            EntityItem entityitem = new EntityItem(worldIn, playerIn.posX, playerIn.posY - 1.0D, playerIn.posZ, this.itemDrop);
+            ItemStack itemDrop = new ItemStack(this.itemDrop.getItem(), 1, this.itemDrop.getItemDamage());
+            EntityItem entityitem = new EntityItem(worldIn, playerIn.posX, playerIn.posY - 1.0D, playerIn.posZ, itemDrop);
+
             worldIn.spawnEntityInWorld(entityitem);
+
             if (!(playerIn instanceof FakePlayer))
             {
                 entityitem.onCollideWithPlayer(playerIn);

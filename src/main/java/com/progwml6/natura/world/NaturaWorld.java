@@ -6,6 +6,7 @@ import com.google.common.eventbus.Subscribe;
 import com.progwml6.natura.common.CommonProxy;
 import com.progwml6.natura.common.NaturaPulse;
 import com.progwml6.natura.library.Util;
+import com.progwml6.natura.world.worldgen.BerryBushGenerator;
 import com.progwml6.natura.world.worldgen.TreeGenerator;
 
 import net.minecraftforge.fml.common.SidedProxy;
@@ -41,6 +42,7 @@ public class NaturaWorld extends NaturaPulse
     public void postInit(FMLPostInitializationEvent event)
     {
         GameRegistry.registerWorldGenerator(TreeGenerator.INSTANCE, 25);
+        GameRegistry.registerWorldGenerator(BerryBushGenerator.INSTANCE, 25);
         //MinecraftForge.EVENT_BUS.register(new WorldEvents());
 
         proxy.postInit();

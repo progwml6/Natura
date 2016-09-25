@@ -45,6 +45,7 @@ public class Util
         return String.format("%s.%s", RESOURCE, name.toLowerCase(Locale.US));
     }
 
+    @SuppressWarnings("deprecation")
     public static ResourceLocation getItemLocation(Item item)
     {
         Object o = GameData.getItemRegistry().getNameForObject(item);

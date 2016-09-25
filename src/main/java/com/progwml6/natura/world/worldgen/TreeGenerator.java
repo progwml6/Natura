@@ -183,7 +183,6 @@ public class TreeGenerator implements IWorldGenerator
                 position = new BlockPos(xSpawn, ySpawn, zSpawn);
 
                 this.willowTreeGen.generateTree(random, world, position);
-
             }
         }
 
@@ -279,9 +278,9 @@ public class TreeGenerator implements IWorldGenerator
                 ySpawn = 72;
                 zSpawn = zPos + random.nextInt(16);
                 position = new BlockPos(xSpawn, ySpawn, zSpawn);
-
+            
                 this.bloodwoodTreeGen.generateTree(random, world, position);
-
+            
                 this.genBlood.generate(world, random, xSpawn, ySpawn, zSpawn);
             }*/
 

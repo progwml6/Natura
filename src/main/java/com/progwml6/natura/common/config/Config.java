@@ -79,21 +79,23 @@ public final class Config
         generateGhostwood = configFile.get(ENABLE_DISABLE, "Generate Ghostwood Trees", generateGhostwood).getBoolean(generateGhostwood);
         // Trees End
 
-        generateThornvines = configFile.get(ENABLE_DISABLE, "Generate Thornvines", generateThornvines).getBoolean(generateThornvines);
-
-        generateBarley = configFile.get(ENABLE_DISABLE, "Generate Barley Crops", generateBarley).getBoolean(generateBarley);
-        generateCotton = configFile.get(ENABLE_DISABLE, "Generate Cotton Crops", generateCotton).getBoolean(generateCotton);
-        generateBluebells = configFile.get(ENABLE_DISABLE, "Generate Bluebell Flowers", generateBluebells).getBoolean(generateBluebells);
-
+        // Berries Start
+        generateRaspberries = configFile.get(ENABLE_DISABLE, "Generate Raspberry Bushes", generateRaspberries).getBoolean(generateRaspberries);
         generateBlueberries = configFile.get(ENABLE_DISABLE, "Generate Blueberry Bushes", generateBlueberries).getBoolean(generateBlueberries);
         generateBlackberries = configFile.get(ENABLE_DISABLE, "Generate Blackberry Bushes", generateBlackberries).getBoolean(generateBlackberries);
-        generateRaspberries = configFile.get(ENABLE_DISABLE, "Generate Raspberry Bushes", generateRaspberries).getBoolean(generateRaspberries);
         generateMaloberries = configFile.get(ENABLE_DISABLE, "Generate Maloberry Bushes", generateMaloberries).getBoolean(generateMaloberries);
 
         generateBlightberries = configFile.get(ENABLE_DISABLE, "Generate Blightberry Bushes", generateBlightberries).getBoolean(generateBlightberries);
         generateDuskberries = configFile.get(ENABLE_DISABLE, "Generate Duskberry Bushes", generateDuskberries).getBoolean(generateDuskberries);
         generateSkyberries = configFile.get(ENABLE_DISABLE, "Generate Skyberry Bushes", generateSkyberries).getBoolean(generateSkyberries);
         generateStingberries = configFile.get(ENABLE_DISABLE, "Generate Stingberry Bushes", generateStingberries).getBoolean(generateStingberries);
+        // Berries End
+
+        generateThornvines = configFile.get(ENABLE_DISABLE, "Generate Thornvines", generateThornvines).getBoolean(generateThornvines);
+
+        generateBarley = configFile.get(ENABLE_DISABLE, "Generate Barley Crops", generateBarley).getBoolean(generateBarley);
+        generateCotton = configFile.get(ENABLE_DISABLE, "Generate Cotton Crops", generateCotton).getBoolean(generateCotton);
+        generateBluebells = configFile.get(ENABLE_DISABLE, "Generate Bluebell Flowers", generateBluebells).getBoolean(generateBluebells);
 
         generateGreenglowshroom = configFile.get(ENABLE_DISABLE, "Generate Green Glowshroom", generateGreenglowshroom).getBoolean(generateGreenglowshroom);
         generatePurpleglowshroom = configFile.get(ENABLE_DISABLE, "Generate Purple Glowshroom", generatePurpleglowshroom).getBoolean(generatePurpleglowshroom);
@@ -135,23 +137,25 @@ public final class Config
 
         saguaroSpawnRarity = configFile.get(WORLDGEN, "Saguaro Cactus Spawn Rarity", saguaroSpawnRarity).getInt(saguaroSpawnRarity);
 
-        raspSpawnRarity = configFile.get(WORLDGEN, "Raspberry Spawn Rarity", raspSpawnRarity).getInt(raspSpawnRarity);
-        raspSpawnRange = configFile.get(WORLDGEN, "Raspberry Spawn Range", raspSpawnRange).getInt(raspSpawnRange);
-        blueSpawnRarity = configFile.get(WORLDGEN, "Blueberry Spawn Rarity", blueSpawnRarity).getInt(blueSpawnRarity);
-        blueSpawnRange = configFile.get(WORLDGEN, "Blueberry Spawn Range", blueSpawnRange).getInt(blueSpawnRange);
-        blackSpawnRarity = configFile.get(WORLDGEN, "Blackberry Spawn Rarity", blackSpawnRarity).getInt(blackSpawnRarity);
-        blackSpawnRange = configFile.get(WORLDGEN, "Blackberry Spawn Range", blackSpawnRange).getInt(blackSpawnRange);
-        maloSpawnRarity = configFile.get(WORLDGEN, "Maloberry Spawn Rarity", maloSpawnRarity).getInt(maloSpawnRarity);
-        maloSpawnRange = configFile.get(WORLDGEN, "Maloberry Spawn Range", maloSpawnRange).getInt(maloSpawnRange);
+        // Berries Start
+        raspberrySpawnRarity = configFile.get(WORLDGEN, "Raspberry Spawn Rarity", raspberrySpawnRarity).getInt(raspberrySpawnRarity);
+        raspberrySpawnRange = configFile.get(WORLDGEN, "Raspberry Spawn Range", raspberrySpawnRange).getInt(raspberrySpawnRange);
+        blueberrySpawnRarity = configFile.get(WORLDGEN, "Blueberry Spawn Rarity", blueberrySpawnRarity).getInt(blueberrySpawnRarity);
+        blueberrySpawnRange = configFile.get(WORLDGEN, "Blueberry Spawn Range", blueberrySpawnRange).getInt(blueberrySpawnRange);
+        blackberrySpawnRarity = configFile.get(WORLDGEN, "Blackberry Spawn Rarity", blackberrySpawnRarity).getInt(blackberrySpawnRarity);
+        blackberrySpawnRange = configFile.get(WORLDGEN, "Blackberry Spawn Range", blackberrySpawnRange).getInt(blackberrySpawnRange);
+        maloberrySpawnRarity = configFile.get(WORLDGEN, "Maloberry Spawn Rarity", maloberrySpawnRarity).getInt(maloberrySpawnRarity);
+        maloberrySpawnRange = configFile.get(WORLDGEN, "Maloberry Spawn Range", maloberrySpawnRange).getInt(maloberrySpawnRange);
 
-        blightSpawnRarity = configFile.get(WORLDGEN, "Blightberry Spawn Rarity", blightSpawnRarity).getInt(blightSpawnRarity);
-        blightSpawnRange = configFile.get(WORLDGEN, "Blightberry Spawn Range", blightSpawnRange).getInt(blightSpawnRange);
-        duskSpawnRarity = configFile.get(WORLDGEN, "Duskberry Spawn Rarity", duskSpawnRarity).getInt(duskSpawnRarity);
-        duskSpawnRange = configFile.get(WORLDGEN, "Duskberry Spawn Range", duskSpawnRange).getInt(duskSpawnRange);
-        skySpawnRarity = configFile.get(WORLDGEN, "Skyberry Spawn Rarity", skySpawnRarity).getInt(skySpawnRarity);
-        skySpawnRange = configFile.get(WORLDGEN, "Skyberry Spawn Range", skySpawnRange).getInt(skySpawnRange);
-        stingSpawnRarity = configFile.get(WORLDGEN, "Stingberry Spawn Rarity", stingSpawnRarity).getInt(stingSpawnRarity);
-        stingSpawnRange = configFile.get(WORLDGEN, "Stingberry Spawn Range", stingSpawnRange).getInt(stingSpawnRange);
+        blightberrySpawnRarity = configFile.get(WORLDGEN, "Blightberry Spawn Rarity", blightberrySpawnRarity).getInt(blightberrySpawnRarity);
+        blightberrySpawnRange = configFile.get(WORLDGEN, "Blightberry Spawn Range", blightberrySpawnRange).getInt(blightberrySpawnRange);
+        duskberrySpawnRarity = configFile.get(WORLDGEN, "Duskberry Spawn Rarity", duskberrySpawnRarity).getInt(duskberrySpawnRarity);
+        duskberrySpawnRange = configFile.get(WORLDGEN, "Duskberry Spawn Range", duskberrySpawnRange).getInt(duskberrySpawnRange);
+        skyberrySpawnRarity = configFile.get(WORLDGEN, "Skyberry Spawn Rarity", skyberrySpawnRarity).getInt(skyberrySpawnRarity);
+        skyberrySpawnRange = configFile.get(WORLDGEN, "Skyberry Spawn Range", skyberrySpawnRange).getInt(skyberrySpawnRange);
+        stingberrySpawnRarity = configFile.get(WORLDGEN, "Stingberry Spawn Rarity", stingberrySpawnRarity).getInt(stingberrySpawnRarity);
+        stingberrySpawnRange = configFile.get(WORLDGEN, "Stingberry Spawn Range", stingberrySpawnRange).getInt(stingberrySpawnRange);
+        // Berries End
 
         thornSpawnRarity = configFile.get(WORLDGEN, "Thornvines Spawn Rarity", thornSpawnRarity).getInt(thornSpawnRarity);
 
@@ -217,13 +221,10 @@ public final class Config
     public static int ghostwoodSpawnRarity = 10;
     // Trees End
 
-    //Overworld
-    public static boolean generateBarley = true;
-    public static boolean generateCotton = true;
-    public static boolean generateBluebells = true;
+    // Berries Start
+    public static boolean generateRaspberries = true;
     public static boolean generateBlueberries = true;
     public static boolean generateBlackberries = true;
-    public static boolean generateRaspberries = true;
     public static boolean generateMaloberries = true;
 
     public static boolean generateBlightberries = true;
@@ -231,30 +232,36 @@ public final class Config
     public static boolean generateSkyberries = true;
     public static boolean generateStingberries = true;
 
+    public static int raspberrySpawnRarity = 30;
+    public static int raspberrySpawnRange = 64;
+    public static int blueberrySpawnRarity = 34;
+    public static int blueberrySpawnRange = 64;
+    public static int blackberrySpawnRarity = 48;
+    public static int blackberrySpawnRange = 64;
+    public static int maloberrySpawnRarity = 40;
+    public static int maloberrySpawnRange = 64;
+
+    public static int blightberrySpawnRarity = 18;
+    public static int blightberrySpawnRange = 100;
+    public static int duskberrySpawnRarity = 18;
+    public static int duskberrySpawnRange = 100;
+    public static int skyberrySpawnRarity = 18;
+    public static int skyberrySpawnRange = 100;
+    public static int stingberrySpawnRarity = 18;
+    public static int stingberrySpawnRange = 100;
+    // Berries End
+
+    //Overworld
+    public static boolean generateBarley = true;
+    public static boolean generateCotton = true;
+    public static boolean generateBluebells = true;
+
     public static boolean generateGreenglowshroom = true;
     public static boolean generatePurpleglowshroom = true;
     public static boolean generateBlueglowshroom = true;
     public static boolean generateGlowshroomtree = true;
 
     public static int saguaroSpawnRarity = 5;
-
-    public static int raspSpawnRarity = 30;
-    public static int raspSpawnRange = 64;
-    public static int blueSpawnRarity = 34;
-    public static int blueSpawnRange = 64;
-    public static int blackSpawnRarity = 48;
-    public static int blackSpawnRange = 64;
-    public static int maloSpawnRarity = 40;
-    public static int maloSpawnRange = 64;
-
-    public static int blightSpawnRarity = 18;
-    public static int blightSpawnRange = 100;
-    public static int duskSpawnRarity = 18;
-    public static int duskSpawnRange = 100;
-    public static int skySpawnRarity = 18;
-    public static int skySpawnRange = 100;
-    public static int stingSpawnRarity = 18;
-    public static int stingSpawnRange = 100;
 
     public static int thornSpawnRarity = 40;
 
