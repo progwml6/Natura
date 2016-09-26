@@ -100,7 +100,7 @@ task buildInfo {
         ext.buildNum = "DEV.${project.buildInfo.revision}"
     }
 }
-version = "${minecraft.version}-${project.buildInfo.buildNum}"
+version = "${minecraft.version}-${config.mod_version}.${project.buildInfo.buildNum}"
 
 processResources
 {
