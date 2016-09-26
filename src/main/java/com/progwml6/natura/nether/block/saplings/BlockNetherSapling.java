@@ -28,6 +28,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
@@ -100,8 +101,58 @@ public class BlockNetherSapling extends BlockSapling
     @Override
     public boolean canPlaceBlockAt(World worldIn, BlockPos pos)
     {
-        Block ground = worldIn.getBlockState(pos.down()).getBlock();
-        return ground == Blocks.SOUL_SAND || ground == Blocks.NETHERRACK || ground == NaturaNether.netherTaintedSoil;
+        Block block = worldIn.getBlockState(pos).getBlock();
+
+        if (block == null || block.isReplaceable(worldIn, pos))
+        {
+            IBlockState soilBlockState = worldIn.getBlockState(pos.down());
+            Block netherSoil = soilBlockState.getBlock();
+
+            if (netherSoil != null)
+                if (canGrowOnBlock(netherSoil) || netherSoil.canSustainPlant(soilBlockState, worldIn, pos.down(), EnumFacing.UP, this))
+                    return true;
+
+            IBlockState ceilingBlockState = worldIn.getBlockState(pos.up());
+            Block netherCeiling = ceilingBlockState.getBlock();
+
+            if (netherCeiling != null)
+                if (canGrowOnBlock(netherCeiling) || netherCeiling.canSustainPlant(ceilingBlockState, worldIn, pos.up(), EnumFacing.DOWN, this))
+                    return true;
+        }
+        return false;
+    }
+
+    @Override
+    public boolean canBlockStay(World worldIn, BlockPos pos, IBlockState state)
+    {
+        switch (state.getValue(FOLIAGE))
+        {
+        case BLOODWOOD:
+            IBlockState ceilingBlockState = worldIn.getBlockState(pos.up());
+            Block netherCeiling = ceilingBlockState.getBlock();
+
+            if (netherCeiling == null)
+                return false;
+
+            return canGrowOnBlock(netherCeiling) || netherCeiling.canSustainPlant(ceilingBlockState, worldIn, pos.up(), EnumFacing.DOWN, this);
+        case DARKWOOD:
+        case FUSEWOOD:
+        case GHOSTWOOD:
+            IBlockState soilBlockState = worldIn.getBlockState(pos.down());
+            Block netherSoil = soilBlockState.getBlock();
+
+            if (netherSoil == null)
+                return false;
+
+            return canGrowOnBlock(netherSoil) || netherSoil.canSustainPlant(soilBlockState, worldIn, pos.down(), EnumFacing.UP, this);
+        default:
+            return true;
+        }
+    }
+
+    public boolean canGrowOnBlock(Block block)
+    {
+        return block == Blocks.SOUL_SAND || block == Blocks.NETHERRACK || block == NaturaNether.netherTaintedSoil;
     }
 
     @Nonnull

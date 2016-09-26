@@ -207,7 +207,7 @@ public class NetherBerryBushGenerator extends BaseBerryBushGenerator
         {
             IBlockState state = world.getBlockState(pos);
             Block block = state.getBlock();
-            if ((block == Blocks.NETHERRACK) || block.canSustainPlant(state, world, pos.down(), EnumFacing.UP, (IPlantable) this.berryBush))
+            if ((block == Blocks.NETHERRACK) || block.canSustainPlant(state, world, pos.down(), EnumFacing.UP, (IPlantable) this.berryBush.getBlock()))
             {
                 if (!this.isOpaqueCube(world, pos, pos.up()))
                 {
