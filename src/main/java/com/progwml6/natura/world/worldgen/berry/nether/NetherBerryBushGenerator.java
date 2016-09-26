@@ -2,6 +2,8 @@ package com.progwml6.natura.world.worldgen.berry.nether;
 
 import java.util.Random;
 
+import javax.annotation.Nullable;
+
 import com.progwml6.natura.common.block.BlockEnumBerryBush;
 import com.progwml6.natura.world.worldgen.berry.BaseBerryBushGenerator;
 
@@ -12,8 +14,6 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IPlantable;
-
-import javax.annotation.Nullable;
 
 public class NetherBerryBushGenerator extends BaseBerryBushGenerator
 {
@@ -224,13 +224,14 @@ public class NetherBerryBushGenerator extends BaseBerryBushGenerator
     @SuppressWarnings("deprecation")
     boolean isOpaqueCube(World world, BlockPos pos, @Nullable BlockPos posUp)
     {
-        IBlockState state = world.getBlockState(pos);
         if (posUp != null)
         {
+            IBlockState state = world.getBlockState(posUp);
             return world.getBlockState(posUp).getBlock().isOpaqueCube(state);
         }
         else
         {
+            IBlockState state = world.getBlockState(pos);
             return world.getBlockState(pos).getBlock().isOpaqueCube(state);
         }
     }
