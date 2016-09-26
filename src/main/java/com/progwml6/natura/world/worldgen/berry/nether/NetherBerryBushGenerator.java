@@ -4,7 +4,6 @@ import java.util.Random;
 
 import com.progwml6.natura.common.block.BlockEnumBerryBush;
 import com.progwml6.natura.world.worldgen.berry.BaseBerryBushGenerator;
-import com.sun.istack.internal.Nullable;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
@@ -13,6 +12,8 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IPlantable;
+
+import javax.annotation.Nullable;
 
 public class NetherBerryBushGenerator extends BaseBerryBushGenerator
 {
