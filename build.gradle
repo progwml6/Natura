@@ -97,10 +97,10 @@ task buildInfo {
     if (System.getenv().BUILD_NUMBER != null) {
         ext.buildNum = System.getenv().BUILD_NUMBER
     } else {
-        ext.buildNum = "DEV"
+        ext.buildNum = "DEV.${project.buildInfo.revision}"
     }
 }
-version = "${minecraft.version}-${project.buildInfo.buildNum}.${project.buildInfo.revision}"
+version = "${minecraft.version}-${project.buildInfo.buildNum}"
 
 processResources
 {
