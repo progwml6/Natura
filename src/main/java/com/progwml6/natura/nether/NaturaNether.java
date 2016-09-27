@@ -12,6 +12,7 @@ import com.progwml6.natura.nether.block.glass.BlockNetherGlass;
 import com.progwml6.natura.nether.block.leaves.BlockNetherLeaves;
 import com.progwml6.natura.nether.block.leaves.BlockNetherLeaves2;
 import com.progwml6.natura.nether.block.logs.BlockNetherLog;
+import com.progwml6.natura.nether.block.obelisk.BlockRespawnObelisk;
 import com.progwml6.natura.nether.block.planks.BlockNetherPlanks;
 import com.progwml6.natura.nether.block.sand.BlockHeatSand;
 import com.progwml6.natura.nether.block.saplings.BlockNetherSapling;
@@ -63,6 +64,8 @@ public class NaturaNether extends NaturaPulse
     public static Block netherBerryBushDuskberry;
     public static Block netherBerryBushSkyberry;
     public static Block netherBerryBushStingberry;
+
+    public static BlockRespawnObelisk respawnObelisk;
     //@formatter:on
 
     @Subscribe
@@ -95,6 +98,8 @@ public class NaturaNether extends NaturaPulse
         netherBerryBushDuskberry = registerBlock(new BlockNetherBerryBush(NaturaCommons.duskberry), "nether_berrybush_duskberry");
         netherBerryBushSkyberry = registerBlock(new BlockNetherBerryBush(NaturaCommons.skyberry), "nether_berrybush_skyberry");
         netherBerryBushStingberry = registerBlock(new BlockNetherBerryBush(NaturaCommons.stingberry), "nether_berrybush_stingberry");
+
+        respawnObelisk = registerEnumBlock(new BlockRespawnObelisk(), "respawn_obelisk");
 
         proxy.preInit();
     }

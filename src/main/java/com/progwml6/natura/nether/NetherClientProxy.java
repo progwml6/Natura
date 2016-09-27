@@ -90,6 +90,8 @@ public class NetherClientProxy extends ClientProxy
 
         this.registerItemBlockMeta(NaturaNether.netherSlab);
 
+        this.registerItemBlockMeta(NaturaNether.respawnObelisk);
+
         this.registerItemModel(NaturaNether.netherStairsGhostwood);
         this.registerItemModel(NaturaNether.netherStairsBloodwood);
         this.registerItemModel(NaturaNether.netherStairsDarkwood);

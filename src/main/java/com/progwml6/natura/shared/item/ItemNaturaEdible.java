@@ -26,9 +26,9 @@ public class ItemNaturaEdible extends ItemEdible
         super.addInformation(stack, playerIn, tooltip, advanced);
 
         // effect info
-        if (displayCustomEffectsTooltip)
+        if (this.displayCustomEffectsTooltip)
         {
-            for (PotionEffect potionEffect : potionEffects.get(stack.getMetadata()))
+            for (PotionEffect potionEffect : this.potionEffects.get(stack.getMetadata()))
             {
                 if (potionEffect.getPotion().isBadEffect())
                 {

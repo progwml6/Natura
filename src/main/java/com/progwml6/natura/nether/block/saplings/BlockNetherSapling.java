@@ -109,15 +109,23 @@ public class BlockNetherSapling extends BlockSapling
             Block netherSoil = soilBlockState.getBlock();
 
             if (netherSoil != null)
-                if (canGrowOnBlock(netherSoil) || netherSoil.canSustainPlant(soilBlockState, worldIn, pos.down(), EnumFacing.UP, this))
+            {
+                if (this.canGrowOnBlock(netherSoil) || netherSoil.canSustainPlant(soilBlockState, worldIn, pos.down(), EnumFacing.UP, this))
+                {
                     return true;
+                }
+            }
 
             IBlockState ceilingBlockState = worldIn.getBlockState(pos.up());
             Block netherCeiling = ceilingBlockState.getBlock();
 
             if (netherCeiling != null)
-                if (canGrowOnBlock(netherCeiling) || netherCeiling.canSustainPlant(ceilingBlockState, worldIn, pos.up(), EnumFacing.DOWN, this))
+            {
+                if (this.canGrowOnBlock(netherCeiling) || netherCeiling.canSustainPlant(ceilingBlockState, worldIn, pos.up(), EnumFacing.DOWN, this))
+                {
                     return true;
+                }
+            }
         }
         return false;
     }
@@ -132,9 +140,11 @@ public class BlockNetherSapling extends BlockSapling
             Block netherCeiling = ceilingBlockState.getBlock();
 
             if (netherCeiling == null)
+            {
                 return false;
+            }
 
-            return canGrowOnBlock(netherCeiling) || netherCeiling.canSustainPlant(ceilingBlockState, worldIn, pos.up(), EnumFacing.DOWN, this);
+            return this.canGrowOnBlock(netherCeiling) || netherCeiling.canSustainPlant(ceilingBlockState, worldIn, pos.up(), EnumFacing.DOWN, this);
         case DARKWOOD:
         case FUSEWOOD:
         case GHOSTWOOD:
@@ -142,9 +152,11 @@ public class BlockNetherSapling extends BlockSapling
             Block netherSoil = soilBlockState.getBlock();
 
             if (netherSoil == null)
+            {
                 return false;
+            }
 
-            return canGrowOnBlock(netherSoil) || netherSoil.canSustainPlant(soilBlockState, worldIn, pos.down(), EnumFacing.UP, this);
+            return this.canGrowOnBlock(netherSoil) || netherSoil.canSustainPlant(soilBlockState, worldIn, pos.down(), EnumFacing.UP, this);
         default:
             return true;
         }

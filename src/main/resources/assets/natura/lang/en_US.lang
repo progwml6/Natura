@@ -217,6 +217,9 @@ tile.natura.nether_berrybush_skyberry.tooltip=A little bit evil\nSlow dive
 tile.natura.nether_berrybush_stingberry.name=Stingberry Bush
 tile.natura.nether_berrybush_stingberry.tooltip=A little bit evil\nHit like a truck
 
+tile.natura.respawn_obelisk.inactive.name=Inactive Respawn Obelisk
+tile.natura.respawn_obelisk.active.name=Active Respawn Obelisk
+
 ################
 #    Items     #
 ################
