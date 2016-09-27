@@ -75,14 +75,6 @@ dependencies {
     deobfCompile "MCMultiPart:MCMultiPart-experimental:${config.mcmultipart_version}:universal"
 }
 
-minecraft {
-    version = config.minecraft_version + "-" + config.forge_version
-    mappings = config.mappings
-    runDir = "run"
-    replace '${version}', project.version
-    useDepAts = true
-}
-
 // sets version to the slimeKnights version format
 task buildInfo {
     def cmd = "git rev-parse --short HEAD"
@@ -100,7 +92,15 @@ task buildInfo {
         ext.buildNum = "DEV.${project.buildInfo.revision}"
     }
 }
-version = "${minecraft.version}-${config.mod_version}.${project.buildInfo.buildNum}"
+version = "${config.minecraft_version}-${config.mod_version}.${project.buildInfo.buildNum}"
+
+minecraft {
+    version = config.minecraft_version + "-" + config.forge_version
+    mappings = config.mappings
+    runDir = "run"
+    replace '${version}', project.version
+    useDepAts = true
+}
 
 processResources
 {
