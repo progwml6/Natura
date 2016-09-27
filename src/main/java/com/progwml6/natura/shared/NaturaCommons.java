@@ -9,6 +9,7 @@ import com.progwml6.natura.library.NaturaRegistry;
 import com.progwml6.natura.library.Util;
 import com.progwml6.natura.shared.block.hopper.BlockBlazeHopper;
 import com.progwml6.natura.shared.item.ItemEdibleSoup;
+import com.progwml6.natura.shared.item.ItemNaturaEdible;
 
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -22,7 +23,6 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
-import slimeknights.mantle.item.ItemEdible;
 import slimeknights.mantle.item.ItemMetaDynamic;
 import slimeknights.mantle.pulsar.pulse.Pulse;
 
@@ -46,7 +46,7 @@ public class NaturaCommons extends NaturaPulse
     // Items
     public static ItemMetaDynamic materials;
     public static ItemMetaDynamic empty_bowls;
-    public static ItemEdible edibles;
+    public static ItemNaturaEdible edibles;
     public static ItemEdibleSoup soups;
 
     // Material Itemstacks
@@ -106,7 +106,7 @@ public class NaturaCommons extends NaturaPulse
         // Items
         materials = registerItem(new ItemMetaDynamic(), "materials");
         empty_bowls = registerItem(new ItemMetaDynamic(), "empty_bowls");
-        edibles = registerItem(new ItemEdible(), "edibles");
+        edibles = registerItem(new ItemNaturaEdible(), "edibles");
         soups = registerItem(new ItemEdibleSoup(), "soups");
 
         materials.setCreativeTab(NaturaRegistry.tabGeneral);

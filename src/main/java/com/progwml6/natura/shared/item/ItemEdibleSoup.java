@@ -7,9 +7,8 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
-import slimeknights.mantle.item.ItemEdible;
 
-public class ItemEdibleSoup extends ItemEdible
+public class ItemEdibleSoup extends ItemNaturaEdible
 {
     protected TIntObjectHashMap<ItemStack> bowlsList;
 
