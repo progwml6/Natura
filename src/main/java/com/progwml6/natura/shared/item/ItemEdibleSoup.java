@@ -15,7 +15,7 @@ public class ItemEdibleSoup extends ItemNaturaEdible
     public ItemEdibleSoup()
     {
         super();
-        this.bowlsList = new TIntObjectHashMap<>();
+        this.bowlsList = new TIntObjectHashMap<ItemStack>();
     }
 
     public ItemStack addFood(int meta, int food, float saturation, String name, ItemStack bowl, PotionEffect... effects)

@@ -5,6 +5,7 @@ import java.util.List;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.translation.I18n;
 import slimeknights.mantle.item.ItemEdible;
 
@@ -32,11 +33,11 @@ public class ItemNaturaEdible extends ItemEdible
             {
                 if (potionEffect.getPotion().isBadEffect())
                 {
-                    tooltip.add("§4" + I18n.translateToLocal(potionEffect.getEffectName()).trim());
+                    tooltip.add(TextFormatting.RED + I18n.translateToLocal(potionEffect.getEffectName()).trim());
                 }
                 else
                 {
-                    tooltip.add("§9" + I18n.translateToLocal(potionEffect.getEffectName()).trim());
+                    tooltip.add(TextFormatting.BLUE + I18n.translateToLocal(potionEffect.getEffectName()).trim());
                 }
             }
         }

@@ -195,7 +195,7 @@ public abstract class NaturaPulse
 
         HashMap<Character, ItemStack> var12;
 
-        for (var12 = new HashMap<>(); var4 < objArray.length; var4 += 2)
+        for (var12 = new HashMap<Character, ItemStack>(); var4 < objArray.length; var4 += 2)
         {
             Character var13 = (Character) objArray[var4];
             ItemStack var14 = null;
