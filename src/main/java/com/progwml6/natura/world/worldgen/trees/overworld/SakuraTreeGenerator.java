@@ -5,6 +5,7 @@ import java.util.Random;
 
 import com.google.common.collect.Lists;
 import com.progwml6.natura.common.block.BlockEnumLog;
+import com.progwml6.natura.common.config.Config;
 import com.progwml6.natura.overworld.NaturaOverworld;
 import com.progwml6.natura.world.worldgen.trees.BaseTreeGenerator;
 
@@ -363,22 +364,27 @@ public class SakuraTreeGenerator extends BaseTreeGenerator
         }
     }
 
-    @SuppressWarnings("deprecation")
     BlockPos findGround(World world, BlockPos pos)
     {
+        boolean foundGround = false;
+
+        int height = Config.seaLevel + 64;
+
+        BlockPos position = new BlockPos(pos.getX(), height, pos.getZ());
+
         do
         {
-            IBlockState state = world.getBlockState(pos);
-            Block block = state.getBlock();
-            if ((block == Blocks.DIRT || block == Blocks.GRASS) && !world.getBlockState(pos.up()).getBlock().isOpaqueCube(state))
-            {
-                return pos.up();
-            }
-            pos = pos.down();
-        }
-        while (pos.getY() > 0);
+            position = position.down();
+            Block underBlock = world.getBlockState(position).getBlock();
 
-        return pos;
+            if (underBlock == Blocks.DIRT || underBlock == Blocks.GRASS || height < Config.seaLevel)
+            {
+                foundGround = true;
+            }
+        }
+        while (!foundGround);
+
+        return position.up();
     }
 
     public boolean isReplaceable(World world, BlockPos pos)

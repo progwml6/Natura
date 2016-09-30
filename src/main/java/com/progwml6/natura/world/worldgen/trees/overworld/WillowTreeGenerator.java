@@ -2,6 +2,7 @@ package com.progwml6.natura.world.worldgen.trees.overworld;
 
 import java.util.Random;
 
+import com.progwml6.natura.common.config.Config;
 import com.progwml6.natura.overworld.NaturaOverworld;
 import com.progwml6.natura.world.worldgen.trees.BaseTreeGenerator;
 
@@ -211,22 +212,29 @@ public class WillowTreeGenerator extends BaseTreeGenerator
         }
     }
 
-    @SuppressWarnings("deprecation")
     BlockPos findGround(World world, BlockPos pos)
     {
+        int returnHeight = 0;
+
+        int height = pos.getY();
+
         do
         {
-            IBlockState state = world.getBlockState(pos);
-            Block block = state.getBlock();
-            if ((block == Blocks.DIRT || block == Blocks.GRASS || block == Blocks.SAND) && !world.getBlockState(pos.up()).getBlock().isOpaqueCube(state))
-            {
-                return pos.up();
-            }
-            pos = pos.down();
-        }
-        while (pos.getY() > 0);
+            BlockPos position = new BlockPos(pos.getX(), height, pos.getZ());
 
-        return pos;
+            Block block = world.getBlockState(position).getBlock();
+
+            if ((block == Blocks.DIRT || block == Blocks.GRASS) && !world.getBlockState(position.up()).isFullBlock())
+            {
+                returnHeight = height + 1;
+                break;
+            }
+
+            height--;
+        }
+        while (height > Config.seaLevel);
+
+        return new BlockPos(pos.getX(), returnHeight, pos.getZ());
     }
 
     private void addDownLeaves(World worldIn, BlockPos pos)

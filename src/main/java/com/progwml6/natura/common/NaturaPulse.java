@@ -195,7 +195,7 @@ public abstract class NaturaPulse
 
         HashMap<Character, ItemStack> var12;
 
-        for (var12 = new HashMap<Character, ItemStack>(); var4 < objArray.length; var4 += 2)
+        for (var12 = new HashMap<>(); var4 < objArray.length; var4 += 2)
         {
             Character var13 = (Character) objArray[var4];
             ItemStack var14 = null;
@@ -238,7 +238,7 @@ public abstract class NaturaPulse
 
     protected void addShapelessRecipeFirst(List<IRecipe> recipeList, ItemStack par1ItemStack, Object... par2ArrayOfObj)
     {
-        ArrayList<ItemStack> arraylist = new ArrayList<ItemStack>();
+        ArrayList<ItemStack> arraylist = new ArrayList<>();
         Object[] aobject = par2ArrayOfObj;
         int i = par2ArrayOfObj.length;
 

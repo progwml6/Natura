@@ -2,6 +2,7 @@ package com.progwml6.natura.world.worldgen.trees.overworld;
 
 import java.util.Random;
 
+import com.progwml6.natura.common.config.Config;
 import com.progwml6.natura.overworld.NaturaOverworld;
 import com.progwml6.natura.world.worldgen.trees.BaseTreeGenerator;
 
@@ -164,22 +165,27 @@ public class HopseedTreeGenerator extends BaseTreeGenerator
         }
     }
 
-    @SuppressWarnings("deprecation")
     BlockPos findGround(World world, BlockPos pos)
     {
+        boolean foundGround = false;
+
+        int height = Config.seaLevel + 64;
+
         do
         {
-            IBlockState state = world.getBlockState(pos);
-            Block block = state.getBlock();
-            if ((block == Blocks.DIRT || block == Blocks.GRASS) && !world.getBlockState(pos.up()).getBlock().isOpaqueCube(state))
-            {
-                return pos.up();
-            }
-            pos = pos.down();
-        }
-        while (pos.getY() > 0);
+            height--;
+            BlockPos position = new BlockPos(pos.getX(), height, pos.getZ());
 
-        return pos;
+            Block underBlock = world.getBlockState(position).getBlock();
+
+            if (underBlock == Blocks.DIRT || underBlock == Blocks.GRASS || height < Config.seaLevel)
+            {
+                foundGround = true;
+            }
+        }
+        while (!foundGround);
+
+        return new BlockPos(pos.getX(), height, pos.getZ());
     }
 
     private void growLogs(World worldIn, BlockPos position)

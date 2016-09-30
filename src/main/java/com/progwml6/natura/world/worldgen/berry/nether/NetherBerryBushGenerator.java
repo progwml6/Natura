@@ -2,8 +2,6 @@ package com.progwml6.natura.world.worldgen.berry.nether;
 
 import java.util.Random;
 
-import javax.annotation.Nullable;
-
 import com.progwml6.natura.common.block.BlockEnumBerryBush;
 import com.progwml6.natura.world.worldgen.berry.BaseBerryBushGenerator;
 
@@ -195,7 +193,7 @@ public class NetherBerryBushGenerator extends BaseBerryBushGenerator
 
     protected void setBlockAndMetadata(Random random, World world, BlockPos pos, IBlockState stateNew)
     {
-        if (!this.isOpaqueCube(world, pos, null))
+        if (!world.getBlockState(pos).isOpaqueCube())
         {
             world.setBlockState(pos, stateNew, 2);
         }
@@ -203,37 +201,40 @@ public class NetherBerryBushGenerator extends BaseBerryBushGenerator
 
     BlockPos findGround(World world, BlockPos pos)
     {
+        int returnHeight = -1;
+        IBlockState downState = world.getBlockState(pos.down());
+        Block downBlock = downState.getBlock();
+
+        if (!world.isAirBlock(pos.down()) && !world.getBlockState(pos).isOpaqueCube() && (downBlock == Blocks.NETHERRACK || downBlock.canSustainPlant(downState, world, pos.down(), EnumFacing.UP, (IPlantable) this.berryBush.getBlock())))
+        {
+            return pos;
+        }
+
+        int height = pos.getX();
+
+        BlockPos position = new BlockPos(pos.getX(), height, pos.getZ());
+
         do
         {
-            IBlockState state = world.getBlockState(pos);
+            IBlockState state = world.getBlockState(position);
             Block block = state.getBlock();
-            if ((block == Blocks.NETHERRACK) || block.canSustainPlant(state, world, pos.down(), EnumFacing.UP, (IPlantable) this.berryBush.getBlock()))
+            if (!world.isAirBlock(position))
             {
-                if (!this.isOpaqueCube(world, pos, pos.up()))
+                if (block == Blocks.NETHERRACK || block.canSustainPlant(state, world, position, EnumFacing.UP, (IPlantable) this.berryBush.getBlock()))
                 {
-                    return pos.up();
+                    if (!world.getBlockState(position.up()).isOpaqueCube())
+                    {
+                        returnHeight = height + 1;
+                    }
+                    break;
                 }
             }
-            pos = pos.down();
+            height--;
+            position = position.down();
         }
-        while (pos.getY() > 0);
+        while (height > 0);
 
-        return pos;
-    }
-
-    @SuppressWarnings("deprecation")
-    boolean isOpaqueCube(World world, BlockPos pos, @Nullable BlockPos posUp)
-    {
-        if (posUp != null)
-        {
-            IBlockState state = world.getBlockState(posUp);
-            return world.getBlockState(posUp).getBlock().isOpaqueCube(state);
-        }
-        else
-        {
-            IBlockState state = world.getBlockState(pos);
-            return world.getBlockState(pos).getBlock().isOpaqueCube(state);
-        }
+        return new BlockPos(pos.getX(), returnHeight, pos.getZ());
     }
 
     int randomFullAge(Random random)

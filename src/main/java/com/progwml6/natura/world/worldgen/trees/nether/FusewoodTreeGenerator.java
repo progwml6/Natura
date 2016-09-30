@@ -37,22 +37,26 @@ public class FusewoodTreeGenerator extends BaseTreeGenerator
         this(treeHeight, log, leaves, true);
     }
 
-    @SuppressWarnings("deprecation")
     BlockPos findGround(World world, BlockPos pos)
     {
+        boolean foundGround = false;
+        int height = pos.getY();
+
+        BlockPos position = new BlockPos(pos.getX(), height, pos.getZ());
+
         do
         {
-            IBlockState state = world.getBlockState(pos);
-            Block block = state.getBlock();
-            if ((block == Blocks.NETHERRACK || block == Blocks.SOUL_SAND || block == NaturaNether.netherTaintedSoil) && !world.getBlockState(pos.up()).getBlock().isOpaqueCube(state))
-            {
-                return pos.up();
-            }
-            pos = pos.down();
-        }
-        while (pos.getY() > 0);
+            position = position.down();
+            Block underBlock = world.getBlockState(position).getBlock();
 
-        return pos;
+            if (underBlock == Blocks.NETHERRACK || underBlock == Blocks.SOUL_SAND || underBlock == NaturaNether.netherTaintedSoil || height < 0)
+            {
+                foundGround = true;
+            }
+        }
+        while (!foundGround);
+
+        return position.up();
     }
 
     @Override

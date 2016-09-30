@@ -2,9 +2,8 @@ package com.progwml6.natura.world.worldgen.berry.overworld;
 
 import java.util.Random;
 
-import javax.annotation.Nullable;
-
 import com.progwml6.natura.common.block.BlockEnumBerryBush;
+import com.progwml6.natura.common.config.Config;
 import com.progwml6.natura.world.worldgen.berry.BaseBerryBushGenerator;
 
 import net.minecraft.block.Block;
@@ -152,8 +151,9 @@ public class OverworldBerryBushGenerator extends BaseBerryBushGenerator
 
                         BlockPos blockpos = new BlockPos(x, y, z);
                         IBlockState blockState = world.getBlockState(blockpos);
+                        Block blockFromState = state.getBlock();
 
-                        if (Math.abs(mathX) != subract2 || Math.abs(mathZ) != subract2 || random.nextInt(2) != 0 && (block == null || block.canBeReplacedByLeaves(blockState, world, blockpos)))
+                        if (Math.abs(mathX) != subract2 || Math.abs(mathZ) != subract2 || random.nextInt(2) != 0 && (blockFromState == null || blockFromState.canBeReplacedByLeaves(blockState, world, blockpos)))
                         {
                             this.setBlockAndMetadata(random, world, blockpos, this.berryBush.withProperty(BlockEnumBerryBush.AGE, this.randomFullAge(random)));
                         }
@@ -195,7 +195,7 @@ public class OverworldBerryBushGenerator extends BaseBerryBushGenerator
 
     protected void setBlockAndMetadata(Random random, World world, BlockPos pos, IBlockState stateNew)
     {
-        if (!this.isOpaqueCube(world, pos, null))
+        if (!world.getBlockState(pos).isOpaqueCube())
         {
             world.setBlockState(pos, stateNew, 2);
         }
@@ -203,35 +203,43 @@ public class OverworldBerryBushGenerator extends BaseBerryBushGenerator
 
     BlockPos findGround(World world, BlockPos pos)
     {
-        BlockPos position = new BlockPos(pos.getX(), this.spawnHeight, pos.getZ());
+        int returnHeight = -1;
+        IBlockState stateDown = world.getBlockState(pos.down());
+        Block blockDown = stateDown.getBlock();
+
+        if (!world.getBlockState(pos).isOpaqueCube() && (blockDown == Blocks.GRASS || blockDown == Blocks.DIRT))
+        {
+            return pos;
+        }
+
+        int height = this.spawnHeight;
+
         do
         {
+            BlockPos position = new BlockPos(pos.getX(), height, pos.getZ());
+
+            if (height < Config.seaLevel)
+            {
+                break;
+            }
+
             IBlockState state = world.getBlockState(position);
             Block block = state.getBlock();
-            if ((block == Blocks.DIRT || block == Blocks.GRASS || block == Blocks.SAND) && !this.isOpaqueCube(world, position, position.up()))
+
+            if ((block == Blocks.DIRT || block == Blocks.GRASS))
             {
-                return position.up();
+                if (!world.getBlockState(position.up()).isOpaqueCube())
+                {
+                    returnHeight = height + 1;
+                }
+                break;
             }
-            position = position.down();
-        }
-        while (position.getY() > 0);
 
-        return position;
-    }
+            height--;
+        }
+        while (height > 0);
 
-    @SuppressWarnings("deprecation")
-    boolean isOpaqueCube(World world, BlockPos pos, @Nullable BlockPos posUp)
-    {
-        if (posUp != null)
-        {
-            IBlockState state = world.getBlockState(posUp);
-            return world.getBlockState(posUp).getBlock().isOpaqueCube(state);
-        }
-        else
-        {
-            IBlockState state = world.getBlockState(pos);
-            return world.getBlockState(pos).getBlock().isOpaqueCube(state);
-        }
+        return new BlockPos(pos.getX(), returnHeight, pos.getZ());
     }
 
     int randomFullAge(Random random)

@@ -57,34 +57,113 @@ public class EucalyptusTreeGenerator extends BaseTreeGenerator
                 return;
             }
         }
+        boolean flag = true;
 
-        int yPos = pos.getY();
-
-        if (yPos >= 1 && yPos + height + 1 <= 256)
+        if (pos.getY() >= 1 && pos.getY() + height + 1 <= 256)
         {
-            IBlockState state = world.getBlockState(pos.down());
-            Block soil = state.getBlock();
-            boolean isSoil = (soil != null && soil.canSustainPlant(state, world, pos.down(), EnumFacing.UP, NaturaOverworld.overworldSapling));
-
-            if (isSoil)
+            for (int j = pos.getY(); j <= pos.getY() + 1 + height; ++j)
             {
-                soil.onPlantGrow(state, world, pos.down(), pos);
+                int k = 1;
 
-                this.placeTrunk(world, pos, height);
-                this.genBranch(world, random, pos, height, 1);
-                this.genBranch(world, random, pos, height, 2);
-                this.genBranch(world, random, pos, height, 3);
-                this.genBranch(world, random, pos, height, 4);
-                this.genStraightBranch(world, random, pos, height, 1);
-                this.genStraightBranch(world, random, pos, height, 2);
-                this.genStraightBranch(world, random, pos, height, 3);
-                this.genStraightBranch(world, random, pos, height, 4);
-                this.generateNode(world, random, pos.up(height));
+                if (j == pos.getY())
+                {
+                    k = 0;
+                }
+
+                if (j >= pos.getY() + 1 + height - 2)
+                {
+                    k = 3;
+                }
+
+                BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
+
+                for (int l = pos.getX() - k; l <= pos.getX() + k && flag; ++l)
+                {
+                    for (int i1 = pos.getZ() - k; i1 <= pos.getZ() + k && flag; ++i1)
+                    {
+                        if (j >= 0 && j < 256)
+                        {
+                            IBlockState iblockstate = world.getBlockState(blockpos$mutableblockpos.setPos(l, j, i1));
+
+                            if (!iblockstate.getBlock().isAir(iblockstate, world, blockpos$mutableblockpos.setPos(l, j, i1)) && !iblockstate.getBlock().isLeaves(iblockstate, world, blockpos$mutableblockpos.setPos(l, j, i1)))
+                            {
+                                flag = false;
+                            }
+                        }
+                        else
+                        {
+                            flag = false;
+                        }
+                    }
+                }
+            }
+
+            if (!flag)
+            {
+            }
+            else
+            {
+                IBlockState state = world.getBlockState(pos.down());
+                Block soil = state.getBlock();
+                boolean isSoil = (soil != null && soil.canSustainPlant(state, world, pos.down(), EnumFacing.UP, NaturaOverworld.overworldSapling));
+
+                if (isSoil)
+                {
+                    soil.onPlantGrow(state, world, pos.down(), pos);
+
+                    this.placeTrunk(world, pos, height);
+                    this.genBranch(world, random, pos, height, 1);
+                    this.genBranch(world, random, pos, height, 2);
+                    this.genBranch(world, random, pos, height, 3);
+                    this.genBranch(world, random, pos, height, 4);
+                    this.genStraightBranch(world, random, pos, height, 1);
+                    this.genStraightBranch(world, random, pos, height, 2);
+                    this.genStraightBranch(world, random, pos, height, 3);
+                    this.genStraightBranch(world, random, pos, height, 4);
+                    this.generateNode(world, random, pos.up(height));
+                }
             }
         }
     }
 
-    @SuppressWarnings("deprecation")
+    BlockPos findGround(World world, BlockPos pos)
+    {
+        int returnHeight = 0;
+        IBlockState stateDown = world.getBlockState(pos.down());
+        Block blockDown = stateDown.getBlock();
+
+        if (!world.getBlockState(pos).isFullBlock() && (blockDown == Blocks.GRASS || blockDown == Blocks.DIRT))
+        {
+            return pos;
+        }
+
+        int y = 96;
+
+        do
+        {
+            BlockPos position = new BlockPos(pos.getX(), y, pos.getZ());
+
+            if (y < 32)
+            {
+                break;
+            }
+
+            IBlockState state = world.getBlockState(position);
+            Block block = state.getBlock();
+
+            if ((block == Blocks.DIRT || block == Blocks.GRASS) && !world.getBlockState(position.up()).isFullBlock())
+            {
+                returnHeight = y + 1;
+                break;
+            }
+            y--;
+        }
+        while (y > 0);
+
+        return new BlockPos(pos.getX(), returnHeight, pos.getZ());
+    }
+
+    /*@SuppressWarnings("deprecation")
     BlockPos findGround(World world, BlockPos pos)
     {
         do
@@ -100,7 +179,7 @@ public class EucalyptusTreeGenerator extends BaseTreeGenerator
         while (pos.getY() > 0);
 
         return pos;
-    }
+    }*/
 
     private void genBranch(World world, Random random, BlockPos pos, int height, int direction)
     {
