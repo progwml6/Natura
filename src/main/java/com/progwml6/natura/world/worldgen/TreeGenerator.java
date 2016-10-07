@@ -22,8 +22,11 @@ import com.progwml6.natura.world.worldgen.trees.overworld.WillowTreeGenerator;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.IChunkGenerator;
 import net.minecraft.world.chunk.IChunkProvider;
+import net.minecraftforge.common.BiomeDictionary;
+import net.minecraftforge.common.BiomeDictionary.Type;
 import net.minecraftforge.fml.common.IWorldGenerator;
 
 public class TreeGenerator implements IWorldGenerator
@@ -105,7 +108,14 @@ public class TreeGenerator implements IWorldGenerator
             return;
         }
 
-        if (biomeName == "Forest" || biomeName == "AutumnWoods" || biomeName == "BirchForest" || biomeName == "PineForest" || biomeName == "Rainforest" || biomeName == "TemperateRainforest" || biomeName == "Woodlands")
+        Biome biome = world.getChunkFromBlockCoords(chunkPos).getBiome(chunkPos, world.getBiomeProvider());
+
+        if (biome == null)
+        {
+            return;
+        }
+
+        if (BiomeDictionary.isBiomeOfType(biome, Type.FOREST))
         {
             if (Config.generateSakura && random.nextInt(Config.sakuraSpawnRarity * 5) == 0)
             {
@@ -131,7 +141,7 @@ public class TreeGenerator implements IWorldGenerator
             }
         }
 
-        if (biomeName == "Plains" || biomeName == "Meadow")
+        if (BiomeDictionary.isBiomeOfType(biome, Type.PLAINS))
         {
             if (Config.generateEucalyptus && random.nextInt((int) (Config.eucalyptusSpawnRarity * 1.5)) == 0)
             {
@@ -144,7 +154,7 @@ public class TreeGenerator implements IWorldGenerator
             }
         }
 
-        if (biomeName == "Extreme Hills" || biomeName == "Extreme Hills Edge" || biomeName == "ForestedHills" || biomeName == "GreenHills")
+        if (BiomeDictionary.isBiomeOfType(biome, Type.MOUNTAIN) && BiomeDictionary.isBiomeOfType(biome, Type.HILLS))
         {
             if (Config.generateHopseed && random.nextInt(Config.hopseedSpawnRarity) == 0)
             {
@@ -167,7 +177,7 @@ public class TreeGenerator implements IWorldGenerator
             }
         }
 
-        if (biomeName == "River")
+        if (BiomeDictionary.isBiomeOfType(biome, Type.RIVER))
         {
             if (Config.generateSakura && random.nextInt(Config.sakuraSpawnRarity) == 0)
             {
@@ -193,7 +203,7 @@ public class TreeGenerator implements IWorldGenerator
             }
         }
 
-        if (biomeName == "Jungle" || biomeName == "JungleHills" || biomeName == "Extreme Jungle")
+        if (BiomeDictionary.isBiomeOfType(biome, Type.JUNGLE))
         {
             if (Config.generateAmaranth)
             {
@@ -206,7 +216,7 @@ public class TreeGenerator implements IWorldGenerator
             }
         }
 
-        if (biomeName == "Forest" || biomeName == "Woodlands" || biomeName == "AutumnWoods")
+        if (BiomeDictionary.isBiomeOfType(biome, Type.FOREST))
         {
             if (Config.generateMaple && random.nextInt(Config.mapleRarity) == 0)
             {
@@ -227,10 +237,7 @@ public class TreeGenerator implements IWorldGenerator
 
                 this.silverbellTreeGen.generateTree(random, world, position);
             }
-        }
 
-        if (biomeName == "Forest" || biomeName == "Rainforest" || biomeName == "TemperateRainforest")
-        {
             if (Config.generateTiger && random.nextInt(Config.tigerRarity) == 0)
             {
                 xSpawn = xPos + random.nextInt(16);
@@ -242,7 +249,7 @@ public class TreeGenerator implements IWorldGenerator
             }
         }
 
-        if (biomeName == "Swampland" || biomeName == "ForestHills")
+        if (BiomeDictionary.isBiomeOfType(biome, Type.SWAMP))
         {
             if (Config.generateWillow && random.nextInt(Config.willowRarity) == 0)
             {
@@ -270,14 +277,14 @@ public class TreeGenerator implements IWorldGenerator
 
         BlockPos position;
 
-        String biomeName = world.getChunkFromBlockCoords(chunkPos).getBiome(chunkPos, world.getBiomeProvider()).getBiomeName();
+        Biome biome = world.getChunkFromBlockCoords(chunkPos).getBiome(chunkPos, world.getBiomeProvider());
 
-        if (biomeName == null)
+        if (biome == null)
         {
             return;
         }
 
-        if (biomeName.equals("Hell") || biomeName.equals("Boneyard") || biomeName.equals("Phantasmagoric Inferno") || biomeName.equals("Corrupted Sands") || biomeName.equals("Corrupted Sands"))
+        if (BiomeDictionary.isBiomeOfType(biome, Type.NETHER))
         {
             /*if (Config.generateBloodwood && random.nextInt(Config.bloodwoodSpawnRarity) == 0)
             {
@@ -285,9 +292,9 @@ public class TreeGenerator implements IWorldGenerator
                 ySpawn = 72;
                 zSpawn = zPos + random.nextInt(16);
                 position = new BlockPos(xSpawn, ySpawn, zSpawn);
-
+            
                 this.bloodwoodTreeGen.generateTree(random, world, position);
-
+            
                 this.genBlood.generate(world, random, xSpawn, ySpawn, zSpawn);
             }*/
 
