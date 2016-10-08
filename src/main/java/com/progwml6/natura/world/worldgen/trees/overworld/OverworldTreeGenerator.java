@@ -7,7 +7,6 @@ import com.progwml6.natura.overworld.NaturaOverworld;
 import com.progwml6.natura.world.worldgen.trees.BaseTreeGenerator;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.EnumFacing;
@@ -70,11 +69,48 @@ public class OverworldTreeGenerator extends BaseTreeGenerator
 
             if (isSoil)
             {
+                if (!this.checkClear(world, pos.getX(), yPos, pos.getY(), height))
+                {
+                    return;
+                }
+
                 soil.onPlantGrow(state, world, pos.down(), pos);
                 this.placeCanopy(world, random, pos, height);
                 this.placeTrunk(world, pos, height);
             }
         }
+    }
+
+    boolean checkClear(World world, int x, int y, int z, int treeHeight)
+    {
+        for (int yPos = 0; yPos < treeHeight + 1; yPos++)
+        {
+            int range = 1;
+
+            if (yPos == 0)
+            {
+                range = 0;
+            }
+            else if (yPos >= treeHeight - 1)
+            {
+                range = 2;
+            }
+
+            for (int xPos = range; xPos <= range; xPos++)
+            {
+                for (int zPos = range; zPos <= range; zPos++)
+                {
+                    BlockPos blockpos = new BlockPos(x + xPos, y + yPos, z + zPos);
+                    IBlockState state = world.getBlockState(blockpos);
+
+                    if (state.getBlock() != null && state.getBlock() != NaturaOverworld.overworldSapling || !state.getBlock().isLeaves(state, world, blockpos))
+                    {
+                        return true;
+                    }
+                }
+            }
+        }
+        return true;
     }
 
     BlockPos findGround(World world, BlockPos pos)
@@ -122,10 +158,9 @@ public class OverworldTreeGenerator extends BaseTreeGenerator
                         BlockPos blockpos = new BlockPos(x, y, z);
                         IBlockState state = world.getBlockState(blockpos);
 
-                        if (state.getBlock().isAir(state, world, blockpos) || state.getBlock().isLeaves(state, world, blockpos)
-                                || state.getMaterial() == Material.VINE)
+                        if (state.getBlock().isAir(state, world, blockpos) || state.getBlock().canBeReplacedByLeaves(state, world, blockpos))
                         {
-                            this.setBlockAndMetadata(world, blockpos, this.leaves);
+                            world.setBlockState(blockpos, this.leaves, 2);
                         }
                     }
                 }
@@ -135,7 +170,19 @@ public class OverworldTreeGenerator extends BaseTreeGenerator
 
     protected void placeTrunk(World world, BlockPos pos, int height)
     {
-        while (height >= 0)
+        for (int localHeight = 0; localHeight < height; ++localHeight)
+        {
+            BlockPos blockpos = new BlockPos(pos.getX(), pos.getY() + localHeight, pos.getZ());
+            IBlockState state = world.getBlockState(blockpos);
+            Block block = state.getBlock();
+
+            if (block.isAir(state, world, blockpos) || block == null || block.isLeaves(state, world, blockpos))
+            {
+                world.setBlockState(blockpos, this.log, 2);
+            }
+        }
+
+        /*while (height >= 0)
         {
             IBlockState state = world.getBlockState(pos);
             Block block = state.getBlock();
@@ -143,19 +190,9 @@ public class OverworldTreeGenerator extends BaseTreeGenerator
             {
                 this.setBlockAndMetadata(world, pos, this.log);
             }
-
+        
             pos = pos.up();
             height--;
-        }
-    }
-
-    protected void setBlockAndMetadata(World world, BlockPos pos, IBlockState stateNew)
-    {
-        IBlockState state = world.getBlockState(pos);
-        Block block = state.getBlock();
-        if (block.isAir(state, world, pos) || block.canPlaceBlockAt(world, pos) || world.getBlockState(pos) == this.leaves)
-        {
-            world.setBlockState(pos, stateNew, 2);
-        }
+        }*/
     }
 }
