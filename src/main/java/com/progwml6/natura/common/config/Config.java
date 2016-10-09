@@ -21,6 +21,8 @@ public final class Config
 
     private static final String WORLDGEN = "Worldgen";
 
+    private static final String ENTITIES = "Entities";
+
     private Config()
     {
     }
@@ -163,6 +165,8 @@ public final class Config
 
         seaLevel = configFile.get("general", "Sea level", seaLevel).getInt(seaLevel);
 
+        enableHeatscarSpider = configFile.get(ENTITIES, "Enable Heatscar Spiders", enableHeatscarSpider).getBoolean(enableHeatscarSpider);
+
         // save changes if any
         boolean changed = false;
         if (configFile.hasChanged())
@@ -178,8 +182,11 @@ public final class Config
     public static boolean doRetrogen = false;
     // Retrogen End
 
+    // Entites Start
     public static int babyHeatscarMinimum = 2;
     public static int babyHeatscarMaximum = 4;
+    public static boolean enableHeatscarSpider = false;
+    // Entites End
 
     public static int seaLevel = 64;
 
