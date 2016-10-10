@@ -127,25 +127,25 @@ public class NaturaCommons extends NaturaPulse
             impLeather = materials.addMeta(6, "imp_leather");
             flameString = materials.addMeta(7, "flame_string");
 
-            impmeatRaw = edibles.addFood(0, 3, 0.2f, "impmeat_raw", new PotionEffect(MobEffects.HUNGER, 8 * 20, 0), new PotionEffect(MobEffects.POISON, 5 * 20, 0));
-            impmeatCooked = edibles.addFood(1, 8, 0.6f, "impmeat_cooked", new PotionEffect(MobEffects.FIRE_RESISTANCE, 15 * 20, 0), new PotionEffect(MobEffects.POISON, 5 * 20, 0));
+            impmeatRaw = edibles.addFood(0, 3, 0.2f, 32, "impmeat_raw", new PotionEffect(MobEffects.HUNGER, 8 * 20, 0), new PotionEffect(MobEffects.POISON, 5 * 20, 0));
+            impmeatCooked = edibles.addFood(1, 8, 0.6f, 32, "impmeat_cooked", new PotionEffect(MobEffects.FIRE_RESISTANCE, 15 * 20, 0), new PotionEffect(MobEffects.POISON, 5 * 20, 0));
         }
 
         if (isOverworldLoaded())
         {
-            raspberry = edibles.addFood(2, 1, 0.4F, "raspberry", true);
-            blueberry = edibles.addFood(3, 1, 0.4F, "blueberry", true);
-            blackberry = edibles.addFood(4, 1, 0.4F, "blackberry", true);
-            maloberry = edibles.addFood(5, 1, 0.4F, "maloberry", true);
+            raspberry = edibles.addFood(2, 1, 0.4F, 16, "raspberry", true);
+            blueberry = edibles.addFood(3, 1, 0.4F, 16, "blueberry", true);
+            blackberry = edibles.addFood(4, 1, 0.4F, 16, "blackberry", true);
+            maloberry = edibles.addFood(5, 1, 0.4F, 16, "maloberry", true);
             berryMedley = soups.addFood(9, 5, 1.4F, "berry_medley", new ItemStack(Items.BOWL));
         }
 
         if (isNetherLoaded())
         {
-            blightberry = edibles.addFood(6, 1, 0.4F, "blightberry", new PotionEffect(MobEffects.REGENERATION, 8 * 20, 0), new PotionEffect(MobEffects.POISON, 5 * 20, 0), new PotionEffect(MobEffects.WITHER, 5 * 20, 0));
-            duskberry = edibles.addFood(7, 1, 0.4F, "duskberry", new PotionEffect(MobEffects.NIGHT_VISION, 15 * 20, 0), new PotionEffect(MobEffects.BLINDNESS, 3 * 20, 0));
-            skyberry = edibles.addFood(8, 1, 0.4F, "skyberry", new PotionEffect(MobEffects.JUMP_BOOST, 8 * 20, 0), new PotionEffect(MobEffects.SLOWNESS, 3 * 20, 0));
-            stingberry = edibles.addFood(9, 1, 0.4F, "stingberry", new PotionEffect(MobEffects.STRENGTH, 10 * 20, 0), new PotionEffect(MobEffects.MINING_FATIGUE, 10 * 20, 0));
+            blightberry = edibles.addFood(6, 1, 0.4F, 16, "blightberry", new PotionEffect(MobEffects.REGENERATION, 8 * 20, 0), new PotionEffect(MobEffects.POISON, 5 * 20, 0), new PotionEffect(MobEffects.WITHER, 5 * 20, 0));
+            duskberry = edibles.addFood(7, 1, 0.4F, 16, "duskberry", new PotionEffect(MobEffects.NIGHT_VISION, 15 * 20, 0), new PotionEffect(MobEffects.BLINDNESS, 3 * 20, 0));
+            skyberry = edibles.addFood(8, 1, 0.4F, 16, "skyberry", new PotionEffect(MobEffects.JUMP_BOOST, 8 * 20, 0), new PotionEffect(MobEffects.SLOWNESS, 3 * 20, 0));
+            stingberry = edibles.addFood(9, 1, 0.4F, 16, "stingberry", new PotionEffect(MobEffects.STRENGTH, 10 * 20, 0), new PotionEffect(MobEffects.MINING_FATIGUE, 10 * 20, 0));
         }
 
         ghostwood_emptybowl = empty_bowls.addMeta(0, "ghostwood_bowl");
