@@ -377,7 +377,7 @@ public class GhostwoodTreeGenerator extends BaseTreeGenerator
             position = position.down();
             Block underBlock = world.getBlockState(position).getBlock();
 
-            if (underBlock == Blocks.NETHERRACK || underBlock == Blocks.SOUL_SAND || underBlock == NaturaNether.netherTaintedSoil || height < 0)
+            if (underBlock == Blocks.NETHERRACK || underBlock == Blocks.SOUL_SAND || underBlock == NaturaNether.netherTaintedSoil || position.getY() < 0)
             {
                 foundGround = true;
             }
