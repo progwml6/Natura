@@ -10,6 +10,7 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.translation.I18n;
 import slimeknights.mantle.item.ItemEdible;
 
+@SuppressWarnings("deprecation")
 public class ItemNaturaEdible extends ItemEdible
 {
     protected TIntIntHashMap itemDuration;
@@ -44,7 +45,6 @@ public class ItemNaturaEdible extends ItemEdible
         return itemDuration.get(stack.getMetadata());
     }
 
-    @SuppressWarnings("deprecation")
     @Override
     public void addInformation(ItemStack stack, EntityPlayer playerIn, List<String> tooltip, boolean advanced)
     {

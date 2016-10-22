@@ -137,7 +137,7 @@ public class NaturaCommons extends NaturaPulse
             blueberry = edibles.addFood(3, 1, 0.4F, 16, "blueberry", true);
             blackberry = edibles.addFood(4, 1, 0.4F, 16, "blackberry", true);
             maloberry = edibles.addFood(5, 1, 0.4F, 16, "maloberry", true);
-            berryMedley = soups.addFood(9, 5, 1.4F, "berry_medley", new ItemStack(Items.BOWL));
+            berryMedley = soups.addFood(9, 5, 1.4F, 32, "berry_medley", new ItemStack(Items.BOWL));
         }
 
         if (isNetherLoaded())
@@ -153,16 +153,16 @@ public class NaturaCommons extends NaturaPulse
         darkwood_emptybowl = empty_bowls.addMeta(2, "darkwood_bowl");
         fusewood_emptybowl = empty_bowls.addMeta(3, "fusewood_bowl");
 
-        ghostwood_mushroomstew = soups.addFood(0, 6, 0.6f, "ghostwood_mushroomstew", ghostwood_emptybowl);
-        bloodwood_mushroomstew = soups.addFood(1, 6, 0.6f, "bloodwood_mushroomstew", bloodwood_emptybowl);
-        darkwood_mushroomstew = soups.addFood(2, 6, 0.6f, "darkwood_mushroomstew", darkwood_emptybowl);
-        fusewood_mushroomstew = soups.addFood(3, 6, 0.6f, "fusewood_mushroomstew", fusewood_emptybowl);
+        ghostwood_mushroomstew = soups.addFood(0, 6, 0.6f, 32, "ghostwood_mushroomstew", ghostwood_emptybowl);
+        bloodwood_mushroomstew = soups.addFood(1, 6, 0.6f, 32, "bloodwood_mushroomstew", bloodwood_emptybowl);
+        darkwood_mushroomstew = soups.addFood(2, 6, 0.6f, 32, "darkwood_mushroomstew", darkwood_emptybowl);
+        fusewood_mushroomstew = soups.addFood(3, 6, 0.6f, 32, "fusewood_mushroomstew", fusewood_emptybowl);
 
-        vanilla_glowshroomstew = soups.addFood(4, 6, 0.6f, "vanilla_glowshroomstew", new ItemStack(Items.BOWL), new PotionEffect(MobEffects.NIGHT_VISION, 45 * 25, 0), new PotionEffect(MobEffects.POISON, 16 * 25, 0), new PotionEffect(MobEffects.MINING_FATIGUE, 8 * 25, 0));
-        ghostwood_glowshroomstew = soups.addFood(5, 6, 0.6f, "ghostwood_glowshroomstew", ghostwood_emptybowl, new PotionEffect(MobEffects.NIGHT_VISION, 45 * 25, 0), new PotionEffect(MobEffects.POISON, 16 * 25, 0), new PotionEffect(MobEffects.MINING_FATIGUE, 8 * 25, 0));
-        bloodwood_glowshroomstew = soups.addFood(6, 3, 0.2f, "bloodwood_glowshroomstew", bloodwood_emptybowl, new PotionEffect(MobEffects.NIGHT_VISION, 45 * 25, 0), new PotionEffect(MobEffects.POISON, 16 * 25, 0), new PotionEffect(MobEffects.MINING_FATIGUE, 8 * 25, 0));
-        darkwood_glowshroomstew = soups.addFood(7, 3, 0.2f, "darkwood_glowshroomstew", darkwood_emptybowl, new PotionEffect(MobEffects.NIGHT_VISION, 45 * 25, 0), new PotionEffect(MobEffects.POISON, 16 * 25, 0), new PotionEffect(MobEffects.MINING_FATIGUE, 8 * 25, 0));
-        fusewood_glowshroomstew = soups.addFood(8, 3, 0.2f, "fusewood_glowshroomstew", fusewood_emptybowl, new PotionEffect(MobEffects.NIGHT_VISION, 45 * 25, 0), new PotionEffect(MobEffects.POISON, 16 * 25, 0), new PotionEffect(MobEffects.MINING_FATIGUE, 8 * 25, 0));
+        vanilla_glowshroomstew = soups.addFood(4, 6, 0.6f, 32, "vanilla_glowshroomstew", new ItemStack(Items.BOWL), new PotionEffect(MobEffects.NIGHT_VISION, 45 * 25, 0), new PotionEffect(MobEffects.POISON, 16 * 25, 0), new PotionEffect(MobEffects.MINING_FATIGUE, 8 * 25, 0));
+        ghostwood_glowshroomstew = soups.addFood(5, 6, 0.6f, 32, "ghostwood_glowshroomstew", ghostwood_emptybowl, new PotionEffect(MobEffects.NIGHT_VISION, 45 * 25, 0), new PotionEffect(MobEffects.POISON, 16 * 25, 0), new PotionEffect(MobEffects.MINING_FATIGUE, 8 * 25, 0));
+        bloodwood_glowshroomstew = soups.addFood(6, 3, 0.2f, 32, "bloodwood_glowshroomstew", bloodwood_emptybowl, new PotionEffect(MobEffects.NIGHT_VISION, 45 * 25, 0), new PotionEffect(MobEffects.POISON, 16 * 25, 0), new PotionEffect(MobEffects.MINING_FATIGUE, 8 * 25, 0));
+        darkwood_glowshroomstew = soups.addFood(7, 3, 0.2f, 32, "darkwood_glowshroomstew", darkwood_emptybowl, new PotionEffect(MobEffects.NIGHT_VISION, 45 * 25, 0), new PotionEffect(MobEffects.POISON, 16 * 25, 0), new PotionEffect(MobEffects.MINING_FATIGUE, 8 * 25, 0));
+        fusewood_glowshroomstew = soups.addFood(8, 3, 0.2f, 32, "fusewood_glowshroomstew", fusewood_emptybowl, new PotionEffect(MobEffects.NIGHT_VISION, 45 * 25, 0), new PotionEffect(MobEffects.POISON, 16 * 25, 0), new PotionEffect(MobEffects.MINING_FATIGUE, 8 * 25, 0));
 
         proxy.preInit();
 

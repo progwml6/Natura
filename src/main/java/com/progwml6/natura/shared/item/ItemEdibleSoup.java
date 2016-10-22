@@ -15,19 +15,19 @@ public class ItemEdibleSoup extends ItemNaturaEdible
     public ItemEdibleSoup()
     {
         super();
-        this.bowlsList = new TIntObjectHashMap<ItemStack>();
+        this.bowlsList = new TIntObjectHashMap<>();
     }
 
-    public ItemStack addFood(int meta, int food, float saturation, String name, ItemStack bowl, PotionEffect... effects)
+    public ItemStack addFood(int meta, int food, float saturation, int duration, String name, ItemStack bowl, PotionEffect... effects)
     {
-        return this.addFood(meta, food, saturation, name, bowl, effects.length > 0, effects);
+        return this.addFood(meta, food, saturation, duration, name, bowl, effects.length > 0, effects);
     }
 
-    public ItemStack addFood(int meta, int food, float saturation, String name, ItemStack bowl, boolean alwaysEdible, PotionEffect... effects)
+    public ItemStack addFood(int meta, int food, float saturation, int duration, String name, ItemStack bowl, boolean alwaysEdible, PotionEffect... effects)
     {
         this.bowlsList.put(meta, bowl);
 
-        return super.addFood(meta, food, saturation, name, alwaysEdible, effects);
+        return super.addFood(meta, food, saturation, duration, name, alwaysEdible, effects);
     }
 
     /**
