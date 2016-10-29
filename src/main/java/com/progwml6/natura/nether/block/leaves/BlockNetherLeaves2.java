@@ -98,7 +98,7 @@ public class BlockNetherLeaves2 extends BlockLeaves
     @Override
     public int damageDropped(IBlockState state)
     {
-        return (state.getValue(BlockNetherLeaves2.TYPE)).ordinal();
+        return 3;
     }
 
     // item dropped on silktouching
