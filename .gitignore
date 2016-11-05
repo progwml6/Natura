@@ -20,6 +20,7 @@ Thumbs.db
 /*.iml
 /*.ipr
 /*.iws
+out/
 #Vim backups
 *~
 #eclipse stuffs
