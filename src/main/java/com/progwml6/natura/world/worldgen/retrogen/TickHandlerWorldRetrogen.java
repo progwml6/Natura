@@ -7,6 +7,7 @@ import com.google.common.collect.LinkedListMultimap;
 import com.progwml6.natura.common.config.Config;
 import com.progwml6.natura.world.NaturaWorld;
 import com.progwml6.natura.world.worldgen.BerryBushGenerator;
+import com.progwml6.natura.world.worldgen.CloudGenerator;
 import com.progwml6.natura.world.worldgen.TreeGenerator;
 
 import net.minecraft.nbt.NBTTagCompound;
@@ -22,6 +23,8 @@ public class TickHandlerWorldRetrogen
     private final TreeGenerator treeGenerator = new TreeGenerator();
 
     private final BerryBushGenerator berryBushGenerator = new BerryBushGenerator();
+
+    private final CloudGenerator cloudGenerator = new CloudGenerator();
 
     private final LinkedListMultimap<Integer, ChunkCoords> chunkRegenList = LinkedListMultimap.create();
 
@@ -53,6 +56,10 @@ public class TickHandlerWorldRetrogen
 
                 this.treeGenerator.retroGen(random, coords.xCoord, coords.zCoord, world);
                 this.berryBushGenerator.retroGen(random, coords.xCoord, coords.zCoord, world);
+                if (Config.enableCloudBlocks)
+                {
+                    this.cloudGenerator.retroGen(random, coords.xCoord, coords.zCoord, world);
+                }
             }
         }
     }

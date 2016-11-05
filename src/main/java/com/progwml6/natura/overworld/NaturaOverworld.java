@@ -56,6 +56,9 @@ public class NaturaOverworld extends NaturaPulse
     //@formatter:off
     public static BlockColoredGrass coloredGrass;
     public static BlockColoredGrassSlab coloredGrassSlab;
+    public static Block coloredGrassStairsTopiary;
+    public static Block coloredGrassStairsBlueGrass;
+    public static Block coloredGrassStairsAutumnal;
 
     public static BlockOverworldLog overworldLog;
     public static BlockOverworldLeaves overworldLeaves;
@@ -95,6 +98,9 @@ public class NaturaOverworld extends NaturaPulse
     {
         coloredGrass = registerEnumBlock(new BlockColoredGrass(), "colored_grass");
         coloredGrassSlab = registerEnumBlockSlab(new BlockColoredGrassSlab(), "colored_grass_slab");
+        coloredGrassStairsTopiary = registerBlockGrassStairsFrom(coloredGrass, BlockColoredGrass.GrassType.TOPIARY, "colored_grass_stairs_topiary");
+        coloredGrassStairsBlueGrass = registerBlockGrassStairsFrom(coloredGrass, BlockColoredGrass.GrassType.BLUEGRASS, "colored_grass_stairs_bluegrass");
+        coloredGrassStairsAutumnal = registerBlockGrassStairsFrom(coloredGrass, BlockColoredGrass.GrassType.AUTUMNAL, "colored_grass_stairs_autumnal");
 
         overworldLog = registerEnumBlock(new BlockOverworldLog(), "overworld_logs");
         overworldLog2 = registerEnumBlock(new BlockOverworldLog2(), "overworld_logs2");

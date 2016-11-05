@@ -6,10 +6,10 @@ tile.natura.blaze_hopper.name=Blaze Hopper
 
 tile.natura.clouds.white.name=Cloud
 tile.natura.clouds.white.tooltip=So light and fluffy!\nSaves you when you fall
-tile.natura.clouds.gray.name=Dark Cloud
-tile.natura.clouds.gray.tooltip=So light and fluffy!\nCauses lightning strikes
-tile.natura.clouds.dark.name=Ash Cloud
-tile.natura.clouds.dark.tooltip=So light and fluffy!\n3x3 Converts into charcoal
+tile.natura.clouds.dark.name=Dark Cloud
+tile.natura.clouds.dark.tooltip=So light and fluffy!\nCauses lightning strikes
+tile.natura.clouds.ash.name=Ash Cloud
+tile.natura.clouds.ash.tooltip=So light and fluffy!\n3x3 Converts into charcoal
 tile.natura.clouds.sulfur.name=Sulfur Cloud
 tile.natura.clouds.sulfur.tooltip=So light and fluffy!\n2x2 Converts into sulfur
 

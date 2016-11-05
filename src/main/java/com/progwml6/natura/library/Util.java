@@ -5,11 +5,7 @@ import java.util.Locale;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.progwml6.natura.Natura;
-
-import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fml.common.registry.GameData;
 
 public class Util
 {
@@ -43,19 +39,5 @@ public class Util
     public static String prefix(String name)
     {
         return String.format("%s.%s", RESOURCE, name.toLowerCase(Locale.US));
-    }
-
-    @SuppressWarnings("deprecation")
-    public static ResourceLocation getItemLocation(Item item)
-    {
-        Object o = GameData.getItemRegistry().getNameForObject(item);
-
-        if (o == null)
-        {
-            Natura.log.error("Item %s is not registered!" + item.getUnlocalizedName());
-            return null;
-        }
-
-        return (ResourceLocation) o;
     }
 }

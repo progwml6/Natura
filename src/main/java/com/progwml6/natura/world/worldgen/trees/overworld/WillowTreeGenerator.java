@@ -66,7 +66,7 @@ public class WillowTreeGenerator extends BaseTreeGenerator
 
         boolean flag = true;
 
-        if (position.getY() >= 1 && position.getY() + height + 1 <= 256)
+        if (position.getY() >= 1 && position.getY() + height + 1 <= 128)
         {
             for (int j = position.getY(); j <= position.getY() + 1 + height; ++j)
             {
@@ -88,7 +88,7 @@ public class WillowTreeGenerator extends BaseTreeGenerator
                 {
                     for (int i1 = position.getZ() - k; i1 <= position.getZ() + k && flag; ++i1)
                     {
-                        if (j >= 0 && j < 256)
+                        if (j >= 0 && j < 128)
                         {
                             IBlockState iblockstate = worldIn.getBlockState(blockpos$mutableblockpos.setPos(l, j, i1));
                             Block block = iblockstate.getBlock();
@@ -122,7 +122,7 @@ public class WillowTreeGenerator extends BaseTreeGenerator
                 IBlockState state = worldIn.getBlockState(down);
                 boolean isSoil = state.getBlock().canSustainPlant(state, worldIn, down, net.minecraft.util.EnumFacing.UP, NaturaOverworld.overworldSapling2);
 
-                if (isSoil && position.getY() < worldIn.getHeight() - height - 1)
+                if (isSoil && position.getY() < 128 - height - 1)
                 {
                     state.getBlock().onPlantGrow(state, worldIn, position.down(), position);
 
@@ -224,7 +224,7 @@ public class WillowTreeGenerator extends BaseTreeGenerator
 
             Block block = world.getBlockState(position).getBlock();
 
-            if ((block == Blocks.DIRT || block == Blocks.GRASS) && !world.getBlockState(position.up()).isFullBlock())
+            if ((block == Blocks.DIRT || block == Blocks.GRASS || block == Blocks.SAND) && !world.getBlockState(position.up()).isFullBlock())
             {
                 returnHeight = height + 1;
                 break;

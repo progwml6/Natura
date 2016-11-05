@@ -154,7 +154,7 @@ public class BlockOverworldSapling2 extends BlockSapling
             log = NaturaOverworld.overworldLog2.getDefaultState().withProperty(BlockOverworldLog2.TYPE, BlockOverworldLog2.LogType.SAKURA);
             leaves = NaturaOverworld.overworldLeaves2.getDefaultState().withProperty(BlockOverworldLog2.TYPE, BlockOverworldLog2.LogType.SAKURA);
 
-            gen = new SakuraTreeGenerator(log, leaves);
+            gen = new SakuraTreeGenerator(log, leaves, false);
 
             break;
         default:

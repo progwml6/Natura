@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Locale;
 
 import com.progwml6.natura.Natura;
+import com.progwml6.natura.common.block.BlockGrassStairs;
 import com.progwml6.natura.entities.NaturaEntities;
 import com.progwml6.natura.library.Util;
 import com.progwml6.natura.nether.NaturaNether;
@@ -90,6 +91,7 @@ public abstract class NaturaPulse
         return block;
     }
 
+    @SuppressWarnings({ "unchecked", "rawtypes" })
     protected static <T extends EnumBlockSlab<?>> T registerEnumBlockSlab(T block, String name)
     {
         registerBlock(block, new ItemBlockSlab(block), name);
@@ -100,6 +102,11 @@ public abstract class NaturaPulse
     protected static <E extends Enum<E> & EnumBlock.IEnumMeta & IStringSerializable> BlockStairsBase registerBlockStairsFrom(EnumBlock<E> block, E value, String name)
     {
         return registerBlock(new BlockStairsBase(block.getDefaultState().withProperty(block.prop, value)), name);
+    }
+
+    protected static <E extends Enum<E> & EnumBlock.IEnumMeta & IStringSerializable> BlockGrassStairs registerBlockGrassStairsFrom(EnumBlock<E> block, E value, String name)
+    {
+        return registerBlock(new BlockGrassStairs(block.getDefaultState().withProperty(block.prop, value)), name);
     }
 
     @SuppressWarnings("unchecked")
@@ -195,7 +202,7 @@ public abstract class NaturaPulse
 
         HashMap<Character, ItemStack> var12;
 
-        for (var12 = new HashMap<Character, ItemStack>(); var4 < objArray.length; var4 += 2)
+        for (var12 = new HashMap<>(); var4 < objArray.length; var4 += 2)
         {
             Character var13 = (Character) objArray[var4];
             ItemStack var14 = null;

@@ -17,11 +17,15 @@ public final class Config
 
     public static Logger log = Util.getLogger("Config");
 
+    private static final String RETROGEN = "Retrogen";
+
     private static final String ENABLE_DISABLE = "ENABLE-DISABLE";
 
     private static final String WORLDGEN = "Worldgen";
 
     private static final String ENTITIES = "Entities";
+
+    private static final String MOB_CHANGES = "Mob-Changes";
 
     private Config()
     {
@@ -38,7 +42,7 @@ public final class Config
     public static boolean syncConfig()
     {
         // Retrogen Start
-        doRetrogen = configFile.get("Retrogen", "Retroactive Generation", doRetrogen).getBoolean(doRetrogen);
+        doRetrogen = configFile.get(RETROGEN, "Retroactive Generation", doRetrogen).getBoolean(doRetrogen);
         // Retrogen End
 
         boolean BoP = false;
@@ -47,13 +51,13 @@ public final class Config
             BoP = true;
         }
 
-        babyHeatscarMinimum = configFile.get("Mob Changes", "Minimum Baby Heatscar Spiders on Spider Death", babyHeatscarMinimum).getInt(babyHeatscarMinimum);
+        babyHeatscarMinimum = configFile.get(MOB_CHANGES, "Minimum Baby Heatscar Spiders on Spider Death", babyHeatscarMinimum).getInt(babyHeatscarMinimum);
         if (babyHeatscarMinimum < 0)
         {
             babyHeatscarMinimum = 0;
         }
 
-        babyHeatscarMaximum = configFile.get("Mob Changes", "Maximum Baby Heatscar Spiders on Spider Death", babyHeatscarMaximum).getInt(babyHeatscarMaximum);
+        babyHeatscarMaximum = configFile.get(MOB_CHANGES, "Maximum Baby Heatscar Spiders on Spider Death", babyHeatscarMaximum).getInt(babyHeatscarMaximum);
         if (babyHeatscarMaximum < 0)
         {
             babyHeatscarMaximum = 0;
@@ -97,6 +101,15 @@ public final class Config
 
         generateThornvines = configFile.get(ENABLE_DISABLE, "Generate Thornvines", generateThornvines).getBoolean(generateThornvines);
 
+        //Cloud Start
+        generateOverworldClouds = configFile.get(ENABLE_DISABLE, "Generate Overworld Clouds", generateOverworldClouds).getBoolean(generateOverworldClouds);
+        generateSulfurClouds = configFile.get(ENABLE_DISABLE, "Generate Sulfur Clouds", generateSulfurClouds).getBoolean(generateSulfurClouds);
+        generateAshClouds = configFile.get(ENABLE_DISABLE, "Generate Ash Clouds", generateAshClouds).getBoolean(generateAshClouds);
+        generateDarkClouds = configFile.get(ENABLE_DISABLE, "Generate Dark Clouds", generateDarkClouds).getBoolean(generateDarkClouds);
+
+        enableCloudBlocks = configFile.get(ENABLE_DISABLE, "Enable Clouds", enableCloudBlocks).getBoolean(enableCloudBlocks);
+        //Cloud End
+
         generateBarley = configFile.get(ENABLE_DISABLE, "Generate Barley Crops", generateBarley).getBoolean(generateBarley);
         generateCotton = configFile.get(ENABLE_DISABLE, "Generate Cotton Crops", generateCotton).getBoolean(generateCotton);
         generateBluebells = configFile.get(ENABLE_DISABLE, "Generate Bluebell Flowers", generateBluebells).getBoolean(generateBluebells);
@@ -118,6 +131,8 @@ public final class Config
         }
 
         // Trees Start
+        seaLevel = configFile.get(WORLDGEN, "Sea level", seaLevel).getInt(seaLevel);
+
         redwoodSpawnRarity = configFile.get(WORLDGEN, "Redwood Tree Spawn Rarity", redwoodSpawnRarity).getInt(redwoodSpawnRarity);
 
         mapleRarity = configFile.get(WORLDGEN, "Maple Tree Spawn Rarity", mapleRarity).getInt(mapleRarity);
@@ -161,9 +176,26 @@ public final class Config
         stingberrySpawnRange = configFile.get(WORLDGEN, "Stingberry Spawn Range", stingberrySpawnRange).getInt(stingberrySpawnRange);
         // Berries End
 
-        thornSpawnRarity = configFile.get(WORLDGEN, "Thornvines Spawn Rarity", thornSpawnRarity).getInt(thornSpawnRarity);
+        // Cloud Start
+        cloudBlacklist = configFile.get(WORLDGEN, "dimension blacklist(clouds)", cloudBlacklist).getIntList();
+        darkCloudBlacklist = configFile.get(WORLDGEN, "dimension blacklist(dark clouds)", darkCloudBlacklist).getIntList();
+        sulfurCloudBlacklist = configFile.get(WORLDGEN, "dimension blacklist(sulfur clouds)", sulfurCloudBlacklist).getIntList();
 
-        seaLevel = configFile.get("general", "Sea level", seaLevel).getInt(seaLevel);
+        cloudSpawnRarity = configFile.get(WORLDGEN, "Cloud Spawn Rarity", cloudSpawnRarity).getInt(cloudSpawnRarity);
+        cloudSpawnHeight = configFile.get(WORLDGEN, "Cloud Spawn Height", cloudSpawnHeight).getInt(cloudSpawnHeight);
+        cloudSpawnRange = configFile.get(WORLDGEN, "Cloud Spawn Range", cloudSpawnRange).getInt(cloudSpawnRange);
+        darkCloudSpawnRarity = configFile.get(WORLDGEN, "Dark Cloud Spawn Density", darkCloudSpawnRarity).getInt(darkCloudSpawnRarity);
+        darkCloudSpawnHeight = configFile.get(WORLDGEN, "Dark Cloud Spawn Height", darkCloudSpawnHeight).getInt(darkCloudSpawnHeight);
+        darkCloudSpawnRange = configFile.get(WORLDGEN, "Dark Cloud Spawn Range", darkCloudSpawnRange).getInt(darkCloudSpawnRange);
+        sulfurSpawnRarity = configFile.get(WORLDGEN, "Sulfur Cloud Spawn Rarity", sulfurSpawnRarity).getInt(sulfurSpawnRarity);
+        sulfurSpawnHeight = configFile.get(WORLDGEN, "Sulfur Cloud Spawn Height", sulfurSpawnHeight).getInt(sulfurSpawnHeight);
+        sulfurSpawnRange = configFile.get(WORLDGEN, "Sulfur Cloud Spawn Range", sulfurSpawnRange).getInt(sulfurSpawnRange);
+        ashSpawnRarity = configFile.get(WORLDGEN, "Ash Cloud Spawn Rarity", ashSpawnRarity).getInt(ashSpawnRarity);
+        ashSpawnHeight = configFile.get(WORLDGEN, "Ash Cloud Spawn Height", ashSpawnHeight).getInt(ashSpawnHeight);
+        ashSpawnRange = configFile.get(WORLDGEN, "Ash Cloud Spawn Range", ashSpawnRange).getInt(ashSpawnRange);
+        // Cloud End
+
+        thornSpawnRarity = configFile.get(WORLDGEN, "Thornvines Spawn Rarity", thornSpawnRarity).getInt(thornSpawnRarity);
 
         enableHeatscarSpider = configFile.get(ENTITIES, "Enable Heatscar Spiders", enableHeatscarSpider).getBoolean(enableHeatscarSpider);
 
@@ -178,6 +210,34 @@ public final class Config
     }
 
     //@formatter:off
+    // Clouds Start
+    public static boolean generateOverworldClouds = true;
+    public static boolean generateSulfurClouds = true;
+    public static boolean generateAshClouds = true;
+    public static boolean generateDarkClouds = true;
+
+    public static int[] darkCloudBlacklist = new int[] {};
+    public static int[] cloudBlacklist = new int[] {};
+    public static int[] sulfurCloudBlacklist = new int[] {};
+
+    public static boolean enableCloudBlocks = false;
+    public static int cloudSpawnRarity = 10;
+    public static int cloudSpawnHeight = 192;
+    public static int cloudSpawnRange = 48;
+
+    public static int darkCloudSpawnRarity = 10;
+    public static int darkCloudSpawnHeight = 64;
+    public static int darkCloudSpawnRange = 256;
+
+    public static int sulfurSpawnRarity = 8;
+    public static int sulfurSpawnHeight = 40;
+    public static int sulfurSpawnRange = 78;
+
+    public static int ashSpawnRarity = 8;
+    public static int ashSpawnHeight = 40;
+    public static int ashSpawnRange = 78;
+    // Clouds End
+
     // Retrogen Start
     public static boolean doRetrogen = false;
     // Retrogen End

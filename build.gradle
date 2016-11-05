@@ -67,6 +67,7 @@ configFile.withReader {
 }
 
 dependencies {
+    deobfCompile "net.minecraftforge.lex:YUNoMakeGoodMap:${config.minecraft_version}-${config.yunomakegoodmap_version}"
     deobfCompile "slimeknights.mantle:Mantle:${config.minecraft_version}-${config.mantle_version}"
     deobfCompile "slimeknights:TConstruct:${config.minecraft_version}-${config.tconstruct_version}"
 

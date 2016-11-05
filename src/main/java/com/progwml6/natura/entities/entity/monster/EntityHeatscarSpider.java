@@ -34,8 +34,9 @@ public class EntityHeatscarSpider extends EntitySpider
     public EntityHeatscarSpider(World worldIn)
     {
         super(worldIn);
-        this.setSize(1.2F, 0.8F);
+        this.setSize(2.7F, 1.9F);
         this.isImmuneToFire = true;
+        this.experienceValue = 25;
     }
 
     @Override
@@ -44,7 +45,7 @@ public class EntityHeatscarSpider extends EntitySpider
         super.applyEntityAttributes();
         this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(50.0D); // Health
         this.getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(24D); // Detection range
-        this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(1.35D); // Movespeed
+        this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.45000001788139344D); // Movespeed
         this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(4.0D); // Base damage
     }
 
@@ -166,11 +167,6 @@ public class EntityHeatscarSpider extends EntitySpider
                 && !this.worldObj.containsAnyLiquid(this.getEntityBoundingBox());
     }
 
-    protected EntityBabyHeatscarSpider createBabyInstance()
-    {
-        return new EntityBabyHeatscarSpider(this.worldObj);
-    }
-
     @Override
     public void setDead()
     {
@@ -182,7 +178,7 @@ public class EntityHeatscarSpider extends EntitySpider
             {
                 double f = this.rand.nextDouble() * 2;
                 double f1 = this.rand.nextDouble() * 2;
-                EntityBabyHeatscarSpider babyspider = this.createBabyInstance();
+                EntityBabyHeatscarSpider babyspider = new EntityBabyHeatscarSpider(this.worldObj);
                 babyspider.setLocationAndAngles(this.posX + f, this.posY + 0.5D, this.posZ + f1, this.rand.nextFloat() * 360.0F, 0.0F);
                 this.worldObj.spawnEntityInWorld(babyspider);
             }

@@ -1,9 +1,13 @@
 package com.progwml6.natura.overworld;
 
+import static com.progwml6.natura.common.ModelRegisterUtil.registerItemBlockMeta;
+import static com.progwml6.natura.common.ModelRegisterUtil.registerItemModel;
+
 import javax.annotation.Nonnull;
 
 import com.progwml6.natura.common.ClientProxy;
 import com.progwml6.natura.common.block.BlockEnumBerryBush;
+import com.progwml6.natura.common.block.BlockGrassStairs;
 import com.progwml6.natura.common.client.GrassColorizer;
 import com.progwml6.natura.common.client.LeavesColorizer;
 import com.progwml6.natura.overworld.block.grass.BlockColoredGrass;
@@ -55,32 +59,30 @@ public class OverworldClientProxy extends ClientProxy
             @Override
             public int colorMultiplier(@Nonnull IBlockState state, IBlockAccess access, BlockPos pos, int tintIndex)
             {
-                BlockColoredGrass.GrassType type = state.getValue(BlockColoredGrass.TYPE);
-
-                if (pos == null)
+                if (state.getBlock().getClass() == BlockGrassStairs.class)
                 {
-                    return GrassColorizer.getGrassColorStatic(type);
+                    BlockGrassStairs grassStairs = (BlockGrassStairs) state.getBlock();
+                    BlockColoredGrass.GrassType type = grassStairs.customModelState.getValue(BlockColoredGrass.TYPE);
+                    if (pos == null)
+                    {
+                        return GrassColorizer.getGrassColorStatic(type);
+                    }
+
+                    return GrassColorizer.getGrassColorForPos(access, pos, type);
                 }
-
-                return GrassColorizer.getGrassColorForPos(access, pos, type);
-            }
-        }, NaturaOverworld.coloredGrass, NaturaOverworld.coloredGrassSlab);
-
-        blockColors.registerBlockColorHandler(new IBlockColor()
-        {
-            @Override
-            public int colorMultiplier(@Nonnull IBlockState state, IBlockAccess access, BlockPos pos, int tintIndex)
-            {
-                BlockColoredGrass.GrassType type = state.getValue(BlockColoredGrass.TYPE);
-
-                if (pos == null)
+                else
                 {
-                    return GrassColorizer.getGrassColorStatic(type);
-                }
+                    BlockColoredGrass.GrassType type = state.getValue(BlockColoredGrass.TYPE);
 
-                return GrassColorizer.getGrassColorForPos(access, pos, type);
+                    if (pos == null)
+                    {
+                        return GrassColorizer.getGrassColorStatic(type);
+                    }
+
+                    return GrassColorizer.getGrassColorForPos(access, pos, type);
+                }
             }
-        }, NaturaOverworld.coloredGrass, NaturaOverworld.coloredGrassSlab);
+        }, NaturaOverworld.coloredGrass, NaturaOverworld.coloredGrassSlab, NaturaOverworld.coloredGrassStairsTopiary, NaturaOverworld.coloredGrassStairsBlueGrass, NaturaOverworld.coloredGrassStairsAutumnal);
 
         blockColors.registerBlockColorHandler(new IBlockColor()
         {
@@ -139,7 +141,7 @@ public class OverworldClientProxy extends ClientProxy
                 IBlockState iblockstate = ((ItemBlock) stack.getItem()).getBlock().getStateFromMeta(stack.getMetadata());
                 return blockColors.colorMultiplier(iblockstate, null, null, tintIndex);
             }
-        }, NaturaOverworld.overworldLeaves, NaturaOverworld.overworldLeaves2, NaturaOverworld.redwoodLeaves, NaturaOverworld.coloredGrass, NaturaOverworld.coloredGrassSlab);
+        }, NaturaOverworld.overworldLeaves, NaturaOverworld.overworldLeaves2, NaturaOverworld.redwoodLeaves, NaturaOverworld.coloredGrass, NaturaOverworld.coloredGrassSlab, NaturaOverworld.coloredGrassStairsTopiary, NaturaOverworld.coloredGrassStairsBlueGrass, NaturaOverworld.coloredGrassStairsAutumnal);
 
         super.init();
     }
@@ -156,25 +158,28 @@ public class OverworldClientProxy extends ClientProxy
         ModelLoader.setCustomStateMapper(NaturaOverworld.overworldSapling2, (new StateMap.Builder()).ignore(BlockOverworldSapling2.STAGE, BlockSapling.TYPE).build());
         ModelLoader.setCustomStateMapper(NaturaOverworld.redwoodSapling, (new StateMap.Builder()).ignore(BlockRedwoodSapling.STAGE, BlockSapling.TYPE).build());
 
-        this.registerItemBlockMeta(NaturaOverworld.redwoodLog);
-        this.registerItemBlockMeta(NaturaOverworld.overworldPlanks);
-        this.registerItemBlockMeta(NaturaOverworld.coloredGrass);
-        this.registerItemBlockMeta(NaturaOverworld.coloredGrassSlab);
+        registerItemBlockMeta(NaturaOverworld.redwoodLog);
+        registerItemBlockMeta(NaturaOverworld.overworldPlanks);
+        registerItemBlockMeta(NaturaOverworld.coloredGrass);
+        registerItemBlockMeta(NaturaOverworld.coloredGrassSlab);
+        registerItemModel(NaturaOverworld.coloredGrassStairsTopiary);
+        registerItemModel(NaturaOverworld.coloredGrassStairsBlueGrass);
+        registerItemModel(NaturaOverworld.coloredGrassStairsAutumnal);
 
         // slabs
-        this.registerItemBlockMeta(NaturaOverworld.overworldSlab);
-        this.registerItemBlockMeta(NaturaOverworld.overworldSlab2);
+        registerItemBlockMeta(NaturaOverworld.overworldSlab);
+        registerItemBlockMeta(NaturaOverworld.overworldSlab2);
 
         // stairs
-        this.registerItemModel(NaturaOverworld.overworldStairsMaple);
-        this.registerItemModel(NaturaOverworld.overworldStairsSilverbell);
-        this.registerItemModel(NaturaOverworld.overworldStairsAmaranth);
-        this.registerItemModel(NaturaOverworld.overworldStairsTiger);
-        this.registerItemModel(NaturaOverworld.overworldStairsWillow);
-        this.registerItemModel(NaturaOverworld.overworldStairsEucalyptus);
-        this.registerItemModel(NaturaOverworld.overworldStairsHopseed);
-        this.registerItemModel(NaturaOverworld.overworldStairsSakura);
-        this.registerItemModel(NaturaOverworld.overworldStairsRedwood);
+        registerItemModel(NaturaOverworld.overworldStairsMaple);
+        registerItemModel(NaturaOverworld.overworldStairsSilverbell);
+        registerItemModel(NaturaOverworld.overworldStairsAmaranth);
+        registerItemModel(NaturaOverworld.overworldStairsTiger);
+        registerItemModel(NaturaOverworld.overworldStairsWillow);
+        registerItemModel(NaturaOverworld.overworldStairsEucalyptus);
+        registerItemModel(NaturaOverworld.overworldStairsHopseed);
+        registerItemModel(NaturaOverworld.overworldStairsSakura);
+        registerItemModel(NaturaOverworld.overworldStairsRedwood);
 
         Item overworld_log = Item.getItemFromBlock(NaturaOverworld.overworldLog);
         for (BlockOverworldLog.LogType type : BlockOverworldLog.LogType.values())
@@ -217,25 +222,25 @@ public class OverworldClientProxy extends ClientProxy
 
         // saplings
         ItemStack stack = new ItemStack(Item.getItemFromBlock(NaturaOverworld.overworldSapling), 1, NaturaOverworld.overworldSapling.getMetaFromState(NaturaOverworld.overworldSapling.getDefaultState().withProperty(BlockOverworldSapling.FOLIAGE, BlockOverworldSapling.SaplingType.MAPLE)));
-        this.registerItemModel(stack, "overworld_sapling_maple");
+        this.registerItemModelNatura(stack, "overworld_sapling_maple");
         stack = new ItemStack(Item.getItemFromBlock(NaturaOverworld.overworldSapling), 1, NaturaOverworld.overworldSapling.getMetaFromState(NaturaOverworld.overworldSapling.getDefaultState().withProperty(BlockOverworldSapling.FOLIAGE, BlockOverworldSapling.SaplingType.SILVERBELL)));
-        this.registerItemModel(stack, "overworld_sapling_silverbell");
+        this.registerItemModelNatura(stack, "overworld_sapling_silverbell");
         stack = new ItemStack(Item.getItemFromBlock(NaturaOverworld.overworldSapling), 1, NaturaOverworld.overworldSapling.getMetaFromState(NaturaOverworld.overworldSapling.getDefaultState().withProperty(BlockOverworldSapling.FOLIAGE, BlockOverworldSapling.SaplingType.AMARANTH)));
-        this.registerItemModel(stack, "overworld_sapling_amaranth");
+        this.registerItemModelNatura(stack, "overworld_sapling_amaranth");
         stack = new ItemStack(Item.getItemFromBlock(NaturaOverworld.overworldSapling), 1, NaturaOverworld.overworldSapling.getMetaFromState(NaturaOverworld.overworldSapling.getDefaultState().withProperty(BlockOverworldSapling.FOLIAGE, BlockOverworldSapling.SaplingType.TIGER)));
-        this.registerItemModel(stack, "overworld_sapling_tiger");
+        this.registerItemModelNatura(stack, "overworld_sapling_tiger");
 
         stack = new ItemStack(Item.getItemFromBlock(NaturaOverworld.overworldSapling2), 1, NaturaOverworld.overworldSapling2.getMetaFromState(NaturaOverworld.overworldSapling2.getDefaultState().withProperty(BlockOverworldSapling2.FOLIAGE, BlockOverworldSapling2.SaplingType.WILLOW)));
-        this.registerItemModel(stack, "overworld_sapling_willow");
+        this.registerItemModelNatura(stack, "overworld_sapling_willow");
         stack = new ItemStack(Item.getItemFromBlock(NaturaOverworld.overworldSapling2), 1, NaturaOverworld.overworldSapling2.getMetaFromState(NaturaOverworld.overworldSapling2.getDefaultState().withProperty(BlockOverworldSapling2.FOLIAGE, BlockOverworldSapling2.SaplingType.EUCALYPTUS)));
-        this.registerItemModel(stack, "overworld_sapling_eucalyptus");
+        this.registerItemModelNatura(stack, "overworld_sapling_eucalyptus");
         stack = new ItemStack(Item.getItemFromBlock(NaturaOverworld.overworldSapling2), 1, NaturaOverworld.overworldSapling2.getMetaFromState(NaturaOverworld.overworldSapling2.getDefaultState().withProperty(BlockOverworldSapling2.FOLIAGE, BlockOverworldSapling2.SaplingType.HOPSEED)));
-        this.registerItemModel(stack, "overworld_sapling_hopseed");
+        this.registerItemModelNatura(stack, "overworld_sapling_hopseed");
         stack = new ItemStack(Item.getItemFromBlock(NaturaOverworld.overworldSapling2), 1, NaturaOverworld.overworldSapling2.getMetaFromState(NaturaOverworld.overworldSapling2.getDefaultState().withProperty(BlockOverworldSapling2.FOLIAGE, BlockOverworldSapling2.SaplingType.SAKURA)));
-        this.registerItemModel(stack, "overworld_sapling_sakura");
+        this.registerItemModelNatura(stack, "overworld_sapling_sakura");
 
         stack = new ItemStack(Item.getItemFromBlock(NaturaOverworld.redwoodSapling), 1, NaturaOverworld.redwoodSapling.getMetaFromState(NaturaOverworld.redwoodSapling.getDefaultState().withProperty(BlockRedwoodSapling.FOLIAGE, BlockRedwoodSapling.SaplingType.REDWOOD)));
-        this.registerItemModel(stack, "overworld_sapling_redwood");
+        this.registerItemModelNatura(stack, "overworld_sapling_redwood");
 
         Item raspberry_berrybush = Item.getItemFromBlock(NaturaOverworld.overworldBerryBushRaspberry);
         for (int meta = 0; meta <= 3; meta++)

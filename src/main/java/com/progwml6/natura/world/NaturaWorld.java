@@ -5,8 +5,10 @@ import org.apache.logging.log4j.Logger;
 import com.google.common.eventbus.Subscribe;
 import com.progwml6.natura.common.CommonProxy;
 import com.progwml6.natura.common.NaturaPulse;
+import com.progwml6.natura.common.config.Config;
 import com.progwml6.natura.library.Util;
 import com.progwml6.natura.world.worldgen.BerryBushGenerator;
+import com.progwml6.natura.world.worldgen.CloudGenerator;
 import com.progwml6.natura.world.worldgen.TreeGenerator;
 import com.progwml6.natura.world.worldgen.retrogen.TickHandlerWorldRetrogen;
 
@@ -45,6 +47,10 @@ public class NaturaWorld extends NaturaPulse
     {
         GameRegistry.registerWorldGenerator(TreeGenerator.INSTANCE, 0);
         GameRegistry.registerWorldGenerator(BerryBushGenerator.INSTANCE, 0);
+        if (Config.enableCloudBlocks)
+        {
+            GameRegistry.registerWorldGenerator(CloudGenerator.INSTANCE, 0);
+        }
 
         //GameRegistry.registerWorldGenerator(TreeGenerator.INSTANCE, 25);
         //GameRegistry.registerWorldGenerator(BerryBushGenerator.INSTANCE, 25);

@@ -5,8 +5,10 @@ import org.apache.logging.log4j.Logger;
 import com.google.common.eventbus.Subscribe;
 import com.progwml6.natura.common.CommonProxy;
 import com.progwml6.natura.common.NaturaPulse;
+import com.progwml6.natura.common.config.Config;
 import com.progwml6.natura.library.NaturaRegistry;
 import com.progwml6.natura.library.Util;
+import com.progwml6.natura.shared.block.clouds.BlockCloud;
 import com.progwml6.natura.shared.block.hopper.BlockBlazeHopper;
 import com.progwml6.natura.shared.item.ItemEdibleSoup;
 import com.progwml6.natura.shared.item.ItemNaturaEdible;
@@ -42,6 +44,7 @@ public class NaturaCommons extends NaturaPulse
     //@formatter:off
     // Blocks
     public static BlockBlazeHopper blaze_hopper;
+    public static BlockCloud clouds;
 
     // Items
     public static ItemMetaDynamic materials;
@@ -102,6 +105,10 @@ public class NaturaCommons extends NaturaPulse
     {
         // Blocks
         blaze_hopper = registerBlock(new BlockBlazeHopper(), "blaze_hopper");
+        if (Config.enableCloudBlocks)
+        {
+            clouds = registerEnumBlock(new BlockCloud(), "clouds");
+        }
 
         // Items
         materials = registerItem(new ItemMetaDynamic(), "materials");

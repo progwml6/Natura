@@ -51,8 +51,11 @@ public class SakuraTreeGenerator extends BaseTreeGenerator
 
     public final IBlockState leaves;
 
-    public SakuraTreeGenerator(IBlockState log, IBlockState leaves)
+    public final boolean findGround;
+
+    public SakuraTreeGenerator(IBlockState log, IBlockState leaves, boolean findGround)
     {
+        this.findGround = findGround;
         this.log = log;
         this.leaves = leaves;
     }
@@ -370,11 +373,10 @@ public class SakuraTreeGenerator extends BaseTreeGenerator
 
         int height = Config.seaLevel + 64;
 
-        BlockPos position = new BlockPos(pos.getX(), height, pos.getZ());
-
         do
         {
-            position = position.down();
+            height--;
+            BlockPos position = new BlockPos(pos.getX(), height, pos.getZ());
             Block underBlock = world.getBlockState(position).getBlock();
 
             if (underBlock == Blocks.DIRT || underBlock == Blocks.GRASS || height < Config.seaLevel)
@@ -384,7 +386,7 @@ public class SakuraTreeGenerator extends BaseTreeGenerator
         }
         while (!foundGround);
 
-        return position.up();
+        return new BlockPos(pos.getX(), height + 1, pos.getZ());
     }
 
     public boolean isReplaceable(World world, BlockPos pos)
@@ -402,7 +404,16 @@ public class SakuraTreeGenerator extends BaseTreeGenerator
     public void generateTree(Random random, World worldIn, BlockPos position)
     {
         this.world = worldIn;
-        this.basePos = position;
+
+        if (this.findGround)
+        {
+            this.basePos = findGround(worldIn, position);
+        }
+        else
+        {
+            this.basePos = position;
+        }
+
         this.rand = new Random(random.nextLong());
 
         if (this.heightLimit == 0)
