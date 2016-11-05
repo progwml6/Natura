@@ -5,7 +5,6 @@ import javax.annotation.Nullable;
 import gnu.trove.map.hash.TIntObjectHashMap;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
@@ -38,13 +37,15 @@ public class ItemEdibleSoup extends ItemNaturaEdible
      */
     @Override
     @Nullable
-    public ItemStack onItemUseFinish(ItemStack stack, World world, EntityLivingBase entity)
+    public ItemStack onItemUseFinish(ItemStack stack, World worldIn, EntityLivingBase entityLiving)
     {
-        super.onItemUseFinish(stack, world, entity);
+        super.onItemUseFinish(stack, worldIn, entityLiving);
         ItemStack bowl = this.bowlsList.get(stack.getMetadata()).copy();
-        if (entity instanceof EntityPlayer) {
-            if (!((EntityPlayer)entity).inventory.addItemStackToInventory(bowl)) {
-                ((EntityPlayer)entity).dropItem(bowl, false, false);
+        if (entityLiving instanceof EntityPlayer)
+        {
+            if (!((EntityPlayer) entityLiving).inventory.addItemStackToInventory(bowl))
+            {
+                ((EntityPlayer) entityLiving).dropItem(bowl, false, false);
             }
         }
         return stack.stackSize <= 0 ? null : stack;
