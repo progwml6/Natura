@@ -5,7 +5,6 @@ import org.apache.logging.log4j.Logger;
 import com.google.common.eventbus.Subscribe;
 import com.progwml6.natura.common.CommonProxy;
 import com.progwml6.natura.common.NaturaPulse;
-import com.progwml6.natura.common.config.Config;
 import com.progwml6.natura.library.NaturaRegistry;
 import com.progwml6.natura.library.Util;
 import com.progwml6.natura.shared.block.clouds.BlockCloud;
@@ -105,10 +104,7 @@ public class NaturaCommons extends NaturaPulse
     {
         // Blocks
         blaze_hopper = registerBlock(new BlockBlazeHopper(), "blaze_hopper");
-        if (Config.enableCloudBlocks)
-        {
-            clouds = registerEnumBlock(new BlockCloud(), "clouds");
-        }
+        clouds = registerEnumBlock(new BlockCloud(), "clouds");
 
         // Items
         materials = registerItem(new ItemMetaDynamic(), "materials");
