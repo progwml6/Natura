@@ -24,7 +24,7 @@ pipeline {
         stage('Archive') {
             steps {
                 archive includes: 'build/libs/*.jar'
-                junit 'build/test-results/**/*.xml'
+                //junit 'build/test-results/**/*.xml'
             }
         }
 
