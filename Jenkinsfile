@@ -28,10 +28,10 @@ pipeline {
             }
         }
 
-        /*stage('Deploy') {
+        stage('Deploy') {
             steps {
                 sh "./gradlew publishMavenJavaPublicationToMavenRepository -PBUILD_NUMBER=${env.BUILD_NUMBER} -Plocal_maven=/var/www/dvs1/files/maven --no-daemon"
             }
-        }*/
+        }
     }
 }
