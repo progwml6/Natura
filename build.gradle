@@ -128,8 +128,8 @@ publishing {
     }
 
     repositories {
-        if (project.hasProperty('mavendir')) {
-            maven { url mavendir }
+        if (project.hasProperty('DEPLOY_DIR')) {
+            maven { url DEPLOY_DIR }
         }
     }
 }
