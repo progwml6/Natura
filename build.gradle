@@ -28,6 +28,7 @@ apply plugin: 'net.minecraftforge.gradle.forge'
 apply plugin: 'maven'
 apply plugin: 'eclipse'
 apply plugin: 'idea'
+apply plugin: 'maven-publish'
 
 repositories {
     maven {
@@ -56,26 +57,16 @@ group = 'com.progwml6.natura'
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
-// define the properties file
-ext.configFile = file "build.properties"
-
-configFile.withReader {
-    // read config.  it shall from now on be referenced as simply config or as project.config
-    def prop = new Properties()
-    prop.load(it)
-    project.ext.config = new ConfigSlurper().parse prop
-}
-
 dependencies {
-    deobfCompile "net.minecraftforge.lex:YUNoMakeGoodMap:${config.minecraft_version}-${config.yunomakegoodmap_version}"
-    deobfCompile "slimeknights.mantle:Mantle:${config.minecraft_version}-${config.mantle_version}"
-    deobfCompile "slimeknights:TConstruct:${config.minecraft_version}-${config.tconstruct_version}"
+    deobfCompile "net.minecraftforge.lex:YUNoMakeGoodMap:${minecraft_version}-${yunomakegoodmap_version}"
+    deobfCompile "slimeknights.mantle:Mantle:${minecraft_version}-${mantle_version}"
+    deobfCompile "slimeknights:TConstruct:${minecraft_version}-${tconstruct_version}"
 
-    deobfCompile "mcp.mobius.waila:Waila:${config.waila_version}_1.9.4" // ${config.minecraft_version}" No 1.10 version of waila, must use 1.9.4 version
+    deobfCompile "mcp.mobius.waila:Waila:${waila_version}_1.9.4" // ${minecraft_version}" No 1.10 version of waila, must use 1.9.4 version
 
-    deobfCompile "mezz.jei:jei_${config.minecraft_version}:${config.jei_version}"
+    deobfCompile "mezz.jei:jei_${minecraft_version}:${jei_version}"
 
-    deobfCompile "MCMultiPart:MCMultiPart-experimental:${config.mcmultipart_version}:universal"
+    deobfCompile "MCMultiPart:MCMultiPart-experimental:${mcmultipart_version}:universal"
 }
 
 // sets version to the slimeKnights version format
@@ -95,11 +86,11 @@ task buildInfo {
         ext.buildNum = "DEV.${project.buildInfo.revision}"
     }
 }
-version = "${config.minecraft_version}-${config.mod_version}.${project.buildInfo.buildNum}"
+version = "${minecraft_version}-${mod_version}.${project.buildInfo.buildNum}"
 
 minecraft {
-    version = config.minecraft_version + "-" + config.forge_version
-    mappings = config.mappings
+    version = minecraft_version + "-" + forge_version
+    mappings = mappings_version
     runDir = "run"
     replace '${version}', project.version
     useDepAts = true
@@ -128,17 +119,17 @@ task sourcesJar(type: Jar) {
 artifacts {
     archives sourcesJar
 }
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            artifact jar
+            artifact sourcesJar
+        }
+    }
 
-task("uploadJars", dependsOn:"reobf") {
-    description = "uploads JARs"
-    if (project.hasProperty("local_maven")) {
-	    apply plugin: 'maven'
-            uploadArchives {
-                repositories {
-                    mavenDeployer {
-                        repository(url: "file://${local_maven}")
-                }
-            }
+    repositories {
+        if (project.hasProperty('mavendir')) {
+            maven { url mavendir }
         }
     }
 }

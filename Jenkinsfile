@@ -24,13 +24,13 @@ pipeline {
         stage('Archive') {
             steps {
                 archive includes: 'build/libs/*.jar'
-                //junit 'build/test-results/**/*.xml'
+                junit allowEmptyResults: true, testResults: 'build/test-results/**/*.xml'
             }
         }
 
         stage('Deploy') {
             steps {
-                sh "./gradlew publishMavenJavaPublicationToMavenRepository -PBUILD_NUMBER=${env.BUILD_NUMBER} -Plocal_maven=/var/www/dvs1/files/maven --no-daemon"
+                sh "./gradlew publishMavenJavaPublicationToMavenRepository -PBUILD_NUMBER=${env.BUILD_NUMBER} -mavendir=/var/www/dvs1/files/maven --no-daemon"
             }
         }
     }
