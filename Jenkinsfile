@@ -4,8 +4,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-
-                checkout scm
+                //checkout scm
                 sh "rm -rf build/libs"
             }
         }
@@ -31,7 +30,7 @@ pipeline {
 
         stage('Deploy') {
             steps {
-                sh "./gradlew publishMavenJavaPublicationToMavenRepository -PBUILD_NUMBER=${env.BUILD_NUMBER} -Plocal_maven=/var/www/dvs1/files/maven --no-daemon"
+                //sh "./gradlew publishMavenJavaPublicationToMavenRepository -PBUILD_NUMBER=${env.BUILD_NUMBER} -Plocal_maven=/var/www/dvs1/files/maven --no-daemon"
             }
         }
     }
