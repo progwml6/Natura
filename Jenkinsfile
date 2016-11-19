@@ -23,7 +23,7 @@ pipeline {
 
         stage('Archive') {
             steps {
-                archive includes: 'build/libs/*.jar', fingerprint: true, onlyIfSuccessful: true
+                archive includes: 'build/libs/*.jar'
                 junit allowEmptyResults: true, testResults: 'build/test-results/**/*.xml'
             }
         }
