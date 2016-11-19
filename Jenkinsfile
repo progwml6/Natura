@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                //checkout scm
+                checkout scm
                 sh "rm -rf build/libs"
             }
         }
@@ -23,7 +23,7 @@ pipeline {
 
         stage('Archive') {
             steps {
-                archive includes: 'build/libs/*.jar'
+                archive includes: 'build/libs/*.jar', fingerprint: true, onlyIfSuccessful: true
                 junit allowEmptyResults: true, testResults: 'build/test-results/**/*.xml'
             }
         }
