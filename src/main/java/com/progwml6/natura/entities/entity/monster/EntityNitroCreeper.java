@@ -47,7 +47,7 @@ public class EntityNitroCreeper extends EntityCreeper
     @Override
     public void fall(float distance, float damageMultiplier)
     {
-        if (!this.worldObj.isRemote)
+        if (!this.world.isRemote)
         {
             if (distance > 5.0F)
             {
@@ -113,7 +113,7 @@ public class EntityNitroCreeper extends EntityCreeper
                 this.timeSinceIgnited = 0;
             }
 
-            int difficulty = this.worldObj.getDifficulty().getDifficultyId();
+            int difficulty = this.world.getDifficulty().getDifficultyId();
             int powered = this.getPowered() ? 12 : 0;
 
             if (this.timeSinceIgnited >= this.fuseTime + difficulty + powered)
@@ -131,12 +131,12 @@ public class EntityNitroCreeper extends EntityCreeper
      */
     private void explode()
     {
-        if (!this.worldObj.isRemote)
+        if (!this.world.isRemote)
         {
-            boolean flag = this.worldObj.getGameRules().getBoolean("mobGriefing");
+            boolean flag = this.world.getGameRules().getBoolean("mobGriefing");
             float f = this.getPowered() ? 20.0F : 3.0F;
             this.dead = true;
-            this.worldObj.createExplosion(this, this.posX, this.posY, this.posZ, this.explosionRadius * f, flag);
+            this.world.createExplosion(this, this.posX, this.posY, this.posZ, this.explosionRadius * f, flag);
             this.setDead();
         }
     }

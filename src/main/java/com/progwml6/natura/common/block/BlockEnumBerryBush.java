@@ -3,7 +3,6 @@ package com.progwml6.natura.common.block;
 import java.util.Random;
 
 import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 
 import com.progwml6.natura.library.NaturaRegistry;
 import com.progwml6.natura.overworld.NaturaOverworld;
@@ -162,7 +161,7 @@ public class BlockEnumBerryBush extends Block implements IPlantable, IGrowable
     }
 
     @Override
-    public boolean isVisuallyOpaque()
+    public boolean causesSuffocation(IBlockState state)
     {
         return false;
     }
@@ -223,7 +222,7 @@ public class BlockEnumBerryBush extends Block implements IPlantable, IGrowable
             ItemStack itemDrop = new ItemStack(this.itemDrop.getItem(), 1, this.itemDrop.getItemDamage());
             EntityItem entityitem = new EntityItem(worldIn, playerIn.posX, playerIn.posY - 1.0D, playerIn.posZ, itemDrop);
 
-            worldIn.spawnEntityInWorld(entityitem);
+            worldIn.spawnEntity(entityitem);
 
             if (!(playerIn instanceof FakePlayer))
             {
@@ -233,7 +232,7 @@ public class BlockEnumBerryBush extends Block implements IPlantable, IGrowable
     }
 
     @Override
-    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, @Nullable ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ)
+    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ)
     {
         int age = state.getValue(AGE).intValue();
 
@@ -249,7 +248,7 @@ public class BlockEnumBerryBush extends Block implements IPlantable, IGrowable
             ItemStack itemDrop = new ItemStack(this.itemDrop.getItem(), 1, this.itemDrop.getItemDamage());
             EntityItem entityitem = new EntityItem(worldIn, playerIn.posX, playerIn.posY - 1.0D, playerIn.posZ, itemDrop);
 
-            worldIn.spawnEntityInWorld(entityitem);
+            worldIn.spawnEntity(entityitem);
 
             if (!(playerIn instanceof FakePlayer))
             {

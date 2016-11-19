@@ -15,6 +15,7 @@ import com.progwml6.natura.entities.entity.passive.EntityImp;
 import com.progwml6.natura.library.Util;
 
 import net.minecraft.entity.EnumCreatureType;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.storage.loot.LootTableList;
 import net.minecraftforge.common.BiomeDictionary;
@@ -38,17 +39,17 @@ public class NaturaEntities extends NaturaPulse
     @Subscribe
     public void preInit(FMLPreInitializationEvent event)
     {
-        EntityRegistry.registerModEntity(EntityImp.class, "imp", EntityIDs.IMP, Natura.instance, 32, 5, true, 0xF29735, 0x2E1F10);
+        EntityRegistry.registerModEntity(new ResourceLocation(Natura.modID, "imp"), EntityImp.class, "imp", EntityIDs.IMP, Natura.instance, 32, 5, true, 0xF29735, 0x2E1F10);
         LootTableList.register(EntityImp.LOOT_TABLE);
 
         if (Config.enableHeatscarSpider)
         {
-            EntityRegistry.registerModEntity(EntityHeatscarSpider.class, "heatscarspider", EntityIDs.HEATSCARSPIDER, Natura.instance, 32, 5, true, 0xE64D10, 0x57B1BD);
-            EntityRegistry.registerModEntity(EntityBabyHeatscarSpider.class, "babyheatscarspider", EntityIDs.BABYHEATSCARSPIDER, Natura.instance, 32, 5, true, 0xE64D10, 0x57B1BD);
+            EntityRegistry.registerModEntity(new ResourceLocation(Natura.modID, "heatscarspider"), EntityHeatscarSpider.class, "heatscarspider", EntityIDs.HEATSCARSPIDER, Natura.instance, 32, 5, true, 0xE64D10, 0x57B1BD);
+            EntityRegistry.registerModEntity(new ResourceLocation(Natura.modID, "babyheatscarspider"), EntityBabyHeatscarSpider.class, "babyheatscarspider", EntityIDs.BABYHEATSCARSPIDER, Natura.instance, 32, 5, true, 0xE64D10, 0x57B1BD);
             LootTableList.register(EntityHeatscarSpider.LOOT_TABLE);
         }
 
-        EntityRegistry.registerModEntity(EntityNitroCreeper.class, "nitrocreeper", EntityIDs.NITROCREEPER, Natura.instance, 64, 5, true, 0xF73E6C, 0x9B5004);
+        EntityRegistry.registerModEntity(new ResourceLocation(Natura.modID, "nitrocreeper"), EntityNitroCreeper.class, "nitrocreeper", EntityIDs.NITROCREEPER, Natura.instance, 64, 5, true, 0xF73E6C, 0x9B5004);
 
         proxy.preInit();
     }

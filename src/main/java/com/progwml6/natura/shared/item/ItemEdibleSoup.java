@@ -48,6 +48,6 @@ public class ItemEdibleSoup extends ItemNaturaEdible
                 ((EntityPlayer) entityLiving).dropItem(bowl, false, false);
             }
         }
-        return stack.stackSize <= 0 ? null : stack;
+        return stack.getCount() <= 0 ? ItemStack.EMPTY : stack;
     }
 }

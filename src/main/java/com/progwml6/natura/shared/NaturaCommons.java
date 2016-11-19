@@ -196,7 +196,7 @@ public class NaturaCommons extends NaturaPulse
         }
 
         ItemStack berryMix = berryMedley.copy();
-        berryMix.stackSize = 2;
+        berryMix.setCount(2);
 
         for (int iter1 = 0; iter1 < berryTypes.length - 3; iter1++)
         {

@@ -55,7 +55,7 @@ public class EntityHeatscarSpider extends EntitySpider
     public EntityItem dropItemWithOffset(@Nonnull Item itemIn, int size, float offsetY)
     {
         ItemStack stack = NaturaCommons.flameString.copy();
-        stack.stackSize = size;
+        stack.setCount(size);
         return this.entityDropItem(stack, offsetY);
     }
 
@@ -97,7 +97,7 @@ public class EntityHeatscarSpider extends EntitySpider
         }
 
         super.fall(distance, damageMultiplier);
-        int i = MathHelper.ceiling_float_int(distance - 5.0F);
+        int i = MathHelper.ceil(distance - 5.0F);
 
         if (i > 0)
         {
@@ -112,13 +112,13 @@ public class EntityHeatscarSpider extends EntitySpider
 
             this.attackEntityFrom(DamageSource.fall, i);
 
-            BlockPos pos = new BlockPos(MathHelper.floor_double(this.posX), MathHelper.floor_double(this.posY - 0.20000000298023224D), MathHelper.floor_double(this.posZ));
-            IBlockState state = this.worldObj.getBlockState(pos);
+            BlockPos pos = new BlockPos(MathHelper.floor(this.posX), MathHelper.floor(this.posY - 0.20000000298023224D), MathHelper.floor(this.posZ));
+            IBlockState state = this.world.getBlockState(pos);
             Block block = state.getBlock();
 
             if (block != null)
             {
-                SoundType stepsound = block.getSoundType(state, this.worldObj, pos, this);
+                SoundType stepsound = block.getSoundType(state, this.world, pos, this);
                 this.playSound(stepsound.getStepSound(), stepsound.getVolume() * 0.5F, stepsound.getPitch() * 0.75F);
             }
         }
@@ -133,13 +133,13 @@ public class EntityHeatscarSpider extends EntitySpider
             {
                 byte time = 0;
 
-                if (this.worldObj.getDifficulty() != EnumDifficulty.PEACEFUL)
+                if (this.world.getDifficulty() != EnumDifficulty.PEACEFUL)
                 {
-                    if (this.worldObj.getDifficulty() == EnumDifficulty.NORMAL)
+                    if (this.world.getDifficulty() == EnumDifficulty.NORMAL)
                     {
                         time = 5;
                     }
-                    else if (this.worldObj.getDifficulty() == EnumDifficulty.HARD)
+                    else if (this.world.getDifficulty() == EnumDifficulty.HARD)
                     {
                         time = 10;
                     }
@@ -162,15 +162,15 @@ public class EntityHeatscarSpider extends EntitySpider
     @Override
     public boolean getCanSpawnHere()
     {
-        return this.worldObj.getDifficulty() != EnumDifficulty.PEACEFUL && this.worldObj.checkNoEntityCollision(this.getEntityBoundingBox())
-                && this.worldObj.getCollisionBoxes(this, this.getEntityBoundingBox()).isEmpty()
-                && !this.worldObj.containsAnyLiquid(this.getEntityBoundingBox());
+        return this.world.getDifficulty() != EnumDifficulty.PEACEFUL && this.world.checkNoEntityCollision(this.getEntityBoundingBox())
+                && this.world.getCollisionBoxes(this, this.getEntityBoundingBox()).isEmpty()
+                && !this.world.containsAnyLiquid(this.getEntityBoundingBox());
     }
 
     @Override
     public void setDead()
     {
-        if (!this.worldObj.isRemote)
+        if (!this.world.isRemote)
         {
             int num = Config.babyHeatscarMaximum - Config.babyHeatscarMinimum + 1;
             int amount = this.rand.nextInt(num) + Config.babyHeatscarMinimum;
@@ -178,9 +178,9 @@ public class EntityHeatscarSpider extends EntitySpider
             {
                 double f = this.rand.nextDouble() * 2;
                 double f1 = this.rand.nextDouble() * 2;
-                EntityBabyHeatscarSpider babyspider = new EntityBabyHeatscarSpider(this.worldObj);
+                EntityBabyHeatscarSpider babyspider = new EntityBabyHeatscarSpider(this.world);
                 babyspider.setLocationAndAngles(this.posX + f, this.posY + 0.5D, this.posZ + f1, this.rand.nextFloat() * 360.0F, 0.0F);
-                this.worldObj.spawnEntityInWorld(babyspider);
+                this.world.spawnEntity(babyspider);
             }
         }
 

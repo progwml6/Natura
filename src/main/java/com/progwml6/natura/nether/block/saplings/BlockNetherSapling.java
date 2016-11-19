@@ -1,6 +1,5 @@
 package com.progwml6.natura.nether.block.saplings;
 
-import java.util.List;
 import java.util.Locale;
 import java.util.Random;
 
@@ -30,6 +29,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.IStringSerializable;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.IBlockAccess;
@@ -50,7 +50,7 @@ public class BlockNetherSapling extends BlockSapling
     }
 
     @Override
-    public void getSubBlocks(@Nonnull Item itemIn, CreativeTabs tab, @Nonnull List<ItemStack> list)
+    public void getSubBlocks(@Nonnull Item itemIn, CreativeTabs tab, @Nonnull NonNullList<ItemStack> list)
     {
         for (SaplingType type : SaplingType.values())
         {

@@ -65,8 +65,9 @@ public class BlockCloud extends EnumBlock<BlockCloud.CloudType>
     }
 
     @Override
-    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ)
+    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ)
     {
+        ItemStack heldItem = playerIn.getHeldItem(hand);
         if (state.getValue(BlockCloud.TYPE) == BlockCloud.CloudType.SULFUR && heldItem.getItem() != null && heldItem.getItem() == Items.FLINT_AND_STEEL)
         {
             worldIn.setBlockToAir(pos);
@@ -74,7 +75,7 @@ public class BlockCloud extends EnumBlock<BlockCloud.CloudType>
             return true;
         }
 
-        return super.onBlockActivated(worldIn, pos, state, playerIn, hand, heldItem, side, hitX, hitY, hitZ);
+        return super.onBlockActivated(worldIn, pos, state, playerIn, hand, side, hitX, hitY, hitZ);
     }
 
     @Override
@@ -128,7 +129,7 @@ public class BlockCloud extends EnumBlock<BlockCloud.CloudType>
     }
 
     @Override
-    public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, World worldIn, BlockPos pos)
+    public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos)
     {
         if (worldIn.getBlockState(pos.down()).getBlock() == NaturaCommons.clouds)
         {

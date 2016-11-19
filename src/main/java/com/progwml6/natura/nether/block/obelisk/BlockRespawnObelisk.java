@@ -1,11 +1,9 @@
 package com.progwml6.natura.nether.block.obelisk;
 
-import java.util.List;
 import java.util.Locale;
 import java.util.Random;
 
 import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 
 import com.progwml6.natura.library.NaturaRegistry;
 
@@ -23,6 +21,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.IStringSerializable;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
@@ -47,7 +46,7 @@ public class BlockRespawnObelisk extends EnumBlock<BlockRespawnObelisk.ObeliskTy
 
     @SideOnly(Side.CLIENT)
     @Override
-    public void getSubBlocks(@Nonnull Item itemIn, CreativeTabs tab, List<ItemStack> list)
+    public void getSubBlocks(@Nonnull Item itemIn, CreativeTabs tab, NonNullList<ItemStack> list)
     {
         for (ObeliskType type : ObeliskType.values())
         {
@@ -66,7 +65,7 @@ public class BlockRespawnObelisk extends EnumBlock<BlockRespawnObelisk.ObeliskTy
     }
 
     @Override
-    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, @Nullable ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ)
+    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ)
     {
         Random rand = new Random();
         rand.setSeed(2 ^ 16 + 2 ^ 8 + (4 * 3 * 271));
@@ -79,7 +78,7 @@ public class BlockRespawnObelisk extends EnumBlock<BlockRespawnObelisk.ObeliskTy
 
         if (!worldIn.isRemote)
         {
-            playerIn.addChatMessage(playerIn.getDisplayName().appendText(": Spawn point set!"));
+            playerIn.sendMessage(playerIn.getDisplayName().appendText(": Spawn point set!"));
         }
 
         worldIn.setBlockState(pos, this.getDefaultState().withProperty(TYPE, ObeliskType.ACTIVE), 3);

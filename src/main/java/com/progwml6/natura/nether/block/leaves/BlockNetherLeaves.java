@@ -22,6 +22,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.IStringSerializable;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -50,7 +51,7 @@ public class BlockNetherLeaves extends BlockLeaves
 
     @SideOnly(Side.CLIENT)
     @Override
-    public void getSubBlocks(@Nonnull Item itemIn, CreativeTabs tab, List<ItemStack> list)
+    public void getSubBlocks(@Nonnull Item itemIn, CreativeTabs tab, NonNullList<ItemStack> list)
     {
         for (LeavesType type : LeavesType.values())
         {
@@ -103,7 +104,7 @@ public class BlockNetherLeaves extends BlockLeaves
 
     // item dropped on silktouching
     @Override
-    protected ItemStack createStackedBlock(@Nonnull IBlockState state)
+    protected ItemStack getSilkTouchDrop(@Nonnull IBlockState state)
     {
         return new ItemStack(Item.getItemFromBlock(this), 1, (state.getValue(TYPE)).ordinal() & 3);
     }
@@ -160,7 +161,7 @@ public class BlockNetherLeaves extends BlockLeaves
     public List<ItemStack> onSheared(ItemStack item, IBlockAccess world, BlockPos pos, int fortune)
     {
         IBlockState state = world.getBlockState(pos);
-        return Lists.newArrayList(this.createStackedBlock(state));
+        return Lists.newArrayList(this.getSilkTouchDrop(state));
     }
 
     @Override
