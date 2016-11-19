@@ -28,7 +28,7 @@ public final class ModelRegisterUtil
     /** Registers the item-meta combo in the itemstack with the given location for the inventory-variant */
     public static void registerItemModel(ItemStack itemStack, ResourceLocation name)
     {
-        if (itemStack != null && name != null)
+        if (itemStack != ItemStack.EMPTY && name != null)
         {
             // tell the loader to load the model
             ModelLoader.registerItemVariants(itemStack.getItem(), name);

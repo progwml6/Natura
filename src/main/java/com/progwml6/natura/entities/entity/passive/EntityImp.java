@@ -126,7 +126,7 @@ public class EntityImp extends EntityAnimal
     @Override
     public boolean isBreedingItem(ItemStack par1ItemStack)
     {
-        return par1ItemStack != null && par1ItemStack.getItem() == soups && par1ItemStack.getItemDamage() >= 4;
+        return par1ItemStack != ItemStack.EMPTY && par1ItemStack.getItem() == soups && par1ItemStack.getItemDamage() >= 4;
     }
 
     @Override

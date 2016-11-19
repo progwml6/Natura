@@ -205,7 +205,7 @@ public abstract class NaturaPulse
         for (var12 = new HashMap<>(); var4 < objArray.length; var4 += 2)
         {
             Character var13 = (Character) objArray[var4];
-            ItemStack var14 = null;
+            ItemStack var14 = ItemStack.EMPTY;
 
             if (objArray[var4 + 1] instanceof Item)
             {
@@ -235,7 +235,7 @@ public abstract class NaturaPulse
             }
             else
             {
-                var15[var16] = null;
+                var15[var16] = ItemStack.EMPTY;
             }
         }
 

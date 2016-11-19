@@ -36,8 +36,8 @@ public class NaturaOredict
         //Crafting table
         OreDictionary.registerOre("crafterWood", new ItemStack(alternateWorkbench, 1, OreDictionary.WILDCARD_VALUE));
         OreDictionary.registerOre("craftingTableWood", new ItemStack(alternateWorkbench, 1, OreDictionary.WILDCARD_VALUE));
-
-
+    
+    
         //Stick
         OreDictionary.registerOre("stickWood", new ItemStack(stickItem, 1, OreDictionary.WILDCARD_VALUE));
      */
@@ -182,7 +182,7 @@ public class NaturaOredict
 
     public static void oredict(ItemStack stack, String... names)
     {
-        if (stack != null && stack.getItem() != null)
+        if (stack != ItemStack.EMPTY && stack.getItem() != null)
         {
             for (String name : names)
             {
