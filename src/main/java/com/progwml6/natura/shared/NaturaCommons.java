@@ -182,38 +182,47 @@ public class NaturaCommons extends NaturaPulse
 
     private void registerRecipes()
     {
-        String[] berryTypes = new String[] { "cropRaspberry", "cropBlueberry", "cropBlackberry", "cropMaloberry", "cropStrawberry", "cropCranberry" };
-
-        for (int iter1 = 0; iter1 < berryTypes.length - 2; iter1++)
+        if (isOverworldLoaded())
         {
-            for (int iter2 = iter1 + 1; iter2 < berryTypes.length - 1; iter2++)
+            String[] berryTypes = new String[] { "cropRaspberry", "cropBlueberry", "cropBlackberry", "cropMaloberry", "cropStrawberry", "cropCranberry" };
+
+            for (int iter1 = 0; iter1 < berryTypes.length - 2; iter1++)
             {
-                for (int iter3 = iter2 + 1; iter3 < berryTypes.length; iter3++)
+                for (int iter2 = iter1 + 1; iter2 < berryTypes.length - 1; iter2++)
                 {
-                    GameRegistry.addRecipe(new ShapelessOreRecipe(berryMedley.copy(), "bowlWood", berryTypes[iter1], berryTypes[iter2], berryTypes[iter3]));
+                    for (int iter3 = iter2 + 1; iter3 < berryTypes.length; iter3++)
+                    {
+                        GameRegistry.addRecipe(new ShapelessOreRecipe(berryMedley.copy(), "bowlWood", berryTypes[iter1], berryTypes[iter2], berryTypes[iter3]));
+                    }
                 }
             }
-        }
 
-        ItemStack berryMix = berryMedley.copy();
-        berryMix.stackSize = 2;
+            ItemStack berryMix = berryMedley.copy();
+            berryMix.stackSize = 2;
 
-        for (int iter1 = 0; iter1 < berryTypes.length - 3; iter1++)
-        {
-            for (int iter2 = iter1 + 1; iter2 < berryTypes.length - 2; iter2++)
+            for (int iter1 = 0; iter1 < berryTypes.length - 3; iter1++)
             {
-                for (int iter3 = iter2 + 1; iter3 < berryTypes.length - 1; iter3++)
+                for (int iter2 = iter1 + 1; iter2 < berryTypes.length - 2; iter2++)
                 {
-                    for (int iter4 = iter3 + 1; iter4 < berryTypes.length; iter4++)
+                    for (int iter3 = iter2 + 1; iter3 < berryTypes.length - 1; iter3++)
                     {
-                        GameRegistry.addRecipe(new ShapelessOreRecipe(berryMix.copy(), "bowlWood", "bowlWood", berryTypes[iter1], berryTypes[iter2], berryTypes[iter3], berryTypes[iter4]));
+                        for (int iter4 = iter3 + 1; iter4 < berryTypes.length; iter4++)
+                        {
+                            GameRegistry.addRecipe(new ShapelessOreRecipe(berryMix.copy(), "bowlWood", "bowlWood", berryTypes[iter1], berryTypes[iter2], berryTypes[iter3], berryTypes[iter4]));
+                        }
                     }
                 }
             }
         }
+
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Items.STRING), "sss", 's', "cropCotton"));
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Blocks.WOOL), "sss", "sss", "sss", 's', "cropCotton"));
-        GameRegistry.addRecipe(new ItemStack(Items.LEATHER, 2), "##", "##", '#', new ItemStack(impLeather.getItem(), 1, 6));
+
+        if (isEntitiesLoaded())
+        {
+            GameRegistry.addRecipe(new ItemStack(Items.LEATHER, 2), "##", "##", '#', new ItemStack(impLeather.getItem(), 1, 6));
+        }
+
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Items.ARROW, 4, 0), " f ", "#s#", " # ", 's', "stickWood", '#', new ItemStack(ghostwoodFletching.getItem(), 1, 5), 'f', Items.FLINT));
         GameRegistry.addRecipe(new ItemStack(Items.CAKE, 1), "AAA", "BEB", " C ", 'A', Items.MILK_BUCKET, 'B', Items.SUGAR, 'C', wheatFlour.copy(), 'E', Items.EGG);
         GameRegistry.addRecipe(new ItemStack(Items.CAKE, 1), "AAA", "BEB", " C ", 'A', Items.MILK_BUCKET, 'B', Items.SUGAR, 'C', barleyFlour.copy(), 'E', Items.EGG);
@@ -223,7 +232,11 @@ public class NaturaCommons extends NaturaPulse
     private void registerSmelting()
     {
         //FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(saguaro, 1, 0), new ItemStack(Items.DYE, 1, 2), 0.2F);
-        FurnaceRecipes.instance().addSmeltingRecipe(impmeatRaw.copy(), impmeatCooked.copy(), 0.2F);
+        if (isEntitiesLoaded())
+        {
+            FurnaceRecipes.instance().addSmeltingRecipe(impmeatRaw.copy(), impmeatCooked.copy(), 0.2F);
+        }
+
         FurnaceRecipes.instance().addSmeltingRecipe(barleyFlour.copy(), new ItemStack(Items.BREAD, 1), 0.5f);
         FurnaceRecipes.instance().addSmeltingRecipe(wheatFlour.copy(), new ItemStack(Items.BREAD, 1), 0.5f);
     }
