@@ -45,17 +45,21 @@ public class NaturaWorld extends NaturaPulse
     @Subscribe
     public void postInit(FMLPostInitializationEvent event)
     {
-        GameRegistry.registerWorldGenerator(TreeGenerator.INSTANCE, 0);
-        GameRegistry.registerWorldGenerator(BerryBushGenerator.INSTANCE, 0);
-        if (Config.enableCloudBlocks)
+        if (isOverworldLoaded())
         {
-            GameRegistry.registerWorldGenerator(CloudGenerator.INSTANCE, 0);
+            GameRegistry.registerWorldGenerator(TreeGenerator.INSTANCE, 0);
+            GameRegistry.registerWorldGenerator(BerryBushGenerator.INSTANCE, 0);
+
+            if (Config.enableCloudBlocks)
+            {
+                GameRegistry.registerWorldGenerator(CloudGenerator.INSTANCE, 0);
+            }
+
+            //GameRegistry.registerWorldGenerator(TreeGenerator.INSTANCE, 25);
+            //GameRegistry.registerWorldGenerator(BerryBushGenerator.INSTANCE, 25);
+
+            MinecraftForge.EVENT_BUS.register(new TickHandlerWorldRetrogen());
         }
-
-        //GameRegistry.registerWorldGenerator(TreeGenerator.INSTANCE, 25);
-        //GameRegistry.registerWorldGenerator(BerryBushGenerator.INSTANCE, 25);
-
-        MinecraftForge.EVENT_BUS.register(new TickHandlerWorldRetrogen());
 
         proxy.postInit();
     }
