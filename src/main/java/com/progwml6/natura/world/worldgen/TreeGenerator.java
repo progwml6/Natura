@@ -13,11 +13,7 @@ import com.progwml6.natura.overworld.block.logs.BlockOverworldLog2;
 import com.progwml6.natura.world.worldgen.trees.nether.DarkwoodTreeGenerator;
 import com.progwml6.natura.world.worldgen.trees.nether.FusewoodTreeGenerator;
 import com.progwml6.natura.world.worldgen.trees.nether.GhostwoodTreeGenerator;
-import com.progwml6.natura.world.worldgen.trees.overworld.EucalyptusTreeGenerator;
-import com.progwml6.natura.world.worldgen.trees.overworld.HopseedTreeGenerator;
-import com.progwml6.natura.world.worldgen.trees.overworld.OverworldTreeGenerator;
-import com.progwml6.natura.world.worldgen.trees.overworld.SakuraTreeGenerator;
-import com.progwml6.natura.world.worldgen.trees.overworld.WillowTreeGenerator;
+import com.progwml6.natura.world.worldgen.trees.overworld.*;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.math.BlockPos;
@@ -47,6 +43,8 @@ public class TreeGenerator implements IWorldGenerator
     DarkwoodTreeGenerator darkwoodTreeGen;
     FusewoodTreeGenerator fusewoodTreeGen;
     GhostwoodTreeGenerator ghostwoodTreeGen;
+
+    RedwoodTreeGenerator redwoodTreeGen;
     //@formatter:on
 
     public TreeGenerator()
@@ -74,6 +72,8 @@ public class TreeGenerator implements IWorldGenerator
         this.darkwoodTreeGen = new DarkwoodTreeGenerator(3, netherlog.withProperty(BlockNetherLog.TYPE, BlockNetherLog.LogType.DARKWOOD), netherleaves2.withProperty(BlockNetherLeaves2.TYPE, BlockNetherLeaves2.LeavesType.DARKWOOD), netherleaves2.withProperty(BlockNetherLeaves2.TYPE, BlockNetherLeaves2.LeavesType.DARKWOOD_FLOWERING), netherleaves2.withProperty(BlockNetherLeaves2.TYPE, BlockNetherLeaves2.LeavesType.DARKWOOD_FRUIT));
         this.fusewoodTreeGen = new FusewoodTreeGenerator(3, netherlog.withProperty(BlockNetherLog.TYPE, BlockNetherLog.LogType.FUSEWOOD), netherleaves.withProperty(BlockNetherLeaves.TYPE, BlockNetherLeaves.LeavesType.FUSEWOOD));
         this.ghostwoodTreeGen = new GhostwoodTreeGenerator(netherlog.withProperty(BlockNetherLog.TYPE, BlockNetherLog.LogType.GHOSTWOOD), netherleaves.withProperty(BlockNetherLeaves.TYPE, BlockNetherLeaves.LeavesType.GHOSTWOOD));
+
+        this.redwoodTreeGen = new RedwoodTreeGenerator();
     }
 
     @Override
@@ -143,6 +143,16 @@ public class TreeGenerator implements IWorldGenerator
 
         if (BiomeDictionary.isBiomeOfType(biome, Type.PLAINS))
         {
+            if (Config.generateRedwood && random.nextInt(Config.redwoodSpawnRarity) == 0){
+                xSpawn = xPos + random.nextInt(16);
+                ySpawn = random.nextInt(Config.eucalyptusSpawnRange) + Config.seaLevel;
+                zSpawn = zPos + random.nextInt(16);
+                position = new BlockPos(xSpawn, ySpawn, zSpawn);
+                if(redwoodTreeGen.validTreeLocation(position,world)) {
+                    this.redwoodTreeGen.generateTree(random,world,position);
+                }
+
+            }
             if (Config.generateEucalyptus && random.nextInt((int) (Config.eucalyptusSpawnRarity * 1.5)) == 0)
             {
                 xSpawn = xPos + random.nextInt(16);
