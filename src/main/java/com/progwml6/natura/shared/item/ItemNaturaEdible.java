@@ -22,18 +22,18 @@ public class ItemNaturaEdible extends ItemEdible
         super();
         this.displayEffectsTooltip = false;
         this.displayCustomEffectsTooltip = true;
-        itemDuration = new TIntIntHashMap();
+        this.itemDuration = new TIntIntHashMap();
     }
 
     public ItemStack addFood(int meta, int food, float saturation, int duration, String name, PotionEffect... effects)
     {
-        return addFood(meta, food, saturation, duration, name, effects.length > 0, effects);
+        return this.addFood(meta, food, saturation, duration, name, effects.length > 0, effects);
     }
 
     public ItemStack addFood(int meta, int food, float saturation, int duration, String name, boolean alwaysEdible, PotionEffect... effects)
     {
-        itemDuration.put(meta, duration);
-        return addFood(meta, food, saturation, name, alwaysEdible, effects);
+        this.itemDuration.put(meta, duration);
+        return this.addFood(meta, food, saturation, name, alwaysEdible, effects);
     }
 
     /**
@@ -42,7 +42,7 @@ public class ItemNaturaEdible extends ItemEdible
     @Override
     public int getMaxItemUseDuration(ItemStack stack)
     {
-        return itemDuration.get(stack.getMetadata());
+        return this.itemDuration.get(stack.getMetadata());
     }
 
     @Override

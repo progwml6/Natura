@@ -6,7 +6,13 @@ import java.util.Random;
 
 import javax.annotation.Nonnull;
 
+import com.progwml6.natura.Natura;
 import com.progwml6.natura.library.NaturaRegistry;
+import com.progwml6.natura.overworld.NaturaOverworld;
+import com.progwml6.natura.overworld.block.leaves.BlockRedwoodLeaves;
+import com.progwml6.natura.overworld.block.logs.BlockRedwoodLog;
+import com.progwml6.natura.world.worldgen.trees.BaseTreeGenerator;
+import com.progwml6.natura.world.worldgen.trees.overworld.RedwoodTreeGenerator;
 
 import net.minecraft.block.BlockSapling;
 import net.minecraft.block.SoundType;
@@ -111,8 +117,6 @@ public class BlockRedwoodSapling extends BlockSapling
     @Override
     public void generateTree(@Nonnull World worldIn, @Nonnull BlockPos pos, @Nonnull IBlockState state, @Nonnull Random rand)
     {
-        /*
-        TODO: FIX REDWOOD
         if (!net.minecraftforge.event.terraingen.TerrainGen.saplingGrowTree(worldIn, rand, pos))
         {
             return;
@@ -120,17 +124,23 @@ public class BlockRedwoodSapling extends BlockSapling
 
         BaseTreeGenerator gen = new BaseTreeGenerator();
 
-        IBlockState log;
+        IBlockState bark;
+        IBlockState heart;
+        IBlockState root;
         IBlockState leaves;
 
         int x = 0;
         int z = 0;
-        boolean correctNumber = false;
 
         switch (state.getValue(FOLIAGE))
         {
         case REDWOOD:
             int numSaplings = this.checkRedwoodSaplings(worldIn, pos);
+
+            bark = NaturaOverworld.redwoodLog.getDefaultState().withProperty(BlockRedwoodLog.TYPE, BlockRedwoodLog.RedwoodType.BARK);
+            heart = NaturaOverworld.redwoodLog.getDefaultState().withProperty(BlockRedwoodLog.TYPE, BlockRedwoodLog.RedwoodType.HEART);
+            root = NaturaOverworld.redwoodLog.getDefaultState().withProperty(BlockRedwoodLog.TYPE, BlockRedwoodLog.RedwoodType.ROOT);
+            leaves = NaturaOverworld.redwoodLeaves.getDefaultState().withProperty(BlockRedwoodLeaves.TYPE, BlockRedwoodLeaves.RedwoodType.NORMAL);
 
             if (numSaplings >= 40)
             {
@@ -144,6 +154,8 @@ public class BlockRedwoodSapling extends BlockSapling
                         }
                     }
                 }
+
+                gen = new RedwoodTreeGenerator(bark, heart, root, leaves);
                 break;
             }
             break;
@@ -161,7 +173,6 @@ public class BlockRedwoodSapling extends BlockSapling
                 {
                     worldIn.setBlockToAir(pos.add(x, 0, z));
                 }
-                System.out.println(pos.add(x, 0, z));
             }
         }
 
@@ -173,28 +184,12 @@ public class BlockRedwoodSapling extends BlockSapling
         {
             for (z = -4; z <= 4; z++)
             {
-                if (worldIn.isAirBlock(pos))
+                if (worldIn.isAirBlock(pos.add(x, 0, z)))
                 {
                     worldIn.setBlockState(pos.add(x, 0, z), state, 4);
                 }
             }
         }
-
-        /*for (x = -4; x <= 4; x++)
-        {
-            for (z = -4; z <= 4; z++)
-            {
-                if (worldIn.isAirBlock(pos.add(x, 0, z)))
-                {
-                    // nope, set sapling again
-                    worldIn.setBlockState(pos.add(x, 0, z), state, 4);
-                }
-            }
-        }*
-
-        System.out.println(state.getValue(FOLIAGE));
-        System.out.println(state.getValue(STAGE));*/
-        // TODO: FIX REDWOOD
     }
 
     /**

@@ -81,7 +81,7 @@ public class BlockOverworldLog2 extends BlockEnumLog<BlockOverworldLog2.LogType>
     }
 
     @Override
-    protected ItemStack createStackedBlock(IBlockState state)
+    protected ItemStack getSilkTouchDrop(IBlockState state)
     {
         return new ItemStack(Item.getItemFromBlock(this), 1, state.getValue(TYPE).getMeta());
     }

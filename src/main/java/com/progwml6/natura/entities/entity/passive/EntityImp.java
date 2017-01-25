@@ -132,12 +132,12 @@ public class EntityImp extends EntityAnimal
     @Override
     public EntityAgeable createChild(EntityAgeable par1EntityAgeable)
     {
-        return new EntityImp(this.worldObj);
+        return new EntityImp(this.world);
     }
 
     @Override
     public boolean getCanSpawnHere()
     {
-        return this.worldObj.provider instanceof WorldProviderHell && this.worldObj.checkNoEntityCollision(this.getEntityBoundingBox()) && this.worldObj.getCollisionBoxes(this, this.getEntityBoundingBox()).isEmpty() && !this.worldObj.containsAnyLiquid(this.getEntityBoundingBox());
+        return this.world.provider instanceof WorldProviderHell && this.world.checkNoEntityCollision(this.getEntityBoundingBox()) && this.world.getCollisionBoxes(this, this.getEntityBoundingBox()).isEmpty() && !this.world.containsAnyLiquid(this.getEntityBoundingBox());
     }
 }

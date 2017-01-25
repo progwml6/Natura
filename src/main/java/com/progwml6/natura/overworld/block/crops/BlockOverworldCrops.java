@@ -115,7 +115,7 @@ public class BlockOverworldCrops extends BlockBush implements IGrowable
 
     protected int getBonemealAgeIncrease(World worldIn)
     {
-        return MathHelper.getRandomIntegerInRange(worldIn.rand, 2, 5);
+        return MathHelper.getInt(worldIn.rand, 2, 5);
     }
 
     protected static float getGrowthChance(Block blockIn, World worldIn, BlockPos pos)

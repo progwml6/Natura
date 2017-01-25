@@ -171,7 +171,7 @@ public class BlockRedwoodLeaves extends BlockLeaves
 
     // item dropped on silktouching
     @Override
-    protected ItemStack createStackedBlock(@Nonnull IBlockState state)
+    protected ItemStack getSilkTouchDrop(@Nonnull IBlockState state)
     {
         return new ItemStack(Item.getItemFromBlock(this), 1, (state.getValue(TYPE)).ordinal() & 3);
     }
@@ -228,7 +228,7 @@ public class BlockRedwoodLeaves extends BlockLeaves
     public List<ItemStack> onSheared(ItemStack item, IBlockAccess world, BlockPos pos, int fortune)
     {
         IBlockState state = world.getBlockState(pos);
-        return Lists.newArrayList(this.createStackedBlock(state));
+        return Lists.newArrayList(this.getSilkTouchDrop(state));
     }
 
     @Override

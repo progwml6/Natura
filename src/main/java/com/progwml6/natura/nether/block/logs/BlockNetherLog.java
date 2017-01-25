@@ -110,7 +110,7 @@ public class BlockNetherLog extends BlockEnumLog<BlockNetherLog.LogType>
     }
 
     @Override
-    protected ItemStack createStackedBlock(IBlockState state)
+    protected ItemStack getSilkTouchDrop(IBlockState state)
     {
         return new ItemStack(Item.getItemFromBlock(this), 1, state.getValue(TYPE).getMeta());
     }

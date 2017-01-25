@@ -162,7 +162,7 @@ public class BlockEnumBerryBush extends Block implements IPlantable, IGrowable
     }
 
     @Override
-    public boolean isVisuallyOpaque()
+    public boolean causesSuffocation()
     {
         return false;
     }
