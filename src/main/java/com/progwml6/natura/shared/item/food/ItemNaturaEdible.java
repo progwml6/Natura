@@ -1,4 +1,4 @@
-package com.progwml6.natura.shared.item;
+package com.progwml6.natura.shared.item.food;
 
 import java.util.List;
 

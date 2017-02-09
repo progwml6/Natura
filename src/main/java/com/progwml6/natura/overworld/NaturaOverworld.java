@@ -11,6 +11,9 @@ import com.progwml6.natura.common.item.ItemBlockLeaves;
 import com.progwml6.natura.library.NaturaRegistry;
 import com.progwml6.natura.library.Util;
 import com.progwml6.natura.overworld.block.bush.BlockOverworldBerryBush;
+import com.progwml6.natura.overworld.block.crops.BlockNaturaBarley;
+import com.progwml6.natura.overworld.block.crops.BlockNaturaCotton;
+import com.progwml6.natura.overworld.block.flower.BlockBluebellsFlower;
 import com.progwml6.natura.overworld.block.grass.BlockColoredGrass;
 import com.progwml6.natura.overworld.block.leaves.BlockOverworldLeaves;
 import com.progwml6.natura.overworld.block.leaves.BlockOverworldLeaves2;
@@ -25,6 +28,7 @@ import com.progwml6.natura.overworld.block.saplings.BlockRedwoodSapling;
 import com.progwml6.natura.overworld.block.slabs.BlockColoredGrassSlab;
 import com.progwml6.natura.overworld.block.slabs.BlockOverworldSlab;
 import com.progwml6.natura.overworld.block.slabs.BlockOverworldSlab2;
+import com.progwml6.natura.overworld.item.ItemSeeds;
 import com.progwml6.natura.shared.NaturaCommons;
 
 import net.minecraft.block.Block;
@@ -71,8 +75,10 @@ public class NaturaOverworld extends NaturaPulse
     public static BlockOverworldPlanks overworldPlanks;
 
     public static BlockRedwoodLog redwoodLog;
-    public static BlockRedwoodSapling redwoodSapling; //TODO: FIX REDWOOD
+    public static BlockRedwoodSapling redwoodSapling;
     public static BlockRedwoodLeaves redwoodLeaves;
+
+    public static BlockBluebellsFlower bluebellsFlower;
 
     public static Block overworldSlab;
     public static Block overworldSlab2;
@@ -91,6 +97,15 @@ public class NaturaOverworld extends NaturaPulse
     public static Block overworldBerryBushBlueberry;
     public static Block overworldBerryBushBlackberry;
     public static Block overworldBerryBushMaloberry;
+
+    public static Block barleyCrop;
+    public static Block cottonCrop;
+
+    // Items
+    public static ItemSeeds overworldSeeds;
+
+    public static ItemStack barley_seeds;
+    public static ItemStack cotton_seeds;
     //@formatter:on
 
     @Subscribe
@@ -115,7 +130,9 @@ public class NaturaOverworld extends NaturaPulse
 
         overworldSapling = registerBlock(new BlockOverworldSapling(), "overworld_sapling", BlockOverworldSapling.FOLIAGE);
         overworldSapling2 = registerBlock(new BlockOverworldSapling2(), "overworld_sapling2", BlockOverworldSapling2.FOLIAGE);
-        redwoodSapling = registerBlock(new BlockRedwoodSapling(), "redwood_sapling", BlockRedwoodSapling.FOLIAGE);// TODO: FIX REDWOOD
+        redwoodSapling = registerBlock(new BlockRedwoodSapling(), "redwood_sapling", BlockRedwoodSapling.FOLIAGE);
+
+        bluebellsFlower = registerBlock(new BlockBluebellsFlower(), "bluebells_flower");
 
         overworldPlanks = registerEnumBlock(new BlockOverworldPlanks(), "overworld_planks");
 
@@ -136,6 +153,16 @@ public class NaturaOverworld extends NaturaPulse
         overworldBerryBushBlueberry = registerBlock(new BlockOverworldBerryBush(NaturaCommons.blueberry), "overworld_berrybush_blueberry");
         overworldBerryBushBlackberry = registerBlock(new BlockOverworldBerryBush(NaturaCommons.blackberry), "overworld_berrybush_blackberry");
         overworldBerryBushMaloberry = registerBlock(new BlockOverworldBerryBush(NaturaCommons.maloberry), "overworld_berrybush_maloberry");
+
+        barleyCrop = registerBlock(new BlockNaturaBarley(), "barley_crop");
+        cottonCrop = registerBlock(new BlockNaturaCotton(), "cotton_crop");
+
+        overworldSeeds = registerItem(new ItemSeeds(), "overworld_seeds");
+
+        overworldSeeds.setCreativeTab(NaturaRegistry.tabGeneral);
+
+        barley_seeds = overworldSeeds.addMeta(0, "barley_seeds", barleyCrop.getDefaultState().withProperty(BlockNaturaBarley.AGE, 0));
+        cotton_seeds = overworldSeeds.addMeta(1, "cotton_seeds", cottonCrop.getDefaultState().withProperty(BlockNaturaCotton.AGE, 0));
 
         proxy.preInit();
 

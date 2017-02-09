@@ -20,7 +20,6 @@ import slimeknights.mantle.item.ItemBlockMeta;
 @SideOnly(Side.CLIENT)
 public final class ModelRegisterUtil
 {
-
     public static final String VARIANT_INVENTORY = "inventory";
 
     // Regular ITEM MODELS //

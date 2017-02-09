@@ -234,9 +234,9 @@ public class GhostwoodTreeGenerator extends BaseTreeGenerator
      */
     void generateLeaves()
     {
-        for (GhostwoodTreeGenerator.FoliageCoordinates SakuraTreeGenerator$foliagecoordinates : this.foliageCoords)
+        for (GhostwoodTreeGenerator.FoliageCoordinates foliagecoordinates : this.foliageCoords)
         {
-            this.generateLeafNode(SakuraTreeGenerator$foliagecoordinates);
+            this.generateLeafNode(foliagecoordinates);
         }
     }
 
@@ -271,14 +271,14 @@ public class GhostwoodTreeGenerator extends BaseTreeGenerator
      */
     void generateLeafNodeBases()
     {
-        for (GhostwoodTreeGenerator.FoliageCoordinates SakuraTreeGenerator$foliagecoordinates : this.foliageCoords)
+        for (GhostwoodTreeGenerator.FoliageCoordinates foliagecoordinates : this.foliageCoords)
         {
-            int i = SakuraTreeGenerator$foliagecoordinates.getBranchBase();
+            int i = foliagecoordinates.getBranchBase();
             BlockPos blockpos = new BlockPos(this.basePos.getX(), i, this.basePos.getZ());
 
-            if (!blockpos.equals(SakuraTreeGenerator$foliagecoordinates) && this.leafNodeNeedsBase(i - this.basePos.getY()))
+            if (!blockpos.equals(foliagecoordinates) && this.leafNodeNeedsBase(i - this.basePos.getY()))
             {
-                this.limb(blockpos, SakuraTreeGenerator$foliagecoordinates, this.log);
+                this.limb(blockpos, foliagecoordinates, this.log);
             }
         }
     }

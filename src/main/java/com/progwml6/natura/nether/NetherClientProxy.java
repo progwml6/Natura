@@ -9,10 +9,13 @@ import com.progwml6.natura.common.ClientProxy;
 import com.progwml6.natura.common.block.BlockEnumBerryBush;
 import com.progwml6.natura.common.client.LeavesColorizer;
 import com.progwml6.natura.library.Util;
+import com.progwml6.natura.library.client.state.CustomStateMap;
 import com.progwml6.natura.nether.block.leaves.BlockNetherLeaves;
 import com.progwml6.natura.nether.block.leaves.BlockNetherLeaves2;
 import com.progwml6.natura.nether.block.logs.BlockNetherLog;
 import com.progwml6.natura.nether.block.saplings.BlockNetherSapling;
+import com.progwml6.natura.nether.block.shrooms.BlockNetherGlowshroom;
+import com.progwml6.natura.nether.block.shrooms.BlockNetherLargeGlowshroom;
 
 import net.minecraft.block.BlockLeaves;
 import net.minecraft.block.BlockSapling;
@@ -103,6 +106,10 @@ public class NetherClientProxy extends ClientProxy
         Item heatSandItem = Item.getItemFromBlock(NaturaNether.netherHeatSand);
         ModelLoader.setCustomModelResourceLocation(heatSandItem, 0, new ModelResourceLocation(Util.resource("nether_heat_sand"), "normal"));
 
+        ModelLoader.setCustomStateMapper(NaturaNether.netherThornVines, new CustomStateMap("nether_thorn_vine"));
+
+        this.registerItemModelNatura(new ItemStack(NaturaNether.netherThornVines), "nether_thorn_vine");
+
         Item nether_log = Item.getItemFromBlock(NaturaNether.netherLog);
         for (BlockNetherLog.LogType type : BlockNetherLog.LogType.values())
         {
@@ -130,10 +137,13 @@ public class NetherClientProxy extends ClientProxy
         // saplings
         ItemStack stack = new ItemStack(Item.getItemFromBlock(NaturaNether.netherSapling), 1, NaturaNether.netherSapling.getMetaFromState(NaturaNether.netherSapling.getDefaultState().withProperty(BlockNetherSapling.FOLIAGE, BlockNetherSapling.SaplingType.GHOSTWOOD)));
         this.registerItemModelNatura(stack, "nether_sapling_ghostwood");
+
         stack = new ItemStack(Item.getItemFromBlock(NaturaNether.netherSapling), 1, NaturaNether.netherSapling.getMetaFromState(NaturaNether.netherSapling.getDefaultState().withProperty(BlockNetherSapling.FOLIAGE, BlockNetherSapling.SaplingType.BLOODWOOD)));
         this.registerItemModelNatura(stack, "nether_sapling_bloodwood");
+
         stack = new ItemStack(Item.getItemFromBlock(NaturaNether.netherSapling), 1, NaturaNether.netherSapling.getMetaFromState(NaturaNether.netherSapling.getDefaultState().withProperty(BlockNetherSapling.FOLIAGE, BlockNetherSapling.SaplingType.FUSEWOOD)));
         this.registerItemModelNatura(stack, "nether_sapling_fusewood");
+
         stack = new ItemStack(Item.getItemFromBlock(NaturaNether.netherSapling), 1, NaturaNether.netherSapling.getMetaFromState(NaturaNether.netherSapling.getDefaultState().withProperty(BlockNetherSapling.FOLIAGE, BlockNetherSapling.SaplingType.DARKWOOD)));
         this.registerItemModelNatura(stack, "nether_sapling_darkwood");
 
@@ -164,6 +174,37 @@ public class NetherClientProxy extends ClientProxy
         {
             String variant = String.format("%s=%s", BlockEnumBerryBush.AGE.getName(), Integer.valueOf(meta));
             ModelLoader.setCustomModelResourceLocation(stingberry_berrybush, meta, new ModelResourceLocation(stingberry_berrybush.getRegistryName(), variant));
+        }
+
+        // glowshrooms
+        ItemStack glowshroom = new ItemStack(Item.getItemFromBlock(NaturaNether.netherGlowshroom), 1, NaturaNether.netherGlowshroom.getMetaFromState(NaturaNether.netherGlowshroom.getDefaultState().withProperty(BlockNetherGlowshroom.TYPE, BlockNetherGlowshroom.GlowshroomType.GREEN)));
+        this.registerItemModelNatura(glowshroom, "nether_glowshroom_green");
+
+        glowshroom = new ItemStack(Item.getItemFromBlock(NaturaNether.netherGlowshroom), 1, NaturaNether.netherGlowshroom.getMetaFromState(NaturaNether.netherGlowshroom.getDefaultState().withProperty(BlockNetherGlowshroom.TYPE, BlockNetherGlowshroom.GlowshroomType.BLUE)));
+        this.registerItemModelNatura(glowshroom, "nether_glowshroom_blue");
+
+        glowshroom = new ItemStack(Item.getItemFromBlock(NaturaNether.netherGlowshroom), 1, NaturaNether.netherGlowshroom.getMetaFromState(NaturaNether.netherGlowshroom.getDefaultState().withProperty(BlockNetherGlowshroom.TYPE, BlockNetherGlowshroom.GlowshroomType.PURPLE)));
+        this.registerItemModelNatura(glowshroom, "nether_glowshroom_purple");
+
+        Item nether_large_green_glowshroom = Item.getItemFromBlock(NaturaNether.netherLargeGreenGlowshroom);
+        for (BlockNetherLargeGlowshroom.EnumType type : BlockNetherLargeGlowshroom.EnumType.values())
+        {
+            String variant = String.format("%s=%s", BlockNetherLargeGlowshroom.VARIANT.getName(), BlockNetherLargeGlowshroom.VARIANT.getName(type));
+            ModelLoader.setCustomModelResourceLocation(nether_large_green_glowshroom, type.getMeta(), new ModelResourceLocation(nether_large_green_glowshroom.getRegistryName(), variant));
+        }
+
+        Item nether_large_blue_glowshroom = Item.getItemFromBlock(NaturaNether.netherLargeBlueGlowshroom);
+        for (BlockNetherLargeGlowshroom.EnumType type : BlockNetherLargeGlowshroom.EnumType.values())
+        {
+            String variant = String.format("%s=%s", BlockNetherLargeGlowshroom.VARIANT.getName(), BlockNetherLargeGlowshroom.VARIANT.getName(type));
+            ModelLoader.setCustomModelResourceLocation(nether_large_blue_glowshroom, type.getMeta(), new ModelResourceLocation(nether_large_blue_glowshroom.getRegistryName(), variant));
+        }
+
+        Item nether_large_purple_glowshroom = Item.getItemFromBlock(NaturaNether.netherLargePurpleGlowshroom);
+        for (BlockNetherLargeGlowshroom.EnumType type : BlockNetherLargeGlowshroom.EnumType.values())
+        {
+            String variant = String.format("%s=%s", BlockNetherLargeGlowshroom.VARIANT.getName(), BlockNetherLargeGlowshroom.VARIANT.getName(type));
+            ModelLoader.setCustomModelResourceLocation(nether_large_purple_glowshroom, type.getMeta(), new ModelResourceLocation(nether_large_purple_glowshroom.getRegistryName(), variant));
         }
     }
 }

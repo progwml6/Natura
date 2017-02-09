@@ -12,6 +12,7 @@ import com.progwml6.natura.nether.NaturaNether;
 import com.progwml6.natura.overworld.NaturaOverworld;
 import com.progwml6.natura.plugin.waila.Waila;
 import com.progwml6.natura.shared.NaturaCommons;
+import com.progwml6.natura.tools.NaturaTools;
 import com.progwml6.natura.world.NaturaWorld;
 
 import net.minecraftforge.fml.common.Mod;
@@ -46,6 +47,7 @@ public class Natura
         pulseManager.registerPulse(new NaturaCommons());
         pulseManager.registerPulse(new NaturaOverworld());
         pulseManager.registerPulse(new NaturaNether());
+        pulseManager.registerPulse(new NaturaTools());
         pulseManager.registerPulse(new NaturaEntities());
         pulseManager.registerPulse(new NaturaOredict());
         pulseManager.registerPulse(new NaturaWorld());

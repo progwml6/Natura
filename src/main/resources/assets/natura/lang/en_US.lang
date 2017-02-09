@@ -145,6 +145,8 @@ tile.natura.overworld_berrybush_blackberry.tooltip=Sweet and black\nFound in wet
 tile.natura.overworld_berrybush_maloberry.name=Maloberry Bush
 tile.natura.overworld_berrybush_maloberry.tooltip=Tasty and yellow-orange\nFound in cold areas
 
+tile.natura.bluebells_flower.name=Bluebells
+
 tile.natura.nether_logs.ghostwood.name=Ghostwood
 tile.natura.nether_logs.ghostwood.tooltip=Nether Tree\nPale as a ghost
 tile.natura.nether_logs.darkwood.name=Darkwood
@@ -220,6 +222,12 @@ tile.natura.nether_berrybush_stingberry.tooltip=A little bit evil\nHit like a tr
 tile.natura.respawn_obelisk.inactive.name=Inactive Respawn Obelisk
 tile.natura.respawn_obelisk.active.name=Active Respawn Obelisk
 
+tile.natura.nether_thorn_vines.name=Thornvines
+
+tile.natura.nether_glowshroom.green.name=Green Glowshroom
+tile.natura.nether_glowshroom.blue.name=Blue Glowshroom
+tile.natura.nether_glowshroom.purple.name=Purple Glowshroom
+
 ################
 #    Items     #
 ################
@@ -246,6 +254,12 @@ item.natura.edibles.skyberry.name=Skyberry
 item.natura.edibles.skyberry.tooltip=A little bit evil\nSlow dive
 item.natura.edibles.stingberry.name=Stingberry
 item.natura.edibles.stingberry.tooltip=A little bit evil\nHit like a truck
+
+item.natura.edibles.potashapple.name=Potash Apple
+item.natura.edibles.potashapple.tooltip=Tastes a bit like chalk
+
+item.natura.edibles.cactusfruit.name=Cactus Juice
+item.natura.edibles.cactusfruit.tooltip=Refreshing!
 
 item.natura.materials.barley.name=Barley
 item.natura.materials.barley.tooltip=Similar to wheat, it grows in the wild

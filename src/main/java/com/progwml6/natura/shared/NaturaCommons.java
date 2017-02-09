@@ -9,9 +9,13 @@ import com.progwml6.natura.library.NaturaRegistry;
 import com.progwml6.natura.library.Util;
 import com.progwml6.natura.shared.block.clouds.BlockCloud;
 import com.progwml6.natura.shared.block.hopper.BlockBlazeHopper;
-import com.progwml6.natura.shared.item.ItemEdibleSoup;
-import com.progwml6.natura.shared.item.ItemNaturaEdible;
+import com.progwml6.natura.shared.item.bags.ItemBoneBag;
+import com.progwml6.natura.shared.item.bags.ItemSeedBag;
+import com.progwml6.natura.shared.item.food.ItemNaturaEdible;
+import com.progwml6.natura.shared.item.food.ItemNaturaEdibleSoup;
 
+import net.minecraft.block.BlockCrops;
+import net.minecraft.block.BlockNetherWart;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.init.MobEffects;
@@ -49,7 +53,9 @@ public class NaturaCommons extends NaturaPulse
     public static ItemMetaDynamic materials;
     public static ItemMetaDynamic empty_bowls;
     public static ItemNaturaEdible edibles;
-    public static ItemEdibleSoup soups;
+    public static ItemNaturaEdibleSoup soups;
+    public static ItemSeedBag seed_bags;
+    public static ItemBoneBag boneMealBag;
 
     // Material Itemstacks
     public static ItemStack barley;
@@ -96,7 +102,20 @@ public class NaturaCommons extends NaturaPulse
     public static ItemStack skyberry;
     public static ItemStack stingberry;
 
+    // Apples
+    public static ItemStack potashApple;
+
     public static ItemStack berryMedley;
+
+    public static ItemStack cactusJuice;
+    
+    //Seed Bags
+    public static ItemStack wheat_seed_bag;
+    public static ItemStack carrots_seed_bag;
+    public static ItemStack potatoes_seed_bag;
+    public static ItemStack nether_wart_seed_bag;
+    public static ItemStack cotton_seed_bag;
+    public static ItemStack barley_seed_bag;
     //@formatter:on
 
     @Subscribe
@@ -110,12 +129,14 @@ public class NaturaCommons extends NaturaPulse
         materials = registerItem(new ItemMetaDynamic(), "materials");
         empty_bowls = registerItem(new ItemMetaDynamic(), "empty_bowls");
         edibles = registerItem(new ItemNaturaEdible(), "edibles");
-        soups = registerItem(new ItemEdibleSoup(), "soups");
+        soups = registerItem(new ItemNaturaEdibleSoup(), "soups");
+        seed_bags = registerItem(new ItemSeedBag(), "seed_bags");
 
         materials.setCreativeTab(NaturaRegistry.tabGeneral);
         empty_bowls.setCreativeTab(NaturaRegistry.tabGeneral);
         edibles.setCreativeTab(NaturaRegistry.tabGeneral);
         soups.setCreativeTab(NaturaRegistry.tabGeneral);
+        seed_bags.setCreativeTab(NaturaRegistry.tabGeneral);
 
         barley = materials.addMeta(0, "barley");
         barleyFlour = materials.addMeta(1, "barley_flour");
@@ -149,7 +170,11 @@ public class NaturaCommons extends NaturaPulse
             duskberry = edibles.addFood(7, 1, 0.4F, 16, "duskberry", new PotionEffect(MobEffects.NIGHT_VISION, 15 * 20, 0), new PotionEffect(MobEffects.BLINDNESS, 3 * 20, 0));
             skyberry = edibles.addFood(8, 1, 0.4F, 16, "skyberry", new PotionEffect(MobEffects.JUMP_BOOST, 8 * 20, 0), new PotionEffect(MobEffects.SLOWNESS, 3 * 20, 0));
             stingberry = edibles.addFood(9, 1, 0.4F, 16, "stingberry", new PotionEffect(MobEffects.STRENGTH, 10 * 20, 0), new PotionEffect(MobEffects.MINING_FATIGUE, 10 * 20, 0));
+
+            potashApple = edibles.addFood(10, 4, 0.4F, "potashapple", new PotionEffect(MobEffects.POISON, 2 * 25, 0));
         }
+
+        cactusJuice = edibles.addFood(11, 1, 0.1f, 12, "cactusjuice", true);
 
         ghostwood_emptybowl = empty_bowls.addMeta(0, "ghostwood_bowl");
         bloodwood_emptybowl = empty_bowls.addMeta(1, "bloodwood_bowl");
@@ -166,6 +191,19 @@ public class NaturaCommons extends NaturaPulse
         bloodwood_glowshroomstew = soups.addFood(6, 3, 0.2f, 32, "bloodwood_glowshroomstew", bloodwood_emptybowl, new PotionEffect(MobEffects.NIGHT_VISION, 45 * 25, 0), new PotionEffect(MobEffects.POISON, 16 * 25, 0), new PotionEffect(MobEffects.MINING_FATIGUE, 8 * 25, 0));
         darkwood_glowshroomstew = soups.addFood(7, 3, 0.2f, 32, "darkwood_glowshroomstew", darkwood_emptybowl, new PotionEffect(MobEffects.NIGHT_VISION, 45 * 25, 0), new PotionEffect(MobEffects.POISON, 16 * 25, 0), new PotionEffect(MobEffects.MINING_FATIGUE, 8 * 25, 0));
         fusewood_glowshroomstew = soups.addFood(8, 3, 0.2f, 32, "fusewood_glowshroomstew", fusewood_emptybowl, new PotionEffect(MobEffects.NIGHT_VISION, 45 * 25, 0), new PotionEffect(MobEffects.POISON, 16 * 25, 0), new PotionEffect(MobEffects.MINING_FATIGUE, 8 * 25, 0));
+
+        wheat_seed_bag = seed_bags.addMeta(0, "wheat_seed_bag", Blocks.WHEAT.getDefaultState().withProperty(BlockCrops.AGE, Integer.valueOf(0)));
+        carrots_seed_bag = seed_bags.addMeta(1, "carrots_seed_bag", Blocks.CARROTS.getDefaultState().withProperty(BlockCrops.AGE, Integer.valueOf(0)));
+        potatoes_seed_bag = seed_bags.addMeta(2, "potatoes_seed_bag", Blocks.POTATOES.getDefaultState().withProperty(BlockCrops.AGE, Integer.valueOf(0)));
+        nether_wart_seed_bag = seed_bags.addMeta(3, "nether_wart_seed_bag", Blocks.NETHER_WART.getDefaultState().withProperty(BlockNetherWart.AGE, Integer.valueOf(0)));
+
+        if (isOverworldLoaded())
+        {
+            //cotton_seed_bag = seed_bags.addMeta(4, Blocks.WHEAT.getDefaultState().withProperty(BlockCrops.AGE, Integer.valueOf(0)), "cotton_seed_bag");
+            //barley_seed_bag = seed_bags.addMeta(5, Blocks.WHEAT.getDefaultState().withProperty(BlockCrops.AGE, Integer.valueOf(0)), "barley_seed_bag");
+        }
+
+        boneMealBag = registerItem(new ItemBoneBag(), "bonemeal_bag");
 
         proxy.preInit();
 
@@ -220,10 +258,10 @@ public class NaturaCommons extends NaturaPulse
 
         if (isEntitiesLoaded())
         {
-            GameRegistry.addRecipe(new ItemStack(Items.LEATHER, 2), "##", "##", '#', new ItemStack(impLeather.getItem(), 1, 6));
+            GameRegistry.addRecipe(new ItemStack(Items.LEATHER, 2), "##", "##", '#', impLeather.copy());
         }
 
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Items.ARROW, 4, 0), " f ", "#s#", " # ", 's', "stickWood", '#', new ItemStack(ghostwoodFletching.getItem(), 1, 5), 'f', Items.FLINT));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Items.ARROW, 4, 0), " f ", "#s#", " # ", 's', "stickWood", '#', ghostwoodFletching.copy(), 'f', Items.FLINT));
         GameRegistry.addRecipe(new ItemStack(Items.CAKE, 1), "AAA", "BEB", " C ", 'A', Items.MILK_BUCKET, 'B', Items.SUGAR, 'C', wheatFlour.copy(), 'E', Items.EGG);
         GameRegistry.addRecipe(new ItemStack(Items.CAKE, 1), "AAA", "BEB", " C ", 'A', Items.MILK_BUCKET, 'B', Items.SUGAR, 'C', barleyFlour.copy(), 'E', Items.EGG);
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(blaze_hopper), "# #", "#C#", " # ", '#', new ItemStack(Items.BLAZE_ROD), 'C', "chestWood"));

@@ -16,8 +16,11 @@ import com.progwml6.natura.nether.block.obelisk.BlockRespawnObelisk;
 import com.progwml6.natura.nether.block.planks.BlockNetherPlanks;
 import com.progwml6.natura.nether.block.sand.BlockHeatSand;
 import com.progwml6.natura.nether.block.saplings.BlockNetherSapling;
+import com.progwml6.natura.nether.block.shrooms.BlockNetherGlowshroom;
+import com.progwml6.natura.nether.block.shrooms.BlockNetherLargeGlowshroom;
 import com.progwml6.natura.nether.block.slabs.BlockNetherSlab;
 import com.progwml6.natura.nether.block.soil.BlockTaintedSoil;
+import com.progwml6.natura.nether.block.vine.BlockNetherThornVines;
 import com.progwml6.natura.shared.NaturaCommons;
 
 import net.minecraft.block.Block;
@@ -52,6 +55,7 @@ public class NaturaNether extends NaturaPulse
 
     public static BlockHeatSand netherHeatSand;
     public static BlockTaintedSoil netherTaintedSoil;
+    public static BlockNetherThornVines netherThornVines;
 
     public static BlockNetherGlass netherGlass;
 
@@ -64,6 +68,11 @@ public class NaturaNether extends NaturaPulse
     public static Block netherBerryBushDuskberry;
     public static Block netherBerryBushSkyberry;
     public static Block netherBerryBushStingberry;
+
+    public static BlockNetherGlowshroom netherGlowshroom;
+    public static BlockNetherLargeGlowshroom netherLargeGreenGlowshroom;
+    public static BlockNetherLargeGlowshroom netherLargeBlueGlowshroom;
+    public static BlockNetherLargeGlowshroom netherLargePurpleGlowshroom;
 
     public static BlockRespawnObelisk respawnObelisk;
     //@formatter:on
@@ -86,6 +95,7 @@ public class NaturaNether extends NaturaPulse
 
         netherHeatSand = registerBlock(new BlockHeatSand(), "nether_heat_sand");
         netherTaintedSoil = registerEnumBlock(new BlockTaintedSoil(), "nether_tainted_soil");
+        netherThornVines = registerBlock(new BlockNetherThornVines(), "nether_thorn_vines");
 
         netherGlass = registerEnumBlock(new BlockNetherGlass(), "nether_glass");
 
@@ -100,6 +110,11 @@ public class NaturaNether extends NaturaPulse
         netherBerryBushStingberry = registerBlock(new BlockNetherBerryBush(NaturaCommons.stingberry), "nether_berrybush_stingberry");
 
         respawnObelisk = registerEnumBlock(new BlockRespawnObelisk(), "respawn_obelisk");
+
+        netherGlowshroom = registerBlock(new BlockNetherGlowshroom(), "nether_glowshroom", BlockNetherGlowshroom.TYPE);
+        netherLargeGreenGlowshroom = registerBlock(new BlockNetherLargeGlowshroom(netherGlowshroom, BlockNetherGlowshroom.GlowshroomType.GREEN.getMeta()), "nether_green_large_glowshroom", BlockNetherLargeGlowshroom.VARIANT);
+        netherLargeBlueGlowshroom = registerBlock(new BlockNetherLargeGlowshroom(netherGlowshroom, BlockNetherGlowshroom.GlowshroomType.BLUE.getMeta()), "nether_blue_large_glowshroom", BlockNetherLargeGlowshroom.VARIANT);
+        netherLargePurpleGlowshroom = registerBlock(new BlockNetherLargeGlowshroom(netherGlowshroom, BlockNetherGlowshroom.GlowshroomType.PURPLE.getMeta()), "nether_purple_large_glowshroom", BlockNetherLargeGlowshroom.VARIANT);
 
         proxy.preInit();
     }

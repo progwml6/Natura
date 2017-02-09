@@ -14,6 +14,8 @@
         "blightberry": [{ "textures": { "layer0": "natura:items/food/blightberry" }}],
         "duskberry": [{ "textures": { "layer0": "natura:items/food/duskberry" }}],
         "skyberry": [{ "textures": { "layer0": "natura:items/food/skyberry" }}],
-        "stingberry": [{ "textures": { "layer0": "natura:items/food/stingberry" }}]
+        "stingberry": [{ "textures": { "layer0": "natura:items/food/stingberry" }}],
+        "potashapple": [{ "textures": { "layer0": "natura:items/food/potashapple" }}],
+        "cactusjuice": [{ "textures": { "layer0": "natura:items/food/cactusjuice" }}]
     }
 }

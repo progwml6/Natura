@@ -12,7 +12,7 @@ import net.minecraftforge.fml.client.registry.IRenderFactory;
 
 public class RenderNaturaNitroCreeper extends RenderCreeper
 {
-    public static final Factory FACTORY_nitrocreeper = new Factory();
+    public static final Factory FACTORY_nitroCreeper = new Factory();
 
     public static final ResourceLocation impTexture = Util.getResource("textures/entity/nitrocreeper.png");
 

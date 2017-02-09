@@ -9,7 +9,9 @@ import com.progwml6.natura.common.config.Config;
 import com.progwml6.natura.library.Util;
 import com.progwml6.natura.world.worldgen.BerryBushGenerator;
 import com.progwml6.natura.world.worldgen.CloudGenerator;
+import com.progwml6.natura.world.worldgen.GlowshroomGenerator;
 import com.progwml6.natura.world.worldgen.TreeGenerator;
+import com.progwml6.natura.world.worldgen.VineGenerator;
 import com.progwml6.natura.world.worldgen.retrogen.TickHandlerWorldRetrogen;
 
 import net.minecraftforge.common.MinecraftForge;
@@ -54,6 +56,9 @@ public class NaturaWorld extends NaturaPulse
             {
                 GameRegistry.registerWorldGenerator(CloudGenerator.INSTANCE, 0);
             }
+
+            GameRegistry.registerWorldGenerator(GlowshroomGenerator.INSTANCE, 0);
+            GameRegistry.registerWorldGenerator(VineGenerator.INSTANCE, 0);
 
             //GameRegistry.registerWorldGenerator(TreeGenerator.INSTANCE, 25);
             //GameRegistry.registerWorldGenerator(BerryBushGenerator.INSTANCE, 25);

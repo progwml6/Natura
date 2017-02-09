@@ -10,6 +10,8 @@ import com.progwml6.natura.common.block.BlockEnumBerryBush;
 import com.progwml6.natura.common.block.BlockGrassStairs;
 import com.progwml6.natura.common.client.GrassColorizer;
 import com.progwml6.natura.common.client.LeavesColorizer;
+import com.progwml6.natura.overworld.block.crops.BlockNaturaBarley;
+import com.progwml6.natura.overworld.block.crops.BlockNaturaCotton;
 import com.progwml6.natura.overworld.block.grass.BlockColoredGrass;
 import com.progwml6.natura.overworld.block.leaves.BlockRedwoodLeaves;
 import com.progwml6.natura.overworld.block.logs.BlockOverworldLog;
@@ -166,6 +168,9 @@ public class OverworldClientProxy extends ClientProxy
         registerItemModel(NaturaOverworld.coloredGrassStairsBlueGrass);
         registerItemModel(NaturaOverworld.coloredGrassStairsAutumnal);
 
+        ItemStack stack = new ItemStack(Item.getItemFromBlock(NaturaOverworld.bluebellsFlower), 1, 0);
+        this.registerItemModelNatura(stack, "bluebells_flower");
+
         // slabs
         registerItemBlockMeta(NaturaOverworld.overworldSlab);
         registerItemBlockMeta(NaturaOverworld.overworldSlab2);
@@ -221,7 +226,7 @@ public class OverworldClientProxy extends ClientProxy
         }
 
         // saplings
-        ItemStack stack = new ItemStack(Item.getItemFromBlock(NaturaOverworld.overworldSapling), 1, NaturaOverworld.overworldSapling.getMetaFromState(NaturaOverworld.overworldSapling.getDefaultState().withProperty(BlockOverworldSapling.FOLIAGE, BlockOverworldSapling.SaplingType.MAPLE)));
+        stack = new ItemStack(Item.getItemFromBlock(NaturaOverworld.overworldSapling), 1, NaturaOverworld.overworldSapling.getMetaFromState(NaturaOverworld.overworldSapling.getDefaultState().withProperty(BlockOverworldSapling.FOLIAGE, BlockOverworldSapling.SaplingType.MAPLE)));
         this.registerItemModelNatura(stack, "overworld_sapling_maple");
         stack = new ItemStack(Item.getItemFromBlock(NaturaOverworld.overworldSapling), 1, NaturaOverworld.overworldSapling.getMetaFromState(NaturaOverworld.overworldSapling.getDefaultState().withProperty(BlockOverworldSapling.FOLIAGE, BlockOverworldSapling.SaplingType.SILVERBELL)));
         this.registerItemModelNatura(stack, "overworld_sapling_silverbell");
@@ -269,5 +274,21 @@ public class OverworldClientProxy extends ClientProxy
             String variant = String.format("%s=%s", BlockEnumBerryBush.AGE.getName(), Integer.valueOf(meta));
             ModelLoader.setCustomModelResourceLocation(maloberry_berrybush, meta, new ModelResourceLocation(maloberry_berrybush.getRegistryName(), variant));
         }
+
+        Item barley_crop = Item.getItemFromBlock(NaturaOverworld.barleyCrop);
+        for (int meta = 0; meta <= 3; meta++)
+        {
+            String variant = String.format("%s=%s", BlockNaturaBarley.AGE.getName(), Integer.valueOf(meta));
+            ModelLoader.setCustomModelResourceLocation(barley_crop, meta, new ModelResourceLocation(barley_crop.getRegistryName(), variant));
+        }
+
+        Item cotton_crop = Item.getItemFromBlock(NaturaOverworld.cottonCrop);
+        for (int meta = 0; meta <= 4; meta++)
+        {
+            String variant = String.format("%s=%s", BlockNaturaCotton.AGE.getName(), Integer.valueOf(meta));
+            ModelLoader.setCustomModelResourceLocation(cotton_crop, meta, new ModelResourceLocation(cotton_crop.getRegistryName(), variant));
+        }
+
+        NaturaOverworld.overworldSeeds.registerItemModels();
     }
 }

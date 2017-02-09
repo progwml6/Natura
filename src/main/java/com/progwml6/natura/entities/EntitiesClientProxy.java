@@ -25,7 +25,7 @@ public class EntitiesClientProxy extends ClientProxy
             RenderingRegistry.registerEntityRenderingHandler(EntityHeatscarSpider.class, RenderNautraHeatscarSpider.FACTORY_heatscarSpider);
             RenderingRegistry.registerEntityRenderingHandler(EntityBabyHeatscarSpider.class, RenderNautraBabyHeatscarSpider.FACTORY_babyHeatscarSpider);
         }
-        RenderingRegistry.registerEntityRenderingHandler(EntityNitroCreeper.class, RenderNaturaNitroCreeper.FACTORY_nitrocreeper);
+        RenderingRegistry.registerEntityRenderingHandler(EntityNitroCreeper.class, RenderNaturaNitroCreeper.FACTORY_nitroCreeper);
 
         super.preInit();
     }

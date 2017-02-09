@@ -8,13 +8,10 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockBush;
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.SoundType;
-import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyInteger;
-import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -23,12 +20,8 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-public class BlockOverworldCrops extends BlockBush implements IGrowable
+public abstract class BlockOverworldCrops extends BlockBush implements IGrowable
 {
-    public static final PropertyInteger AGE = PropertyInteger.create("age", 0, 7);
-
-    private static final AxisAlignedBB[] CROPS_AABB = new AxisAlignedBB[] { new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.125D, 1.0D), new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.25D, 1.0D), new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.375D, 1.0D), new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.5D, 1.0D), new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.625D, 1.0D), new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.75D, 1.0D), new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.875D, 1.0D), new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 1.0D, 1.0D) };
-
     protected BlockOverworldCrops()
     {
         this.setDefaultState(this.blockState.getBaseState().withProperty(this.getAgeProperty(), Integer.valueOf(0)));
@@ -42,7 +35,7 @@ public class BlockOverworldCrops extends BlockBush implements IGrowable
     @Override
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
     {
-        return CROPS_AABB[state.getValue(this.getAgeProperty()).intValue()];
+        return new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.25D, 1.0D);
     }
 
     /**
@@ -54,15 +47,9 @@ public class BlockOverworldCrops extends BlockBush implements IGrowable
         return state.getBlock() == Blocks.FARMLAND;
     }
 
-    protected PropertyInteger getAgeProperty()
-    {
-        return AGE;
-    }
+    protected abstract PropertyInteger getAgeProperty();
 
-    public int getMaxAge()
-    {
-        return 7;
-    }
+    public abstract int getMaxAge();
 
     protected int getAge(IBlockState state)
     {
@@ -180,15 +167,9 @@ public class BlockOverworldCrops extends BlockBush implements IGrowable
         return (worldIn.getLight(pos) >= 8 || worldIn.canSeeSky(pos)) && soil.getBlock().canSustainPlant(soil, worldIn, pos.down(), net.minecraft.util.EnumFacing.UP, this);
     }
 
-    protected Item getSeed()
-    {
-        return Items.WHEAT_SEEDS;
-    }
+    protected abstract ItemStack getSeed();
 
-    protected Item getCrop()
-    {
-        return Items.WHEAT;
-    }
+    protected abstract ItemStack getCrop();
 
     @Override
     public java.util.List<ItemStack> getDrops(net.minecraft.world.IBlockAccess world, BlockPos pos, IBlockState state, int fortune)
@@ -203,7 +184,7 @@ public class BlockOverworldCrops extends BlockBush implements IGrowable
             {
                 if (rand.nextInt(2 * this.getMaxAge()) <= age)
                 {
-                    ret.add(new ItemStack(this.getSeed(), 1, 0));
+                    ret.add(getSeed());
                 }
             }
         }
@@ -226,13 +207,19 @@ public class BlockOverworldCrops extends BlockBush implements IGrowable
     @Nullable
     public Item getItemDropped(IBlockState state, Random rand, int fortune)
     {
-        return this.isMaxAge(state) ? this.getCrop() : this.getSeed();
+        return this.isMaxAge(state) ? this.getCrop().getItem() : this.getSeed().getItem();
     }
 
     @Override
     public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state)
     {
-        return new ItemStack(this.getSeed());
+        return this.getSeed();
+    }
+
+    @Override
+    public int damageDropped(IBlockState state)
+    {
+        return this.isMaxAge(state) ? this.getCrop().getMetadata() : this.getSeed().getMetadata();
     }
 
     /**
@@ -272,11 +259,5 @@ public class BlockOverworldCrops extends BlockBush implements IGrowable
     public int getMetaFromState(IBlockState state)
     {
         return this.getAge(state);
-    }
-
-    @Override
-    protected BlockStateContainer createBlockState()
-    {
-        return new BlockStateContainer(this, new IProperty[] { AGE });
     }
 }

@@ -36,10 +36,6 @@ repositories {
         url "http://chickenbones.net/maven/"
     }
     maven {
-         name "ProfMobius Maven FS"
-         url "http://mobiusstrip.eu/maven"
-    }
-    maven {
         name 'DVS1 Maven FS'
         url 'http://dvs1.progwml6.com/files/maven'
     }
@@ -50,6 +46,10 @@ repositories {
     maven {
         name 'MCMultiPart'
         url 'http://maven.amadornes.com/'
+    }
+    maven {
+         name "Tehnut Maven FS"
+         url "http://tehnut.info/maven"
     }
 }
 
@@ -62,7 +62,7 @@ dependencies {
     deobfCompile "slimeknights.mantle:Mantle:${minecraft_version}-${mantle_version}"
     deobfCompile "slimeknights:TConstruct:${minecraft_version}-${tconstruct_version}"
 
-    deobfCompile "mcp.mobius.waila:Waila:${waila_version}_1.9.4" // ${minecraft_version}" No 1.10 version of waila, must use 1.9.4 version
+    deobfCompile "mcp.mobius.waila:Hwyla:${hwyla_version}_${minecraft_version}"
 
     deobfCompile "mezz.jei:jei_${minecraft_version}:${jei_version}"
 

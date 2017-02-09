@@ -1,4 +1,4 @@
-package com.progwml6.natura.shared.item;
+package com.progwml6.natura.shared.item.food;
 
 import javax.annotation.Nullable;
 
@@ -9,11 +9,11 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
 
-public class ItemEdibleSoup extends ItemNaturaEdible
+public class ItemNaturaEdibleSoup extends ItemNaturaEdible
 {
     protected TIntObjectHashMap<ItemStack> bowlsList;
 
-    public ItemEdibleSoup()
+    public ItemNaturaEdibleSoup()
     {
         super();
         this.bowlsList = new TIntObjectHashMap<>();
