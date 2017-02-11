@@ -31,9 +31,9 @@ public class GlowshroomGenerator implements IWorldGenerator
 
     public GlowshroomGenerator()
     {
-        greenGlowshroomGen = new GreenGlowshroomGenerator(NaturaNether.netherLargeGreenGlowshroom.getDefaultState());
-        blueGlowshroomGen = new BlueGlowshroomGenerator(NaturaNether.netherLargeBlueGlowshroom.getDefaultState());
-        purpleGlowshroomGen = new PurpleGlowshroomGenerator(NaturaNether.netherLargePurpleGlowshroom.getDefaultState());
+        this.greenGlowshroomGen = new GreenGlowshroomGenerator(NaturaNether.netherLargeGreenGlowshroom.getDefaultState());
+        this.blueGlowshroomGen = new BlueGlowshroomGenerator(NaturaNether.netherLargeBlueGlowshroom.getDefaultState());
+        this.purpleGlowshroomGen = new PurpleGlowshroomGenerator(NaturaNether.netherLargePurpleGlowshroom.getDefaultState());
     }
 
     @Override

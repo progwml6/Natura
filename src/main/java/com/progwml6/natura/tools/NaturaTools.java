@@ -84,7 +84,7 @@ public class NaturaTools extends NaturaPulse
     public static Item netherquartzShovel;
     public static Item netherquartzAxe;
     public static Item netherquartzKama;
-    
+
     public static Item flintAndBlaze;
     //@formatter:on
 

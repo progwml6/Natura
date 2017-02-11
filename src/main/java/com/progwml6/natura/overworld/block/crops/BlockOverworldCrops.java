@@ -184,7 +184,7 @@ public abstract class BlockOverworldCrops extends BlockBush implements IGrowable
             {
                 if (rand.nextInt(2 * this.getMaxAge()) <= age)
                 {
-                    ret.add(getSeed());
+                    ret.add(this.getSeed());
                 }
             }
         }

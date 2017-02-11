@@ -20,15 +20,15 @@ public class ItemSeedBag extends ItemMetaDynamic
 
     public ItemStack addMeta(int meta, String name, IBlockState state)
     {
-        states.put(meta, state);
-        ItemStack ret = addMeta(meta, name);
+        this.states.put(meta, state);
+        ItemStack ret = this.addMeta(meta, name);
         return ret;
     }
 
     @Override
     public ItemStack addMeta(int meta, String name)
     {
-        if (!states.containsKey(meta))
+        if (!this.states.containsKey(meta))
         {
             throw new RuntimeException("Usage of wrong function. Use the addMeta function that has an amount paired with it with this implementation");
         }
@@ -49,7 +49,7 @@ public class ItemSeedBag extends ItemMetaDynamic
         {
             int meta = stack.getMetadata();
 
-            if (isValid(meta))
+            if (this.isValid(meta))
             {
                 MutableBlockPos mutableblockpos = new MutableBlockPos();
 
@@ -70,11 +70,11 @@ public class ItemSeedBag extends ItemMetaDynamic
                             IBlockState state = worldIn.getBlockState(position);
                             Block block = state.getBlock();
 
-                            if (block != null && block.canSustainPlant(state, worldIn, position, EnumFacing.UP, (IPlantable) states.get(meta).getBlock()) && worldIn.isAirBlock(position.up()))
+                            if (block != null && block.canSustainPlant(state, worldIn, position, EnumFacing.UP, (IPlantable) this.states.get(meta).getBlock()) && worldIn.isAirBlock(position.up()))
                             {
                                 planted = true;
 
-                                worldIn.setBlockState(position.up(), states.get(meta), 3);
+                                worldIn.setBlockState(position.up(), this.states.get(meta), 3);
                             }
                         }
                     }
@@ -89,7 +89,7 @@ public class ItemSeedBag extends ItemMetaDynamic
 
                     if (stack.stackSize < 1)
                     {
-                        worldIn.playEvent(2001, position, Block.getIdFromBlock(states.get(meta).getBlock()));
+                        worldIn.playEvent(2001, position, Block.getIdFromBlock(this.states.get(meta).getBlock()));
                     }
 
                     return EnumActionResult.SUCCESS;

@@ -23,11 +23,11 @@ public class ItemSeeds extends ItemMetaDynamic implements IPlantable
 
     public ItemStack addMeta(int meta, String name, IBlockState state)
     {
-        states.put(meta, state);
+        this.states.put(meta, state);
 
         crop = state;
 
-        ItemStack ret = addMeta(meta, name);
+        ItemStack ret = this.addMeta(meta, name);
 
         return ret;
     }
@@ -35,7 +35,7 @@ public class ItemSeeds extends ItemMetaDynamic implements IPlantable
     @Override
     public ItemStack addMeta(int meta, String name)
     {
-        if (!states.containsKey(meta))
+        if (!this.states.containsKey(meta))
         {
             throw new RuntimeException("Usage of wrong function. Use the addMeta function that has an amount paired with it with this implementation");
         }
@@ -54,7 +54,7 @@ public class ItemSeeds extends ItemMetaDynamic implements IPlantable
         {
             int meta = stack.getMetadata();
 
-            if (isValid(meta))
+            if (this.isValid(meta))
             {
                 if (playerIn.canPlayerEdit(pos, facing, stack) && playerIn.canPlayerEdit(pos.up(), facing, stack))
                 {
@@ -63,7 +63,7 @@ public class ItemSeeds extends ItemMetaDynamic implements IPlantable
 
                     if (block != null && block.canSustainPlant(state, worldIn, pos, EnumFacing.UP, this) && worldIn.isAirBlock(pos.up()))
                     {
-                        worldIn.setBlockState(pos.up(), states.get(meta));
+                        worldIn.setBlockState(pos.up(), this.states.get(meta));
                         --stack.stackSize;
                         return EnumActionResult.SUCCESS;
                     }

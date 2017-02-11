@@ -108,14 +108,12 @@ public class NaturaCommons extends NaturaPulse
     public static ItemStack berryMedley;
 
     public static ItemStack cactusJuice;
-    
+
     //Seed Bags
     public static ItemStack wheat_seed_bag;
     public static ItemStack carrots_seed_bag;
     public static ItemStack potatoes_seed_bag;
     public static ItemStack nether_wart_seed_bag;
-    public static ItemStack cotton_seed_bag;
-    public static ItemStack barley_seed_bag;
     //@formatter:on
 
     @Subscribe
@@ -196,12 +194,6 @@ public class NaturaCommons extends NaturaPulse
         carrots_seed_bag = seed_bags.addMeta(1, "carrots_seed_bag", Blocks.CARROTS.getDefaultState().withProperty(BlockCrops.AGE, Integer.valueOf(0)));
         potatoes_seed_bag = seed_bags.addMeta(2, "potatoes_seed_bag", Blocks.POTATOES.getDefaultState().withProperty(BlockCrops.AGE, Integer.valueOf(0)));
         nether_wart_seed_bag = seed_bags.addMeta(3, "nether_wart_seed_bag", Blocks.NETHER_WART.getDefaultState().withProperty(BlockNetherWart.AGE, Integer.valueOf(0)));
-
-        if (isOverworldLoaded())
-        {
-            //cotton_seed_bag = seed_bags.addMeta(4, Blocks.WHEAT.getDefaultState().withProperty(BlockCrops.AGE, Integer.valueOf(0)), "cotton_seed_bag");
-            //barley_seed_bag = seed_bags.addMeta(5, Blocks.WHEAT.getDefaultState().withProperty(BlockCrops.AGE, Integer.valueOf(0)), "barley_seed_bag");
-        }
 
         boneMealBag = registerItem(new ItemBoneBag(), "bonemeal_bag");
 

@@ -290,5 +290,6 @@ public class OverworldClientProxy extends ClientProxy
         }
 
         NaturaOverworld.overworldSeeds.registerItemModels();
+        NaturaOverworld.overworldSeedBags.registerItemModels();
     }
 }

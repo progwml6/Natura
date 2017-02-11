@@ -26,17 +26,17 @@ public class ItemNaturaBow extends ItemBow
         this.setFull3D();
         this.bow = bow;
 
-        addPropertyOverride(new ResourceLocation("pull"), new IItemPropertyGetter()
+        this.addPropertyOverride(new ResourceLocation("pull"), new IItemPropertyGetter()
         {
             @Override
             @SideOnly(Side.CLIENT)
             public float apply(ItemStack stack, @Nullable World worldIn, @Nullable EntityLivingBase entityIn)
             {
-                return updatePullProperty(stack, worldIn, entityIn);
+                return ItemNaturaBow.this.updatePullProperty(stack, worldIn, entityIn);
             }
         });
 
-        addPropertyOverride(new ResourceLocation("pulling"), new IItemPropertyGetter()
+        this.addPropertyOverride(new ResourceLocation("pulling"), new IItemPropertyGetter()
         {
             @Override
             @SideOnly(Side.CLIENT)

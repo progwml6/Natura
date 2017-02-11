@@ -8,6 +8,7 @@ import com.progwml6.natura.common.config.Config;
 import com.progwml6.natura.world.NaturaWorld;
 import com.progwml6.natura.world.worldgen.BerryBushGenerator;
 import com.progwml6.natura.world.worldgen.CloudGenerator;
+import com.progwml6.natura.world.worldgen.CropGenerator;
 import com.progwml6.natura.world.worldgen.GlowshroomGenerator;
 import com.progwml6.natura.world.worldgen.TreeGenerator;
 import com.progwml6.natura.world.worldgen.VineGenerator;
@@ -31,6 +32,8 @@ public class TickHandlerWorldRetrogen
     private final GlowshroomGenerator glowshroomGenerator = new GlowshroomGenerator();
 
     private final VineGenerator vineGenerator = new VineGenerator();
+
+    private final CropGenerator cropGenerator = new CropGenerator();
 
     private final LinkedListMultimap<Integer, ChunkCoords> chunkRegenList = LinkedListMultimap.create();
 
@@ -68,6 +71,7 @@ public class TickHandlerWorldRetrogen
                 }
                 this.glowshroomGenerator.retroGen(random, coords.xCoord, coords.zCoord, world);
                 this.vineGenerator.retroGen(random, coords.xCoord, coords.zCoord, world);
+                this.cropGenerator.retroGen(random, coords.xCoord, coords.zCoord, world);
             }
         }
     }

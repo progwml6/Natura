@@ -33,7 +33,7 @@ public class ThornvinesGenerator implements IWorldGenerator
     {
         if (world.getBlockState(pos).getBlock() == Blocks.AIR)
         {
-            world.setBlockState(pos, getRandomizedVine(random), 2);
+            world.setBlockState(pos, this.getRandomizedVine(random), 2);
         }
     }
 

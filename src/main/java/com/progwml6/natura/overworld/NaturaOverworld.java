@@ -30,6 +30,7 @@ import com.progwml6.natura.overworld.block.slabs.BlockOverworldSlab;
 import com.progwml6.natura.overworld.block.slabs.BlockOverworldSlab2;
 import com.progwml6.natura.overworld.item.ItemSeeds;
 import com.progwml6.natura.shared.NaturaCommons;
+import com.progwml6.natura.shared.item.bags.ItemSeedBag;
 
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
@@ -103,9 +104,13 @@ public class NaturaOverworld extends NaturaPulse
 
     // Items
     public static ItemSeeds overworldSeeds;
+    public static ItemSeedBag overworldSeedBags;
 
     public static ItemStack barley_seeds;
     public static ItemStack cotton_seeds;
+
+    public static ItemStack cotton_seed_bag;
+    public static ItemStack barley_seed_bag;
     //@formatter:on
 
     @Subscribe
@@ -158,11 +163,19 @@ public class NaturaOverworld extends NaturaPulse
         cottonCrop = registerBlock(new BlockNaturaCotton(), "cotton_crop");
 
         overworldSeeds = registerItem(new ItemSeeds(), "overworld_seeds");
+        overworldSeedBags = registerItem(new ItemSeedBag(), "overworld_seed_bags");
 
         overworldSeeds.setCreativeTab(NaturaRegistry.tabGeneral);
+        overworldSeedBags.setCreativeTab(NaturaRegistry.tabGeneral);
 
         barley_seeds = overworldSeeds.addMeta(0, "barley_seeds", barleyCrop.getDefaultState().withProperty(BlockNaturaBarley.AGE, 0));
         cotton_seeds = overworldSeeds.addMeta(1, "cotton_seeds", cottonCrop.getDefaultState().withProperty(BlockNaturaCotton.AGE, 0));
+
+        if (isOverworldLoaded())
+        {
+            barley_seed_bag = overworldSeedBags.addMeta(0, "barley_seed_bag", NaturaOverworld.barleyCrop.getDefaultState().withProperty(BlockNaturaBarley.AGE, Integer.valueOf(0)));
+            cotton_seed_bag = overworldSeedBags.addMeta(1, "cotton_seed_bag", NaturaOverworld.cottonCrop.getDefaultState().withProperty(BlockNaturaCotton.AGE, Integer.valueOf(0)));
+        }
 
         proxy.preInit();
 
