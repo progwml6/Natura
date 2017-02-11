@@ -174,7 +174,7 @@ public class TreeGenerator implements IWorldGenerator
             }
         }
 
-        if (BiomeDictionary.isBiomeOfType(biome, Type.MOUNTAIN) && BiomeDictionary.isBiomeOfType(biome, Type.HILLS))
+        if (BiomeDictionary.isBiomeOfType(biome, Type.MOUNTAIN) || BiomeDictionary.isBiomeOfType(biome, Type.HILLS))
         {
             if (Config.generateHopseed && random.nextInt(Config.hopseedSpawnRarity) == 0)
             {
