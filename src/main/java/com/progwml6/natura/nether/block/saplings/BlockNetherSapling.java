@@ -222,14 +222,14 @@ public class BlockNetherSapling extends BlockSapling
             log = NaturaNether.netherLog.getDefaultState().withProperty(BlockNetherLog.TYPE, BlockNetherLog.LogType.FUSEWOOD);
             leaves = NaturaNether.netherLeaves.getDefaultState().withProperty(BlockNetherLeaves.TYPE, BlockNetherLeaves.LeavesType.FUSEWOOD);
 
-            gen = new FusewoodTreeGenerator(3, log, leaves);
+            gen = new FusewoodTreeGenerator(3, log, leaves, false);
 
             break;
         case GHOSTWOOD:
             log = NaturaNether.netherLog.getDefaultState().withProperty(BlockNetherLog.TYPE, BlockNetherLog.LogType.GHOSTWOOD);
             leaves = NaturaNether.netherLeaves.getDefaultState().withProperty(BlockNetherLeaves.TYPE, BlockNetherLeaves.LeavesType.GHOSTWOOD);
 
-            gen = new GhostwoodTreeGenerator(log, leaves);
+            gen = new GhostwoodTreeGenerator(log, leaves, false);
 
             break;
         default:

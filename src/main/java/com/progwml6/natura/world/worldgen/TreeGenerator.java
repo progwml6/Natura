@@ -83,7 +83,7 @@ public class TreeGenerator implements IWorldGenerator
 
         this.darkwoodTreeGen = new DarkwoodTreeGenerator(3, netherLog.withProperty(BlockNetherLog.TYPE, BlockNetherLog.LogType.DARKWOOD), netherLeaves2.withProperty(BlockNetherLeaves2.TYPE, BlockNetherLeaves2.LeavesType.DARKWOOD), netherLeaves2.withProperty(BlockNetherLeaves2.TYPE, BlockNetherLeaves2.LeavesType.DARKWOOD_FLOWERING), netherLeaves2.withProperty(BlockNetherLeaves2.TYPE, BlockNetherLeaves2.LeavesType.DARKWOOD_FRUIT));
         this.fusewoodTreeGen = new FusewoodTreeGenerator(3, netherLog.withProperty(BlockNetherLog.TYPE, BlockNetherLog.LogType.FUSEWOOD), netherLeaves.withProperty(BlockNetherLeaves.TYPE, BlockNetherLeaves.LeavesType.FUSEWOOD));
-        this.ghostwoodTreeGen = new GhostwoodTreeGenerator(netherLog.withProperty(BlockNetherLog.TYPE, BlockNetherLog.LogType.GHOSTWOOD), netherLeaves.withProperty(BlockNetherLeaves.TYPE, BlockNetherLeaves.LeavesType.GHOSTWOOD));
+        this.ghostwoodTreeGen = new GhostwoodTreeGenerator(netherLog.withProperty(BlockNetherLog.TYPE, BlockNetherLog.LogType.GHOSTWOOD), netherLeaves.withProperty(BlockNetherLeaves.TYPE, BlockNetherLeaves.LeavesType.GHOSTWOOD), true);
     }
 
     @Override
@@ -312,7 +312,7 @@ public class TreeGenerator implements IWorldGenerator
                 ySpawn = 72;
                 zSpawn = zPos + random.nextInt(16);
                 position = new BlockPos(xSpawn, ySpawn, zSpawn);
-
+            
                 this.bloodwoodTreeGen.generateTree(random, world, position);
             }*/
 

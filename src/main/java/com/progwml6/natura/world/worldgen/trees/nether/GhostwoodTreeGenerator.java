@@ -51,10 +51,13 @@ public class GhostwoodTreeGenerator extends BaseTreeGenerator
 
     public final IBlockState leaves;
 
-    public GhostwoodTreeGenerator(IBlockState log, IBlockState leaves)
+    public final boolean seekHeight;
+
+    public GhostwoodTreeGenerator(IBlockState log, IBlockState leaves, boolean seekHeight)
     {
         this.log = log;
         this.leaves = leaves;
+        this.seekHeight = seekHeight;
     }
 
     /**
@@ -402,7 +405,16 @@ public class GhostwoodTreeGenerator extends BaseTreeGenerator
     public void generateTree(Random random, World worldIn, BlockPos position)
     {
         this.world = worldIn;
-        this.basePos = position;
+
+        if (this.seekHeight)
+        {
+            this.basePos = this.findGround(worldIn, position);
+        }
+        else
+        {
+            this.basePos = position;
+        }
+
         this.rand = new Random(random.nextLong());
 
         if (this.heightLimit == 0)
