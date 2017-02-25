@@ -87,7 +87,6 @@ public class ItemSeeds extends ItemMetaDynamic implements IPlantable
     @Override
     public IBlockState getPlant(IBlockAccess world, BlockPos pos)
     {
-        System.out.println(crop);
         return crop;
     }
 }
