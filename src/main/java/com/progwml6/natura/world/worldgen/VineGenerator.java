@@ -6,6 +6,7 @@ import com.progwml6.natura.common.config.Config;
 import com.progwml6.natura.nether.NaturaNether;
 import com.progwml6.natura.world.worldgen.vine.ThornvinesGenerator;
 
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
@@ -66,6 +67,7 @@ public class VineGenerator implements IWorldGenerator
 
                 for (int i = 0; i < 20; i++)
                 {
+                    IBlockState vine = this.thornvinesGen.getRandomizedVine(random);
                     xSpawn = xPos + random.nextInt(16);
                     zSpawn = zPos + random.nextInt(16);
                     int size = random.nextInt(25) + 1;
@@ -74,7 +76,7 @@ public class VineGenerator implements IWorldGenerator
                     for (int yHeight = ySpawn; yHeight > height; yHeight--)
                     {
                         position = new BlockPos(xSpawn, yHeight, zSpawn);
-                        this.thornvinesGen.generateVines(random, world, position);
+                        this.thornvinesGen.generateVines(random, world, position, vine);
                     }
                 }
             }

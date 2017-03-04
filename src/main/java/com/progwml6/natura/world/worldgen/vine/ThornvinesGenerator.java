@@ -29,15 +29,15 @@ public class ThornvinesGenerator implements IWorldGenerator
 
     }
 
-    public void generateVines(Random random, World world, BlockPos pos)
+    public void generateVines(Random random, World world, BlockPos pos, IBlockState vine)
     {
         if (world.getBlockState(pos).getBlock() == Blocks.AIR)
         {
-            world.setBlockState(pos, this.getRandomizedVine(random), 2);
+            world.setBlockState(pos, vine, 2);
         }
     }
 
-    protected IBlockState getRandomizedVine(Random random)
+    public IBlockState getRandomizedVine(Random random)
     {
         IBlockState state = NaturaNether.netherThornVines.getDefaultState();
         PropertyBool[] sides = new PropertyBool[] { BlockVine.NORTH, BlockVine.EAST, BlockVine.SOUTH, BlockVine.WEST };
