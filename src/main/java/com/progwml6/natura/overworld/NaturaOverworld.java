@@ -7,7 +7,9 @@ import org.apache.logging.log4j.Logger;
 import com.google.common.eventbus.Subscribe;
 import com.progwml6.natura.common.CommonProxy;
 import com.progwml6.natura.common.NaturaPulse;
+import com.progwml6.natura.common.block.BlockNaturaDoor;
 import com.progwml6.natura.common.item.ItemBlockLeaves;
+import com.progwml6.natura.common.item.ItemNaturaDoor;
 import com.progwml6.natura.library.NaturaRegistry;
 import com.progwml6.natura.library.Util;
 import com.progwml6.natura.overworld.block.bush.BlockOverworldBerryBush;
@@ -102,15 +104,28 @@ public class NaturaOverworld extends NaturaPulse
     public static Block barleyCrop;
     public static Block cottonCrop;
 
+    public static BlockNaturaDoor eucalyptusDoor;
+    public static BlockNaturaDoor hopseedDoor;
+    public static BlockNaturaDoor sakuraDoor;
+    public static BlockNaturaDoor redwoodDoor;
+    public static BlockNaturaDoor redwoodBarkDoor;
+
     // Items
     public static ItemSeeds overworldSeeds;
     public static ItemSeedBag overworldSeedBags;
+    public static ItemNaturaDoor overworldDoors;
 
     public static ItemStack barley_seeds;
     public static ItemStack cotton_seeds;
 
     public static ItemStack cotton_seed_bag;
     public static ItemStack barley_seed_bag;
+
+    public static ItemStack eucalyptus_door;
+    public static ItemStack hopseed_door;
+    public static ItemStack sakura_door;
+    public static ItemStack redwood_door;
+    public static ItemStack redwood_bark_door;
     //@formatter:on
 
     @Subscribe
@@ -162,20 +177,40 @@ public class NaturaOverworld extends NaturaPulse
         barleyCrop = registerBlock(new BlockNaturaBarley(), "barley_crop");
         cottonCrop = registerBlock(new BlockNaturaCotton(), "cotton_crop");
 
+        eucalyptusDoor = registerBlock(new BlockNaturaDoor(), "overworld_door_eucalyptus");
+        hopseedDoor = registerBlock(new BlockNaturaDoor(), "overworld_door_hopseed");
+        sakuraDoor = registerBlock(new BlockNaturaDoor(), "overworld_door_sakura");
+        redwoodDoor = registerBlock(new BlockNaturaDoor(), "overworld_door_redwood");
+        redwoodBarkDoor = registerBlock(new BlockNaturaDoor(), "overworld_door_redwood_bark");
+
         overworldSeeds = registerItem(new ItemSeeds(), "overworld_seeds");
         overworldSeedBags = registerItem(new ItemSeedBag(), "overworld_seed_bags");
+        overworldDoors = registerItem(new ItemNaturaDoor(), "overworld_doors");
 
         overworldSeeds.setCreativeTab(NaturaRegistry.tabGeneral);
         overworldSeedBags.setCreativeTab(NaturaRegistry.tabGeneral);
+        overworldDoors.setCreativeTab(NaturaRegistry.tabGeneral);
 
-        barley_seeds = overworldSeeds.addMeta(0, "barley_seeds", barleyCrop.getDefaultState().withProperty(BlockNaturaBarley.AGE, 0));
-        cotton_seeds = overworldSeeds.addMeta(1, "cotton_seeds", cottonCrop.getDefaultState().withProperty(BlockNaturaCotton.AGE, 0));
+        barley_seeds = overworldSeeds.addMeta(0, "barley_seeds", NaturaOverworld.barleyCrop.getDefaultState().withProperty(BlockNaturaBarley.AGE, 0));
+        cotton_seeds = overworldSeeds.addMeta(1, "cotton_seeds", NaturaOverworld.cottonCrop.getDefaultState().withProperty(BlockNaturaCotton.AGE, 0));
 
         if (isOverworldLoaded())
         {
             barley_seed_bag = overworldSeedBags.addMeta(0, "barley_seed_bag", NaturaOverworld.barleyCrop.getDefaultState().withProperty(BlockNaturaBarley.AGE, Integer.valueOf(0)));
             cotton_seed_bag = overworldSeedBags.addMeta(1, "cotton_seed_bag", NaturaOverworld.cottonCrop.getDefaultState().withProperty(BlockNaturaCotton.AGE, Integer.valueOf(0)));
         }
+
+        eucalyptus_door = overworldDoors.addMeta(0, "eucalyptus_door", NaturaOverworld.eucalyptusDoor.getDefaultState());
+        hopseed_door = overworldDoors.addMeta(1, "hopseed_door", NaturaOverworld.hopseedDoor.getDefaultState());
+        sakura_door = overworldDoors.addMeta(2, "sakura_door", NaturaOverworld.sakuraDoor.getDefaultState());
+        redwood_door = overworldDoors.addMeta(3, "redwood_door", NaturaOverworld.redwoodDoor.getDefaultState());
+        redwood_bark_door = overworldDoors.addMeta(4, "redwood_bark_door", NaturaOverworld.redwoodBarkDoor.getDefaultState());
+
+        eucalyptusDoor.setDoor(NaturaOverworld.eucalyptus_door);
+        hopseedDoor.setDoor(NaturaOverworld.hopseed_door);
+        sakuraDoor.setDoor(NaturaOverworld.sakura_door);
+        redwoodDoor.setDoor(NaturaOverworld.redwood_door);
+        redwoodBarkDoor.setDoor(NaturaOverworld.redwood_bark_door);
 
         proxy.preInit();
 

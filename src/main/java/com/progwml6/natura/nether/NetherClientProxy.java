@@ -19,6 +19,7 @@ import com.progwml6.natura.nether.block.saplings.BlockNetherSapling2;
 import com.progwml6.natura.nether.block.shrooms.BlockNetherGlowshroom;
 import com.progwml6.natura.nether.block.shrooms.BlockNetherLargeGlowshroom;
 
+import net.minecraft.block.BlockDoor;
 import net.minecraft.block.BlockLeaves;
 import net.minecraft.block.BlockSapling;
 import net.minecraft.block.state.IBlockState;
@@ -31,6 +32,7 @@ import net.minecraft.client.renderer.color.IItemColor;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.client.model.ModelLoader;
@@ -91,6 +93,9 @@ public class NetherClientProxy extends ClientProxy
 
         ModelLoader.setCustomStateMapper(NaturaNether.netherSapling, (new StateMap.Builder()).ignore(BlockNetherSapling.STAGE, BlockSapling.TYPE).build());
         ModelLoader.setCustomStateMapper(NaturaNether.netherSapling2, (new StateMap.Builder()).ignore(BlockNetherSapling2.STAGE, BlockSapling.TYPE).build());
+
+        ModelLoader.setCustomStateMapper(NaturaNether.ghostwoodDoor, (new StateMap.Builder()).ignore(BlockDoor.POWERED).build());
+        ModelLoader.setCustomStateMapper(NaturaNether.bloodwoodDoor, (new StateMap.Builder()).ignore(BlockDoor.POWERED).build());
 
         registerItemBlockMeta(NaturaNether.netherPlanks);
         registerItemBlockMeta(NaturaNether.netherTaintedSoil);
@@ -217,5 +222,13 @@ public class NetherClientProxy extends ClientProxy
             String variant = String.format("%s=%s", BlockNetherLargeGlowshroom.VARIANT.getName(), BlockNetherLargeGlowshroom.VARIANT.getName(type));
             ModelLoader.setCustomModelResourceLocation(nether_large_purple_glowshroom, type.getMeta(), new ModelResourceLocation(nether_large_purple_glowshroom.getRegistryName(), variant));
         }
+
+        stack = new ItemStack(Item.getItemFromBlock(NaturaNether.ghostwoodDoor), 1, NaturaNether.ghostwoodDoor.getMetaFromState(NaturaNether.ghostwoodDoor.getDefaultState().withProperty(BlockDoor.FACING, EnumFacing.EAST).withProperty(BlockDoor.OPEN, Boolean.valueOf(false)).withProperty(BlockDoor.HINGE, BlockDoor.EnumHingePosition.LEFT).withProperty(BlockDoor.HALF, BlockDoor.EnumDoorHalf.LOWER)));
+        this.registerItemModelNatura(stack, "nether_door_ghostwood");
+
+        stack = new ItemStack(Item.getItemFromBlock(NaturaNether.bloodwoodDoor), 1, NaturaNether.bloodwoodDoor.getMetaFromState(NaturaNether.bloodwoodDoor.getDefaultState().withProperty(BlockDoor.FACING, EnumFacing.EAST).withProperty(BlockDoor.OPEN, Boolean.valueOf(false)).withProperty(BlockDoor.HINGE, BlockDoor.EnumHingePosition.LEFT).withProperty(BlockDoor.HALF, BlockDoor.EnumDoorHalf.LOWER)));
+        this.registerItemModelNatura(stack, "nether_door_bloodwood");
+
+        NaturaNether.netherDoors.registerItemModels();
     }
 }

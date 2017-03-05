@@ -20,6 +20,7 @@ import com.progwml6.natura.overworld.block.saplings.BlockOverworldSapling;
 import com.progwml6.natura.overworld.block.saplings.BlockOverworldSapling2;
 import com.progwml6.natura.overworld.block.saplings.BlockRedwoodSapling;
 
+import net.minecraft.block.BlockDoor;
 import net.minecraft.block.BlockLeaves;
 import net.minecraft.block.BlockSapling;
 import net.minecraft.block.state.IBlockState;
@@ -33,6 +34,7 @@ import net.minecraft.client.resources.IReloadableResourceManager;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.client.model.ModelLoader;
@@ -159,6 +161,12 @@ public class OverworldClientProxy extends ClientProxy
         ModelLoader.setCustomStateMapper(NaturaOverworld.overworldSapling, (new StateMap.Builder()).ignore(BlockOverworldSapling.STAGE, BlockSapling.TYPE).build());
         ModelLoader.setCustomStateMapper(NaturaOverworld.overworldSapling2, (new StateMap.Builder()).ignore(BlockOverworldSapling2.STAGE, BlockSapling.TYPE).build());
         ModelLoader.setCustomStateMapper(NaturaOverworld.redwoodSapling, (new StateMap.Builder()).ignore(BlockRedwoodSapling.STAGE, BlockSapling.TYPE).build());
+
+        ModelLoader.setCustomStateMapper(NaturaOverworld.eucalyptusDoor, (new StateMap.Builder()).ignore(BlockDoor.POWERED).build());
+        ModelLoader.setCustomStateMapper(NaturaOverworld.hopseedDoor, (new StateMap.Builder()).ignore(BlockDoor.POWERED).build());
+        ModelLoader.setCustomStateMapper(NaturaOverworld.sakuraDoor, (new StateMap.Builder()).ignore(BlockDoor.POWERED).build());
+        ModelLoader.setCustomStateMapper(NaturaOverworld.redwoodDoor, (new StateMap.Builder()).ignore(BlockDoor.POWERED).build());
+        ModelLoader.setCustomStateMapper(NaturaOverworld.redwoodBarkDoor, (new StateMap.Builder()).ignore(BlockDoor.POWERED).build());
 
         registerItemBlockMeta(NaturaOverworld.redwoodLog);
         registerItemBlockMeta(NaturaOverworld.overworldPlanks);
@@ -289,7 +297,19 @@ public class OverworldClientProxy extends ClientProxy
             ModelLoader.setCustomModelResourceLocation(cotton_crop, meta, new ModelResourceLocation(cotton_crop.getRegistryName(), variant));
         }
 
+        stack = new ItemStack(Item.getItemFromBlock(NaturaOverworld.eucalyptusDoor), 1, NaturaOverworld.eucalyptusDoor.getMetaFromState(NaturaOverworld.eucalyptusDoor.getDefaultState().withProperty(BlockDoor.FACING, EnumFacing.EAST).withProperty(BlockDoor.OPEN, Boolean.valueOf(false)).withProperty(BlockDoor.HINGE, BlockDoor.EnumHingePosition.LEFT).withProperty(BlockDoor.HALF, BlockDoor.EnumDoorHalf.LOWER)));
+        this.registerItemModelNatura(stack, "overworld_door_eucalyptus");
+        stack = new ItemStack(Item.getItemFromBlock(NaturaOverworld.hopseedDoor), 1, NaturaOverworld.hopseedDoor.getMetaFromState(NaturaOverworld.hopseedDoor.getDefaultState().withProperty(BlockDoor.FACING, EnumFacing.EAST).withProperty(BlockDoor.OPEN, Boolean.valueOf(false)).withProperty(BlockDoor.HINGE, BlockDoor.EnumHingePosition.LEFT).withProperty(BlockDoor.HALF, BlockDoor.EnumDoorHalf.LOWER)));
+        this.registerItemModelNatura(stack, "overworld_door_hopseed");
+        stack = new ItemStack(Item.getItemFromBlock(NaturaOverworld.sakuraDoor), 1, NaturaOverworld.sakuraDoor.getMetaFromState(NaturaOverworld.sakuraDoor.getDefaultState().withProperty(BlockDoor.FACING, EnumFacing.EAST).withProperty(BlockDoor.OPEN, Boolean.valueOf(false)).withProperty(BlockDoor.HINGE, BlockDoor.EnumHingePosition.LEFT).withProperty(BlockDoor.HALF, BlockDoor.EnumDoorHalf.LOWER)));
+        this.registerItemModelNatura(stack, "overworld_door_sakura");
+        stack = new ItemStack(Item.getItemFromBlock(NaturaOverworld.redwoodDoor), 1, NaturaOverworld.redwoodDoor.getMetaFromState(NaturaOverworld.redwoodDoor.getDefaultState().withProperty(BlockDoor.FACING, EnumFacing.EAST).withProperty(BlockDoor.OPEN, Boolean.valueOf(false)).withProperty(BlockDoor.HINGE, BlockDoor.EnumHingePosition.LEFT).withProperty(BlockDoor.HALF, BlockDoor.EnumDoorHalf.LOWER)));
+        this.registerItemModelNatura(stack, "overworld_door_redwood");
+        stack = new ItemStack(Item.getItemFromBlock(NaturaOverworld.redwoodBarkDoor), 1, NaturaOverworld.redwoodBarkDoor.getMetaFromState(NaturaOverworld.redwoodBarkDoor.getDefaultState().withProperty(BlockDoor.FACING, EnumFacing.EAST).withProperty(BlockDoor.OPEN, Boolean.valueOf(false)).withProperty(BlockDoor.HINGE, BlockDoor.EnumHingePosition.LEFT).withProperty(BlockDoor.HALF, BlockDoor.EnumDoorHalf.LOWER)));
+        this.registerItemModelNatura(stack, "overworld_door_redwood_bark");
+
         NaturaOverworld.overworldSeeds.registerItemModels();
         NaturaOverworld.overworldSeedBags.registerItemModels();
+        NaturaOverworld.overworldDoors.registerItemModels();
     }
 }

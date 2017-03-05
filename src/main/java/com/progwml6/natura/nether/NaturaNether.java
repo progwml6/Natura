@@ -5,7 +5,10 @@ import org.apache.logging.log4j.Logger;
 import com.google.common.eventbus.Subscribe;
 import com.progwml6.natura.common.CommonProxy;
 import com.progwml6.natura.common.NaturaPulse;
+import com.progwml6.natura.common.block.BlockNaturaDoor;
 import com.progwml6.natura.common.item.ItemBlockLeaves;
+import com.progwml6.natura.common.item.ItemNaturaDoor;
+import com.progwml6.natura.library.NaturaRegistry;
 import com.progwml6.natura.library.Util;
 import com.progwml6.natura.nether.block.bush.BlockNetherBerryBush;
 import com.progwml6.natura.nether.block.glass.BlockNetherGlass;
@@ -79,6 +82,15 @@ public class NaturaNether extends NaturaPulse
     public static BlockNetherLargeGlowshroom netherLargePurpleGlowshroom;
 
     public static BlockRespawnObelisk respawnObelisk;
+
+    public static BlockNaturaDoor ghostwoodDoor;
+    public static BlockNaturaDoor bloodwoodDoor;
+
+    // Items
+    public static ItemNaturaDoor netherDoors;
+
+    public static ItemStack ghostwood_door;
+    public static ItemStack bloodwood_door;
     //@formatter:on
 
     @Subscribe
@@ -121,6 +133,19 @@ public class NaturaNether extends NaturaPulse
         netherLargeGreenGlowshroom = registerBlock(new BlockNetherLargeGlowshroom(netherGlowshroom, BlockNetherGlowshroom.GlowshroomType.GREEN.getMeta()), "nether_green_large_glowshroom", BlockNetherLargeGlowshroom.VARIANT);
         netherLargeBlueGlowshroom = registerBlock(new BlockNetherLargeGlowshroom(netherGlowshroom, BlockNetherGlowshroom.GlowshroomType.BLUE.getMeta()), "nether_blue_large_glowshroom", BlockNetherLargeGlowshroom.VARIANT);
         netherLargePurpleGlowshroom = registerBlock(new BlockNetherLargeGlowshroom(netherGlowshroom, BlockNetherGlowshroom.GlowshroomType.PURPLE.getMeta()), "nether_purple_large_glowshroom", BlockNetherLargeGlowshroom.VARIANT);
+
+        ghostwoodDoor = registerBlock(new BlockNaturaDoor(), "nether_door_ghostwood");
+        bloodwoodDoor = registerBlock(new BlockNaturaDoor(), "nether_door_bloodwood");
+
+        netherDoors = registerItem(new ItemNaturaDoor(), "nether_doors");
+
+        netherDoors.setCreativeTab(NaturaRegistry.tabGeneral);
+
+        ghostwood_door = netherDoors.addMeta(0, "ghostwood_door", NaturaNether.ghostwoodDoor.getDefaultState());
+        bloodwood_door = netherDoors.addMeta(1, "bloodwood_door", NaturaNether.bloodwoodDoor.getDefaultState());
+
+        ghostwoodDoor.setDoor(NaturaNether.ghostwood_door);
+        bloodwoodDoor.setDoor(NaturaNether.bloodwood_door);
 
         proxy.preInit();
     }
