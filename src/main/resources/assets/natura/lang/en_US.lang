@@ -88,6 +88,10 @@ tile.natura.colored_grass_slab.topiary.name=Topiary Grass Slab
 tile.natura.colored_grass_slab.bluegrass.name=Bluegrass Slab
 tile.natura.colored_grass_slab.autumnal.name=Autumnal Grass Slab
 
+tile.natura.colored_grass_stairs_topiary.name=Topiary Grass Stairs
+tile.natura.colored_grass_stairs_bluegrass.name=Bluegrass Stairs
+tile.natura.colored_grass_stairs_autumnal.name=Autumnal Grass Stairs
+
 tile.natura.overworld_planks.maple.name=Maple Planks
 tile.natura.overworld_planks.maple.tooltip=Somewhat Sweet
 tile.natura.overworld_planks.silverbell.name=Silverbell Planks
@@ -154,6 +158,9 @@ tile.natura.nether_logs.darkwood.tooltip=Nether Tree
 tile.natura.nether_logs.fusewood.name=Fusewood
 tile.natura.nether_logs.fusewood.tooltip=Nether Tree\nExplosive Personality
 
+tile.natura.nether_logs2.name=Bloodwood
+tile.natura.nether_logs2.tooltip=Fire-resistant tree
+
 tile.natura.nether_leaves.ghostwood.name=Ghostwood Leaves
 tile.natura.nether_leaves.ghostwood.tooltip=Nether Tree\nPale as a ghost
 tile.natura.nether_leaves.bloodwood.name=Blood Leaves
@@ -170,12 +177,13 @@ tile.natura.nether_leaves2.darkwood_fruit.tooltip=Nether Tree\nContains an apple
 
 tile.natura.nether_sapling.ghostwood.name=Ghostwood Sapling
 tile.natura.nether_sapling.ghostwood.tooltip=Pale as a ghost
-tile.natura.nether_sapling.bloodwood.name=Bloodwood Sapling
-tile.natura.nether_sapling.bloodwood.tooltip=Fire-resistant planks
 tile.natura.nether_sapling.fusewood.name=Fusewood Sapling
 tile.natura.nether_sapling.fusewood.tooltip=Explosive Personality
 tile.natura.nether_sapling.darkwood.name=Darkwood Sapling
 tile.natura.nether_sapling.darkwood.tooltip=Produces chalky apples
+
+tile.natura.nether_sapling2.bloodwood.name=Bloodwood Sapling
+tile.natura.nether_sapling2.bloodwood.tooltip=Fire-resistant planks
 
 tile.natura.nether_planks.ghostwood.name=Ghostwood Planks
 tile.natura.nether_planks.ghostwood.tooltip=Pale as a ghost
@@ -212,7 +220,7 @@ tile.natura.nether_heat_sand.name=Heat Sand
 
 tile.natura.nether_berrybush_blightberry.name=Blightberry Bush
 tile.natura.nether_berrybush_blightberry.tooltip=A little bit evil\nKiller healing
-tile.natura.nether_berrybush_duskberry.name=DuskBerry Bush
+tile.natura.nether_berrybush_duskberry.name=Duskberry Bush
 tile.natura.nether_berrybush_duskberry.tooltip=A little bit evil\nVisible night
 tile.natura.nether_berrybush_skyberry.name=Skyberry Bush
 tile.natura.nether_berrybush_skyberry.tooltip=A little bit evil\nSlow dive
@@ -227,6 +235,10 @@ tile.natura.nether_thorn_vines.name=Thornvines
 tile.natura.nether_glowshroom.green.name=Green Glowshroom
 tile.natura.nether_glowshroom.blue.name=Blue Glowshroom
 tile.natura.nether_glowshroom.purple.name=Purple Glowshroom
+
+tile.natura.nether_green_large_glowshroom.all_inside.name=Green Glowshroom
+tile.natura.nether_blue_large_glowshroom.all_inside.name=Blue Glowshroom
+tile.natura.nether_purple_large_glowshroom.all_inside.name=Purple Glowshroom
 
 ################
 #    Items     #
@@ -258,8 +270,8 @@ item.natura.edibles.stingberry.tooltip=A little bit evil\nHit like a truck
 item.natura.edibles.potashapple.name=Potash Apple
 item.natura.edibles.potashapple.tooltip=Tastes a bit like chalk
 
-item.natura.edibles.cactusfruit.name=Cactus Juice
-item.natura.edibles.cactusfruit.tooltip=Refreshing!
+item.natura.edibles.cactusjuice.name=Cactus Juice
+item.natura.edibles.cactusjuice.tooltip=Refreshing!
 
 item.natura.materials.barley.name=Barley
 item.natura.materials.barley.tooltip=Similar to wheat, it grows in the wild
@@ -278,6 +290,20 @@ item.natura.materials.imp_leather.tooltip=Resist the heat of the Nether
 item.natura.materials.flame_string.name=Flamestring
 item.natura.materials.flame_string.tooltip=Somewhat more durable than string
 item.natura.materials.blue_dye.name=Blue Dye
+
+item.natura.sticks.maple_stick.name=Maple Sticks
+item.natura.sticks.silverbell_stick.name=Silverbell Sticks
+item.natura.sticks.amaranth_stick.name=Amaranth Sticks
+item.natura.sticks.tiger_stick.name=Tiger Sticks
+item.natura.sticks.willow_stick.name=Willow Sticks
+item.natura.sticks.eucalyptus_stick.name=Eucalyptus Sticks
+item.natura.sticks.hopseed_stick.name=Hopseed Sticks
+item.natura.sticks.sakura_stick.name=Sakura Sticks
+item.natura.sticks.redwood_stick.name=Redwood Sticks
+item.natura.sticks.ghostwood_stick.name=Ghostwood Sticks
+item.natura.sticks.darkwood_stick.name=Darkwood Sticks
+item.natura.sticks.fusewood_stick.name=Fusewood Sticks
+item.natura.sticks.bloodwood_stick.name=Bloodwood Sticks
 
 item.natura.empty_bowls.ghostwood_bowl.name=Empty Ghostwood Bowl
 item.natura.empty_bowls.bloodwood_bowl.name=Empty Bloodwood Bowl
@@ -298,6 +324,46 @@ item.natura.soups.fusewood_glowshroomstew.name=Glowshroom Stew
 item.natura.soups.berry_medley.name=Berry Medley
 item.natura.soups.berry_medley.tooltip=An irresistable combination of berries
 
+item.natura.imp_armor_helmet.name=Impskin Helmet
+item.natura.imp_armor_chestplate.name=Impskin Jerkin
+item.natura.imp_armor_leggings.name=Impskin Leggings
+item.natura.imp_armor_boots.name=Impskin Boots
+
+item.natura.seed_bags.wheat_seed_bag.name=Wheat Seed Bag
+item.natura.seed_bags.wheat_seed_bag.tooltip=Plants in a 3x3 area
+item.natura.seed_bags.potatoes_seed_bag.name=Potato Bag
+item.natura.seed_bags.potatoes_seed_bag.tooltip=Plants in a 3x3 area
+item.natura.seed_bags.carrots_seed_bag.name=Carrot Bag
+item.natura.seed_bags.carrots_seed_bag.tooltip=Plants in a 3x3 area
+item.natura.seed_bags.nether_wart_seed_bag.name=Nether Wart Bag
+item.natura.seed_bags.nether_wart_seed_bag.tooltip=Plants in a 3x3 area
+item.natura.bonemeal_bag.name=Bone meal Bag
+item.natura.bonemeal_bag.tooltip=Grows plants in a 3x3 area
+item.natura.overworld_seed_bags.barley_seed_bag.name=Barley Seed Bag
+item.natura.overworld_seed_bags.barley_seed_bag.tooltip=Plants in a 3x3 area
+item.natura.overworld_seed_bags.cotton_seed_bag.name=Cotton Seed Bag
+item.natura.overworld_seed_bags.cotton_seed_bag.tooltip=Plants in a 3x3 area
+
+item.natura.overworld_seeds.barley_seeds.name=Barley Seeds
+item.natura.overworld_seeds.barley_seeds.tooltip=Similar to wheat, it grows in the wild
+item.natura.overworld_seeds.cotton_seeds.name=Cotton Seeds
+item.natura.overworld_seeds.cotton_seeds.tooltip=The source of all string and wool
+
+item.natura.overworld_doors.eucalyptus_door.name=Eucalyptus Door
+item.natura.overworld_doors.eucalyptus_door.tooltip=The pink wood
+item.natura.overworld_doors.hopseed_door.name=Hopseed Door
+item.natura.overworld_doors.hopseed_door.tooltip=Ascended Glitch
+item.natura.overworld_doors.sakura_door.name=Sakura Door
+item.natura.overworld_doors.sakura_door.tooltip=Flowering Cherry
+item.natura.overworld_doors.redwood_door.name=Redwood Door
+item.natura.overworld_doors.redwood_door.tooltip=Giant Sequoia
+item.natura.overworld_doors.redwood_bark_door.name=Redwood Bark Door
+item.natura.overworld_doors.redwood_bark_door.tooltip=Secret Tunnel
+item.natura.overworld_doors.ghostwood_door.name=Ghostwood Door
+item.natura.overworld_doors.ghostwood_door.tooltip=Pale as a ghost
+item.natura.overworld_doors.bloodwood_door.name=Bloodwood Door
+item.natura.overworld_doors.bloodwood_door.tooltip=Fire-resistant door
+
 #################
 #   Entities    #
 #################
@@ -314,3 +380,6 @@ entity.natura.nitrocreeper.name=Nitro Creeper
 # Creative Tabs
 itemGroup.NaturaGeneral=Natura's General Items
 itemGroup.NaturaWorld=Natura's World Items
+
+option.natura.alternatecropitem=Alternate Crop
+option.natura.alternatedooritem=Alternate Door
