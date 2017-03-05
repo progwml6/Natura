@@ -14,6 +14,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldType;
 import net.minecraft.world.chunk.IChunkGenerator;
 import net.minecraft.world.chunk.IChunkProvider;
 
@@ -56,7 +57,9 @@ public class RedwoodTreeGenerator extends BaseTreeGenerator
 
     public final boolean useHeight;
 
-    public RedwoodTreeGenerator(IBlockState bark, IBlockState heart, IBlockState root, IBlockState leaves, boolean useHeight)
+    public final boolean isSapling;
+
+    public RedwoodTreeGenerator(IBlockState bark, IBlockState heart, IBlockState root, IBlockState leaves, boolean useHeight, boolean isSapling)
     {
         this.bark = bark;
         this.heart = heart;
@@ -64,11 +67,12 @@ public class RedwoodTreeGenerator extends BaseTreeGenerator
 
         this.leaves = leaves;
         this.useHeight = useHeight;
+        this.isSapling = isSapling;
     }
 
     public RedwoodTreeGenerator(IBlockState log, IBlockState heart, IBlockState root, IBlockState leaves)
     {
-        this(log, heart, root, leaves, true);
+        this(log, heart, root, leaves, true, true);
     }
 
     /**
@@ -311,26 +315,52 @@ public class RedwoodTreeGenerator extends BaseTreeGenerator
 
     BlockPos findGround(World world, BlockPos pos)
     {
-        boolean foundGround = false;
-
-        int height = Config.seaLevel + 64;
-
-        do
+        if (world.getWorldType() == WorldType.FLAT && this.isSapling)
         {
-            height--;
+            boolean foundGround = false;
 
-            BlockPos position = new BlockPos(pos.getX(), height, pos.getZ());
+            int height = Config.flatSeaLevel + 64;
 
-            Block underBlock = world.getBlockState(position).getBlock();
-
-            if (underBlock == Blocks.DIRT || underBlock == Blocks.GRASS || height < Config.seaLevel)
+            do
             {
-                foundGround = true;
-            }
-        }
-        while (!foundGround);
+                height--;
 
-        return new BlockPos(pos.getX(), height, pos.getZ());
+                BlockPos position = new BlockPos(pos.getX(), height, pos.getZ());
+
+                Block underBlock = world.getBlockState(position).getBlock();
+
+                if (underBlock == Blocks.DIRT || underBlock == Blocks.GRASS || height < Config.flatSeaLevel)
+                {
+                    foundGround = true;
+                }
+            }
+            while (!foundGround);
+
+            return new BlockPos(pos.getX(), height, pos.getZ());
+        }
+        else
+        {
+            boolean foundGround = false;
+
+            int height = Config.seaLevel + 64;
+
+            do
+            {
+                height--;
+
+                BlockPos position = new BlockPos(pos.getX(), height, pos.getZ());
+
+                Block underBlock = world.getBlockState(position).getBlock();
+
+                if (underBlock == Blocks.DIRT || underBlock == Blocks.GRASS || height < Config.seaLevel)
+                {
+                    foundGround = true;
+                }
+            }
+            while (!foundGround);
+
+            return new BlockPos(pos.getX(), height, pos.getZ());
+        }
     }
 
     public boolean isValidSpawn(World world, BlockPos pos)

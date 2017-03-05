@@ -163,24 +163,6 @@ public class EucalyptusTreeGenerator extends BaseTreeGenerator
         return new BlockPos(pos.getX(), returnHeight, pos.getZ());
     }
 
-    /*@SuppressWarnings("deprecation")
-    BlockPos findGround(World world, BlockPos pos)
-    {
-        do
-        {
-            IBlockState state = world.getBlockState(pos);
-            Block block = state.getBlock();
-            if ((block == Blocks.DIRT || block == Blocks.GRASS) && !world.getBlockState(pos.up()).getBlock().isOpaqueCube(state))
-            {
-                return pos.up();
-            }
-            pos = pos.down();
-        }
-        while (pos.getY() > 0);
-
-        return pos;
-    }*/
-
     private void genBranch(World world, Random random, BlockPos pos, int height, int direction)
     {
         int posX = pos.getX();

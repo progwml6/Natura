@@ -12,6 +12,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldType;
 import net.minecraft.world.chunk.IChunkGenerator;
 import net.minecraft.world.chunk.IChunkProvider;
 
@@ -27,18 +28,21 @@ public class WillowTreeGenerator extends BaseTreeGenerator
 
     public final boolean seekHeight;
 
-    public WillowTreeGenerator(int treeHeight, int treeRange, IBlockState log, IBlockState leaves, boolean seekHeight)
+    public final boolean isSapling;
+
+    public WillowTreeGenerator(int treeHeight, int treeRange, IBlockState log, IBlockState leaves, boolean seekHeight, boolean isSapling)
     {
         this.minTreeHeight = treeHeight;
         this.treeHeightRange = treeRange;
         this.log = log;
         this.leaves = leaves;
         this.seekHeight = seekHeight;
+        this.isSapling = isSapling;
     }
 
     public WillowTreeGenerator(int treeHeight, int treeRange, IBlockState log, IBlockState leaves)
     {
-        this(treeHeight, treeRange, log, leaves, true);
+        this(treeHeight, treeRange, log, leaves, true, false);
     }
 
     @Override
@@ -218,23 +222,46 @@ public class WillowTreeGenerator extends BaseTreeGenerator
 
         int height = pos.getY();
 
-        do
+        if (world.getWorldType() == WorldType.FLAT && this.isSapling)
         {
-            BlockPos position = new BlockPos(pos.getX(), height, pos.getZ());
-
-            Block block = world.getBlockState(position).getBlock();
-
-            if ((block == Blocks.DIRT || block == Blocks.GRASS || block == Blocks.SAND) && !world.getBlockState(position.up()).isFullBlock())
+            do
             {
-                returnHeight = height + 1;
-                break;
+                BlockPos position = new BlockPos(pos.getX(), height, pos.getZ());
+
+                Block block = world.getBlockState(position).getBlock();
+
+                if ((block == Blocks.DIRT || block == Blocks.GRASS || block == Blocks.SAND) && !world.getBlockState(position.up()).isFullBlock())
+                {
+                    returnHeight = height + 1;
+                    break;
+                }
+
+                height--;
             }
+            while (height > Config.flatSeaLevel);
 
-            height--;
+            return new BlockPos(pos.getX(), returnHeight, pos.getZ());
         }
-        while (height > Config.seaLevel);
+        else
+        {
+            do
+            {
+                BlockPos position = new BlockPos(pos.getX(), height, pos.getZ());
 
-        return new BlockPos(pos.getX(), returnHeight, pos.getZ());
+                Block block = world.getBlockState(position).getBlock();
+
+                if ((block == Blocks.DIRT || block == Blocks.GRASS || block == Blocks.SAND) && !world.getBlockState(position.up()).isFullBlock())
+                {
+                    returnHeight = height + 1;
+                    break;
+                }
+
+                height--;
+            }
+            while (height > Config.seaLevel);
+
+            return new BlockPos(pos.getX(), returnHeight, pos.getZ());
+        }
     }
 
     private void addDownLeaves(World worldIn, BlockPos pos)

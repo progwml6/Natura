@@ -13,6 +13,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockPos.MutableBlockPos;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldType;
 import net.minecraft.world.chunk.IChunkGenerator;
 import net.minecraft.world.chunk.IChunkProvider;
 
@@ -28,18 +29,21 @@ public class HopseedTreeGenerator extends BaseTreeGenerator
 
     public final boolean seekHeight;
 
-    public HopseedTreeGenerator(int treeHeight, int treeRange, IBlockState log, IBlockState leaves, boolean seekHeight)
+    public final boolean isSapling;
+
+    public HopseedTreeGenerator(int treeHeight, int treeRange, IBlockState log, IBlockState leaves, boolean seekHeight, boolean isSapling)
     {
         this.minTreeHeight = treeHeight;
         this.treeHeightRange = treeRange;
         this.log = log;
         this.leaves = leaves;
         this.seekHeight = seekHeight;
+        this.isSapling = isSapling;
     }
 
     public HopseedTreeGenerator(int treeHeight, int treeRange, IBlockState log, IBlockState leaves)
     {
-        this(treeHeight, treeRange, log, leaves, true);
+        this(treeHeight, treeRange, log, leaves, true, false);
     }
 
     @Override
@@ -171,29 +175,58 @@ public class HopseedTreeGenerator extends BaseTreeGenerator
 
     BlockPos findGround(World world, BlockPos pos)
     {
-        int returnHeight = 0;
-
-        boolean foundGround = false;
-
-        int height = Config.seaLevel + 64;
-
-        do
+        if (world.getWorldType() == WorldType.FLAT && this.isSapling)
         {
-            height--;
-            BlockPos position = new BlockPos(pos.getX(), height, pos.getZ());
+            int returnHeight = 0;
 
-            Block underBlock = world.getBlockState(position).getBlock();
+            boolean foundGround = false;
 
-            if (underBlock == Blocks.DIRT || underBlock == Blocks.GRASS || height < Config.seaLevel)
+            int height = Config.flatSeaLevel + 64;
+
+            do
             {
-                returnHeight = height + 1;
+                height--;
+                BlockPos position = new BlockPos(pos.getX(), height, pos.getZ());
 
-                foundGround = true;
+                Block underBlock = world.getBlockState(position).getBlock();
+
+                if (underBlock == Blocks.DIRT || underBlock == Blocks.GRASS || height < Config.flatSeaLevel)
+                {
+                    returnHeight = height + 1;
+
+                    foundGround = true;
+                }
             }
-        }
-        while (!foundGround);
+            while (!foundGround);
 
-        return new BlockPos(pos.getX(), returnHeight, pos.getZ());
+            return new BlockPos(pos.getX(), returnHeight, pos.getZ());
+        }
+        else
+        {
+            int returnHeight = 0;
+
+            boolean foundGround = false;
+
+            int height = Config.seaLevel + 64;
+
+            do
+            {
+                height--;
+                BlockPos position = new BlockPos(pos.getX(), height, pos.getZ());
+
+                Block underBlock = world.getBlockState(position).getBlock();
+
+                if (underBlock == Blocks.DIRT || underBlock == Blocks.GRASS || height < Config.seaLevel)
+                {
+                    returnHeight = height + 1;
+
+                    foundGround = true;
+                }
+            }
+            while (!foundGround);
+
+            return new BlockPos(pos.getX(), returnHeight, pos.getZ());
+        }
     }
 
     private void growLogs(World worldIn, BlockPos position)

@@ -15,6 +15,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldType;
 import net.minecraft.world.chunk.IChunkGenerator;
 import net.minecraft.world.chunk.IChunkProvider;
 
@@ -53,9 +54,12 @@ public class SakuraTreeGenerator extends BaseTreeGenerator
 
     public final boolean findGround;
 
-    public SakuraTreeGenerator(IBlockState log, IBlockState leaves, boolean findGround)
+    public final boolean isSapling;
+
+    public SakuraTreeGenerator(IBlockState log, IBlockState leaves, boolean findGround, boolean isSapling)
     {
         this.findGround = findGround;
+        this.isSapling = isSapling;
         this.log = log;
         this.leaves = leaves;
     }
@@ -369,24 +373,48 @@ public class SakuraTreeGenerator extends BaseTreeGenerator
 
     BlockPos findGround(World world, BlockPos pos)
     {
-        boolean foundGround = false;
-
-        int height = Config.seaLevel + 64;
-
-        do
+        if (world.getWorldType() == WorldType.FLAT && this.isSapling)
         {
-            height--;
-            BlockPos position = new BlockPos(pos.getX(), height, pos.getZ());
-            Block underBlock = world.getBlockState(position).getBlock();
+            boolean foundGround = false;
 
-            if (underBlock == Blocks.DIRT || underBlock == Blocks.GRASS || height < Config.seaLevel)
+            int height = Config.flatSeaLevel + 64;
+
+            do
             {
-                foundGround = true;
-            }
-        }
-        while (!foundGround);
+                height--;
+                BlockPos position = new BlockPos(pos.getX(), height, pos.getZ());
+                Block underBlock = world.getBlockState(position).getBlock();
 
-        return new BlockPos(pos.getX(), height + 1, pos.getZ());
+                if (underBlock == Blocks.DIRT || underBlock == Blocks.GRASS || height < Config.flatSeaLevel)
+                {
+                    foundGround = true;
+                }
+            }
+            while (!foundGround);
+
+            return new BlockPos(pos.getX(), height + 1, pos.getZ());
+        }
+        else
+        {
+            boolean foundGround = false;
+
+            int height = Config.seaLevel + 64;
+
+            do
+            {
+                height--;
+                BlockPos position = new BlockPos(pos.getX(), height, pos.getZ());
+                Block underBlock = world.getBlockState(position).getBlock();
+
+                if (underBlock == Blocks.DIRT || underBlock == Blocks.GRASS || height < Config.seaLevel)
+                {
+                    foundGround = true;
+                }
+            }
+            while (!foundGround);
+
+            return new BlockPos(pos.getX(), height + 1, pos.getZ());
+        }
     }
 
     public boolean isReplaceable(World world, BlockPos pos)
