@@ -3,9 +3,7 @@ package com.progwml6.natura.world.worldgen;
 import java.util.Random;
 
 import com.progwml6.natura.common.config.Config;
-import com.progwml6.natura.nether.NaturaNether;
 import com.progwml6.natura.overworld.NaturaOverworld;
-import com.progwml6.natura.world.worldgen.berry.nether.NetherBerryBushGenerator;
 import com.progwml6.natura.world.worldgen.berry.overworld.OverworldBerryBushGenerator;
 
 import net.minecraft.util.math.BlockPos;
@@ -17,46 +15,34 @@ import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.BiomeDictionary.Type;
 import net.minecraftforge.fml.common.IWorldGenerator;
 
-public class BerryBushGenerator implements IWorldGenerator
+public class OverworldBerryBushesGenerator implements IWorldGenerator
 {
-    public static BerryBushGenerator INSTANCE = new BerryBushGenerator();
+    public static OverworldBerryBushesGenerator INSTANCE = new OverworldBerryBushesGenerator();
 
     //@formatter:off
     OverworldBerryBushGenerator raspberryBushGen;
     OverworldBerryBushGenerator blueberryBushGen;
     OverworldBerryBushGenerator blackberryBushGen;
     OverworldBerryBushGenerator maloberryBushGen;
-
-    NetherBerryBushGenerator blightberryBushGen;
-    NetherBerryBushGenerator duskberryBushGen;
-    NetherBerryBushGenerator skyberryBushGen;
-    NetherBerryBushGenerator stingberryBushGen;
     //@formatter:on
 
-    public BerryBushGenerator()
+    public OverworldBerryBushesGenerator()
     {
         this.raspberryBushGen = new OverworldBerryBushGenerator(Config.seaLevel + Config.raspberrySpawnRange, NaturaOverworld.overworldBerryBushRaspberry.getDefaultState());
         this.blueberryBushGen = new OverworldBerryBushGenerator(Config.seaLevel + Config.blueberrySpawnRange, NaturaOverworld.overworldBerryBushBlueberry.getDefaultState());
         this.blackberryBushGen = new OverworldBerryBushGenerator(Config.seaLevel + Config.blackberrySpawnRange, NaturaOverworld.overworldBerryBushBlackberry.getDefaultState());
         this.maloberryBushGen = new OverworldBerryBushGenerator(Config.seaLevel + Config.maloberrySpawnRange, NaturaOverworld.overworldBerryBushMaloberry.getDefaultState());
-
-        this.blightberryBushGen = new NetherBerryBushGenerator(NaturaNether.netherBerryBushBlightberry.getDefaultState());
-        this.duskberryBushGen = new NetherBerryBushGenerator(NaturaNether.netherBerryBushDuskberry.getDefaultState());
-        this.skyberryBushGen = new NetherBerryBushGenerator(NaturaNether.netherBerryBushSkyberry.getDefaultState());
-        this.stingberryBushGen = new NetherBerryBushGenerator(NaturaNether.netherBerryBushStingberry.getDefaultState());
     }
 
     @Override
     public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider)
     {
         this.generateOverworld(random, chunkX, chunkZ, world);
-        this.generateNether(random, chunkX, chunkZ, world);
     }
 
     public void retroGen(Random random, int chunkX, int chunkZ, World world)
     {
         this.generateOverworld(random, chunkX, chunkZ, world);
-        this.generateNether(random, chunkX, chunkZ, world);
         world.getChunkFromChunkCoords(chunkX, chunkZ).setChunkModified();
     }
 
@@ -121,59 +107,6 @@ public class BerryBushGenerator implements IWorldGenerator
             position = new BlockPos(xSpawn, ySpawn, zSpawn);
 
             this.maloberryBushGen.generateBush(random, world, position);
-        }
-    }
-
-    public void generateNether(Random random, int chunkX, int chunkZ, World world)
-    {
-        int xSpawn, ySpawn, zSpawn;
-
-        int xPos = chunkX * 16 + 8;
-        int zPos = chunkZ * 16 + 8;
-
-        BlockPos position;
-
-        if (world.provider.doesWaterVaporize())
-        {
-            if (Config.generateBlightberries && random.nextInt(Config.blightberrySpawnRarity) == 0)
-            {
-                xSpawn = xPos + random.nextInt(16);
-                ySpawn = random.nextInt(Config.blightberrySpawnRange) + 16;
-                zSpawn = zPos + random.nextInt(16);
-                position = new BlockPos(xSpawn, ySpawn, zSpawn);
-
-                this.blightberryBushGen.generateBush(random, world, position);
-            }
-
-            if (Config.generateDuskberries && random.nextInt(Config.duskberrySpawnRarity) == 0)
-            {
-                xSpawn = xPos + random.nextInt(16);
-                ySpawn = random.nextInt(Config.duskberrySpawnRange) + 16;
-                zSpawn = zPos + random.nextInt(16);
-                position = new BlockPos(xSpawn, ySpawn, zSpawn);
-
-                this.duskberryBushGen.generateBush(random, world, position);
-            }
-
-            if (Config.generateSkyberries && random.nextInt(Config.skyberrySpawnRarity) == 0)
-            {
-                xSpawn = xPos + random.nextInt(16);
-                ySpawn = random.nextInt(Config.skyberrySpawnRange) + 16;
-                zSpawn = zPos + random.nextInt(16);
-                position = new BlockPos(xSpawn, ySpawn, zSpawn);
-
-                this.skyberryBushGen.generateBush(random, world, position);
-            }
-
-            if (Config.generateStingberries && random.nextInt(Config.stingberrySpawnRarity) == 0)
-            {
-                xSpawn = xPos + random.nextInt(16);
-                ySpawn = random.nextInt(Config.stingberrySpawnRange) + 16;
-                zSpawn = zPos + random.nextInt(16);
-                position = new BlockPos(xSpawn, ySpawn, zSpawn);
-
-                this.stingberryBushGen.generateBush(random, world, position);
-            }
         }
     }
 

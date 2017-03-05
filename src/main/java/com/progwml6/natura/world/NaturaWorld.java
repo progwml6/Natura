@@ -7,11 +7,13 @@ import com.progwml6.natura.common.CommonProxy;
 import com.progwml6.natura.common.NaturaPulse;
 import com.progwml6.natura.common.config.Config;
 import com.progwml6.natura.library.Util;
-import com.progwml6.natura.world.worldgen.BerryBushGenerator;
 import com.progwml6.natura.world.worldgen.CloudGenerator;
 import com.progwml6.natura.world.worldgen.CropGenerator;
 import com.progwml6.natura.world.worldgen.GlowshroomGenerator;
-import com.progwml6.natura.world.worldgen.TreeGenerator;
+import com.progwml6.natura.world.worldgen.NetherBerryBushesGenerator;
+import com.progwml6.natura.world.worldgen.NetherTreesGenerator;
+import com.progwml6.natura.world.worldgen.OverworldBerryBushesGenerator;
+import com.progwml6.natura.world.worldgen.OverworldTreesGenerator;
 import com.progwml6.natura.world.worldgen.VineGenerator;
 import com.progwml6.natura.world.worldgen.retrogen.TickHandlerWorldRetrogen;
 
@@ -50,24 +52,27 @@ public class NaturaWorld extends NaturaPulse
     {
         if (isOverworldLoaded())
         {
-            GameRegistry.registerWorldGenerator(TreeGenerator.INSTANCE, 0);
-            GameRegistry.registerWorldGenerator(BerryBushGenerator.INSTANCE, 0);
+            GameRegistry.registerWorldGenerator(OverworldTreesGenerator.INSTANCE, 0);
+            GameRegistry.registerWorldGenerator(OverworldBerryBushesGenerator.INSTANCE, 0);
 
             if (Config.enableCloudBlocks)
             {
                 GameRegistry.registerWorldGenerator(CloudGenerator.INSTANCE, 0);
             }
 
+            GameRegistry.registerWorldGenerator(CropGenerator.INSTANCE, 0);
+        }
+
+        if (isNetherLoaded())
+        {
+            GameRegistry.registerWorldGenerator(NetherTreesGenerator.INSTANCE, 0);
+            GameRegistry.registerWorldGenerator(NetherBerryBushesGenerator.INSTANCE, 0);
+
             GameRegistry.registerWorldGenerator(GlowshroomGenerator.INSTANCE, 0);
             GameRegistry.registerWorldGenerator(VineGenerator.INSTANCE, 0);
-
-            GameRegistry.registerWorldGenerator(CropGenerator.INSTANCE, 0);
-
-            //GameRegistry.registerWorldGenerator(TreeGenerator.INSTANCE, 25);
-            //GameRegistry.registerWorldGenerator(BerryBushGenerator.INSTANCE, 25);
-
-            MinecraftForge.EVENT_BUS.register(new TickHandlerWorldRetrogen());
         }
+
+        MinecraftForge.EVENT_BUS.register(TickHandlerWorldRetrogen.INSTANCE);
 
         proxy.postInit();
     }
