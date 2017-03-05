@@ -36,7 +36,7 @@ public class BlockEnumBerryBush extends Block implements IPlantable, IGrowable
 {
     public static final PropertyInteger AGE = PropertyInteger.create("age", 0, 3);
 
-    private ItemStack itemDrop;
+    private final ItemStack itemDrop;
 
     //@formatter:off
     public static final AxisAlignedBB SMALL_BUSH_AABB = new AxisAlignedBB(0.25D, 0.0D, 0.25D, 0.75D, 0.5D, 0.75D);
