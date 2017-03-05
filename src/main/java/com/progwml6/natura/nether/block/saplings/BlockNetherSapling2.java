@@ -10,12 +10,9 @@ import com.progwml6.natura.Natura;
 import com.progwml6.natura.library.NaturaRegistry;
 import com.progwml6.natura.nether.NaturaNether;
 import com.progwml6.natura.nether.block.leaves.BlockNetherLeaves;
-import com.progwml6.natura.nether.block.leaves.BlockNetherLeaves2;
-import com.progwml6.natura.nether.block.logs.BlockNetherLog;
+import com.progwml6.natura.nether.block.logs.BlockNetherLog2;
 import com.progwml6.natura.world.worldgen.trees.BaseTreeGenerator;
-import com.progwml6.natura.world.worldgen.trees.nether.DarkwoodTreeGenerator;
-import com.progwml6.natura.world.worldgen.trees.nether.FusewoodTreeGenerator;
-import com.progwml6.natura.world.worldgen.trees.nether.GhostwoodTreeGenerator;
+import com.progwml6.natura.world.worldgen.trees.nether.BloodwoodTreeGenerator;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockSapling;
@@ -37,11 +34,11 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.EnumPlantType;
 import slimeknights.mantle.block.EnumBlock;
 
-public class BlockNetherSapling extends BlockSapling
+public class BlockNetherSapling2 extends BlockSapling
 {
     public static PropertyEnum<SaplingType> FOLIAGE = PropertyEnum.create("foliage", SaplingType.class);
 
-    public BlockNetherSapling()
+    public BlockNetherSapling2()
     {
         this.setCreativeTab(NaturaRegistry.tabWorld);
         this.setDefaultState(this.blockState.getBaseState());
@@ -105,12 +102,12 @@ public class BlockNetherSapling extends BlockSapling
 
         if (block == null || block.isReplaceable(worldIn, pos))
         {
-            IBlockState soilBlockState = worldIn.getBlockState(pos.down());
-            Block netherSoil = soilBlockState.getBlock();
+            IBlockState ceilingBlockState = worldIn.getBlockState(pos.up());
+            Block netherCeiling = ceilingBlockState.getBlock();
 
-            if (netherSoil != null)
+            if (netherCeiling != null)
             {
-                if (this.canGrowOnBlock(netherSoil) || netherSoil.canSustainPlant(soilBlockState, worldIn, pos.down(), EnumFacing.UP, this))
+                if (this.canGrowOnBlock(netherCeiling) || netherCeiling.canSustainPlant(ceilingBlockState, worldIn, pos.up(), EnumFacing.DOWN, this))
                 {
                     return true;
                 }
@@ -124,18 +121,16 @@ public class BlockNetherSapling extends BlockSapling
     {
         switch (state.getValue(FOLIAGE))
         {
-        case DARKWOOD:
-        case FUSEWOOD:
-        case GHOSTWOOD:
-            IBlockState soilBlockState = worldIn.getBlockState(pos.down());
-            Block netherSoil = soilBlockState.getBlock();
+        case BLOODWOOD:
+            IBlockState ceilingBlockState = worldIn.getBlockState(pos.up());
+            Block netherCeiling = ceilingBlockState.getBlock();
 
-            if (netherSoil == null)
+            if (netherCeiling == null)
             {
                 return false;
             }
 
-            return this.canGrowOnBlock(netherSoil) || netherSoil.canSustainPlant(soilBlockState, worldIn, pos.down(), EnumFacing.UP, this);
+            return this.canGrowOnBlock(netherCeiling) || netherCeiling.canSustainPlant(ceilingBlockState, worldIn, pos.up(), EnumFacing.DOWN, this);
         default:
             return true;
         }
@@ -178,35 +173,23 @@ public class BlockNetherSapling extends BlockSapling
         BaseTreeGenerator gen = new BaseTreeGenerator();
 
         IBlockState log;
+        IBlockState log2;
+        IBlockState log3;
+        IBlockState log4;
+        IBlockState log5;
         IBlockState leaves;
-
-        // Only used by darkwood.
-        IBlockState flowering;
-        IBlockState fruiting;
 
         switch (state.getValue(FOLIAGE))
         {
-        case DARKWOOD:
-            log = NaturaNether.netherLog.getDefaultState().withProperty(BlockNetherLog.TYPE, BlockNetherLog.LogType.DARKWOOD);
-            flowering = NaturaNether.netherLeaves2.getDefaultState().withProperty(BlockNetherLeaves2.TYPE, BlockNetherLeaves2.LeavesType.DARKWOOD_FLOWERING);
-            fruiting = NaturaNether.netherLeaves2.getDefaultState().withProperty(BlockNetherLeaves2.TYPE, BlockNetherLeaves2.LeavesType.DARKWOOD_FRUIT);
-            leaves = NaturaNether.netherLeaves2.getDefaultState().withProperty(BlockNetherLeaves2.TYPE, BlockNetherLeaves2.LeavesType.DARKWOOD);
+        case BLOODWOOD:
+            log = NaturaNether.netherLog2.getDefaultState().withProperty(BlockNetherLog2.META, 15);
+            log2 = NaturaNether.netherLog2.getDefaultState().withProperty(BlockNetherLog2.META, 0);
+            log3 = NaturaNether.netherLog2.getDefaultState().withProperty(BlockNetherLog2.META, 1);
+            log4 = NaturaNether.netherLog2.getDefaultState().withProperty(BlockNetherLog2.META, 2);
+            log5 = NaturaNether.netherLog2.getDefaultState().withProperty(BlockNetherLog2.META, 3);
+            leaves = NaturaNether.netherLeaves.getDefaultState().withProperty(BlockNetherLeaves.TYPE, BlockNetherLeaves.LeavesType.BLOODWOOD);
 
-            gen = new DarkwoodTreeGenerator(3, log, leaves, flowering, fruiting);
-
-            break;
-        case FUSEWOOD:
-            log = NaturaNether.netherLog.getDefaultState().withProperty(BlockNetherLog.TYPE, BlockNetherLog.LogType.FUSEWOOD);
-            leaves = NaturaNether.netherLeaves.getDefaultState().withProperty(BlockNetherLeaves.TYPE, BlockNetherLeaves.LeavesType.FUSEWOOD);
-
-            gen = new FusewoodTreeGenerator(3, log, leaves, false);
-
-            break;
-        case GHOSTWOOD:
-            log = NaturaNether.netherLog.getDefaultState().withProperty(BlockNetherLog.TYPE, BlockNetherLog.LogType.GHOSTWOOD);
-            leaves = NaturaNether.netherLeaves.getDefaultState().withProperty(BlockNetherLeaves.TYPE, BlockNetherLeaves.LeavesType.GHOSTWOOD);
-
-            gen = new GhostwoodTreeGenerator(log, leaves, false);
+            gen = new BloodwoodTreeGenerator(log, log2, log3, log4, log5, leaves);
 
             break;
         default:
@@ -231,7 +214,7 @@ public class BlockNetherSapling extends BlockSapling
 
     public enum SaplingType implements IStringSerializable, EnumBlock.IEnumMeta
     {
-        GHOSTWOOD, FUSEWOOD, DARKWOOD;
+        BLOODWOOD;
 
         public final int meta;
 

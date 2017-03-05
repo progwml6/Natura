@@ -13,7 +13,9 @@ import com.progwml6.natura.library.client.state.CustomStateMap;
 import com.progwml6.natura.nether.block.leaves.BlockNetherLeaves;
 import com.progwml6.natura.nether.block.leaves.BlockNetherLeaves2;
 import com.progwml6.natura.nether.block.logs.BlockNetherLog;
+import com.progwml6.natura.nether.block.logs.BlockNetherLog2;
 import com.progwml6.natura.nether.block.saplings.BlockNetherSapling;
+import com.progwml6.natura.nether.block.saplings.BlockNetherSapling2;
 import com.progwml6.natura.nether.block.shrooms.BlockNetherGlowshroom;
 import com.progwml6.natura.nether.block.shrooms.BlockNetherLargeGlowshroom;
 
@@ -88,6 +90,7 @@ public class NetherClientProxy extends ClientProxy
         ModelLoader.setCustomStateMapper(NaturaNether.netherLeaves2, (new StateMap.Builder()).ignore(BlockLeaves.CHECK_DECAY, BlockLeaves.DECAYABLE).build());
 
         ModelLoader.setCustomStateMapper(NaturaNether.netherSapling, (new StateMap.Builder()).ignore(BlockNetherSapling.STAGE, BlockSapling.TYPE).build());
+        ModelLoader.setCustomStateMapper(NaturaNether.netherSapling2, (new StateMap.Builder()).ignore(BlockNetherSapling2.STAGE, BlockSapling.TYPE).build());
 
         registerItemBlockMeta(NaturaNether.netherPlanks);
         registerItemBlockMeta(NaturaNether.netherTaintedSoil);
@@ -110,6 +113,7 @@ public class NetherClientProxy extends ClientProxy
 
         this.registerItemModelNatura(new ItemStack(NaturaNether.netherThornVines), "nether_thorn_vine");
 
+        // logs
         Item nether_log = Item.getItemFromBlock(NaturaNether.netherLog);
         for (BlockNetherLog.LogType type : BlockNetherLog.LogType.values())
         {
@@ -117,6 +121,13 @@ public class NetherClientProxy extends ClientProxy
                     BlockNetherLog.LOG_AXIS.getName(BlockNetherLog.EnumAxis.Y), BlockNetherLog.TYPE.getName(),
                     BlockNetherLog.TYPE.getName(type));
             ModelLoader.setCustomModelResourceLocation(nether_log, type.meta, new ModelResourceLocation(nether_log.getRegistryName(), variant));
+        }
+
+        Item nether_log2 = Item.getItemFromBlock(NaturaNether.netherLog2);
+        for (int meta = 0; meta <= 15; meta++)
+        {
+            String variant = String.format("%s=%s", BlockNetherLog2.META.getName(), Integer.valueOf(meta));
+            ModelLoader.setCustomModelResourceLocation(nether_log2, meta, new ModelResourceLocation(nether_log2.getRegistryName(), variant));
         }
 
         // leaves
@@ -138,14 +149,14 @@ public class NetherClientProxy extends ClientProxy
         ItemStack stack = new ItemStack(Item.getItemFromBlock(NaturaNether.netherSapling), 1, NaturaNether.netherSapling.getMetaFromState(NaturaNether.netherSapling.getDefaultState().withProperty(BlockNetherSapling.FOLIAGE, BlockNetherSapling.SaplingType.GHOSTWOOD)));
         this.registerItemModelNatura(stack, "nether_sapling_ghostwood");
 
-        stack = new ItemStack(Item.getItemFromBlock(NaturaNether.netherSapling), 1, NaturaNether.netherSapling.getMetaFromState(NaturaNether.netherSapling.getDefaultState().withProperty(BlockNetherSapling.FOLIAGE, BlockNetherSapling.SaplingType.BLOODWOOD)));
-        this.registerItemModelNatura(stack, "nether_sapling_bloodwood");
-
         stack = new ItemStack(Item.getItemFromBlock(NaturaNether.netherSapling), 1, NaturaNether.netherSapling.getMetaFromState(NaturaNether.netherSapling.getDefaultState().withProperty(BlockNetherSapling.FOLIAGE, BlockNetherSapling.SaplingType.FUSEWOOD)));
         this.registerItemModelNatura(stack, "nether_sapling_fusewood");
 
         stack = new ItemStack(Item.getItemFromBlock(NaturaNether.netherSapling), 1, NaturaNether.netherSapling.getMetaFromState(NaturaNether.netherSapling.getDefaultState().withProperty(BlockNetherSapling.FOLIAGE, BlockNetherSapling.SaplingType.DARKWOOD)));
         this.registerItemModelNatura(stack, "nether_sapling_darkwood");
+
+        stack = new ItemStack(Item.getItemFromBlock(NaturaNether.netherSapling2), 1, NaturaNether.netherSapling2.getMetaFromState(NaturaNether.netherSapling2.getDefaultState().withProperty(BlockNetherSapling2.FOLIAGE, BlockNetherSapling2.SaplingType.BLOODWOOD)));
+        this.registerItemModelNatura(stack, "nether_sapling_bloodwood");
 
         // Bushes
         Item blightberry_berrybush = Item.getItemFromBlock(NaturaNether.netherBerryBushBlightberry);

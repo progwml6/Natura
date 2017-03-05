@@ -12,10 +12,12 @@ import com.progwml6.natura.nether.block.glass.BlockNetherGlass;
 import com.progwml6.natura.nether.block.leaves.BlockNetherLeaves;
 import com.progwml6.natura.nether.block.leaves.BlockNetherLeaves2;
 import com.progwml6.natura.nether.block.logs.BlockNetherLog;
+import com.progwml6.natura.nether.block.logs.BlockNetherLog2;
 import com.progwml6.natura.nether.block.obelisk.BlockRespawnObelisk;
 import com.progwml6.natura.nether.block.planks.BlockNetherPlanks;
 import com.progwml6.natura.nether.block.sand.BlockHeatSand;
 import com.progwml6.natura.nether.block.saplings.BlockNetherSapling;
+import com.progwml6.natura.nether.block.saplings.BlockNetherSapling2;
 import com.progwml6.natura.nether.block.shrooms.BlockNetherGlowshroom;
 import com.progwml6.natura.nether.block.shrooms.BlockNetherLargeGlowshroom;
 import com.progwml6.natura.nether.block.slabs.BlockNetherSlab;
@@ -47,9 +49,11 @@ public class NaturaNether extends NaturaPulse
 
     //@formatter:off
     public static BlockNetherLog netherLog;
+    public static BlockNetherLog2 netherLog2;
     public static BlockNetherLeaves netherLeaves;
     public static BlockNetherLeaves2 netherLeaves2;
     public static BlockNetherSapling netherSapling;
+    public static BlockNetherSapling2 netherSapling2;
     public static BlockNetherPlanks netherPlanks;
     public static Block netherSlab;
 
@@ -81,6 +85,7 @@ public class NaturaNether extends NaturaPulse
     public void preInit(FMLPreInitializationEvent event)
     {
         netherLog = registerEnumBlock(new BlockNetherLog(), "nether_logs");
+        netherLog2 = registerBlock(new BlockNetherLog2(), "nether_logs2");
 
         netherLeaves = registerBlock(new ItemBlockLeaves(new BlockNetherLeaves()), "nether_leaves");
         ItemBlockMeta.setMappingProperty(netherLeaves, BlockNetherLeaves.TYPE);
@@ -88,6 +93,7 @@ public class NaturaNether extends NaturaPulse
         ItemBlockMeta.setMappingProperty(netherLeaves2, BlockNetherLeaves2.TYPE);
 
         netherSapling = registerBlock(new BlockNetherSapling(), "nether_sapling", BlockNetherSapling.FOLIAGE);
+        netherSapling2 = registerBlock(new BlockNetherSapling2(), "nether_sapling2", BlockNetherSapling2.FOLIAGE);
 
         netherPlanks = registerEnumBlock(new BlockNetherPlanks(), "nether_planks");
 

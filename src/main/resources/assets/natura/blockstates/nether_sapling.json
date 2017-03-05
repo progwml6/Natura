@@ -11,11 +11,6 @@
                     "cross": "natura:blocks/saplings/nether/ghostwood_sapling"
                 }
             },
-            "bloodwood": {
-                "textures": {
-                    "cross": "natura:blocks/saplings/nether/bloodwood_sapling"
-                }
-            },
             "fusewood": {
                 "textures": {
                     "cross": "natura:blocks/saplings/nether/fusewood_sapling"

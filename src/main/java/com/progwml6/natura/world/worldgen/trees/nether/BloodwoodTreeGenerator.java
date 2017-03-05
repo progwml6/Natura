@@ -102,7 +102,7 @@ public class BloodwoodTreeGenerator extends BaseTreeGenerator
     private void genBranch(World world, Random random, BlockPos pos, int height, int direction)
     {
         int posX = pos.getX();
-        int posY = pos.getY() + height - 3;
+        int posY = pos.getY() + height;
         int posZ = pos.getZ();
         byte offsetX = 0;
         byte offsetZ = 0;
@@ -159,7 +159,7 @@ public class BloodwoodTreeGenerator extends BaseTreeGenerator
     private void genStraightBranch(World world, Random random, BlockPos pos, int height, int direction)
     {
         int posX = pos.getX();
-        int posY = pos.getY() + height - 3;
+        int posY = pos.getY() + height;
         int posZ = pos.getZ();
 
         byte xShift = 0;
