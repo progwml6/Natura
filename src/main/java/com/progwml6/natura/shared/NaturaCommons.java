@@ -56,6 +56,7 @@ public class NaturaCommons extends NaturaPulse
     public static ItemNaturaEdibleSoup soups;
     public static ItemSeedBag seed_bags;
     public static ItemBoneBag boneMealBag;
+    public static ItemMetaDynamic sticks;
 
     // Material Itemstacks
     public static ItemStack barley;
@@ -114,6 +115,21 @@ public class NaturaCommons extends NaturaPulse
     public static ItemStack carrots_seed_bag;
     public static ItemStack potatoes_seed_bag;
     public static ItemStack nether_wart_seed_bag;
+
+    //Wood Sticks
+    public static ItemStack maple_stick;
+    public static ItemStack silverbell_stick;
+    public static ItemStack amaranth_stick;
+    public static ItemStack tiger_stick;
+    public static ItemStack willow_stick;
+    public static ItemStack eucalyptus_stick;
+    public static ItemStack hopseed_stick;
+    public static ItemStack sakura_stick;
+    public static ItemStack redwood_stick;
+    public static ItemStack ghostwood_stick;
+    public static ItemStack darkwood_stick;
+    public static ItemStack fusewood_stick;
+    public static ItemStack bloodwood_stick;
     //@formatter:on
 
     @Subscribe
@@ -129,12 +145,14 @@ public class NaturaCommons extends NaturaPulse
         edibles = registerItem(new ItemNaturaEdible(), "edibles");
         soups = registerItem(new ItemNaturaEdibleSoup(), "soups");
         seed_bags = registerItem(new ItemSeedBag(), "seed_bags");
+        sticks = registerItem(new ItemMetaDynamic(), "sticks");
 
         materials.setCreativeTab(NaturaRegistry.tabGeneral);
         empty_bowls.setCreativeTab(NaturaRegistry.tabGeneral);
         edibles.setCreativeTab(NaturaRegistry.tabGeneral);
         soups.setCreativeTab(NaturaRegistry.tabGeneral);
         seed_bags.setCreativeTab(NaturaRegistry.tabGeneral);
+        sticks.setCreativeTab(NaturaRegistry.tabGeneral);
 
         barley = materials.addMeta(0, "barley");
         barleyFlour = materials.addMeta(1, "barley_flour");
@@ -196,6 +214,27 @@ public class NaturaCommons extends NaturaPulse
         nether_wart_seed_bag = seed_bags.addMeta(3, "nether_wart_seed_bag", Blocks.NETHER_WART.getDefaultState().withProperty(BlockNetherWart.AGE, Integer.valueOf(0)));
 
         boneMealBag = registerItem(new ItemBoneBag(), "bonemeal_bag");
+
+        if (isOverworldLoaded())
+        {
+            maple_stick = sticks.addMeta(0, "maple_stick");
+            silverbell_stick = sticks.addMeta(1, "silverbell_stick");
+            amaranth_stick = sticks.addMeta(2, "amaranth_stick");
+            tiger_stick = sticks.addMeta(3, "tiger_stick");
+            willow_stick = sticks.addMeta(4, "willow_stick");
+            eucalyptus_stick = sticks.addMeta(5, "eucalyptus_stick");
+            hopseed_stick = sticks.addMeta(6, "hopseed_stick");
+            sakura_stick = sticks.addMeta(7, "sakura_stick");
+            redwood_stick = sticks.addMeta(8, "redwood_stick");
+        }
+
+        if (isNetherLoaded())
+        {
+            ghostwood_stick = sticks.addMeta(9, "ghostwood_stick");
+            darkwood_stick = sticks.addMeta(10, "darkwood_stick");
+            fusewood_stick = sticks.addMeta(11, "fusewood_stick");
+            bloodwood_stick = sticks.addMeta(12, "bloodwood_stick");
+        }
 
         proxy.preInit();
 

@@ -10,6 +10,7 @@ import static com.progwml6.natura.shared.NaturaCommons.empty_bowls;
 import static com.progwml6.natura.shared.NaturaCommons.materials;
 import static com.progwml6.natura.shared.NaturaCommons.seed_bags;
 import static com.progwml6.natura.shared.NaturaCommons.soups;
+import static com.progwml6.natura.shared.NaturaCommons.sticks;
 
 import com.progwml6.natura.common.ClientProxy;
 
@@ -38,6 +39,7 @@ public class CommonsClientProxy extends ClientProxy
         soups.registerItemModels();
         edibles.registerItemModels();
         seed_bags.registerItemModels();
+        sticks.registerItemModels();
 
         registerItemModel(boneMealBag);
     }
