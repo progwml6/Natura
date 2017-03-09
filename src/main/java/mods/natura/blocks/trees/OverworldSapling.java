@@ -143,6 +143,7 @@ public class OverworldSapling extends BlockSapling
 
     public void func_149878_d (World world, int x, int y, int z, Random random)
     {
+        if (!net.minecraftforge.event.terraingen.TerrainGen.saplingGrowTree(world, random, x, y, z)) return;
         int md = world.getBlockMetadata(x, y, z) % 8;
         world.setBlock(x, y, z, Blocks.air);
         WorldGenerator obj = null;
