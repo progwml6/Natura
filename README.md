@@ -1,4 +1,4 @@
-#[Natura](http://www.minecraftforum.net/forums/mapping-and-modding/minecraft-mods/1294968-natura)
+# [Natura](http://www.minecraftforum.net/forums/mapping-and-modding/minecraft-mods/1294968-natura)
 
 We work all day and we work all night 	 
 The mandrake gives us quite a fright 	 
@@ -8,10 +8,10 @@ While we search for herbs to grow
 Heyo, Redwood trees! Chop them all day long~ 	 
 Heyo, Redwood trees! Chop them all day long~ 	
 
-##Development
+## Development
 Install Forge as usual, and setup your IDE as with any other Forge project. Forge Multipart, and CClib must be installed to `forge/mcp/jars/mods/` from the Forge File Server: [ForgeMultipart](http://files.minecraftforge.net/ForgeMultipart/) and [CClib](http://files.minecraftforge.net/CodeChickenLib/). The DEVELOPMENT version of NEI must be installed to the same directory from [Chicken Bones Site](http://www.chickenbones.craftsaddle.org/Files/New_Versions/links.php). Tinkers' Construct must be installed as well from [dvs1](https://dvs1.progwml6.com/jenkins/job/TConstruct_1.7.x/).
 
-##Issue reporting
+## Issue reporting
 Please include the following:
 
 * Minecraft version
