@@ -8,7 +8,6 @@ import com.progwml6.natura.overworld.block.crops.BlockNaturaBarley;
 import com.progwml6.natura.overworld.block.crops.BlockNaturaCotton;
 
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
@@ -92,7 +91,7 @@ public class CropGenerator implements IWorldGenerator
         {
             BlockPos blockpos = position.add(random.nextInt(8) - random.nextInt(8), random.nextInt(4) - random.nextInt(4), random.nextInt(8) - random.nextInt(8));
 
-            if (world.isAirBlock(blockpos) && Blocks.YELLOW_FLOWER.canBlockStay(world, blockpos, state))
+            if (world.isAirBlock(blockpos) && NaturaOverworld.barleyCrop.canBlockStay(world, blockpos, state))
             {
                 world.setBlockState(blockpos, state, 2);
             }
@@ -109,7 +108,7 @@ public class CropGenerator implements IWorldGenerator
         {
             BlockPos blockpos = position.add(random.nextInt(8) - random.nextInt(8), random.nextInt(4) - random.nextInt(4), random.nextInt(8) - random.nextInt(8));
 
-            if (world.isAirBlock(blockpos) && Blocks.YELLOW_FLOWER.canBlockStay(world, blockpos, state))
+            if (world.isAirBlock(blockpos) && NaturaOverworld.cottonCrop.canBlockStay(world, blockpos, state))
             {
                 world.setBlockState(blockpos, state, 2);
             }
@@ -126,7 +125,7 @@ public class CropGenerator implements IWorldGenerator
         {
             BlockPos blockpos = position.add(random.nextInt(8) - random.nextInt(8), random.nextInt(8) - random.nextInt(8), random.nextInt(8) - random.nextInt(8));
 
-            if (world.isAirBlock(blockpos) && Blocks.YELLOW_FLOWER.canBlockStay(world, blockpos, state))
+            if (world.isAirBlock(blockpos) && NaturaOverworld.bluebellsFlower.canBlockStay(world, blockpos, state))
             {
                 world.setBlockState(blockpos, state, 2);
             }

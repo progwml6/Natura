@@ -296,6 +296,22 @@ public class NaturaCommons extends NaturaPulse
         GameRegistry.addRecipe(new ItemStack(Items.CAKE, 1), "AAA", "BEB", " C ", 'A', Items.MILK_BUCKET, 'B', Items.SUGAR, 'C', wheatFlour.copy(), 'E', Items.EGG);
         GameRegistry.addRecipe(new ItemStack(Items.CAKE, 1), "AAA", "BEB", " C ", 'A', Items.MILK_BUCKET, 'B', Items.SUGAR, 'C', barleyFlour.copy(), 'E', Items.EGG);
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(blaze_hopper), "# #", "#C#", " # ", '#', new ItemStack(Items.BLAZE_ROD), 'C', "chestWood"));
+
+        GameRegistry.addRecipe(cactusJuice.copy(), "X", 'X', Blocks.CACTUS);
+        GameRegistry.addRecipe(new ItemStack(Items.WATER_BUCKET, 1), "www", "wBw", "www", 'w', cactusJuice.copy(), 'B', Items.BUCKET);
+
+        // Crops
+        GameRegistry.addRecipe(wheat_seed_bag.copy(), "sss", "sss", "sss", 's', Items.WHEAT_SEEDS);
+        GameRegistry.addRecipe(new ShapedOreRecipe(potatoes_seed_bag.copy(), "sss", "sss", "sss", 's', "cropPotato"));
+        GameRegistry.addRecipe(new ShapedOreRecipe(carrots_seed_bag.copy(), "sss", "sss", "sss", 's', "cropCarrot"));
+        GameRegistry.addRecipe(nether_wart_seed_bag.copy(), "sss", "sss", "sss", 's', Items.NETHER_WART);
+        GameRegistry.addRecipe(new ItemStack(boneMealBag, 1, 0), "sss", "sss", "sss", 's', new ItemStack(Items.DYE, 1, 15));
+
+        GameRegistry.addRecipe(new ItemStack(Items.WHEAT_SEEDS, 9, 0), "s", 's', wheat_seed_bag.copy());
+        GameRegistry.addRecipe(new ItemStack(Items.POTATO, 9, 0), "s", 's', potatoes_seed_bag.copy());
+        GameRegistry.addRecipe(new ItemStack(Items.CARROT, 9, 0), "s", 's', potatoes_seed_bag.copy());
+        GameRegistry.addRecipe(new ItemStack(Items.NETHER_WART, 9, 0), "s", 's', nether_wart_seed_bag.copy());
+        GameRegistry.addRecipe(new ItemStack(Items.DYE, 9, 15), "s", 's', boneMealBag);
     }
 
     private void registerSmelting()

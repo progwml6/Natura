@@ -58,6 +58,9 @@ public class NaturaOredict extends NaturaPulse
         oredict(NaturaCommons.barley, "cropBarley");
         oredict(NaturaCommons.cotton, "cropCotton");
 
+        oredict(NaturaCommons.barley, "listAllgrain");
+        oredict(NaturaCommons.cotton, "foodEqualswheat");
+
         oredict(NaturaCommons.blueDye, "dyeBlue");
 
         oredict(NaturaCommons.sulfurPowder, "dustSulphur");
@@ -114,6 +117,9 @@ public class NaturaOredict extends NaturaPulse
 
             oredict(NaturaOverworld.barley_seeds, "seedBarley");
             oredict(NaturaOverworld.cotton_seeds, "seedCotton");
+
+            oredict(NaturaOverworld.barley_seeds, "listAllseed");
+            oredict(NaturaOverworld.cotton_seeds, "listAllseed");
         }
     }
 

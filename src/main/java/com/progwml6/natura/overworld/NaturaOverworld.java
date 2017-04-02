@@ -8,6 +8,7 @@ import com.google.common.eventbus.Subscribe;
 import com.progwml6.natura.common.CommonProxy;
 import com.progwml6.natura.common.NaturaPulse;
 import com.progwml6.natura.common.block.BlockNaturaDoor;
+import com.progwml6.natura.common.config.Config;
 import com.progwml6.natura.common.item.ItemBlockLeaves;
 import com.progwml6.natura.common.item.ItemNaturaDoor;
 import com.progwml6.natura.library.NaturaRegistry;
@@ -46,6 +47,7 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
 import slimeknights.mantle.item.ItemBlockMeta;
 import slimeknights.mantle.pulsar.pulse.Pulse;
@@ -101,8 +103,8 @@ public class NaturaOverworld extends NaturaPulse
     public static Block overworldBerryBushBlackberry;
     public static Block overworldBerryBushMaloberry;
 
-    public static Block barleyCrop;
-    public static Block cottonCrop;
+    public static BlockNaturaBarley barleyCrop;
+    public static BlockNaturaCotton cottonCrop;
 
     public static BlockNaturaDoor eucalyptusDoor;
     public static BlockNaturaDoor hopseedDoor;
@@ -278,6 +280,22 @@ public class NaturaOverworld extends NaturaPulse
         addSlabRecipe(coloredGrassSlab, BlockColoredGrass.GrassType.TOPIARY.getMeta(), new ItemStack(coloredGrass, 1, BlockColoredGrass.GrassType.TOPIARY.getMeta()));
         addSlabRecipe(coloredGrassSlab, BlockColoredGrass.GrassType.BLUEGRASS.getMeta(), new ItemStack(coloredGrass, 1, BlockColoredGrass.GrassType.BLUEGRASS.getMeta()));
         addSlabRecipe(coloredGrassSlab, BlockColoredGrass.GrassType.AUTUMNAL.getMeta(), new ItemStack(coloredGrass, 1, BlockColoredGrass.GrassType.AUTUMNAL.getMeta()));
+
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Items.BREAD), "bbb", 'b', "cropBarley"));
+        GameRegistry.addRecipe(new ShapedOreRecipe(NaturaCommons.barleyFlour.copy(), "X", 'X', "cropBarley"));
+        if (Config.enableWheatRecipe)
+        {
+            GameRegistry.addRecipe(new ShapedOreRecipe(NaturaCommons.wheatFlour.copy(), "X", 'X', "cropWheat"));
+        }
+
+        GameRegistry.addRecipe(new ItemStack(NaturaCommons.materials, 2, 8), "X", 'X', new ItemStack(bluebellsFlower));
+
+        // Crops
+        GameRegistry.addRecipe(new ShapedOreRecipe(barley_seed_bag.copy(), "sss", "sss", "sss", 's', "seedBarley"));
+        GameRegistry.addRecipe(new ShapedOreRecipe(cotton_seed_bag.copy(), "sss", "sss", "sss", 's', "seedCotton"));
+
+        GameRegistry.addRecipe(new ItemStack(overworldSeeds, 9, 0), "s", 's', barley_seed_bag.copy());
+        GameRegistry.addRecipe(new ItemStack(overworldSeeds, 9, 1), "s", 's', cotton_seed_bag.copy());
 
     }
 
