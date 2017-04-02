@@ -1,6 +1,11 @@
-package com.progwml6.natura.plugin;
+package com.progwml6.natura.plugin.disabled;
 
-import java.lang.reflect.Method;
+public class HUDHandlerNatura
+{
+
+}
+
+/*import java.lang.reflect.Method;
 import java.util.List;
 
 import com.progwml6.natura.Natura;
@@ -273,4 +278,4 @@ public class HUDHandlerNatura extends HUDHandlerBase
         registrar.registerStackProvider(provider, netherSapling.getClass());
         registrar.registerStackProvider(provider, netherSapling2.getClass());
     }
-}
+}*/

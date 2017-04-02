@@ -1,6 +1,11 @@
-package com.progwml6.natura.plugin;
+package com.progwml6.natura.plugin.disabled;
 
-import mcp.mobius.waila.api.IWailaPlugin;
+public class PluginWailaDisabled
+{
+
+}
+
+/*import mcp.mobius.waila.api.IWailaPlugin;
 import mcp.mobius.waila.api.IWailaRegistrar;
 import mcp.mobius.waila.api.WailaPlugin;
 
@@ -12,5 +17,4 @@ public class PluginWaila implements IWailaPlugin
     {
         HUDHandlerNatura.register(registrar);
     }
-
-}
+}*/

@@ -51,6 +51,10 @@ repositories {
          name "Tehnut Maven FS"
          url "http://tehnut.info/maven"
     }
+    maven {
+         name "ProfMobius Maven FS"
+         url "http://mobiusstrip.eu/maven"
+    }
 }
 
 group = 'com.progwml6.natura'
@@ -62,7 +66,8 @@ dependencies {
     deobfCompile "slimeknights.mantle:Mantle:${minecraft_version}-${mantle_version}"
     deobfCompile "slimeknights:TConstruct:${minecraft_version}-${tconstruct_version}"
 
-    deobfCompile "mcp.mobius.waila:Hwyla:${hwyla_version}_${minecraft_version}"
+    //deobfCompile "mcp.mobius.waila:Hwyla:${hwyla_version}_${minecraft_version}"
+    deobfCompile "mcp.mobius.waila:Waila:${waila_version}_1.9.4" // ${minecraft_version}" No 1.10 version of waila, must use 1.9.4 version
 
     deobfCompile "mezz.jei:jei_${minecraft_version}:${jei_version}"
 

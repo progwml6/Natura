@@ -10,6 +10,7 @@ import com.progwml6.natura.library.Util;
 import com.progwml6.natura.nether.NaturaNether;
 import com.progwml6.natura.oredict.NaturaOredict;
 import com.progwml6.natura.overworld.NaturaOverworld;
+import com.progwml6.natura.plugin.waila.PluginWaila;
 import com.progwml6.natura.shared.NaturaCommons;
 import com.progwml6.natura.tools.NaturaTools;
 import com.progwml6.natura.world.NaturaWorld;
@@ -50,6 +51,8 @@ public class Natura
         pulseManager.registerPulse(new NaturaEntities());
         pulseManager.registerPulse(new NaturaOredict());
         pulseManager.registerPulse(new NaturaWorld());
+
+        pulseManager.registerPulse(new PluginWaila());
     }
 
     @EventHandler
