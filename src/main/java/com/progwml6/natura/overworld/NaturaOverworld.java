@@ -288,7 +288,7 @@ public class NaturaOverworld extends NaturaPulse
             GameRegistry.addRecipe(new ShapedOreRecipe(NaturaCommons.wheatFlour.copy(), "X", 'X', "cropWheat"));
         }
 
-        GameRegistry.addRecipe(new ItemStack(NaturaCommons.materials, 2, 8), "X", 'X', new ItemStack(bluebellsFlower));
+        GameRegistry.addShapelessRecipe(NaturaCommons.blueDye, new ItemStack(bluebellsFlower));
 
         // Crops
         GameRegistry.addRecipe(new ShapedOreRecipe(barley_seed_bag.copy(), "sss", "sss", "sss", 's', "seedBarley"));
