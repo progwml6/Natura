@@ -7,6 +7,7 @@ import com.progwml6.natura.common.CommonProxy;
 import com.progwml6.natura.common.NaturaPulse;
 import com.progwml6.natura.common.config.Config;
 import com.progwml6.natura.library.Util;
+import com.progwml6.natura.world.dimension.WorldProviderNetherite;
 import com.progwml6.natura.world.worldgen.CloudGenerator;
 import com.progwml6.natura.world.worldgen.CropGenerator;
 import com.progwml6.natura.world.worldgen.GlowshroomGenerator;
@@ -17,6 +18,8 @@ import com.progwml6.natura.world.worldgen.OverworldTreesGenerator;
 import com.progwml6.natura.world.worldgen.VineGenerator;
 import com.progwml6.natura.world.worldgen.retrogen.TickHandlerWorldRetrogen;
 
+import net.minecraft.world.DimensionType;
+import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -25,7 +28,7 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import slimeknights.mantle.pulsar.pulse.Pulse;
 
-@Pulse(id = NaturaWorld.PulseId, description = "Everything that's found in the world and worldgen")
+@Pulse(id = NaturaWorld.PulseId, description = "Everything that's found in the world and worldgen including the netherite dimension")
 public class NaturaWorld extends NaturaPulse
 {
     public static final String PulseId = "NaturaWorld";
@@ -70,6 +73,12 @@ public class NaturaWorld extends NaturaPulse
 
             GameRegistry.registerWorldGenerator(GlowshroomGenerator.INSTANCE, 0);
             GameRegistry.registerWorldGenerator(VineGenerator.INSTANCE, 0);
+
+            if (Config.overrideNether)
+            {
+                DimensionManager.unregisterDimension(-1);
+                DimensionManager.registerDimension(-1, DimensionType.register("Nether", "_nether", -1, WorldProviderNetherite.class, false));
+            }
         }
 
         MinecraftForge.EVENT_BUS.register(TickHandlerWorldRetrogen.INSTANCE);
