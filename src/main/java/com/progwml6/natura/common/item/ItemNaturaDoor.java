@@ -33,7 +33,7 @@ public class ItemNaturaDoor extends ItemMetaDynamic
     {
         if (!this.states.containsKey(meta))
         {
-            throw new RuntimeException("Usage of wrong function. Use the addMeta function that has an amount paired with it with this implementation");
+            throw new RuntimeException("Usage of wrong function. Use the addMeta function that has an state paired with it with this implementation");
         }
 
         return super.addMeta(meta, name);

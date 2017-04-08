@@ -337,7 +337,7 @@ item.natura.seed_bags.carrots_seed_bag.name=Carrot Bag
 item.natura.seed_bags.carrots_seed_bag.tooltip=Plants in a 3x3 area
 item.natura.seed_bags.nether_wart_seed_bag.name=Nether Wart Bag
 item.natura.seed_bags.nether_wart_seed_bag.tooltip=Plants in a 3x3 area
-item.natura.bonemeal_bag.name=Bone meal Bag
+item.natura.bonemeal_bag.name=Bone Meal Bag
 item.natura.bonemeal_bag.tooltip=Grows plants in a 3x3 area
 item.natura.overworld_seed_bags.barley_seed_bag.name=Barley Seed Bag
 item.natura.overworld_seed_bags.barley_seed_bag.tooltip=Plants in a 3x3 area
@@ -359,10 +359,52 @@ item.natura.overworld_doors.redwood_door.name=Redwood Door
 item.natura.overworld_doors.redwood_door.tooltip=Giant Sequoia
 item.natura.overworld_doors.redwood_bark_door.name=Redwood Bark Door
 item.natura.overworld_doors.redwood_bark_door.tooltip=Secret Tunnel
-item.natura.overworld_doors.ghostwood_door.name=Ghostwood Door
-item.natura.overworld_doors.ghostwood_door.tooltip=Pale as a ghost
-item.natura.overworld_doors.bloodwood_door.name=Bloodwood Door
-item.natura.overworld_doors.bloodwood_door.tooltip=Fire-resistant door
+
+item.natura.nether_doors.ghostwood_door.name=Ghostwood Door
+item.natura.nether_doors.ghostwood_door.tooltip=Pale as a ghost
+item.natura.nether_doors.bloodwood_door.name=Bloodwood Door
+item.natura.nether_doors.bloodwood_door.tooltip=Fire-resistant door
+
+################
+#    Tools     #
+################
+
+item.natura.flint_and_blaze.name=Flint and Blaze
+
+item.natura.ghostwood_sword.name=Ghostwood Sword
+item.natura.ghostwood_pickaxe.name=Ghostwood Pickaxe
+item.natura.ghostwood_shovel.name=Ghostwood Shovel
+item.natura.ghostwood_axe.name=Ghostwood Hatchet
+item.natura.ghostwood_kama.name=Ghostwood Kama
+item.natura.ghostwood_bow.name=Ghostwood Bow
+
+item.natura.bloodwood_sword.name=Bloodwood Sword
+item.natura.bloodwood_pickaxe.name=Bloodwood Pickaxe
+item.natura.bloodwood_shovel.name=Bloodwood Shovel
+item.natura.bloodwood_axe.name=Bloodwood Hatchet
+item.natura.bloodwood_kama.name=Bloodwood Kama
+item.natura.bloodwood_bow.name=Bloodwood Bow
+
+item.natura.darkwood_sword.name=Darkwood Sword
+item.natura.darkwood_pickaxe.name=Darkwood Pickaxe
+item.natura.darkwood_shovel.name=Darkwood Shovel
+item.natura.darkwood_axe.name=Darkwood Hatchet
+item.natura.darkwood_kama.name=Darkwood Kama
+item.natura.darkwood_bow.name=Darkwood Bow
+
+item.natura.fusewood_sword.name=Fusewood Sword
+item.natura.fusewood_pickaxe.name=Fusewood Pickaxe
+item.natura.fusewood_shovel.name=Fusewood Shovel
+item.natura.fusewood_axe.name=Fusewood Hatchet
+item.natura.fusewood_kama.name=Fusewood Kama
+item.natura.fusewood_bow.name=Fusewood Bow
+
+item.natura.netherquartz_sword.name=Quartz Sword
+item.natura.netherquartz_pickaxe.name=Quartz Pickaxe
+item.natura.netherquartz_shovel.name=Quartz Shovel
+item.natura.netherquartz_axe.name=Quartz Hatchet
+item.natura.netherquartz_kama.name=Quartz Kama
+item.natura.netherquartz_bow.name=Quartz Bow
 
 #################
 #   Entities    #
