@@ -3,6 +3,7 @@ package com.progwml6.natura.world.worldgen;
 import java.util.Random;
 
 import com.progwml6.natura.common.config.Config;
+import com.progwml6.natura.library.worldgen.WorldGenHelper;
 import com.progwml6.natura.overworld.NaturaOverworld;
 import com.progwml6.natura.overworld.block.crops.BlockNaturaBarley;
 import com.progwml6.natura.overworld.block.crops.BlockNaturaCotton;
@@ -33,53 +34,52 @@ public class CropGenerator implements IWorldGenerator
 
     public void generateOverworld(Random random, int chunkX, int chunkZ, World world)
     {
-        int xSpawn, ySpawn, zSpawn;
-
         int xPos = chunkX * 16 + 8;
         int zPos = chunkZ * 16 + 8;
 
         BlockPos chunkPos = new BlockPos(xPos, 0, zPos);
-
-        BlockPos position;
 
         Biome biome = world.getChunkFromBlockCoords(chunkPos).getBiome(chunkPos, world.getBiomeProvider());
 
         // Barley
         if (Config.generateBarley && random.nextInt(5) == 0 && this.goodClimate(biome, 0.11f, 1.0f, 0.11f, 2f))
         {
-            xSpawn = chunkX * 16 + random.nextInt(16);
-            ySpawn = random.nextInt(128) + Config.seaLevel;
-            zSpawn = chunkZ * 16 + random.nextInt(16);
+            final int posX = xPos + random.nextInt(16);
+            final int posZ = zPos + random.nextInt(16);
+            final BlockPos newPos = WorldGenHelper.getGroundPos(world, posX, posZ);
 
-            position = new BlockPos(xSpawn, ySpawn, zSpawn);
-
-            this.generateBarley(world, random, position);
-            this.generateBarley(world, random, position);
+            if (newPos != null)
+            {
+                this.generateBarley(world, random, newPos);
+                this.generateBarley(world, random, newPos);
+            }
         }
 
         // Cotton
         if (Config.generateCotton && random.nextInt(12) == 0 && this.goodClimate(biome, 0.11f, 1.0f, 0.11f, 2f))
         {
-            xSpawn = chunkX * 16 + random.nextInt(16);
-            ySpawn = random.nextInt(128) + Config.seaLevel;
-            zSpawn = chunkZ * 16 + random.nextInt(16);
+            final int posX = xPos + random.nextInt(16);
+            final int posZ = zPos + random.nextInt(16);
+            final BlockPos newPos = WorldGenHelper.getGroundPos(world, posX, posZ);
 
-            position = new BlockPos(xSpawn, ySpawn, zSpawn);
-
-            this.generateCotton(world, random, position);
-            this.generateCotton(world, random, position);
+            if (newPos != null)
+            {
+                this.generateCotton(world, random, newPos);
+                this.generateCotton(world, random, newPos);
+            }
         }
 
         // Bluebells
         if (Config.generateBluebells && random.nextInt(12) == 0)
         {
-            xSpawn = chunkX * 16 + random.nextInt(16);
-            ySpawn = random.nextInt(128) + Config.seaLevel;
-            zSpawn = chunkZ * 16 + random.nextInt(16);
+            final int posX = xPos + random.nextInt(16);
+            final int posZ = zPos + random.nextInt(16);
+            final BlockPos newPos = WorldGenHelper.getGroundPos(world, posX, posZ);
 
-            position = new BlockPos(xSpawn, ySpawn, zSpawn);
-
-            this.generateBluebells(world, random, position);
+            if (newPos != null)
+            {
+                this.generateBluebells(world, random, newPos);
+            }
         }
     }
 

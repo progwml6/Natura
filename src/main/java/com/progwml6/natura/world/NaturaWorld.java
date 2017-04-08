@@ -9,7 +9,6 @@ import com.progwml6.natura.common.config.Config;
 import com.progwml6.natura.library.Util;
 import com.progwml6.natura.world.dimension.WorldProviderNetherite;
 import com.progwml6.natura.world.worldgen.CloudGenerator;
-import com.progwml6.natura.world.worldgen.CropGenerator;
 import com.progwml6.natura.world.worldgen.GlowshroomGenerator;
 import com.progwml6.natura.world.worldgen.NetherBerryBushesGenerator;
 import com.progwml6.natura.world.worldgen.NetherTreesGenerator;
@@ -63,7 +62,7 @@ public class NaturaWorld extends NaturaPulse
                 GameRegistry.registerWorldGenerator(CloudGenerator.INSTANCE, 0);
             }
 
-            GameRegistry.registerWorldGenerator(CropGenerator.INSTANCE, 0);
+            //GameRegistry.registerWorldGenerator(CropGenerator.INSTANCE, 0); TODO: ADD BACK
         }
 
         if (isNetherLoaded())
