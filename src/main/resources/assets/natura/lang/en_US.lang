@@ -240,6 +240,17 @@ tile.natura.nether_green_large_glowshroom.all_inside.name=Green Glowshroom
 tile.natura.nether_blue_large_glowshroom.all_inside.name=Blue Glowshroom
 tile.natura.nether_purple_large_glowshroom.all_inside.name=Purple Glowshroom
 
+tile.natura.nether_lever.name=Lever
+
+tile.natura.nether_pressure_plate.name=Pressure Plate
+
+tile.natura.nether_button.name=Button
+
+tile.natura.blaze_rail.name=Blaze Rail
+tile.natura.blaze_rail_golden.name=Powered Blaze Rail
+tile.natura.blaze_rail_activator.name=Activator Blaze Rail
+tile.natura.blaze_rail_detector.name=Detector Blaze Rail
+
 ################
 #    Items     #
 ################
@@ -422,6 +433,7 @@ entity.natura.nitrocreeper.name=Nitro Creeper
 # Creative Tabs
 itemGroup.NaturaGeneral=Natura's General Items
 itemGroup.NaturaWorld=Natura's World Items
+itemGroup.NaturaDecorative=Natura's Decorative Items
 
 option.natura.alternatecropitem=Alternate Crop
 option.natura.alternatedooritem=Alternate Door

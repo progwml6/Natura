@@ -8,7 +8,6 @@ import com.progwml6.natura.common.NaturaPulse;
 import com.progwml6.natura.library.NaturaRegistry;
 import com.progwml6.natura.library.Util;
 import com.progwml6.natura.shared.block.clouds.BlockCloud;
-import com.progwml6.natura.shared.block.hopper.BlockBlazeHopper;
 import com.progwml6.natura.shared.item.bags.ItemBoneBag;
 import com.progwml6.natura.shared.item.bags.ItemSeedBag;
 import com.progwml6.natura.shared.item.food.ItemNaturaEdible;
@@ -46,7 +45,6 @@ public class NaturaCommons extends NaturaPulse
 
     //@formatter:off
     // Blocks
-    public static BlockBlazeHopper blaze_hopper;
     public static BlockCloud clouds;
 
     // Items
@@ -136,7 +134,6 @@ public class NaturaCommons extends NaturaPulse
     public void preInit(FMLPreInitializationEvent event)
     {
         // Blocks
-        blaze_hopper = registerBlock(new BlockBlazeHopper(), "blaze_hopper");
         clouds = registerEnumBlock(new BlockCloud(), "clouds");
 
         // Items
@@ -239,6 +236,11 @@ public class NaturaCommons extends NaturaPulse
         proxy.preInit();
 
         NaturaRegistry.tabGeneral.setDisplayIcon(cotton);
+
+        if (!isOverworldLoaded())
+        {
+            NaturaRegistry.tabWorld.setDisplayIcon(new ItemStack(clouds));
+        }
     }
 
     @Subscribe
@@ -295,7 +297,6 @@ public class NaturaCommons extends NaturaPulse
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Items.ARROW, 4, 0), " f ", "#s#", " # ", 's', "stickWood", '#', ghostwoodFletching.copy(), 'f', Items.FLINT));
         GameRegistry.addRecipe(new ItemStack(Items.CAKE, 1), "AAA", "BEB", " C ", 'A', Items.MILK_BUCKET, 'B', Items.SUGAR, 'C', wheatFlour.copy(), 'E', Items.EGG);
         GameRegistry.addRecipe(new ItemStack(Items.CAKE, 1), "AAA", "BEB", " C ", 'A', Items.MILK_BUCKET, 'B', Items.SUGAR, 'C', barleyFlour.copy(), 'E', Items.EGG);
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(blaze_hopper), "# #", "#C#", " # ", '#', new ItemStack(Items.BLAZE_ROD), 'C', "chestWood"));
 
         GameRegistry.addRecipe(cactusJuice.copy(), "X", 'X', Blocks.CACTUS);
         GameRegistry.addRecipe(new ItemStack(Items.WATER_BUCKET, 1), "www", "wBw", "www", 'w', cactusJuice.copy(), 'B', Items.BUCKET);

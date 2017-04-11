@@ -1,4 +1,4 @@
-package com.progwml6.natura.shared.block.hopper;
+package com.progwml6.natura.nether.block.hopper;
 
 import com.progwml6.natura.library.NaturaRegistry;
 
@@ -10,7 +10,7 @@ public class BlockBlazeHopper extends BlockHopper
     public BlockBlazeHopper()
     {
         super();
-        this.setCreativeTab(NaturaRegistry.tabGeneral);
+        this.setCreativeTab(NaturaRegistry.tabWorld);
         this.setHardness(3.0F);
         this.setResistance(8.0F);
         this.setSoundType(SoundType.METAL);

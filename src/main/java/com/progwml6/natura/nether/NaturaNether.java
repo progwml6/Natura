@@ -11,13 +11,20 @@ import com.progwml6.natura.common.item.ItemNaturaDoor;
 import com.progwml6.natura.library.NaturaRegistry;
 import com.progwml6.natura.library.Util;
 import com.progwml6.natura.nether.block.bush.BlockNetherBerryBush;
+import com.progwml6.natura.nether.block.button.BlockNetherButton;
 import com.progwml6.natura.nether.block.glass.BlockNetherGlass;
+import com.progwml6.natura.nether.block.hopper.BlockBlazeHopper;
 import com.progwml6.natura.nether.block.leaves.BlockNetherLeaves;
 import com.progwml6.natura.nether.block.leaves.BlockNetherLeaves2;
+import com.progwml6.natura.nether.block.lever.BlockNetherLever;
 import com.progwml6.natura.nether.block.logs.BlockNetherLog;
 import com.progwml6.natura.nether.block.logs.BlockNetherLog2;
 import com.progwml6.natura.nether.block.obelisk.BlockRespawnObelisk;
 import com.progwml6.natura.nether.block.planks.BlockNetherPlanks;
+import com.progwml6.natura.nether.block.pressureplate.BlockNetherPressurePlate;
+import com.progwml6.natura.nether.block.rail.BlockBlazeRail;
+import com.progwml6.natura.nether.block.rail.BlockBlazeRailDetector;
+import com.progwml6.natura.nether.block.rail.BlockBlazeRailPowered;
 import com.progwml6.natura.nether.block.sand.BlockHeatSand;
 import com.progwml6.natura.nether.block.saplings.BlockNetherSapling;
 import com.progwml6.natura.nether.block.saplings.BlockNetherSapling2;
@@ -30,6 +37,7 @@ import com.progwml6.natura.shared.NaturaCommons;
 
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraftforge.fml.common.SidedProxy;
@@ -37,6 +45,7 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.oredict.ShapedOreRecipe;
 import slimeknights.mantle.item.ItemBlockMeta;
 import slimeknights.mantle.pulsar.pulse.Pulse;
 
@@ -85,6 +94,19 @@ public class NaturaNether extends NaturaPulse
 
     public static BlockNaturaDoor ghostwoodDoor;
     public static BlockNaturaDoor bloodwoodDoor;
+
+    public static BlockBlazeHopper blazeHopper;
+
+    public static BlockNetherLever netherLever;
+
+    public static BlockNetherButton netherButton;
+
+    public static BlockNetherPressurePlate netherPressurePlate;
+
+    public static BlockBlazeRail blazeRail;
+    public static BlockBlazeRailPowered blazeRailPowered;
+    public static BlockBlazeRailPowered blazeRailActivator;
+    public static BlockBlazeRailDetector blazeRailDetector;
 
     // Items
     public static ItemNaturaDoor netherDoors;
@@ -137,9 +159,23 @@ public class NaturaNether extends NaturaPulse
         ghostwoodDoor = registerBlock(new BlockNaturaDoor(), "nether_door_ghostwood");
         bloodwoodDoor = registerBlock(new BlockNaturaDoor(), "nether_door_bloodwood");
 
+        blazeHopper = registerBlock(new BlockBlazeHopper(), "blaze_hopper");
+
+        netherLever = registerBlock(new BlockNetherLever(), "nether_lever");
+
+        netherButton = registerBlock(new BlockNetherButton(), "nether_button");
+
+        netherPressurePlate = registerBlock(new BlockNetherPressurePlate(), "nether_pressure_plate");
+
+        blazeRail = registerBlock(new BlockBlazeRail(), "blaze_rail");
+        blazeRailPowered = registerBlock(new BlockBlazeRailPowered(false), "blaze_rail_golden");
+        blazeRailActivator = registerBlock(new BlockBlazeRailPowered(true), "blaze_rail_activator");
+        blazeRailDetector = registerBlock(new BlockBlazeRailDetector(), "blaze_rail_detector");
+
+        // Items
         netherDoors = registerItem(new ItemNaturaDoor(), "nether_doors");
 
-        netherDoors.setCreativeTab(NaturaRegistry.tabGeneral);
+        netherDoors.setCreativeTab(NaturaRegistry.tabDecorative);
 
         ghostwood_door = netherDoors.addMeta(0, "ghostwood_door", NaturaNether.ghostwoodDoor.getDefaultState());
         bloodwood_door = netherDoors.addMeta(1, "bloodwood_door", NaturaNether.bloodwoodDoor.getDefaultState());
@@ -148,6 +184,11 @@ public class NaturaNether extends NaturaPulse
         bloodwoodDoor.setDoor(NaturaNether.bloodwood_door);
 
         proxy.preInit();
+
+        if (!isOverworldLoaded())
+        {
+            NaturaRegistry.tabDecorative.setDisplayIcon(ghostwood_door);
+        }
     }
 
     @Subscribe
@@ -172,6 +213,7 @@ public class NaturaNether extends NaturaPulse
         //GameRegistry.addRecipe(new ItemStack(netherPlanks, 4, BlockNetherPlanks.PlankType.BLOODWOOD.getMeta()), "w", 'w', new ItemStack(netherLog, 1, BlockNetherLog.LogType.BLOODWOOD.getMeta()));
         GameRegistry.addRecipe(new ItemStack(netherPlanks, 4, BlockNetherPlanks.PlankType.FUSEWOOD.getMeta()), "w", 'w', new ItemStack(netherLog, 1, BlockNetherLog.LogType.FUSEWOOD.getMeta()));
         GameRegistry.addRecipe(new ItemStack(netherPlanks, 4, BlockNetherPlanks.PlankType.GHOSTWOOD.getMeta()), "w", 'w', new ItemStack(netherLog, 1, BlockNetherLog.LogType.GHOSTWOOD.getMeta()));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(blazeHopper), "# #", "#C#", " # ", '#', new ItemStack(Items.BLAZE_ROD), 'C', "chestWood"));
 
         //SLABS
         addSlabRecipe(netherSlab, BlockNetherSlab.PlankType.BLOODWOOD.getMeta(), new ItemStack(netherPlanks, 1, BlockNetherPlanks.PlankType.BLOODWOOD.getMeta()));
