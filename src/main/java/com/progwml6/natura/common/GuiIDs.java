@@ -6,4 +6,6 @@ package com.progwml6.natura.common;
 public interface GuiIDs
 {
     int CRAFTING_TABLE = 0;
+
+    int FURNACE = 1;
 }

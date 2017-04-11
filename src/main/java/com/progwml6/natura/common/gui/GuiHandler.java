@@ -1,8 +1,11 @@
 package com.progwml6.natura.common.gui;
 
 import com.progwml6.natura.common.GuiIDs;
+import com.progwml6.natura.common.gui.client.FurnaceGui;
 import com.progwml6.natura.common.gui.client.WorkbenchGui;
+import com.progwml6.natura.common.gui.common.FurnaceContainer;
 import com.progwml6.natura.common.gui.common.WorkbenchContainer;
+import com.progwml6.natura.nether.block.furnace.tile.TileEntityNetherrackFurnace;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.math.BlockPos;
@@ -18,6 +21,10 @@ public class GuiHandler implements IGuiHandler
         {
             return new WorkbenchContainer(player.inventory, world, new BlockPos(x, y, z));
         }
+        else if (ID == GuiIDs.FURNACE)
+        {
+            return new FurnaceContainer(player.inventory, (TileEntityNetherrackFurnace) world.getTileEntity(new BlockPos(x, y, z)));
+        }
 
         return null;
     }
@@ -28,6 +35,10 @@ public class GuiHandler implements IGuiHandler
         if (ID == GuiIDs.CRAFTING_TABLE)
         {
             return new WorkbenchGui(player.inventory, world, new BlockPos(x, y, z));
+        }
+        else if (ID == GuiIDs.FURNACE)
+        {
+            return new FurnaceGui(player.inventory, (TileEntityNetherrackFurnace) world.getTileEntity(new BlockPos(x, y, z)));
         }
 
         return null;
