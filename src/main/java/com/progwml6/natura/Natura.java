@@ -5,6 +5,8 @@ import org.apache.logging.log4j.Logger;
 
 import com.progwml6.natura.common.CommonProxy;
 import com.progwml6.natura.common.config.Config;
+import com.progwml6.natura.common.gui.GuiHandler;
+import com.progwml6.natura.decorative.NaturaDecorative;
 import com.progwml6.natura.entities.NaturaEntities;
 import com.progwml6.natura.library.Util;
 import com.progwml6.natura.nether.NaturaNether;
@@ -20,6 +22,7 @@ import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.Mod.Instance;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.network.NetworkRegistry;
 import slimeknights.mantle.pulsar.control.PulseManager;
 
 @Mod(modid = Natura.modID, name = Natura.modName, version = Natura.modVersion, dependencies = "required-after:Forge@[12.18.0.1993,);required-after:mantle@[1.10-0.10.3,);", acceptedMinecraftVersions = "[1.10, 1.11)")
@@ -47,6 +50,7 @@ public class Natura
         pulseManager.registerPulse(new NaturaCommons());
         pulseManager.registerPulse(new NaturaOverworld());
         pulseManager.registerPulse(new NaturaNether());
+        pulseManager.registerPulse(new NaturaDecorative());
         pulseManager.registerPulse(new NaturaTools());
         pulseManager.registerPulse(new NaturaEntities());
         pulseManager.registerPulse(new NaturaOredict());
@@ -59,6 +63,8 @@ public class Natura
     public void preInit(FMLPreInitializationEvent event)
     {
         Config.load(event);
+
+        NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandler());
     }
 
 }
