@@ -7,6 +7,12 @@ import java.util.Locale;
 
 import com.progwml6.natura.Natura;
 import com.progwml6.natura.common.block.BlockGrassStairs;
+import com.progwml6.natura.common.block.base.BlockButtonBase;
+import com.progwml6.natura.common.block.base.BlockFenceBase;
+import com.progwml6.natura.common.block.base.BlockFenceGateBase;
+import com.progwml6.natura.common.block.base.BlockNaturaStairsBase;
+import com.progwml6.natura.common.block.base.BlockPressurePlateBase;
+import com.progwml6.natura.common.block.base.BlockTrapDoorBase;
 import com.progwml6.natura.entities.NaturaEntities;
 import com.progwml6.natura.library.Util;
 import com.progwml6.natura.nether.NaturaNether;
@@ -25,7 +31,6 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IStringSerializable;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.common.registry.IForgeRegistryEntry;
-import slimeknights.mantle.block.BlockStairsBase;
 import slimeknights.mantle.block.EnumBlock;
 import slimeknights.mantle.block.EnumBlockSlab;
 import slimeknights.mantle.item.ItemBlockMeta;
@@ -99,15 +104,42 @@ public abstract class NaturaPulse
         return block;
     }
 
-    protected static <E extends Enum<E> & EnumBlock.IEnumMeta & IStringSerializable> BlockStairsBase registerBlockStairsFrom(EnumBlock<E> block, E value, String name)
+    protected static <E extends Enum<E> & EnumBlock.IEnumMeta & IStringSerializable> BlockNaturaStairsBase registerBlockStairsFrom(EnumBlock<E> block, E value, String name)
     {
-        return registerBlock(new BlockStairsBase(block.getDefaultState().withProperty(block.prop, value)), name);
+        return registerBlock(new BlockNaturaStairsBase(block.getDefaultState().withProperty(block.prop, value)), name);
     }
 
     protected static <E extends Enum<E> & EnumBlock.IEnumMeta & IStringSerializable> BlockGrassStairs registerBlockGrassStairsFrom(EnumBlock<E> block, E value, String name)
     {
         return registerBlock(new BlockGrassStairs(block.getDefaultState().withProperty(block.prop, value)), name);
     }
+
+    // Buttons, Trap Doors, Fences, Fence Gates, Pressure Plates START
+    protected static BlockButtonBase registerBlockButton(String name)
+    {
+        return registerBlock(new BlockButtonBase(), name);
+    }
+
+    protected static BlockPressurePlateBase registerBlockPressurePlate(String name)
+    {
+        return registerBlock(new BlockPressurePlateBase(), name);
+    }
+
+    protected static BlockTrapDoorBase registerBlockTrapDoor(String name)
+    {
+        return registerBlock(new BlockTrapDoorBase(), name);
+    }
+
+    protected static BlockFenceBase registerBlockFence(String name)
+    {
+        return registerBlock(new BlockFenceBase(), name);
+    }
+
+    protected static BlockFenceGateBase registerBlockFenceGate(String name)
+    {
+        return registerBlock(new BlockFenceGateBase(), name);
+    }
+    // Buttons, Pressure Plates, Trap Doors Fences, Fence Gates END
 
     @SuppressWarnings("unchecked")
     protected static <T extends Block> T registerBlock(ItemBlock itemBlock, String name)

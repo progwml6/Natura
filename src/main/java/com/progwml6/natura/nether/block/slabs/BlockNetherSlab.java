@@ -27,7 +27,7 @@ public class BlockNetherSlab extends EnumBlockSlab<BlockNetherSlab.PlankType>
 
         this.setHardness(2.0F);
         this.setSoundType(SoundType.WOOD);
-        this.setCreativeTab(NaturaRegistry.tabWorld);
+        this.setCreativeTab(NaturaRegistry.tabDecorative);
     }
 
     @Override

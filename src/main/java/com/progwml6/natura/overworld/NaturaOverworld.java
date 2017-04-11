@@ -191,7 +191,7 @@ public class NaturaOverworld extends NaturaPulse
 
         overworldSeeds.setCreativeTab(NaturaRegistry.tabGeneral);
         overworldSeedBags.setCreativeTab(NaturaRegistry.tabGeneral);
-        overworldDoors.setCreativeTab(NaturaRegistry.tabGeneral);
+        overworldDoors.setCreativeTab(NaturaRegistry.tabDecorative);
 
         barley_seeds = overworldSeeds.addMeta(0, "barley_seeds", NaturaOverworld.barleyCrop.getDefaultState().withProperty(BlockNaturaBarley.AGE, 0));
         cotton_seeds = overworldSeeds.addMeta(1, "cotton_seeds", NaturaOverworld.cottonCrop.getDefaultState().withProperty(BlockNaturaCotton.AGE, 0));
@@ -217,6 +217,7 @@ public class NaturaOverworld extends NaturaPulse
         proxy.preInit();
 
         NaturaRegistry.tabWorld.setDisplayIcon(new ItemStack(coloredGrass));
+        NaturaRegistry.tabDecorative.setDisplayIcon(redwood_door);
     }
 
     @Subscribe

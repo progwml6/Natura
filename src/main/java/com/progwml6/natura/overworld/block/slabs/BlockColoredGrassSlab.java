@@ -17,7 +17,7 @@ public class BlockColoredGrassSlab extends EnumBlockSlab<BlockColoredGrass.Grass
 
         this.setHardness(0.6F);
         this.setSoundType(SoundType.PLANT);
-        this.setCreativeTab(NaturaRegistry.tabWorld);
+        this.setCreativeTab(NaturaRegistry.tabDecorative);
     }
 
     @Override
