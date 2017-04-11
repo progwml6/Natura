@@ -12,6 +12,8 @@ import com.progwml6.natura.library.NaturaRegistry;
 import com.progwml6.natura.library.Util;
 import com.progwml6.natura.nether.block.bush.BlockNetherBerryBush;
 import com.progwml6.natura.nether.block.button.BlockNetherButton;
+import com.progwml6.natura.nether.block.furnace.BlockNetherrackFurnace;
+import com.progwml6.natura.nether.block.furnace.tile.TileEntityNetherrackFurnace;
 import com.progwml6.natura.nether.block.glass.BlockNetherGlass;
 import com.progwml6.natura.nether.block.hopper.BlockBlazeHopper;
 import com.progwml6.natura.nether.block.leaves.BlockNetherLeaves;
@@ -45,6 +47,7 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import slimeknights.mantle.item.ItemBlockMeta;
 import slimeknights.mantle.pulsar.pulse.Pulse;
@@ -107,6 +110,9 @@ public class NaturaNether extends NaturaPulse
     public static BlockBlazeRailPowered blazeRailPowered;
     public static BlockBlazeRailPowered blazeRailActivator;
     public static BlockBlazeRailDetector blazeRailDetector;
+
+    public static BlockNetherrackFurnace netherrackFurnace;
+    public static BlockNetherrackFurnace litNetherrackFurnace;
 
     // Items
     public static ItemNaturaDoor netherDoors;
@@ -172,6 +178,11 @@ public class NaturaNether extends NaturaPulse
         blazeRailActivator = registerBlock(new BlockBlazeRailPowered(true), "blaze_rail_activator");
         blazeRailDetector = registerBlock(new BlockBlazeRailDetector(), "blaze_rail_detector");
 
+        netherrackFurnace = registerBlock(new BlockNetherrackFurnace(false), "netherrack_furnace");
+        litNetherrackFurnace = registerBlock(new BlockNetherrackFurnace(true), "lit_netherrack_furnace");
+
+        registerTE(TileEntityNetherrackFurnace.class, "netherrack_furnace");
+
         // Items
         netherDoors = registerItem(new ItemNaturaDoor(), "nether_doors");
 
@@ -208,20 +219,21 @@ public class NaturaNether extends NaturaPulse
 
     private void registerRecipes()
     {
+        // Planks
         GameRegistry.addRecipe(new ItemStack(netherPlanks, 4, BlockNetherPlanks.PlankType.DARKWOOD.getMeta()), "w", 'w', new ItemStack(netherLog, 1, BlockNetherLog.LogType.DARKWOOD.getMeta()));
-        //TODO enable this when fixed
-        //GameRegistry.addRecipe(new ItemStack(netherPlanks, 4, BlockNetherPlanks.PlankType.BLOODWOOD.getMeta()), "w", 'w', new ItemStack(netherLog, 1, BlockNetherLog.LogType.BLOODWOOD.getMeta()));
+        GameRegistry.addRecipe(new ItemStack(netherPlanks, 4, BlockNetherPlanks.PlankType.BLOODWOOD.getMeta()), "w", 'w', new ItemStack(netherLog2, 1, OreDictionary.WILDCARD_VALUE));
         GameRegistry.addRecipe(new ItemStack(netherPlanks, 4, BlockNetherPlanks.PlankType.FUSEWOOD.getMeta()), "w", 'w', new ItemStack(netherLog, 1, BlockNetherLog.LogType.FUSEWOOD.getMeta()));
         GameRegistry.addRecipe(new ItemStack(netherPlanks, 4, BlockNetherPlanks.PlankType.GHOSTWOOD.getMeta()), "w", 'w', new ItemStack(netherLog, 1, BlockNetherLog.LogType.GHOSTWOOD.getMeta()));
+
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(blazeHopper), "# #", "#C#", " # ", '#', new ItemStack(Items.BLAZE_ROD), 'C', "chestWood"));
 
-        //SLABS
+        // Slabs
         addSlabRecipe(netherSlab, BlockNetherSlab.PlankType.BLOODWOOD.getMeta(), new ItemStack(netherPlanks, 1, BlockNetherPlanks.PlankType.BLOODWOOD.getMeta()));
         addSlabRecipe(netherSlab, BlockNetherSlab.PlankType.DARKWOOD.getMeta(), new ItemStack(netherPlanks, 1, BlockNetherPlanks.PlankType.DARKWOOD.getMeta()));
         addSlabRecipe(netherSlab, BlockNetherSlab.PlankType.FUSEWOOD.getMeta(), new ItemStack(netherPlanks, 1, BlockNetherPlanks.PlankType.FUSEWOOD.getMeta()));
         addSlabRecipe(netherSlab, BlockNetherSlab.PlankType.GHOSTWOOD.getMeta(), new ItemStack(netherPlanks, 1, BlockNetherPlanks.PlankType.GHOSTWOOD.getMeta()));
 
-        //STAIRS
+        // Stairs
         addStairRecipe(netherStairsBloodwood, new ItemStack(netherPlanks, 1, BlockNetherPlanks.PlankType.BLOODWOOD.getMeta()));
         addStairRecipe(netherStairsDarkwood, new ItemStack(netherPlanks, 1, BlockNetherPlanks.PlankType.DARKWOOD.getMeta()));
         addStairRecipe(netherStairsFusewood, new ItemStack(netherPlanks, 1, BlockNetherPlanks.PlankType.FUSEWOOD.getMeta()));

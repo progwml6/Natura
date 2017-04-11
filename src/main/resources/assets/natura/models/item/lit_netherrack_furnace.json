@@ -1,0 +1,8 @@
+{
+    "parent": "block/orientable",
+    "textures": {
+        "top": "natura:blocks/furnace/netherrack_furnace_top",
+        "front": "natura:blocks/furnace/netherrack_furnace_on",
+        "side": "natura:blocks/furnace/netherrack_furnace_side"
+    }
+}

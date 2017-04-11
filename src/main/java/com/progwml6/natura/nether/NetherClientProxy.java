@@ -245,6 +245,9 @@ public class NetherClientProxy extends ClientProxy
         registerItemModel(NaturaNether.blazeRailActivator);
         registerItemModel(NaturaNether.blazeRailDetector);
 
+        registerItemModel(NaturaNether.netherrackFurnace);
+        registerItemModel(NaturaNether.litNetherrackFurnace);
+
         NaturaNether.netherDoors.registerItemModels();
     }
 }

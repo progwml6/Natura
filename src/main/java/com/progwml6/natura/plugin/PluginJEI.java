@@ -37,6 +37,8 @@ public class PluginJEI extends BlankModPlugin
         {
             ingredientBlacklist.addIngredientToBlacklist(new ItemStack(NaturaNether.ghostwoodDoor, 1, OreDictionary.WILDCARD_VALUE));
             ingredientBlacklist.addIngredientToBlacklist(new ItemStack(NaturaNether.bloodwoodDoor, 1, OreDictionary.WILDCARD_VALUE));
+
+            ingredientBlacklist.addIngredientToBlacklist(new ItemStack(NaturaNether.litNetherrackFurnace, 1, OreDictionary.WILDCARD_VALUE));
         }
     }
 }
