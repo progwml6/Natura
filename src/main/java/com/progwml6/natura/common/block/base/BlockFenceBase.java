@@ -6,6 +6,7 @@ import net.minecraft.block.BlockFenceGate;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 
@@ -31,22 +32,6 @@ public class BlockFenceBase extends BlockFence
         IBlockState iblockstate = worldIn.getBlockState(pos);
         Block block = iblockstate.getBlock();
 
-        if (block != this)
-        {
-            if (block == null)
-            {
-                return false;
-            }
-            if (iblockstate.getMaterial().isOpaque() && iblockstate.isFullCube())
-            {
-                return iblockstate.getMaterial() != Material.PLANTS;
-            }
-            return (block instanceof BlockFenceGate) || (block instanceof BlockFenceGateBase);
-        }
-        else
-        {
-            return true;
-        }
-        //return block == Blocks.BARRIER ? false : ((!(block instanceof BlockFence) || iblockstate.getMaterial() != this.blockMaterial) && !(block instanceof BlockFenceGate || block instanceof BlockFenceGateBase) ? (iblockstate.getMaterial().isOpaque() && iblockstate.isFullCube() ? iblockstate.getMaterial() != Material.GOURD : false) : true);
+        return block == Blocks.BARRIER ? false : ((!(block instanceof BlockFence) || iblockstate.getMaterial() != this.blockMaterial) && !(block instanceof BlockFenceGate) ? (iblockstate.getMaterial().isOpaque() && iblockstate.isFullCube() ? iblockstate.getMaterial() != Material.GOURD : false) : true);
     }
 }
