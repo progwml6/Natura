@@ -10,6 +10,7 @@ import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.Mirror;
@@ -38,6 +39,31 @@ public class BlockSaguaroFruit extends Block
         this.setSoundType(SoundType.CLOTH);
         this.setHardness(0.3f);
         this.setCreativeTab(NaturaRegistry.tabWorld);
+    }
+
+    /**
+     * Called by ItemBlocks after a block is set in the world, to allow post-place logic
+     */
+    @Override
+    public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
+    {
+        EnumFacing enumfacing = EnumFacing.fromAngle(placer.rotationYaw);
+        worldIn.setBlockState(pos, state.withProperty(FACING, enumfacing), 2);
+    }
+
+    /**
+     * Called by ItemBlocks just before a block is actually set in the world, to allow for adjustments to the
+     * IBlockstate
+     */
+    @Override
+    public IBlockState onBlockPlaced(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
+    {
+        if (!facing.getAxis().isHorizontal())
+        {
+            facing = EnumFacing.NORTH;
+        }
+
+        return this.getDefaultState().withProperty(FACING, facing.getOpposite());
     }
 
     @Override
