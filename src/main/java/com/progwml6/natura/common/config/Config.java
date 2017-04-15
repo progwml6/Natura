@@ -5,6 +5,7 @@ import org.apache.logging.log4j.Logger;
 import com.progwml6.natura.library.Util;
 
 import net.minecraftforge.common.config.Configuration;
+import net.minecraftforge.common.config.Property;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import slimeknights.mantle.pulsar.config.ForgeCFG;
@@ -131,7 +132,14 @@ public final class Config
         }
 
         // Trees Start
-        seaLevel = configFile.get(WORLDGEN, "Sea level", seaLevel).getInt(seaLevel);
+        Property prop;
+        prop = configFile.get(WORLDGEN, "Sea level", seaLevel);
+        prop.setComment("Controls what the lowest Y level trees can grow at, make lower if the tree will not grow");
+        seaLevel = prop.getInt(seaLevel);
+
+        prop = configFile.get(WORLDGEN, "Flat Sea level", flatSeaLevel);
+        prop.setComment("Controls what the lowest Y level trees can grow at in a flat world, make value lower if the tree will not grow");
+        flatSeaLevel = prop.getInt(flatSeaLevel);
 
         redwoodSpawnRarity = configFile.get(WORLDGEN, "Redwood Tree Spawn Rarity", redwoodSpawnRarity).getInt(redwoodSpawnRarity);
 
@@ -249,6 +257,7 @@ public final class Config
     // Entites End
 
     public static int seaLevel = 64;
+    public static int flatSeaLevel = 1;
 
     public static boolean overrideNether = true;
     public static boolean canRespawnInNether = true;

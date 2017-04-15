@@ -1,0 +1,6 @@
+{
+    "parent": "block/fence_inventory",
+    "textures": {
+        "texture": "natura:blocks/planks/nether/darkwood_planks"
+    }
+}

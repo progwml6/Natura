@@ -7,6 +7,7 @@ import com.progwml6.natura.Natura;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.ItemMeshDefinition;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
@@ -20,7 +21,6 @@ import slimeknights.mantle.item.ItemBlockMeta;
 @SideOnly(Side.CLIENT)
 public final class ModelRegisterUtil
 {
-
     public static final String VARIANT_INVENTORY = "inventory";
 
     // Regular ITEM MODELS //
@@ -41,10 +41,12 @@ public final class ModelRegisterUtil
     public static ResourceLocation registerItemModel(Item item)
     {
         ResourceLocation itemLocation = null;
-        if (item != null)
+
+        if (item != Items.AIR)
         {
             itemLocation = item.getRegistryName();
         }
+
         if (itemLocation != null)
         {
             itemLocation = registerIt(item, itemLocation);
@@ -65,6 +67,7 @@ public final class ModelRegisterUtil
         if (block != null)
         {
             Item item = Item.getItemFromBlock(block);
+
             if (item instanceof ItemBlockMeta)
             {
                 ((ItemBlockMeta) item).registerItemModels();
@@ -85,7 +88,7 @@ public final class ModelRegisterUtil
     /** Registers the given item with the given meta and its registry name for the given variant */
     public static void registerItemModel(Item item, int meta, String variant)
     {
-        if (item != null)
+        if (item != Items.AIR)
         {
             registerItemModel(item, meta, item.getRegistryName(), variant);
         }
@@ -94,7 +97,7 @@ public final class ModelRegisterUtil
     /** Registers the given item/meta combination with the model at the given location, and the given variant */
     public static void registerItemModel(Item item, int meta, ResourceLocation location, String variant)
     {
-        if (item != null && !StringUtils.isNullOrEmpty(variant))
+        if (item != Items.AIR && !StringUtils.isNullOrEmpty(variant))
         {
             //ModelLoader.registerItemVariants(item, location);
             ModelLoader.setCustomModelResourceLocation(item, meta, new ModelResourceLocation(item.getRegistryName(), variant));

@@ -1,0 +1,36 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "transform": "forge:default-block",
+        "model": "crop"
+    },
+	"variants": {
+	    "age": {
+            "0": {
+                "textures": {
+                    "crop": "natura:blocks/crops/cotton/cotton_stage_0"
+                }
+            },
+            "1": {
+                "textures": {
+                    "crop": "natura:blocks/crops/cotton/cotton_stage_1"
+                }
+            },
+            "2": {
+                "textures": {
+                    "crop": "natura:blocks/crops/cotton/cotton_stage_2"
+                }
+            },
+            "3": {
+                "textures": {
+                    "crop": "natura:blocks/crops/cotton/cotton_stage_3"
+                }
+            },
+            "4": {
+                "textures": {
+                    "crop": "natura:blocks/crops/cotton/cotton_stage_4"
+                }
+            }
+        }
+    }
+}

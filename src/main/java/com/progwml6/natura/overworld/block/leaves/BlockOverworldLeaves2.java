@@ -94,30 +94,6 @@ public class BlockOverworldLeaves2 extends BlockLeaves
     @Override
     protected void dropApple(World worldIn, BlockPos pos, IBlockState state, int chance)
     {
-        /**if (worldIn.rand.nextInt(chance) == 0)
-        {
-            ItemStack stack = null;
-            if (state.getValue(BlockOverworldLog.TYPE) == FoliageType.PURPLE)
-            {
-                stack = TinkerCommons.matSlimeBallPurple.copy();
-            }
-            else if (state.getValue(BlockOverworldLog.TYPE) == FoliageType.BLUE)
-            {
-                if (worldIn.rand.nextInt(3) == 0)
-                {
-                    stack = TinkerCommons.matSlimeBallBlue.copy();
-                }
-                else
-                {
-                    stack = new ItemStack(Items.SLIME_BALL);
-                }
-            }
-        
-            if (stack != null)
-            {
-                spawnAsEntity(worldIn, pos, stack);
-            }
-        }*/
     }
 
     // sapling meta

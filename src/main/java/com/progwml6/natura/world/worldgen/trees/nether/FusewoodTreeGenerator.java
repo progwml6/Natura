@@ -5,11 +5,11 @@ import java.util.Random;
 import com.progwml6.natura.nether.NaturaNether;
 import com.progwml6.natura.world.worldgen.trees.BaseTreeGenerator;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.BlockPos.MutableBlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkGenerator;
 import net.minecraft.world.chunk.IChunkProvider;
@@ -39,24 +39,26 @@ public class FusewoodTreeGenerator extends BaseTreeGenerator
 
     BlockPos findGround(World world, BlockPos pos)
     {
-        boolean foundGround = false;
-        int height = pos.getY();
+        int returnHeight = 0;
 
-        BlockPos position = new BlockPos(pos.getX(), height, pos.getZ());
+        int y = pos.getY() - 1;
 
         do
         {
-            position = position.down();
-            Block underBlock = world.getBlockState(position).getBlock();
+            BlockPos position = new BlockPos(pos.getX(), y, pos.getZ());
+            IBlockState state = world.getBlockState(position);
 
-            if (underBlock == Blocks.NETHERRACK || underBlock == Blocks.SOUL_SAND || underBlock == NaturaNether.netherTaintedSoil || position.getY() < 0)
+            if (state.getBlock() == Blocks.NETHERRACK || state.getBlock() == Blocks.SOUL_SAND || state.getBlock() == NaturaNether.netherTaintedSoil || position.getY() < 0)
             {
-                foundGround = true;
+                returnHeight = y + 1;
+                break;
             }
-        }
-        while (!foundGround);
 
-        return position.up();
+            y--;
+        }
+        while (y > 0);
+
+        return new BlockPos(pos.getX(), returnHeight, pos.getZ());
     }
 
     @Override
@@ -65,10 +67,16 @@ public class FusewoodTreeGenerator extends BaseTreeGenerator
 
     }
 
-    @Override
-    public void generateTree(Random random, World world, BlockPos pos)
+    public boolean isReplaceable(World world, BlockPos pos)
     {
-        int height = random.nextInt(3) + this.minTreeHeight;
+        IBlockState state = world.getBlockState(pos);
+        return state.getBlock() != Blocks.AIR && !state.getBlock().isLeaves(state, world, pos) && state.getBlock() != Blocks.NETHERRACK && state.getBlock() != Blocks.SOUL_SAND && state.getBlock() != NaturaNether.netherTaintedSoil && !state.getBlock().isWood(world, pos);
+    }
+
+    @Override
+    public void generateTree(Random rand, World worldIn, BlockPos position)
+    {
+        int height = rand.nextInt(3) + this.minTreeHeight;
         if (height < 4)
         {
             height = 4;
@@ -76,65 +84,62 @@ public class FusewoodTreeGenerator extends BaseTreeGenerator
 
         if (this.seekHeight)
         {
-            pos = this.findGround(world, pos);
-            if (pos.getY() < 0)
+            position = this.findGround(worldIn, position);
+            if (position.getY() < 0)
             {
                 return;
             }
         }
 
-        int yPos = pos.getY();
-
-        if (yPos >= 1 && yPos + height + 1 <= 256)
+        if (position.getY() >= 1 && position.getY() + height + 1 <= 256)
         {
-            if (!this.checkClear(world, pos.getX(), yPos, pos.getY(), height))
+            if (!this.checkClear(worldIn, position, height))
             {
                 return;
             }
 
-            IBlockState state = world.getBlockState(pos.down());
-            Block soil = state.getBlock();
-            boolean isSoil = (soil != null && soil.canSustainPlant(state, world, pos.down(), EnumFacing.UP, NaturaNether.netherSapling) || soil == Blocks.NETHERRACK);
+            BlockPos down = position.down();
 
-            if (isSoil && yPos < 256 - height - 1)
+            IBlockState state = worldIn.getBlockState(down);
+            boolean isSoil = (state.getBlock() != null && state.getBlock().canSustainPlant(state, worldIn, down, EnumFacing.UP, NaturaNether.netherSapling) || state.getBlock() == Blocks.NETHERRACK);
+
+            if (isSoil && position.getY() < 256 - height - 1)
             {
-                soil.onPlantGrow(state, world, pos.down(), pos);
+                state.getBlock().onPlantGrow(state, worldIn, down, position);
 
-                this.placeCanopy(world, random, pos, height);
-                this.placeTrunk(world, pos, height);
+                this.placeCanopy(worldIn, rand, position, height);
+                this.placeTrunk(worldIn, position, height);
             }
         }
     }
 
-    boolean checkClear(World world, int xPos, int yPos, int zPos, int treeHeight)
+    boolean checkClear(World worldIn, BlockPos position, int height)
     {
         boolean flag = true;
 
-        for (int y = yPos; y <= yPos + 1 + treeHeight; ++y)
+        for (int j = position.getY(); j <= position.getY() + 1 + height; ++j)
         {
             int range = 1;
 
-            if (y == yPos)
+            if (j == position.getY())
             {
                 range = 0;
             }
 
-            if (y >= yPos + 1 + treeHeight - 2)
+            if (j >= position.getY() + 1 + height - 2)
             {
                 range = 2;
             }
 
-            for (int x = xPos - range; x <= xPos + range && flag; ++x)
-            {
-                for (int z = zPos - range; z <= zPos + range && flag; ++z)
-                {
-                    if (y >= 0 && y < 256)
-                    {
-                        BlockPos blockpos = new BlockPos(x, y, z);
-                        IBlockState state = world.getBlockState(blockpos);
-                        Block block = state.getBlock();
+            MutableBlockPos mutableblockpos = new MutableBlockPos();
 
-                        if (!block.isAir(state, world, blockpos) && !block.isLeaves(state, world, blockpos) && block != Blocks.NETHERRACK && block != Blocks.SOUL_SAND && block != NaturaNether.netherTaintedSoil && !block.isWood(world, blockpos))
+            for (int l = position.getX() - range; l <= position.getX() + range && flag; ++l)
+            {
+                for (int i1 = position.getZ() - range; i1 <= position.getZ() + range && flag; ++i1)
+                {
+                    if (j >= 0 && j < 256)
+                    {
+                        if (this.isReplaceable(worldIn, mutableblockpos.setPos(l, j, i1)))
                         {
                             flag = false;
                         }
@@ -146,32 +151,33 @@ public class FusewoodTreeGenerator extends BaseTreeGenerator
                 }
             }
         }
+
         return flag;
     }
 
-    protected void placeCanopy(World world, Random random, BlockPos pos, int height)
+    protected void placeCanopy(World worldIn, Random rand, BlockPos position, int height)
     {
-        for (int y = pos.getY() - 3 + height; y <= pos.getY() + height; ++y)
+        for (int y = position.getY() - 3 + height; y <= position.getY() + height; ++y)
         {
-            int subract = y - (pos.getY() + height);
+            int subract = y - (position.getY() + height);
             int subract2 = 1 - subract / 2;
 
-            for (int x = pos.getX() - subract2; x <= pos.getX() + subract2; ++x)
+            for (int x = position.getX() - subract2; x <= position.getX() + subract2; ++x)
             {
-                int mathX = x - pos.getX();
+                int mathX = x - position.getX();
 
-                for (int z = pos.getZ() - subract2; z <= pos.getZ() + subract2; ++z)
+                for (int z = position.getZ() - subract2; z <= position.getZ() + subract2; ++z)
                 {
-                    int mathZ = z - pos.getZ();
+                    int mathZ = z - position.getZ();
 
-                    if (Math.abs(mathX) != subract2 || Math.abs(mathZ) != subract2 || random.nextInt(2) != 0 && subract != 0)
+                    if (Math.abs(mathX) != subract2 || Math.abs(mathZ) != subract2 || rand.nextInt(2) != 0 && subract != 0)
                     {
                         BlockPos blockpos = new BlockPos(x, y, z);
-                        IBlockState state = world.getBlockState(blockpos);
+                        IBlockState state2 = worldIn.getBlockState(blockpos);
 
-                        if (state.getBlock() == null || state.getBlock().canBeReplacedByLeaves(state, world, blockpos))
+                        if (state2.getBlock().isAir(state2, worldIn, blockpos) || state2.getBlock().isAir(state2, worldIn, blockpos))
                         {
-                            world.setBlockState(blockpos, this.leaves, 2);
+                            worldIn.setBlockState(blockpos, this.leaves, 2);
                         }
                     }
                 }
@@ -179,31 +185,17 @@ public class FusewoodTreeGenerator extends BaseTreeGenerator
         }
     }
 
-    protected void placeTrunk(World world, BlockPos pos, int height)
+    protected void placeTrunk(World worldIn, BlockPos position, int height)
     {
         for (int localHeight = 0; localHeight < height; ++localHeight)
         {
-            BlockPos blockpos = new BlockPos(pos.getX(), pos.getY() + localHeight, pos.getZ());
-            IBlockState state = world.getBlockState(blockpos);
-            Block block = state.getBlock();
+            BlockPos upN = position.up(localHeight);
+            IBlockState state2 = worldIn.getBlockState(upN);
 
-            if (block.isAir(state, world, blockpos) || block == null || block.isLeaves(state, world, blockpos))
+            if (state2.getBlock().isAir(state2, worldIn, upN) || state2.getBlock().isLeaves(state2, worldIn, upN))
             {
-                world.setBlockState(blockpos, this.log, 2);
+                worldIn.setBlockState(position.up(localHeight), this.log, 2);
             }
         }
-
-        /*while (height >= 0)
-        {
-            IBlockState state = world.getBlockState(pos);
-            Block block = state.getBlock();
-            if (block.isAir(state, world, pos) || block.isReplaceable(world, pos) || block.isLeaves(state, world, pos))
-            {
-                this.setBlockAndMetadata(world, pos, this.log);
-            }
-        
-            pos = pos.up();
-            height--;
-        }*/
     }
 }

@@ -1,0 +1,22 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "transform": "forge:default-item",
+        "model": "forge:item-layer"
+    },
+    "variants": {
+        "maple_stick": [{ "textures": { "layer0": "natura:items/sticks/maple_stick" }}],
+        "silverbell_stick": [{ "textures": { "layer0": "natura:items/sticks/silverbell_stick" }}],
+        "amaranth_stick": [{ "textures": { "layer0": "natura:items/sticks/amaranth_stick" }}],
+        "tiger_stick": [{ "textures": { "layer0": "natura:items/sticks/tiger_stick" }}],
+        "willow_stick": [{ "textures": { "layer0": "natura:items/sticks/willow_stick" }}],
+        "eucalyptus_stick": [{ "textures": { "layer0": "natura:items/sticks/eucalyptus_stick" }}],
+        "hopseed_stick": [{ "textures": { "layer0": "natura:items/sticks/hopseed_stick" }}],
+        "sakura_stick": [{ "textures": { "layer0": "natura:items/sticks/sakura_stick" }}],
+        "redwood_stick": [{ "textures": { "layer0": "natura:items/sticks/redwood_stick" }}],
+        "ghostwood_stick": [{ "textures": { "layer0": "natura:items/sticks/ghostwood_stick" }}],
+        "darkwood_stick": [{ "textures": { "layer0": "natura:items/sticks/darkwood_stick" }}],
+        "fusewood_stick": [{ "textures": { "layer0": "natura:items/sticks/fusewood_stick" }}],
+        "bloodwood_stick": [{ "textures": { "layer0": "natura:items/sticks/bloodwood_stick" }}]
+    }
+}

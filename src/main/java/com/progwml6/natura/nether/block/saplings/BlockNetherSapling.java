@@ -50,7 +50,7 @@ public class BlockNetherSapling extends BlockSapling
     }
 
     @Override
-    public void getSubBlocks(@Nonnull Item itemIn, CreativeTabs tab, @Nonnull NonNullList<ItemStack> list)
+    public void getSubBlocks(@Nonnull Item itemIn, CreativeTabs tab, NonNullList<ItemStack> list)
     {
         for (SaplingType type : SaplingType.values())
         {
@@ -115,17 +115,6 @@ public class BlockNetherSapling extends BlockSapling
                     return true;
                 }
             }
-
-            IBlockState ceilingBlockState = worldIn.getBlockState(pos.up());
-            Block netherCeiling = ceilingBlockState.getBlock();
-
-            if (netherCeiling != null)
-            {
-                if (this.canGrowOnBlock(netherCeiling) || netherCeiling.canSustainPlant(ceilingBlockState, worldIn, pos.up(), EnumFacing.DOWN, this))
-                {
-                    return true;
-                }
-            }
         }
         return false;
     }
@@ -135,16 +124,6 @@ public class BlockNetherSapling extends BlockSapling
     {
         switch (state.getValue(FOLIAGE))
         {
-        case BLOODWOOD:
-            IBlockState ceilingBlockState = worldIn.getBlockState(pos.up());
-            Block netherCeiling = ceilingBlockState.getBlock();
-
-            if (netherCeiling == null)
-            {
-                return false;
-            }
-
-            return this.canGrowOnBlock(netherCeiling) || netherCeiling.canSustainPlant(ceilingBlockState, worldIn, pos.up(), EnumFacing.DOWN, this);
         case DARKWOOD:
         case FUSEWOOD:
         case GHOSTWOOD:
@@ -207,13 +186,11 @@ public class BlockNetherSapling extends BlockSapling
 
         switch (state.getValue(FOLIAGE))
         {
-        case BLOODWOOD:
-            break;
         case DARKWOOD:
             log = NaturaNether.netherLog.getDefaultState().withProperty(BlockNetherLog.TYPE, BlockNetherLog.LogType.DARKWOOD);
-            leaves = NaturaNether.netherLeaves2.getDefaultState().withProperty(BlockNetherLeaves2.TYPE, BlockNetherLeaves2.LeavesType.DARKWOOD);
             flowering = NaturaNether.netherLeaves2.getDefaultState().withProperty(BlockNetherLeaves2.TYPE, BlockNetherLeaves2.LeavesType.DARKWOOD_FLOWERING);
             fruiting = NaturaNether.netherLeaves2.getDefaultState().withProperty(BlockNetherLeaves2.TYPE, BlockNetherLeaves2.LeavesType.DARKWOOD_FRUIT);
+            leaves = NaturaNether.netherLeaves2.getDefaultState().withProperty(BlockNetherLeaves2.TYPE, BlockNetherLeaves2.LeavesType.DARKWOOD);
 
             gen = new DarkwoodTreeGenerator(3, log, leaves, flowering, fruiting);
 
@@ -222,14 +199,14 @@ public class BlockNetherSapling extends BlockSapling
             log = NaturaNether.netherLog.getDefaultState().withProperty(BlockNetherLog.TYPE, BlockNetherLog.LogType.FUSEWOOD);
             leaves = NaturaNether.netherLeaves.getDefaultState().withProperty(BlockNetherLeaves.TYPE, BlockNetherLeaves.LeavesType.FUSEWOOD);
 
-            gen = new FusewoodTreeGenerator(3, log, leaves);
+            gen = new FusewoodTreeGenerator(3, log, leaves, false);
 
             break;
         case GHOSTWOOD:
             log = NaturaNether.netherLog.getDefaultState().withProperty(BlockNetherLog.TYPE, BlockNetherLog.LogType.GHOSTWOOD);
             leaves = NaturaNether.netherLeaves.getDefaultState().withProperty(BlockNetherLeaves.TYPE, BlockNetherLeaves.LeavesType.GHOSTWOOD);
 
-            gen = new GhostwoodTreeGenerator(log, leaves);
+            gen = new GhostwoodTreeGenerator(log, leaves, false);
 
             break;
         default:
@@ -254,7 +231,7 @@ public class BlockNetherSapling extends BlockSapling
 
     public enum SaplingType implements IStringSerializable, EnumBlock.IEnumMeta
     {
-        GHOSTWOOD, BLOODWOOD, FUSEWOOD, DARKWOOD;
+        GHOSTWOOD, FUSEWOOD, DARKWOOD;
 
         public final int meta;
 

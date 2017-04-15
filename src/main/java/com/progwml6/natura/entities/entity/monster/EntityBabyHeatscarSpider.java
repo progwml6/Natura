@@ -94,7 +94,7 @@ public class EntityBabyHeatscarSpider extends EntitySpider
                 this.playSound(SoundEvents.ENTITY_GENERIC_SMALL_FALL, 1.0F, 1.0F);
             }
 
-            this.attackEntityFrom(DamageSource.fall, i);
+            this.attackEntityFrom(DamageSource.FALL, i);
 
             BlockPos pos = new BlockPos(MathHelper.floor(this.posX), MathHelper.floor(this.posY - 0.20000000298023224D), MathHelper.floor(this.posZ));
             IBlockState state = this.world.getBlockState(pos);

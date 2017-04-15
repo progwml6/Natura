@@ -27,7 +27,7 @@ public class BlockOverworldSlab2 extends EnumBlockSlab<BlockOverworldSlab2.Plank
 
         this.setHardness(2.0F);
         this.setSoundType(SoundType.WOOD);
-        this.setCreativeTab(NaturaRegistry.tabWorld);
+        this.setCreativeTab(NaturaRegistry.tabDecorative);
     }
 
     @Override

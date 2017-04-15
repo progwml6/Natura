@@ -43,7 +43,7 @@ public class BlockOverworldSapling extends BlockSapling
     }
 
     @Override
-    public void getSubBlocks(@Nonnull Item itemIn, CreativeTabs tab, @Nonnull NonNullList<ItemStack> list)
+    public void getSubBlocks(@Nonnull Item itemIn, CreativeTabs tab, NonNullList<ItemStack> list)
     {
         for (SaplingType type : SaplingType.values())
         {
@@ -130,28 +130,28 @@ public class BlockOverworldSapling extends BlockSapling
             log = NaturaOverworld.overworldLog.getDefaultState().withProperty(BlockOverworldLog.TYPE, BlockOverworldLog.LogType.MAPLE);
             leaves = NaturaOverworld.overworldLeaves.getDefaultState().withProperty(BlockOverworldLog.TYPE, BlockOverworldLog.LogType.MAPLE);
 
-            gen = new OverworldTreeGenerator(4, 2, log, leaves);
+            gen = new OverworldTreeGenerator(4, 2, log, leaves, true, true);
 
             break;
         case SILVERBELL:
             log = NaturaOverworld.overworldLog.getDefaultState().withProperty(BlockOverworldLog.TYPE, BlockOverworldLog.LogType.SILVERBELL);
             leaves = NaturaOverworld.overworldLeaves.getDefaultState().withProperty(BlockOverworldLog.TYPE, BlockOverworldLog.LogType.SILVERBELL);
 
-            gen = new OverworldTreeGenerator(4, 2, log, leaves);
+            gen = new OverworldTreeGenerator(4, 2, log, leaves, true, true);
 
             break;
         case AMARANTH:
             log = NaturaOverworld.overworldLog.getDefaultState().withProperty(BlockOverworldLog.TYPE, BlockOverworldLog.LogType.AMARANTH);
             leaves = NaturaOverworld.overworldLeaves.getDefaultState().withProperty(BlockOverworldLog.TYPE, BlockOverworldLog.LogType.AMARANTH);
 
-            gen = new OverworldTreeGenerator(9, 8, log, leaves);
+            gen = new OverworldTreeGenerator(9, 8, log, leaves, true, true);
 
             break;
         case TIGER:
             log = NaturaOverworld.overworldLog.getDefaultState().withProperty(BlockOverworldLog.TYPE, BlockOverworldLog.LogType.TIGER);
             leaves = NaturaOverworld.overworldLeaves.getDefaultState().withProperty(BlockOverworldLog.TYPE, BlockOverworldLog.LogType.TIGER);
 
-            gen = new OverworldTreeGenerator(6, 4, log, leaves);
+            gen = new OverworldTreeGenerator(6, 4, log, leaves, true, true);
 
             break;
         default:

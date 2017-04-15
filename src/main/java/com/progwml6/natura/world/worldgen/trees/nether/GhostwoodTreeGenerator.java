@@ -51,10 +51,13 @@ public class GhostwoodTreeGenerator extends BaseTreeGenerator
 
     public final IBlockState leaves;
 
-    public GhostwoodTreeGenerator(IBlockState log, IBlockState leaves)
+    public final boolean seekHeight;
+
+    public GhostwoodTreeGenerator(IBlockState log, IBlockState leaves, boolean seekHeight)
     {
         this.log = log;
         this.leaves = leaves;
+        this.seekHeight = seekHeight;
     }
 
     /**
@@ -234,9 +237,9 @@ public class GhostwoodTreeGenerator extends BaseTreeGenerator
      */
     void generateLeaves()
     {
-        for (GhostwoodTreeGenerator.FoliageCoordinates SakuraTreeGenerator$foliagecoordinates : this.foliageCoords)
+        for (GhostwoodTreeGenerator.FoliageCoordinates foliagecoordinates : this.foliageCoords)
         {
-            this.generateLeafNode(SakuraTreeGenerator$foliagecoordinates);
+            this.generateLeafNode(foliagecoordinates);
         }
     }
 
@@ -271,14 +274,14 @@ public class GhostwoodTreeGenerator extends BaseTreeGenerator
      */
     void generateLeafNodeBases()
     {
-        for (GhostwoodTreeGenerator.FoliageCoordinates SakuraTreeGenerator$foliagecoordinates : this.foliageCoords)
+        for (GhostwoodTreeGenerator.FoliageCoordinates foliagecoordinates : this.foliageCoords)
         {
-            int i = SakuraTreeGenerator$foliagecoordinates.getBranchBase();
+            int i = foliagecoordinates.getBranchBase();
             BlockPos blockpos = new BlockPos(this.basePos.getX(), i, this.basePos.getZ());
 
-            if (!blockpos.equals(SakuraTreeGenerator$foliagecoordinates) && this.leafNodeNeedsBase(i - this.basePos.getY()))
+            if (!blockpos.equals(foliagecoordinates) && this.leafNodeNeedsBase(i - this.basePos.getY()))
             {
-                this.limb(blockpos, SakuraTreeGenerator$foliagecoordinates, this.log);
+                this.limb(blockpos, foliagecoordinates, this.log);
             }
         }
     }
@@ -402,7 +405,16 @@ public class GhostwoodTreeGenerator extends BaseTreeGenerator
     public void generateTree(Random random, World worldIn, BlockPos position)
     {
         this.world = worldIn;
-        this.basePos = position;
+
+        if (this.seekHeight)
+        {
+            this.basePos = this.findGround(worldIn, position);
+        }
+        else
+        {
+            this.basePos = position;
+        }
+
         this.rand = new Random(random.nextLong());
 
         if (this.heightLimit == 0)

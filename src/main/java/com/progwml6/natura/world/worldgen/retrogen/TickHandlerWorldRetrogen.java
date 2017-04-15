@@ -4,11 +4,19 @@ import java.util.List;
 import java.util.Random;
 
 import com.google.common.collect.LinkedListMultimap;
+import com.progwml6.natura.Natura;
 import com.progwml6.natura.common.config.Config;
+import com.progwml6.natura.nether.NaturaNether;
+import com.progwml6.natura.overworld.NaturaOverworld;
 import com.progwml6.natura.world.NaturaWorld;
-import com.progwml6.natura.world.worldgen.BerryBushGenerator;
 import com.progwml6.natura.world.worldgen.CloudGenerator;
-import com.progwml6.natura.world.worldgen.TreeGenerator;
+import com.progwml6.natura.world.worldgen.CropGenerator;
+import com.progwml6.natura.world.worldgen.GlowshroomGenerator;
+import com.progwml6.natura.world.worldgen.NetherBerryBushesGenerator;
+import com.progwml6.natura.world.worldgen.NetherTreesGenerator;
+import com.progwml6.natura.world.worldgen.OverworldBerryBushesGenerator;
+import com.progwml6.natura.world.worldgen.OverworldTreesGenerator;
+import com.progwml6.natura.world.worldgen.VineGenerator;
 
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
@@ -20,13 +28,44 @@ import net.minecraftforge.fml.common.gameevent.TickEvent.WorldTickEvent;
 
 public class TickHandlerWorldRetrogen
 {
-    private final TreeGenerator treeGenerator = new TreeGenerator();
+    public static TickHandlerWorldRetrogen INSTANCE = new TickHandlerWorldRetrogen();
 
-    private final BerryBushGenerator berryBushGenerator = new BerryBushGenerator();
+    // Overworld
+    //@formatter:off
+    private OverworldTreesGenerator overworldTreesGenerator;
+    private OverworldBerryBushesGenerator overworldBerryBushesGenerator;
+    private CloudGenerator cloudGenerator;
+    private CropGenerator cropGenerator;
 
-    private final CloudGenerator cloudGenerator = new CloudGenerator();
+    // Nether
+    private NetherTreesGenerator netherTreesGenerator;
+    private NetherBerryBushesGenerator netherBerryBushesGenerator;
+    private GlowshroomGenerator glowshroomGenerator;
+    private VineGenerator vineGenerator;
+    //@formatter:on
 
     private final LinkedListMultimap<Integer, ChunkCoords> chunkRegenList = LinkedListMultimap.create();
+
+    public TickHandlerWorldRetrogen()
+    {
+        // Overworld
+        if (Natura.pulseManager.isPulseLoaded(NaturaOverworld.PulseId))
+        {
+            overworldTreesGenerator = new OverworldTreesGenerator();
+            overworldBerryBushesGenerator = new OverworldBerryBushesGenerator();
+            cloudGenerator = new CloudGenerator();
+            cropGenerator = new CropGenerator();
+        }
+
+        // Nether
+        if (Natura.pulseManager.isPulseLoaded(NaturaNether.PulseId))
+        {
+            netherTreesGenerator = new NetherTreesGenerator();
+            netherBerryBushesGenerator = new NetherBerryBushesGenerator();
+            glowshroomGenerator = new GlowshroomGenerator();
+            vineGenerator = new VineGenerator();
+        }
+    }
 
     @SubscribeEvent
     public void onWorldTick(WorldTickEvent event)
@@ -54,11 +93,23 @@ public class TickHandlerWorldRetrogen
                 long zSeed = random.nextLong() >> 2 + 1L;
                 random.setSeed(xSeed * coords.xCoord + zSeed * coords.zCoord ^ worldSeed);
 
-                this.treeGenerator.retroGen(random, coords.xCoord, coords.zCoord, world);
-                this.berryBushGenerator.retroGen(random, coords.xCoord, coords.zCoord, world);
-                if (Config.enableCloudBlocks)
+                if (Natura.pulseManager.isPulseLoaded(NaturaOverworld.PulseId))
                 {
-                    this.cloudGenerator.retroGen(random, coords.xCoord, coords.zCoord, world);
+                    this.overworldTreesGenerator.retroGen(random, coords.xCoord, coords.zCoord, world);
+                    this.overworldBerryBushesGenerator.retroGen(random, coords.xCoord, coords.zCoord, world);
+                    if (Config.enableCloudBlocks)
+                    {
+                        this.cloudGenerator.retroGen(random, coords.xCoord, coords.zCoord, world);
+                    }
+                    this.cropGenerator.retroGen(random, coords.xCoord, coords.zCoord, world);
+                }
+
+                if (Natura.pulseManager.isPulseLoaded(NaturaNether.PulseId))
+                {
+                    this.netherTreesGenerator.retroGen(random, coords.xCoord, coords.zCoord, world);
+                    this.netherBerryBushesGenerator.retroGen(random, coords.xCoord, coords.zCoord, world);
+                    this.glowshroomGenerator.retroGen(random, coords.xCoord, coords.zCoord, world);
+                    this.vineGenerator.retroGen(random, coords.xCoord, coords.zCoord, world);
                 }
             }
         }

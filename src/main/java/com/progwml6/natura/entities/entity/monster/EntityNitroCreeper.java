@@ -5,6 +5,7 @@ import javax.annotation.Nullable;
 import net.minecraft.entity.ai.EntityAIAttackMelee;
 import net.minecraft.entity.monster.EntityCreeper;
 import net.minecraft.entity.monster.EntityIronGolem;
+import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
 import net.minecraft.nbt.NBTTagCompound;
@@ -176,7 +177,7 @@ public class EntityNitroCreeper extends EntityCreeper
     {
         Item dropItem = this.getDropItem();
 
-        if (dropItem != null)
+        if (dropItem != Items.AIR)
         {
             int numberOfTimes = this.rand.nextInt(4) + 2;
 
@@ -193,7 +194,7 @@ public class EntityNitroCreeper extends EntityCreeper
 
         if (this.getPowered())
         {
-            if (dropItem != null)
+            if (dropItem != Items.AIR)
             {
                 int numberOfTimes = this.rand.nextInt(40) + 20;
 

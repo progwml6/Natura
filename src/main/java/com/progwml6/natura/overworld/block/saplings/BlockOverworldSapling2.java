@@ -46,7 +46,7 @@ public class BlockOverworldSapling2 extends BlockSapling
     }
 
     @Override
-    public void getSubBlocks(@Nonnull Item itemIn, CreativeTabs tab, @Nonnull NonNullList<ItemStack> list)
+    public void getSubBlocks(@Nonnull Item itemIn, CreativeTabs tab, NonNullList<ItemStack> list)
     {
         for (SaplingType type : SaplingType.values())
         {
@@ -133,7 +133,7 @@ public class BlockOverworldSapling2 extends BlockSapling
             log = NaturaOverworld.overworldLog2.getDefaultState().withProperty(BlockOverworldLog2.TYPE, BlockOverworldLog2.LogType.WILLOW);
             leaves = NaturaOverworld.overworldLeaves2.getDefaultState().withProperty(BlockOverworldLog2.TYPE, BlockOverworldLog2.LogType.WILLOW);
 
-            gen = new WillowTreeGenerator(4, 5, log, leaves);
+            gen = new WillowTreeGenerator(4, 5, log, leaves, true, true);
 
             break;
         case EUCALYPTUS:
@@ -147,14 +147,14 @@ public class BlockOverworldSapling2 extends BlockSapling
             log = NaturaOverworld.overworldLog2.getDefaultState().withProperty(BlockOverworldLog2.TYPE, BlockOverworldLog2.LogType.HOPSEED);
             leaves = NaturaOverworld.overworldLeaves2.getDefaultState().withProperty(BlockOverworldLog2.TYPE, BlockOverworldLog2.LogType.HOPSEED);
 
-            gen = new HopseedTreeGenerator(2, 3, log, leaves);
+            gen = new HopseedTreeGenerator(2, 3, log, leaves, true, true);
 
             break;
         case SAKURA:
             log = NaturaOverworld.overworldLog2.getDefaultState().withProperty(BlockOverworldLog2.TYPE, BlockOverworldLog2.LogType.SAKURA);
             leaves = NaturaOverworld.overworldLeaves2.getDefaultState().withProperty(BlockOverworldLog2.TYPE, BlockOverworldLog2.LogType.SAKURA);
 
-            gen = new SakuraTreeGenerator(log, leaves, false);
+            gen = new SakuraTreeGenerator(log, leaves, false, true);
 
             break;
         default:

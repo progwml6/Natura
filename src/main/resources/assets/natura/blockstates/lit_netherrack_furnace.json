@@ -1,0 +1,31 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "transform": "forge:default-block",
+        "model": "orientable",
+        "textures": {
+            "top": "natura:blocks/furnace/netherrack_furnace_top",
+            "front": "natura:blocks/furnace/netherrack_furnace_on",
+            "side": "natura:blocks/furnace/netherrack_furnace_side"
+        }
+    },
+	"variants": {
+        "facing": {
+            "north": {
+                "model": "orientable"
+            },
+            "east": {
+                "model": "orientable",
+                "y": 90
+            },
+            "south": {
+                "model": "orientable",
+                "y": 180
+            },
+            "west": {
+                "model": "orientable",
+                "y": 270
+            }
+        }
+    }
+}

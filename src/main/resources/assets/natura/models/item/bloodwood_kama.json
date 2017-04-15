@@ -1,0 +1,6 @@
+{
+    "parent": "item/handheld",
+    "textures": {
+        "layer0": "natura:items/weapons/kama/bloodwood_kama"
+    }
+}

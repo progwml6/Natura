@@ -1,5 +1,7 @@
 package com.progwml6.natura.entities;
 
+import java.util.Set;
+
 import org.apache.logging.log4j.Logger;
 
 import com.google.common.eventbus.Subscribe;
@@ -13,8 +15,10 @@ import com.progwml6.natura.entities.entity.monster.EntityHeatscarSpider;
 import com.progwml6.natura.entities.entity.monster.EntityNitroCreeper;
 import com.progwml6.natura.entities.entity.passive.EntityImp;
 import com.progwml6.natura.library.Util;
+import com.progwml6.natura.shared.NaturaCommons;
 
 import net.minecraft.entity.EnumCreatureType;
+import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.storage.loot.LootTableList;
@@ -39,17 +43,17 @@ public class NaturaEntities extends NaturaPulse
     @Subscribe
     public void preInit(FMLPreInitializationEvent event)
     {
-        EntityRegistry.registerModEntity(new ResourceLocation(Natura.modID, "imp"), EntityImp.class, "imp", EntityIDs.IMP, Natura.instance, 32, 5, true, 0xF29735, 0x2E1F10);
+        EntityRegistry.registerModEntity(new ResourceLocation("natura", "imp"), EntityImp.class, "imp", EntityIDs.IMP, Natura.instance, 32, 5, true, 0xF29735, 0x2E1F10);
         LootTableList.register(EntityImp.LOOT_TABLE);
 
         if (Config.enableHeatscarSpider)
         {
-            EntityRegistry.registerModEntity(new ResourceLocation(Natura.modID, "heatscarspider"), EntityHeatscarSpider.class, "heatscarspider", EntityIDs.HEATSCARSPIDER, Natura.instance, 32, 5, true, 0xE64D10, 0x57B1BD);
-            EntityRegistry.registerModEntity(new ResourceLocation(Natura.modID, "babyheatscarspider"), EntityBabyHeatscarSpider.class, "babyheatscarspider", EntityIDs.BABYHEATSCARSPIDER, Natura.instance, 32, 5, true, 0xE64D10, 0x57B1BD);
+            EntityRegistry.registerModEntity(new ResourceLocation("natura", "heatscarspider"), EntityHeatscarSpider.class, "heatscarspider", EntityIDs.HEATSCARSPIDER, Natura.instance, 32, 5, true, 0xE64D10, 0x57B1BD);
+            EntityRegistry.registerModEntity(new ResourceLocation("natura", "babyheatscarspider"), EntityBabyHeatscarSpider.class, "babyheatscarspider", EntityIDs.BABYHEATSCARSPIDER, Natura.instance, 32, 5, true, 0xE64D10, 0x57B1BD);
             LootTableList.register(EntityHeatscarSpider.LOOT_TABLE);
         }
 
-        EntityRegistry.registerModEntity(new ResourceLocation(Natura.modID, "nitrocreeper"), EntityNitroCreeper.class, "nitrocreeper", EntityIDs.NITROCREEPER, Natura.instance, 64, 5, true, 0xF73E6C, 0x9B5004);
+        EntityRegistry.registerModEntity(new ResourceLocation("natura", "nitrocreeper"), EntityNitroCreeper.class, "nitrocreeper", EntityIDs.NITROCREEPER, Natura.instance, 64, 5, true, 0xF73E6C, 0x9B5004);
 
         proxy.preInit();
     }
@@ -58,22 +62,44 @@ public class NaturaEntities extends NaturaPulse
     public void init(FMLInitializationEvent event)
     {
         proxy.init();
+
+        this.registerRecipes();
+        this.registerSmelting();
     }
 
     @Subscribe
     public void postInit(FMLPostInitializationEvent event)
     {
         //TODO add way to exclude some of these
-        Biome[] nether = BiomeDictionary.getBiomesForType(BiomeDictionary.Type.NETHER);
+        Set<Biome> biomeList = BiomeDictionary.getBiomes(BiomeDictionary.Type.NETHER);
 
-        EntityRegistry.addSpawn(EntityImp.class, 10, 8, 12, EnumCreatureType.CREATURE, nether);
+        Biome[] biomes = biomeList.toArray(new Biome[biomeList.size()]);
+
+        EntityRegistry.addSpawn(EntityImp.class, 10, 8, 12, EnumCreatureType.CREATURE, biomes);
+
         if (Config.enableHeatscarSpider)
         {
-            EntityRegistry.addSpawn(EntityHeatscarSpider.class, 10, 4, 4, EnumCreatureType.MONSTER, nether);
-            EntityRegistry.addSpawn(EntityBabyHeatscarSpider.class, 10, 4, 4, EnumCreatureType.MONSTER, nether);
+            EntityRegistry.addSpawn(EntityHeatscarSpider.class, 10, 4, 4, EnumCreatureType.MONSTER, biomes);
+            EntityRegistry.addSpawn(EntityBabyHeatscarSpider.class, 10, 4, 4, EnumCreatureType.MONSTER, biomes);
         }
-        EntityRegistry.addSpawn(EntityNitroCreeper.class, 8, 4, 6, EnumCreatureType.MONSTER, nether);
+
+        EntityRegistry.addSpawn(EntityNitroCreeper.class, 8, 4, 6, EnumCreatureType.MONSTER, biomes);
 
         proxy.postInit();
+    }
+
+    private void registerRecipes()
+    {
+
+    }
+
+    private void registerSmelting()
+    {
+        FurnaceRecipes furnaceRecipes = FurnaceRecipes.instance();
+
+        if (isEntitiesLoaded())
+        {
+            furnaceRecipes.addSmeltingRecipe(NaturaCommons.impmeatRaw.copy(), NaturaCommons.impmeatCooked.copy(), 0.2F);
+        }
     }
 }

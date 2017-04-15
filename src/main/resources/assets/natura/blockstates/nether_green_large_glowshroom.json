@@ -1,0 +1,143 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "transform": "forge:default-block"
+    },
+	"variants": {
+        "variant": {
+            "north_west": {
+                "model": "cube",
+                "textures": {
+                    "particle": "natura:blocks/glowshroom/green/green_glowshroom_inside",
+			        "down": "natura:blocks/glowshroom/green/green_glowshroom_inside",
+			        "up": "natura:blocks/glowshroom/green/green_glowshroom_skin",
+			        "north": "natura:blocks/glowshroom/green/green_glowshroom_skin",
+			        "east": "natura:blocks/glowshroom/green/green_glowshroom_inside",
+			        "south": "natura:blocks/glowshroom/green/green_glowshroom_inside",
+			        "west": "natura:blocks/glowshroom/green/green_glowshroom_skin"
+                }
+            },
+            "north": {
+                "model": "cube",
+                "textures": {
+                    "particle": "natura:blocks/glowshroom/green/green_glowshroom_inside",
+			        "down": "natura:blocks/glowshroom/green/green_glowshroom_inside",
+			        "up": "natura:blocks/glowshroom/green/green_glowshroom_skin",
+			        "north": "natura:blocks/glowshroom/green/green_glowshroom_skin",
+			        "east": "natura:blocks/glowshroom/green/green_glowshroom_inside",
+			        "south": "natura:blocks/glowshroom/green/green_glowshroom_inside",
+			        "west": "natura:blocks/glowshroom/green/green_glowshroom_inside"
+                }
+            },
+            "north_east": {
+                "model": "cube",
+                "textures": {
+                    "particle": "natura:blocks/glowshroom/green/green_glowshroom_inside",
+			        "down": "natura:blocks/glowshroom/green/green_glowshroom_inside",
+			        "up": "natura:blocks/glowshroom/green/green_glowshroom_skin",
+			        "north": "natura:blocks/glowshroom/green/green_glowshroom_skin",
+			        "east": "natura:blocks/glowshroom/green/green_glowshroom_skin",
+			        "south": "natura:blocks/glowshroom/green/green_glowshroom_inside",
+			        "west": "natura:blocks/glowshroom/green/green_glowshroom_inside"
+                }
+            },
+            "west": {
+                "model": "cube",
+                "textures": {
+                    "particle": "natura:blocks/glowshroom/green/green_glowshroom_inside",
+			        "down": "natura:blocks/glowshroom/green/green_glowshroom_inside",
+			        "up": "natura:blocks/glowshroom/green/green_glowshroom_skin",
+			        "north": "natura:blocks/glowshroom/green/green_glowshroom_inside",
+			        "east": "natura:blocks/glowshroom/green/green_glowshroom_inside",
+			        "south": "natura:blocks/glowshroom/green/green_glowshroom_inside",
+			        "west": "natura:blocks/glowshroom/green/green_glowshroom_skin"
+                }
+            },
+            "center": {
+                "model": "cube",
+                "textures": {
+                    "particle": "natura:blocks/glowshroom/green/green_glowshroom_inside",
+			        "down": "natura:blocks/glowshroom/green/green_glowshroom_inside",
+			        "up": "natura:blocks/glowshroom/green/green_glowshroom_skin",
+			        "north": "natura:blocks/glowshroom/green/green_glowshroom_inside",
+			        "east": "natura:blocks/glowshroom/green/green_glowshroom_inside",
+			        "south": "natura:blocks/glowshroom/green/green_glowshroom_inside",
+			        "west": "natura:blocks/glowshroom/green/green_glowshroom_inside"
+                }
+            },
+            "east": {
+                "model": "cube",
+                "textures": {
+                    "particle": "natura:blocks/glowshroom/green/green_glowshroom_inside",
+			        "down": "natura:blocks/glowshroom/green/green_glowshroom_inside",
+			        "up": "natura:blocks/glowshroom/green/green_glowshroom_skin",
+			        "north": "natura:blocks/glowshroom/green/green_glowshroom_inside",
+			        "east": "natura:blocks/glowshroom/green/green_glowshroom_skin",
+			        "south": "natura:blocks/glowshroom/green/green_glowshroom_inside",
+			        "west": "natura:blocks/glowshroom/green/green_glowshroom_inside"
+                }
+            },
+            "south_west": {
+                "model": "cube",
+                "textures": {
+                    "particle": "natura:blocks/glowshroom/green/green_glowshroom_inside",
+			        "down": "natura:blocks/glowshroom/green/green_glowshroom_inside",
+			        "up": "natura:blocks/glowshroom/green/green_glowshroom_skin",
+			        "north": "natura:blocks/glowshroom/green/green_glowshroom_inside",
+			        "east": "natura:blocks/glowshroom/green/green_glowshroom_inside",
+			        "south": "natura:blocks/glowshroom/green/green_glowshroom_skin",
+			        "west": "natura:blocks/glowshroom/green/green_glowshroom_skin"
+                }
+            },
+            "south": {
+                "model": "cube",
+                "textures": {
+                    "particle": "natura:blocks/glowshroom/green/green_glowshroom_inside",
+			        "down": "natura:blocks/glowshroom/green/green_glowshroom_inside",
+			        "up": "natura:blocks/glowshroom/green/green_glowshroom_skin",
+			        "north": "natura:blocks/glowshroom/green/green_glowshroom_inside",
+			        "east": "natura:blocks/glowshroom/green/green_glowshroom_inside",
+			        "south": "natura:blocks/glowshroom/green/green_glowshroom_skin",
+			        "west": "natura:blocks/glowshroom/green/green_glowshroom_inside"
+                }
+            },
+            "south_east": {
+                "model": "cube",
+                "textures": {
+                    "particle": "natura:blocks/glowshroom/green/green_glowshroom_inside",
+			        "down": "natura:blocks/glowshroom/green/green_glowshroom_inside",
+			        "up": "natura:blocks/glowshroom/green/green_glowshroom_skin",
+			        "north": "natura:blocks/glowshroom/green/green_glowshroom_inside",
+			        "east": "natura:blocks/glowshroom/green/green_glowshroom_skin",
+			        "south": "natura:blocks/glowshroom/green/green_glowshroom_skin",
+			        "west": "natura:blocks/glowshroom/green/green_glowshroom_inside"
+                }
+            },
+            "stem": {
+                "model": "cube_column",
+                "textures": {
+                    "side": "natura:blocks/glowshroom/green/green_glowshroom_stem",
+			        "end": "natura:blocks/glowshroom/green/green_glowshroom_inside"
+                }
+            },
+            "all_stem": {
+                "model": "cube_all",
+                "textures": {
+                    "all": "natura:blocks/glowshroom/green/green_glowshroom_stem"
+                }
+            },
+            "all_outside": {
+                "model": "cube_all",
+                "textures": {
+                    "all": "natura:blocks/glowshroom/green/green_glowshroom_skin"
+                }
+            },
+            "all_inside": {
+                "model": "cube_all",
+                "textures": {
+                    "all": "natura:blocks/glowshroom/green/green_glowshroom_inside"
+                }
+            }
+        }
+    }
+}

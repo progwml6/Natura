@@ -1,0 +1,29 @@
+{
+    "forge_marker": 1,
+    "defaults": {
+        "transform": "forge:default-block",
+        "textures": {
+            "all": "natura:blocks/saguaro/saguaro_fruit",
+            "particle": "#all"
+        }
+    },
+	"variants": {
+	    "facing": {
+            "south": {
+                "model": "natura:natura_saguaro_fruit"
+            },
+            "west": {
+                "model": "natura:natura_saguaro_fruit",
+                "y": 90
+            },
+            "north": {
+                "model": "natura:natura_saguaro_fruit",
+                "y": 180
+            },
+            "east": {
+                "model": "natura:natura_saguaro_fruit",
+                "y": 270
+            }
+        }
+    }
+}
