@@ -13,8 +13,10 @@ import com.progwml6.natura.entities.entity.monster.EntityHeatscarSpider;
 import com.progwml6.natura.entities.entity.monster.EntityNitroCreeper;
 import com.progwml6.natura.entities.entity.passive.EntityImp;
 import com.progwml6.natura.library.Util;
+import com.progwml6.natura.shared.NaturaCommons;
 
 import net.minecraft.entity.EnumCreatureType;
+import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.storage.loot.LootTableList;
 import net.minecraftforge.common.BiomeDictionary;
@@ -57,6 +59,9 @@ public class NaturaEntities extends NaturaPulse
     public void init(FMLInitializationEvent event)
     {
         proxy.init();
+
+        this.registerRecipes();
+        this.registerSmelting();
     }
 
     @Subscribe
@@ -74,5 +79,20 @@ public class NaturaEntities extends NaturaPulse
         EntityRegistry.addSpawn(EntityNitroCreeper.class, 8, 4, 6, EnumCreatureType.MONSTER, nether);
 
         proxy.postInit();
+    }
+
+    private void registerRecipes()
+    {
+
+    }
+
+    private void registerSmelting()
+    {
+        FurnaceRecipes furnaceRecipes = FurnaceRecipes.instance();
+
+        if (isEntitiesLoaded())
+        {
+            furnaceRecipes.addSmeltingRecipe(NaturaCommons.impmeatRaw.copy(), NaturaCommons.impmeatCooked.copy(), 0.2F);
+        }
     }
 }

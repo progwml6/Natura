@@ -49,6 +49,7 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
+import net.minecraftforge.oredict.ShapelessOreRecipe;
 import slimeknights.mantle.item.ItemBlockMeta;
 import slimeknights.mantle.pulsar.pulse.Pulse;
 
@@ -219,13 +220,43 @@ public class NaturaNether extends NaturaPulse
 
     private void registerRecipes()
     {
+        // Arrows
+        GameRegistry.addRecipe(NaturaCommons.ghostwoodFletching.copy(), " s ", "#s#", "#s#", 's', NaturaCommons.ghostwood_stick.copy(), '#', new ItemStack(netherLeaves, 1, BlockNetherLeaves.LeavesType.GHOSTWOOD.getMeta()));
+
         // Planks
         GameRegistry.addRecipe(new ItemStack(netherPlanks, 4, BlockNetherPlanks.PlankType.DARKWOOD.getMeta()), "w", 'w', new ItemStack(netherLog, 1, BlockNetherLog.LogType.DARKWOOD.getMeta()));
         GameRegistry.addRecipe(new ItemStack(netherPlanks, 4, BlockNetherPlanks.PlankType.BLOODWOOD.getMeta()), "w", 'w', new ItemStack(netherLog2, 1, OreDictionary.WILDCARD_VALUE));
         GameRegistry.addRecipe(new ItemStack(netherPlanks, 4, BlockNetherPlanks.PlankType.FUSEWOOD.getMeta()), "w", 'w', new ItemStack(netherLog, 1, BlockNetherLog.LogType.FUSEWOOD.getMeta()));
         GameRegistry.addRecipe(new ItemStack(netherPlanks, 4, BlockNetherPlanks.PlankType.GHOSTWOOD.getMeta()), "w", 'w', new ItemStack(netherLog, 1, BlockNetherLog.LogType.GHOSTWOOD.getMeta()));
 
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(blazeHopper), "# #", "#C#", " # ", '#', new ItemStack(Items.BLAZE_ROD), 'C', "chestWood"));
+        // Doors
+        addShapedRecipe(ghostwood_door.copy(), "##", "##", "##", '#', new ItemStack(netherPlanks, 1, BlockNetherPlanks.PlankType.GHOSTWOOD.getMeta()));
+        addShapedRecipe(bloodwood_door.copy(), "##", "##", "##", '#', new ItemStack(netherPlanks, 1, BlockNetherPlanks.PlankType.BLOODWOOD.getMeta()));
+
+        // Sticks
+        addShapedRecipe(NaturaCommons.ghostwood_stick.copy(), "#", "#", '#', new ItemStack(netherPlanks, 1, BlockNetherPlanks.PlankType.GHOSTWOOD.getMeta()));
+        addShapedRecipe(NaturaCommons.bloodwood_stick.copy(), "#", "#", '#', new ItemStack(netherPlanks, 1, BlockNetherPlanks.PlankType.BLOODWOOD.getMeta()));
+        addShapedRecipe(NaturaCommons.darkwood_stick.copy(), "#", "#", '#', new ItemStack(netherPlanks, 1, BlockNetherPlanks.PlankType.DARKWOOD.getMeta()));
+        addShapedRecipe(NaturaCommons.fusewood_stick.copy(), "#", "#", '#', new ItemStack(netherPlanks, 1, BlockNetherPlanks.PlankType.FUSEWOOD.getMeta()));
+
+        // Empty Bowls
+        addShapedRecipe(new ItemStack(NaturaCommons.empty_bowls, 4, NaturaCommons.ghostwood_emptybowl.getItemDamage()), "# #", " # ", '#', new ItemStack(netherPlanks, 1, BlockNetherPlanks.PlankType.GHOSTWOOD.getMeta()));
+        addShapedRecipe(new ItemStack(NaturaCommons.empty_bowls, 4, NaturaCommons.bloodwood_emptybowl.getItemDamage()), "# #", " # ", '#', new ItemStack(netherPlanks, 1, BlockNetherPlanks.PlankType.BLOODWOOD.getMeta()));
+        addShapedRecipe(new ItemStack(NaturaCommons.empty_bowls, 4, NaturaCommons.darkwood_emptybowl.getItemDamage()), "# #", " # ", '#', new ItemStack(netherPlanks, 1, BlockNetherPlanks.PlankType.DARKWOOD.getMeta()));
+        addShapedRecipe(new ItemStack(NaturaCommons.empty_bowls, 4, NaturaCommons.fusewood_emptybowl.getItemDamage()), "# #", " # ", '#', new ItemStack(netherPlanks, 1, BlockNetherPlanks.PlankType.FUSEWOOD.getMeta()));
+
+        // Mushroom Stew Bowls
+        GameRegistry.addRecipe(new ShapelessOreRecipe(NaturaCommons.ghostwood_mushroomstew.copy(), NaturaCommons.ghostwood_emptybowl.copy(), new ItemStack(Blocks.BROWN_MUSHROOM), new ItemStack(Blocks.RED_MUSHROOM)));
+        GameRegistry.addRecipe(new ShapelessOreRecipe(NaturaCommons.bloodwood_mushroomstew.copy(), NaturaCommons.ghostwood_emptybowl.copy(), new ItemStack(Blocks.BROWN_MUSHROOM), new ItemStack(Blocks.RED_MUSHROOM)));
+        GameRegistry.addRecipe(new ShapelessOreRecipe(NaturaCommons.darkwood_mushroomstew.copy(), NaturaCommons.ghostwood_emptybowl.copy(), new ItemStack(Blocks.BROWN_MUSHROOM), new ItemStack(Blocks.RED_MUSHROOM)));
+        GameRegistry.addRecipe(new ShapelessOreRecipe(NaturaCommons.fusewood_mushroomstew.copy(), NaturaCommons.ghostwood_emptybowl.copy(), new ItemStack(Blocks.BROWN_MUSHROOM), new ItemStack(Blocks.RED_MUSHROOM)));
+
+        // Glowshroom Stew Bowls
+        GameRegistry.addRecipe(new ShapelessOreRecipe(NaturaCommons.vanilla_glowshroomstew.copy(), new ItemStack(Items.BOWL), new ItemStack(netherGlowshroom, 1, BlockNetherGlowshroom.GlowshroomType.GREEN.getMeta()), new ItemStack(netherGlowshroom, 1, BlockNetherGlowshroom.GlowshroomType.PURPLE.getMeta()), new ItemStack(netherGlowshroom, 1, BlockNetherGlowshroom.GlowshroomType.BLUE.getMeta())));
+        GameRegistry.addRecipe(new ShapelessOreRecipe(NaturaCommons.ghostwood_glowshroomstew.copy(), NaturaCommons.ghostwood_emptybowl.copy(), new ItemStack(netherGlowshroom, 1, BlockNetherGlowshroom.GlowshroomType.GREEN.getMeta()), new ItemStack(netherGlowshroom, 1, BlockNetherGlowshroom.GlowshroomType.PURPLE.getMeta()), new ItemStack(netherGlowshroom, 1, BlockNetherGlowshroom.GlowshroomType.BLUE.getMeta())));
+        GameRegistry.addRecipe(new ShapelessOreRecipe(NaturaCommons.bloodwood_glowshroomstew.copy(), NaturaCommons.ghostwood_emptybowl.copy(), new ItemStack(netherGlowshroom, 1, BlockNetherGlowshroom.GlowshroomType.GREEN.getMeta()), new ItemStack(netherGlowshroom, 1, BlockNetherGlowshroom.GlowshroomType.PURPLE.getMeta()), new ItemStack(netherGlowshroom, 1, BlockNetherGlowshroom.GlowshroomType.BLUE.getMeta())));
+        GameRegistry.addRecipe(new ShapelessOreRecipe(NaturaCommons.darkwood_glowshroomstew.copy(), NaturaCommons.ghostwood_emptybowl.copy(), new ItemStack(netherGlowshroom, 1, BlockNetherGlowshroom.GlowshroomType.GREEN.getMeta()), new ItemStack(netherGlowshroom, 1, BlockNetherGlowshroom.GlowshroomType.PURPLE.getMeta()), new ItemStack(netherGlowshroom, 1, BlockNetherGlowshroom.GlowshroomType.BLUE.getMeta())));
+        GameRegistry.addRecipe(new ShapelessOreRecipe(NaturaCommons.fusewood_glowshroomstew.copy(), NaturaCommons.ghostwood_emptybowl.copy(), new ItemStack(netherGlowshroom, 1, BlockNetherGlowshroom.GlowshroomType.GREEN.getMeta()), new ItemStack(netherGlowshroom, 1, BlockNetherGlowshroom.GlowshroomType.PURPLE.getMeta()), new ItemStack(netherGlowshroom, 1, BlockNetherGlowshroom.GlowshroomType.BLUE.getMeta())));
 
         // Slabs
         addSlabRecipe(netherSlab, BlockNetherSlab.PlankType.BLOODWOOD.getMeta(), new ItemStack(netherPlanks, 1, BlockNetherPlanks.PlankType.BLOODWOOD.getMeta()));
@@ -239,14 +270,39 @@ public class NaturaNether extends NaturaPulse
         addStairRecipe(netherStairsFusewood, new ItemStack(netherPlanks, 1, BlockNetherPlanks.PlankType.FUSEWOOD.getMeta()));
         addStairRecipe(netherStairsGhostwood, new ItemStack(netherPlanks, 1, BlockNetherPlanks.PlankType.GHOSTWOOD.getMeta()));
 
+        // Soul Sand
         GameRegistry.addShapelessRecipe(new ItemStack(Blocks.SOUL_SAND), netherHeatSand, netherTaintedSoil);
 
+        // Blaze Rails
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(blazeRail, 16), "X X", "X#X", "X X", 'X', Items.BLAZE_ROD, '#', "stickWood"));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(blazeRailPowered, 6), "X X", "X#X", "XRX", 'X', Items.BLAZE_ROD, 'R', "dustRedstone", '#', new ItemStack(netherLog, 1, BlockNetherLog.LogType.FUSEWOOD.getMeta())));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(blazeRailActivator, 6), "XSX", "X#X", "XSX", 'X', Items.BLAZE_ROD, '#', Blocks.REDSTONE_TORCH, 'S', "stickWood"));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(blazeRailDetector, 6), "X X", "X#X", "XRX", 'X', Items.BLAZE_ROD, 'R', "dustRedstone", '#', netherPressurePlate));
+
+        // Netherrack Furnace
+        GameRegistry.addRecipe(new ItemStack(netherrackFurnace), "###", "# #", "###", '#', Blocks.NETHERRACK);
+
+        // Respawn Obelisk
+        GameRegistry.addRecipe(new ItemStack(respawnObelisk), "###", "# #", "###", '#', new ItemStack(netherLog, 1, BlockNetherLog.LogType.GHOSTWOOD.getMeta()));
+
+        // Blaze Hopper
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(blazeHopper), "# #", "#C#", " # ", '#', new ItemStack(Items.BLAZE_ROD), 'C', "chestWood"));
+
+        // Pressure Plate
+        GameRegistry.addRecipe(new ItemStack(netherPressurePlate), "##", '#', new ItemStack(Blocks.NETHERRACK));
+
+        // Button
+        GameRegistry.addRecipe(new ItemStack(netherButton), "#", '#', new ItemStack(Blocks.NETHERRACK));
+
+        // Lever
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(netherLever), "S", "#", '#', new ItemStack(Blocks.NETHERRACK), 'S', "stickWood"));
     }
 
     private void registerSmelting()
     {
-        FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(Blocks.SOUL_SAND, 1, 0), new ItemStack(netherGlass, 1, 0), 0.3f);
-        FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(netherHeatSand, 1, 0), new ItemStack(netherGlass, 1, 1), 0.3f);
+        FurnaceRecipes furnaceRecipes = FurnaceRecipes.instance();
 
+        furnaceRecipes.addSmeltingRecipe(new ItemStack(Blocks.SOUL_SAND, 1, 0), new ItemStack(netherGlass, 1, 0), 0.3f);
+        furnaceRecipes.addSmeltingRecipe(new ItemStack(netherHeatSand, 1, 0), new ItemStack(netherGlass, 1, 1), 0.3f);
     }
 }

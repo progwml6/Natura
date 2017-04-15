@@ -5,6 +5,7 @@ import org.apache.logging.log4j.Logger;
 import com.google.common.eventbus.Subscribe;
 import com.progwml6.natura.common.NaturaPulse;
 import com.progwml6.natura.common.config.Config;
+import com.progwml6.natura.decorative.NaturaDecorative;
 import com.progwml6.natura.library.Util;
 import com.progwml6.natura.nether.NaturaNether;
 import com.progwml6.natura.nether.block.glass.BlockNetherGlass;
@@ -32,10 +33,11 @@ public class NaturaOredict extends NaturaPulse
     public void preInit(FMLPreInitializationEvent event)
     {
         ensureOredict();
+
         registerCommons();
         registerOverworld();
         registerNether();
-        registerModCompat();
+        registerDecorative();
     }
 
     private static void ensureOredict()
@@ -52,19 +54,21 @@ public class NaturaOredict extends NaturaPulse
         oredict(NaturaCommons.darkwood_emptybowl, "bowlWood");
         oredict(NaturaCommons.fusewood_emptybowl, "bowlWood");
 
-        oredict(NaturaCommons.barleyFlour, "foodFlour");
-        oredict(NaturaCommons.wheatFlour, "foodFlour");
-
         oredict(NaturaCommons.barley, "cropBarley");
         oredict(NaturaCommons.cotton, "cropCotton");
 
-        oredict(NaturaCommons.barley, "listAllgrain");
-        oredict(NaturaCommons.cotton, "foodEqualswheat");
+        oredict(NaturaCommons.barleyFlour, "foodFlour");
+        oredict(NaturaCommons.wheatFlour, "foodFlour");
+
+        oredict(NaturaCommons.barley, "listAllGrain");
+        oredict(NaturaCommons.wheatFlour, "foodEqualswheat");
 
         oredict(NaturaCommons.blueDye, "dyeBlue");
 
         oredict(NaturaCommons.sulfurPowder, "dustSulphur");
         oredict(NaturaCommons.sulfurPowder, "dustSulfur");
+
+        oredict(NaturaCommons.sticks, "stickWood");
     }
 
     private static void registerOverworld()
@@ -80,31 +84,35 @@ public class NaturaOredict extends NaturaPulse
                 MinecraftForge.addGrassSeed(NaturaOverworld.cotton_seeds, 3);
             }
 
-            //Food
+            // Food
             oredict(NaturaCommons.raspberry, "cropRaspberry");
             oredict(NaturaCommons.blueberry, "cropBlueberry");
             oredict(NaturaCommons.blackberry, "cropBlackberry");
             oredict(NaturaCommons.maloberry, "cropMaloberry");
 
+            // Planks
             oredict(NaturaOverworld.overworldPlanks, "plankWood");
 
-            //Logs
+            // Logs
             oredict(NaturaOverworld.overworldLog, "logWood");
             oredict(NaturaOverworld.overworldLog2, "logWood");
             oredict(NaturaOverworld.redwoodLog, "logWood");
-            //Slabs
+
+            // Slabs
             oredict(NaturaOverworld.overworldSlab, "slabWood");
             oredict(NaturaOverworld.overworldSlab2, "slabWood");
-            //Saplings
+
+            // Saplings
             oredict(NaturaOverworld.overworldSapling, "treeSapling");
             oredict(NaturaOverworld.overworldSapling2, "treeSapling");
             oredict(NaturaOverworld.redwoodSapling, "treeSapling");
-            //Leaves
+
+            // Leaves
             oredict(NaturaOverworld.overworldLeaves, "treeLeaves");
             oredict(NaturaOverworld.overworldLeaves2, "treeLeaves");
             oredict(NaturaOverworld.redwoodLeaves, "treeLeaves");
 
-            //Stairs
+            // Stairs
             oredict(NaturaOverworld.overworldStairsAmaranth, "stairWood");
             oredict(NaturaOverworld.overworldStairsEucalyptus, "stairWood");
             oredict(NaturaOverworld.overworldStairsHopseed, "stairWood");
@@ -115,9 +123,9 @@ public class NaturaOredict extends NaturaPulse
             oredict(NaturaOverworld.overworldStairsTiger, "stairWood");
             oredict(NaturaOverworld.overworldStairsWillow, "stairWood");
 
+            // Seeds
             oredict(NaturaOverworld.barley_seeds, "seedBarley");
             oredict(NaturaOverworld.cotton_seeds, "seedCotton");
-
             oredict(NaturaOverworld.barley_seeds, "listAllseed");
             oredict(NaturaOverworld.cotton_seeds, "listAllseed");
         }
@@ -125,7 +133,7 @@ public class NaturaOredict extends NaturaPulse
 
     private static void registerNether()
     {
-        //Nether
+        // Nether
         if (isNetherLoaded())
         {
             oredict(NaturaCommons.blightberry, "cropBlightberry");
@@ -133,36 +141,60 @@ public class NaturaOredict extends NaturaPulse
             oredict(NaturaCommons.skyberry, "cropSkyberry");
             oredict(NaturaCommons.stingberry, "cropStingberry");
 
-            //Planks
+            // Tained Soil
+            oredict(NaturaNether.netherTaintedSoil, "taintedSoil");
+
+            // Planks
             oredict(NaturaNether.netherPlanks, "plankWood");
-            //Logs
+
+            // Logs
             oredict(NaturaNether.netherLog, "logWood");
-            //Slabs
+            oredict(NaturaNether.netherLog2, "logWood");
+
+            // Slabs
             oredict(NaturaNether.netherSlab, "slabWood");
-            //Saplings
+
+            // Saplings
             oredict(NaturaNether.netherSapling, "treeSapling");
-            //Leaves
+
+            // Leaves
             oredict(NaturaNether.netherLeaves, "treeLeaves");
             oredict(NaturaNether.netherLeaves2, "treeLeaves");
-            //Stairs
+
+            // Stairs
             oredict(NaturaNether.netherStairsBloodwood, "stairWood");
             oredict(NaturaNether.netherStairsDarkwood, "stairWood");
             oredict(NaturaNether.netherStairsGhostwood, "stairWood");
             oredict(NaturaNether.netherStairsFusewood, "stairWood");
 
-            oredict(NaturaNether.netherTaintedSoil, "taintedSoil");
-
-            //Glass
-            oredict(new ItemStack(NaturaNether.netherGlass, 1, BlockNetherGlass.GlassType.SOUL.getMeta()), "glassSoul");//meta 0
+            // Glass
+            oredict(NaturaNether.netherGlass, BlockNetherGlass.GlassType.SOUL.getMeta(), "glassSoul");
             oredict(NaturaNether.netherGlass, "glass");
+
+            // Vines
+            OreDictionary.registerOre("cropVine", new ItemStack(NaturaNether.netherThornVines));
         }
     }
 
-    private static void registerModCompat()
+    private static void registerDecorative()
     {
-        oredict(NaturaCommons.barley, "listAllGrain");
+        // Decorative
+        if (isDecorativeLoaded())
+        {
+            // Overworld
+            if (isOverworldLoaded())
+            {
+                oredict(NaturaDecorative.overworldWorkbenches, "crafterWood");
+                oredict(NaturaDecorative.overworldWorkbenches, "craftingTableWood");
+            }
 
-        oredict(NaturaCommons.wheatFlour, "foodEqualswheat");
+            // Nether
+            if (isNetherLoaded())
+            {
+                oredict(NaturaDecorative.netherWorkbenches, "crafterWood");
+                oredict(NaturaDecorative.netherWorkbenches, "craftingTableWood");
+            }
+        }
     }
 
     public static void oredict(Item item, String... name)

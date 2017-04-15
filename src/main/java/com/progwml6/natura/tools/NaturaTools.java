@@ -6,6 +6,8 @@ import com.google.common.eventbus.Subscribe;
 import com.progwml6.natura.common.CommonProxy;
 import com.progwml6.natura.common.NaturaPulse;
 import com.progwml6.natura.library.Util;
+import com.progwml6.natura.nether.NaturaNether;
+import com.progwml6.natura.nether.block.planks.BlockNetherPlanks;
 import com.progwml6.natura.shared.NaturaCommons;
 import com.progwml6.natura.tools.item.armor.ItemNaturaImpArmor;
 import com.progwml6.natura.tools.item.bows.ItemNaturaBow;
@@ -16,6 +18,7 @@ import com.progwml6.natura.tools.item.tools.ItemNaturaPickaxe;
 import com.progwml6.natura.tools.item.tools.ItemNaturaShovel;
 import com.progwml6.natura.tools.item.tools.ItemNaturaSword;
 
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Enchantments;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.EntityEquipmentSlot;
@@ -28,6 +31,7 @@ import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.oredict.OreDictionary;
 import slimeknights.mantle.pulsar.pulse.Pulse;
 
 @Pulse(id = NaturaTools.PulseId, description = "All of the tools + armor added by natura")
@@ -154,6 +158,33 @@ public class NaturaTools extends NaturaPulse
 
     private void registerRecipes()
     {
+        // Tools
+        if (isNetherLoaded())
+        {
+            int[] plankMeta = { BlockNetherPlanks.PlankType.GHOSTWOOD.getMeta(), BlockNetherPlanks.PlankType.BLOODWOOD.getMeta(), BlockNetherPlanks.PlankType.DARKWOOD.getMeta(), BlockNetherPlanks.PlankType.FUSEWOOD.getMeta() };
+            ItemStack[] stickItem = { NaturaCommons.ghostwood_stick.copy(), NaturaCommons.bloodwood_stick.copy(), NaturaCommons.darkwood_stick.copy(), NaturaCommons.fusewood_stick.copy() };
+
+            Item[][] tools = { { ghostwoodSword, ghostwoodPickaxe, ghostwoodShovel, ghostwoodAxe, ghostwoodKama, ghostwoodBow },
+                    { bloodwoodSword, bloodwoodPickaxe, bloodwoodShovel, bloodwoodAxe, bloodwoodKama, bloodwoodBow },
+                    { darkwoodSword, darkwoodPickaxe, darkwoodShovel, darkwoodAxe, darkwoodKama, darkwoodBow },
+                    { fusewoodSword, fusewoodPickaxe, fusewoodShovel, fusewoodAxe, fusewoodKama, fusewoodBow } };
+
+            for (int i = 0; i < plankMeta.length; i++)
+            {
+                addShapedRecipe(new ItemStack(tools[i][0], 1, 0), "#", "#", "s", '#', new ItemStack(NaturaNether.netherPlanks, 1, plankMeta[i]), 's', stickItem[i]);
+                addShapedRecipe(new ItemStack(tools[i][1], 1, 0), "###", " s ", " s ", '#', new ItemStack(NaturaNether.netherPlanks, 1, plankMeta[i]), 's', stickItem[i]);
+                addShapedRecipe(new ItemStack(tools[i][2], 1, 0), "#", "s", "s", '#', new ItemStack(NaturaNether.netherPlanks, 1, plankMeta[i]), 's', stickItem[i]);
+                addShapedRecipe(new ItemStack(tools[i][3], 1, 0), "##", "#s", " s", '#', new ItemStack(NaturaNether.netherPlanks, 1, plankMeta[i]), 's', stickItem[i]);
+                addShapedRecipe(new ItemStack(tools[i][4], 1, 0), "##", " s", " s", '#', new ItemStack(NaturaNether.netherPlanks, 1, plankMeta[i]), 's', stickItem[i]);
+                addShapedRecipe(new ItemStack(tools[i][5], 1, 0), "#s ", "# s", "#s ", '#', NaturaCommons.flameString.copy(), 's', stickItem[i]);
+            }
+        }
+
+        GameRegistry.addRecipe(new ItemStack(netherquartzSword, 1, 0), "#", "#", "s", '#', new ItemStack(Blocks.QUARTZ_BLOCK, 1, OreDictionary.WILDCARD_VALUE), 's', NaturaCommons.ghostwood_stick.copy());
+        GameRegistry.addRecipe(new ItemStack(netherquartzPickaxe, 1, 0), "###", " s ", " s ", '#', new ItemStack(Blocks.QUARTZ_BLOCK, 1, OreDictionary.WILDCARD_VALUE), 's', NaturaCommons.ghostwood_stick.copy());
+        GameRegistry.addRecipe(new ItemStack(netherquartzShovel, 1, 0), "#", "s", "s", '#', new ItemStack(Blocks.QUARTZ_BLOCK, 1, OreDictionary.WILDCARD_VALUE), 's', NaturaCommons.ghostwood_stick.copy());
+        GameRegistry.addRecipe(new ItemStack(netherquartzAxe, 1, 0), "##", "#s", " s", '#', new ItemStack(Blocks.QUARTZ_BLOCK, 1, OreDictionary.WILDCARD_VALUE), 's', NaturaCommons.ghostwood_stick.copy());
+
         if (isEntitiesLoaded())
         {
             impHelmetStack = new ItemStack(impHelmet);

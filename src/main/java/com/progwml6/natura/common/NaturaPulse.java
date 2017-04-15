@@ -1,10 +1,11 @@
 package com.progwml6.natura.common;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 import com.progwml6.natura.Natura;
 import com.progwml6.natura.common.block.BlockGrassStairs;
 import com.progwml6.natura.common.block.base.BlockButtonBase;
@@ -13,6 +14,7 @@ import com.progwml6.natura.common.block.base.BlockFenceGateBase;
 import com.progwml6.natura.common.block.base.BlockNaturaStairsBase;
 import com.progwml6.natura.common.block.base.BlockPressurePlateBase;
 import com.progwml6.natura.common.block.base.BlockTrapDoorBase;
+import com.progwml6.natura.decorative.NaturaDecorative;
 import com.progwml6.natura.entities.NaturaEntities;
 import com.progwml6.natura.library.Util;
 import com.progwml6.natura.nether.NaturaNether;
@@ -24,7 +26,7 @@ import net.minecraft.block.properties.IProperty;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.IRecipe;
+import net.minecraft.item.crafting.CraftingManager;
 import net.minecraft.item.crafting.ShapedRecipes;
 import net.minecraft.item.crafting.ShapelessRecipes;
 import net.minecraft.tileentity.TileEntity;
@@ -64,6 +66,11 @@ public abstract class NaturaPulse
     protected static boolean isNetherLoaded()
     {
         return Natura.pulseManager.isPulseLoaded(NaturaNether.PulseId);
+    }
+
+    protected static boolean isDecorativeLoaded()
+    {
+        return Natura.pulseManager.isPulseLoaded(NaturaDecorative.PulseId);
     }
 
     /**
@@ -203,108 +210,104 @@ public abstract class NaturaPulse
         GameRegistry.registerTileEntity(teClazz, Util.prefix(name));
     }
 
-    protected void addShapedRecipeFirst(List<IRecipe> recipeList, ItemStack itemstack, Object... objArray)
+    protected void addShapedRecipe(ItemStack stack, Object... recipeComponents)
     {
-        String var3 = "";
-        int var4 = 0;
-        int var5 = 0;
-        int var6 = 0;
+        String s = "";
+        int i = 0;
+        int j = 0;
+        int k = 0;
 
-        if (objArray[var4] instanceof String[])
+        if (recipeComponents[i] instanceof String[])
         {
-            String[] var7 = ((String[]) objArray[var4++]);
+            String[] astring = ((String[]) recipeComponents[i++]);
 
-            for (String var9 : var7)
+            for (String s2 : astring)
             {
-                ++var6;
-                var5 = var9.length();
-                var3 = var3 + var9;
+                ++k;
+                j = s2.length();
+                s = s + s2;
             }
         }
         else
         {
-            while (objArray[var4] instanceof String)
+            while (recipeComponents[i] instanceof String)
             {
-                String var11 = (String) objArray[var4++];
-                ++var6;
-                var5 = var11.length();
-                var3 = var3 + var11;
+                String s1 = (String) recipeComponents[i++];
+                ++k;
+                j = s1.length();
+                s = s + s1;
             }
         }
 
-        HashMap<Character, ItemStack> var12;
+        Map<Character, ItemStack> map;
 
-        for (var12 = new HashMap<>(); var4 < objArray.length; var4 += 2)
+        for (map = Maps.<Character, ItemStack> newHashMap(); i < recipeComponents.length; i += 2)
         {
-            Character var13 = (Character) objArray[var4];
-            ItemStack var14 = null;
+            Character character = (Character) recipeComponents[i];
+            ItemStack itemstack = null;
 
-            if (objArray[var4 + 1] instanceof Item)
+            if (recipeComponents[i + 1] instanceof Item)
             {
-                var14 = new ItemStack((Item) objArray[var4 + 1]);
+                itemstack = new ItemStack((Item) recipeComponents[i + 1]);
             }
-            else if (objArray[var4 + 1] instanceof Block)
+            else if (recipeComponents[i + 1] instanceof Block)
             {
-                var14 = new ItemStack((Block) objArray[var4 + 1], 1, Short.MAX_VALUE);
+                itemstack = new ItemStack((Block) recipeComponents[i + 1], 1, 32767);
             }
-            else if (objArray[var4 + 1] instanceof ItemStack)
+            else if (recipeComponents[i + 1] instanceof ItemStack)
             {
-                var14 = (ItemStack) objArray[var4 + 1];
+                itemstack = (ItemStack) recipeComponents[i + 1];
             }
 
-            var12.put(var13, var14);
+            map.put(character, itemstack);
         }
 
-        ItemStack[] var15 = new ItemStack[var5 * var6];
+        ItemStack[] aitemstack = new ItemStack[j * k];
 
-        for (int var16 = 0; var16 < var5 * var6; ++var16)
+        for (int l = 0; l < j * k; ++l)
         {
-            char var10 = var3.charAt(var16);
+            char c0 = s.charAt(l);
 
-            if (var12.containsKey(Character.valueOf(var10)))
+            if (map.containsKey(Character.valueOf(c0)))
             {
-                var15[var16] = var12.get(Character.valueOf(var10)).copy();
+                aitemstack[l] = map.get(Character.valueOf(c0)).copy();
             }
             else
             {
-                var15[var16] = null;
+                aitemstack[l] = null;
             }
         }
 
-        ShapedRecipes var17 = new ShapedRecipes(var5, var6, var15, itemstack);
-        recipeList.add(0, var17);
+        ShapedRecipes shapedrecipes = new ShapedRecipes(j, k, aitemstack, stack);
+        CraftingManager.getInstance().getRecipeList().add(shapedrecipes);
     }
 
-    protected void addShapelessRecipeFirst(List<IRecipe> recipeList, ItemStack par1ItemStack, Object... par2ArrayOfObj)
+    protected void addShapelessRecipe(ItemStack stack, Object... recipeComponents)
     {
-        ArrayList<ItemStack> arraylist = new ArrayList<>();
-        Object[] aobject = par2ArrayOfObj;
-        int i = par2ArrayOfObj.length;
+        List<ItemStack> list = Lists.<ItemStack> newArrayList();
 
-        for (int j = 0; j < i; ++j)
+        for (Object object : recipeComponents)
         {
-            Object object1 = aobject[j];
-
-            if (object1 instanceof ItemStack)
+            if (object instanceof ItemStack)
             {
-                arraylist.add(((ItemStack) object1).copy());
+                list.add(((ItemStack) object).copy());
             }
-            else if (object1 instanceof Item)
+            else if (object instanceof Item)
             {
-                arraylist.add(new ItemStack((Item) object1));
+                list.add(new ItemStack((Item) object));
             }
             else
             {
-                if (!(object1 instanceof Block))
+                if (!(object instanceof Block))
                 {
-                    throw new RuntimeException("Invalid shapeless recipe!");
+                    throw new IllegalArgumentException("Invalid shapeless recipe: unknown type " + object.getClass().getName() + "!");
                 }
 
-                arraylist.add(new ItemStack((Block) object1));
+                list.add(new ItemStack((Block) object));
             }
         }
 
-        recipeList.add(0, new ShapelessRecipes(par1ItemStack, arraylist));
+        CraftingManager.getInstance().getRecipeList().add(new ShapelessRecipes(stack, list));
     }
 
     protected static void addSlabRecipe(ItemStack slab, ItemStack input)

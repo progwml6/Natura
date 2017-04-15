@@ -5,6 +5,7 @@ import org.apache.logging.log4j.Logger;
 import com.google.common.eventbus.Subscribe;
 import com.progwml6.natura.common.CommonProxy;
 import com.progwml6.natura.common.NaturaPulse;
+import com.progwml6.natura.common.config.Config;
 import com.progwml6.natura.library.NaturaRegistry;
 import com.progwml6.natura.library.Util;
 import com.progwml6.natura.shared.block.clouds.BlockCloud;
@@ -25,8 +26,8 @@ import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
-import net.minecraftforge.oredict.ShapelessOreRecipe;
 import slimeknights.mantle.item.ItemMetaDynamic;
 import slimeknights.mantle.pulsar.pulse.Pulse;
 
@@ -247,60 +248,13 @@ public class NaturaCommons extends NaturaPulse
     public void init(FMLInitializationEvent event)
     {
         proxy.init();
+
         this.registerRecipes();
         this.registerSmelting();
     }
 
     private void registerRecipes()
     {
-        if (isOverworldLoaded())
-        {
-            String[] berryTypes = new String[] { "cropRaspberry", "cropBlueberry", "cropBlackberry", "cropMaloberry", "cropStrawberry", "cropCranberry" };
-
-            for (int iter1 = 0; iter1 < berryTypes.length - 2; iter1++)
-            {
-                for (int iter2 = iter1 + 1; iter2 < berryTypes.length - 1; iter2++)
-                {
-                    for (int iter3 = iter2 + 1; iter3 < berryTypes.length; iter3++)
-                    {
-                        GameRegistry.addRecipe(new ShapelessOreRecipe(berryMedley.copy(), "bowlWood", berryTypes[iter1], berryTypes[iter2], berryTypes[iter3]));
-                    }
-                }
-            }
-
-            ItemStack berryMix = berryMedley.copy();
-            berryMix.stackSize = 2;
-
-            for (int iter1 = 0; iter1 < berryTypes.length - 3; iter1++)
-            {
-                for (int iter2 = iter1 + 1; iter2 < berryTypes.length - 2; iter2++)
-                {
-                    for (int iter3 = iter2 + 1; iter3 < berryTypes.length - 1; iter3++)
-                    {
-                        for (int iter4 = iter3 + 1; iter4 < berryTypes.length; iter4++)
-                        {
-                            GameRegistry.addRecipe(new ShapelessOreRecipe(berryMix.copy(), "bowlWood", "bowlWood", berryTypes[iter1], berryTypes[iter2], berryTypes[iter3], berryTypes[iter4]));
-                        }
-                    }
-                }
-            }
-        }
-
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Items.STRING), "sss", 's', "cropCotton"));
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Blocks.WOOL), "sss", "sss", "sss", 's', "cropCotton"));
-
-        if (isEntitiesLoaded())
-        {
-            GameRegistry.addRecipe(new ItemStack(Items.LEATHER, 2), "##", "##", '#', impLeather.copy());
-        }
-
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Items.ARROW, 4, 0), " f ", "#s#", " # ", 's', "stickWood", '#', ghostwoodFletching.copy(), 'f', Items.FLINT));
-        GameRegistry.addRecipe(new ItemStack(Items.CAKE, 1), "AAA", "BEB", " C ", 'A', Items.MILK_BUCKET, 'B', Items.SUGAR, 'C', wheatFlour.copy(), 'E', Items.EGG);
-        GameRegistry.addRecipe(new ItemStack(Items.CAKE, 1), "AAA", "BEB", " C ", 'A', Items.MILK_BUCKET, 'B', Items.SUGAR, 'C', barleyFlour.copy(), 'E', Items.EGG);
-
-        GameRegistry.addRecipe(cactusJuice.copy(), "X", 'X', Blocks.CACTUS);
-        GameRegistry.addRecipe(new ItemStack(Items.WATER_BUCKET, 1), "www", "wBw", "www", 'w', cactusJuice.copy(), 'B', Items.BUCKET);
-
         // Crops
         GameRegistry.addRecipe(wheat_seed_bag.copy(), "sss", "sss", "sss", 's', Items.WHEAT_SEEDS);
         GameRegistry.addRecipe(new ShapedOreRecipe(potatoes_seed_bag.copy(), "sss", "sss", "sss", 's', "cropPotato"));
@@ -313,17 +267,50 @@ public class NaturaCommons extends NaturaPulse
         GameRegistry.addRecipe(new ItemStack(Items.CARROT, 9, 0), "s", 's', potatoes_seed_bag.copy());
         GameRegistry.addRecipe(new ItemStack(Items.NETHER_WART, 9, 0), "s", 's', nether_wart_seed_bag.copy());
         GameRegistry.addRecipe(new ItemStack(Items.DYE, 9, 15), "s", 's', boneMealBag);
+
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Items.STRING), "sss", 's', "cropCotton"));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Blocks.WOOL), "sss", "sss", "sss", 's', "cropCotton"));
+
+        GameRegistry.addRecipe(cactusJuice.copy(), "X", 'X', Blocks.CACTUS);
+        GameRegistry.addRecipe(new ItemStack(Items.WATER_BUCKET, 1), "www", "wBw", "www", 'w', cactusJuice.copy(), 'B', Items.BUCKET);
+
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Items.BREAD), "bbb", 'b', "cropBarley"));
+        GameRegistry.addRecipe(new ShapedOreRecipe(barleyFlour.copy(), "X", 'X', "cropBarley"));
+
+        if (Config.enableWheatRecipe)
+        {
+            GameRegistry.addRecipe(new ShapedOreRecipe(wheatFlour.copy(), "X", 'X', "cropWheat"));
+        }
+
+        // Cake
+        GameRegistry.addRecipe(new ItemStack(Items.CAKE, 1), "AAA", "BEB", " C ", 'A', Items.MILK_BUCKET, 'B', Items.SUGAR, 'C', wheatFlour.copy(), 'E', Items.EGG);
+        GameRegistry.addRecipe(new ItemStack(Items.CAKE, 1), "AAA", "BEB", " C ", 'A', Items.MILK_BUCKET, 'B', Items.SUGAR, 'C', barleyFlour.copy(), 'E', Items.EGG);
+
+        // Leather
+        if (isEntitiesLoaded())
+        {
+            GameRegistry.addRecipe(new ItemStack(Items.LEATHER, 2), "##", "##", '#', impLeather.copy());
+        }
+
+        // Clouds
+        GameRegistry.addRecipe(new ItemStack(Items.COAL, 1, 1), "ccc", "ccc", "ccc", 'c', new ItemStack(clouds, 1, BlockCloud.CloudType.ASH.getMeta()));
+        GameRegistry.addRecipe(sulfurPowder.copy(), "cc", "cc", 'c', new ItemStack(clouds, 1, BlockCloud.CloudType.SULFUR.getMeta()));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Items.GUNPOWDER, 1, 0), "cc", "cc", 'c', "dustSulfur"));
+
+        // Arrows
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Items.ARROW, 4, 0), " f ", "#s#", " # ", 's', "stickWood", '#', ghostwoodFletching.copy(), 'f', Items.FLINT));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Items.ARROW, 4, 0), " f ", "#s#", " # ", 's', new ItemStack(sticks, 1, OreDictionary.WILDCARD_VALUE), '#', ghostwoodFletching.copy(), 'f', Items.FLINT));
+
+        // Misc
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Items.GLASS_BOTTLE, 3), "# #", " # ", '#', "glass"));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Blocks.DAYLIGHT_DETECTOR), "GGG", "QQQ", "WWW", 'G', "glass", 'Q', "gemQuartz", 'W', "slabWood"));
     }
 
     private void registerSmelting()
     {
-        //FurnaceRecipes.instance().addSmeltingRecipe(new ItemStack(saguaro, 1, 0), new ItemStack(Items.DYE, 1, 2), 0.2F);
-        if (isEntitiesLoaded())
-        {
-            FurnaceRecipes.instance().addSmeltingRecipe(impmeatRaw.copy(), impmeatCooked.copy(), 0.2F);
-        }
+        FurnaceRecipes furnaceRecipes = FurnaceRecipes.instance();
 
-        FurnaceRecipes.instance().addSmeltingRecipe(barleyFlour.copy(), new ItemStack(Items.BREAD, 1), 0.5f);
-        FurnaceRecipes.instance().addSmeltingRecipe(wheatFlour.copy(), new ItemStack(Items.BREAD, 1), 0.5f);
+        furnaceRecipes.addSmeltingRecipe(barleyFlour.copy(), new ItemStack(Items.BREAD, 1), 0.5f);
+        furnaceRecipes.addSmeltingRecipe(wheatFlour.copy(), new ItemStack(Items.BREAD, 1), 0.5f);
     }
 }
