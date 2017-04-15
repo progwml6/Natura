@@ -10,6 +10,7 @@ import com.progwml6.natura.nether.NaturaNether;
 import com.progwml6.natura.overworld.NaturaOverworld;
 import com.progwml6.natura.world.NaturaWorld;
 import com.progwml6.natura.world.worldgen.CloudGenerator;
+import com.progwml6.natura.world.worldgen.CropGenerator;
 import com.progwml6.natura.world.worldgen.GlowshroomGenerator;
 import com.progwml6.natura.world.worldgen.NetherBerryBushesGenerator;
 import com.progwml6.natura.world.worldgen.NetherTreesGenerator;
@@ -34,7 +35,7 @@ public class TickHandlerWorldRetrogen
     private OverworldTreesGenerator overworldTreesGenerator;
     private OverworldBerryBushesGenerator overworldBerryBushesGenerator;
     private CloudGenerator cloudGenerator;
-    //private CropGenerator cropGenerator; TODO: ADD BACK
+    private CropGenerator cropGenerator;
 
     // Nether
     private NetherTreesGenerator netherTreesGenerator;
@@ -53,7 +54,7 @@ public class TickHandlerWorldRetrogen
             overworldTreesGenerator = new OverworldTreesGenerator();
             overworldBerryBushesGenerator = new OverworldBerryBushesGenerator();
             cloudGenerator = new CloudGenerator();
-            //cropGenerator = new CropGenerator(); TODO: ADD BACK
+            cropGenerator = new CropGenerator();
         }
 
         // Nether
@@ -100,7 +101,7 @@ public class TickHandlerWorldRetrogen
                     {
                         this.cloudGenerator.retroGen(random, coords.xCoord, coords.zCoord, world);
                     }
-                    //this.cropGenerator.retroGen(random, coords.xCoord, coords.zCoord, world); TODO: ADD BACK
+                    this.cropGenerator.retroGen(random, coords.xCoord, coords.zCoord, world);
                 }
 
                 if (Natura.pulseManager.isPulseLoaded(NaturaNether.PulseId))

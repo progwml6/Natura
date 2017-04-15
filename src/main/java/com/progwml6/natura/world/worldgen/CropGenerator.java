@@ -3,7 +3,6 @@ package com.progwml6.natura.world.worldgen;
 import java.util.Random;
 
 import com.progwml6.natura.common.config.Config;
-import com.progwml6.natura.library.worldgen.WorldGenHelper;
 import com.progwml6.natura.overworld.NaturaOverworld;
 import com.progwml6.natura.overworld.block.crops.BlockNaturaBarley;
 import com.progwml6.natura.overworld.block.crops.BlockNaturaCotton;
@@ -45,8 +44,10 @@ public class CropGenerator implements IWorldGenerator
         if (Config.generateBarley && random.nextInt(5) == 0 && this.goodClimate(biome, 0.11f, 1.0f, 0.11f, 2f))
         {
             final int posX = xPos + random.nextInt(16);
+            final int posY = random.nextInt(128) + Config.seaLevel;
             final int posZ = zPos + random.nextInt(16);
-            final BlockPos newPos = WorldGenHelper.getGroundPos(world, posX, posZ);
+            final BlockPos newPos = new BlockPos(posX, posY, posZ);
+            //final BlockPos newPos = WorldGenHelper.getGroundPos(world, posX, posZ);
 
             if (newPos != null)
             {
@@ -60,7 +61,9 @@ public class CropGenerator implements IWorldGenerator
         {
             final int posX = xPos + random.nextInt(16);
             final int posZ = zPos + random.nextInt(16);
-            final BlockPos newPos = WorldGenHelper.getGroundPos(world, posX, posZ);
+            final int posY = random.nextInt(128) + Config.seaLevel;
+            final BlockPos newPos = new BlockPos(posX, posY, posZ);
+            //final BlockPos newPos = WorldGenHelper.getGroundPos(world, posX, posZ);
 
             if (newPos != null)
             {
@@ -74,7 +77,9 @@ public class CropGenerator implements IWorldGenerator
         {
             final int posX = xPos + random.nextInt(16);
             final int posZ = zPos + random.nextInt(16);
-            final BlockPos newPos = WorldGenHelper.getGroundPos(world, posX, posZ);
+            final int posY = random.nextInt(128) + Config.seaLevel;
+            final BlockPos newPos = new BlockPos(posX, posY, posZ);
+            //final BlockPos newPos = WorldGenHelper.getGroundPos(world, posX, posZ);
 
             if (newPos != null)
             {
