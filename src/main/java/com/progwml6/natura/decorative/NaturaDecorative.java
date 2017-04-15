@@ -16,6 +16,7 @@ import com.progwml6.natura.nether.NaturaNether;
 import com.progwml6.natura.nether.block.planks.BlockNetherPlanks;
 import com.progwml6.natura.overworld.NaturaOverworld;
 import com.progwml6.natura.overworld.block.planks.BlockOverworldPlanks;
+import com.progwml6.natura.shared.NaturaCommons;
 
 import net.minecraft.block.Block;
 import net.minecraft.init.Items;
@@ -114,11 +115,11 @@ public class NaturaDecorative extends NaturaPulse
             {
                 if (type.getWorldType() == WorldType.OVERWORLD)
                 {
-                    addShapedRecipe(new ItemStack(buttons[type.ordinal()], 1), "#", '#', type.getOverworldPlankType());
-                    addShapedRecipe(new ItemStack(pressurePlates[type.ordinal()], 1), "##", '#', type.getOverworldPlankType());
-                    addShapedRecipe(new ItemStack(trapDoors[type.ordinal()], 2), "###", "###", '#', type.getOverworldPlankType());
-                    addShapedRecipe(new ItemStack(fences[type.ordinal()], 2), "###", "###", '#', type.getStickItemStack());
-                    addShapedRecipe(new ItemStack(fenceGates[type.ordinal()], 1), "s#s", "s#s", '#', type.getOverworldPlankType(), 's', type.getStickItemStack());
+                    addShapedRecipe(new ItemStack(buttons[type.ordinal()], 1), "#", '#', new ItemStack(NaturaOverworld.overworldPlanks, 1, type.getPlankMeta()));
+                    addShapedRecipe(new ItemStack(pressurePlates[type.ordinal()], 1), "##", '#', new ItemStack(NaturaOverworld.overworldPlanks, 1, type.getPlankMeta()));
+                    addShapedRecipe(new ItemStack(trapDoors[type.ordinal()], 2), "###", "###", '#', new ItemStack(NaturaOverworld.overworldPlanks, 1, type.getPlankMeta()));
+                    addShapedRecipe(new ItemStack(fences[type.ordinal()], 2), "###", "###", '#', new ItemStack(NaturaCommons.sticks, 1, type.getStickMeta()));
+                    addShapedRecipe(new ItemStack(fenceGates[type.ordinal()], 1), "s#s", "s#s", '#', new ItemStack(NaturaOverworld.overworldPlanks, 1, type.getPlankMeta()), 's', new ItemStack(NaturaCommons.sticks, 1, type.getStickMeta()));
                 }
             }
 
@@ -135,11 +136,11 @@ public class NaturaDecorative extends NaturaPulse
             {
                 if (type.getWorldType() == WorldType.NETHER)
                 {
-                    addShapedRecipe(new ItemStack(buttons[type.ordinal()], 1), "#", '#', type.getNetherPlankType());
-                    addShapedRecipe(new ItemStack(pressurePlates[type.ordinal()], 1), "##", '#', type.getNetherPlankType());
-                    addShapedRecipe(new ItemStack(trapDoors[type.ordinal()], 2), "###", "###", '#', type.getNetherPlankType());
-                    addShapedRecipe(new ItemStack(fences[type.ordinal()], 2), "###", "###", '#', type.getStickItemStack());
-                    addShapedRecipe(new ItemStack(fenceGates[type.ordinal()], 1), "s#s", "s#s", '#', type.getNetherPlankType(), 's', type.getStickItemStack());
+                    addShapedRecipe(new ItemStack(buttons[type.ordinal()], 1), "#", '#', new ItemStack(NaturaNether.netherPlanks, 1, type.getPlankMeta()));
+                    addShapedRecipe(new ItemStack(pressurePlates[type.ordinal()], 1), "##", '#', new ItemStack(NaturaNether.netherPlanks, 1, type.getPlankMeta()));
+                    addShapedRecipe(new ItemStack(trapDoors[type.ordinal()], 2), "###", "###", '#', new ItemStack(NaturaNether.netherPlanks, 1, type.getPlankMeta()));
+                    addShapedRecipe(new ItemStack(fences[type.ordinal()], 2), "###", "###", '#', new ItemStack(NaturaCommons.sticks, 1, type.getStickMeta()));
+                    addShapedRecipe(new ItemStack(fenceGates[type.ordinal()], 1), "s#s", "s#s", '#', new ItemStack(NaturaNether.netherPlanks, 1, type.getPlankMeta()), 's', new ItemStack(NaturaCommons.sticks, 1, type.getStickMeta()));
                 }
             }
 
