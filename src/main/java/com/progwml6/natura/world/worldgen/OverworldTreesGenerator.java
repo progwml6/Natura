@@ -8,6 +8,7 @@ import com.progwml6.natura.overworld.block.leaves.BlockRedwoodLeaves;
 import com.progwml6.natura.overworld.block.logs.BlockOverworldLog;
 import com.progwml6.natura.overworld.block.logs.BlockOverworldLog2;
 import com.progwml6.natura.overworld.block.logs.BlockRedwoodLog;
+import com.progwml6.natura.world.worldgen.saguaro.SaguaroGenerator;
 import com.progwml6.natura.world.worldgen.trees.overworld.EucalyptusTreeGenerator;
 import com.progwml6.natura.world.worldgen.trees.overworld.HopseedTreeGenerator;
 import com.progwml6.natura.world.worldgen.trees.overworld.OverworldTreeGenerator;
@@ -41,6 +42,8 @@ public class OverworldTreesGenerator implements IWorldGenerator
     SakuraTreeGenerator sakuraTreeGen;
 
     RedwoodTreeGenerator redwoodTreeGen;
+
+    SaguaroGenerator saguaroGen;
     //@formatter:on
 
     public OverworldTreesGenerator()
@@ -65,6 +68,8 @@ public class OverworldTreesGenerator implements IWorldGenerator
         IBlockState redwoodLeaves = NaturaOverworld.redwoodLeaves.getDefaultState();
 
         this.redwoodTreeGen = new RedwoodTreeGenerator(redwoodLog.withProperty(BlockRedwoodLog.TYPE, BlockRedwoodLog.RedwoodType.BARK), redwoodLog.withProperty(BlockRedwoodLog.TYPE, BlockRedwoodLog.RedwoodType.HEART), redwoodLog.withProperty(BlockRedwoodLog.TYPE, BlockRedwoodLog.RedwoodType.ROOT), redwoodLeaves.withProperty(BlockRedwoodLeaves.TYPE, BlockRedwoodLeaves.RedwoodType.NORMAL), false, false);
+
+        this.saguaroGen = new SaguaroGenerator(NaturaOverworld.saguaro.getDefaultState(), false, false);
     }
 
     @Override
@@ -261,6 +266,19 @@ public class OverworldTreesGenerator implements IWorldGenerator
 
                     this.willowTreeGen.generateTree(random, world, position);
                 }
+            }
+        }
+
+        if (BiomeDictionary.isBiomeOfType(biome, Type.SANDY))
+        {
+            if (Config.generateSaguaro && random.nextInt(Config.saguaroSpawnRarity) == 0)
+            {
+                xSpawn = xPos + random.nextInt(16);
+                ySpawn = random.nextInt(Config.seaLevel) + 16;
+                zSpawn = zPos + random.nextInt(16);
+                position = new BlockPos(xSpawn, ySpawn, zSpawn);
+
+                this.saguaroGen.generateSaguaro(random, world, position);
             }
         }
     }

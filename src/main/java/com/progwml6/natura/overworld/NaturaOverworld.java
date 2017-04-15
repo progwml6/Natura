@@ -25,12 +25,16 @@ import com.progwml6.natura.overworld.block.logs.BlockOverworldLog;
 import com.progwml6.natura.overworld.block.logs.BlockOverworldLog2;
 import com.progwml6.natura.overworld.block.logs.BlockRedwoodLog;
 import com.progwml6.natura.overworld.block.planks.BlockOverworldPlanks;
+import com.progwml6.natura.overworld.block.saguaro.BlockSaguaro;
+import com.progwml6.natura.overworld.block.saguaro.BlockSaguaroBaby;
+import com.progwml6.natura.overworld.block.saguaro.BlockSaguaroFruit;
 import com.progwml6.natura.overworld.block.saplings.BlockOverworldSapling;
 import com.progwml6.natura.overworld.block.saplings.BlockOverworldSapling2;
 import com.progwml6.natura.overworld.block.saplings.BlockRedwoodSapling;
 import com.progwml6.natura.overworld.block.slabs.BlockColoredGrassSlab;
 import com.progwml6.natura.overworld.block.slabs.BlockOverworldSlab;
 import com.progwml6.natura.overworld.block.slabs.BlockOverworldSlab2;
+import com.progwml6.natura.overworld.item.ItemSaguaroFruit;
 import com.progwml6.natura.overworld.item.ItemSeeds;
 import com.progwml6.natura.shared.NaturaCommons;
 import com.progwml6.natura.shared.item.bags.ItemSeedBag;
@@ -112,10 +116,16 @@ public class NaturaOverworld extends NaturaPulse
     public static BlockNaturaDoor redwoodDoor;
     public static BlockNaturaDoor redwoodBarkDoor;
 
+    public static BlockSaguaro saguaro;
+    public static BlockSaguaroBaby saguaroBaby;
+    public static BlockSaguaroFruit saguaroFruit;
+
     // Items
     public static ItemSeeds overworldSeeds;
     public static ItemSeedBag overworldSeedBags;
     public static ItemNaturaDoor overworldDoors;
+
+    public static ItemSaguaroFruit saguaroFruitItem;
 
     public static ItemStack barley_seeds;
     public static ItemStack cotton_seeds;
@@ -185,9 +195,16 @@ public class NaturaOverworld extends NaturaPulse
         redwoodDoor = registerBlock(new BlockNaturaDoor(), "overworld_door_redwood");
         redwoodBarkDoor = registerBlock(new BlockNaturaDoor(), "overworld_door_redwood_bark");
 
+        saguaro = registerBlock(new BlockSaguaro(), "saguaro");
+        saguaroBaby = registerBlock(new BlockSaguaroBaby(), "saguaro_baby");
+        saguaroFruit = registerBlock(new BlockSaguaroFruit(), "saguaro_fruit");
+
+        // Items
         overworldSeeds = registerItem(new ItemSeeds(), "overworld_seeds");
         overworldSeedBags = registerItem(new ItemSeedBag(), "overworld_seed_bags");
         overworldDoors = registerItem(new ItemNaturaDoor(), "overworld_doors");
+
+        saguaroFruitItem = registerItem(new ItemSaguaroFruit(3, 0.3f, NaturaOverworld.saguaroBaby), "saguaro_fruit_item");
 
         overworldSeeds.setCreativeTab(NaturaRegistry.tabGeneral);
         overworldSeedBags.setCreativeTab(NaturaRegistry.tabGeneral);

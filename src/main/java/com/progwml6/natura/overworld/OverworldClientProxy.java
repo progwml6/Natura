@@ -16,6 +16,7 @@ import com.progwml6.natura.overworld.block.grass.BlockColoredGrass;
 import com.progwml6.natura.overworld.block.leaves.BlockRedwoodLeaves;
 import com.progwml6.natura.overworld.block.logs.BlockOverworldLog;
 import com.progwml6.natura.overworld.block.logs.BlockOverworldLog2;
+import com.progwml6.natura.overworld.block.saguaro.BlockSaguaroBaby;
 import com.progwml6.natura.overworld.block.saplings.BlockOverworldSapling;
 import com.progwml6.natura.overworld.block.saplings.BlockOverworldSapling2;
 import com.progwml6.natura.overworld.block.saplings.BlockRedwoodSapling;
@@ -307,6 +308,19 @@ public class OverworldClientProxy extends ClientProxy
         this.registerItemModelNatura(stack, "overworld_door_redwood");
         stack = new ItemStack(Item.getItemFromBlock(NaturaOverworld.redwoodBarkDoor), 1, NaturaOverworld.redwoodBarkDoor.getMetaFromState(NaturaOverworld.redwoodBarkDoor.getDefaultState().withProperty(BlockDoor.FACING, EnumFacing.EAST).withProperty(BlockDoor.OPEN, Boolean.valueOf(false)).withProperty(BlockDoor.HINGE, BlockDoor.EnumHingePosition.LEFT).withProperty(BlockDoor.HALF, BlockDoor.EnumDoorHalf.LOWER)));
         this.registerItemModelNatura(stack, "overworld_door_redwood_bark");
+
+        registerItemModel(NaturaOverworld.saguaro);
+
+        Item saguaro_baby = Item.getItemFromBlock(NaturaOverworld.saguaroBaby);
+        for (int meta = 0; meta <= 1; meta++)
+        {
+            String variant = String.format("%s=%s", BlockSaguaroBaby.AGE.getName(), Integer.valueOf(meta));
+            ModelLoader.setCustomModelResourceLocation(saguaro_baby, meta, new ModelResourceLocation(saguaro_baby.getRegistryName(), variant));
+        }
+
+        registerItemModel(NaturaOverworld.saguaroFruit);
+
+        registerItemModel(NaturaOverworld.saguaroFruitItem);
 
         NaturaOverworld.overworldSeeds.registerItemModels();
         NaturaOverworld.overworldSeedBags.registerItemModels();
