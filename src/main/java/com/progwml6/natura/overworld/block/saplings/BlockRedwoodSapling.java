@@ -144,17 +144,6 @@ public class BlockRedwoodSapling extends BlockSapling
 
             if (numSaplings >= 40)
             {
-                for (x = -4; x <= 4; x++)
-                {
-                    for (z = -4; z <= 4; z++)
-                    {
-                        if (this.isRedwoodComplete(worldIn, pos.add(x, 0, z), SaplingType.REDWOOD))
-                        {
-                            worldIn.setBlockToAir(pos);
-                        }
-                    }
-                }
-
                 gen = new RedwoodTreeGenerator(bark, heart, root, leaves);
                 break;
             }
@@ -165,30 +154,14 @@ public class BlockRedwoodSapling extends BlockSapling
         }
 
         // replace saplings with air
-        for (x = -4; x <= 4; x++)
-        {
-            for (z = -4; z <= 4; z++)
-            {
-                if (this.isRedwoodComplete(worldIn, pos.add(x, 0, z), SaplingType.REDWOOD))
-                {
-                    worldIn.setBlockToAir(pos.add(x, 0, z));
-                }
-            }
-        }
+        worldIn.setBlockToAir(pos);
 
         // try generating
         gen.generateTree(rand, worldIn, pos);
 
-        // check if it generated
-        for (x = -4; x <= 4; x++)
+        if (worldIn.isAirBlock(pos))
         {
-            for (z = -4; z <= 4; z++)
-            {
-                if (worldIn.isAirBlock(pos.add(x, 0, z)))
-                {
-                    worldIn.setBlockState(pos.add(x, 0, z), state, 4);
-                }
-            }
+            worldIn.setBlockState(pos, state, 4);
         }
     }
 
