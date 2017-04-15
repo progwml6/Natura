@@ -129,9 +129,6 @@ public class BlockRedwoodSapling extends BlockSapling
         IBlockState root;
         IBlockState leaves;
 
-        int x = 0;
-        int z = 0;
-
         switch (state.getValue(FOLIAGE))
         {
         case REDWOOD:
