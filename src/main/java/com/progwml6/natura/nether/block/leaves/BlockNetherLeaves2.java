@@ -100,7 +100,7 @@ public class BlockNetherLeaves2 extends BlockLeaves
     @Override
     public int damageDropped(IBlockState state)
     {
-        return 3;
+        return 2;
     }
 
     @Override
