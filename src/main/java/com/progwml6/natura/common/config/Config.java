@@ -207,6 +207,9 @@ public final class Config
 
         enableHeatscarSpider = configFile.get(ENTITIES, "Enable Heatscar Spiders", enableHeatscarSpider).getBoolean(enableHeatscarSpider);
 
+        overworldWorldGenBlacklist = configFile.get(WORLDGEN, "Overworld World Generation Dimension Blacklist", overworldWorldGenBlacklist).getIntList();
+        netherWorldGenBlacklist = configFile.get(WORLDGEN, "Nether World Generation Dimension Blacklist", netherWorldGenBlacklist).getIntList();
+
         // save changes if any
         boolean changed = false;
         if (configFile.hasChanged())
@@ -352,6 +355,9 @@ public final class Config
     public static boolean enableWheatRecipe = true;
     public static boolean dropBarley = true;
     public static boolean dropCotton = true;
+
+    public static int[] overworldWorldGenBlacklist = new int[] {};
+    public static int[] netherWorldGenBlacklist = new int[] {};
 
     static Configuration configFile;
     //@formatter:on

@@ -77,51 +77,67 @@ public class NetherTreesGenerator implements IWorldGenerator
             return;
         }
 
-        if (BiomeDictionary.isBiomeOfType(biome, Type.NETHER))
+        if (this.shouldGenerateInDimension(world.provider.getDimension()))
         {
-            if (Config.generateBloodwood && random.nextInt(Config.bloodwoodSpawnRarity) == 0)
+            if (BiomeDictionary.isBiomeOfType(biome, Type.NETHER))
             {
-                xSpawn = xPos + random.nextInt(16);
-                ySpawn = 72;
-                zSpawn = zPos + random.nextInt(16);
-                position = new BlockPos(xSpawn, ySpawn, zSpawn);
-
-                this.bloodwoodTreeGen.generateTree(random, world, position);
-            }
-
-            if (Config.generateDarkwood && random.nextInt(Config.darkwoodSpawnRarity) == 0)
-            {
-                xSpawn = xPos + random.nextInt(16);
-                ySpawn = random.nextInt(64) + 32;
-                zSpawn = zPos + random.nextInt(16);
-                position = new BlockPos(xSpawn, ySpawn, zSpawn);
-
-                this.darkwoodTreeGen.generateTree(random, world, position);
-            }
-
-            if (Config.generateFusewood && random.nextInt(Config.fusewoodSpawnRarity) == 0)
-            {
-                xSpawn = xPos + random.nextInt(16);
-                ySpawn = random.nextInt(64) + 32;
-                zSpawn = zPos + random.nextInt(16);
-                position = new BlockPos(xSpawn, ySpawn, zSpawn);
-
-                this.fusewoodTreeGen.generateTree(random, world, position);
-            }
-
-            if (Config.generateGhostwood && random.nextInt(Config.ghostwoodSpawnRarity) == 0)
-            {
-                for (int iter = 0; iter < 3; iter++)
+                if (Config.generateBloodwood && random.nextInt(Config.bloodwoodSpawnRarity) == 0)
                 {
                     xSpawn = xPos + random.nextInt(16);
-                    ySpawn = random.nextInt(80) + 16;
+                    ySpawn = 72;
                     zSpawn = zPos + random.nextInt(16);
                     position = new BlockPos(xSpawn, ySpawn, zSpawn);
 
-                    this.ghostwoodTreeGen.generateTree(random, world, position);
+                    this.bloodwoodTreeGen.generateTree(random, world, position);
+                }
+
+                if (Config.generateDarkwood && random.nextInt(Config.darkwoodSpawnRarity) == 0)
+                {
+                    xSpawn = xPos + random.nextInt(16);
+                    ySpawn = random.nextInt(64) + 32;
+                    zSpawn = zPos + random.nextInt(16);
+                    position = new BlockPos(xSpawn, ySpawn, zSpawn);
+
+                    this.darkwoodTreeGen.generateTree(random, world, position);
+                }
+
+                if (Config.generateFusewood && random.nextInt(Config.fusewoodSpawnRarity) == 0)
+                {
+                    xSpawn = xPos + random.nextInt(16);
+                    ySpawn = random.nextInt(64) + 32;
+                    zSpawn = zPos + random.nextInt(16);
+                    position = new BlockPos(xSpawn, ySpawn, zSpawn);
+
+                    this.fusewoodTreeGen.generateTree(random, world, position);
+                }
+
+                if (Config.generateGhostwood && random.nextInt(Config.ghostwoodSpawnRarity) == 0)
+                {
+                    for (int iter = 0; iter < 3; iter++)
+                    {
+                        xSpawn = xPos + random.nextInt(16);
+                        ySpawn = random.nextInt(80) + 16;
+                        zSpawn = zPos + random.nextInt(16);
+                        position = new BlockPos(xSpawn, ySpawn, zSpawn);
+
+                        this.ghostwoodTreeGen.generateTree(random, world, position);
+                    }
                 }
             }
         }
+    }
+
+    public boolean shouldGenerateInDimension(int dimension)
+    {
+        for (int dimensionId : Config.netherWorldGenBlacklist)
+        {
+            if (dimension == dimensionId)
+            {
+                return false;
+            }
+        }
+
+        return true;
     }
 
 }

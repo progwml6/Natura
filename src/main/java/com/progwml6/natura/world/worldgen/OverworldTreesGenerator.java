@@ -109,155 +109,96 @@ public class OverworldTreesGenerator implements IWorldGenerator
             return;
         }
 
-        if (BiomeDictionary.isBiomeOfType(biome, Type.FOREST))
+        if (this.shouldGenerateInDimension(world.provider.getDimension()))
         {
-            if (Config.generateSakura && random.nextInt(Config.sakuraSpawnRarity * 5) == 0)
+            if (BiomeDictionary.isBiomeOfType(biome, Type.FOREST))
             {
-                for (int iter = 0; iter < 3; iter++)
+                if (Config.generateSakura && random.nextInt(Config.sakuraSpawnRarity * 5) == 0)
+                {
+                    for (int iter = 0; iter < 3; iter++)
+                    {
+                        xSpawn = xPos + random.nextInt(16);
+                        ySpawn = random.nextInt(Config.sakuraSpawnRange) + Config.seaLevel;
+                        zSpawn = zPos + random.nextInt(16);
+                        position = new BlockPos(xSpawn, ySpawn, zSpawn);
+
+                        this.sakuraTreeGen.generateTree(random, world, position);
+                    }
+                }
+
+                if (Config.generateEucalyptus && random.nextInt(Config.eucalyptusSpawnRarity) == 0)
                 {
                     xSpawn = xPos + random.nextInt(16);
-                    ySpawn = random.nextInt(Config.sakuraSpawnRange) + Config.seaLevel;
+                    ySpawn = random.nextInt(Config.eucalyptusSpawnRange) + Config.seaLevel;
                     zSpawn = zPos + random.nextInt(16);
                     position = new BlockPos(xSpawn, ySpawn, zSpawn);
 
-                    this.sakuraTreeGen.generateTree(random, world, position);
+                    this.eucalyptusTreeGen.generateTree(random, world, position);
                 }
             }
 
-            if (Config.generateEucalyptus && random.nextInt(Config.eucalyptusSpawnRarity) == 0)
+            if (BiomeDictionary.isBiomeOfType(biome, Type.PLAINS))
             {
-                xSpawn = xPos + random.nextInt(16);
-                ySpawn = random.nextInt(Config.eucalyptusSpawnRange) + Config.seaLevel;
-                zSpawn = zPos + random.nextInt(16);
-                position = new BlockPos(xSpawn, ySpawn, zSpawn);
-
-                this.eucalyptusTreeGen.generateTree(random, world, position);
-            }
-        }
-
-        if (BiomeDictionary.isBiomeOfType(biome, Type.PLAINS))
-        {
-            if (!retroGen && Config.generateRedwood && random.nextInt(Config.redwoodSpawnRarity) == 0)
-            {
-                xSpawn = xPos + random.nextInt(16);
-                ySpawn = Config.seaLevel + 16;
-                zSpawn = zPos + random.nextInt(16);
-                position = new BlockPos(xSpawn, ySpawn, zSpawn);
-
-                this.redwoodTreeGen.generateTree(random, world, position);
-            }
-
-            if (Config.generateEucalyptus && random.nextInt((int) (Config.eucalyptusSpawnRarity * 1.5)) == 0)
-            {
-                xSpawn = xPos + random.nextInt(16);
-                ySpawn = random.nextInt(Config.eucalyptusSpawnRange) + Config.seaLevel;
-                zSpawn = zPos + random.nextInt(16);
-                position = new BlockPos(xSpawn, ySpawn, zSpawn);
-
-                this.eucalyptusTreeGen.generateTree(random, world, position);
-            }
-        }
-
-        if (BiomeDictionary.isBiomeOfType(biome, Type.MOUNTAIN) || BiomeDictionary.isBiomeOfType(biome, Type.HILLS))
-        {
-            if (Config.generateHopseed && random.nextInt(Config.hopseedSpawnRarity) == 0)
-            {
-                xSpawn = xPos + random.nextInt(16) + 8;
-                ySpawn = random.nextInt(Config.hopseedSpawnRange) + Config.seaLevel;
-                zSpawn = zPos + random.nextInt(16) + 8;
-                position = new BlockPos(xSpawn, ySpawn, zSpawn);
-
-                this.hopseedTreeGen.generateTree(random, world, position);
-            }
-
-            if (Config.generateEucalyptus && random.nextInt(Config.eucalyptusSpawnRarity) < 10)
-            {
-                xSpawn = xPos + random.nextInt(16) + 8;
-                ySpawn = random.nextInt(Config.eucalyptusSpawnRange) + Config.seaLevel;
-                zSpawn = zPos + random.nextInt(16) + 8;
-                position = new BlockPos(xSpawn, ySpawn, zSpawn);
-
-                this.eucalyptusTreeGen.generateTree(random, world, position);
-            }
-        }
-
-        if (BiomeDictionary.isBiomeOfType(biome, Type.RIVER))
-        {
-            if (Config.generateSakura && random.nextInt(Config.sakuraSpawnRarity) == 0)
-            {
-                for (int iter = 0; iter < 3; iter++)
+                if (!retroGen && Config.generateRedwood && random.nextInt(Config.redwoodSpawnRarity) == 0)
                 {
                     xSpawn = xPos + random.nextInt(16);
-                    ySpawn = random.nextInt(Config.sakuraSpawnRange) + Config.seaLevel;
+                    ySpawn = Config.seaLevel + 16;
                     zSpawn = zPos + random.nextInt(16);
                     position = new BlockPos(xSpawn, ySpawn, zSpawn);
 
-                    this.sakuraTreeGen.generateTree(random, world, position);
+                    this.redwoodTreeGen.generateTree(random, world, position);
+                }
+
+                if (Config.generateEucalyptus && random.nextInt((int) (Config.eucalyptusSpawnRarity * 1.5)) == 0)
+                {
+                    xSpawn = xPos + random.nextInt(16);
+                    ySpawn = random.nextInt(Config.eucalyptusSpawnRange) + Config.seaLevel;
+                    zSpawn = zPos + random.nextInt(16);
+                    position = new BlockPos(xSpawn, ySpawn, zSpawn);
+
+                    this.eucalyptusTreeGen.generateTree(random, world, position);
                 }
             }
 
-            if (Config.generateWillow && random.nextInt(Config.willowRarity) == 0)
+            if (BiomeDictionary.isBiomeOfType(biome, Type.MOUNTAIN) || BiomeDictionary.isBiomeOfType(biome, Type.HILLS))
             {
-                xSpawn = xPos + random.nextInt(16);
-                ySpawn = Config.seaLevel + 16;
-                zSpawn = zPos + random.nextInt(16);
-                position = new BlockPos(xSpawn, ySpawn, zSpawn);
+                if (Config.generateHopseed && random.nextInt(Config.hopseedSpawnRarity) == 0)
+                {
+                    xSpawn = xPos + random.nextInt(16) + 8;
+                    ySpawn = random.nextInt(Config.hopseedSpawnRange) + Config.seaLevel;
+                    zSpawn = zPos + random.nextInt(16) + 8;
+                    position = new BlockPos(xSpawn, ySpawn, zSpawn);
 
-                this.willowTreeGen.generateTree(random, world, position);
-            }
-        }
+                    this.hopseedTreeGen.generateTree(random, world, position);
+                }
 
-        if (BiomeDictionary.isBiomeOfType(biome, Type.JUNGLE))
-        {
-            if (Config.generateAmaranth)
-            {
-                xSpawn = xPos + random.nextInt(16);
-                ySpawn = Config.seaLevel + 48;
-                zSpawn = zPos + random.nextInt(16);
-                position = new BlockPos(xSpawn, ySpawn, zSpawn);
+                if (Config.generateEucalyptus && random.nextInt(Config.eucalyptusSpawnRarity) < 10)
+                {
+                    xSpawn = xPos + random.nextInt(16) + 8;
+                    ySpawn = random.nextInt(Config.eucalyptusSpawnRange) + Config.seaLevel;
+                    zSpawn = zPos + random.nextInt(16) + 8;
+                    position = new BlockPos(xSpawn, ySpawn, zSpawn);
 
-                this.amaranthTreeGen.generateTree(random, world, position);
-            }
-        }
-
-        if (BiomeDictionary.isBiomeOfType(biome, Type.FOREST))
-        {
-            if (Config.generateMaple && random.nextInt(Config.mapleRarity) == 0)
-            {
-                xSpawn = xPos + random.nextInt(16);
-                ySpawn = Config.seaLevel + 48;
-                zSpawn = zPos + random.nextInt(16);
-                position = new BlockPos(xSpawn, ySpawn, zSpawn);
-
-                this.mapleTreeGen.generateTree(random, world, position);
+                    this.eucalyptusTreeGen.generateTree(random, world, position);
+                }
             }
 
-            if (Config.generateSilverbell && random.nextInt(Config.silverbellRarity) == 0)
+            if (BiomeDictionary.isBiomeOfType(biome, Type.RIVER))
             {
-                xSpawn = xPos + random.nextInt(16);
-                ySpawn = Config.seaLevel + 48;
-                zSpawn = zPos + random.nextInt(16);
-                position = new BlockPos(xSpawn, ySpawn, zSpawn);
+                if (Config.generateSakura && random.nextInt(Config.sakuraSpawnRarity) == 0)
+                {
+                    for (int iter = 0; iter < 3; iter++)
+                    {
+                        xSpawn = xPos + random.nextInt(16);
+                        ySpawn = random.nextInt(Config.sakuraSpawnRange) + Config.seaLevel;
+                        zSpawn = zPos + random.nextInt(16);
+                        position = new BlockPos(xSpawn, ySpawn, zSpawn);
 
-                this.silverbellTreeGen.generateTree(random, world, position);
-            }
+                        this.sakuraTreeGen.generateTree(random, world, position);
+                    }
+                }
 
-            if (Config.generateTiger && random.nextInt(Config.tigerRarity) == 0)
-            {
-                xSpawn = xPos + random.nextInt(16);
-                ySpawn = Config.seaLevel + 48;
-                zSpawn = zPos + random.nextInt(16);
-                position = new BlockPos(xSpawn, ySpawn, zSpawn);
-
-                this.tigerTreeGen.generateTree(random, world, position);
-            }
-        }
-
-        if (BiomeDictionary.isBiomeOfType(biome, Type.SWAMP))
-        {
-            if (Config.generateWillow && random.nextInt(Config.willowRarity) == 0)
-            {
-                for (int i = 0; i < 3; i++)
+                if (Config.generateWillow && random.nextInt(Config.willowRarity) == 0)
                 {
                     xSpawn = xPos + random.nextInt(16);
                     ySpawn = Config.seaLevel + 16;
@@ -267,20 +208,95 @@ public class OverworldTreesGenerator implements IWorldGenerator
                     this.willowTreeGen.generateTree(random, world, position);
                 }
             }
-        }
 
-        if (BiomeDictionary.isBiomeOfType(biome, Type.SANDY))
-        {
-            if (Config.generateSaguaro && random.nextInt(Config.saguaroSpawnRarity) == 0)
+            if (BiomeDictionary.isBiomeOfType(biome, Type.JUNGLE))
             {
-                xSpawn = xPos + random.nextInt(16);
-                ySpawn = random.nextInt(Config.seaLevel) + 16;
-                zSpawn = zPos + random.nextInt(16);
-                position = new BlockPos(xSpawn, ySpawn, zSpawn);
+                if (Config.generateAmaranth)
+                {
+                    xSpawn = xPos + random.nextInt(16);
+                    ySpawn = Config.seaLevel + 48;
+                    zSpawn = zPos + random.nextInt(16);
+                    position = new BlockPos(xSpawn, ySpawn, zSpawn);
 
-                this.saguaroGen.generateSaguaro(random, world, position);
+                    this.amaranthTreeGen.generateTree(random, world, position);
+                }
+            }
+
+            if (BiomeDictionary.isBiomeOfType(biome, Type.FOREST))
+            {
+                if (Config.generateMaple && random.nextInt(Config.mapleRarity) == 0)
+                {
+                    xSpawn = xPos + random.nextInt(16);
+                    ySpawn = Config.seaLevel + 48;
+                    zSpawn = zPos + random.nextInt(16);
+                    position = new BlockPos(xSpawn, ySpawn, zSpawn);
+
+                    this.mapleTreeGen.generateTree(random, world, position);
+                }
+
+                if (Config.generateSilverbell && random.nextInt(Config.silverbellRarity) == 0)
+                {
+                    xSpawn = xPos + random.nextInt(16);
+                    ySpawn = Config.seaLevel + 48;
+                    zSpawn = zPos + random.nextInt(16);
+                    position = new BlockPos(xSpawn, ySpawn, zSpawn);
+
+                    this.silverbellTreeGen.generateTree(random, world, position);
+                }
+
+                if (Config.generateTiger && random.nextInt(Config.tigerRarity) == 0)
+                {
+                    xSpawn = xPos + random.nextInt(16);
+                    ySpawn = Config.seaLevel + 48;
+                    zSpawn = zPos + random.nextInt(16);
+                    position = new BlockPos(xSpawn, ySpawn, zSpawn);
+
+                    this.tigerTreeGen.generateTree(random, world, position);
+                }
+            }
+
+            if (BiomeDictionary.isBiomeOfType(biome, Type.SWAMP))
+            {
+                if (Config.generateWillow && random.nextInt(Config.willowRarity) == 0)
+                {
+                    for (int i = 0; i < 3; i++)
+                    {
+                        xSpawn = xPos + random.nextInt(16);
+                        ySpawn = Config.seaLevel + 16;
+                        zSpawn = zPos + random.nextInt(16);
+                        position = new BlockPos(xSpawn, ySpawn, zSpawn);
+
+                        this.willowTreeGen.generateTree(random, world, position);
+                    }
+                }
+            }
+
+            if (BiomeDictionary.isBiomeOfType(biome, Type.SANDY))
+            {
+                if (Config.generateSaguaro && random.nextInt(Config.saguaroSpawnRarity) == 0)
+                {
+                    xSpawn = xPos + random.nextInt(16);
+                    ySpawn = random.nextInt(Config.seaLevel) + 16;
+                    zSpawn = zPos + random.nextInt(16);
+                    position = new BlockPos(xSpawn, ySpawn, zSpawn);
+
+                    this.saguaroGen.generateSaguaro(random, world, position);
+                }
             }
         }
+    }
+
+    public boolean shouldGenerateInDimension(int dimension)
+    {
+        for (int dimensionId : Config.overworldWorldGenBlacklist)
+        {
+            if (dimension == dimensionId)
+            {
+                return false;
+            }
+        }
+
+        return true;
     }
 
 }

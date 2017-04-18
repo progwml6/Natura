@@ -44,7 +44,7 @@ public class BlockTaintedSoil extends EnumBlock<BlockTaintedSoil.SoilType>
     @Override
     public boolean canSustainPlant(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing direction, net.minecraftforge.common.IPlantable plantable)
     {
-        EnumPlantType plantType = plantable.getPlantType(world, pos.add(0, 1, 0));
+        EnumPlantType plantType = plantable.getPlantType(world, pos.up());
 
         if (plantType == EnumPlantType.Nether)
         {

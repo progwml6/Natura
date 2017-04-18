@@ -52,47 +52,64 @@ public class NetherBerryBushesGenerator implements IWorldGenerator
 
         BlockPos position;
 
-        if (world.provider.doesWaterVaporize())
+        if (this.shouldGenerateInDimension(world.provider.getDimension()))
         {
-            if (Config.generateBlightberries && random.nextInt(Config.blightberrySpawnRarity) == 0)
+            if (world.provider.doesWaterVaporize())
             {
-                xSpawn = xPos + random.nextInt(16);
-                ySpawn = random.nextInt(Config.blightberrySpawnRange) + 16;
-                zSpawn = zPos + random.nextInt(16);
-                position = new BlockPos(xSpawn, ySpawn, zSpawn);
+                if (Config.generateBlightberries && random.nextInt(Config.blightberrySpawnRarity) == 0)
+                {
+                    xSpawn = xPos + random.nextInt(16);
+                    ySpawn = random.nextInt(Config.blightberrySpawnRange) + 16;
+                    zSpawn = zPos + random.nextInt(16);
+                    position = new BlockPos(xSpawn, ySpawn, zSpawn);
 
-                this.blightberryBushGen.generateBush(random, world, position);
-            }
+                    this.blightberryBushGen.generateBush(random, world, position);
+                }
 
-            if (Config.generateDuskberries && random.nextInt(Config.duskberrySpawnRarity) == 0)
-            {
-                xSpawn = xPos + random.nextInt(16);
-                ySpawn = random.nextInt(Config.duskberrySpawnRange) + 16;
-                zSpawn = zPos + random.nextInt(16);
-                position = new BlockPos(xSpawn, ySpawn, zSpawn);
+                if (Config.generateDuskberries && random.nextInt(Config.duskberrySpawnRarity) == 0)
+                {
+                    xSpawn = xPos + random.nextInt(16);
+                    ySpawn = random.nextInt(Config.duskberrySpawnRange) + 16;
+                    zSpawn = zPos + random.nextInt(16);
+                    position = new BlockPos(xSpawn, ySpawn, zSpawn);
 
-                this.duskberryBushGen.generateBush(random, world, position);
-            }
+                    this.duskberryBushGen.generateBush(random, world, position);
+                }
 
-            if (Config.generateSkyberries && random.nextInt(Config.skyberrySpawnRarity) == 0)
-            {
-                xSpawn = xPos + random.nextInt(16);
-                ySpawn = random.nextInt(Config.skyberrySpawnRange) + 16;
-                zSpawn = zPos + random.nextInt(16);
-                position = new BlockPos(xSpawn, ySpawn, zSpawn);
+                if (Config.generateSkyberries && random.nextInt(Config.skyberrySpawnRarity) == 0)
+                {
+                    xSpawn = xPos + random.nextInt(16);
+                    ySpawn = random.nextInt(Config.skyberrySpawnRange) + 16;
+                    zSpawn = zPos + random.nextInt(16);
+                    position = new BlockPos(xSpawn, ySpawn, zSpawn);
 
-                this.skyberryBushGen.generateBush(random, world, position);
-            }
+                    this.skyberryBushGen.generateBush(random, world, position);
+                }
 
-            if (Config.generateStingberries && random.nextInt(Config.stingberrySpawnRarity) == 0)
-            {
-                xSpawn = xPos + random.nextInt(16);
-                ySpawn = random.nextInt(Config.stingberrySpawnRange) + 16;
-                zSpawn = zPos + random.nextInt(16);
-                position = new BlockPos(xSpawn, ySpawn, zSpawn);
+                if (Config.generateStingberries && random.nextInt(Config.stingberrySpawnRarity) == 0)
+                {
+                    xSpawn = xPos + random.nextInt(16);
+                    ySpawn = random.nextInt(Config.stingberrySpawnRange) + 16;
+                    zSpawn = zPos + random.nextInt(16);
+                    position = new BlockPos(xSpawn, ySpawn, zSpawn);
 
-                this.stingberryBushGen.generateBush(random, world, position);
+                    this.stingberryBushGen.generateBush(random, world, position);
+                }
             }
         }
     }
+
+    public boolean shouldGenerateInDimension(int dimension)
+    {
+        for (int dimensionId : Config.netherWorldGenBlacklist)
+        {
+            if (dimension == dimensionId)
+            {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
 }

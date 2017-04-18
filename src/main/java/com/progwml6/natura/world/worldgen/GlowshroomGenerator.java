@@ -66,30 +66,33 @@ public class GlowshroomGenerator implements IWorldGenerator
             return;
         }
 
-        if (BiomeDictionary.isBiomeOfType(biome, Type.NETHER))
+        if (this.shouldGenerateInDimension(world.provider.getDimension()))
         {
-            if (Config.generateGlowshroomtree && random.nextInt(35) == 0)
+            if (BiomeDictionary.isBiomeOfType(biome, Type.NETHER))
             {
-                for (int iter = 0; iter < 5; iter++)
+                if (Config.generateGlowshroomtree && random.nextInt(35) == 0)
                 {
-                    xSpawn = xPos + random.nextInt(24) - 4;
-                    zSpawn = zPos + random.nextInt(24) - 4;
-                    ySpawn = this.findGround(world, xSpawn, random.nextInt(64) + 32, zSpawn);
-                    position = new BlockPos(xSpawn, ySpawn, zSpawn);
+                    for (int iter = 0; iter < 5; iter++)
+                    {
+                        xSpawn = xPos + random.nextInt(24) - 4;
+                        zSpawn = zPos + random.nextInt(24) - 4;
+                        ySpawn = this.findGround(world, xSpawn, random.nextInt(64) + 32, zSpawn);
+                        position = new BlockPos(xSpawn, ySpawn, zSpawn);
 
-                    if (random.nextInt(3) == 0)
-                    {
-                        this.purpleGlowshroomGen.generateShroom(random, world, position);
-                    }
-                    else
-                    {
-                        if (random.nextInt(2) == 0)
+                        if (random.nextInt(3) == 0)
                         {
-                            this.greenGlowshroomGen.generateShroom(random, world, position);
+                            this.purpleGlowshroomGen.generateShroom(random, world, position);
                         }
                         else
                         {
-                            this.blueGlowshroomGen.generateShroom(random, world, position);
+                            if (random.nextInt(2) == 0)
+                            {
+                                this.greenGlowshroomGen.generateShroom(random, world, position);
+                            }
+                            else
+                            {
+                                this.blueGlowshroomGen.generateShroom(random, world, position);
+                            }
                         }
                     }
                 }
@@ -117,4 +120,18 @@ public class GlowshroomGenerator implements IWorldGenerator
 
         return height + 1;
     }
+
+    public boolean shouldGenerateInDimension(int dimension)
+    {
+        for (int dimensionId : Config.netherWorldGenBlacklist)
+        {
+            if (dimension == dimensionId)
+            {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
 }
