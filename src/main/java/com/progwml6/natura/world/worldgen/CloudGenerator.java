@@ -8,6 +8,7 @@ import com.progwml6.natura.shared.block.clouds.BlockCloud;
 import com.progwml6.natura.world.worldgen.clouds.CloudsGenerator;
 
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.init.Biomes;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
@@ -108,7 +109,7 @@ public class CloudGenerator implements IWorldGenerator
             return;
         }
 
-        if (Config.generateOverworldClouds && biome.getRainfall() > 0.15f && random.nextInt(Config.cloudSpawnRarity) == 0 && world.provider.getDimension() != 1 && this.shouldGenerateInDim(world.provider.getDimension()))
+        if (Config.generateOverworldClouds && biome.getRainfall() > 0.15f && random.nextInt(Config.cloudSpawnRarity) == 0 && world.provider.getDimension() != 1 && this.shouldGenerateInDimension(world.provider.getDimension(), Config.cloudBlacklist))
         {
             xSpawn = xPos + random.nextInt(16);
             ySpawn = random.nextInt(Config.cloudSpawnRange) + Config.cloudSpawnHeight;
@@ -138,23 +139,148 @@ public class CloudGenerator implements IWorldGenerator
 
     public void generateNether(Random random, int chunkX, int chunkZ, World world)
     {
+        int xSpawn, ySpawn, zSpawn;
 
+        int xPos = chunkX * 16 + 8;
+        int zPos = chunkZ * 16 + 8;
+
+        BlockPos chunkPos = new BlockPos(xPos, 0, zPos);
+
+        BlockPos position;
+
+        Biome biome = world.getChunkFromBlockCoords(chunkPos).getBiome(chunkPos, world.getBiomeProvider());
+
+        if (biome == null)
+        {
+            return;
+        }
+
+        if (world.provider.doesWaterVaporize())
+        {
+            if (Config.generateAshClouds && random.nextInt(Config.ashSpawnRarity) == 0 && this.shouldGenerateInDimension(world.provider.getDimension(), Config.ashBlacklist))
+            {
+                xSpawn = xPos + random.nextInt(16);
+                ySpawn = random.nextInt(Config.ashSpawnRange) + Config.ashSpawnHeight;
+                zSpawn = zPos + random.nextInt(16);
+                position = new BlockPos(xSpawn, ySpawn, zSpawn);
+
+                int size = random.nextInt(12);
+
+                if (size < 2.5)
+                {
+                    this.tinyAshCloudGen.generateCloud(random, world, position);
+                }
+                else if (size < 5)
+                {
+                    this.smallAshCloudGen.generateCloud(random, world, position);
+                }
+                else if (size < 9)
+                {
+                    this.smallAshCloudGen.generateCloud(random, world, position);
+                }
+                else if (size < 11)
+                {
+                    this.largeAshCloudGen.generateCloud(random, world, position);
+                }
+                else
+                {
+                    this.hugeAshCloudGen.generateCloud(random, world, position);
+                }
+            }
+
+            if (Config.generateSulfurClouds && random.nextInt(Config.sulfurSpawnRarity) == 0 && this.shouldGenerateInDimension(world.provider.getDimension(), Config.sulfurCloudBlacklist))
+            {
+                xSpawn = xPos + random.nextInt(16);
+                ySpawn = random.nextInt(Config.sulfurSpawnRange) + Config.sulfurSpawnHeight;
+                zSpawn = zPos + random.nextInt(16);
+                position = new BlockPos(xSpawn, ySpawn, zSpawn);
+
+                int size = random.nextInt(12);
+
+                if (size < 2.5)
+                {
+                    this.tinySulfurCloudGen.generateCloud(random, world, position);
+                }
+                else if (size < 5)
+                {
+                    this.smallSulfurCloudGen.generateCloud(random, world, position);
+                }
+                else if (size < 9)
+                {
+                    this.mediumSulfurCloudGen.generateCloud(random, world, position);
+                }
+                else if (size < 11)
+                {
+                    this.largeSulfurCloudGen.generateCloud(random, world, position);
+                }
+                else
+                {
+                    this.hugeSulfurCloudGen.generateCloud(random, world, position);
+                }
+            }
+        }
     }
 
     public void generateEnd(Random random, int chunkX, int chunkZ, World world)
     {
+        int xSpawn, ySpawn, zSpawn;
 
+        int xPos = chunkX * 16 + 8;
+        int zPos = chunkZ * 16 + 8;
+
+        BlockPos chunkPos = new BlockPos(xPos, 0, zPos);
+
+        BlockPos position;
+
+        Biome biome = world.getChunkFromBlockCoords(chunkPos).getBiome(chunkPos, world.getBiomeProvider());
+
+        if (biome == null)
+        {
+            return;
+        }
+
+        if (Config.generateDarkClouds && biome == Biomes.SKY && world.provider.getDimension() == 1 && random.nextInt(4) == 0 && this.shouldGenerateInDimension(world.provider.getDimension(), Config.darkCloudBlacklist))
+        {
+            xSpawn = xPos + random.nextInt(16);
+            zSpawn = xPos + random.nextInt(16);
+
+            for (int iter = 0; iter < Config.darkCloudSpawnRarity; iter++)
+            {
+                int height = random.nextInt(Config.darkCloudSpawnRange);
+                ySpawn = height + Config.darkCloudSpawnHeight;
+
+                position = new BlockPos(xSpawn, ySpawn, zSpawn);
+
+                if (random.nextInt(5) == 0)
+                {
+                    this.smallDarkCloudGen.generateCloud(random, world, position);
+                }
+                else if (random.nextInt(7) == 0)
+                {
+                    this.mediumDarkCloudGen.generateCloud(random, world, position);
+                }
+                else if (random.nextInt(9) == 0)
+                {
+                    this.largeDarkCloudGen.generateCloud(random, world, position);
+                }
+                else if (random.nextInt(12) == 0)
+                {
+                    this.hugeDarkCloudGen.generateCloud(random, world, position);
+                }
+            }
+        }
     }
 
-    public boolean shouldGenerateInDim(int id)
+    public boolean shouldGenerateInDimension(int dimension, int[] configSetting)
     {
-        for (int dimID : Config.cloudBlacklist)
+        for (int dimensionId : configSetting)
         {
-            if (id == dimID)
+            if (dimension == dimensionId)
             {
                 return false;
             }
         }
+
         return true;
     }
 }

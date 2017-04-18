@@ -187,6 +187,7 @@ public final class Config
         // Cloud Start
         cloudBlacklist = configFile.get(WORLDGEN, "dimension blacklist(clouds)", cloudBlacklist).getIntList();
         darkCloudBlacklist = configFile.get(WORLDGEN, "dimension blacklist(dark clouds)", darkCloudBlacklist).getIntList();
+        ashBlacklist = configFile.get(WORLDGEN, "dimension blacklist(ash clouds)", ashBlacklist).getIntList();
         sulfurCloudBlacklist = configFile.get(WORLDGEN, "dimension blacklist(sulfur clouds)", sulfurCloudBlacklist).getIntList();
 
         cloudSpawnRarity = configFile.get(WORLDGEN, "Cloud Spawn Rarity", cloudSpawnRarity).getInt(cloudSpawnRarity);
@@ -227,8 +228,9 @@ public final class Config
     public static boolean generateAshClouds = true;
     public static boolean generateDarkClouds = true;
 
-    public static int[] darkCloudBlacklist = new int[] {};
     public static int[] cloudBlacklist = new int[] {};
+    public static int[] darkCloudBlacklist = new int[] {};
+    public static int[] ashBlacklist = new int[] {};
     public static int[] sulfurCloudBlacklist = new int[] {};
 
     public static boolean enableCloudBlocks = false;
