@@ -41,6 +41,9 @@ public class BlockNetherLargeGlowshroom extends Block
     public BlockNetherLargeGlowshroom(Block smallStateIn, int glowshroomMetaIn)
     {
         super(Material.WOOD);
+
+        this.setLightLevel(0.625f);
+
         this.smallState = smallStateIn;
         this.glowshroomMeta = glowshroomMetaIn;
     }
@@ -126,6 +129,7 @@ public class BlockNetherLargeGlowshroom extends Block
     public boolean shouldSideBeRendered(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side)
     {
         Block block = blockAccess.getBlockState(pos.offset(side)).getBlock();
+
         if (block == NaturaNether.netherLargeBlueGlowshroom || block == NaturaNether.netherLargePurpleGlowshroom)
         {
             return false;
@@ -156,6 +160,7 @@ public class BlockNetherLargeGlowshroom extends Block
         {
             entityIn.motionY *= 0.25F;
         }
+
         entityIn.fallDistance -= 0.25f;
 
         if (entityIn.motionY == 0f)
@@ -167,6 +172,7 @@ public class BlockNetherLargeGlowshroom extends Block
         if (entityIn instanceof EntityLiving)
         {
             EntityLiving living = (EntityLiving) entityIn;
+
             living.addPotionEffect(new PotionEffect(MobEffects.NAUSEA, 100, 0));
         }
     }
