@@ -16,6 +16,7 @@ import static com.progwml6.natura.overworld.NaturaOverworld.redwoodSapling;
 import java.util.List;
 
 import com.progwml6.natura.common.NaturaPulse;
+import com.progwml6.natura.nether.block.leaves.BlockNetherLeaves;
 
 import mcp.mobius.waila.api.IWailaConfigHandler;
 import mcp.mobius.waila.api.IWailaDataAccessor;
@@ -60,7 +61,12 @@ public class BlocksDataProvider extends NaturaPulse implements IWailaDataProvide
                 return new ItemStack(block, 1, accessor.getMetadata() % 4);
             }
 
-            if (block == netherLeaves || block == netherLeaves2)
+            if (block == netherLeaves)
+            {
+                return new ItemStack(block, 1, accessor.getBlockState().getValue(BlockNetherLeaves.TYPE).getWailaLeavesMeta());
+            }
+
+            if (block == netherLeaves2)
             {
                 return new ItemStack(block, 1, accessor.getMetadata() % 4);
             }

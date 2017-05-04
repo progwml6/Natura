@@ -16,13 +16,11 @@ import static com.progwml6.natura.overworld.NaturaOverworld.redwoodSapling;
 import com.progwml6.natura.Natura;
 import com.progwml6.natura.common.NaturaPulse;
 
-import mcp.mobius.waila.api.IWailaPlugin;
 import mcp.mobius.waila.api.IWailaRegistrar;
 
-public class WailaRegistrar extends NaturaPulse implements IWailaPlugin
+public class WailaRegistrar extends NaturaPulse
 {
-    @Override
-    public void register(IWailaRegistrar registrar)
+    public static void wailaCallback(IWailaRegistrar registrar)
     {
         if (Natura.pulseManager.isPulseLoaded(PluginWaila.PulseId))
         {
