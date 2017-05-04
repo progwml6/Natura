@@ -86,7 +86,7 @@ public class BlockNetherLeaves extends BlockLeaves
     @Override
     protected int getSaplingDropChance(IBlockState state)
     {
-        return 20;
+        return 25;
     }
 
     // sapling item
