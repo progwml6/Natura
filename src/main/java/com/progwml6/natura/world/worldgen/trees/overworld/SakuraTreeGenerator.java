@@ -12,6 +12,7 @@ import com.progwml6.natura.world.worldgen.trees.BaseTreeGenerator;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
@@ -46,7 +47,7 @@ public class SakuraTreeGenerator extends BaseTreeGenerator
     /** Sets the distance limit for how far away the generator will populate leaves from the base leaf node. */
     int leafDistanceLimit = 4;
 
-    List<SakuraTreeGenerator.FoliageCoordinates> foliageCoords;
+    List<FoliageCoordinates> foliageCoords;
 
     public final IBlockState log;
 
@@ -85,8 +86,8 @@ public class SakuraTreeGenerator extends BaseTreeGenerator
 
         int j = this.basePos.getY() + this.height;
         int k = this.heightLimit - this.leafDistanceLimit;
-        this.foliageCoords = Lists.<SakuraTreeGenerator.FoliageCoordinates> newArrayList();
-        this.foliageCoords.add(new SakuraTreeGenerator.FoliageCoordinates(this.basePos.up(k), j));
+        this.foliageCoords = Lists.<FoliageCoordinates> newArrayList();
+        this.foliageCoords.add(new FoliageCoordinates(this.basePos.up(k), j));
 
         for (; k >= 0; --k)
         {
@@ -113,7 +114,7 @@ public class SakuraTreeGenerator extends BaseTreeGenerator
 
                         if (this.checkBlockLine(blockpos2, blockpos) == -1)
                         {
-                            this.foliageCoords.add(new SakuraTreeGenerator.FoliageCoordinates(blockpos, blockpos2.getY()));
+                            this.foliageCoords.add(new FoliageCoordinates(blockpos, blockpos2.getY()));
                         }
                     }
                 }
@@ -241,9 +242,9 @@ public class SakuraTreeGenerator extends BaseTreeGenerator
      */
     void generateLeaves()
     {
-        for (SakuraTreeGenerator.FoliageCoordinates SakuraTreeGenerator$foliagecoordinates : this.foliageCoords)
+        for (FoliageCoordinates foliagecoordinates : this.foliageCoords)
         {
-            this.generateLeafNode(SakuraTreeGenerator$foliagecoordinates);
+            this.generateLeafNode(foliagecoordinates);
         }
     }
 
@@ -278,14 +279,14 @@ public class SakuraTreeGenerator extends BaseTreeGenerator
      */
     void generateLeafNodeBases()
     {
-        for (SakuraTreeGenerator.FoliageCoordinates SakuraTreeGenerator$foliagecoordinates : this.foliageCoords)
+        for (FoliageCoordinates foliagecoordinates : this.foliageCoords)
         {
-            int i = SakuraTreeGenerator$foliagecoordinates.getBranchBase();
+            int i = foliagecoordinates.getBranchBase();
             BlockPos blockpos = new BlockPos(this.basePos.getX(), i, this.basePos.getZ());
 
-            if (!blockpos.equals(SakuraTreeGenerator$foliagecoordinates) && this.leafNodeNeedsBase(i - this.basePos.getY()))
+            if (!blockpos.equals(foliagecoordinates) && this.leafNodeNeedsBase(i - this.basePos.getY()))
             {
-                this.limb(blockpos, SakuraTreeGenerator$foliagecoordinates, this.log);
+                this.limb(blockpos, foliagecoordinates, this.log);
             }
         }
     }
@@ -334,8 +335,8 @@ public class SakuraTreeGenerator extends BaseTreeGenerator
     private boolean validTreeLocation()
     {
         BlockPos down = this.basePos.down();
-        net.minecraft.block.state.IBlockState state = this.world.getBlockState(down);
-        boolean isSoil = state.getBlock().canSustainPlant(state, this.world, down, net.minecraft.util.EnumFacing.UP, NaturaOverworld.overworldSapling2);
+        IBlockState state = this.world.getBlockState(down);
+        boolean isSoil = state.getBlock().canSustainPlant(state, this.world, down, EnumFacing.UP, NaturaOverworld.overworldSapling2);
 
         if (!isSoil)
         {
@@ -365,6 +366,7 @@ public class SakuraTreeGenerator extends BaseTreeGenerator
     {
         IBlockState state = world.getBlockState(pos);
         Block block = state.getBlock();
+
         if (block.isAir(state, world, pos) || block.canPlaceBlockAt(world, pos) || world.getBlockState(pos) == this.leaves)
         {
             world.setBlockState(pos, stateNew, 2);
@@ -467,10 +469,11 @@ public class SakuraTreeGenerator extends BaseTreeGenerator
     {
         private final int branchBase;
 
-        public FoliageCoordinates(BlockPos pos, int p_i45635_2_)
+        public FoliageCoordinates(BlockPos pos, int branchBase)
         {
             super(pos.getX(), pos.getY(), pos.getZ());
-            this.branchBase = p_i45635_2_;
+
+            this.branchBase = branchBase;
         }
 
         public int getBranchBase()
