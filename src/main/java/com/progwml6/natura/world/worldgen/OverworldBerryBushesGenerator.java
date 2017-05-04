@@ -59,55 +59,71 @@ public class OverworldBerryBushesGenerator implements IWorldGenerator
 
         Biome biome = world.getChunkFromBlockCoords(chunkPos).getBiome(chunkPos, world.getBiomeProvider());
 
-        if (Config.generateRaspberries && random.nextInt(Config.raspberrySpawnRarity) == 0 && this.goodClimate(biome, 0.6f, 2.0f, 0.2f, 0.93f))
+        if (this.shouldGenerateInDimension(world.provider.getDimension()))
         {
-            xSpawn = xPos + random.nextInt(16);
-            ySpawn = random.nextInt(Config.raspberrySpawnRange) + Config.seaLevel;
-            zSpawn = zPos + random.nextInt(16);
-            position = new BlockPos(xSpawn, ySpawn, zSpawn);
+            if (Config.generateRaspberries && random.nextInt(Config.raspberrySpawnRarity) == 0 && this.goodClimate(biome, 0.6f, 2.0f, 0.2f, 0.93f))
+            {
+                xSpawn = xPos + random.nextInt(16);
+                ySpawn = random.nextInt(Config.raspberrySpawnRange) + Config.seaLevel;
+                zSpawn = zPos + random.nextInt(16);
+                position = new BlockPos(xSpawn, ySpawn, zSpawn);
 
-            this.raspberryBushGen.generateBush(random, world, position);
+                this.raspberryBushGen.generateBush(random, world, position);
+            }
+
+            if (Config.generateBlueberries && random.nextInt(Config.blueberrySpawnRarity) == 0 && this.goodClimate(biome, 0.3f, 0.81f, 0.3f, 0.8f))
+            {
+                xSpawn = xPos + random.nextInt(16);
+                ySpawn = random.nextInt(Config.blueberrySpawnRange) + Config.seaLevel;
+                zSpawn = zPos + random.nextInt(16);
+                position = new BlockPos(xSpawn, ySpawn, zSpawn);
+
+                this.blueberryBushGen.generateBush(random, world, position);
+            }
+
+            if (Config.generateBlackberries && random.nextInt(Config.blackberrySpawnRarity) == 0 && this.goodClimate(biome, 0.5f, 5.0f, 0.6f, 3.0f))
+            {
+                xSpawn = xPos + random.nextInt(16);
+                ySpawn = random.nextInt(Config.blackberrySpawnRange) + Config.seaLevel;
+                zSpawn = zPos + random.nextInt(16);
+                position = new BlockPos(xSpawn, ySpawn, zSpawn);
+
+                this.blackberryBushGen.generateBush(random, world, position);
+            }
+
+            if (Config.generateBlackberries && random.nextInt(Config.blackberrySpawnRarity / 3) == 0 && BiomeDictionary.hasType(biome, Type.SWAMP))
+            {
+                xSpawn = xPos + random.nextInt(16);
+                ySpawn = random.nextInt(Config.blackberrySpawnRange) + Config.seaLevel;
+                zSpawn = zPos + random.nextInt(16);
+                position = new BlockPos(xSpawn, ySpawn, zSpawn);
+
+                this.blackberryBushGen.generateBush(random, world, position);
+            }
+
+            if (Config.generateMaloberries && random.nextInt(Config.maloberrySpawnRarity) == 0 && this.goodClimate(biome, 0.0f, 0.3f, 0.0f, 5.0f))
+            {
+                xSpawn = xPos + random.nextInt(16);
+                ySpawn = random.nextInt(Config.maloberrySpawnRange) + Config.seaLevel;
+                zSpawn = zPos + random.nextInt(16);
+                position = new BlockPos(xSpawn, ySpawn, zSpawn);
+
+                this.maloberryBushGen.generateBush(random, world, position);
+            }
+        }
+    }
+
+    public boolean shouldGenerateInDimension(int dimension)
+    {
+        for (int dimensionId : Config.overworldWorldGenBlacklist)
+        {
+            if (dimension == dimensionId)
+            {
+                return false;
+            }
         }
 
-        if (Config.generateBlueberries && random.nextInt(Config.blueberrySpawnRarity) == 0 && this.goodClimate(biome, 0.3f, 0.81f, 0.3f, 0.8f))
-        {
-            xSpawn = xPos + random.nextInt(16);
-            ySpawn = random.nextInt(Config.blueberrySpawnRange) + Config.seaLevel;
-            zSpawn = zPos + random.nextInt(16);
-            position = new BlockPos(xSpawn, ySpawn, zSpawn);
-
-            this.blueberryBushGen.generateBush(random, world, position);
-        }
-
-        if (Config.generateBlackberries && random.nextInt(Config.blackberrySpawnRarity) == 0 && this.goodClimate(biome, 0.5f, 5.0f, 0.6f, 3.0f))
-        {
-            xSpawn = xPos + random.nextInt(16);
-            ySpawn = random.nextInt(Config.blackberrySpawnRange) + Config.seaLevel;
-            zSpawn = zPos + random.nextInt(16);
-            position = new BlockPos(xSpawn, ySpawn, zSpawn);
-
-            this.blackberryBushGen.generateBush(random, world, position);
-        }
-
-        if (Config.generateBlackberries && random.nextInt(Config.blackberrySpawnRarity / 3) == 0 && BiomeDictionary.hasType(biome, Type.SWAMP))
-        {
-            xSpawn = xPos + random.nextInt(16);
-            ySpawn = random.nextInt(Config.blackberrySpawnRange) + Config.seaLevel;
-            zSpawn = zPos + random.nextInt(16);
-            position = new BlockPos(xSpawn, ySpawn, zSpawn);
-
-            this.blackberryBushGen.generateBush(random, world, position);
-        }
-
-        if (Config.generateMaloberries && random.nextInt(Config.maloberrySpawnRarity) == 0 && this.goodClimate(biome, 0.0f, 0.3f, 0.0f, 5.0f))
-        {
-            xSpawn = xPos + random.nextInt(16);
-            ySpawn = random.nextInt(Config.maloberrySpawnRange) + Config.seaLevel;
-            zSpawn = zPos + random.nextInt(16);
-            position = new BlockPos(xSpawn, ySpawn, zSpawn);
-
-            this.maloberryBushGen.generateBush(random, world, position);
-        }
+        return true;
     }
 
     public boolean goodClimate(Biome biome, float minTemp, float maxTemp, float minRain, float maxRain)
@@ -121,4 +137,5 @@ public class OverworldBerryBushesGenerator implements IWorldGenerator
 
         return false;
     }
+
 }

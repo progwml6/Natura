@@ -40,7 +40,7 @@ public class ItemNaturaDoor extends ItemMetaDynamic
     }
 
     @Override
-    public EnumActionResult onItemUse(EntityPlayer playerIn, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
+    public EnumActionResult onItemUse(EntityPlayer player, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
     {
         if (facing != EnumFacing.UP)
         {
@@ -48,7 +48,7 @@ public class ItemNaturaDoor extends ItemMetaDynamic
         }
         else
         {
-            ItemStack itemstack = playerIn.getHeldItem(hand);
+            ItemStack itemstack = player.getHeldItem(hand);
 
             int meta = itemstack.getMetadata();
 
@@ -62,15 +62,15 @@ public class ItemNaturaDoor extends ItemMetaDynamic
                     pos = pos.offset(facing);
                 }
 
-                if (playerIn.canPlayerEdit(pos, facing, itemstack) && this.states.get(meta).getBlock().canPlaceBlockAt(worldIn, pos))
+                if (player.canPlayerEdit(pos, facing, itemstack) && this.states.get(meta).getBlock().canPlaceBlockAt(worldIn, pos))
                 {
-                    EnumFacing enumfacing = EnumFacing.fromAngle(playerIn.rotationYaw);
+                    EnumFacing enumfacing = EnumFacing.fromAngle(player.rotationYaw);
                     int i = enumfacing.getFrontOffsetX();
                     int j = enumfacing.getFrontOffsetZ();
                     boolean flag = i < 0 && hitZ < 0.5F || i > 0 && hitZ > 0.5F || j < 0 && hitX > 0.5F || j > 0 && hitX < 0.5F;
                     placeDoor(worldIn, pos, enumfacing, this.states.get(meta), flag);
-                    SoundType soundtype = worldIn.getBlockState(pos).getBlock().getSoundType(worldIn.getBlockState(pos), worldIn, pos, playerIn);
-                    worldIn.playSound(playerIn, pos, soundtype.getPlaceSound(), SoundCategory.BLOCKS, (soundtype.getVolume() + 1.0F) / 2.0F, soundtype.getPitch() * 0.8F);
+                    SoundType soundtype = worldIn.getBlockState(pos).getBlock().getSoundType(worldIn.getBlockState(pos), worldIn, pos, player);
+                    worldIn.playSound(player, pos, soundtype.getPlaceSound(), SoundCategory.BLOCKS, (soundtype.getVolume() + 1.0F) / 2.0F, soundtype.getPitch() * 0.8F);
                     itemstack.shrink(1);
                     return EnumActionResult.SUCCESS;
                 }

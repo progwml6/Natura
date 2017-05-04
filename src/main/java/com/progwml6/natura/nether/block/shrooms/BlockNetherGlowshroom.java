@@ -35,6 +35,8 @@ public class BlockNetherGlowshroom extends BlockMushroom
     public BlockNetherGlowshroom()
     {
         super();
+
+        this.setLightLevel(0.625f);
         this.setCreativeTab(NaturaRegistry.tabWorld);
         this.setSoundType(SoundType.PLANT);
     }
@@ -74,6 +76,7 @@ public class BlockNetherGlowshroom extends BlockMushroom
             }
 
             currentState = worldIn.getBlockState(pos);
+
             if (worldIn.isAirBlock(blockpos1) && this.canBlockStay(worldIn, blockpos1, currentState))
             {
                 worldIn.setBlockState(blockpos1, currentState, 3);
@@ -96,6 +99,7 @@ public class BlockNetherGlowshroom extends BlockMushroom
         if (pos.getY() >= 0 && pos.getY() < 256)
         {
             IBlockState iblockstate = worldIn.getBlockState(pos.down());
+
             return (iblockstate.getBlock() == Blocks.MYCELIUM || iblockstate.getBlock() == Blocks.NETHERRACK || iblockstate.getBlock() == Blocks.SOUL_SAND || iblockstate.getBlock() == NaturaNether.netherTaintedSoil) ? true : (worldIn.getLight(pos) < 13 && iblockstate.getBlock().canSustainPlant(iblockstate, worldIn, pos.down(), net.minecraft.util.EnumFacing.UP, this));
         }
         else

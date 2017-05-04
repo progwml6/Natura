@@ -40,50 +40,53 @@ public class CropGenerator implements IWorldGenerator
 
         Biome biome = world.getChunkFromBlockCoords(chunkPos).getBiome(chunkPos, world.getBiomeProvider());
 
-        // Barley
-        if (Config.generateBarley && random.nextInt(5) == 0 && this.goodClimate(biome, 0.11f, 1.0f, 0.11f, 2f))
+        if (this.shouldGenerateInDimension(world.provider.getDimension()))
         {
-            final int posX = xPos + random.nextInt(16);
-            final int posY = random.nextInt(128) + Config.seaLevel;
-            final int posZ = zPos + random.nextInt(16);
-            final BlockPos newPos = new BlockPos(posX, posY, posZ);
-            //final BlockPos newPos = WorldGenHelper.getGroundPos(world, posX, posZ);
-
-            if (newPos != null)
+            // Barley
+            if (Config.generateBarley && random.nextInt(5) == 0 && this.goodClimate(biome, 0.11f, 1.0f, 0.11f, 2f))
             {
-                this.generateBarley(world, random, newPos);
-                this.generateBarley(world, random, newPos);
+                final int posX = xPos + random.nextInt(16);
+                final int posY = random.nextInt(128) + Config.seaLevel;
+                final int posZ = zPos + random.nextInt(16);
+                final BlockPos newPos = new BlockPos(posX, posY, posZ);
+                //final BlockPos newPos = WorldGenHelper.getGroundPos(world, posX, posZ);
+
+                if (newPos != null)
+                {
+                    this.generateBarley(world, random, newPos);
+                    this.generateBarley(world, random, newPos);
+                }
             }
-        }
 
-        // Cotton
-        if (Config.generateCotton && random.nextInt(12) == 0 && this.goodClimate(biome, 0.11f, 1.0f, 0.11f, 2f))
-        {
-            final int posX = xPos + random.nextInt(16);
-            final int posZ = zPos + random.nextInt(16);
-            final int posY = random.nextInt(128) + Config.seaLevel;
-            final BlockPos newPos = new BlockPos(posX, posY, posZ);
-            //final BlockPos newPos = WorldGenHelper.getGroundPos(world, posX, posZ);
-
-            if (newPos != null)
+            // Cotton
+            if (Config.generateCotton && random.nextInt(12) == 0 && this.goodClimate(biome, 0.11f, 1.0f, 0.11f, 2f))
             {
-                this.generateCotton(world, random, newPos);
-                this.generateCotton(world, random, newPos);
+                final int posX = xPos + random.nextInt(16);
+                final int posZ = zPos + random.nextInt(16);
+                final int posY = random.nextInt(128) + Config.seaLevel;
+                final BlockPos newPos = new BlockPos(posX, posY, posZ);
+                //final BlockPos newPos = WorldGenHelper.getGroundPos(world, posX, posZ);
+
+                if (newPos != null)
+                {
+                    this.generateCotton(world, random, newPos);
+                    this.generateCotton(world, random, newPos);
+                }
             }
-        }
 
-        // Bluebells
-        if (Config.generateBluebells && random.nextInt(12) == 0)
-        {
-            final int posX = xPos + random.nextInt(16);
-            final int posZ = zPos + random.nextInt(16);
-            final int posY = random.nextInt(128) + Config.seaLevel;
-            final BlockPos newPos = new BlockPos(posX, posY, posZ);
-            //final BlockPos newPos = WorldGenHelper.getGroundPos(world, posX, posZ);
-
-            if (newPos != null)
+            // Bluebells
+            if (Config.generateBluebells && random.nextInt(12) == 0)
             {
-                this.generateBluebells(world, random, newPos);
+                final int posX = xPos + random.nextInt(16);
+                final int posZ = zPos + random.nextInt(16);
+                final int posY = random.nextInt(128) + Config.seaLevel;
+                final BlockPos newPos = new BlockPos(posX, posY, posZ);
+                //final BlockPos newPos = WorldGenHelper.getGroundPos(world, posX, posZ);
+
+                if (newPos != null)
+                {
+                    this.generateBluebells(world, random, newPos);
+                }
             }
         }
     }
@@ -150,6 +153,19 @@ public class CropGenerator implements IWorldGenerator
         }
 
         return false;
+    }
+
+    public boolean shouldGenerateInDimension(int dimension)
+    {
+        for (int dimensionId : Config.overworldWorldGenBlacklist)
+        {
+            if (dimension == dimensionId)
+            {
+                return false;
+            }
+        }
+
+        return true;
     }
 
 }

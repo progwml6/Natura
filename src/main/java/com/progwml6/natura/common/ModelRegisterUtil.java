@@ -7,7 +7,6 @@ import com.progwml6.natura.Natura;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.ItemMeshDefinition;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
@@ -28,7 +27,7 @@ public final class ModelRegisterUtil
     /** Registers the item-meta combo in the itemstack with the given location for the inventory-variant */
     public static void registerItemModel(ItemStack itemStack, ResourceLocation name)
     {
-        if (itemStack != ItemStack.EMPTY && name != null)
+        if (!itemStack.isEmpty() && name != null)
         {
             // tell the loader to load the model
             ModelLoader.registerItemVariants(itemStack.getItem(), name);
@@ -42,7 +41,7 @@ public final class ModelRegisterUtil
     {
         ResourceLocation itemLocation = null;
 
-        if (item != Items.AIR)
+        if (item != null)
         {
             itemLocation = item.getRegistryName();
         }
@@ -88,7 +87,7 @@ public final class ModelRegisterUtil
     /** Registers the given item with the given meta and its registry name for the given variant */
     public static void registerItemModel(Item item, int meta, String variant)
     {
-        if (item != Items.AIR)
+        if (item != null)
         {
             registerItemModel(item, meta, item.getRegistryName(), variant);
         }
@@ -97,7 +96,7 @@ public final class ModelRegisterUtil
     /** Registers the given item/meta combination with the model at the given location, and the given variant */
     public static void registerItemModel(Item item, int meta, ResourceLocation location, String variant)
     {
-        if (item != Items.AIR && !StringUtils.isNullOrEmpty(variant))
+        if (item != null && !StringUtils.isNullOrEmpty(variant))
         {
             //ModelLoader.registerItemVariants(item, location);
             ModelLoader.setCustomModelResourceLocation(item, meta, new ModelResourceLocation(item.getRegistryName(), variant));

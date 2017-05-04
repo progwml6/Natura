@@ -70,7 +70,7 @@ dependencies {
 
     deobfCompile "mezz.jei:jei_${minecraft_version}:${jei_version}"
 
-    deobfCompile "MCMultiPart2:MCMultiPart-exp:${mcmultipart_version}:universal"
+    deobfCompile "MCMultiPart2:MCMultiPart-exp:${mcmultipart_version}"
 }
 
 // sets version to the slimeKnights version format

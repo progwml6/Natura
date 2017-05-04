@@ -40,7 +40,9 @@ public class ItemNaturaEdibleSoup extends ItemNaturaEdible
     public ItemStack onItemUseFinish(ItemStack stack, World worldIn, EntityLivingBase entityLiving)
     {
         super.onItemUseFinish(stack, worldIn, entityLiving);
+
         ItemStack bowl = this.bowlsList.get(stack.getMetadata()).copy();
+
         if (entityLiving instanceof EntityPlayer)
         {
             if (!((EntityPlayer) entityLiving).inventory.addItemStackToInventory(bowl))
@@ -48,6 +50,7 @@ public class ItemNaturaEdibleSoup extends ItemNaturaEdible
                 ((EntityPlayer) entityLiving).dropItem(bowl, false, false);
             }
         }
+
         return stack.getCount() <= 0 ? ItemStack.EMPTY : stack;
     }
 }

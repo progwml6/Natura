@@ -65,7 +65,7 @@ public class BlockRespawnObelisk extends EnumBlock<BlockRespawnObelisk.ObeliskTy
     }
 
     @Override
-    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ)
+    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
     {
         Random rand = new Random();
         rand.setSeed(2 ^ 16 + 2 ^ 8 + (4 * 3 * 271));

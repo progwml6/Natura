@@ -33,6 +33,7 @@ public class ItemNaturaEdible extends ItemEdible
     public ItemStack addFood(int meta, int food, float saturation, int duration, String name, boolean alwaysEdible, PotionEffect... effects)
     {
         this.itemDuration.put(meta, duration);
+
         return this.addFood(meta, food, saturation, name, alwaysEdible, effects);
     }
 

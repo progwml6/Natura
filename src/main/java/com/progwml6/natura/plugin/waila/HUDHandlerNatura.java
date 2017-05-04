@@ -6,6 +6,7 @@ import java.util.List;
 import com.progwml6.natura.Natura;
 import com.progwml6.natura.common.block.BlockNaturaDoor;
 import com.progwml6.natura.nether.NaturaNether;
+import com.progwml6.natura.nether.block.leaves.BlockNetherLeaves;
 import com.progwml6.natura.nether.block.logs.BlockNetherLog2;
 import com.progwml6.natura.overworld.NaturaOverworld;
 import com.progwml6.natura.overworld.block.crops.BlockOverworldCrops;
@@ -165,7 +166,12 @@ public class HUDHandlerNatura extends HUDHandlerBase
                 return new ItemStack(block, 1, accessor.getBlockState().getValue(BlockNetherLog2.META));
             }
 
-            if (block == netherLeaves || block == netherLeaves2)
+            if (block == netherLeaves)
+            {
+                return new ItemStack(block, 1, accessor.getBlockState().getValue(BlockNetherLeaves.TYPE).getWailaLeavesMeta());
+            }
+
+            if (block == netherLeaves2)
             {
                 return new ItemStack(block, 1, accessor.getMetadata() % 4);
             }

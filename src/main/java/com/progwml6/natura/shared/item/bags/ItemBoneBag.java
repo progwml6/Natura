@@ -30,7 +30,7 @@ public class ItemBoneBag extends Item
      * Called when a Block is right-clicked with this Item
      */
     @Override
-    public EnumActionResult onItemUse(EntityPlayer playerIn, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
+    public EnumActionResult onItemUse(EntityPlayer player, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
     {
         if (facing != EnumFacing.UP)
         {
@@ -38,7 +38,7 @@ public class ItemBoneBag extends Item
         }
         else
         {
-            ItemStack itemstack = playerIn.getHeldItem(hand);
+            ItemStack itemstack = player.getHeldItem(hand);
 
             MutableBlockPos mutableblockpos = new MutableBlockPos();
 
@@ -52,11 +52,12 @@ public class ItemBoneBag extends Item
                 {
                     BlockPos position = mutableblockpos.setPos(posX, posY, posZ);
 
-                    if (playerIn.canPlayerEdit(position, facing, itemstack) && playerIn.canPlayerEdit(position.up(), facing, itemstack))
+                    if (player.canPlayerEdit(position, facing, itemstack) && player.canPlayerEdit(position.up(), facing, itemstack))
                     {
-                        if (applyBonemeal(itemstack, worldIn, position, playerIn, hand))
+                        if (applyBonemeal(itemstack, worldIn, position, player, hand))
                         {
                             planted = true;
+
                             if (!worldIn.isRemote)
                             {
                                 worldIn.playEvent(2005, position, 0);
@@ -68,16 +69,16 @@ public class ItemBoneBag extends Item
 
             if (planted)
             {
-                if (!playerIn.capabilities.isCreativeMode)
+                if (!player.capabilities.isCreativeMode)
                 {
                     itemstack.shrink(1);
                 }
 
                 if (itemstack.getCount() < 1)
                 {
-                    ForgeEventFactory.onPlayerDestroyItem(playerIn, itemstack, hand);
+                    ForgeEventFactory.onPlayerDestroyItem(player, itemstack, hand);
 
-                    playerIn.setHeldItem(hand, ItemStack.EMPTY);
+                    player.setHeldItem(hand, ItemStack.EMPTY);
                 }
 
                 return EnumActionResult.SUCCESS;

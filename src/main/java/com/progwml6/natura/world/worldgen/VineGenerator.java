@@ -59,27 +59,44 @@ public class VineGenerator implements IWorldGenerator
             return;
         }
 
-        if (BiomeDictionary.hasType(biome, Type.NETHER))
+        if (this.shouldGenerateInDimension(world.provider.getDimension()))
         {
-            if (Config.generateThornvines && random.nextInt(Config.thornSpawnRarity) == 0)
+            if (BiomeDictionary.hasType(biome, Type.NETHER))
             {
-                ySpawn = 108;
-
-                for (int i = 0; i < 20; i++)
+                if (Config.generateThornvines && random.nextInt(Config.thornSpawnRarity) == 0)
                 {
-                    IBlockState vine = this.thornvinesGen.getRandomizedVine(random);
-                    xSpawn = xPos + random.nextInt(16);
-                    zSpawn = zPos + random.nextInt(16);
-                    int size = random.nextInt(25) + 1;
-                    int height = ySpawn - (random.nextInt(size) + random.nextInt(size) + random.nextInt(size));
+                    ySpawn = 108;
 
-                    for (int yHeight = ySpawn; yHeight > height; yHeight--)
+                    for (int i = 0; i < 20; i++)
                     {
-                        position = new BlockPos(xSpawn, yHeight, zSpawn);
-                        this.thornvinesGen.generateVines(random, world, position, vine);
+                        IBlockState vine = this.thornvinesGen.getRandomizedVine(random);
+                        xSpawn = xPos + random.nextInt(16);
+                        zSpawn = zPos + random.nextInt(16);
+                        int size = random.nextInt(25) + 1;
+                        int height = ySpawn - (random.nextInt(size) + random.nextInt(size) + random.nextInt(size));
+
+                        for (int yHeight = ySpawn; yHeight > height; yHeight--)
+                        {
+                            position = new BlockPos(xSpawn, yHeight, zSpawn);
+                            this.thornvinesGen.generateVines(random, world, position, vine);
+                        }
                     }
                 }
             }
         }
     }
+
+    public boolean shouldGenerateInDimension(int dimension)
+    {
+        for (int dimensionId : Config.overworldWorldGenBlacklist)
+        {
+            if (dimension == dimensionId)
+            {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
 }

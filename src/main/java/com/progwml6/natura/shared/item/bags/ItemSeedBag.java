@@ -39,15 +39,15 @@ public class ItemSeedBag extends ItemMetaDynamic
      * Called when a Block is right-clicked with this Item
      */
     @Override
-    public EnumActionResult onItemUse(EntityPlayer playerIn, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
+    public EnumActionResult onItemUse(EntityPlayer player, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
     {
-        if (facing != EnumFacing.UP)//!playerIn.canPlayerEdit(pos.offset(facing), facing, stack))
+        if (facing != EnumFacing.UP)
         {
             return EnumActionResult.FAIL;
         }
         else
         {
-            ItemStack itemstack = playerIn.getHeldItem(hand);
+            ItemStack itemstack = player.getHeldItem(hand);
 
             int meta = itemstack.getMetadata();
 
@@ -67,7 +67,7 @@ public class ItemSeedBag extends ItemMetaDynamic
                     {
                         position = mutableblockpos.setPos(posX, posY, posZ);
 
-                        if (playerIn.canPlayerEdit(position, facing, itemstack) && playerIn.canPlayerEdit(position.up(), facing, itemstack))
+                        if (player.canPlayerEdit(position, facing, itemstack) && player.canPlayerEdit(position.up(), facing, itemstack))
                         {
                             IBlockState state = worldIn.getBlockState(position);
                             Block block = state.getBlock();
@@ -84,7 +84,7 @@ public class ItemSeedBag extends ItemMetaDynamic
 
                 if (planted)
                 {
-                    if (!playerIn.capabilities.isCreativeMode)
+                    if (!player.capabilities.isCreativeMode)
                     {
                         itemstack.shrink(1);
                     }

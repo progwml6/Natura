@@ -7,6 +7,7 @@ import com.progwml6.natura.overworld.NaturaOverworld;
 import com.progwml6.natura.world.worldgen.trees.BaseTreeGenerator;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.EnumFacing;
@@ -194,6 +195,12 @@ public class OverworldTreeGenerator extends BaseTreeGenerator
                 }
             }
         }
+    }
+
+    protected boolean canGrowInto(Block blockType)
+    {
+        Material material = blockType.getDefaultState().getMaterial();
+        return material == Material.AIR || material == Material.LEAVES || blockType == Blocks.GRASS || blockType == Blocks.DIRT || blockType == Blocks.LOG || blockType == Blocks.LOG2 || blockType == Blocks.SAPLING || blockType == Blocks.VINE;
     }
 
     protected void placeTrunk(World world, BlockPos pos, int height)

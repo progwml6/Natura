@@ -1,7 +1,5 @@
 package com.progwml6.natura.common.gui.common;
 
-import javax.annotation.Nullable;
-
 import com.progwml6.natura.nether.block.furnace.tile.TileEntityNetherrackFurnace;
 
 import net.minecraft.entity.player.EntityPlayer;
@@ -113,10 +111,14 @@ public class FurnaceContainer extends Container
     }
 
     /**
-     * Take a stack from the specified inventory slot.
+     * Handle when the stack in slot {@code index} is shift-clicked. Normally this moves the stack between the player
+     * inventory and the other inventory(s).
+     *  
+     * @param playerIn Player that interacted with this {@code Container}.
+     * @param index Index of the {@link Slot}. This index is relative to the list of slots in this {@code Container},
+     * {@link #inventorySlots}.
      */
     @Override
-    @Nullable
     public ItemStack transferStackInSlot(EntityPlayer playerIn, int index)
     {
         ItemStack itemstack = ItemStack.EMPTY;
@@ -138,7 +140,7 @@ public class FurnaceContainer extends Container
             }
             else if (index != 1 && index != 0)
             {
-                if (FurnaceRecipes.instance().getSmeltingResult(itemstack1).isEmpty())
+                if (!FurnaceRecipes.instance().getSmeltingResult(itemstack1).isEmpty())
                 {
                     if (!this.mergeItemStack(itemstack1, 0, 1, false))
                     {

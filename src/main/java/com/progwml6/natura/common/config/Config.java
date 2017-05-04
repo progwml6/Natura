@@ -187,6 +187,7 @@ public final class Config
         // Cloud Start
         cloudBlacklist = configFile.get(WORLDGEN, "dimension blacklist(clouds)", cloudBlacklist).getIntList();
         darkCloudBlacklist = configFile.get(WORLDGEN, "dimension blacklist(dark clouds)", darkCloudBlacklist).getIntList();
+        ashBlacklist = configFile.get(WORLDGEN, "dimension blacklist(ash clouds)", ashBlacklist).getIntList();
         sulfurCloudBlacklist = configFile.get(WORLDGEN, "dimension blacklist(sulfur clouds)", sulfurCloudBlacklist).getIntList();
 
         cloudSpawnRarity = configFile.get(WORLDGEN, "Cloud Spawn Rarity", cloudSpawnRarity).getInt(cloudSpawnRarity);
@@ -207,6 +208,9 @@ public final class Config
 
         enableHeatscarSpider = configFile.get(ENTITIES, "Enable Heatscar Spiders", enableHeatscarSpider).getBoolean(enableHeatscarSpider);
 
+        overworldWorldGenBlacklist = configFile.get(WORLDGEN, "Overworld World Generation Dimension Blacklist", overworldWorldGenBlacklist).getIntList();
+        netherWorldGenBlacklist = configFile.get(WORLDGEN, "Nether World Generation Dimension Blacklist", netherWorldGenBlacklist).getIntList();
+
         // save changes if any
         boolean changed = false;
         if (configFile.hasChanged())
@@ -224,8 +228,9 @@ public final class Config
     public static boolean generateAshClouds = true;
     public static boolean generateDarkClouds = true;
 
-    public static int[] darkCloudBlacklist = new int[] {};
     public static int[] cloudBlacklist = new int[] {};
+    public static int[] darkCloudBlacklist = new int[] {};
+    public static int[] ashBlacklist = new int[] {};
     public static int[] sulfurCloudBlacklist = new int[] {};
 
     public static boolean enableCloudBlocks = false;
@@ -352,6 +357,9 @@ public final class Config
     public static boolean enableWheatRecipe = true;
     public static boolean dropBarley = true;
     public static boolean dropCotton = true;
+
+    public static int[] overworldWorldGenBlacklist = new int[] {};
+    public static int[] netherWorldGenBlacklist = new int[] {};
 
     static Configuration configFile;
     //@formatter:on

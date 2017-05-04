@@ -44,7 +44,7 @@ public class ItemSeeds extends ItemMetaDynamic implements IPlantable
     }
 
     @Override
-    public EnumActionResult onItemUse(EntityPlayer playerIn, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
+    public EnumActionResult onItemUse(EntityPlayer player, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
     {
         if (facing != EnumFacing.UP)
         {
@@ -52,13 +52,13 @@ public class ItemSeeds extends ItemMetaDynamic implements IPlantable
         }
         else
         {
-            ItemStack itemstack = playerIn.getHeldItem(hand);
+            ItemStack itemstack = player.getHeldItem(hand);
 
             int meta = itemstack.getMetadata();
 
             if (this.isValid(meta))
             {
-                if (playerIn.canPlayerEdit(pos, facing, itemstack) && playerIn.canPlayerEdit(pos.up(), facing, itemstack))
+                if (player.canPlayerEdit(pos, facing, itemstack) && player.canPlayerEdit(pos.up(), facing, itemstack))
                 {
                     IBlockState state = worldIn.getBlockState(pos);
                     Block block = state.getBlock();

@@ -10,7 +10,7 @@ public class ClientProxy extends CommonProxy
 {
     protected void registerItemModelNatura(ItemStack item, String name)
     {
-        if (item != ItemStack.EMPTY && !StringUtils.isNullOrEmpty(name))
+        if (!item.isEmpty() && !StringUtils.isNullOrEmpty(name))
         {
             ModelRegisterUtil.registerItemModel(item, Util.getResource(name));
         }
