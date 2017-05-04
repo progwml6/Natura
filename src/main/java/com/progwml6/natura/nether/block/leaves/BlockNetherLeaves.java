@@ -16,6 +16,7 @@ import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -23,6 +24,7 @@ import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
@@ -84,21 +86,36 @@ public class BlockNetherLeaves extends BlockLeaves
     @Override
     protected int getSaplingDropChance(IBlockState state)
     {
-        return 25;
+        return 20;
     }
 
     // sapling item
     @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune)
     {
-        return Item.getItemFromBlock(NaturaNether.netherSapling);
+        if (state.getValue(TYPE) == LeavesType.BLOODWOOD)
+        {
+            return Item.getItemFromBlock(NaturaNether.netherSapling2);
+        }
+        else
+        {
+            return Item.getItemFromBlock(NaturaNether.netherSapling);
+        }
     }
 
     // sapling meta
     @Override
     public int damageDropped(IBlockState state)
     {
-        return (state.getValue(TYPE)).ordinal() & 3; // only first 2 bits
+        return state.getValue(TYPE).getSaplingMeta();
+    }
+
+    @Nonnull
+    @Override
+    public ItemStack getPickBlock(@Nonnull IBlockState state, RayTraceResult target, @Nonnull World world, @Nonnull BlockPos pos, EntityPlayer player)
+    {
+        int meta = state.getValue(TYPE).getWailaLeavesMeta();
+        return new ItemStack(Item.getItemFromBlock(this), 1, meta);
     }
 
     // item dropped on silktouching
@@ -120,15 +137,15 @@ public class BlockNetherLeaves extends BlockLeaves
     public IBlockState getStateFromMeta(int meta)
     {
         int type = meta % 4;
+
         if (type < 0 || type >= LeavesType.values().length)
         {
             type = 0;
         }
+
         LeavesType logtype = LeavesType.values()[type];
-        return this.getDefaultState()
-                .withProperty(TYPE, logtype)
-                .withProperty(DECAYABLE, (meta & 4) == 0)
-                .withProperty(CHECK_DECAY, (meta & 8) > 0);
+
+        return this.getDefaultState().withProperty(TYPE, logtype).withProperty(DECAYABLE, (meta & 4) == 0).withProperty(CHECK_DECAY, (meta & 8) > 0);
     }
 
     @Override
@@ -160,6 +177,7 @@ public class BlockNetherLeaves extends BlockLeaves
     public List<ItemStack> onSheared(ItemStack item, IBlockAccess world, BlockPos pos, int fortune)
     {
         IBlockState state = world.getBlockState(pos);
+
         return Lists.newArrayList(this.getSilkTouchDrop(state));
     }
 
@@ -171,13 +189,19 @@ public class BlockNetherLeaves extends BlockLeaves
 
     public enum LeavesType implements IStringSerializable, EnumBlock.IEnumMeta
     {
-        GHOSTWOOD, BLOODWOOD, FUSEWOOD;
+        GHOSTWOOD(0, 0), BLOODWOOD(0, 1), FUSEWOOD(1, 2);
 
         public final int meta;
 
-        LeavesType()
+        public final int saplingMeta;
+
+        public final int wailaLeavesMeta;
+
+        LeavesType(int saplingMeta, int wailaLeavesMeta)
         {
             this.meta = this.ordinal();
+            this.saplingMeta = saplingMeta;
+            this.wailaLeavesMeta = wailaLeavesMeta;
         }
 
         @Override
@@ -190,6 +214,16 @@ public class BlockNetherLeaves extends BlockLeaves
         public int getMeta()
         {
             return this.meta;
+        }
+
+        public int getSaplingMeta()
+        {
+            return this.saplingMeta;
+        }
+
+        public int getWailaLeavesMeta()
+        {
+            return this.wailaLeavesMeta;
         }
     }
 
