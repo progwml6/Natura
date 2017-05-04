@@ -127,6 +127,7 @@ public class PurpleGlowshroomGenerator extends BaseGlowshroomGenerator
                                 if (l2 < pos.getY() + height)
                                 {
                                     int swap = l2 < pos.getY() + height ? 2 : 1;
+
                                     if ((l1 == k3 || l1 == l3) && (i2 == j1 || i2 == k1))
                                     {
                                         continue;
@@ -200,14 +201,37 @@ public class PurpleGlowshroomGenerator extends BaseGlowshroomGenerator
                         }
                     }
 
-                    world.setBlockState(pos.add(-2, height - 1, -2), this.glowshroom.withProperty(BlockNetherLargeGlowshroom.VARIANT, EnumType.NORTH_WEST), 2);
-                    world.setBlockState(pos.add(2, height - 1, -2), this.glowshroom.withProperty(BlockNetherLargeGlowshroom.VARIANT, EnumType.NORTH_EAST), 2);
-                    world.setBlockState(pos.add(-2, height - 1, 2), this.glowshroom.withProperty(BlockNetherLargeGlowshroom.VARIANT, EnumType.SOUTH_WEST), 2);
-                    world.setBlockState(pos.add(2, height - 1, 2), this.glowshroom.withProperty(BlockNetherLargeGlowshroom.VARIANT, EnumType.SOUTH_EAST), 2);
+                    IBlockState iblockstate = world.getBlockState(pos.add(-2, height - 1, -2));
+
+                    if (iblockstate.getBlock().canBeReplacedByLeaves(iblockstate, world, pos.add(-2, height - 1, -2)))
+                    {
+                        world.setBlockState(pos.add(-2, height - 1, -2), this.glowshroom.withProperty(BlockNetherLargeGlowshroom.VARIANT, EnumType.NORTH_WEST), 2);
+                    }
+
+                    iblockstate = world.getBlockState(pos.add(2, height - 1, -2));
+
+                    if (iblockstate.getBlock().canBeReplacedByLeaves(iblockstate, world, pos.add(2, height - 1, -2)))
+                    {
+                        world.setBlockState(pos.add(2, height - 1, -2), this.glowshroom.withProperty(BlockNetherLargeGlowshroom.VARIANT, EnumType.NORTH_EAST), 2);
+                    }
+
+                    iblockstate = world.getBlockState(pos.add(-2, height - 1, 2));
+
+                    if (iblockstate.getBlock().canBeReplacedByLeaves(iblockstate, world, pos.add(-2, height - 1, 2)))
+                    {
+                        world.setBlockState(pos.add(-2, height - 1, 2), this.glowshroom.withProperty(BlockNetherLargeGlowshroom.VARIANT, EnumType.SOUTH_WEST), 2);
+                    }
+
+                    iblockstate = world.getBlockState(pos.add(2, height - 1, 2));
+
+                    if (iblockstate.getBlock().canBeReplacedByLeaves(iblockstate, world, pos.add(2, height - 1, 2)))
+                    {
+                        world.setBlockState(pos.add(2, height - 1, 2), this.glowshroom.withProperty(BlockNetherLargeGlowshroom.VARIANT, EnumType.SOUTH_EAST), 2);
+                    }
 
                     for (int i3 = 0; i3 < height; ++i3)
                     {
-                        IBlockState iblockstate = world.getBlockState(pos.up(i3));
+                        iblockstate = world.getBlockState(pos.up(i3));
 
                         if (iblockstate.getBlock().canBeReplacedByLeaves(iblockstate, world, pos.up(i3)))
                         {

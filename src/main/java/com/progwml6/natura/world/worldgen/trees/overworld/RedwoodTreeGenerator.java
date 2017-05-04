@@ -294,7 +294,10 @@ public class RedwoodTreeGenerator extends BaseTreeGenerator
 
     protected void setBlockAndMetadata(World world, BlockPos pos, IBlockState stateNew)
     {
-        world.setBlockState(pos, stateNew, 2);
+        if (isReplaceable(world, pos))
+        {
+            world.setBlockState(pos, stateNew, 2);
+        }
     }
 
     public boolean isReplaceable(World world, BlockPos pos)
