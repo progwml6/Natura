@@ -28,6 +28,7 @@ public class BlockTaintedSoil extends EnumBlock<BlockTaintedSoil.SoilType>
         this.setHardness(2.2f);
         this.setResistance(25F);
         this.setSoundType(SoundType.GROUND);
+        this.setHarvestLevel("shovel", 0);
     }
 
     @Override

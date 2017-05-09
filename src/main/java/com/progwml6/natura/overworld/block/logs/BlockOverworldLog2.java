@@ -20,7 +20,9 @@ public class BlockOverworldLog2 extends BlockEnumLog<BlockOverworldLog2.LogType>
     public BlockOverworldLog2()
     {
         super(TYPE, BlockOverworldLog2.LogType.class);
+
         this.setDefaultState(this.blockState.getBaseState().withProperty(LOG_AXIS, BlockEnumLog.EnumAxis.Y));
+        this.setHarvestLevel("axe", -1);
     }
 
     /**

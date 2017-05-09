@@ -33,7 +33,7 @@ public class BlockNetherLog2 extends Block
         this.setHardness(8.0F);
         this.setSoundType(SoundType.METAL);
         this.setCreativeTab(NaturaRegistry.tabWorld);
-
+        this.setHarvestLevel("axe", 2);
         this.setDefaultState(this.blockState.getBaseState().withProperty(META, Integer.valueOf(0)));
     }
 

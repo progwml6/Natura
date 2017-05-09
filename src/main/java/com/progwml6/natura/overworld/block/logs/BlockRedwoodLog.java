@@ -20,10 +20,12 @@ public class BlockRedwoodLog extends EnumBlock<BlockRedwoodLog.RedwoodType>
     public BlockRedwoodLog()
     {
         super(Material.WOOD, TYPE, RedwoodType.class);
-        Blocks.FIRE.setFireInfo(this, 5, 20);
+
         this.setHardness(2.0f);
         this.setCreativeTab(NaturaRegistry.tabWorld);
         this.setSoundType(SoundType.WOOD);
+        this.setHarvestLevel("axe", -1);
+        Blocks.FIRE.setFireInfo(this, 5, 20);
     }
 
     //@formatter:off
