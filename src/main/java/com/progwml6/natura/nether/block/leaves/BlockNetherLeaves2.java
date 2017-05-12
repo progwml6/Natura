@@ -9,6 +9,7 @@ import javax.annotation.Nonnull;
 import com.google.common.collect.Lists;
 import com.progwml6.natura.library.NaturaRegistry;
 import com.progwml6.natura.nether.NaturaNether;
+import com.progwml6.natura.shared.NaturaCommons;
 
 import net.minecraft.block.BlockLeaves;
 import net.minecraft.block.BlockPlanks;
@@ -83,24 +84,32 @@ public class BlockNetherLeaves2 extends BlockLeaves
         return super.shouldSideBeRendered(blockState, blockAccess, pos, side);
     }
 
-    @Override
-    protected int getSaplingDropChance(IBlockState state)
-    {
-        return 25;
-    }
-
     // sapling item
     @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune)
     {
-        return Item.getItemFromBlock(NaturaNether.netherSapling);
+        if (state.getValue(TYPE) == LeavesType.DARKWOOD_FRUIT)
+        {
+            return NaturaCommons.edibles;
+        }
+        else
+        {
+            return Item.getItemFromBlock(NaturaNether.netherSapling);
+        }
     }
 
     // sapling meta
     @Override
     public int damageDropped(IBlockState state)
     {
-        return 2;
+        if (state.getValue(TYPE) == LeavesType.DARKWOOD_FRUIT)
+        {
+            return 10;
+        }
+        else
+        {
+            return 2;
+        }
     }
 
     @Override
@@ -168,6 +177,7 @@ public class BlockNetherLeaves2 extends BlockLeaves
     public List<ItemStack> onSheared(ItemStack item, IBlockAccess world, BlockPos pos, int fortune)
     {
         IBlockState state = world.getBlockState(pos);
+
         return Lists.newArrayList(this.getSilkTouchDrop(state));
     }
 
@@ -175,6 +185,20 @@ public class BlockNetherLeaves2 extends BlockLeaves
     public boolean isLeaves(IBlockState state, IBlockAccess world, BlockPos pos)
     {
         return true;
+    }
+
+    /**
+     * Returns the quantity of items to drop on block destruction.
+     */
+    @Override
+    public int quantityDropped(IBlockState state, int fortune, Random random)
+    {
+        if (state.getValue(TYPE) == LeavesType.DARKWOOD_FRUIT)
+        {
+            return 1;
+        }
+
+        return this.quantityDroppedWithBonus(fortune, random);
     }
 
     public enum LeavesType implements IStringSerializable, EnumBlock.IEnumMeta

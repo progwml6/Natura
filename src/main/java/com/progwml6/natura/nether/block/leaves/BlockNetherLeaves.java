@@ -18,6 +18,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockRenderLayer;
@@ -115,6 +116,7 @@ public class BlockNetherLeaves extends BlockLeaves
     public ItemStack getPickBlock(@Nonnull IBlockState state, RayTraceResult target, @Nonnull World world, @Nonnull BlockPos pos, EntityPlayer player)
     {
         int meta = state.getValue(TYPE).getWailaLeavesMeta();
+
         return new ItemStack(Item.getItemFromBlock(this), 1, meta);
     }
 
@@ -185,6 +187,25 @@ public class BlockNetherLeaves extends BlockLeaves
     public boolean isLeaves(IBlockState state, IBlockAccess world, BlockPos pos)
     {
         return true;
+    }
+
+    @Override
+    public List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune)
+    {
+        List<ItemStack> ret = super.getDrops(world, pos, state, fortune);
+
+        Random rand = new Random();
+        rand.setSeed(2 ^ 16 + 2 ^ 8 + (4 * 3 * 271));
+
+        if (state.getValue(TYPE) == LeavesType.BLOODWOOD)
+        {
+            if (fortune > 3 || rand.nextInt(40 - fortune * 10) == 0)
+            {
+                ret.add(new ItemStack(Items.REDSTONE));
+            }
+        }
+
+        return ret;
     }
 
     public enum LeavesType implements IStringSerializable, EnumBlock.IEnumMeta
