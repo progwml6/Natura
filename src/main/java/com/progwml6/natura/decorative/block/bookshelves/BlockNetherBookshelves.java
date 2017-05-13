@@ -59,6 +59,12 @@ public class BlockNetherBookshelves extends EnumBlock<BlockNetherPlanks.PlankTyp
         return Items.BOOK;
     }
 
+    /**
+     * Determines the amount of enchanting power this block can provide to an enchanting table.
+     * @param world The World
+     * @param pos Block position in world
+     * @return The amount of enchanting power this block produces.
+     */
     @Override
     public float getEnchantPowerBonus(World world, BlockPos pos)
     {
