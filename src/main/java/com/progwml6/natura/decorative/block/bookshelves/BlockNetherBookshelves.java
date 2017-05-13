@@ -31,6 +31,16 @@ public class BlockNetherBookshelves extends EnumBlock<BlockNetherPlanks.PlankTyp
     }
 
     /**
+     * Gets the metadata of the item this Block can drop. This method is called when the block gets destroyed. It
+     * returns the metadata of the dropped item based on the old metadata of the block.
+     */
+    @Override
+    public int damageDropped(IBlockState state)
+    {
+        return 0;
+    }
+
+    /**
      * Returns the quantity of items to drop on block destruction.
      */
     @Override
