@@ -234,10 +234,10 @@ public class NaturaNether extends NaturaPulse
         addShapedRecipe(bloodwood_door.copy(), "##", "##", "##", '#', new ItemStack(netherPlanks, 1, BlockNetherPlanks.PlankType.BLOODWOOD.getMeta()));
 
         // Sticks
-        addShapedRecipe(NaturaCommons.ghostwood_stick.copy(), "#", "#", '#', new ItemStack(netherPlanks, 1, BlockNetherPlanks.PlankType.GHOSTWOOD.getMeta()));
-        addShapedRecipe(NaturaCommons.bloodwood_stick.copy(), "#", "#", '#', new ItemStack(netherPlanks, 1, BlockNetherPlanks.PlankType.BLOODWOOD.getMeta()));
-        addShapedRecipe(NaturaCommons.darkwood_stick.copy(), "#", "#", '#', new ItemStack(netherPlanks, 1, BlockNetherPlanks.PlankType.DARKWOOD.getMeta()));
-        addShapedRecipe(NaturaCommons.fusewood_stick.copy(), "#", "#", '#', new ItemStack(netherPlanks, 1, BlockNetherPlanks.PlankType.FUSEWOOD.getMeta()));
+        addShapedRecipe(new ItemStack(NaturaCommons.sticks, 4, 9), "#", "#", '#', new ItemStack(netherPlanks, 1, BlockNetherPlanks.PlankType.GHOSTWOOD.getMeta()));
+        addShapedRecipe(new ItemStack(NaturaCommons.sticks, 4, 10), "#", "#", '#', new ItemStack(netherPlanks, 1, BlockNetherPlanks.PlankType.DARKWOOD.getMeta()));
+        addShapedRecipe(new ItemStack(NaturaCommons.sticks, 4, 11), "#", "#", '#', new ItemStack(netherPlanks, 1, BlockNetherPlanks.PlankType.FUSEWOOD.getMeta()));
+        addShapedRecipe(new ItemStack(NaturaCommons.sticks, 4, 12), "#", "#", '#', new ItemStack(netherPlanks, 1, BlockNetherPlanks.PlankType.BLOODWOOD.getMeta()));
 
         // Empty Bowls
         addShapedRecipe(new ItemStack(NaturaCommons.empty_bowls, 4, NaturaCommons.ghostwood_emptybowl.getItemDamage()), "# #", " # ", '#', new ItemStack(netherPlanks, 1, BlockNetherPlanks.PlankType.GHOSTWOOD.getMeta()));

@@ -310,15 +310,15 @@ public class NaturaOverworld extends NaturaPulse
         addShapedRecipe(redwood_bark_door.copy(), "##", "##", "##", '#', new ItemStack(redwoodLog, 1, BlockRedwoodLog.RedwoodType.BARK.getMeta()));
 
         // Sticks
-        addShapedRecipe(NaturaCommons.maple_stick.copy(), "#", "#", '#', new ItemStack(overworldPlanks, 1, BlockOverworldPlanks.PlankType.MAPLE.getMeta()));
-        addShapedRecipe(NaturaCommons.silverbell_stick.copy(), "#", "#", '#', new ItemStack(overworldPlanks, 1, BlockOverworldPlanks.PlankType.SILVERBELL.getMeta()));
-        addShapedRecipe(NaturaCommons.amaranth_stick.copy(), "#", "#", '#', new ItemStack(overworldPlanks, 1, BlockOverworldPlanks.PlankType.AMARANTH.getMeta()));
-        addShapedRecipe(NaturaCommons.tiger_stick.copy(), "#", "#", '#', new ItemStack(overworldPlanks, 1, BlockOverworldPlanks.PlankType.TIGER.getMeta()));
-        addShapedRecipe(NaturaCommons.willow_stick.copy(), "#", "#", '#', new ItemStack(overworldPlanks, 1, BlockOverworldPlanks.PlankType.WILLOW.getMeta()));
-        addShapedRecipe(NaturaCommons.eucalyptus_stick.copy(), "#", "#", '#', new ItemStack(overworldPlanks, 1, BlockOverworldPlanks.PlankType.EUCALYPTUS.getMeta()));
-        addShapedRecipe(NaturaCommons.hopseed_stick.copy(), "#", "#", '#', new ItemStack(overworldPlanks, 1, BlockOverworldPlanks.PlankType.HOPSEED.getMeta()));
-        addShapedRecipe(NaturaCommons.sakura_stick.copy(), "#", "#", '#', new ItemStack(overworldPlanks, 1, BlockOverworldPlanks.PlankType.SAKURA.getMeta()));
-        addShapedRecipe(NaturaCommons.redwood_stick.copy(), "#", "#", '#', new ItemStack(overworldPlanks, 1, BlockOverworldPlanks.PlankType.REDWOOD.getMeta()));
+        addShapedRecipe(new ItemStack(NaturaCommons.sticks, 4, 0), "#", "#", '#', new ItemStack(overworldPlanks, 1, BlockOverworldPlanks.PlankType.MAPLE.getMeta()));
+        addShapedRecipe(new ItemStack(NaturaCommons.sticks, 4, 1), "#", "#", '#', new ItemStack(overworldPlanks, 1, BlockOverworldPlanks.PlankType.SILVERBELL.getMeta()));
+        addShapedRecipe(new ItemStack(NaturaCommons.sticks, 4, 2), "#", "#", '#', new ItemStack(overworldPlanks, 1, BlockOverworldPlanks.PlankType.AMARANTH.getMeta()));
+        addShapedRecipe(new ItemStack(NaturaCommons.sticks, 4, 3), "#", "#", '#', new ItemStack(overworldPlanks, 1, BlockOverworldPlanks.PlankType.TIGER.getMeta()));
+        addShapedRecipe(new ItemStack(NaturaCommons.sticks, 4, 4), "#", "#", '#', new ItemStack(overworldPlanks, 1, BlockOverworldPlanks.PlankType.WILLOW.getMeta()));
+        addShapedRecipe(new ItemStack(NaturaCommons.sticks, 4, 5), "#", "#", '#', new ItemStack(overworldPlanks, 1, BlockOverworldPlanks.PlankType.EUCALYPTUS.getMeta()));
+        addShapedRecipe(new ItemStack(NaturaCommons.sticks, 4, 6), "#", "#", '#', new ItemStack(overworldPlanks, 1, BlockOverworldPlanks.PlankType.HOPSEED.getMeta()));
+        addShapedRecipe(new ItemStack(NaturaCommons.sticks, 4, 7), "#", "#", '#', new ItemStack(overworldPlanks, 1, BlockOverworldPlanks.PlankType.SAKURA.getMeta()));
+        addShapedRecipe(new ItemStack(NaturaCommons.sticks, 4, 8), "#", "#", '#', new ItemStack(overworldPlanks, 1, BlockOverworldPlanks.PlankType.REDWOOD.getMeta()));
 
         // Grass
         GameRegistry.addRecipe(new ItemStack(coloredGrass, 1, BlockColoredGrass.GrassType.TOPIARY.getMeta()), " s ", "s#s", " s ", 's', new ItemStack(Items.WHEAT_SEEDS), '#', new ItemStack(Blocks.DIRT));
