@@ -71,7 +71,6 @@ public class CloudsGenerator implements IWorldGenerator
                             if (state.getBlock() == Blocks.AIR)
                             {
                                 world.setBlockState(blockpos, this.cloud, 2);
-                                //this.setBlockAndNotifyAdequately(world, xIter, yIter, zIter, this.bID, this.meta);
                             }
                         }
                     }

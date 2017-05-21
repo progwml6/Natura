@@ -72,87 +72,92 @@ public class DarkwoodTreeGenerator extends BaseTreeGenerator
     }
 
     @Override
-    public void generateTree(Random random, World world, BlockPos pos)
+    public void generateTree(Random rand, World worldIn, BlockPos position)
     {
-        int height = random.nextInt(3) + this.minTreeHeight;
-        if (height < 4)
+        int heightRange = rand.nextInt(3) + this.minTreeHeight;
+
+        if (heightRange < 4)
         {
-            height = 4;
+            heightRange = 4;
         }
+
         if (this.seekHeight)
         {
-            pos = this.findGround(world, pos);
-            if (pos.getY() < 0)
+            position = this.findGround(worldIn, position);
+
+            if (position.getY() < 0)
             {
                 return;
             }
         }
 
-        int yPos = pos.getY();
-
-        if (yPos >= 1 && yPos + height + 1 <= 256)
+        if (position.getY() >= 1 && position.getY() + heightRange + 1 <= 256)
         {
-            if (!this.checkClear(world, pos.getX(), pos.getY(), pos.getY(), height))
+            if (checkIfCanGrow(position, heightRange, worldIn))
             {
-                return;
-            }
+                IBlockState state = worldIn.getBlockState(position.down());
+                Block soil = state.getBlock();
+                boolean isSoil = (soil != null && soil.canSustainPlant(state, worldIn, position.down(), EnumFacing.UP, NaturaNether.netherSapling) || soil == Blocks.NETHERRACK);
 
-            IBlockState state = world.getBlockState(pos.down());
-            Block soil = state.getBlock();
-            boolean isSoil = (soil != null && soil.canSustainPlant(state, world, pos.down(), EnumFacing.UP, NaturaNether.netherSapling) || soil == Blocks.NETHERRACK);
+                if (isSoil && position.getY() < 256 - heightRange - 1)
+                {
+                    soil.onPlantGrow(state, worldIn, position.down(), position);
 
-            if (isSoil && yPos < 256 - height - 1)
-            {
-                soil.onPlantGrow(state, world, pos.down(), pos);
-
-                this.placeCanopy(world, random, pos, height);
-                this.placeTrunk(world, pos, height);
+                    this.placeCanopy(worldIn, rand, position, heightRange);
+                    this.placeTrunk(worldIn, position, heightRange);
+                }
             }
         }
     }
 
-    boolean checkClear(World world, int xPos, int yPos, int zPos, int treeHeight)
+    private boolean checkIfCanGrow(BlockPos position, int heightRange, World worldIn)
     {
-        boolean flag = true;
+        boolean canGrowTree = true;
 
-        for (int y = yPos; y <= yPos + 1 + treeHeight; ++y)
+        BlockPos.MutableBlockPos pos = new BlockPos.MutableBlockPos(position.getX(), position.getY(), position.getZ());
+
+        byte range;
+        int z;
+
+        for (int y = position.getY(); y <= position.getY() + 1 + heightRange; ++y)
         {
-            int range = 1;
+            range = 1;
 
-            if (y == yPos)
+            if (y == position.getY())
             {
                 range = 0;
             }
 
-            if (y >= yPos + 1 + treeHeight - 2)
+            if (y >= position.getY() + 1 + heightRange - 2)
             {
                 range = 2;
             }
 
-            for (int x = xPos - range; x <= xPos + range && flag; ++x)
+            for (int x = position.getX() - range; x <= position.getX() + range && canGrowTree; ++x)
             {
-                for (int z = zPos - range; z <= zPos + range && flag; ++z)
+                for (z = position.getZ() - range; z <= position.getZ() + range && canGrowTree; ++z)
                 {
-                    if (y >= 0 && y < 256)
+                    if (y >= 0 && y < worldIn.getActualHeight())
                     {
-                        BlockPos blockpos = new BlockPos(x, y, z);
-                        IBlockState state = world.getBlockState(blockpos);
+                        pos.setPos(x, y, z);
+
+                        IBlockState state = worldIn.getBlockState(pos);
                         Block block = state.getBlock();
 
-                        if (!block.isAir(state, world, blockpos) && !block.isLeaves(state, world, blockpos) && block != Blocks.NETHERRACK && block != Blocks.SOUL_SAND && block != NaturaNether.netherTaintedSoil && !block.isWood(world, blockpos))
+                        if (!worldIn.isAirBlock(pos) && !block.isAir(state, worldIn, pos) && !block.isLeaves(state, worldIn, pos) && block != Blocks.NETHERRACK && block != Blocks.SOUL_SAND && block != NaturaNether.netherTaintedSoil && !block.isWood(worldIn, pos))
                         {
-                            flag = false;
+                            canGrowTree = false;
                         }
                     }
                     else
                     {
-                        flag = false;
+                        canGrowTree = false;
                     }
                 }
             }
         }
 
-        return flag;
+        return canGrowTree;
     }
 
     protected void placeCanopy(World world, Random random, BlockPos pos, int height)

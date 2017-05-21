@@ -52,70 +52,86 @@ public class OverworldTreeGenerator extends BaseTreeGenerator
     }
 
     @Override
-    public void generateTree(Random random, World world, BlockPos pos)
+    public void generateTree(Random rand, World worldIn, BlockPos position)
     {
-        int height = random.nextInt(this.treeHeightRange) + this.minTreeHeight;
+        int heightRange = rand.nextInt(this.treeHeightRange) + this.minTreeHeight;
+
         if (this.seekHeight)
         {
-            pos = this.findGround(world, pos);
-            if (pos.getY() < 0)
+            position = this.findGround(worldIn, position);
+
+            if (position.getY() < 0)
             {
                 return;
             }
         }
 
-        int yPos = pos.getY();
-
-        if (yPos >= 1 && yPos + height + 1 <= 256)
+        if (position.getY() >= 1 && position.getY() + heightRange + 1 <= 256)
         {
-            IBlockState state = world.getBlockState(pos.down());
+            IBlockState state = worldIn.getBlockState(position.down());
             Block soil = state.getBlock();
-            boolean isSoil = (soil != null && soil.canSustainPlant(state, world, pos.down(), EnumFacing.UP, NaturaOverworld.overworldSapling));
+            boolean isSoil = (soil != null && soil.canSustainPlant(state, worldIn, position.down(), EnumFacing.UP, NaturaOverworld.overworldSapling));
 
             if (isSoil)
             {
-                if (!this.checkClear(world, pos.getX(), yPos, pos.getY(), height))
+                if (checkIfCanGrow(position, heightRange, worldIn))
                 {
-                    return;
+                    soil.onPlantGrow(state, worldIn, position.down(), position);
+                    this.placeCanopy(worldIn, rand, position, heightRange);
+                    this.placeTrunk(worldIn, position, heightRange);
                 }
-
-                soil.onPlantGrow(state, world, pos.down(), pos);
-                this.placeCanopy(world, random, pos, height);
-                this.placeTrunk(world, pos, height);
             }
         }
     }
 
-    boolean checkClear(World world, int x, int y, int z, int treeHeight)
+    private boolean checkIfCanGrow(BlockPos position, int heightRange, World worldIn)
     {
-        for (int yPos = 0; yPos < treeHeight + 1; yPos++)
-        {
-            int range = 1;
+        boolean canGrowTree = true;
 
-            if (yPos == 0)
+        BlockPos.MutableBlockPos pos = new BlockPos.MutableBlockPos(position.getX(), position.getY(), position.getZ());
+
+        byte range;
+        int z;
+
+        for (int y = position.getY(); y <= position.getY() + 1 + heightRange; ++y)
+        {
+            range = 1;
+
+            if (y == position.getY())
             {
                 range = 0;
             }
-            else if (yPos >= treeHeight - 1)
+
+            if (y >= position.getY() + 1 + heightRange - 2)
             {
                 range = 2;
             }
 
-            for (int xPos = range; xPos <= range; xPos++)
+            for (int x = position.getX() - range; x <= position.getX() + range && canGrowTree; ++x)
             {
-                for (int zPos = range; zPos <= range; zPos++)
+                for (z = position.getZ() - range; z <= position.getZ() + range && canGrowTree; ++z)
                 {
-                    BlockPos blockpos = new BlockPos(x + xPos, y + yPos, z + zPos);
-                    IBlockState state = world.getBlockState(blockpos);
-
-                    if (state.getBlock() != null && state.getBlock() != NaturaOverworld.overworldSapling || !state.getBlock().isLeaves(state, world, blockpos))
+                    if (y >= 0 && y < worldIn.getActualHeight())
                     {
-                        return true;
+                        pos.setPos(x, y, z);
+
+                        IBlockState state = worldIn.getBlockState(pos);
+                        Block block = state.getBlock();
+
+                        if (block != null && block != NaturaOverworld.overworldSapling || !block.isLeaves(state, worldIn, pos))
+                        {
+                            canGrowTree = false;
+                        }
+                    }
+                    else
+                    {
+                        canGrowTree = false;
                     }
                 }
             }
         }
-        return true;
+
+        return canGrowTree;
     }
 
     BlockPos findGround(World world, BlockPos pos)
