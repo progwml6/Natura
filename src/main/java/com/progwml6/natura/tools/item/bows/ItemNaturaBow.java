@@ -56,7 +56,7 @@ public class ItemNaturaBow extends ItemBow
         else
         {
             ItemStack itemstack = entityIn.getActiveItemStack();
-            return itemstack != ItemStack.EMPTY && itemstack.getItem() == this.bow ? (stack.getMaxItemUseDuration() - entityIn.getItemInUseCount()) / 20.0F : 0.0F;
+            return !itemstack.isEmpty() && itemstack.getItem() == this.bow ? (stack.getMaxItemUseDuration() - entityIn.getItemInUseCount()) / 20.0F : 0.0F;
         }
     }
 }
