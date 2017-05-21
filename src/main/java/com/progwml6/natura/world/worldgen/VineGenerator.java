@@ -38,6 +38,7 @@ public class VineGenerator implements IWorldGenerator
     public void retroGen(Random random, int chunkX, int chunkZ, World world)
     {
         this.generateNether(random, chunkX, chunkZ, world);
+
         world.getChunkFromChunkCoords(chunkX, chunkZ).setChunkModified();
     }
 
@@ -78,6 +79,7 @@ public class VineGenerator implements IWorldGenerator
                         for (int yHeight = ySpawn; yHeight > height; yHeight--)
                         {
                             position = new BlockPos(xSpawn, yHeight, zSpawn);
+
                             this.thornvinesGen.generateVines(random, world, position, vine);
                         }
                     }

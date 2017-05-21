@@ -56,6 +56,7 @@ public class NetherTreesGenerator implements IWorldGenerator
     public void retroGen(Random random, int chunkX, int chunkZ, World world)
     {
         this.generateNether(random, chunkX, chunkZ, world);
+
         world.getChunkFromChunkCoords(chunkX, chunkZ).setChunkModified();
     }
 

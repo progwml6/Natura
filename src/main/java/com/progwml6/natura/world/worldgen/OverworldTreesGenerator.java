@@ -81,6 +81,7 @@ public class OverworldTreesGenerator implements IWorldGenerator
     public void retroGen(Random random, int chunkX, int chunkZ, World world)
     {
         this.generateOverworld(random, chunkX, chunkZ, world, true);
+
         world.getChunkFromChunkCoords(chunkX, chunkZ).setChunkModified();
     }
 
@@ -164,9 +165,9 @@ public class OverworldTreesGenerator implements IWorldGenerator
             {
                 if (Config.generateHopseed && random.nextInt(Config.hopseedSpawnRarity) == 0)
                 {
-                    xSpawn = xPos + random.nextInt(16) + 8;
+                    xSpawn = xPos + random.nextInt(16);
                     ySpawn = random.nextInt(Config.hopseedSpawnRange) + Config.seaLevel;
-                    zSpawn = zPos + random.nextInt(16) + 8;
+                    zSpawn = zPos + random.nextInt(16);
                     position = new BlockPos(xSpawn, ySpawn, zSpawn);
 
                     this.hopseedTreeGen.generateTree(random, world, position);
@@ -174,9 +175,9 @@ public class OverworldTreesGenerator implements IWorldGenerator
 
                 if (Config.generateEucalyptus && random.nextInt(Config.eucalyptusSpawnRarity) < 10)
                 {
-                    xSpawn = xPos + random.nextInt(16) + 8;
+                    xSpawn = xPos + random.nextInt(16);
                     ySpawn = random.nextInt(Config.eucalyptusSpawnRange) + Config.seaLevel;
-                    zSpawn = zPos + random.nextInt(16) + 8;
+                    zSpawn = zPos + random.nextInt(16);
                     position = new BlockPos(xSpawn, ySpawn, zSpawn);
 
                     this.eucalyptusTreeGen.generateTree(random, world, position);

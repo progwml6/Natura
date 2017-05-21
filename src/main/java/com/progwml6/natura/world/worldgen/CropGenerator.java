@@ -28,6 +28,7 @@ public class CropGenerator implements IWorldGenerator
     public void retroGen(Random random, int chunkX, int chunkZ, World world)
     {
         this.generateOverworld(random, chunkX, chunkZ, world);
+
         world.getChunkFromChunkCoords(chunkX, chunkZ).setChunkModified();
     }
 

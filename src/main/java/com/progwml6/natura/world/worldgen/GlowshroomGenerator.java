@@ -55,6 +55,7 @@ public class GlowshroomGenerator implements IWorldGenerator
     public void retroGen(Random random, int chunkX, int chunkZ, World world)
     {
         this.generateNether(random, chunkX, chunkZ, world);
+
         world.getChunkFromChunkCoords(chunkX, chunkZ).setChunkModified();
     }
 
@@ -109,9 +110,9 @@ public class GlowshroomGenerator implements IWorldGenerator
 
                 if (Config.generateGreenglowshroom && random.nextInt(7) == 0)
                 {
-                    xSpawn = xPos + random.nextInt(16) + 8;
+                    xSpawn = xPos + random.nextInt(16);
                     ySpawn = random.nextInt(128);
-                    zSpawn = zPos + random.nextInt(16) + 8;
+                    zSpawn = zPos + random.nextInt(16);
                     position = new BlockPos(xSpawn, ySpawn, zSpawn);
 
                     this.greenBabyGlowshroomGen.generateShroom(random, world, position);
@@ -119,9 +120,9 @@ public class GlowshroomGenerator implements IWorldGenerator
 
                 if (Config.generatePurpleglowshroom && random.nextInt(8) == 0)
                 {
-                    xSpawn = xPos + random.nextInt(16) + 8;
+                    xSpawn = xPos + random.nextInt(16);
                     ySpawn = random.nextInt(128);
-                    zSpawn = zPos + random.nextInt(16) + 8;
+                    zSpawn = zPos + random.nextInt(16);
                     position = new BlockPos(xSpawn, ySpawn, zSpawn);
 
                     this.purpleBabyGlowshroomGen.generateShroom(random, world, position);
@@ -129,9 +130,9 @@ public class GlowshroomGenerator implements IWorldGenerator
 
                 if (Config.generateBlueglowshroom && random.nextInt(9) == 0)
                 {
-                    xSpawn = xPos + random.nextInt(16) + 8;
+                    xSpawn = xPos + random.nextInt(16);
                     ySpawn = random.nextInt(128);
-                    zSpawn = zPos + random.nextInt(16) + 8;
+                    zSpawn = zPos + random.nextInt(16);
                     position = new BlockPos(xSpawn, ySpawn, zSpawn);
 
                     this.blueBabyGlowshroomGen.generateShroom(random, world, position);
