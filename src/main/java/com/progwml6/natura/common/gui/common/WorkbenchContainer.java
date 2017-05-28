@@ -1,8 +1,9 @@
 package com.progwml6.natura.common.gui.common;
 
+import com.progwml6.natura.decorative.NaturaDecorative;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.init.Blocks;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.InventoryCraftResult;
@@ -93,7 +94,7 @@ public class WorkbenchContainer extends Container
     @Override
     public boolean canInteractWith(EntityPlayer playerIn)
     {
-        return this.world.getBlockState(this.pos).getBlock() != Blocks.CRAFTING_TABLE ? false : playerIn.getDistanceSq(this.pos.getX() + 0.5D, this.pos.getY() + 0.5D, this.pos.getZ() + 0.5D) <= 64.0D;
+        return (this.world.getBlockState(this.pos).getBlock() != NaturaDecorative.overworldWorkbenches && this.world.getBlockState(this.pos).getBlock() != NaturaDecorative.netherWorkbenches) ? false : playerIn.getDistanceSq(this.pos.getX() + 0.5D, this.pos.getY() + 0.5D, this.pos.getZ() + 0.5D) <= 64.0D;
     }
 
     /**
