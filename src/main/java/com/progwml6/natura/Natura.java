@@ -12,6 +12,7 @@ import com.progwml6.natura.library.Util;
 import com.progwml6.natura.nether.NaturaNether;
 import com.progwml6.natura.oredict.NaturaOredict;
 import com.progwml6.natura.overworld.NaturaOverworld;
+import com.progwml6.natura.plugin.CraftingTweaks;
 import com.progwml6.natura.plugin.waila.PluginWaila;
 import com.progwml6.natura.shared.NaturaCommons;
 import com.progwml6.natura.tools.NaturaTools;
@@ -57,6 +58,7 @@ public class Natura
         pulseManager.registerPulse(new NaturaWorld());
 
         pulseManager.registerPulse(new PluginWaila());
+        pulseManager.registerPulse(new CraftingTweaks());
     }
 
     @EventHandler
