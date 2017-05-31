@@ -49,7 +49,7 @@ public class BloodwoodTreeGenerator extends BaseTreeGenerator
 
             Block block = world.getBlockState(position).getBlock();
 
-            if ((block == Blocks.NETHERRACK || block == Blocks.SOUL_SAND || block == NaturaNether.netherTaintedSoil) && world.getBlockState(position.down()).isFullBlock())
+            if ((block == Blocks.NETHERRACK || block == Blocks.SOUL_SAND || block == NaturaNether.netherTaintedSoil) && !world.getBlockState(position.down()).isFullBlock())
             {
                 returnHeight = height - 1;
                 break;
