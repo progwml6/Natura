@@ -177,7 +177,7 @@ public class NaturaOredict extends NaturaPulse
             // Vines
             OreDictionary.registerOre("cropVine", new ItemStack(NaturaNether.netherThornVines));
 
-            // Bookshelf
+            // Bookshelves
             oredict(NaturaDecorative.netherBookshelves, "bookshelf");
         }
     }
