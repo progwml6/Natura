@@ -8,6 +8,7 @@ import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.init.Blocks;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.math.BlockPos;
@@ -59,6 +60,12 @@ public class BlockTaintedSoil extends EnumBlock<BlockTaintedSoil.SoilType>
     public boolean isFireSource(World world, BlockPos pos, EnumFacing side)
     {
         return true;
+    }
+
+    @Override
+    public boolean isReplaceableOreGen(IBlockState state, IBlockAccess world, BlockPos pos, com.google.common.base.Predicate<IBlockState> target)
+    {
+        return target.apply(Blocks.NETHERRACK.getDefaultState());
     }
 
     public enum SoilType implements IStringSerializable, EnumBlock.IEnumMeta

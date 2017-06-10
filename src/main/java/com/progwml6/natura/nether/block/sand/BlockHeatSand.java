@@ -11,10 +11,12 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 public class BlockHeatSand extends BlockFalling
@@ -29,6 +31,12 @@ public class BlockHeatSand extends BlockFalling
         this.setSoundType(SoundType.SAND);
         this.setCreativeTab(NaturaRegistry.tabWorld);
         this.setHarvestLevel("shovel", 0);
+    }
+
+    @Override
+    public boolean isReplaceableOreGen(IBlockState state, IBlockAccess world, BlockPos pos, com.google.common.base.Predicate<IBlockState> target)
+    {
+        return target.apply(Blocks.NETHERRACK.getDefaultState());
     }
 
     @Override
