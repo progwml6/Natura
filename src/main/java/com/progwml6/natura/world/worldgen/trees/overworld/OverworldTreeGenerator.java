@@ -122,12 +122,12 @@ public class OverworldTreeGenerator extends BaseTreeGenerator
 
                         if (block != null && block != NaturaOverworld.overworldSapling || !block.isLeaves(state, worldIn, pos))
                         {
-                            canGrowTree = false;
+                            canGrowTree = true;
                         }
                     }
                     else
                     {
-                        canGrowTree = false;
+                        canGrowTree = true;
                     }
                 }
             }
