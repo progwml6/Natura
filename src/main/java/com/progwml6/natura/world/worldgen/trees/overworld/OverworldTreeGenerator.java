@@ -74,12 +74,14 @@ public class OverworldTreeGenerator extends BaseTreeGenerator
 
             if (isSoil)
             {
-                if (checkIfCanGrow(position, heightRange, worldIn))
+                if (!checkIfCanGrow(position, heightRange, worldIn))
                 {
-                    soil.onPlantGrow(state, worldIn, position.down(), position);
-                    this.placeCanopy(worldIn, rand, position, heightRange);
-                    this.placeTrunk(worldIn, position, heightRange);
+                    return;
                 }
+
+                soil.onPlantGrow(state, worldIn, position.down(), position);
+                this.placeCanopy(worldIn, rand, position, heightRange);
+                this.placeTrunk(worldIn, position, heightRange);
             }
         }
     }

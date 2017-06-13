@@ -93,19 +93,21 @@ public class DarkwoodTreeGenerator extends BaseTreeGenerator
 
         if (position.getY() >= 1 && position.getY() + heightRange + 1 <= 256)
         {
-            if (checkIfCanGrow(position, heightRange, worldIn))
+            if (!checkIfCanGrow(position, heightRange, worldIn))
             {
-                IBlockState state = worldIn.getBlockState(position.down());
-                Block soil = state.getBlock();
-                boolean isSoil = (soil != null && soil.canSustainPlant(state, worldIn, position.down(), EnumFacing.UP, NaturaNether.netherSapling) || soil == Blocks.NETHERRACK);
+                return;
+            }
 
-                if (isSoil && position.getY() < 256 - heightRange - 1)
-                {
-                    soil.onPlantGrow(state, worldIn, position.down(), position);
+            IBlockState state = worldIn.getBlockState(position.down());
+            Block soil = state.getBlock();
+            boolean isSoil = (soil != null && soil.canSustainPlant(state, worldIn, position.down(), EnumFacing.UP, NaturaNether.netherSapling) || soil == Blocks.NETHERRACK);
 
-                    this.placeCanopy(worldIn, rand, position, heightRange);
-                    this.placeTrunk(worldIn, position, heightRange);
-                }
+            if (isSoil && position.getY() < 256 - heightRange - 1)
+            {
+                soil.onPlantGrow(state, worldIn, position.down(), position);
+
+                this.placeCanopy(worldIn, rand, position, heightRange);
+                this.placeTrunk(worldIn, position, heightRange);
             }
         }
     }

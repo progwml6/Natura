@@ -279,7 +279,7 @@ public class TileEntityNetherrackFurnace extends TileEntityLockable implements I
             }
             else if (!this.isBurning() && this.cookTime > 0)
             {
-                this.cookTime = MathHelper.clamp(this.cookTime - 2, 0, this.totalCookTime);
+                this.cookTime = MathHelper.clamp_int(this.cookTime - 2, 0, this.totalCookTime);
             }
 
             if (flag != this.isBurning())
@@ -422,7 +422,7 @@ public class TileEntityNetherrackFurnace extends TileEntityLockable implements I
      * Don't rename this method to canInteractWith due to conflicts with Container
      */
     @Override
-    public boolean isUsableByPlayer(EntityPlayer player)
+    public boolean isUseableByPlayer(EntityPlayer player)
     {
         return this.world.getTileEntity(this.pos) != this ? false : player.getDistanceSq(this.pos.getX() + 0.5D, this.pos.getY() + 0.5D, this.pos.getZ() + 0.5D) <= 64.0D;
     }

@@ -109,7 +109,7 @@ public class FurnaceContainer extends Container
     @Override
     public boolean canInteractWith(EntityPlayer playerIn)
     {
-        return this.tileFurnace.isUsableByPlayer(playerIn);
+        return this.tileFurnace.isUseableByPlayer(playerIn);
     }
 
     /**

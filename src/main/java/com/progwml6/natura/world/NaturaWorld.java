@@ -18,6 +18,7 @@ import com.progwml6.natura.world.worldgen.OverworldTreesGenerator;
 import com.progwml6.natura.world.worldgen.VineGenerator;
 import com.progwml6.natura.world.worldgen.retrogen.TickHandlerWorldRetrogen;
 
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.DimensionType;
 import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.MinecraftForge;
@@ -25,6 +26,7 @@ import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import slimeknights.mantle.pulsar.pulse.Pulse;
 
@@ -53,6 +55,9 @@ public class NaturaWorld extends NaturaPulse
     @Subscribe
     public void postInit(FMLPostInitializationEvent event)
     {
+        System.out.println(ForgeRegistries.BLOCKS.getValue(new ResourceLocation("natura:colored_grass")));
+        System.out.println("test");
+
         if (isOverworldLoaded())
         {
             GameRegistry.registerWorldGenerator(OverworldTreesGenerator.INSTANCE, 0);
