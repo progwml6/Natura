@@ -128,6 +128,9 @@ public class NaturaOredict extends NaturaPulse
             oredict(NaturaOverworld.cotton_seeds, "seedCotton");
             oredict(NaturaOverworld.barley_seeds, "listAllseed");
             oredict(NaturaOverworld.cotton_seeds, "listAllseed");
+
+            // Bookshelves
+            oredict(NaturaDecorative.overworldBookshelves, "bookshelf");
         }
     }
 
@@ -173,6 +176,9 @@ public class NaturaOredict extends NaturaPulse
 
             // Vines
             OreDictionary.registerOre("cropVine", new ItemStack(NaturaNether.netherThornVines));
+
+            // Bookshelves
+            oredict(NaturaDecorative.netherBookshelves, "bookshelf");
         }
     }
 
