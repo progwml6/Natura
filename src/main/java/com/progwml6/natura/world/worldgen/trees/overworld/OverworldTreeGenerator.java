@@ -74,12 +74,14 @@ public class OverworldTreeGenerator extends BaseTreeGenerator
 
             if (isSoil)
             {
-                if (checkIfCanGrow(position, heightRange, worldIn))
+                if (!checkIfCanGrow(position, heightRange, worldIn))
                 {
-                    soil.onPlantGrow(state, worldIn, position.down(), position);
-                    this.placeCanopy(worldIn, rand, position, heightRange);
-                    this.placeTrunk(worldIn, position, heightRange);
+                    return;
                 }
+
+                soil.onPlantGrow(state, worldIn, position.down(), position);
+                this.placeCanopy(worldIn, rand, position, heightRange);
+                this.placeTrunk(worldIn, position, heightRange);
             }
         }
     }
@@ -120,12 +122,12 @@ public class OverworldTreeGenerator extends BaseTreeGenerator
 
                         if (block != null && block != NaturaOverworld.overworldSapling || !block.isLeaves(state, worldIn, pos))
                         {
-                            canGrowTree = false;
+                            canGrowTree = true;
                         }
                     }
                     else
                     {
-                        canGrowTree = false;
+                        canGrowTree = true;
                     }
                 }
             }
