@@ -20,6 +20,7 @@ import com.progwml6.natura.tools.item.tools.ItemNaturaSword;
 
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Enchantments;
+import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
@@ -178,12 +179,15 @@ public class NaturaTools extends NaturaPulse
                 addShapedRecipe(new ItemStack(tools[i][4], 1, 0), "##", " s", " s", '#', new ItemStack(NaturaNether.netherPlanks, 1, plankMeta[i]), 's', stickItem[i]);
                 addShapedRecipe(new ItemStack(tools[i][5], 1, 0), "#s ", "# s", "#s ", '#', NaturaCommons.flameString.copy(), 's', stickItem[i]);
             }
-        }
 
-        GameRegistry.addRecipe(new ItemStack(netherquartzSword, 1, 0), "#", "#", "s", '#', new ItemStack(Blocks.QUARTZ_BLOCK, 1, OreDictionary.WILDCARD_VALUE), 's', NaturaCommons.ghostwood_stick.copy());
-        GameRegistry.addRecipe(new ItemStack(netherquartzPickaxe, 1, 0), "###", " s ", " s ", '#', new ItemStack(Blocks.QUARTZ_BLOCK, 1, OreDictionary.WILDCARD_VALUE), 's', NaturaCommons.ghostwood_stick.copy());
-        GameRegistry.addRecipe(new ItemStack(netherquartzShovel, 1, 0), "#", "s", "s", '#', new ItemStack(Blocks.QUARTZ_BLOCK, 1, OreDictionary.WILDCARD_VALUE), 's', NaturaCommons.ghostwood_stick.copy());
-        GameRegistry.addRecipe(new ItemStack(netherquartzAxe, 1, 0), "##", "#s", " s", '#', new ItemStack(Blocks.QUARTZ_BLOCK, 1, OreDictionary.WILDCARD_VALUE), 's', NaturaCommons.ghostwood_stick.copy());
+            GameRegistry.addRecipe(new ItemStack(netherquartzSword, 1, 0), "#", "#", "s", '#', new ItemStack(Blocks.QUARTZ_BLOCK, 1, OreDictionary.WILDCARD_VALUE), 's', NaturaCommons.ghostwood_stick.copy());
+            GameRegistry.addRecipe(new ItemStack(netherquartzPickaxe, 1, 0), "###", " s ", " s ", '#', new ItemStack(Blocks.QUARTZ_BLOCK, 1, OreDictionary.WILDCARD_VALUE), 's', NaturaCommons.ghostwood_stick.copy());
+            GameRegistry.addRecipe(new ItemStack(netherquartzShovel, 1, 0), "#", "s", "s", '#', new ItemStack(Blocks.QUARTZ_BLOCK, 1, OreDictionary.WILDCARD_VALUE), 's', NaturaCommons.ghostwood_stick.copy());
+            GameRegistry.addRecipe(new ItemStack(netherquartzAxe, 1, 0), "##", "#s", " s", '#', new ItemStack(Blocks.QUARTZ_BLOCK, 1, OreDictionary.WILDCARD_VALUE), 's', NaturaCommons.ghostwood_stick.copy());
+            GameRegistry.addRecipe(new ItemStack(netherquartzKama, 1, 0), "##", " s", " s", '#', new ItemStack(Blocks.QUARTZ_BLOCK, 1, OreDictionary.WILDCARD_VALUE), 's', NaturaCommons.ghostwood_stick.copy());
+
+            GameRegistry.addRecipe(new ItemStack(flintAndBlaze, 1, 0), "AB", 'A', Items.BLAZE_ROD, 'B', Items.FLINT);
+        }
 
         if (isEntitiesLoaded())
         {
