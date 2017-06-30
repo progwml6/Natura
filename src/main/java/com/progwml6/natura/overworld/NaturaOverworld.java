@@ -325,6 +325,11 @@ public class NaturaOverworld extends NaturaPulse
         GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(coloredGrass, 1, BlockColoredGrass.GrassType.BLUEGRASS.getMeta()), new ItemStack(coloredGrass, 1, 0), "dyeBlue"));
         GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(coloredGrass, 1, BlockColoredGrass.GrassType.AUTUMNAL.getMeta()), new ItemStack(coloredGrass, 1, 0), "dyeRed"));
 
+        // Grass Stairs
+        addStairRecipe(coloredGrassStairsTopiary, new ItemStack(coloredGrass, 1, BlockColoredGrass.GrassType.TOPIARY.getMeta()));
+        addStairRecipe(coloredGrassStairsBlueGrass, new ItemStack(coloredGrass, 1, BlockColoredGrass.GrassType.BLUEGRASS.getMeta()));
+        addStairRecipe(coloredGrassStairsAutumnal, new ItemStack(coloredGrass, 1, BlockColoredGrass.GrassType.AUTUMNAL.getMeta()));
+
         // Grass Slabs
         addSlabRecipe(coloredGrassSlab, BlockColoredGrass.GrassType.TOPIARY.getMeta(), new ItemStack(coloredGrass, 1, BlockColoredGrass.GrassType.TOPIARY.getMeta()));
         addSlabRecipe(coloredGrassSlab, BlockColoredGrass.GrassType.BLUEGRASS.getMeta(), new ItemStack(coloredGrass, 1, BlockColoredGrass.GrassType.BLUEGRASS.getMeta()));
