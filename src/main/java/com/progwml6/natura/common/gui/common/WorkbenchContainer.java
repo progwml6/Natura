@@ -11,7 +11,6 @@ import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.inventory.Slot;
 import net.minecraft.inventory.SlotCrafting;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.CraftingManager;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
@@ -20,17 +19,21 @@ public class WorkbenchContainer extends Container
     /** The crafting matrix inventory (3x3). */
     public InventoryCrafting craftMatrix = new InventoryCrafting(this, 3, 3);
 
-    public IInventory craftResult = new InventoryCraftResult();
+    public InventoryCraftResult craftResult = new InventoryCraftResult();
 
     private final World world;
 
     /** Position of the workbench */
     private final BlockPos pos;
 
+    private final EntityPlayer player;
+
     public WorkbenchContainer(InventoryPlayer playerInventory, World worldIn, BlockPos posIn)
     {
         this.world = worldIn;
         this.pos = posIn;
+        this.player = playerInventory.player;
+
         this.addSlotToContainer(new SlotCrafting(playerInventory.player, this.craftMatrix, this.craftResult, 0, 124, 35));
 
         for (int i = 0; i < 3; ++i)
@@ -63,7 +66,7 @@ public class WorkbenchContainer extends Container
     @Override
     public void onCraftMatrixChanged(IInventory inventoryIn)
     {
-        this.craftResult.setInventorySlotContents(0, CraftingManager.getInstance().findMatchingRecipe(this.craftMatrix, this.world));
+        this.slotChangedCraftingGrid(this.world, this.player, this.craftMatrix, this.craftResult);
     }
 
     /**
@@ -76,15 +79,7 @@ public class WorkbenchContainer extends Container
 
         if (!this.world.isRemote)
         {
-            for (int i = 0; i < 9; ++i)
-            {
-                ItemStack itemstack = this.craftMatrix.removeStackFromSlot(i);
-
-                if (!itemstack.isEmpty())
-                {
-                    playerIn.dropItem(itemstack, false);
-                }
-            }
+            this.clearContainer(playerIn, this.world, this.craftMatrix);
         }
     }
 
@@ -94,16 +89,19 @@ public class WorkbenchContainer extends Container
     @Override
     public boolean canInteractWith(EntityPlayer playerIn)
     {
-        return (this.world.getBlockState(this.pos).getBlock() != NaturaDecorative.overworldWorkbenches && this.world.getBlockState(this.pos).getBlock() != NaturaDecorative.netherWorkbenches) ? false : playerIn.getDistanceSq(this.pos.getX() + 0.5D, this.pos.getY() + 0.5D, this.pos.getZ() + 0.5D) <= 64.0D;
+        if (this.world.getBlockState(this.pos).getBlock() != NaturaDecorative.overworldWorkbenches && this.world.getBlockState(this.pos).getBlock() != NaturaDecorative.netherWorkbenches)
+        {
+            return false;
+        }
+        else
+        {
+            return playerIn.getDistanceSq(this.pos.getX() + 0.5D, this.pos.getY() + 0.5D, this.pos.getZ() + 0.5D) <= 64.0D;
+        }
     }
 
     /**
      * Handle when the stack in slot {@code index} is shift-clicked. Normally this moves the stack between the player
      * inventory and the other inventory(s).
-     *  
-     * @param playerIn Player that interacted with this {@code Container}.
-     * @param index Index of the {@link Slot}. This index is relative to the list of slots in this {@code Container},
-     * {@link #inventorySlots}.
      */
     @Override
     public ItemStack transferStackInSlot(EntityPlayer playerIn, int index)

@@ -20,7 +20,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
-import net.minecraft.world.chunk.IChunkGenerator;
+import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.BiomeDictionary.Type;
@@ -82,7 +82,7 @@ public class OverworldTreesGenerator implements IWorldGenerator
     {
         this.generateOverworld(random, chunkX, chunkZ, world, true);
 
-        world.getChunkFromChunkCoords(chunkX, chunkZ).setChunkModified();
+        world.getChunkFromChunkCoords(chunkX, chunkZ).markDirty();
     }
 
     public void generateOverworld(Random random, int chunkX, int chunkZ, World world, boolean retroGen)

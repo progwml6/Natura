@@ -4,8 +4,8 @@ import com.progwml6.natura.Natura;
 import com.progwml6.natura.nether.NaturaNether;
 import com.progwml6.natura.overworld.NaturaOverworld;
 
-import mezz.jei.api.BlankModPlugin;
 import mezz.jei.api.IJeiHelpers;
+import mezz.jei.api.IModPlugin;
 import mezz.jei.api.IModRegistry;
 import mezz.jei.api.JEIPlugin;
 import mezz.jei.api.ingredients.IIngredientBlacklist;
@@ -13,7 +13,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 
 @JEIPlugin
-public class PluginJEI extends BlankModPlugin
+public class PluginJEI implements IModPlugin
 {
     @Override
     public void register(IModRegistry registry)

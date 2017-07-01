@@ -8,8 +8,8 @@ import com.progwml6.natura.world.worldgen.glowshroom.BaseGlowshroomGenerator;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraft.world.chunk.IChunkGenerator;
 import net.minecraft.world.chunk.IChunkProvider;
+import net.minecraft.world.gen.IChunkGenerator;
 
 public class BabyGlowshroomGenerator extends BaseGlowshroomGenerator
 {
@@ -34,7 +34,7 @@ public class BabyGlowshroomGenerator extends BaseGlowshroomGenerator
         {
             BlockPos blockpos = pos.add(random.nextInt(8) - random.nextInt(8), random.nextInt(4) - random.nextInt(4), random.nextInt(8) - random.nextInt(8));
 
-            if (world.isAirBlock(blockpos) && (!world.provider.hasNoSky() || blockpos.getY() < world.getHeight() - 1) && block.canBlockStay(world, blockpos, this.glowshroom))
+            if (world.isAirBlock(blockpos) && (!world.provider.hasSkyLight() || blockpos.getY() < world.getHeight() - 1) && block.canBlockStay(world, blockpos, this.glowshroom))
             {
                 world.setBlockState(blockpos, this.glowshroom, 2);
             }

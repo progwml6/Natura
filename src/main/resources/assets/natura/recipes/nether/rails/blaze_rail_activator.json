@@ -1,0 +1,31 @@
+{
+    "conditions": [
+        {
+            "type": "natura:is_pulse_loaded",
+            "pulse_name": "NaturaNether"
+        }
+    ],
+    "type": "forge:ore_shaped",
+    "pattern": [
+        "ACA",
+        "ABA",
+        "ACA"
+    ],
+    "key": {
+        "A": {
+            "item": "minecraft:blaze_rod"
+        },
+        "B": {
+            "item": "minecraft:redstone_torch"
+        },
+        "C": {
+            "type": "forge:ore_dict",
+            "ore": "stickWood"
+        }
+    },
+    "result": {
+        "item": "natura:blaze_rail_activator",
+        "count": 6,
+        "data": 0
+    }
+}

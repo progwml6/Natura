@@ -1,0 +1,27 @@
+{
+    "conditions": [
+        {
+            "type": "natura:is_pulse_loaded",
+            "pulse_name": "NaturaNether"
+        },
+        {
+            "type": "natura:is_pulse_loaded",
+            "pulse_name": "NaturaTools"
+        }
+    ],
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "AB"
+    ],
+    "key": {
+        "A": {
+            "item": "minecraft:blaze_rod"
+        },
+        "B": {
+            "item": "minecraft:flint"
+        }
+    },
+    "result": {
+        "item": "natura:flint_and_blaze"
+    }
+}

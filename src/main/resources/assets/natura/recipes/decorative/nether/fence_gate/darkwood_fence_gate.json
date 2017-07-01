@@ -1,0 +1,31 @@
+{
+    "conditions": [
+        {
+            "type": "natura:is_pulse_loaded",
+            "pulse_name": "NaturaDecorative"
+        },
+        {
+            "type": "natura:is_pulse_loaded",
+            "pulse_name": "NaturaNether"
+        }
+    ],
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "ABA",
+        "ABA"
+    ],
+    "key": {
+        "A": {
+            "item": "natura:sticks",
+            "data": 10
+        },
+        "B": {
+            "item": "natura:nether_planks",
+            "data": 2
+        }
+    },
+    "result": {
+        "item": "natura:darkwood_fence_gate",
+        "data": 0
+    }
+}

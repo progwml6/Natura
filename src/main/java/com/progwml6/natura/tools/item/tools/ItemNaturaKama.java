@@ -3,11 +3,14 @@ package com.progwml6.natura.tools.item.tools;
 import java.util.List;
 import java.util.Random;
 
+import javax.annotation.Nullable;
+
 import com.progwml6.natura.library.NaturaRegistry;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
@@ -139,10 +142,10 @@ public class ItemNaturaKama extends ItemSword
     }
 
     @Override
-    public void addInformation(ItemStack stack, EntityPlayer playerIn, List<String> tooltip, boolean advanced)
+    public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flag)
     {
         ItemTooltip.addOptionalTooltip(stack, tooltip);
 
-        super.addInformation(stack, playerIn, tooltip, advanced);
+        super.addInformation(stack, worldIn, tooltip, flag);
     }
 }

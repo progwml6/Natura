@@ -39,17 +39,16 @@ import com.progwml6.natura.shared.NaturaCommons;
 
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
+import net.minecraftforge.client.event.ModelRegistryEvent;
+import net.minecraftforge.event.RegistryEvent.Register;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.minecraftforge.fml.common.registry.GameRegistry;
-import net.minecraftforge.oredict.OreDictionary;
-import net.minecraftforge.oredict.ShapedOreRecipe;
-import net.minecraftforge.oredict.ShapelessOreRecipe;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.registries.IForgeRegistry;
 import slimeknights.mantle.item.ItemBlockMeta;
 import slimeknights.mantle.pulsar.pulse.Pulse;
 
@@ -71,7 +70,7 @@ public class NaturaNether extends NaturaPulse
     public static BlockNetherSapling netherSapling;
     public static BlockNetherSapling2 netherSapling2;
     public static BlockNetherPlanks netherPlanks;
-    public static Block netherSlab;
+    public static BlockNetherSlab netherSlab;
 
     public static BlockHeatSand netherHeatSand;
     public static BlockTaintedSoil netherTaintedSoil;
@@ -122,70 +121,136 @@ public class NaturaNether extends NaturaPulse
     public static ItemStack bloodwood_door;
     //@formatter:on
 
-    @Subscribe
-    public void preInit(FMLPreInitializationEvent event)
+    @SubscribeEvent
+    public void registerBlocks(Register<Block> event)
     {
-        netherLog = registerEnumBlock(new BlockNetherLog(), "nether_logs");
-        netherLog2 = registerBlock(new BlockNetherLog2(), "nether_logs2");
+        IForgeRegistry<Block> registry = event.getRegistry();
 
-        netherLeaves = registerBlock(new ItemBlockLeaves(new BlockNetherLeaves()), "nether_leaves");
-        ItemBlockMeta.setMappingProperty(netherLeaves, BlockNetherLeaves.TYPE);
-        netherLeaves2 = registerBlock(new ItemBlockLeaves(new BlockNetherLeaves2()), "nether_leaves2");
-        ItemBlockMeta.setMappingProperty(netherLeaves2, BlockNetherLeaves2.TYPE);
+        // Blocks Start
+        netherLog = registerBlock(registry, new BlockNetherLog(), "nether_logs");
+        netherLog2 = registerBlock(registry, new BlockNetherLog2(), "nether_logs2");
 
-        netherSapling = registerBlock(new BlockNetherSapling(), "nether_sapling", BlockNetherSapling.FOLIAGE);
-        netherSapling2 = registerBlock(new BlockNetherSapling2(), "nether_sapling2", BlockNetherSapling2.FOLIAGE);
+        netherLeaves = registerBlock(registry, new BlockNetherLeaves(), "nether_leaves");
+        netherLeaves2 = registerBlock(registry, new BlockNetherLeaves2(), "nether_leaves2");
 
-        netherPlanks = registerEnumBlock(new BlockNetherPlanks(), "nether_planks");
+        netherSapling = registerBlock(registry, new BlockNetherSapling(), "nether_sapling");
+        netherSapling2 = registerBlock(registry, new BlockNetherSapling2(), "nether_sapling2");
 
-        netherSlab = registerEnumBlockSlab(new BlockNetherSlab(), "nether_slab");
+        netherPlanks = registerBlock(registry, new BlockNetherPlanks(), "nether_planks");
 
-        netherHeatSand = registerBlock(new BlockHeatSand(), "nether_heat_sand");
-        netherTaintedSoil = registerEnumBlock(new BlockTaintedSoil(), "nether_tainted_soil");
-        netherThornVines = registerBlock(new BlockNetherThornVines(), "nether_thorn_vines");
+        netherSlab = registerBlock(registry, new BlockNetherSlab(), "nether_slab");
 
-        netherGlass = registerEnumBlock(new BlockNetherGlass(), "nether_glass");
+        netherHeatSand = registerBlock(registry, new BlockHeatSand(), "nether_heat_sand");
+        netherTaintedSoil = registerBlock(registry, new BlockTaintedSoil(), "nether_tainted_soil");
+        netherThornVines = registerBlock(registry, new BlockNetherThornVines(), "nether_thorn_vines");
 
-        netherStairsGhostwood = registerBlockStairsFrom(netherPlanks, BlockNetherPlanks.PlankType.GHOSTWOOD, "nether_stairs_ghostwood");
-        netherStairsBloodwood = registerBlockStairsFrom(netherPlanks, BlockNetherPlanks.PlankType.BLOODWOOD, "nether_stairs_bloodwood");
-        netherStairsDarkwood = registerBlockStairsFrom(netherPlanks, BlockNetherPlanks.PlankType.DARKWOOD, "nether_stairs_darkwood");
-        netherStairsFusewood = registerBlockStairsFrom(netherPlanks, BlockNetherPlanks.PlankType.FUSEWOOD, "nether_stairs_fusewood");
+        netherGlass = registerBlock(registry, new BlockNetherGlass(), "nether_glass");
 
-        netherBerryBushBlightberry = registerBlock(new BlockNetherBerryBush(NaturaCommons.blightberry), "nether_berrybush_blightberry");
-        netherBerryBushDuskberry = registerBlock(new BlockNetherBerryBush(NaturaCommons.duskberry), "nether_berrybush_duskberry");
-        netherBerryBushSkyberry = registerBlock(new BlockNetherBerryBush(NaturaCommons.skyberry), "nether_berrybush_skyberry");
-        netherBerryBushStingberry = registerBlock(new BlockNetherBerryBush(NaturaCommons.stingberry), "nether_berrybush_stingberry");
+        netherStairsGhostwood = registerBlockStairsFrom(registry, netherPlanks, BlockNetherPlanks.PlankType.GHOSTWOOD, "nether_stairs_ghostwood");
+        netherStairsBloodwood = registerBlockStairsFrom(registry, netherPlanks, BlockNetherPlanks.PlankType.BLOODWOOD, "nether_stairs_bloodwood");
+        netherStairsDarkwood = registerBlockStairsFrom(registry, netherPlanks, BlockNetherPlanks.PlankType.DARKWOOD, "nether_stairs_darkwood");
+        netherStairsFusewood = registerBlockStairsFrom(registry, netherPlanks, BlockNetherPlanks.PlankType.FUSEWOOD, "nether_stairs_fusewood");
 
-        respawnObelisk = registerEnumBlock(new BlockRespawnObelisk(), "respawn_obelisk");
+        netherBerryBushBlightberry = registerBlock(registry, new BlockNetherBerryBush(NaturaCommons.blightberry), "nether_berrybush_blightberry");
+        netherBerryBushDuskberry = registerBlock(registry, new BlockNetherBerryBush(NaturaCommons.duskberry), "nether_berrybush_duskberry");
+        netherBerryBushSkyberry = registerBlock(registry, new BlockNetherBerryBush(NaturaCommons.skyberry), "nether_berrybush_skyberry");
+        netherBerryBushStingberry = registerBlock(registry, new BlockNetherBerryBush(NaturaCommons.stingberry), "nether_berrybush_stingberry");
 
-        netherGlowshroom = registerBlock(new BlockNetherGlowshroom(), "nether_glowshroom", BlockNetherGlowshroom.TYPE);
-        netherLargeGreenGlowshroom = registerBlock(new BlockNetherLargeGlowshroom(netherGlowshroom, BlockNetherGlowshroom.GlowshroomType.GREEN.getMeta()), "nether_green_large_glowshroom", BlockNetherLargeGlowshroom.VARIANT);
-        netherLargeBlueGlowshroom = registerBlock(new BlockNetherLargeGlowshroom(netherGlowshroom, BlockNetherGlowshroom.GlowshroomType.BLUE.getMeta()), "nether_blue_large_glowshroom", BlockNetherLargeGlowshroom.VARIANT);
-        netherLargePurpleGlowshroom = registerBlock(new BlockNetherLargeGlowshroom(netherGlowshroom, BlockNetherGlowshroom.GlowshroomType.PURPLE.getMeta()), "nether_purple_large_glowshroom", BlockNetherLargeGlowshroom.VARIANT);
+        respawnObelisk = registerBlock(registry, new BlockRespawnObelisk(), "respawn_obelisk");
 
-        ghostwoodDoor = registerBlock(new BlockNaturaDoor(), "nether_door_ghostwood");
-        bloodwoodDoor = registerBlock(new BlockNaturaDoor(), "nether_door_bloodwood");
+        netherGlowshroom = registerBlock(registry, new BlockNetherGlowshroom(), "nether_glowshroom");
+        netherLargeGreenGlowshroom = registerBlock(registry, new BlockNetherLargeGlowshroom(netherGlowshroom, BlockNetherGlowshroom.GlowshroomType.GREEN.getMeta()), "nether_green_large_glowshroom");
+        netherLargeBlueGlowshroom = registerBlock(registry, new BlockNetherLargeGlowshroom(netherGlowshroom, BlockNetherGlowshroom.GlowshroomType.BLUE.getMeta()), "nether_blue_large_glowshroom");
+        netherLargePurpleGlowshroom = registerBlock(registry, new BlockNetherLargeGlowshroom(netherGlowshroom, BlockNetherGlowshroom.GlowshroomType.PURPLE.getMeta()), "nether_purple_large_glowshroom");
 
-        blazeHopper = registerBlock(new BlockBlazeHopper(), "blaze_hopper");
+        ghostwoodDoor = registerBlock(registry, new BlockNaturaDoor(), "nether_door_ghostwood");
+        bloodwoodDoor = registerBlock(registry, new BlockNaturaDoor(), "nether_door_bloodwood");
 
-        netherLever = registerBlock(new BlockNetherLever(), "nether_lever");
+        blazeHopper = registerBlock(registry, new BlockBlazeHopper(), "blaze_hopper");
 
-        netherButton = registerBlock(new BlockNetherButton(), "nether_button");
+        netherLever = registerBlock(registry, new BlockNetherLever(), "nether_lever");
 
-        netherPressurePlate = registerBlock(new BlockNetherPressurePlate(), "nether_pressure_plate");
+        netherButton = registerBlock(registry, new BlockNetherButton(), "nether_button");
 
-        blazeRail = registerBlock(new BlockBlazeRail(), "blaze_rail");
-        blazeRailPowered = registerBlock(new BlockBlazeRailPowered(false), "blaze_rail_golden");
-        blazeRailActivator = registerBlock(new BlockBlazeRailPowered(true), "blaze_rail_activator");
-        blazeRailDetector = registerBlock(new BlockBlazeRailDetector(), "blaze_rail_detector");
+        netherPressurePlate = registerBlock(registry, new BlockNetherPressurePlate(), "nether_pressure_plate");
 
-        netherrackFurnace = registerBlock(new BlockNetherrackFurnace(false), "netherrack_furnace");
-        litNetherrackFurnace = registerBlock(new BlockNetherrackFurnace(true), "lit_netherrack_furnace");
+        blazeRail = registerBlock(registry, new BlockBlazeRail(), "blaze_rail");
+        blazeRailPowered = registerBlock(registry, new BlockBlazeRailPowered(false), "blaze_rail_golden");
+        blazeRailActivator = registerBlock(registry, new BlockBlazeRailPowered(true), "blaze_rail_activator");
+        blazeRailDetector = registerBlock(registry, new BlockBlazeRailDetector(), "blaze_rail_detector");
+
+        netherrackFurnace = registerBlock(registry, new BlockNetherrackFurnace(false), "netherrack_furnace");
+        litNetherrackFurnace = registerBlock(registry, new BlockNetherrackFurnace(true), "lit_netherrack_furnace");
+        // Blocks End
 
         registerTE(TileEntityNetherrackFurnace.class, "netherrack_furnace");
+    }
 
-        // Items
-        netherDoors = registerItem(new ItemNaturaDoor(), "nether_doors");
+    @SubscribeEvent
+    public void registerItems(Register<Item> event)
+    {
+        IForgeRegistry<Item> registry = event.getRegistry();
+
+        // Blocks Start
+        netherLog = registerEnumItemBlock(registry, netherLog, "nether_logs");
+        netherLog2 = registerItemBlock(registry, netherLog2, "nether_logs2");
+
+        netherLeaves = registerItemBlockProp(registry, new ItemBlockLeaves(netherLeaves), "nether_leaves", BlockNetherLeaves.TYPE);
+        netherLeaves2 = registerItemBlockProp(registry, new ItemBlockLeaves(netherLeaves2), "nether_leaves2", BlockNetherLeaves2.TYPE);
+
+        netherSapling = registerItemBlockProp(registry, new ItemBlockMeta(netherSapling), "nether_sapling", BlockNetherSapling.FOLIAGE);
+        netherSapling2 = registerItemBlockProp(registry, new ItemBlockMeta(netherSapling2), "nether_sapling2", BlockNetherSapling2.FOLIAGE);
+
+        netherPlanks = registerEnumItemBlock(registry, netherPlanks, "nether_planks");
+
+        netherSlab = registerEnumItemBlockSlab(registry, netherSlab, "nether_slab");
+
+        netherHeatSand = registerItemBlock(registry, netherHeatSand, "nether_heat_sand");
+        netherTaintedSoil = registerEnumItemBlock(registry, netherTaintedSoil, "nether_tainted_soil");
+        netherThornVines = registerItemBlock(registry, netherThornVines, "nether_thorn_vines");
+
+        netherGlass = registerEnumItemBlock(registry, netherGlass, "nether_glass");
+
+        netherStairsGhostwood = registerItemBlock(registry, netherStairsGhostwood, "nether_stairs_ghostwood");
+        netherStairsBloodwood = registerItemBlock(registry, netherStairsBloodwood, "nether_stairs_bloodwood");
+        netherStairsDarkwood = registerItemBlock(registry, netherStairsDarkwood, "nether_stairs_darkwood");
+        netherStairsFusewood = registerItemBlock(registry, netherStairsFusewood, "nether_stairs_fusewood");
+
+        netherBerryBushBlightberry = registerItemBlock(registry, netherBerryBushBlightberry, "nether_berrybush_blightberry");
+        netherBerryBushDuskberry = registerItemBlock(registry, netherBerryBushDuskberry, "nether_berrybush_duskberry");
+        netherBerryBushSkyberry = registerItemBlock(registry, netherBerryBushSkyberry, "nether_berrybush_skyberry");
+        netherBerryBushStingberry = registerItemBlock(registry, netherBerryBushStingberry, "nether_berrybush_stingberry");
+
+        respawnObelisk = registerEnumItemBlock(registry, respawnObelisk, "respawn_obelisk");
+
+        netherGlowshroom = registerItemBlockProp(registry, new ItemBlockMeta(netherGlowshroom), "nether_glowshroom", BlockNetherGlowshroom.TYPE);
+
+        netherLargeGreenGlowshroom = registerItemBlockProp(registry, new ItemBlockMeta(netherLargeGreenGlowshroom), "nether_green_large_glowshroom", BlockNetherLargeGlowshroom.VARIANT);
+        netherLargeBlueGlowshroom = registerItemBlockProp(registry, new ItemBlockMeta(netherLargeBlueGlowshroom), "nether_blue_large_glowshroom", BlockNetherLargeGlowshroom.VARIANT);
+        netherLargePurpleGlowshroom = registerItemBlockProp(registry, new ItemBlockMeta(netherLargePurpleGlowshroom), "nether_purple_large_glowshroom", BlockNetherLargeGlowshroom.VARIANT);
+
+        ghostwoodDoor = registerItemBlock(registry, ghostwoodDoor, "nether_door_ghostwood");
+        bloodwoodDoor = registerItemBlock(registry, bloodwoodDoor, "nether_door_bloodwood");
+
+        blazeHopper = registerItemBlock(registry, blazeHopper, "blaze_hopper");
+
+        netherLever = registerItemBlock(registry, netherLever, "nether_lever");
+
+        netherButton = registerItemBlock(registry, netherButton, "nether_button");
+
+        netherPressurePlate = registerItemBlock(registry, netherPressurePlate, "nether_pressure_plate");
+
+        blazeRail = registerItemBlock(registry, blazeRail, "blaze_rail");
+        blazeRailPowered = registerItemBlock(registry, blazeRailPowered, "blaze_rail_golden");
+        blazeRailActivator = registerItemBlock(registry, blazeRailActivator, "blaze_rail_activator");
+        blazeRailDetector = registerItemBlock(registry, blazeRailDetector, "blaze_rail_detector");
+
+        netherrackFurnace = registerItemBlock(registry, netherrackFurnace, "netherrack_furnace");
+        litNetherrackFurnace = registerItemBlock(registry, litNetherrackFurnace, "lit_netherrack_furnace");
+        // Blocks End
+
+        // Items Start
+        netherDoors = registerItem(registry, new ItemNaturaDoor(), "nether_doors");
 
         netherDoors.setCreativeTab(NaturaRegistry.tabDecorative);
 
@@ -194,8 +259,7 @@ public class NaturaNether extends NaturaPulse
 
         ghostwoodDoor.setDoor(NaturaNether.ghostwood_door);
         bloodwoodDoor.setDoor(NaturaNether.bloodwood_door);
-
-        proxy.preInit();
+        // Items End
 
         if (!isOverworldLoaded())
         {
@@ -203,12 +267,17 @@ public class NaturaNether extends NaturaPulse
         }
     }
 
+    @SubscribeEvent
+    public void registerModels(ModelRegistryEvent event)
+    {
+        proxy.preInit();
+    }
+
     @Subscribe
     public void init(FMLInitializationEvent event)
     {
         proxy.init();
 
-        this.registerRecipes();
         this.registerSmelting();
     }
 
@@ -216,86 +285,6 @@ public class NaturaNether extends NaturaPulse
     public void postInit(FMLPostInitializationEvent event)
     {
         proxy.postInit();
-    }
-
-    private void registerRecipes()
-    {
-        // Arrows
-        GameRegistry.addRecipe(NaturaCommons.ghostwoodFletching.copy(), " s ", "#s#", "#s#", 's', NaturaCommons.ghostwood_stick.copy(), '#', new ItemStack(netherLeaves, 1, BlockNetherLeaves.LeavesType.GHOSTWOOD.getMeta()));
-
-        // Planks
-        GameRegistry.addRecipe(new ItemStack(netherPlanks, 4, BlockNetherPlanks.PlankType.DARKWOOD.getMeta()), "w", 'w', new ItemStack(netherLog, 1, BlockNetherLog.LogType.DARKWOOD.getMeta()));
-        GameRegistry.addRecipe(new ItemStack(netherPlanks, 4, BlockNetherPlanks.PlankType.BLOODWOOD.getMeta()), "w", 'w', new ItemStack(netherLog2, 1, OreDictionary.WILDCARD_VALUE));
-        GameRegistry.addRecipe(new ItemStack(netherPlanks, 4, BlockNetherPlanks.PlankType.FUSEWOOD.getMeta()), "w", 'w', new ItemStack(netherLog, 1, BlockNetherLog.LogType.FUSEWOOD.getMeta()));
-        GameRegistry.addRecipe(new ItemStack(netherPlanks, 4, BlockNetherPlanks.PlankType.GHOSTWOOD.getMeta()), "w", 'w', new ItemStack(netherLog, 1, BlockNetherLog.LogType.GHOSTWOOD.getMeta()));
-
-        // Doors
-        addShapedRecipe(ghostwood_door.copy(), "##", "##", "##", '#', new ItemStack(netherPlanks, 1, BlockNetherPlanks.PlankType.GHOSTWOOD.getMeta()));
-        addShapedRecipe(bloodwood_door.copy(), "##", "##", "##", '#', new ItemStack(netherPlanks, 1, BlockNetherPlanks.PlankType.BLOODWOOD.getMeta()));
-
-        // Sticks
-        addShapedRecipe(new ItemStack(NaturaCommons.sticks, 4, 9), "#", "#", '#', new ItemStack(netherPlanks, 1, BlockNetherPlanks.PlankType.GHOSTWOOD.getMeta()));
-        addShapedRecipe(new ItemStack(NaturaCommons.sticks, 4, 10), "#", "#", '#', new ItemStack(netherPlanks, 1, BlockNetherPlanks.PlankType.DARKWOOD.getMeta()));
-        addShapedRecipe(new ItemStack(NaturaCommons.sticks, 4, 11), "#", "#", '#', new ItemStack(netherPlanks, 1, BlockNetherPlanks.PlankType.FUSEWOOD.getMeta()));
-        addShapedRecipe(new ItemStack(NaturaCommons.sticks, 4, 12), "#", "#", '#', new ItemStack(netherPlanks, 1, BlockNetherPlanks.PlankType.BLOODWOOD.getMeta()));
-
-        // Empty Bowls
-        addShapedRecipe(new ItemStack(NaturaCommons.empty_bowls, 4, NaturaCommons.ghostwood_emptybowl.getItemDamage()), "# #", " # ", '#', new ItemStack(netherPlanks, 1, BlockNetherPlanks.PlankType.GHOSTWOOD.getMeta()));
-        addShapedRecipe(new ItemStack(NaturaCommons.empty_bowls, 4, NaturaCommons.bloodwood_emptybowl.getItemDamage()), "# #", " # ", '#', new ItemStack(netherPlanks, 1, BlockNetherPlanks.PlankType.BLOODWOOD.getMeta()));
-        addShapedRecipe(new ItemStack(NaturaCommons.empty_bowls, 4, NaturaCommons.darkwood_emptybowl.getItemDamage()), "# #", " # ", '#', new ItemStack(netherPlanks, 1, BlockNetherPlanks.PlankType.DARKWOOD.getMeta()));
-        addShapedRecipe(new ItemStack(NaturaCommons.empty_bowls, 4, NaturaCommons.fusewood_emptybowl.getItemDamage()), "# #", " # ", '#', new ItemStack(netherPlanks, 1, BlockNetherPlanks.PlankType.FUSEWOOD.getMeta()));
-
-        // Mushroom Stew Bowls
-        GameRegistry.addRecipe(new ShapelessOreRecipe(NaturaCommons.ghostwood_mushroomstew.copy(), NaturaCommons.ghostwood_emptybowl.copy(), new ItemStack(Blocks.BROWN_MUSHROOM), new ItemStack(Blocks.RED_MUSHROOM)));
-        GameRegistry.addRecipe(new ShapelessOreRecipe(NaturaCommons.bloodwood_mushroomstew.copy(), NaturaCommons.ghostwood_emptybowl.copy(), new ItemStack(Blocks.BROWN_MUSHROOM), new ItemStack(Blocks.RED_MUSHROOM)));
-        GameRegistry.addRecipe(new ShapelessOreRecipe(NaturaCommons.darkwood_mushroomstew.copy(), NaturaCommons.ghostwood_emptybowl.copy(), new ItemStack(Blocks.BROWN_MUSHROOM), new ItemStack(Blocks.RED_MUSHROOM)));
-        GameRegistry.addRecipe(new ShapelessOreRecipe(NaturaCommons.fusewood_mushroomstew.copy(), NaturaCommons.ghostwood_emptybowl.copy(), new ItemStack(Blocks.BROWN_MUSHROOM), new ItemStack(Blocks.RED_MUSHROOM)));
-
-        // Glowshroom Stew Bowls
-        GameRegistry.addRecipe(new ShapelessOreRecipe(NaturaCommons.vanilla_glowshroomstew.copy(), new ItemStack(Items.BOWL), new ItemStack(netherGlowshroom, 1, BlockNetherGlowshroom.GlowshroomType.GREEN.getMeta()), new ItemStack(netherGlowshroom, 1, BlockNetherGlowshroom.GlowshroomType.PURPLE.getMeta()), new ItemStack(netherGlowshroom, 1, BlockNetherGlowshroom.GlowshroomType.BLUE.getMeta())));
-        GameRegistry.addRecipe(new ShapelessOreRecipe(NaturaCommons.ghostwood_glowshroomstew.copy(), NaturaCommons.ghostwood_emptybowl.copy(), new ItemStack(netherGlowshroom, 1, BlockNetherGlowshroom.GlowshroomType.GREEN.getMeta()), new ItemStack(netherGlowshroom, 1, BlockNetherGlowshroom.GlowshroomType.PURPLE.getMeta()), new ItemStack(netherGlowshroom, 1, BlockNetherGlowshroom.GlowshroomType.BLUE.getMeta())));
-        GameRegistry.addRecipe(new ShapelessOreRecipe(NaturaCommons.bloodwood_glowshroomstew.copy(), NaturaCommons.ghostwood_emptybowl.copy(), new ItemStack(netherGlowshroom, 1, BlockNetherGlowshroom.GlowshroomType.GREEN.getMeta()), new ItemStack(netherGlowshroom, 1, BlockNetherGlowshroom.GlowshroomType.PURPLE.getMeta()), new ItemStack(netherGlowshroom, 1, BlockNetherGlowshroom.GlowshroomType.BLUE.getMeta())));
-        GameRegistry.addRecipe(new ShapelessOreRecipe(NaturaCommons.darkwood_glowshroomstew.copy(), NaturaCommons.ghostwood_emptybowl.copy(), new ItemStack(netherGlowshroom, 1, BlockNetherGlowshroom.GlowshroomType.GREEN.getMeta()), new ItemStack(netherGlowshroom, 1, BlockNetherGlowshroom.GlowshroomType.PURPLE.getMeta()), new ItemStack(netherGlowshroom, 1, BlockNetherGlowshroom.GlowshroomType.BLUE.getMeta())));
-        GameRegistry.addRecipe(new ShapelessOreRecipe(NaturaCommons.fusewood_glowshroomstew.copy(), NaturaCommons.ghostwood_emptybowl.copy(), new ItemStack(netherGlowshroom, 1, BlockNetherGlowshroom.GlowshroomType.GREEN.getMeta()), new ItemStack(netherGlowshroom, 1, BlockNetherGlowshroom.GlowshroomType.PURPLE.getMeta()), new ItemStack(netherGlowshroom, 1, BlockNetherGlowshroom.GlowshroomType.BLUE.getMeta())));
-
-        // Slabs
-        addSlabRecipe(netherSlab, BlockNetherSlab.PlankType.BLOODWOOD.getMeta(), new ItemStack(netherPlanks, 1, BlockNetherPlanks.PlankType.BLOODWOOD.getMeta()));
-        addSlabRecipe(netherSlab, BlockNetherSlab.PlankType.DARKWOOD.getMeta(), new ItemStack(netherPlanks, 1, BlockNetherPlanks.PlankType.DARKWOOD.getMeta()));
-        addSlabRecipe(netherSlab, BlockNetherSlab.PlankType.FUSEWOOD.getMeta(), new ItemStack(netherPlanks, 1, BlockNetherPlanks.PlankType.FUSEWOOD.getMeta()));
-        addSlabRecipe(netherSlab, BlockNetherSlab.PlankType.GHOSTWOOD.getMeta(), new ItemStack(netherPlanks, 1, BlockNetherPlanks.PlankType.GHOSTWOOD.getMeta()));
-
-        // Stairs
-        addStairRecipe(netherStairsBloodwood, new ItemStack(netherPlanks, 1, BlockNetherPlanks.PlankType.BLOODWOOD.getMeta()));
-        addStairRecipe(netherStairsDarkwood, new ItemStack(netherPlanks, 1, BlockNetherPlanks.PlankType.DARKWOOD.getMeta()));
-        addStairRecipe(netherStairsFusewood, new ItemStack(netherPlanks, 1, BlockNetherPlanks.PlankType.FUSEWOOD.getMeta()));
-        addStairRecipe(netherStairsGhostwood, new ItemStack(netherPlanks, 1, BlockNetherPlanks.PlankType.GHOSTWOOD.getMeta()));
-
-        // Soul Sand
-        GameRegistry.addShapelessRecipe(new ItemStack(Blocks.SOUL_SAND), netherHeatSand, netherTaintedSoil);
-
-        // Blaze Rails
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(blazeRail, 16), "X X", "X#X", "X X", 'X', Items.BLAZE_ROD, '#', "stickWood"));
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(blazeRailPowered, 6), "X X", "X#X", "XRX", 'X', Items.BLAZE_ROD, 'R', "dustRedstone", '#', new ItemStack(netherLog, 1, BlockNetherLog.LogType.FUSEWOOD.getMeta())));
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(blazeRailActivator, 6), "XSX", "X#X", "XSX", 'X', Items.BLAZE_ROD, '#', Blocks.REDSTONE_TORCH, 'S', "stickWood"));
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(blazeRailDetector, 6), "X X", "X#X", "XRX", 'X', Items.BLAZE_ROD, 'R', "dustRedstone", '#', netherPressurePlate));
-
-        // Netherrack Furnace
-        GameRegistry.addRecipe(new ItemStack(netherrackFurnace), "###", "# #", "###", '#', Blocks.NETHERRACK);
-
-        // Respawn Obelisk
-        GameRegistry.addRecipe(new ItemStack(respawnObelisk), "###", "# #", "###", '#', new ItemStack(netherLog, 1, BlockNetherLog.LogType.GHOSTWOOD.getMeta()));
-
-        // Blaze Hopper
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(blazeHopper), "# #", "#C#", " # ", '#', new ItemStack(Items.BLAZE_ROD), 'C', "chestWood"));
-
-        // Pressure Plate
-        GameRegistry.addRecipe(new ItemStack(netherPressurePlate), "##", '#', new ItemStack(Blocks.NETHERRACK));
-
-        // Button
-        GameRegistry.addRecipe(new ItemStack(netherButton), "#", '#', new ItemStack(Blocks.NETHERRACK));
-
-        // Lever
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(netherLever), "S", "#", '#', new ItemStack(Blocks.NETHERRACK), 'S', "stickWood"));
     }
 
     private void registerSmelting()

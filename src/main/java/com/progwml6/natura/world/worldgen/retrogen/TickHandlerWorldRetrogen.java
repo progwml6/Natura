@@ -154,8 +154,8 @@ public class TickHandlerWorldRetrogen
         public ChunkCoords(Chunk chunk)
         {
             this.dimension = chunk.getWorld().provider.getDimension();
-            this.xCoord = chunk.xPosition;
-            this.zCoord = chunk.zPosition;
+            this.xCoord = chunk.x;
+            this.zCoord = chunk.z;
         }
     }
 }

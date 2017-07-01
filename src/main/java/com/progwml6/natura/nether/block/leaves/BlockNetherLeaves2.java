@@ -54,7 +54,7 @@ public class BlockNetherLeaves2 extends BlockLeaves
 
     @SideOnly(Side.CLIENT)
     @Override
-    public void getSubBlocks(@Nonnull Item itemIn, CreativeTabs tab, NonNullList<ItemStack> list)
+    public void getSubBlocks(CreativeTabs tab, NonNullList<ItemStack> list)
     {
         for (LeavesType type : LeavesType.values())
         {

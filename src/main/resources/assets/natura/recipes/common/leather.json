@@ -1,0 +1,22 @@
+{
+    "conditions": [
+        {
+            "type": "natura:is_pulse_loaded",
+            "pulse_name": "NaturaEntities"
+        }
+    ],
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "AA",
+        "AA"
+    ],
+    "key": {
+        "A": {
+            "item": "natura:materials",
+            "data": 6
+        }
+    },
+    "result": {
+        "item": "minecraft:leather"
+    }
+}

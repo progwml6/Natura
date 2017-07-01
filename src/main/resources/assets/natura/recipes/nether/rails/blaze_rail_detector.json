@@ -1,0 +1,32 @@
+{
+    "conditions": [
+        {
+            "type": "natura:is_pulse_loaded",
+            "pulse_name": "NaturaNether"
+        }
+    ],
+    "type": "forge:ore_shaped",
+    "pattern": [
+        "A A",
+        "ABA",
+        "ACA"
+    ],
+    "key": {
+        "A": {
+            "item": "minecraft:blaze_rod"
+        },
+        "B": {
+            "item": "natura:nether_pressure_plate",
+            "data": 0
+        },
+        "C": {
+            "type": "forge:ore_dict",
+            "ore": "dustRedstone"
+        }
+    },
+    "result": {
+        "item": "natura:blaze_rail_detector",
+        "count": 6,
+        "data": 0
+    }
+}

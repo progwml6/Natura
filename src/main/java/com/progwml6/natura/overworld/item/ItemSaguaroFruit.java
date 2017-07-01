@@ -2,10 +2,13 @@ package com.progwml6.natura.overworld.item;
 
 import java.util.List;
 
+import javax.annotation.Nullable;
+
 import com.progwml6.natura.library.NaturaRegistry;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemSeedFood;
@@ -69,10 +72,10 @@ public class ItemSaguaroFruit extends ItemSeedFood
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void addInformation(ItemStack stack, EntityPlayer playerIn, List<String> tooltip, boolean advanced)
+    public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn)
     {
         addOptionalTooltip(stack, tooltip);
-        super.addInformation(stack, playerIn, tooltip, advanced);
+        super.addInformation(stack, worldIn, tooltip, flagIn);
     }
 
     public static void addOptionalTooltip(ItemStack stack, List<String> tooltip)

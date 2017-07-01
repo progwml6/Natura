@@ -20,7 +20,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.ChunkPrimer;
-import net.minecraft.world.chunk.IChunkGenerator;
+import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraft.world.gen.MapGenBase;
 import net.minecraft.world.gen.MapGenCavesHell;
 import net.minecraft.world.gen.NoiseGeneratorOctaves;
@@ -308,7 +308,7 @@ public class ChunkProviderNetherite implements IChunkGenerator
      * Generates the chunk at the specified position, from scratch
      */
     @Override
-    public Chunk provideChunk(int x, int z)
+    public Chunk generateChunk(int x, int z)
     {
         this.rand.setSeed(x * 341873128712L + z * 132897987541L);
         ChunkPrimer chunkprimer = new ChunkPrimer();
@@ -534,9 +534,15 @@ public class ChunkProviderNetherite implements IChunkGenerator
 
     @Override
     @Nullable
-    public BlockPos getStrongholdGen(World worldIn, String structureName, BlockPos position, boolean p_180513_4_)
+    public BlockPos getNearestStructurePos(World worldIn, String structureName, BlockPos position, boolean findUnexplored)
     {
-        return "Fortress".equals(structureName) && this.genNetherBridge != null ? this.genNetherBridge.getClosestStrongholdPos(worldIn, position, p_180513_4_) : null;
+        return "Fortress".equals(structureName) && this.genNetherBridge != null ? this.genNetherBridge.getNearestStructurePos(worldIn, position, findUnexplored) : null;
+    }
+
+    @Override
+    public boolean isInsideStructure(World worldIn, String structureName, BlockPos pos)
+    {
+        return "Fortress".equals(structureName) && this.genNetherBridge != null ? this.genNetherBridge.isInsideStructure(pos) : false;
     }
 
     @Override

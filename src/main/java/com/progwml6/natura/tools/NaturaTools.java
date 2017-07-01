@@ -6,9 +6,6 @@ import com.google.common.eventbus.Subscribe;
 import com.progwml6.natura.common.CommonProxy;
 import com.progwml6.natura.common.NaturaPulse;
 import com.progwml6.natura.library.Util;
-import com.progwml6.natura.nether.NaturaNether;
-import com.progwml6.natura.nether.block.planks.BlockNetherPlanks;
-import com.progwml6.natura.shared.NaturaCommons;
 import com.progwml6.natura.tools.item.armor.ItemNaturaImpArmor;
 import com.progwml6.natura.tools.item.bows.ItemNaturaBow;
 import com.progwml6.natura.tools.item.tools.ItemNaturaAxe;
@@ -18,7 +15,6 @@ import com.progwml6.natura.tools.item.tools.ItemNaturaPickaxe;
 import com.progwml6.natura.tools.item.tools.ItemNaturaShovel;
 import com.progwml6.natura.tools.item.tools.ItemNaturaSword;
 
-import net.minecraft.init.Blocks;
 import net.minecraft.init.Enchantments;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.EntityEquipmentSlot;
@@ -26,12 +22,13 @@ import net.minecraft.item.Item;
 import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.common.util.EnumHelper;
+import net.minecraftforge.event.RegistryEvent.Register;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.minecraftforge.fml.common.registry.GameRegistry;
-import net.minecraftforge.oredict.OreDictionary;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.registries.IForgeRegistry;
 import slimeknights.mantle.pulsar.pulse.Pulse;
 
 @Pulse(id = NaturaTools.PulseId, description = "All of the tools + armor added by natura")
@@ -92,60 +89,82 @@ public class NaturaTools extends NaturaPulse
     public static Item flintAndBlaze;
     //@formatter:on
 
-    @Subscribe
-    public void preInit(FMLPreInitializationEvent event)
+    @SubscribeEvent
+    public void registerItems(Register<Item> event)
     {
+        IForgeRegistry<Item> registry = event.getRegistry();
+
         if (isEntitiesLoaded())
         {
             ArmorMaterial impMaterial = EnumHelper.addArmorMaterial("Imp", "natura:impArmor", 33, new int[] { 1, 3, 2, 1 }, 15, SoundEvents.ITEM_ARMOR_EQUIP_GENERIC, 0);
 
-            impHelmet = registerItem(new ItemNaturaImpArmor(impMaterial, EntityEquipmentSlot.HEAD), "imp_armor_helmet");
-            impChestplate = registerItem(new ItemNaturaImpArmor(impMaterial, EntityEquipmentSlot.CHEST), "imp_armor_chestplate");
-            impLeggings = registerItem(new ItemNaturaImpArmor(impMaterial, EntityEquipmentSlot.LEGS), "imp_armor_leggings");
-            impBoots = registerItem(new ItemNaturaImpArmor(impMaterial, EntityEquipmentSlot.FEET), "imp_armor_boots");
+            impHelmet = registerItem(registry, new ItemNaturaImpArmor(impMaterial, EntityEquipmentSlot.HEAD), "imp_armor_helmet");
+            impChestplate = registerItem(registry, new ItemNaturaImpArmor(impMaterial, EntityEquipmentSlot.CHEST), "imp_armor_chestplate");
+            impLeggings = registerItem(registry, new ItemNaturaImpArmor(impMaterial, EntityEquipmentSlot.LEGS), "imp_armor_leggings");
+            impBoots = registerItem(registry, new ItemNaturaImpArmor(impMaterial, EntityEquipmentSlot.FEET), "imp_armor_boots");
+
+            impHelmetStack = new ItemStack(impHelmet);
+            impHelmetStack.addEnchantment(Enchantments.PROTECTION, 1);
+            impHelmetStack.addEnchantment(Enchantments.FIRE_PROTECTION, 1);
+
+            impChestplateStack = new ItemStack(impChestplate);
+            impChestplateStack.addEnchantment(Enchantments.BLAST_PROTECTION, 1);
+            impChestplateStack.addEnchantment(Enchantments.FIRE_PROTECTION, 1);
+
+            impLeggingsStack = new ItemStack(impLeggings);
+            impLeggingsStack.addEnchantment(Enchantments.PROJECTILE_PROTECTION, 1);
+            impLeggingsStack.addEnchantment(Enchantments.FIRE_PROTECTION, 1);
+
+            impBootsStack = new ItemStack(impBoots);
+            impBootsStack.addEnchantment(Enchantments.FEATHER_FALLING, 1);
+            impBootsStack.addEnchantment(Enchantments.FIRE_PROTECTION, 1);
         }
 
         if (isNetherLoaded())
         {
             ToolMaterial bloodwoodMaterial = EnumHelper.addToolMaterial("Bloodwood", 3, 350, 7f, 3, 24);
 
-            ghostwoodSword = registerItem(new ItemNaturaSword(ToolMaterial.WOOD), "ghostwood_sword");
-            ghostwoodPickaxe = registerItem(new ItemNaturaPickaxe(ToolMaterial.WOOD, 0), "ghostwood_pickaxe");
-            ghostwoodShovel = registerItem(new ItemNaturaShovel(ToolMaterial.WOOD, 0), "ghostwood_shovel");
-            ghostwoodAxe = registerItem(new ItemNaturaAxe(ToolMaterial.WOOD, 0), "ghostwood_axe");
-            ghostwoodKama = registerItem(new ItemNaturaKama(ToolMaterial.WOOD), "ghostwood_kama");
-            ghostwoodBow = registerItem(new ItemNaturaBow(384, ghostwoodBow), "ghostwood_bow");
+            ghostwoodSword = registerItem(registry, new ItemNaturaSword(ToolMaterial.WOOD), "ghostwood_sword");
+            ghostwoodPickaxe = registerItem(registry, new ItemNaturaPickaxe(ToolMaterial.WOOD, 0), "ghostwood_pickaxe");
+            ghostwoodShovel = registerItem(registry, new ItemNaturaShovel(ToolMaterial.WOOD, 0), "ghostwood_shovel");
+            ghostwoodAxe = registerItem(registry, new ItemNaturaAxe(ToolMaterial.WOOD, 0), "ghostwood_axe");
+            ghostwoodKama = registerItem(registry, new ItemNaturaKama(ToolMaterial.WOOD), "ghostwood_kama");
+            ghostwoodBow = registerItem(registry, new ItemNaturaBow(384, ghostwoodBow), "ghostwood_bow");
 
-            bloodwoodSword = registerItem(new ItemNaturaSword(bloodwoodMaterial), "bloodwood_sword");
-            bloodwoodPickaxe = registerItem(new ItemNaturaPickaxe(bloodwoodMaterial, 2), "bloodwood_pickaxe");
-            bloodwoodShovel = registerItem(new ItemNaturaShovel(bloodwoodMaterial, 2), "bloodwood_shovel");
-            bloodwoodAxe = registerItem(new ItemNaturaAxe(bloodwoodMaterial, 2, 3.0F, -3.0F), "bloodwood_axe");
-            bloodwoodKama = registerItem(new ItemNaturaKama(bloodwoodMaterial), "bloodwood_kama");
-            bloodwoodBow = registerItem(new ItemNaturaBow(1501, bloodwoodBow), "bloodwood_bow");
+            bloodwoodSword = registerItem(registry, new ItemNaturaSword(bloodwoodMaterial), "bloodwood_sword");
+            bloodwoodPickaxe = registerItem(registry, new ItemNaturaPickaxe(bloodwoodMaterial, 2), "bloodwood_pickaxe");
+            bloodwoodShovel = registerItem(registry, new ItemNaturaShovel(bloodwoodMaterial, 2), "bloodwood_shovel");
+            bloodwoodAxe = registerItem(registry, new ItemNaturaAxe(bloodwoodMaterial, 2, 3.0F, -3.0F), "bloodwood_axe");
+            bloodwoodKama = registerItem(registry, new ItemNaturaKama(bloodwoodMaterial), "bloodwood_kama");
+            bloodwoodBow = registerItem(registry, new ItemNaturaBow(1501, bloodwoodBow), "bloodwood_bow");
 
-            darkwoodSword = registerItem(new ItemNaturaSword(ToolMaterial.STONE), "darkwood_sword");
-            darkwoodPickaxe = registerItem(new ItemNaturaPickaxe(ToolMaterial.STONE, 1), "darkwood_pickaxe");
-            darkwoodShovel = registerItem(new ItemNaturaShovel(ToolMaterial.STONE, 1), "darkwood_shovel");
-            darkwoodAxe = registerItem(new ItemNaturaAxe(ToolMaterial.STONE, 1), "darkwood_axe");
-            darkwoodKama = registerItem(new ItemNaturaKama(ToolMaterial.STONE), "darkwood_kama");
-            darkwoodBow = registerItem(new ItemNaturaBow(162, darkwoodBow), "darkwood_bow");
+            darkwoodSword = registerItem(registry, new ItemNaturaSword(ToolMaterial.STONE), "darkwood_sword");
+            darkwoodPickaxe = registerItem(registry, new ItemNaturaPickaxe(ToolMaterial.STONE, 1), "darkwood_pickaxe");
+            darkwoodShovel = registerItem(registry, new ItemNaturaShovel(ToolMaterial.STONE, 1), "darkwood_shovel");
+            darkwoodAxe = registerItem(registry, new ItemNaturaAxe(ToolMaterial.STONE, 1), "darkwood_axe");
+            darkwoodKama = registerItem(registry, new ItemNaturaKama(ToolMaterial.STONE), "darkwood_kama");
+            darkwoodBow = registerItem(registry, new ItemNaturaBow(162, darkwoodBow), "darkwood_bow");
 
-            fusewoodSword = registerItem(new ItemNaturaSword(ToolMaterial.IRON), "fusewood_sword");
-            fusewoodPickaxe = registerItem(new ItemNaturaPickaxe(ToolMaterial.IRON, 2), "fusewood_pickaxe");
-            fusewoodShovel = registerItem(new ItemNaturaShovel(ToolMaterial.IRON, 2), "fusewood_shovel");
-            fusewoodAxe = registerItem(new ItemNaturaAxe(ToolMaterial.IRON, 2), "fusewood_axe");
-            fusewoodKama = registerItem(new ItemNaturaKama(ToolMaterial.IRON), "fusewood_kama");
-            fusewoodBow = registerItem(new ItemNaturaBow(28, fusewoodBow), "fusewood_bow");
+            fusewoodSword = registerItem(registry, new ItemNaturaSword(ToolMaterial.IRON), "fusewood_sword");
+            fusewoodPickaxe = registerItem(registry, new ItemNaturaPickaxe(ToolMaterial.IRON, 2), "fusewood_pickaxe");
+            fusewoodShovel = registerItem(registry, new ItemNaturaShovel(ToolMaterial.IRON, 2), "fusewood_shovel");
+            fusewoodAxe = registerItem(registry, new ItemNaturaAxe(ToolMaterial.IRON, 2), "fusewood_axe");
+            fusewoodKama = registerItem(registry, new ItemNaturaKama(ToolMaterial.IRON), "fusewood_kama");
+            fusewoodBow = registerItem(registry, new ItemNaturaBow(28, fusewoodBow), "fusewood_bow");
 
-            netherquartzSword = registerItem(new ItemNaturaSword(ToolMaterial.STONE), "netherquartz_sword");
-            netherquartzPickaxe = registerItem(new ItemNaturaPickaxe(ToolMaterial.STONE, 1), "netherquartz_pickaxe");
-            netherquartzShovel = registerItem(new ItemNaturaShovel(ToolMaterial.STONE, 1), "netherquartz_shovel");
-            netherquartzAxe = registerItem(new ItemNaturaAxe(ToolMaterial.STONE, 1), "netherquartz_axe");
-            netherquartzKama = registerItem(new ItemNaturaKama(ToolMaterial.STONE), "netherquartz_kama");
+            netherquartzSword = registerItem(registry, new ItemNaturaSword(ToolMaterial.STONE), "netherquartz_sword");
+            netherquartzPickaxe = registerItem(registry, new ItemNaturaPickaxe(ToolMaterial.STONE, 1), "netherquartz_pickaxe");
+            netherquartzShovel = registerItem(registry, new ItemNaturaShovel(ToolMaterial.STONE, 1), "netherquartz_shovel");
+            netherquartzAxe = registerItem(registry, new ItemNaturaAxe(ToolMaterial.STONE, 1), "netherquartz_axe");
+            netherquartzKama = registerItem(registry, new ItemNaturaKama(ToolMaterial.STONE), "netherquartz_kama");
 
-            flintAndBlaze = registerItem(new ItemNaturaFlintAndBlaze(), "flint_and_blaze");
+            flintAndBlaze = registerItem(registry, new ItemNaturaFlintAndBlaze(), "flint_and_blaze");
         }
+    }
 
+    @SubscribeEvent
+    public void registerModels(ModelRegistryEvent event)
+    {
         proxy.preInit();
     }
 
@@ -153,60 +172,5 @@ public class NaturaTools extends NaturaPulse
     public void init(FMLInitializationEvent event)
     {
         proxy.init();
-        this.registerRecipes();
     }
-
-    private void registerRecipes()
-    {
-        // Tools
-        if (isNetherLoaded())
-        {
-            int[] plankMeta = { BlockNetherPlanks.PlankType.GHOSTWOOD.getMeta(), BlockNetherPlanks.PlankType.BLOODWOOD.getMeta(), BlockNetherPlanks.PlankType.DARKWOOD.getMeta(), BlockNetherPlanks.PlankType.FUSEWOOD.getMeta() };
-            ItemStack[] stickItem = { NaturaCommons.ghostwood_stick.copy(), NaturaCommons.bloodwood_stick.copy(), NaturaCommons.darkwood_stick.copy(), NaturaCommons.fusewood_stick.copy() };
-
-            Item[][] tools = { { ghostwoodSword, ghostwoodPickaxe, ghostwoodShovel, ghostwoodAxe, ghostwoodKama, ghostwoodBow },
-                    { bloodwoodSword, bloodwoodPickaxe, bloodwoodShovel, bloodwoodAxe, bloodwoodKama, bloodwoodBow },
-                    { darkwoodSword, darkwoodPickaxe, darkwoodShovel, darkwoodAxe, darkwoodKama, darkwoodBow },
-                    { fusewoodSword, fusewoodPickaxe, fusewoodShovel, fusewoodAxe, fusewoodKama, fusewoodBow } };
-
-            for (int i = 0; i < plankMeta.length; i++)
-            {
-                addShapedRecipe(new ItemStack(tools[i][0], 1, 0), "#", "#", "s", '#', new ItemStack(NaturaNether.netherPlanks, 1, plankMeta[i]), 's', stickItem[i]);
-                addShapedRecipe(new ItemStack(tools[i][1], 1, 0), "###", " s ", " s ", '#', new ItemStack(NaturaNether.netherPlanks, 1, plankMeta[i]), 's', stickItem[i]);
-                addShapedRecipe(new ItemStack(tools[i][2], 1, 0), "#", "s", "s", '#', new ItemStack(NaturaNether.netherPlanks, 1, plankMeta[i]), 's', stickItem[i]);
-                addShapedRecipe(new ItemStack(tools[i][3], 1, 0), "##", "#s", " s", '#', new ItemStack(NaturaNether.netherPlanks, 1, plankMeta[i]), 's', stickItem[i]);
-                addShapedRecipe(new ItemStack(tools[i][4], 1, 0), "##", " s", " s", '#', new ItemStack(NaturaNether.netherPlanks, 1, plankMeta[i]), 's', stickItem[i]);
-                addShapedRecipe(new ItemStack(tools[i][5], 1, 0), "#s ", "# s", "#s ", '#', NaturaCommons.flameString.copy(), 's', stickItem[i]);
-            }
-        }
-
-        GameRegistry.addRecipe(new ItemStack(netherquartzSword, 1, 0), "#", "#", "s", '#', new ItemStack(Blocks.QUARTZ_BLOCK, 1, OreDictionary.WILDCARD_VALUE), 's', NaturaCommons.ghostwood_stick.copy());
-        GameRegistry.addRecipe(new ItemStack(netherquartzPickaxe, 1, 0), "###", " s ", " s ", '#', new ItemStack(Blocks.QUARTZ_BLOCK, 1, OreDictionary.WILDCARD_VALUE), 's', NaturaCommons.ghostwood_stick.copy());
-        GameRegistry.addRecipe(new ItemStack(netherquartzShovel, 1, 0), "#", "s", "s", '#', new ItemStack(Blocks.QUARTZ_BLOCK, 1, OreDictionary.WILDCARD_VALUE), 's', NaturaCommons.ghostwood_stick.copy());
-        GameRegistry.addRecipe(new ItemStack(netherquartzAxe, 1, 0), "##", "#s", " s", '#', new ItemStack(Blocks.QUARTZ_BLOCK, 1, OreDictionary.WILDCARD_VALUE), 's', NaturaCommons.ghostwood_stick.copy());
-
-        if (isEntitiesLoaded())
-        {
-            impHelmetStack = new ItemStack(impHelmet);
-            impHelmetStack.addEnchantment(Enchantments.PROTECTION, 1);
-            impHelmetStack.addEnchantment(Enchantments.FIRE_PROTECTION, 1);
-            GameRegistry.addRecipe(impHelmetStack.copy(), "###", "# #", '#', NaturaCommons.impLeather.copy());
-
-            impChestplateStack = new ItemStack(impChestplate);
-            impChestplateStack.addEnchantment(Enchantments.BLAST_PROTECTION, 1);
-            impChestplateStack.addEnchantment(Enchantments.FIRE_PROTECTION, 1);
-            GameRegistry.addRecipe(impChestplateStack.copy(), "# #", "###", "###", '#', NaturaCommons.impLeather.copy());
-
-            impLeggingsStack = new ItemStack(impLeggings);
-            impLeggingsStack.addEnchantment(Enchantments.PROJECTILE_PROTECTION, 1);
-            impLeggingsStack.addEnchantment(Enchantments.FIRE_PROTECTION, 1);
-            GameRegistry.addRecipe(impLeggingsStack.copy(), "###", "# #", "# #", '#', NaturaCommons.impLeather.copy());
-
-            impBootsStack = new ItemStack(impBoots);
-            impBootsStack.addEnchantment(Enchantments.FEATHER_FALLING, 1);
-            impBootsStack.addEnchantment(Enchantments.FIRE_PROTECTION, 1);
-            GameRegistry.addRecipe(impBootsStack.copy(), "# #", "# #", '#', NaturaCommons.impLeather.copy());
-        }
-    }
-
 }

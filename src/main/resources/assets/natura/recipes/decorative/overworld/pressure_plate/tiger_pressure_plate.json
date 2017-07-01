@@ -1,0 +1,26 @@
+{
+    "conditions": [
+        {
+            "type": "natura:is_pulse_loaded",
+            "pulse_name": "NaturaDecorative"
+        },
+        {
+            "type": "natura:is_pulse_loaded",
+            "pulse_name": "NaturaOverworld"
+        }
+    ],
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "AA"
+    ],
+    "key": {
+        "A": {
+            "item": "natura:overworld_planks",
+            "data": 3
+        }
+    },
+    "result": {
+        "item": "natura:tiger_pressure_plate",
+        "data": 0
+    }
+}

@@ -18,7 +18,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.oredict.OreDictionary;
 import slimeknights.mantle.pulsar.pulse.Pulse;
 
@@ -30,7 +30,7 @@ public class NaturaOredict extends NaturaPulse
     static final Logger log = Util.getLogger(PulseId);
 
     @Subscribe
-    public void preInit(FMLPreInitializationEvent event)
+    public void init(FMLInitializationEvent event)
     {
         ensureOredict();
 

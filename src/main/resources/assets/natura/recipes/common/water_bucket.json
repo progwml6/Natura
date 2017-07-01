@@ -1,0 +1,20 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "AAA",
+        "ABA",
+        "AAA"
+    ],
+    "key": {
+        "A": {
+            "item": "natura:edibles",
+            "data": 11
+        },
+        "B": {
+            "item": "minecraft:bucket"
+        }
+    },
+    "result": {
+        "item": "minecraft:water_bucket"
+    }
+}

@@ -1,0 +1,23 @@
+{
+    "conditions": [
+        {
+            "type": "natura:is_pulse_loaded",
+            "pulse_name": "NaturaOverworld"
+        }
+    ],
+    "type": "forge:ore_shapeless",
+    "ingredients": [
+        {
+            "item": "natura:colored_grass",
+            "data": 0
+        },
+        {
+            "type": "forge:ore_dict",
+            "ore": "dyeBlue"
+        }
+    ],
+    "result": {
+        "item": "natura:colored_grass",
+        "data": 1
+    }
+}

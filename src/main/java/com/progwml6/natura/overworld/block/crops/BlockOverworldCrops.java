@@ -14,6 +14,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
@@ -172,9 +173,10 @@ public abstract class BlockOverworldCrops extends BlockBush implements IGrowable
     protected abstract ItemStack getCrop();
 
     @Override
-    public java.util.List<ItemStack> getDrops(net.minecraft.world.IBlockAccess world, BlockPos pos, IBlockState state, int fortune)
+    public void getDrops(NonNullList<ItemStack> drops, IBlockAccess world, BlockPos pos, IBlockState state, int fortune)
     {
-        java.util.List<ItemStack> ret = super.getDrops(world, pos, state, fortune);
+        super.getDrops(drops, world, pos, state, fortune);
+
         int age = this.getAge(state);
         Random rand = world instanceof World ? ((World) world).rand : new Random();
 
@@ -184,11 +186,10 @@ public abstract class BlockOverworldCrops extends BlockBush implements IGrowable
             {
                 if (rand.nextInt(2 * this.getMaxAge()) <= age)
                 {
-                    ret.add(this.getSeed());
+                    drops.add(this.getSeed());
                 }
             }
         }
-        return ret;
     }
 
     /**

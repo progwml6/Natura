@@ -1,0 +1,31 @@
+{
+    "conditions": [
+        {
+            "type": "natura:is_pulse_loaded",
+            "pulse_name": "NaturaDecorative"
+        },
+        {
+            "type": "natura:is_pulse_loaded",
+            "pulse_name": "NaturaNether"
+        }
+    ],
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "AAA",
+        "BBB",
+        "AAA"
+    ],
+    "key": {
+        "A": {
+            "item": "natura:nether_planks",
+            "data": 0
+        },
+        "B": {
+            "item": "minecraft:book"
+        }
+    },
+    "result": {
+        "item": "natura:nether_bookshelves",
+        "data": 0
+    }
+}

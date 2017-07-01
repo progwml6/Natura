@@ -47,7 +47,7 @@ public class BlockOverworldLeaves extends BlockLeaves
 
     @SideOnly(Side.CLIENT)
     @Override
-    public void getSubBlocks(@Nonnull Item itemIn, CreativeTabs tab, NonNullList<ItemStack> list)
+    public void getSubBlocks(CreativeTabs tab, NonNullList<ItemStack> list)
     {
         for (LogType type : LogType.values())
         {

@@ -1,0 +1,24 @@
+{
+    "conditions": [
+        {
+            "type": "natura:is_pulse_loaded",
+            "pulse_name": "NaturaOverworld"
+        }
+    ],
+    "type": "forge:ore_shaped",
+    "pattern": [
+        "AAA",
+        "AAA",
+        "AAA"
+    ],
+    "key": {
+        "A": {
+            "type": "forge:ore_dict",
+            "ore": "seedCotton"
+        }
+    },
+    "result": {
+        "item": "natura:overworld_seed_bags",
+        "data": 1
+    }
+}

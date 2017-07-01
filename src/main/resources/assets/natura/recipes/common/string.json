@@ -1,0 +1,15 @@
+{
+    "type": "forge:ore_shaped",
+    "pattern": [
+        "AAA"
+    ],
+    "key": {
+        "A": {
+            "type": "forge:ore_dict",
+            "ore": "cropCotton"
+        }
+    },
+    "result": {
+        "item": "minecraft:string"
+    }
+}

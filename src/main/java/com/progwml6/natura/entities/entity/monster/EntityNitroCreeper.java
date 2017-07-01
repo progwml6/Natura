@@ -165,10 +165,11 @@ public class EntityNitroCreeper extends EntityCreeper
     @Override
     public boolean attackEntityFrom(DamageSource source, float amount)
     {
-        if (source instanceof EntityDamageSource && ((EntityDamageSource) source).getEntity() instanceof EntityIronGolem)
+        if (source instanceof EntityDamageSource && ((EntityDamageSource) source).getTrueSource() instanceof EntityIronGolem)
         {
             amount = 1000;
         }
+
         return super.attackEntityFrom(source, amount);
     }
 

@@ -1,0 +1,32 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "AAA",
+        "BCB",
+        " D "
+    ],
+    "key": {
+        "A": {
+            "item": "minecraft:milk_bucket"
+        },
+        "B": {
+            "item": "minecraft:sugar"
+        },
+        "C": {
+            "item": "minecraft:egg"
+        },
+        "D": [
+            {
+                "item": "natura:materials",
+                "data": 1
+            },
+            {
+                "item": "natura:materials",
+                "data": 2
+            }
+        ]
+    },
+    "result": {
+        "item": "minecraft:cake"
+    }
+}

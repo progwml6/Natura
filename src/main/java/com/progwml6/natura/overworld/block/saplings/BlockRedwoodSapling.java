@@ -44,7 +44,7 @@ public class BlockRedwoodSapling extends BlockSapling
     }
 
     @Override
-    public void getSubBlocks(@Nonnull Item itemIn, CreativeTabs tab, NonNullList<ItemStack> list)
+    public void getSubBlocks(CreativeTabs tab, NonNullList<ItemStack> list)
     {
         for (SaplingType type : SaplingType.values())
         {

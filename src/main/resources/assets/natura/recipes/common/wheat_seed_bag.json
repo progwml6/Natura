@@ -1,0 +1,17 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "AAA",
+        "AAA",
+        "AAA"
+    ],
+    "key": {
+        "A": {
+            "item": "minecraft:wheat_seeds"
+        }
+    },
+    "result": {
+        "item": "natura:seed_bags",
+        "data": 0
+    }
+}

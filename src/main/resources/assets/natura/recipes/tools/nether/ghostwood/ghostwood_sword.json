@@ -1,0 +1,32 @@
+{
+    "conditions": [
+        {
+            "type": "natura:is_pulse_loaded",
+            "pulse_name": "NaturaNether"
+        },
+        {
+            "type": "natura:is_pulse_loaded",
+            "pulse_name": "NaturaTools"
+        }
+    ],
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "A",
+        "A",
+        "B"
+    ],
+    "key": {
+        "A": {
+            "item": "natura:nether_planks",
+            "data": 0
+        },
+        "B": {
+            "item": "natura:sticks",
+            "data": 9
+        }
+    },
+    "result": {
+        "item": "natura:ghostwood_sword",
+        "data": 0
+    }
+}

@@ -37,6 +37,7 @@ public class BlockNetherSlab extends EnumBlockSlab<BlockNetherSlab.PlankType>
         {
             return null;
         }
+
         return NaturaNether.netherPlanks.getDefaultState().withProperty(BlockNetherPlanks.TYPE, state.getValue(TYPE).asFullBlock());
     }
 

@@ -3,8 +3,6 @@ package com.progwml6.natura.nether.block.obelisk;
 import java.util.Locale;
 import java.util.Random;
 
-import javax.annotation.Nonnull;
-
 import com.progwml6.natura.library.NaturaRegistry;
 
 import net.minecraft.block.SoundType;
@@ -15,7 +13,6 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
@@ -46,7 +43,7 @@ public class BlockRespawnObelisk extends EnumBlock<BlockRespawnObelisk.ObeliskTy
 
     @SideOnly(Side.CLIENT)
     @Override
-    public void getSubBlocks(@Nonnull Item itemIn, CreativeTabs tab, NonNullList<ItemStack> list)
+    public void getSubBlocks(CreativeTabs tab, NonNullList<ItemStack> list)
     {
         for (ObeliskType type : ObeliskType.values())
         {

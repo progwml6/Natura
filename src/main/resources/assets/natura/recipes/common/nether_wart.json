@@ -1,0 +1,13 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+        {
+            "item": "natura:seed_bags",
+            "data": 3
+        }
+    ],
+    "result": {
+        "item": "minecraft:nether_wart",
+        "count": 9
+    }
+}

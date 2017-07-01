@@ -9,7 +9,7 @@ import com.progwml6.natura.world.worldgen.berry.overworld.OverworldBerryBushGene
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
-import net.minecraft.world.chunk.IChunkGenerator;
+import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.BiomeDictionary.Type;
@@ -44,7 +44,7 @@ public class OverworldBerryBushesGenerator implements IWorldGenerator
     {
         this.generateOverworld(random, chunkX, chunkZ, world);
 
-        world.getChunkFromChunkCoords(chunkX, chunkZ).setChunkModified();
+        world.getChunkFromChunkCoords(chunkX, chunkZ).markDirty();
     }
 
     public void generateOverworld(Random random, int chunkX, int chunkZ, World world)

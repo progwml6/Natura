@@ -2,12 +2,15 @@ package com.progwml6.natura.shared.item.food;
 
 import java.util.List;
 
+import javax.annotation.Nullable;
+
 import gnu.trove.map.hash.TIntIntHashMap;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.translation.I18n;
+import net.minecraft.world.World;
 import slimeknights.mantle.item.ItemEdible;
 
 @SuppressWarnings("deprecation")
@@ -47,9 +50,9 @@ public class ItemNaturaEdible extends ItemEdible
     }
 
     @Override
-    public void addInformation(ItemStack stack, EntityPlayer playerIn, List<String> tooltip, boolean advanced)
+    public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flag)
     {
-        super.addInformation(stack, playerIn, tooltip, advanced);
+        super.addInformation(stack, worldIn, tooltip, flag);
 
         // effect info
         if (this.displayCustomEffectsTooltip)

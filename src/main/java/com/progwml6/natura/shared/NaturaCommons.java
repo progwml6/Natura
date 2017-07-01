@@ -5,7 +5,6 @@ import org.apache.logging.log4j.Logger;
 import com.google.common.eventbus.Subscribe;
 import com.progwml6.natura.common.CommonProxy;
 import com.progwml6.natura.common.NaturaPulse;
-import com.progwml6.natura.common.config.Config;
 import com.progwml6.natura.library.NaturaRegistry;
 import com.progwml6.natura.library.Util;
 import com.progwml6.natura.shared.block.clouds.BlockCloud;
@@ -14,20 +13,22 @@ import com.progwml6.natura.shared.item.bags.ItemSeedBag;
 import com.progwml6.natura.shared.item.food.ItemNaturaEdible;
 import com.progwml6.natura.shared.item.food.ItemNaturaEdibleSoup;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockCrops;
 import net.minecraft.block.BlockNetherWart;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.init.MobEffects;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.potion.PotionEffect;
+import net.minecraftforge.client.event.ModelRegistryEvent;
+import net.minecraftforge.event.RegistryEvent.Register;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.minecraftforge.fml.common.registry.GameRegistry;
-import net.minecraftforge.oredict.OreDictionary;
-import net.minecraftforge.oredict.ShapedOreRecipe;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.registries.IForgeRegistry;
 import slimeknights.mantle.item.ItemMetaDynamic;
 import slimeknights.mantle.pulsar.pulse.Pulse;
 
@@ -131,19 +132,29 @@ public class NaturaCommons extends NaturaPulse
     public static ItemStack bloodwood_stick;
     //@formatter:on
 
-    @Subscribe
-    public void preInit(FMLPreInitializationEvent event)
+    @SubscribeEvent
+    public void registerBlocks(Register<Block> event)
     {
+        IForgeRegistry<Block> registry = event.getRegistry();
+
         // Blocks
-        clouds = registerEnumBlock(new BlockCloud(), "clouds");
+        clouds = registerBlock(registry, new BlockCloud(), "clouds");
+    }
+
+    @SubscribeEvent
+    public void registerItems(Register<Item> event)
+    {
+        IForgeRegistry<Item> registry = event.getRegistry();
+
+        clouds = registerEnumItemBlock(registry, clouds, "clouds");
 
         // Items
-        materials = registerItem(new ItemMetaDynamic(), "materials");
-        empty_bowls = registerItem(new ItemMetaDynamic(), "empty_bowls");
-        edibles = registerItem(new ItemNaturaEdible(), "edibles");
-        soups = registerItem(new ItemNaturaEdibleSoup(), "soups");
-        seed_bags = registerItem(new ItemSeedBag(), "seed_bags");
-        sticks = registerItem(new ItemMetaDynamic(), "sticks");
+        materials = registerItem(registry, new ItemMetaDynamic(), "materials");
+        empty_bowls = registerItem(registry, new ItemMetaDynamic(), "empty_bowls");
+        edibles = registerItem(registry, new ItemNaturaEdible(), "edibles");
+        soups = registerItem(registry, new ItemNaturaEdibleSoup(), "soups");
+        seed_bags = registerItem(registry, new ItemSeedBag(), "seed_bags");
+        sticks = registerItem(registry, new ItemMetaDynamic(), "sticks");
 
         materials.setCreativeTab(NaturaRegistry.tabGeneral);
         empty_bowls.setCreativeTab(NaturaRegistry.tabGeneral);
@@ -211,7 +222,7 @@ public class NaturaCommons extends NaturaPulse
         potatoes_seed_bag = seed_bags.addMeta(2, "potatoes_seed_bag", Blocks.POTATOES.getDefaultState().withProperty(BlockCrops.AGE, Integer.valueOf(0)));
         nether_wart_seed_bag = seed_bags.addMeta(3, "nether_wart_seed_bag", Blocks.NETHER_WART.getDefaultState().withProperty(BlockNetherWart.AGE, Integer.valueOf(0)));
 
-        boneMealBag = registerItem(new ItemBoneBag(), "bonemeal_bag");
+        boneMealBag = registerItem(registry, new ItemBoneBag(), "bonemeal_bag");
 
         if (isOverworldLoaded())
         {
@@ -234,8 +245,6 @@ public class NaturaCommons extends NaturaPulse
             bloodwood_stick = sticks.addMeta(12, "bloodwood_stick");
         }
 
-        proxy.preInit();
-
         NaturaRegistry.tabGeneral.setDisplayIcon(cotton);
 
         if (!isOverworldLoaded())
@@ -244,66 +253,18 @@ public class NaturaCommons extends NaturaPulse
         }
     }
 
+    @SubscribeEvent
+    public void registerModels(ModelRegistryEvent event)
+    {
+        proxy.preInit();
+    }
+
     @Subscribe
     public void init(FMLInitializationEvent event)
     {
         proxy.init();
 
-        this.registerRecipes();
         this.registerSmelting();
-    }
-
-    private void registerRecipes()
-    {
-        // Crops
-        GameRegistry.addRecipe(wheat_seed_bag.copy(), "sss", "sss", "sss", 's', Items.WHEAT_SEEDS);
-        GameRegistry.addRecipe(new ShapedOreRecipe(potatoes_seed_bag.copy(), "sss", "sss", "sss", 's', "cropPotato"));
-        GameRegistry.addRecipe(new ShapedOreRecipe(carrots_seed_bag.copy(), "sss", "sss", "sss", 's', "cropCarrot"));
-        GameRegistry.addRecipe(nether_wart_seed_bag.copy(), "sss", "sss", "sss", 's', Items.NETHER_WART);
-        GameRegistry.addRecipe(new ItemStack(boneMealBag, 1, 0), "sss", "sss", "sss", 's', new ItemStack(Items.DYE, 1, 15));
-
-        GameRegistry.addRecipe(new ItemStack(Items.WHEAT_SEEDS, 9, 0), "s", 's', wheat_seed_bag.copy());
-        GameRegistry.addRecipe(new ItemStack(Items.POTATO, 9, 0), "s", 's', potatoes_seed_bag.copy());
-        GameRegistry.addRecipe(new ItemStack(Items.CARROT, 9, 0), "s", 's', potatoes_seed_bag.copy());
-        GameRegistry.addRecipe(new ItemStack(Items.NETHER_WART, 9, 0), "s", 's', nether_wart_seed_bag.copy());
-        GameRegistry.addRecipe(new ItemStack(Items.DYE, 9, 15), "s", 's', boneMealBag);
-
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Items.STRING), "sss", 's', "cropCotton"));
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Blocks.WOOL), "sss", "sss", "sss", 's', "cropCotton"));
-
-        GameRegistry.addRecipe(cactusJuice.copy(), "X", 'X', Blocks.CACTUS);
-        GameRegistry.addRecipe(new ItemStack(Items.WATER_BUCKET, 1), "www", "wBw", "www", 'w', cactusJuice.copy(), 'B', Items.BUCKET);
-
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Items.BREAD), "bbb", 'b', "cropBarley"));
-        GameRegistry.addRecipe(new ShapedOreRecipe(barleyFlour.copy(), "X", 'X', "cropBarley"));
-
-        if (Config.enableWheatRecipe)
-        {
-            GameRegistry.addRecipe(new ShapedOreRecipe(wheatFlour.copy(), "X", 'X', "cropWheat"));
-        }
-
-        // Cake
-        GameRegistry.addRecipe(new ItemStack(Items.CAKE, 1), "AAA", "BEB", " C ", 'A', Items.MILK_BUCKET, 'B', Items.SUGAR, 'C', wheatFlour.copy(), 'E', Items.EGG);
-        GameRegistry.addRecipe(new ItemStack(Items.CAKE, 1), "AAA", "BEB", " C ", 'A', Items.MILK_BUCKET, 'B', Items.SUGAR, 'C', barleyFlour.copy(), 'E', Items.EGG);
-
-        // Leather
-        if (isEntitiesLoaded())
-        {
-            GameRegistry.addRecipe(new ItemStack(Items.LEATHER, 2), "##", "##", '#', impLeather.copy());
-        }
-
-        // Clouds
-        GameRegistry.addRecipe(new ItemStack(Items.COAL, 1, 1), "ccc", "ccc", "ccc", 'c', new ItemStack(clouds, 1, BlockCloud.CloudType.ASH.getMeta()));
-        GameRegistry.addRecipe(sulfurPowder.copy(), "cc", "cc", 'c', new ItemStack(clouds, 1, BlockCloud.CloudType.SULFUR.getMeta()));
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Items.GUNPOWDER, 1, 0), "cc", "cc", 'c', "dustSulfur"));
-
-        // Arrows
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Items.ARROW, 4, 0), " f ", "#s#", " # ", 's', "stickWood", '#', ghostwoodFletching.copy(), 'f', Items.FLINT));
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Items.ARROW, 4, 0), " f ", "#s#", " # ", 's', new ItemStack(sticks, 1, OreDictionary.WILDCARD_VALUE), '#', ghostwoodFletching.copy(), 'f', Items.FLINT));
-
-        // Misc
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Items.GLASS_BOTTLE, 3), "# #", " # ", '#', "glass"));
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Blocks.DAYLIGHT_DETECTOR), "GGG", "QQQ", "WWW", 'G', "glass", 'Q', "gemQuartz", 'W', "slabWood"));
     }
 
     private void registerSmelting()

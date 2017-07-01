@@ -8,7 +8,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.WorldProviderHell;
 import net.minecraft.world.biome.BiomeProvider;
 import net.minecraft.world.biome.BiomeProviderSingle;
-import net.minecraft.world.chunk.IChunkGenerator;
+import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -25,7 +25,7 @@ public class WorldProviderNetherite extends WorldProviderHell
     {
         this.biomeProvider = new BiomeProviderSingle(Biomes.HELL);
         this.doesWaterVaporize = true;
-        this.hasNoSky = true;
+        this.nether = true;
     }
 
     @Override

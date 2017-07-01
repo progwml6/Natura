@@ -37,17 +37,17 @@ import com.progwml6.natura.shared.NaturaCommons;
 import com.progwml6.natura.shared.item.bags.ItemSeedBag;
 
 import net.minecraft.block.Block;
-import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
+import net.minecraftforge.client.event.ModelRegistryEvent;
+import net.minecraftforge.event.RegistryEvent.Register;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.minecraftforge.fml.common.registry.GameRegistry;
-import net.minecraftforge.oredict.ShapedOreRecipe;
-import net.minecraftforge.oredict.ShapelessOreRecipe;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.registries.IForgeRegistry;
 import slimeknights.mantle.item.ItemBlockMeta;
 import slimeknights.mantle.pulsar.pulse.Pulse;
 
@@ -84,8 +84,8 @@ public class NaturaOverworld extends NaturaPulse
 
     public static BlockBluebellsFlower bluebellsFlower;
 
-    public static Block overworldSlab;
-    public static Block overworldSlab2;
+    public static BlockOverworldSlab overworldSlab;
+    public static BlockOverworldSlab2 overworldSlab2;
 
     public static Block overworldStairsMaple;
     public static Block overworldStairsSilverbell;
@@ -135,71 +135,133 @@ public class NaturaOverworld extends NaturaPulse
     public static ItemStack redwood_bark_door;
     //@formatter:on
 
-    @Subscribe
-    public void preInit(FMLPreInitializationEvent event)
+    @SubscribeEvent
+    public void registerBlocks(Register<Block> event)
     {
-        coloredGrass = registerEnumBlock(new BlockColoredGrass(), "colored_grass");
-        coloredGrassSlab = registerEnumBlockSlab(new BlockColoredGrassSlab(), "colored_grass_slab");
-        coloredGrassStairsTopiary = registerBlockGrassStairsFrom(coloredGrass, BlockColoredGrass.GrassType.TOPIARY, "colored_grass_stairs_topiary");
-        coloredGrassStairsBlueGrass = registerBlockGrassStairsFrom(coloredGrass, BlockColoredGrass.GrassType.BLUEGRASS, "colored_grass_stairs_bluegrass");
-        coloredGrassStairsAutumnal = registerBlockGrassStairsFrom(coloredGrass, BlockColoredGrass.GrassType.AUTUMNAL, "colored_grass_stairs_autumnal");
+        IForgeRegistry<Block> registry = event.getRegistry();
 
-        overworldLog = registerEnumBlock(new BlockOverworldLog(), "overworld_logs");
-        overworldLog2 = registerEnumBlock(new BlockOverworldLog2(), "overworld_logs2");
-        redwoodLog = registerEnumBlock(new BlockRedwoodLog(), "redwood_logs");
+        // Blocks Start
+        coloredGrass = registerBlock(registry, new BlockColoredGrass(), "colored_grass");
+        coloredGrassSlab = registerBlock(registry, new BlockColoredGrassSlab(), "colored_grass_slab");
+        coloredGrassStairsTopiary = registerBlockGrassStairsFrom(registry, coloredGrass, BlockColoredGrass.GrassType.TOPIARY, "colored_grass_stairs_topiary");
+        coloredGrassStairsBlueGrass = registerBlockGrassStairsFrom(registry, coloredGrass, BlockColoredGrass.GrassType.BLUEGRASS, "colored_grass_stairs_bluegrass");
+        coloredGrassStairsAutumnal = registerBlockGrassStairsFrom(registry, coloredGrass, BlockColoredGrass.GrassType.AUTUMNAL, "colored_grass_stairs_autumnal");
 
-        overworldLeaves = registerBlock(new ItemBlockLeaves(new BlockOverworldLeaves()), "overworld_leaves");
-        ItemBlockMeta.setMappingProperty(overworldLeaves, BlockOverworldLog.TYPE);
-        overworldLeaves2 = registerBlock(new ItemBlockLeaves(new BlockOverworldLeaves2()), "overworld_leaves2");
-        ItemBlockMeta.setMappingProperty(overworldLeaves2, BlockOverworldLog2.TYPE);
-        redwoodLeaves = registerBlock(new ItemBlockLeaves(new BlockRedwoodLeaves()), "redwood_leaves");
-        ItemBlockMeta.setMappingProperty(redwoodLeaves, BlockRedwoodLeaves.TYPE);
+        overworldLog = registerBlock(registry, new BlockOverworldLog(), "overworld_logs");
+        overworldLog2 = registerBlock(registry, new BlockOverworldLog2(), "overworld_logs2");
+        redwoodLog = registerBlock(registry, new BlockRedwoodLog(), "redwood_logs");
 
-        overworldSapling = registerBlock(new BlockOverworldSapling(), "overworld_sapling", BlockOverworldSapling.FOLIAGE);
-        overworldSapling2 = registerBlock(new BlockOverworldSapling2(), "overworld_sapling2", BlockOverworldSapling2.FOLIAGE);
-        redwoodSapling = registerBlock(new BlockRedwoodSapling(), "redwood_sapling", BlockRedwoodSapling.FOLIAGE);
+        overworldLeaves = registerBlock(registry, new BlockOverworldLeaves(), "overworld_leaves");
+        overworldLeaves2 = registerBlock(registry, new BlockOverworldLeaves2(), "overworld_leaves2");
+        redwoodLeaves = registerBlock(registry, new BlockRedwoodLeaves(), "redwood_leaves");
 
-        bluebellsFlower = registerBlock(new BlockBluebellsFlower(), "bluebells_flower");
+        overworldSapling = registerBlock(registry, new BlockOverworldSapling(), "overworld_sapling");
+        overworldSapling2 = registerBlock(registry, new BlockOverworldSapling2(), "overworld_sapling2");
+        redwoodSapling = registerBlock(registry, new BlockRedwoodSapling(), "redwood_sapling");
 
-        overworldPlanks = registerEnumBlock(new BlockOverworldPlanks(), "overworld_planks");
+        bluebellsFlower = registerBlock(registry, new BlockBluebellsFlower(), "bluebells_flower");
 
-        overworldSlab = registerEnumBlockSlab(new BlockOverworldSlab(), "overworld_slab");
-        overworldSlab2 = registerEnumBlockSlab(new BlockOverworldSlab2(), "overworld_slab2");
+        overworldPlanks = registerBlock(registry, new BlockOverworldPlanks(), "overworld_planks");
 
-        overworldStairsMaple = registerBlockStairsFrom(overworldPlanks, BlockOverworldPlanks.PlankType.MAPLE, "overworld_stairs_maple");
-        overworldStairsSilverbell = registerBlockStairsFrom(overworldPlanks, BlockOverworldPlanks.PlankType.SILVERBELL, "overworld_stairs_silverbell");
-        overworldStairsAmaranth = registerBlockStairsFrom(overworldPlanks, BlockOverworldPlanks.PlankType.AMARANTH, "overworld_stairs_amaranth");
-        overworldStairsTiger = registerBlockStairsFrom(overworldPlanks, BlockOverworldPlanks.PlankType.TIGER, "overworld_stairs_tiger");
-        overworldStairsWillow = registerBlockStairsFrom(overworldPlanks, BlockOverworldPlanks.PlankType.WILLOW, "overworld_stairs_willow");
-        overworldStairsEucalyptus = registerBlockStairsFrom(overworldPlanks, BlockOverworldPlanks.PlankType.EUCALYPTUS, "overworld_stairs_eucalyptus");
-        overworldStairsHopseed = registerBlockStairsFrom(overworldPlanks, BlockOverworldPlanks.PlankType.HOPSEED, "overworld_stairs_hopseed");
-        overworldStairsSakura = registerBlockStairsFrom(overworldPlanks, BlockOverworldPlanks.PlankType.SAKURA, "overworld_stairs_sakura");
-        overworldStairsRedwood = registerBlockStairsFrom(overworldPlanks, BlockOverworldPlanks.PlankType.REDWOOD, "overworld_stairs_redwood");
+        overworldSlab = registerBlock(registry, new BlockOverworldSlab(), "overworld_slab");
+        overworldSlab2 = registerBlock(registry, new BlockOverworldSlab2(), "overworld_slab2");
 
-        overworldBerryBushRaspberry = registerBlock(new BlockOverworldBerryBush(NaturaCommons.raspberry), "overworld_berrybush_raspberry");
-        overworldBerryBushBlueberry = registerBlock(new BlockOverworldBerryBush(NaturaCommons.blueberry), "overworld_berrybush_blueberry");
-        overworldBerryBushBlackberry = registerBlock(new BlockOverworldBerryBush(NaturaCommons.blackberry), "overworld_berrybush_blackberry");
-        overworldBerryBushMaloberry = registerBlock(new BlockOverworldBerryBush(NaturaCommons.maloberry), "overworld_berrybush_maloberry");
+        overworldStairsMaple = registerBlockStairsFrom(registry, overworldPlanks, BlockOverworldPlanks.PlankType.MAPLE, "overworld_stairs_maple");
+        overworldStairsSilverbell = registerBlockStairsFrom(registry, overworldPlanks, BlockOverworldPlanks.PlankType.SILVERBELL, "overworld_stairs_silverbell");
+        overworldStairsAmaranth = registerBlockStairsFrom(registry, overworldPlanks, BlockOverworldPlanks.PlankType.AMARANTH, "overworld_stairs_amaranth");
+        overworldStairsTiger = registerBlockStairsFrom(registry, overworldPlanks, BlockOverworldPlanks.PlankType.TIGER, "overworld_stairs_tiger");
+        overworldStairsWillow = registerBlockStairsFrom(registry, overworldPlanks, BlockOverworldPlanks.PlankType.WILLOW, "overworld_stairs_willow");
+        overworldStairsEucalyptus = registerBlockStairsFrom(registry, overworldPlanks, BlockOverworldPlanks.PlankType.EUCALYPTUS, "overworld_stairs_eucalyptus");
+        overworldStairsHopseed = registerBlockStairsFrom(registry, overworldPlanks, BlockOverworldPlanks.PlankType.HOPSEED, "overworld_stairs_hopseed");
+        overworldStairsSakura = registerBlockStairsFrom(registry, overworldPlanks, BlockOverworldPlanks.PlankType.SAKURA, "overworld_stairs_sakura");
+        overworldStairsRedwood = registerBlockStairsFrom(registry, overworldPlanks, BlockOverworldPlanks.PlankType.REDWOOD, "overworld_stairs_redwood");
 
-        barleyCrop = registerBlock(new BlockNaturaBarley(), "barley_crop");
-        cottonCrop = registerBlock(new BlockNaturaCotton(), "cotton_crop");
+        overworldBerryBushRaspberry = registerBlock(registry, new BlockOverworldBerryBush(NaturaCommons.raspberry), "overworld_berrybush_raspberry");
+        overworldBerryBushBlueberry = registerBlock(registry, new BlockOverworldBerryBush(NaturaCommons.blueberry), "overworld_berrybush_blueberry");
+        overworldBerryBushBlackberry = registerBlock(registry, new BlockOverworldBerryBush(NaturaCommons.blackberry), "overworld_berrybush_blackberry");
+        overworldBerryBushMaloberry = registerBlock(registry, new BlockOverworldBerryBush(NaturaCommons.maloberry), "overworld_berrybush_maloberry");
 
-        eucalyptusDoor = registerBlock(new BlockNaturaDoor(), "overworld_door_eucalyptus");
-        hopseedDoor = registerBlock(new BlockNaturaDoor(), "overworld_door_hopseed");
-        sakuraDoor = registerBlock(new BlockNaturaDoor(), "overworld_door_sakura");
-        redwoodDoor = registerBlock(new BlockNaturaDoor(), "overworld_door_redwood");
-        redwoodBarkDoor = registerBlock(new BlockNaturaDoor(), "overworld_door_redwood_bark");
+        barleyCrop = registerBlock(registry, new BlockNaturaBarley(), "barley_crop");
+        cottonCrop = registerBlock(registry, new BlockNaturaCotton(), "cotton_crop");
 
-        saguaro = registerBlock(new BlockSaguaro(), "saguaro");
-        saguaroBaby = registerBlock(new BlockSaguaroBaby(), "saguaro_baby");
-        saguaroFruit = registerBlock(new BlockSaguaroFruit(), "saguaro_fruit");
+        eucalyptusDoor = registerBlock(registry, new BlockNaturaDoor(), "overworld_door_eucalyptus");
+        hopseedDoor = registerBlock(registry, new BlockNaturaDoor(), "overworld_door_hopseed");
+        sakuraDoor = registerBlock(registry, new BlockNaturaDoor(), "overworld_door_sakura");
+        redwoodDoor = registerBlock(registry, new BlockNaturaDoor(), "overworld_door_redwood");
+        redwoodBarkDoor = registerBlock(registry, new BlockNaturaDoor(), "overworld_door_redwood_bark");
 
-        // Items
-        overworldSeeds = registerItem(new ItemSeeds(), "overworld_seeds");
-        overworldSeedBags = registerItem(new ItemSeedBag(), "overworld_seed_bags");
-        overworldDoors = registerItem(new ItemNaturaDoor(), "overworld_doors");
+        saguaro = registerBlock(registry, new BlockSaguaro(), "saguaro");
+        saguaroBaby = registerBlock(registry, new BlockSaguaroBaby(), "saguaro_baby");
+        saguaroFruit = registerBlock(registry, new BlockSaguaroFruit(), "saguaro_fruit");
+        // Blocks End
+    }
 
-        saguaroFruitItem = registerItem(new ItemSaguaroFruit(3, 0.3f, NaturaOverworld.saguaroBaby), "saguaro_fruit_item");
+    @SubscribeEvent
+    public void registerItems(Register<Item> event)
+    {
+        IForgeRegistry<Item> registry = event.getRegistry();
+
+        // Blocks Start
+        coloredGrass = registerEnumItemBlock(registry, coloredGrass, "colored_grass");
+        coloredGrassSlab = registerEnumItemBlockSlab(registry, coloredGrassSlab, "colored_grass_slab");
+        coloredGrassStairsTopiary = registerItemBlock(registry, coloredGrassStairsTopiary, "colored_grass_stairs_topiary");
+        coloredGrassStairsBlueGrass = registerItemBlock(registry, coloredGrassStairsBlueGrass, "colored_grass_stairs_bluegrass");
+        coloredGrassStairsAutumnal = registerItemBlock(registry, coloredGrassStairsAutumnal, "colored_grass_stairs_autumnal");
+
+        overworldLog = registerEnumItemBlock(registry, overworldLog, "overworld_logs");
+        overworldLog2 = registerEnumItemBlock(registry, overworldLog2, "overworld_logs2");
+        redwoodLog = registerEnumItemBlock(registry, redwoodLog, "redwood_logs");
+
+        overworldLeaves = registerItemBlockProp(registry, new ItemBlockLeaves(overworldLeaves), "overworld_leaves", BlockOverworldLog.TYPE);
+        overworldLeaves2 = registerItemBlockProp(registry, new ItemBlockLeaves(overworldLeaves2), "overworld_leaves2", BlockOverworldLog2.TYPE);
+        redwoodLeaves = registerItemBlockProp(registry, new ItemBlockLeaves(redwoodLeaves), "redwood_leaves", BlockRedwoodLeaves.TYPE);
+
+        overworldSapling = registerItemBlockProp(registry, new ItemBlockMeta(overworldSapling), "overworld_sapling", BlockOverworldSapling.FOLIAGE);
+        overworldSapling2 = registerItemBlockProp(registry, new ItemBlockMeta(overworldSapling2), "overworld_sapling2", BlockOverworldSapling2.FOLIAGE);
+        redwoodSapling = registerItemBlockProp(registry, new ItemBlockMeta(redwoodSapling), "redwood_sapling", BlockRedwoodSapling.FOLIAGE);
+
+        bluebellsFlower = registerItemBlock(registry, bluebellsFlower, "bluebells_flower");
+
+        overworldPlanks = registerEnumItemBlock(registry, overworldPlanks, "overworld_planks");
+
+        overworldSlab = registerEnumItemBlockSlab(registry, overworldSlab, "overworld_slab");
+        overworldSlab2 = registerEnumItemBlockSlab(registry, overworldSlab2, "overworld_slab2");
+
+        overworldStairsMaple = registerItemBlock(registry, overworldStairsMaple, "overworld_stairs_maple");
+        overworldStairsSilverbell = registerItemBlock(registry, overworldStairsSilverbell, "overworld_stairs_silverbell");
+        overworldStairsAmaranth = registerItemBlock(registry, overworldStairsAmaranth, "overworld_stairs_amaranth");
+        overworldStairsTiger = registerItemBlock(registry, overworldStairsTiger, "overworld_stairs_tiger");
+        overworldStairsWillow = registerItemBlock(registry, overworldStairsWillow, "overworld_stairs_willow");
+        overworldStairsEucalyptus = registerItemBlock(registry, overworldStairsEucalyptus, "overworld_stairs_eucalyptus");
+        overworldStairsHopseed = registerItemBlock(registry, overworldStairsHopseed, "overworld_stairs_hopseed");
+        overworldStairsSakura = registerItemBlock(registry, overworldStairsSakura, "overworld_stairs_sakura");
+        overworldStairsRedwood = registerItemBlock(registry, overworldStairsRedwood, "overworld_stairs_redwood");
+
+        overworldBerryBushRaspberry = registerItemBlock(registry, overworldBerryBushRaspberry, "overworld_berrybush_raspberry");
+        overworldBerryBushBlueberry = registerItemBlock(registry, overworldBerryBushBlueberry, "overworld_berrybush_blueberry");
+        overworldBerryBushBlackberry = registerItemBlock(registry, overworldBerryBushBlackberry, "overworld_berrybush_blackberry");
+        overworldBerryBushMaloberry = registerItemBlock(registry, overworldBerryBushMaloberry, "overworld_berrybush_maloberry");
+
+        barleyCrop = registerItemBlock(registry, barleyCrop, "barley_crop");
+        cottonCrop = registerItemBlock(registry, cottonCrop, "cotton_crop");
+
+        eucalyptusDoor = registerItemBlock(registry, eucalyptusDoor, "overworld_door_eucalyptus");
+        hopseedDoor = registerItemBlock(registry, hopseedDoor, "overworld_door_hopseed");
+        sakuraDoor = registerItemBlock(registry, sakuraDoor, "overworld_door_sakura");
+        redwoodDoor = registerItemBlock(registry, redwoodDoor, "overworld_door_redwood");
+        redwoodBarkDoor = registerItemBlock(registry, redwoodBarkDoor, "overworld_door_redwood_bark");
+
+        saguaro = registerItemBlock(registry, saguaro, "saguaro");
+        saguaroBaby = registerItemBlock(registry, saguaroBaby, "saguaro_baby");
+        saguaroFruit = registerItemBlock(registry, saguaroFruit, "saguaro_fruit");
+        // Blocks End
+
+        // Items Start
+        overworldSeeds = registerItem(registry, new ItemSeeds(), "overworld_seeds");
+        overworldSeedBags = registerItem(registry, new ItemSeedBag(), "overworld_seed_bags");
+        overworldDoors = registerItem(registry, new ItemNaturaDoor(), "overworld_doors");
+
+        saguaroFruitItem = registerItem(registry, new ItemSaguaroFruit(3, 0.3f, NaturaOverworld.saguaroBaby), "saguaro_fruit_item");
 
         overworldSeeds.setCreativeTab(NaturaRegistry.tabGeneral);
         overworldSeedBags.setCreativeTab(NaturaRegistry.tabGeneral);
@@ -208,11 +270,8 @@ public class NaturaOverworld extends NaturaPulse
         barley_seeds = overworldSeeds.addMeta(0, "barley_seeds", NaturaOverworld.barleyCrop.getDefaultState().withProperty(BlockNaturaBarley.AGE, 0));
         cotton_seeds = overworldSeeds.addMeta(1, "cotton_seeds", NaturaOverworld.cottonCrop.getDefaultState().withProperty(BlockNaturaCotton.AGE, 0));
 
-        if (isOverworldLoaded())
-        {
-            barley_seed_bag = overworldSeedBags.addMeta(0, "barley_seed_bag", NaturaOverworld.barleyCrop.getDefaultState().withProperty(BlockNaturaBarley.AGE, Integer.valueOf(0)));
-            cotton_seed_bag = overworldSeedBags.addMeta(1, "cotton_seed_bag", NaturaOverworld.cottonCrop.getDefaultState().withProperty(BlockNaturaCotton.AGE, Integer.valueOf(0)));
-        }
+        barley_seed_bag = overworldSeedBags.addMeta(0, "barley_seed_bag", NaturaOverworld.barleyCrop.getDefaultState().withProperty(BlockNaturaBarley.AGE, Integer.valueOf(0)));
+        cotton_seed_bag = overworldSeedBags.addMeta(1, "cotton_seed_bag", NaturaOverworld.cottonCrop.getDefaultState().withProperty(BlockNaturaCotton.AGE, Integer.valueOf(0)));
 
         eucalyptus_door = overworldDoors.addMeta(0, "eucalyptus_door", NaturaOverworld.eucalyptusDoor.getDefaultState());
         hopseed_door = overworldDoors.addMeta(1, "hopseed_door", NaturaOverworld.hopseedDoor.getDefaultState());
@@ -225,11 +284,16 @@ public class NaturaOverworld extends NaturaPulse
         sakuraDoor.setDoor(NaturaOverworld.sakura_door);
         redwoodDoor.setDoor(NaturaOverworld.redwood_door);
         redwoodBarkDoor.setDoor(NaturaOverworld.redwood_bark_door);
-
-        proxy.preInit();
+        // Items End
 
         NaturaRegistry.tabWorld.setDisplayIcon(new ItemStack(coloredGrass));
         NaturaRegistry.tabDecorative.setDisplayIcon(redwood_door);
+    }
+
+    @SubscribeEvent
+    public void registerModels(ModelRegistryEvent event)
+    {
+        proxy.preInit();
     }
 
     @Subscribe
@@ -237,7 +301,6 @@ public class NaturaOverworld extends NaturaPulse
     {
         proxy.init();
 
-        this.registerRecipes();
         this.registerSmelting();
     }
 
@@ -245,112 +308,6 @@ public class NaturaOverworld extends NaturaPulse
     public void postInit(FMLPostInitializationEvent event)
     {
         proxy.postInit();
-    }
-
-    private void registerRecipes()
-    {
-        // Seed Bags
-        GameRegistry.addRecipe(new ShapedOreRecipe(barley_seed_bag.copy(), "sss", "sss", "sss", 's', "seedBarley"));
-        GameRegistry.addRecipe(new ShapedOreRecipe(cotton_seed_bag.copy(), "sss", "sss", "sss", 's', "seedCotton"));
-
-        // Seeds
-        GameRegistry.addRecipe(new ItemStack(overworldSeeds, 9, 0), "s", 's', barley_seed_bag.copy());
-        GameRegistry.addRecipe(new ItemStack(overworldSeeds, 9, 1), "s", 's', cotton_seed_bag.copy());
-
-        // Blue Die
-        GameRegistry.addShapelessRecipe(NaturaCommons.blueDye, new ItemStack(bluebellsFlower));
-
-        // Berry Medley
-        String[] berryTypes = new String[] { "cropRaspberry", "cropBlueberry", "cropBlackberry", "cropMaloberry", "cropStrawberry", "cropCranberry" };
-
-        for (int iter1 = 0; iter1 < berryTypes.length - 2; iter1++)
-        {
-            for (int iter2 = iter1 + 1; iter2 < berryTypes.length - 1; iter2++)
-            {
-                for (int iter3 = iter2 + 1; iter3 < berryTypes.length; iter3++)
-                {
-                    GameRegistry.addRecipe(new ShapelessOreRecipe(NaturaCommons.berryMedley.copy(), "bowlWood", berryTypes[iter1], berryTypes[iter2], berryTypes[iter3]));
-                }
-            }
-        }
-
-        ItemStack berryMix = NaturaCommons.berryMedley.copy();
-        berryMix.setCount(2);
-
-        for (int iter1 = 0; iter1 < berryTypes.length - 3; iter1++)
-        {
-            for (int iter2 = iter1 + 1; iter2 < berryTypes.length - 2; iter2++)
-            {
-                for (int iter3 = iter2 + 1; iter3 < berryTypes.length - 1; iter3++)
-                {
-                    for (int iter4 = iter3 + 1; iter4 < berryTypes.length; iter4++)
-                    {
-                        GameRegistry.addRecipe(new ShapelessOreRecipe(berryMix.copy(), "bowlWood", "bowlWood", berryTypes[iter1], berryTypes[iter2], berryTypes[iter3], berryTypes[iter4]));
-                    }
-                }
-            }
-        }
-
-        // Planks
-        GameRegistry.addRecipe(new ItemStack(overworldPlanks, 4, BlockOverworldPlanks.PlankType.MAPLE.getMeta()), "w", 'w', new ItemStack(overworldLog, 1, BlockOverworldLog.LogType.MAPLE.getMeta()));
-        GameRegistry.addRecipe(new ItemStack(overworldPlanks, 4, BlockOverworldPlanks.PlankType.SILVERBELL.getMeta()), "w", 'w', new ItemStack(overworldLog, 1, BlockOverworldLog.LogType.SILVERBELL.getMeta()));
-        GameRegistry.addRecipe(new ItemStack(overworldPlanks, 4, BlockOverworldPlanks.PlankType.AMARANTH.getMeta()), "w", 'w', new ItemStack(overworldLog, 1, BlockOverworldLog.LogType.AMARANTH.getMeta()));
-        GameRegistry.addRecipe(new ItemStack(overworldPlanks, 4, BlockOverworldPlanks.PlankType.TIGER.getMeta()), "w", 'w', new ItemStack(overworldLog, 1, BlockOverworldLog.LogType.TIGER.getMeta()));
-        GameRegistry.addRecipe(new ItemStack(overworldPlanks, 4, BlockOverworldPlanks.PlankType.WILLOW.getMeta()), "w", 'w', new ItemStack(overworldLog2, 1, BlockOverworldLog2.LogType.WILLOW.getMeta()));
-        GameRegistry.addRecipe(new ItemStack(overworldPlanks, 4, BlockOverworldPlanks.PlankType.EUCALYPTUS.getMeta()), "w", 'w', new ItemStack(overworldLog2, 1, BlockOverworldLog2.LogType.EUCALYPTUS.getMeta()));
-        GameRegistry.addRecipe(new ItemStack(overworldPlanks, 4, BlockOverworldPlanks.PlankType.HOPSEED.getMeta()), "w", 'w', new ItemStack(overworldLog2, 1, BlockOverworldLog2.LogType.HOPSEED.getMeta()));
-        GameRegistry.addRecipe(new ItemStack(overworldPlanks, 4, BlockOverworldPlanks.PlankType.SAKURA.getMeta()), "w", 'w', new ItemStack(overworldLog2, 1, BlockOverworldLog2.LogType.SAKURA.getMeta()));
-        GameRegistry.addRecipe(new ItemStack(overworldPlanks, 4, BlockOverworldPlanks.PlankType.REDWOOD.getMeta()), "w", 'w', new ItemStack(redwoodLog, 1, BlockRedwoodLog.RedwoodType.HEART.getMeta()));
-
-        // Doors
-        addShapedRecipe(redwood_door.copy(), "##", "##", "##", '#', new ItemStack(overworldPlanks, 1, BlockOverworldPlanks.PlankType.REDWOOD.getMeta()));
-        addShapedRecipe(eucalyptus_door.copy(), "##", "##", "##", '#', new ItemStack(overworldPlanks, 1, BlockOverworldPlanks.PlankType.EUCALYPTUS.getMeta()));
-        addShapedRecipe(hopseed_door.copy(), "##", "##", "##", '#', new ItemStack(overworldPlanks, 1, BlockOverworldPlanks.PlankType.HOPSEED.getMeta()));
-        addShapedRecipe(sakura_door.copy(), "##", "##", "##", '#', new ItemStack(overworldPlanks, 1, BlockOverworldPlanks.PlankType.SAKURA.getMeta()));
-        addShapedRecipe(redwood_bark_door.copy(), "##", "##", "##", '#', new ItemStack(redwoodLog, 1, BlockRedwoodLog.RedwoodType.BARK.getMeta()));
-
-        // Sticks
-        addShapedRecipe(new ItemStack(NaturaCommons.sticks, 4, 0), "#", "#", '#', new ItemStack(overworldPlanks, 1, BlockOverworldPlanks.PlankType.MAPLE.getMeta()));
-        addShapedRecipe(new ItemStack(NaturaCommons.sticks, 4, 1), "#", "#", '#', new ItemStack(overworldPlanks, 1, BlockOverworldPlanks.PlankType.SILVERBELL.getMeta()));
-        addShapedRecipe(new ItemStack(NaturaCommons.sticks, 4, 2), "#", "#", '#', new ItemStack(overworldPlanks, 1, BlockOverworldPlanks.PlankType.AMARANTH.getMeta()));
-        addShapedRecipe(new ItemStack(NaturaCommons.sticks, 4, 3), "#", "#", '#', new ItemStack(overworldPlanks, 1, BlockOverworldPlanks.PlankType.TIGER.getMeta()));
-        addShapedRecipe(new ItemStack(NaturaCommons.sticks, 4, 4), "#", "#", '#', new ItemStack(overworldPlanks, 1, BlockOverworldPlanks.PlankType.WILLOW.getMeta()));
-        addShapedRecipe(new ItemStack(NaturaCommons.sticks, 4, 5), "#", "#", '#', new ItemStack(overworldPlanks, 1, BlockOverworldPlanks.PlankType.EUCALYPTUS.getMeta()));
-        addShapedRecipe(new ItemStack(NaturaCommons.sticks, 4, 6), "#", "#", '#', new ItemStack(overworldPlanks, 1, BlockOverworldPlanks.PlankType.HOPSEED.getMeta()));
-        addShapedRecipe(new ItemStack(NaturaCommons.sticks, 4, 7), "#", "#", '#', new ItemStack(overworldPlanks, 1, BlockOverworldPlanks.PlankType.SAKURA.getMeta()));
-        addShapedRecipe(new ItemStack(NaturaCommons.sticks, 4, 8), "#", "#", '#', new ItemStack(overworldPlanks, 1, BlockOverworldPlanks.PlankType.REDWOOD.getMeta()));
-
-        // Grass
-        GameRegistry.addRecipe(new ItemStack(coloredGrass, 1, BlockColoredGrass.GrassType.TOPIARY.getMeta()), " s ", "s#s", " s ", 's', new ItemStack(Items.WHEAT_SEEDS), '#', new ItemStack(Blocks.DIRT));
-        GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(coloredGrass, 1, BlockColoredGrass.GrassType.BLUEGRASS.getMeta()), new ItemStack(coloredGrass, 1, 0), "dyeBlue"));
-        GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(coloredGrass, 1, BlockColoredGrass.GrassType.AUTUMNAL.getMeta()), new ItemStack(coloredGrass, 1, 0), "dyeRed"));
-
-        // Grass Slabs
-        addSlabRecipe(coloredGrassSlab, BlockColoredGrass.GrassType.TOPIARY.getMeta(), new ItemStack(coloredGrass, 1, BlockColoredGrass.GrassType.TOPIARY.getMeta()));
-        addSlabRecipe(coloredGrassSlab, BlockColoredGrass.GrassType.BLUEGRASS.getMeta(), new ItemStack(coloredGrass, 1, BlockColoredGrass.GrassType.BLUEGRASS.getMeta()));
-        addSlabRecipe(coloredGrassSlab, BlockColoredGrass.GrassType.AUTUMNAL.getMeta(), new ItemStack(coloredGrass, 1, BlockColoredGrass.GrassType.AUTUMNAL.getMeta()));
-
-        // Stairs
-        addStairRecipe(overworldStairsAmaranth, new ItemStack(overworldPlanks, 1, BlockOverworldPlanks.PlankType.AMARANTH.getMeta()));
-        addStairRecipe(overworldStairsMaple, new ItemStack(overworldPlanks, 1, BlockOverworldPlanks.PlankType.MAPLE.getMeta()));
-        addStairRecipe(overworldStairsSilverbell, new ItemStack(overworldPlanks, 1, BlockOverworldPlanks.PlankType.SILVERBELL.getMeta()));
-        addStairRecipe(overworldStairsTiger, new ItemStack(overworldPlanks, 1, BlockOverworldPlanks.PlankType.TIGER.getMeta()));
-        addStairRecipe(overworldStairsWillow, new ItemStack(overworldPlanks, 1, BlockOverworldPlanks.PlankType.WILLOW.getMeta()));
-        addStairRecipe(overworldStairsEucalyptus, new ItemStack(overworldPlanks, 1, BlockOverworldPlanks.PlankType.EUCALYPTUS.getMeta()));
-        addStairRecipe(overworldStairsHopseed, new ItemStack(overworldPlanks, 1, BlockOverworldPlanks.PlankType.HOPSEED.getMeta()));
-        addStairRecipe(overworldStairsRedwood, new ItemStack(overworldPlanks, 1, BlockOverworldPlanks.PlankType.REDWOOD.getMeta()));
-        addStairRecipe(overworldStairsSakura, new ItemStack(overworldPlanks, 1, BlockOverworldPlanks.PlankType.SAKURA.getMeta()));
-
-        // Slabs
-        addSlabRecipe(overworldSlab, BlockOverworldSlab.PlankType.AMARANTH.getMeta(), new ItemStack(overworldPlanks, 1, BlockOverworldPlanks.PlankType.AMARANTH.getMeta()));
-        addSlabRecipe(overworldSlab, BlockOverworldSlab.PlankType.MAPLE.getMeta(), new ItemStack(overworldPlanks, 1, BlockOverworldPlanks.PlankType.MAPLE.getMeta()));
-        addSlabRecipe(overworldSlab, BlockOverworldSlab.PlankType.SILVERBELL.getMeta(), new ItemStack(overworldPlanks, 1, BlockOverworldPlanks.PlankType.SILVERBELL.getMeta()));
-        addSlabRecipe(overworldSlab, BlockOverworldSlab.PlankType.TIGER.getMeta(), new ItemStack(overworldPlanks, 1, BlockOverworldPlanks.PlankType.TIGER.getMeta()));
-        addSlabRecipe(overworldSlab, BlockOverworldSlab.PlankType.WILLOW.getMeta(), new ItemStack(overworldPlanks, 1, BlockOverworldPlanks.PlankType.WILLOW.getMeta()));
-        addSlabRecipe(overworldSlab2, BlockOverworldSlab2.PlankType.EUCALYPTUS.getMeta(), new ItemStack(overworldPlanks, 1, BlockOverworldPlanks.PlankType.EUCALYPTUS.getMeta()));
-        addSlabRecipe(overworldSlab2, BlockOverworldSlab2.PlankType.HOPSEED.getMeta(), new ItemStack(overworldPlanks, 1, BlockOverworldPlanks.PlankType.HOPSEED.getMeta()));
-        addSlabRecipe(overworldSlab2, BlockOverworldSlab2.PlankType.REDWOOD.getMeta(), new ItemStack(overworldPlanks, 1, BlockOverworldPlanks.PlankType.REDWOOD.getMeta()));
-        addSlabRecipe(overworldSlab2, BlockOverworldSlab2.PlankType.SAKURA.getMeta(), new ItemStack(overworldPlanks, 1, BlockOverworldPlanks.PlankType.SAKURA.getMeta()));
     }
 
     private void registerSmelting()

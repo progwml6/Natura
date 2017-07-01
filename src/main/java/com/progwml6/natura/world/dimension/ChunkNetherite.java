@@ -12,7 +12,7 @@ public class ChunkNetherite extends Chunk
     public ChunkNetherite(World worldIn, ChunkPrimer primer, int x, int z)
     {
         super(worldIn, x, z);
-        boolean flag = !worldIn.provider.hasNoSky();
+        boolean flag = !worldIn.provider.hasSkyLight();
         ExtendedBlockStorage[] storageArrays = this.getBlockStorageArray();
 
         for (int j = 0; j < 16; ++j)

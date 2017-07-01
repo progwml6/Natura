@@ -54,7 +54,7 @@ public class BlockNetherLeaves extends BlockLeaves
 
     @SideOnly(Side.CLIENT)
     @Override
-    public void getSubBlocks(@Nonnull Item itemIn, CreativeTabs tab, NonNullList<ItemStack> list)
+    public void getSubBlocks(CreativeTabs tab, NonNullList<ItemStack> list)
     {
         for (LeavesType type : LeavesType.values())
         {
@@ -190,9 +190,9 @@ public class BlockNetherLeaves extends BlockLeaves
     }
 
     @Override
-    public List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune)
+    public void getDrops(NonNullList<ItemStack> drops, IBlockAccess world, BlockPos pos, IBlockState state, int fortune)
     {
-        List<ItemStack> ret = super.getDrops(world, pos, state, fortune);
+        super.getDrops(drops, world, pos, state, fortune);
 
         Random rand = new Random();
         rand.setSeed(2 ^ 16 + 2 ^ 8 + (4 * 3 * 271));
@@ -201,11 +201,9 @@ public class BlockNetherLeaves extends BlockLeaves
         {
             if (fortune > 3 || rand.nextInt(40 - fortune * 10) == 0)
             {
-                ret.add(new ItemStack(Items.REDSTONE));
+                drops.add(new ItemStack(Items.REDSTONE));
             }
         }
-
-        return ret;
     }
 
     public enum LeavesType implements IStringSerializable, EnumBlock.IEnumMeta

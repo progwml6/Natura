@@ -1,7 +1,5 @@
 package com.progwml6.natura.nether.block.logs;
 
-import javax.annotation.Nonnull;
-
 import com.progwml6.natura.library.NaturaRegistry;
 
 import net.minecraft.block.Block;
@@ -165,7 +163,7 @@ public class BlockNetherLog2 extends Block
     }
 
     @Override
-    public void getSubBlocks(@Nonnull Item itemIn, CreativeTabs tab, NonNullList<ItemStack> list)
+    public void getSubBlocks(CreativeTabs tab, NonNullList<ItemStack> list)
     {
         list.add(new ItemStack(this, 1, 0));
         list.add(new ItemStack(this, 1, 15));

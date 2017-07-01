@@ -123,10 +123,10 @@ public class BlockCloud extends EnumBlock<BlockCloud.CloudType>
     }
 
     @Override
-    public boolean isBlockSolid(IBlockAccess worldIn, BlockPos pos, EnumFacing side)
+    public boolean isNormalCube(IBlockState state, IBlockAccess world, BlockPos pos)
     {
-        Material material = worldIn.getBlockState(pos).getMaterial();
-        return material == this.blockMaterial ? false : super.isBlockSolid(worldIn, pos, side);
+        Material material = world.getBlockState(pos).getMaterial();
+        return material == this.blockMaterial ? false : super.isNormalCube(state, world, pos);
     }
 
     @Override

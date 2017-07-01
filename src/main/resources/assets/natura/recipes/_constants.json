@@ -1,0 +1,15 @@
+[
+    {
+        "conditions": [
+            {
+                "type": "natura:is_pulse_loaded",
+                "pulse_name": "NaturaEntities"
+            }
+        ],
+        "name": "IMP_LEATHER",
+        "ingredient": {
+            "item": "natura:materials",
+            "data": 6
+        }
+    }
+]

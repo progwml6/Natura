@@ -1,0 +1,31 @@
+{
+    "conditions": [
+        {
+            "type": "natura:is_pulse_loaded",
+            "pulse_name": "NaturaNether"
+        }
+    ],
+    "type": "forge:ore_shaped",
+    "pattern": [
+        "AAA",
+        "BBB",
+        "CCC"
+    ],
+    "key": {
+        "A": {
+            "type": "forge:ore_dict",
+            "ore": "glass"
+        },
+        "B": {
+            "type": "forge:ore_dict",
+            "ore": "slabWood"
+        },
+        "C": {
+            "type": "forge:ore_dict",
+            "ore": "gemQuartz"
+        }
+    },
+    "result": {
+        "item": "minecraft:daylight_detector"
+    }
+}

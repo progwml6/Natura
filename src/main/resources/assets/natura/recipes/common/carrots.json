@@ -1,0 +1,13 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+        {
+            "item": "natura:seed_bags",
+            "data": 1
+        }
+    ],
+    "result": {
+        "item": "minecraft:carrot",
+        "count": 9
+    }
+}

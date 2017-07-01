@@ -1,0 +1,32 @@
+{
+    "conditions": [
+        {
+            "type": "natura:is_pulse_loaded",
+            "pulse_name": "NaturaNether"
+        },
+        {
+            "type": "natura:is_pulse_loaded",
+            "pulse_name": "NaturaTools"
+        }
+    ],
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "AA",
+        " B",
+        " B"
+    ],
+    "key": {
+        "A": {
+            "item": "natura:nether_planks",
+            "data": 2
+        },
+        "B": {
+            "item": "natura:sticks",
+            "data": 10
+        }
+    },
+    "result": {
+        "item": "natura:darkwood_kama",
+        "data": 0
+    }
+}

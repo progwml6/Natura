@@ -20,7 +20,7 @@ buildscript {
         }
     }
     dependencies {
-        classpath 'net.minecraftforge.gradle:ForgeGradle:2.2-SNAPSHOT'
+        classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'
     }
 }
 
@@ -65,12 +65,11 @@ dependencies {
     deobfCompile "slimeknights.mantle:Mantle:${minecraft_version}-${mantle_version}"
     //deobfCompile "slimeknights:TConstruct:${minecraft_version}-${tconstruct_version}"
 
-    deobfCompile "mcp.mobius.waila:Hwyla:${hwyla_version}_1.11"
-    //deobfCompile "mcp.mobius.waila:Waila:${waila_version}_1.9.4" // ${minecraft_version}" No 1.10 version of waila, must use 1.9.4 version
+    deobfCompile "mcp.mobius.waila:Hwyla:${hwyla_version}_1.12"
 
     deobfCompile "mezz.jei:jei_${minecraft_version}:${jei_version}"
 
-    deobfCompile "MCMultiPart2:MCMultiPart-exp:${mcmultipart_version}"
+    //deobfCompile "MCMultiPart2:MCMultiPart-exp:${mcmultipart_version}"
 }
 
 // sets version to the slimeKnights version format

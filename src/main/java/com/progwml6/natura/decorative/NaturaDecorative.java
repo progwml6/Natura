@@ -5,6 +5,11 @@ import org.apache.logging.log4j.Logger;
 import com.google.common.eventbus.Subscribe;
 import com.progwml6.natura.common.CommonProxy;
 import com.progwml6.natura.common.NaturaPulse;
+import com.progwml6.natura.common.block.base.BlockButtonBase;
+import com.progwml6.natura.common.block.base.BlockFenceBase;
+import com.progwml6.natura.common.block.base.BlockFenceGateBase;
+import com.progwml6.natura.common.block.base.BlockPressurePlateBase;
+import com.progwml6.natura.common.block.base.BlockTrapDoorBase;
 import com.progwml6.natura.decorative.block.bookshelves.BlockNetherBookshelves;
 import com.progwml6.natura.decorative.block.bookshelves.BlockOverworldBookshelves;
 import com.progwml6.natura.decorative.block.workbenches.BlockNetherWorkbenches;
@@ -12,19 +17,16 @@ import com.progwml6.natura.decorative.block.workbenches.BlockOverworldWorkbenche
 import com.progwml6.natura.library.Util;
 import com.progwml6.natura.library.enums.WoodTypes;
 import com.progwml6.natura.library.enums.WoodTypes.WorldType;
-import com.progwml6.natura.nether.NaturaNether;
-import com.progwml6.natura.nether.block.planks.BlockNetherPlanks;
-import com.progwml6.natura.overworld.NaturaOverworld;
-import com.progwml6.natura.overworld.block.planks.BlockOverworldPlanks;
-import com.progwml6.natura.shared.NaturaCommons;
 
 import net.minecraft.block.Block;
-import net.minecraft.init.Items;
-import net.minecraft.item.ItemStack;
+import net.minecraft.item.Item;
+import net.minecraftforge.client.event.ModelRegistryEvent;
+import net.minecraftforge.event.RegistryEvent.Register;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.registries.IForgeRegistry;
 import slimeknights.mantle.pulsar.pulse.Pulse;
 
 @Pulse(id = NaturaDecorative.PulseId, description = "Everything that's decorative for Natura. (bookshelfs, etc)")
@@ -51,25 +53,28 @@ public class NaturaDecorative extends NaturaPulse
     public static BlockNetherWorkbenches netherWorkbenches;
     //@formatter:on
 
-    @Subscribe
-    public void preInit(FMLPreInitializationEvent event)
+    @SubscribeEvent
+    public void registerBlocks(Register<Block> event)
     {
+        IForgeRegistry<Block> registry = event.getRegistry();
+
+        // Blocks Start
         if (isOverworldLoaded())
         {
             for (WoodTypes type : WoodTypes.values())
             {
                 if (type.getWorldType() == WorldType.OVERWORLD)
                 {
-                    buttons[type.ordinal()] = registerBlockButton(type.getName() + "_button");
-                    pressurePlates[type.ordinal()] = registerBlockPressurePlate(type.getName() + "_pressure_plate");
-                    trapDoors[type.ordinal()] = registerBlockTrapDoor(type.getName() + "_trap_door");
-                    fences[type.ordinal()] = registerBlockFence(type.getName() + "_fence");
-                    fenceGates[type.ordinal()] = registerBlockFenceGate(type.getName() + "_fence_gate");
+                    buttons[type.ordinal()] = registerBlock(registry, new BlockButtonBase(), type.getName() + "_button");
+                    pressurePlates[type.ordinal()] = registerBlock(registry, new BlockPressurePlateBase(), type.getName() + "_pressure_plate");
+                    trapDoors[type.ordinal()] = registerBlock(registry, new BlockTrapDoorBase(), type.getName() + "_trap_door");
+                    fences[type.ordinal()] = registerBlock(registry, new BlockFenceBase(), type.getName() + "_fence");
+                    fenceGates[type.ordinal()] = registerBlock(registry, new BlockFenceGateBase(), type.getName() + "_fence_gate");
                 }
             }
 
-            overworldBookshelves = registerEnumBlock(new BlockOverworldBookshelves(), "overworld_bookshelves");
-            overworldWorkbenches = registerEnumBlock(new BlockOverworldWorkbenches(), "overworld_workbenches");
+            overworldBookshelves = registerBlock(registry, new BlockOverworldBookshelves(), "overworld_bookshelves");
+            overworldWorkbenches = registerBlock(registry, new BlockOverworldWorkbenches(), "overworld_workbenches");
         }
 
         if (isNetherLoaded())
@@ -78,18 +83,67 @@ public class NaturaDecorative extends NaturaPulse
             {
                 if (type.getWorldType() == WorldType.NETHER)
                 {
-                    buttons[type.ordinal()] = registerBlockButton(type.getName() + "_button");
-                    pressurePlates[type.ordinal()] = registerBlockPressurePlate(type.getName() + "_pressure_plate");
-                    trapDoors[type.ordinal()] = registerBlockTrapDoor(type.getName() + "_trap_door");
-                    fences[type.ordinal()] = registerBlockFence(type.getName() + "_fence");
-                    fenceGates[type.ordinal()] = registerBlockFenceGate(type.getName() + "_fence_gate");
+                    buttons[type.ordinal()] = registerBlock(registry, new BlockButtonBase(), type.getName() + "_button");
+                    pressurePlates[type.ordinal()] = registerBlock(registry, new BlockPressurePlateBase(), type.getName() + "_pressure_plate");
+                    trapDoors[type.ordinal()] = registerBlock(registry, new BlockTrapDoorBase(), type.getName() + "_trap_door");
+                    fences[type.ordinal()] = registerBlock(registry, new BlockFenceBase(), type.getName() + "_fence");
+                    fenceGates[type.ordinal()] = registerBlock(registry, new BlockFenceGateBase(), type.getName() + "_fence_gate");
                 }
             }
 
-            netherBookshelves = registerEnumBlock(new BlockNetherBookshelves(), "nether_bookshelves");
-            netherWorkbenches = registerEnumBlock(new BlockNetherWorkbenches(), "nether_workbenches");
+            netherBookshelves = registerBlock(registry, new BlockNetherBookshelves(), "nether_bookshelves");
+            netherWorkbenches = registerBlock(registry, new BlockNetherWorkbenches(), "nether_workbenches");
+        }
+        // Blocks End
+    }
+
+    @SubscribeEvent
+    public void registerItems(Register<Item> event)
+    {
+        IForgeRegistry<Item> registry = event.getRegistry();
+
+        // Blocks Start
+        if (isOverworldLoaded())
+        {
+            for (WoodTypes type : WoodTypes.values())
+            {
+                if (type.getWorldType() == WorldType.OVERWORLD)
+                {
+                    buttons[type.ordinal()] = registerItemBlock(registry, buttons[type.ordinal()], type.getName() + "_button");
+                    pressurePlates[type.ordinal()] = registerItemBlock(registry, pressurePlates[type.ordinal()], type.getName() + "_pressure_plate");
+                    trapDoors[type.ordinal()] = registerItemBlock(registry, trapDoors[type.ordinal()], type.getName() + "_trap_door");
+                    fences[type.ordinal()] = registerItemBlock(registry, fences[type.ordinal()], type.getName() + "_fence");
+                    fenceGates[type.ordinal()] = registerItemBlock(registry, fenceGates[type.ordinal()], type.getName() + "_fence_gate");
+                }
+            }
+
+            overworldBookshelves = registerEnumItemBlock(registry, overworldBookshelves, "overworld_bookshelves");
+            overworldWorkbenches = registerEnumItemBlock(registry, overworldWorkbenches, "overworld_workbenches");
         }
 
+        if (isNetherLoaded())
+        {
+            for (WoodTypes type : WoodTypes.values())
+            {
+                if (type.getWorldType() == WorldType.NETHER)
+                {
+                    buttons[type.ordinal()] = registerItemBlock(registry, buttons[type.ordinal()], type.getName() + "_button");
+                    pressurePlates[type.ordinal()] = registerItemBlock(registry, pressurePlates[type.ordinal()], type.getName() + "_pressure_plate");
+                    trapDoors[type.ordinal()] = registerItemBlock(registry, trapDoors[type.ordinal()], type.getName() + "_trap_door");
+                    fences[type.ordinal()] = registerItemBlock(registry, fences[type.ordinal()], type.getName() + "_fence");
+                    fenceGates[type.ordinal()] = registerItemBlock(registry, fenceGates[type.ordinal()], type.getName() + "_fence_gate");
+                }
+            }
+
+            netherBookshelves = registerEnumItemBlock(registry, netherBookshelves, "nether_bookshelves");
+            netherWorkbenches = registerEnumItemBlock(registry, netherWorkbenches, "nether_workbenches");
+        }
+        // Blocks End
+    }
+
+    @SubscribeEvent
+    public void registerModels(ModelRegistryEvent event)
+    {
         proxy.preInit();
     }
 
@@ -97,58 +151,11 @@ public class NaturaDecorative extends NaturaPulse
     public void init(FMLInitializationEvent event)
     {
         proxy.init();
-
-        this.registerRecipes();
     }
 
     @Subscribe
     public void postInit(FMLPostInitializationEvent event)
     {
         proxy.postInit();
-    }
-
-    private void registerRecipes()
-    {
-        if (isOverworldLoaded())
-        {
-            for (WoodTypes type : WoodTypes.values())
-            {
-                if (type.getWorldType() == WorldType.OVERWORLD)
-                {
-                    addShapedRecipe(new ItemStack(buttons[type.ordinal()], 1), "#", '#', new ItemStack(NaturaOverworld.overworldPlanks, 1, type.getPlankMeta()));
-                    addShapedRecipe(new ItemStack(pressurePlates[type.ordinal()], 1), "##", '#', new ItemStack(NaturaOverworld.overworldPlanks, 1, type.getPlankMeta()));
-                    addShapedRecipe(new ItemStack(trapDoors[type.ordinal()], 2), "###", "###", '#', new ItemStack(NaturaOverworld.overworldPlanks, 1, type.getPlankMeta()));
-                    addShapedRecipe(new ItemStack(fences[type.ordinal()], 2), "###", "###", '#', new ItemStack(NaturaCommons.sticks, 1, type.getStickMeta()));
-                    addShapedRecipe(new ItemStack(fenceGates[type.ordinal()], 1), "s#s", "s#s", '#', new ItemStack(NaturaOverworld.overworldPlanks, 1, type.getPlankMeta()), 's', new ItemStack(NaturaCommons.sticks, 1, type.getStickMeta()));
-                }
-            }
-
-            for (BlockOverworldPlanks.PlankType type : BlockOverworldPlanks.PlankType.values())
-            {
-                addShapedRecipe(new ItemStack(overworldWorkbenches, 1, type.getMeta()), "##", "##", '#', new ItemStack(NaturaOverworld.overworldPlanks, 1, type.getMeta()));
-                addShapedRecipe(new ItemStack(overworldBookshelves, 1, type.getMeta()), "###", "bbb", "###", '#', new ItemStack(NaturaOverworld.overworldPlanks, 1, type.getMeta()), 'b', Items.BOOK);
-            }
-        }
-
-        if (isNetherLoaded())
-        {
-            for (WoodTypes type : WoodTypes.values())
-            {
-                if (type.getWorldType() == WorldType.NETHER)
-                {
-                    addShapedRecipe(new ItemStack(buttons[type.ordinal()], 1), "#", '#', new ItemStack(NaturaNether.netherPlanks, 1, type.getPlankMeta()));
-                    addShapedRecipe(new ItemStack(pressurePlates[type.ordinal()], 1), "##", '#', new ItemStack(NaturaNether.netherPlanks, 1, type.getPlankMeta()));
-                    addShapedRecipe(new ItemStack(trapDoors[type.ordinal()], 2), "###", "###", '#', new ItemStack(NaturaNether.netherPlanks, 1, type.getPlankMeta()));
-                    addShapedRecipe(new ItemStack(fences[type.ordinal()], 2), "###", "###", '#', new ItemStack(NaturaCommons.sticks, 1, type.getStickMeta()));
-                    addShapedRecipe(new ItemStack(fenceGates[type.ordinal()], 1), "s#s", "s#s", '#', new ItemStack(NaturaNether.netherPlanks, 1, type.getPlankMeta()), 's', new ItemStack(NaturaCommons.sticks, 1, type.getStickMeta()));
-                }
-            }
-
-            for (BlockNetherPlanks.PlankType type : BlockNetherPlanks.PlankType.values())
-            {
-                addShapedRecipe(new ItemStack(netherWorkbenches, 1, type.getMeta()), "##", "##", '#', new ItemStack(NaturaNether.netherPlanks, 1, type.getMeta()));
-                addShapedRecipe(new ItemStack(netherBookshelves, 1, type.getMeta()), "###", "bbb", "###", '#', new ItemStack(NaturaNether.netherPlanks, 1, type.getMeta()), 'b', Items.BOOK);
-            }
-        }
     }
 }
