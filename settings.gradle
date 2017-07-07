@@ -16,4 +16,4 @@ include 'api'
 include 'services:webservice'
 */
 
-rootProject.name = 'Natura-1.12'
+rootProject.name = 'Natura'
