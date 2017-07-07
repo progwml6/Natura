@@ -5,6 +5,7 @@ import org.apache.logging.log4j.Logger;
 import com.google.common.eventbus.Subscribe;
 import com.progwml6.natura.common.CommonProxy;
 import com.progwml6.natura.common.NaturaPulse;
+import com.progwml6.natura.common.block.BlockEnumBerryBush;
 import com.progwml6.natura.common.block.BlockNaturaDoor;
 import com.progwml6.natura.common.item.ItemBlockLeaves;
 import com.progwml6.natura.common.item.ItemNaturaDoor;
@@ -97,10 +98,10 @@ public class NaturaOverworld extends NaturaPulse
     public static Block overworldStairsSakura;
     public static Block overworldStairsRedwood;
 
-    public static Block overworldBerryBushRaspberry;
-    public static Block overworldBerryBushBlueberry;
-    public static Block overworldBerryBushBlackberry;
-    public static Block overworldBerryBushMaloberry;
+    public static BlockEnumBerryBush overworldBerryBushRaspberry;
+    public static BlockEnumBerryBush overworldBerryBushBlueberry;
+    public static BlockEnumBerryBush overworldBerryBushBlackberry;
+    public static BlockEnumBerryBush overworldBerryBushMaloberry;
 
     public static BlockNaturaBarley barleyCrop;
     public static BlockNaturaCotton cottonCrop;
@@ -176,10 +177,10 @@ public class NaturaOverworld extends NaturaPulse
         overworldStairsSakura = registerBlockStairsFrom(registry, overworldPlanks, BlockOverworldPlanks.PlankType.SAKURA, "overworld_stairs_sakura");
         overworldStairsRedwood = registerBlockStairsFrom(registry, overworldPlanks, BlockOverworldPlanks.PlankType.REDWOOD, "overworld_stairs_redwood");
 
-        overworldBerryBushRaspberry = registerBlock(registry, new BlockOverworldBerryBush(NaturaCommons.raspberry), "overworld_berrybush_raspberry");
-        overworldBerryBushBlueberry = registerBlock(registry, new BlockOverworldBerryBush(NaturaCommons.blueberry), "overworld_berrybush_blueberry");
-        overworldBerryBushBlackberry = registerBlock(registry, new BlockOverworldBerryBush(NaturaCommons.blackberry), "overworld_berrybush_blackberry");
-        overworldBerryBushMaloberry = registerBlock(registry, new BlockOverworldBerryBush(NaturaCommons.maloberry), "overworld_berrybush_maloberry");
+        overworldBerryBushRaspberry = registerBlock(registry, new BlockOverworldBerryBush(), "overworld_berrybush_raspberry");
+        overworldBerryBushBlueberry = registerBlock(registry, new BlockOverworldBerryBush(), "overworld_berrybush_blueberry");
+        overworldBerryBushBlackberry = registerBlock(registry, new BlockOverworldBerryBush(), "overworld_berrybush_blackberry");
+        overworldBerryBushMaloberry = registerBlock(registry, new BlockOverworldBerryBush(), "overworld_berrybush_maloberry");
 
         barleyCrop = registerBlock(registry, new BlockNaturaBarley(), "barley_crop");
         cottonCrop = registerBlock(registry, new BlockNaturaCotton(), "cotton_crop");
@@ -241,6 +242,11 @@ public class NaturaOverworld extends NaturaPulse
         overworldBerryBushBlueberry = registerItemBlock(registry, overworldBerryBushBlueberry, "overworld_berrybush_blueberry");
         overworldBerryBushBlackberry = registerItemBlock(registry, overworldBerryBushBlackberry, "overworld_berrybush_blackberry");
         overworldBerryBushMaloberry = registerItemBlock(registry, overworldBerryBushMaloberry, "overworld_berrybush_maloberry");
+
+        overworldBerryBushRaspberry.setItemDrop(NaturaCommons.raspberry);
+        overworldBerryBushBlueberry.setItemDrop(NaturaCommons.blueberry);
+        overworldBerryBushBlackberry.setItemDrop(NaturaCommons.blackberry);
+        overworldBerryBushMaloberry.setItemDrop(NaturaCommons.maloberry);
 
         barleyCrop = registerItemBlock(registry, barleyCrop, "barley_crop");
         cottonCrop = registerItemBlock(registry, cottonCrop, "cotton_crop");

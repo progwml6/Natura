@@ -6,7 +6,6 @@ import com.progwml6.natura.common.block.BlockEnumBerryBush;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -14,9 +13,9 @@ import net.minecraftforge.common.EnumPlantType;
 
 public class BlockNetherBerryBush extends BlockEnumBerryBush
 {
-    public BlockNetherBerryBush(ItemStack item)
+    public BlockNetherBerryBush()
     {
-        super(item);
+        super();
 
         Blocks.FIRE.setFireInfo(this, 0, 0);
     }

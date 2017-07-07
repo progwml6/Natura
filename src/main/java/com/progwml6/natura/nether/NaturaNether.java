@@ -5,6 +5,7 @@ import org.apache.logging.log4j.Logger;
 import com.google.common.eventbus.Subscribe;
 import com.progwml6.natura.common.CommonProxy;
 import com.progwml6.natura.common.NaturaPulse;
+import com.progwml6.natura.common.block.BlockEnumBerryBush;
 import com.progwml6.natura.common.block.BlockNaturaDoor;
 import com.progwml6.natura.common.item.ItemBlockLeaves;
 import com.progwml6.natura.common.item.ItemNaturaDoor;
@@ -83,10 +84,10 @@ public class NaturaNether extends NaturaPulse
     public static Block netherStairsDarkwood;
     public static Block netherStairsFusewood;
 
-    public static Block netherBerryBushBlightberry;
-    public static Block netherBerryBushDuskberry;
-    public static Block netherBerryBushSkyberry;
-    public static Block netherBerryBushStingberry;
+    public static BlockEnumBerryBush netherBerryBushBlightberry;
+    public static BlockEnumBerryBush netherBerryBushDuskberry;
+    public static BlockEnumBerryBush netherBerryBushSkyberry;
+    public static BlockEnumBerryBush netherBerryBushStingberry;
 
     public static BlockNetherGlowshroom netherGlowshroom;
     public static BlockNetherLargeGlowshroom netherLargeGreenGlowshroom;
@@ -151,10 +152,10 @@ public class NaturaNether extends NaturaPulse
         netherStairsDarkwood = registerBlockStairsFrom(registry, netherPlanks, BlockNetherPlanks.PlankType.DARKWOOD, "nether_stairs_darkwood");
         netherStairsFusewood = registerBlockStairsFrom(registry, netherPlanks, BlockNetherPlanks.PlankType.FUSEWOOD, "nether_stairs_fusewood");
 
-        netherBerryBushBlightberry = registerBlock(registry, new BlockNetherBerryBush(NaturaCommons.blightberry), "nether_berrybush_blightberry");
-        netherBerryBushDuskberry = registerBlock(registry, new BlockNetherBerryBush(NaturaCommons.duskberry), "nether_berrybush_duskberry");
-        netherBerryBushSkyberry = registerBlock(registry, new BlockNetherBerryBush(NaturaCommons.skyberry), "nether_berrybush_skyberry");
-        netherBerryBushStingberry = registerBlock(registry, new BlockNetherBerryBush(NaturaCommons.stingberry), "nether_berrybush_stingberry");
+        netherBerryBushBlightberry = registerBlock(registry, new BlockNetherBerryBush(), "nether_berrybush_blightberry");
+        netherBerryBushDuskberry = registerBlock(registry, new BlockNetherBerryBush(), "nether_berrybush_duskberry");
+        netherBerryBushSkyberry = registerBlock(registry, new BlockNetherBerryBush(), "nether_berrybush_skyberry");
+        netherBerryBushStingberry = registerBlock(registry, new BlockNetherBerryBush(), "nether_berrybush_stingberry");
 
         respawnObelisk = registerBlock(registry, new BlockRespawnObelisk(), "respawn_obelisk");
 
@@ -220,6 +221,11 @@ public class NaturaNether extends NaturaPulse
         netherBerryBushDuskberry = registerItemBlock(registry, netherBerryBushDuskberry, "nether_berrybush_duskberry");
         netherBerryBushSkyberry = registerItemBlock(registry, netherBerryBushSkyberry, "nether_berrybush_skyberry");
         netherBerryBushStingberry = registerItemBlock(registry, netherBerryBushStingberry, "nether_berrybush_stingberry");
+
+        netherBerryBushBlightberry.setItemDrop(NaturaCommons.blightberry);
+        netherBerryBushDuskberry.setItemDrop(NaturaCommons.duskberry);
+        netherBerryBushSkyberry.setItemDrop(NaturaCommons.skyberry);
+        netherBerryBushStingberry.setItemDrop(NaturaCommons.stingberry);
 
         respawnObelisk = registerEnumItemBlock(registry, respawnObelisk, "respawn_obelisk");
 

@@ -35,7 +35,7 @@ public class BlockEnumBerryBush extends Block implements IPlantable, IGrowable
 {
     public static final PropertyInteger AGE = PropertyInteger.create("age", 0, 3);
 
-    private final ItemStack itemDrop;
+    private ItemStack itemDrop;
 
     //@formatter:off
     public static final AxisAlignedBB SMALL_BUSH_AABB = new AxisAlignedBB(0.25D, 0.0D, 0.25D, 0.75D, 0.5D, 0.75D);
@@ -43,11 +43,9 @@ public class BlockEnumBerryBush extends Block implements IPlantable, IGrowable
     public static final AxisAlignedBB FULL_BUSH_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 1.0D, 1.0D);
     //@formatter:on
 
-    public BlockEnumBerryBush(ItemStack item)
+    public BlockEnumBerryBush()
     {
         super(Material.LEAVES);
-
-        this.itemDrop = item;
 
         this.setCreativeTab(NaturaRegistry.tabWorld);
         this.setTickRandomly(true);
@@ -58,6 +56,11 @@ public class BlockEnumBerryBush extends Block implements IPlantable, IGrowable
     public boolean isMaxAge(IBlockState state)
     {
         return state.getValue(AGE).intValue() >= 3;
+    }
+
+    public void setItemDrop(ItemStack itemIn)
+    {
+        this.itemDrop = itemIn;
     }
 
     @Nonnull
@@ -96,10 +99,12 @@ public class BlockEnumBerryBush extends Block implements IPlantable, IGrowable
     public IBlockState getPlant(IBlockAccess world, BlockPos pos)
     {
         IBlockState state = world.getBlockState(pos);
+
         if (state.getBlock() != this)
         {
             return this.getDefaultState();
         }
+
         return state;
     }
 
