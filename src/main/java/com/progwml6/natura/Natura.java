@@ -25,7 +25,7 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import slimeknights.mantle.pulsar.control.PulseManager;
 
-@Mod(modid = Natura.modID, name = Natura.modName, version = Natura.modVersion, dependencies = "required-after:forge@[14.21.1.2387,);required-after:mantle@[1.12-1.2.0,);", acceptedMinecraftVersions = "[1.12, 1.13)")
+@Mod(modid = Natura.modID, name = Natura.modName, version = Natura.modVersion, dependencies = "required-after:forge@[14.21.1.2387,);required-after:mantle@[1.12-1.3.0,);", acceptedMinecraftVersions = "[1.12, 1.13)")
 public class Natura
 {
     public static final String modID = Util.MODID;
