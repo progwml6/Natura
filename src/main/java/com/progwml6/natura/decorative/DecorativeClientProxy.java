@@ -29,32 +29,50 @@ public class DecorativeClientProxy extends ClientProxy
     {
         for (Block block : NaturaDecorative.fenceGates)
         {
-            ModelLoader.setCustomStateMapper(block, (new StateMap.Builder()).ignore(BlockFenceGate.POWERED).build());
+            if (block != null)
+            {
+                ModelLoader.setCustomStateMapper(block, (new StateMap.Builder()).ignore(BlockFenceGate.POWERED).build());
+            }
         }
 
         for (Block block : NaturaDecorative.buttons)
         {
-            registerItemModel(block);
+            if (block != null)
+            {
+                registerItemModel(block);
+            }
         }
 
         for (Block block : NaturaDecorative.pressurePlates)
         {
-            registerItemModel(block);
+            if (block != null)
+            {
+                registerItemModel(block);
+            }
         }
 
         for (Block block : NaturaDecorative.trapDoors)
         {
-            registerItemModel(block);
+            if (block != null)
+            {
+                registerItemModel(block);
+            }
         }
 
         for (Block block : NaturaDecorative.fences)
         {
-            registerItemModel(block);
+            if (block != null)
+            {
+                registerItemModel(block);
+            }
         }
 
         for (Block block : NaturaDecorative.fenceGates)
         {
-            registerItemModel(block);
+            if (block != null)
+            {
+                registerItemModel(block);
+            }
         }
 
         registerItemBlockMeta(NaturaDecorative.overworldBookshelves);
