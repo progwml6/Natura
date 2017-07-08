@@ -2,6 +2,8 @@ package com.progwml6.natura.common.gui.client;
 
 import java.io.IOException;
 
+import com.progwml6.natura.common.gui.common.WorkbenchContainer;
+
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiButtonImage;
 import net.minecraft.client.gui.inventory.GuiContainer;
@@ -37,7 +39,7 @@ public class WorkbenchGui extends GuiContainer implements IRecipeShownListener
 
     public WorkbenchGui(InventoryPlayer playerInv, World worldIn, BlockPos blockPosition)
     {
-        super(new ContainerWorkbench(playerInv, worldIn, blockPosition));
+        super(new WorkbenchContainer(playerInv, worldIn, blockPosition));
         this.recipeBookGui = new GuiRecipeBook();
     }
 
