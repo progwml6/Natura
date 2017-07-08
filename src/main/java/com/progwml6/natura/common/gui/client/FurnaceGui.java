@@ -29,6 +29,17 @@ public class FurnaceGui extends GuiContainer
     }
 
     /**
+     * Draws the screen and all the components in it.
+     */
+    @Override
+    public void drawScreen(int mouseX, int mouseY, float partialTicks)
+    {
+        this.drawDefaultBackground();
+        super.drawScreen(mouseX, mouseY, partialTicks);
+        this.renderHoveredToolTip(mouseX, mouseY);
+    }
+
+    /**
      * Draw the foreground layer for the GuiContainer (everything in front of the items)
      */
     @Override

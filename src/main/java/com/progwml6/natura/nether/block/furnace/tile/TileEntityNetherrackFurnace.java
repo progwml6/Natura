@@ -310,12 +310,23 @@ public class TileEntityNetherrackFurnace extends TileEntityLockable implements I
             else
             {
                 ItemStack itemstack1 = this.furnaceItemStacks.get(2);
+
                 if (itemstack1.isEmpty())
+                {
                     return true;
-                if (!itemstack1.isItemEqual(itemstack))
+                }
+                else if (!itemstack1.isItemEqual(itemstack))
+                {
                     return false;
-                int result = itemstack1.getCount() + itemstack.getCount();
-                return result <= getInventoryStackLimit() && result <= itemstack1.getMaxStackSize(); // Forge fix: make furnace respect stack sizes in furnace recipes
+                }
+                else if (itemstack1.getCount() + itemstack.getCount() <= this.getInventoryStackLimit() && itemstack1.getCount() + itemstack.getCount() <= itemstack1.getMaxStackSize()) // Forge fix: make furnace respect stack sizes in furnace recipes
+                {
+                    return true;
+                }
+                else
+                {
+                    return itemstack1.getCount() + itemstack.getCount() <= itemstack.getMaxStackSize(); // Forge fix: make furnace respect stack sizes in furnace recipes
+                }
             }
         }
     }
@@ -361,14 +372,93 @@ public class TileEntityNetherrackFurnace extends TileEntityLockable implements I
         }
         else
         {
+            int burnTime = net.minecraftforge.event.ForgeEventFactory.getItemBurnTime(stack);
+            if (burnTime >= 0)
+                return burnTime;
             Item item = stack.getItem();
-            if (!item.getRegistryName().getResourceDomain().equals("minecraft"))
+
+            if (item == Item.getItemFromBlock(Blocks.WOODEN_SLAB))
             {
-                int burnTime = net.minecraftforge.fml.common.registry.GameRegistry.getFuelValue(stack);
-                if (burnTime != 0)
-                    return burnTime;
+                return 150;
             }
-            return item == Item.getItemFromBlock(Blocks.WOODEN_SLAB) ? 150 : (item == Item.getItemFromBlock(Blocks.WOOL) ? 100 : (item == Item.getItemFromBlock(Blocks.CARPET) ? 67 : (item == Item.getItemFromBlock(Blocks.LADDER) ? 300 : (item == Item.getItemFromBlock(Blocks.WOODEN_BUTTON) ? 100 : (Block.getBlockFromItem(item).getDefaultState().getMaterial() == Material.WOOD ? 300 : (item == Item.getItemFromBlock(Blocks.COAL_BLOCK) ? 16000 : (item instanceof ItemTool && "WOOD".equals(((ItemTool) item).getToolMaterialName()) ? 200 : (item instanceof ItemSword && "WOOD".equals(((ItemSword) item).getToolMaterialName()) ? 200 : (item instanceof ItemHoe && "WOOD".equals(((ItemHoe) item).getMaterialName()) ? 200 : (item == Items.STICK ? 100 : (item != Items.BOW && item != Items.FISHING_ROD ? (item == Items.SIGN ? 200 : (item == Items.COAL ? 1600 : (item == Items.LAVA_BUCKET ? 20000 : (item != Item.getItemFromBlock(Blocks.SAPLING) && item != Items.BOWL ? (item == Items.BLAZE_ROD ? 2400 : (item instanceof ItemDoor && item != Items.IRON_DOOR ? 200 : (item instanceof ItemBoat ? 400 : 0))) : 100)))) : 300)))))))))));
+            else if (item == Item.getItemFromBlock(Blocks.WOOL))
+            {
+                return 100;
+            }
+            else if (item == Item.getItemFromBlock(Blocks.CARPET))
+            {
+                return 67;
+            }
+            else if (item == Item.getItemFromBlock(Blocks.LADDER))
+            {
+                return 300;
+            }
+            else if (item == Item.getItemFromBlock(Blocks.WOODEN_BUTTON))
+            {
+                return 100;
+            }
+            else if (Block.getBlockFromItem(item).getDefaultState().getMaterial() == Material.WOOD)
+            {
+                return 300;
+            }
+            else if (item == Item.getItemFromBlock(Blocks.COAL_BLOCK))
+            {
+                return 16000;
+            }
+            else if (item instanceof ItemTool && "WOOD".equals(((ItemTool) item).getToolMaterialName()))
+            {
+                return 200;
+            }
+            else if (item instanceof ItemSword && "WOOD".equals(((ItemSword) item).getToolMaterialName()))
+            {
+                return 200;
+            }
+            else if (item instanceof ItemHoe && "WOOD".equals(((ItemHoe) item).getMaterialName()))
+            {
+                return 200;
+            }
+            else if (item == Items.STICK)
+            {
+                return 100;
+            }
+            else if (item != Items.BOW && item != Items.FISHING_ROD)
+            {
+                if (item == Items.SIGN)
+                {
+                    return 200;
+                }
+                else if (item == Items.COAL)
+                {
+                    return 1600;
+                }
+                else if (item == Items.LAVA_BUCKET)
+                {
+                    return 20000;
+                }
+                else if (item != Item.getItemFromBlock(Blocks.SAPLING) && item != Items.BOWL)
+                {
+                    if (item == Items.BLAZE_ROD)
+                    {
+                        return 2400;
+                    }
+                    else if (item instanceof ItemDoor && item != Items.IRON_DOOR)
+                    {
+                        return 200;
+                    }
+                    else
+                    {
+                        return item instanceof ItemBoat ? 400 : 0;
+                    }
+                }
+                else
+                {
+                    return 100;
+                }
+            }
+            else
+            {
+                return 300;
+            }
         }
     }
 
@@ -383,7 +473,14 @@ public class TileEntityNetherrackFurnace extends TileEntityLockable implements I
     @Override
     public boolean isUsableByPlayer(EntityPlayer player)
     {
-        return this.world.getTileEntity(this.pos) != this ? false : player.getDistanceSq(this.pos.getX() + 0.5D, this.pos.getY() + 0.5D, this.pos.getZ() + 0.5D) <= 64.0D;
+        if (this.world.getTileEntity(this.pos) != this)
+        {
+            return false;
+        }
+        else
+        {
+            return player.getDistanceSq(this.pos.getX() + 0.5D, this.pos.getY() + 0.5D, this.pos.getZ() + 0.5D) <= 64.0D;
+        }
     }
 
     @Override
@@ -421,7 +518,14 @@ public class TileEntityNetherrackFurnace extends TileEntityLockable implements I
     @Override
     public int[] getSlotsForFace(EnumFacing side)
     {
-        return side == EnumFacing.DOWN ? SLOTS_BOTTOM : (side == EnumFacing.UP ? SLOTS_TOP : SLOTS_SIDES);
+        if (side == EnumFacing.DOWN)
+        {
+            return SLOTS_BOTTOM;
+        }
+        else
+        {
+            return side == EnumFacing.UP ? SLOTS_TOP : SLOTS_SIDES;
+        }
     }
 
     /**

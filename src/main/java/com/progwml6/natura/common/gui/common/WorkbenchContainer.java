@@ -33,7 +33,6 @@ public class WorkbenchContainer extends Container
         this.world = worldIn;
         this.pos = posIn;
         this.player = playerInventory.player;
-
         this.addSlotToContainer(new SlotCrafting(playerInventory.player, this.craftMatrix, this.craftResult, 0, 124, 35));
 
         for (int i = 0; i < 3; ++i)
@@ -56,8 +55,6 @@ public class WorkbenchContainer extends Container
         {
             this.addSlotToContainer(new Slot(playerInventory, l, 8 + l * 18, 142));
         }
-
-        this.onCraftMatrixChanged(this.craftMatrix);
     }
 
     /**

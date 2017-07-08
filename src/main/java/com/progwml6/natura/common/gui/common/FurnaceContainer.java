@@ -113,10 +113,6 @@ public class FurnaceContainer extends Container
     /**
      * Handle when the stack in slot {@code index} is shift-clicked. Normally this moves the stack between the player
      * inventory and the other inventory(s).
-     *  
-     * @param playerIn Player that interacted with this {@code Container}.
-     * @param index Index of the {@link Slot}. This index is relative to the list of slots in this {@code Container},
-     * {@link #inventorySlots}.
      */
     @Override
     public ItemStack transferStackInSlot(EntityPlayer playerIn, int index)
