@@ -96,13 +96,6 @@ public class OverworldTreesGenerator implements IWorldGenerator
 
         BlockPos position;
 
-        String biomeName = world.getChunkFromBlockCoords(chunkPos).getBiome(chunkPos, world.getBiomeProvider()).getBiomeName();
-
-        if (biomeName == null)
-        {
-            return;
-        }
-
         Biome biome = world.getChunkFromBlockCoords(chunkPos).getBiome(chunkPos, world.getBiomeProvider());
 
         if (biome == null)
