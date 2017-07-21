@@ -19,9 +19,9 @@ public enum WoodTypes implements IStringSerializable
     REDWOOD(WorldType.OVERWORLD, 8, 8),
     GHOSTWOOD(WorldType.NETHER, 0, 9),
     BLOODWOOD(WorldType.NETHER, 1, 12),
-    FUSEWOOD(WorldType.NETHER, 2, 11),
-    DARKWOOD(WorldType.NETHER, 3, 10);
-    
+    FUSEWOOD(WorldType.NETHER, 3, 11),
+    DARKWOOD(WorldType.NETHER, 2, 10);
+
     @Nonnull
     private final WorldType worldType;
 

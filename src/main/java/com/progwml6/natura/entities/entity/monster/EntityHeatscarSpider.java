@@ -97,7 +97,7 @@ public class EntityHeatscarSpider extends EntitySpider
         }
 
         super.fall(distance, damageMultiplier);
-        int i = MathHelper.ceiling_float_int(distance - 5.0F);
+        int i = MathHelper.ceil(distance - 5.0F);
 
         if (i > 0)
         {
@@ -112,7 +112,7 @@ public class EntityHeatscarSpider extends EntitySpider
 
             this.attackEntityFrom(DamageSource.fall, i);
 
-            BlockPos pos = new BlockPos(MathHelper.floor_double(this.posX), MathHelper.floor_double(this.posY - 0.20000000298023224D), MathHelper.floor_double(this.posZ));
+            BlockPos pos = new BlockPos(MathHelper.floor(this.posX), MathHelper.floor(this.posY - 0.20000000298023224D), MathHelper.floor(this.posZ));
             IBlockState state = this.world.getBlockState(pos);
             Block block = state.getBlock();
 

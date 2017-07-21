@@ -163,7 +163,7 @@ public class WillowTreeGenerator extends BaseTreeGenerator
                         IBlockState iblockstate1 = worldIn.getBlockState(upN);
                         Block block2 = iblockstate1.getBlock();
 
-                        if (block2.isAir(iblockstate1, worldIn, upN) || block2.isLeaves(iblockstate1, worldIn, upN) || block2 == Blocks.FLOWING_WATER || block2 == Blocks.WATER)
+                        if (block2.isAir(iblockstate1, worldIn, upN) || block2.isLeaves(iblockstate1, worldIn, upN) || block2.isReplaceable(worldIn, upN) || block2 == Blocks.FLOWING_WATER || block2 == Blocks.WATER)
                         {
                             this.setBlockAndMetadata(worldIn, position.up(l1), this.log);
                         }

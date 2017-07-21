@@ -67,13 +67,13 @@ public class GrassColorizer implements IResourceManagerReloadListener
                 grassColor = biome.getGrassColorAtPos(mutableblockpos);
                 break;
             case BLUEGRASS:
-                temp = MathHelper.clamp_float(biome.getFloatTemperature(pos), 0.0F, 1.0F);
-                rainfall = MathHelper.clamp_float(biome.getRainfall(), 0.0F, 1.0F);
+                temp = MathHelper.clamp(biome.getFloatTemperature(pos), 0.0F, 1.0F);
+                rainfall = MathHelper.clamp(biome.getRainfall(), 0.0F, 1.0F);
                 grassColor = GrassColorizer.getBlueGrassColor(temp, rainfall);
                 break;
             case AUTUMNAL:
-                temp = MathHelper.clamp_float(biome.getFloatTemperature(pos), 0.0F, 1.0F);
-                rainfall = MathHelper.clamp_float(biome.getRainfall(), 0.0F, 1.0F);
+                temp = MathHelper.clamp(biome.getFloatTemperature(pos), 0.0F, 1.0F);
+                rainfall = MathHelper.clamp(biome.getRainfall(), 0.0F, 1.0F);
                 grassColor = GrassColorizer.getOrangeGrassColor(temp, rainfall);
                 break;
             default:
