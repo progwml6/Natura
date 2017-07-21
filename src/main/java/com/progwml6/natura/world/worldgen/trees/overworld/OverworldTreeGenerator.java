@@ -14,8 +14,8 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldType;
-import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraft.world.chunk.IChunkProvider;
+import net.minecraft.world.gen.IChunkGenerator;
 
 public class OverworldTreeGenerator extends BaseTreeGenerator
 {
@@ -229,7 +229,7 @@ public class OverworldTreeGenerator extends BaseTreeGenerator
             IBlockState state = world.getBlockState(blockpos);
             Block block = state.getBlock();
 
-            if (block.isAir(state, world, blockpos) || block == null || block.isLeaves(state, world, blockpos))
+            if (block == null || block.isAir(state, world, pos) || block.isLeaves(state, world, pos) || block.isReplaceable(world, pos))
             {
                 world.setBlockState(blockpos, this.log, 2);
             }

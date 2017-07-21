@@ -10,8 +10,8 @@ import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
-import net.minecraft.world.chunk.IChunkGenerator;
 import net.minecraft.world.chunk.IChunkProvider;
+import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraft.world.gen.feature.WorldGenMinable;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.BiomeDictionary.Type;
@@ -42,7 +42,7 @@ public class NetherMinableGenerator implements IWorldGenerator
     {
         this.generateNether(random, chunkX, chunkZ, world);
 
-        world.getChunkFromChunkCoords(chunkX, chunkZ).setChunkModified();
+        world.getChunkFromChunkCoords(chunkX, chunkZ).markDirty();
     }
 
     public void generateNether(Random random, int chunkX, int chunkZ, World world)
@@ -64,7 +64,7 @@ public class NetherMinableGenerator implements IWorldGenerator
 
         if (this.shouldGenerateInDimension(world.provider.getDimension()))
         {
-            if (BiomeDictionary.isBiomeOfType(biome, Type.NETHER))
+            if (BiomeDictionary.hasType(biome, Type.NETHER))
             {
                 if (Config.generateTaintedSoil)
                 {
