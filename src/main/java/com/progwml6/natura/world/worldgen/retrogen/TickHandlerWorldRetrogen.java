@@ -13,6 +13,7 @@ import com.progwml6.natura.world.worldgen.CloudGenerator;
 import com.progwml6.natura.world.worldgen.CropGenerator;
 import com.progwml6.natura.world.worldgen.GlowshroomGenerator;
 import com.progwml6.natura.world.worldgen.NetherBerryBushesGenerator;
+import com.progwml6.natura.world.worldgen.NetherMinableGenerator;
 import com.progwml6.natura.world.worldgen.NetherTreesGenerator;
 import com.progwml6.natura.world.worldgen.OverworldBerryBushesGenerator;
 import com.progwml6.natura.world.worldgen.OverworldTreesGenerator;
@@ -42,6 +43,7 @@ public class TickHandlerWorldRetrogen
     private NetherBerryBushesGenerator netherBerryBushesGenerator;
     private GlowshroomGenerator glowshroomGenerator;
     private VineGenerator vineGenerator;
+    private NetherMinableGenerator netherMineableGenerator;
     //@formatter:on
 
     private final LinkedListMultimap<Integer, ChunkCoords> chunkRegenList = LinkedListMultimap.create();
@@ -64,6 +66,7 @@ public class TickHandlerWorldRetrogen
             netherBerryBushesGenerator = new NetherBerryBushesGenerator();
             glowshroomGenerator = new GlowshroomGenerator();
             vineGenerator = new VineGenerator();
+            netherMineableGenerator = new NetherMinableGenerator();
         }
     }
 
@@ -84,6 +87,7 @@ public class TickHandlerWorldRetrogen
             if (!chunkList.isEmpty())
             {
                 ChunkCoords coords = chunkList.get(0);
+
                 chunkList.remove(0);
 
                 // This bit is from FML's GameRegistry.generateWorld where the seed is constructed.
@@ -91,16 +95,19 @@ public class TickHandlerWorldRetrogen
                 Random random = new Random(worldSeed);
                 long xSeed = random.nextLong() >> 2 + 1L;
                 long zSeed = random.nextLong() >> 2 + 1L;
+
                 random.setSeed(xSeed * coords.xCoord + zSeed * coords.zCoord ^ worldSeed);
 
                 if (Natura.pulseManager.isPulseLoaded(NaturaOverworld.PulseId))
                 {
                     this.overworldTreesGenerator.retroGen(random, coords.xCoord, coords.zCoord, world);
                     this.overworldBerryBushesGenerator.retroGen(random, coords.xCoord, coords.zCoord, world);
+
                     if (Config.enableCloudBlocks)
                     {
                         this.cloudGenerator.retroGen(random, coords.xCoord, coords.zCoord, world);
                     }
+
                     this.cropGenerator.retroGen(random, coords.xCoord, coords.zCoord, world);
                 }
 
@@ -110,6 +117,7 @@ public class TickHandlerWorldRetrogen
                     this.netherBerryBushesGenerator.retroGen(random, coords.xCoord, coords.zCoord, world);
                     this.glowshroomGenerator.retroGen(random, coords.xCoord, coords.zCoord, world);
                     this.vineGenerator.retroGen(random, coords.xCoord, coords.zCoord, world);
+                    this.netherMineableGenerator.retroGen(random, coords.xCoord, coords.zCoord, world);
                 }
             }
         }
