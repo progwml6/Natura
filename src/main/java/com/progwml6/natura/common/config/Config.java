@@ -6,7 +6,6 @@ import com.progwml6.natura.library.Util;
 
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
-import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import slimeknights.mantle.pulsar.config.ForgeCFG;
 
@@ -46,12 +45,6 @@ public final class Config
         doRetrogen = configFile.get(RETROGEN, "Retroactive Generation", doRetrogen).getBoolean(doRetrogen);
         // Retrogen End
 
-        boolean BoP = false;
-        if (Loader.isModLoaded("BiomesOPlenty"))
-        {
-            BoP = true;
-        }
-
         babyHeatscarMinimum = configFile.get(MOB_CHANGES, "Minimum Baby Heatscar Spiders on Spider Death", babyHeatscarMinimum).getInt(babyHeatscarMinimum);
         if (babyHeatscarMinimum < 0)
         {
@@ -64,7 +57,6 @@ public final class Config
             babyHeatscarMaximum = 0;
         }
 
-        overrideNether = configFile.get(ENABLE_DISABLE, "Override Nether", !BoP).getBoolean(!BoP);
         canRespawnInNether = configFile.get(ENABLE_DISABLE, "Obelisks let players respawn in the Nether", canRespawnInNether).getBoolean(canRespawnInNether);
 
         // Trees Start
@@ -204,6 +196,17 @@ public final class Config
         ashSpawnRange = configFile.get(WORLDGEN, "Ash Cloud Spawn Range", ashSpawnRange).getInt(ashSpawnRange);
         // Cloud End
 
+        // Mineable Start
+        generateTaintedSoil = configFile.get(ENABLE_DISABLE, "Generate Tained Soil", generateTaintedSoil).getBoolean(generateTaintedSoil);
+        generateHeatSand = configFile.get(ENABLE_DISABLE, "Generate Heat Sand", generateHeatSand).getBoolean(generateHeatSand);
+
+        tainedSoilClusterCount = configFile.get(WORLDGEN, "Tainted Soil Cluster Count", tainedSoilClusterCount).getInt(tainedSoilClusterCount);
+        heatSandClusterCount = configFile.get(WORLDGEN, "Heat Sand Cluster Count", heatSandClusterCount).getInt(heatSandClusterCount);
+
+        tainedSoilClusterSize = configFile.get(WORLDGEN, "Tainted Soil Cluster Size", tainedSoilClusterSize).getInt(tainedSoilClusterSize);
+        heatSandClusterSize = configFile.get(WORLDGEN, "Heat Sand Cluster Size", heatSandClusterSize).getInt(heatSandClusterSize);
+        // Mineable End
+
         thornSpawnRarity = configFile.get(WORLDGEN, "Thornvines Spawn Rarity", thornSpawnRarity).getInt(thornSpawnRarity);
 
         enableHeatscarSpider = configFile.get(ENTITIES, "Enable Heatscar Spiders", enableHeatscarSpider).getBoolean(enableHeatscarSpider);
@@ -213,11 +216,13 @@ public final class Config
 
         // save changes if any
         boolean changed = false;
+
         if (configFile.hasChanged())
         {
             configFile.save();
             changed = true;
         }
+
         return changed;
     }
 
@@ -264,7 +269,6 @@ public final class Config
     public static int seaLevel = 64;
     public static int flatSeaLevel = 1;
 
-    public static boolean overrideNether = true;
     public static boolean canRespawnInNether = true;
 
     // Trees Start
@@ -336,10 +340,22 @@ public final class Config
     public static int stingberrySpawnRange = 100;
     // Berries End
 
-    //Overworld
+    // Mineables Start
+    public static boolean generateTaintedSoil = true;
+    public static boolean generateHeatSand = true;
+    
+    public static int tainedSoilClusterCount = 4;
+    public static int heatSandClusterCount = 4;
+
+    public static int tainedSoilClusterSize = 33;
+    public static int heatSandClusterSize = 33;
+    // Mineables End
+
+    // Overworld Start
     public static boolean generateBarley = true;
     public static boolean generateCotton = true;
     public static boolean generateBluebells = true;
+    // Overworld End
 
     public static boolean generateGreenglowshroom = true;
     public static boolean generatePurpleglowshroom = true;

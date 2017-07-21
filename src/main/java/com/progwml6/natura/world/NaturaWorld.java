@@ -7,19 +7,17 @@ import com.progwml6.natura.common.CommonProxy;
 import com.progwml6.natura.common.NaturaPulse;
 import com.progwml6.natura.common.config.Config;
 import com.progwml6.natura.library.Util;
-import com.progwml6.natura.world.dimension.WorldProviderNetherite;
 import com.progwml6.natura.world.worldgen.CloudGenerator;
 import com.progwml6.natura.world.worldgen.CropGenerator;
 import com.progwml6.natura.world.worldgen.GlowshroomGenerator;
 import com.progwml6.natura.world.worldgen.NetherBerryBushesGenerator;
+import com.progwml6.natura.world.worldgen.NetherMinableGenerator;
 import com.progwml6.natura.world.worldgen.NetherTreesGenerator;
 import com.progwml6.natura.world.worldgen.OverworldBerryBushesGenerator;
 import com.progwml6.natura.world.worldgen.OverworldTreesGenerator;
 import com.progwml6.natura.world.worldgen.VineGenerator;
 import com.progwml6.natura.world.worldgen.retrogen.TickHandlerWorldRetrogen;
 
-import net.minecraft.world.DimensionType;
-import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -74,11 +72,7 @@ public class NaturaWorld extends NaturaPulse
             GameRegistry.registerWorldGenerator(GlowshroomGenerator.INSTANCE, 0);
             GameRegistry.registerWorldGenerator(VineGenerator.INSTANCE, 0);
 
-            if (Config.overrideNether)
-            {
-                DimensionManager.unregisterDimension(-1);
-                DimensionManager.registerDimension(-1, DimensionType.register("Nether", "_nether", -1, WorldProviderNetherite.class, false));
-            }
+            GameRegistry.registerWorldGenerator(NetherMinableGenerator.INSTANCE, 0);
         }
 
         MinecraftForge.EVENT_BUS.register(TickHandlerWorldRetrogen.INSTANCE);
