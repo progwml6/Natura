@@ -264,7 +264,7 @@ public class NaturaCommons extends NaturaPulse
 
         GameRegistry.addRecipe(new ItemStack(Items.WHEAT_SEEDS, 9, 0), "s", 's', wheat_seed_bag.copy());
         GameRegistry.addRecipe(new ItemStack(Items.POTATO, 9, 0), "s", 's', potatoes_seed_bag.copy());
-        GameRegistry.addRecipe(new ItemStack(Items.CARROT, 9, 0), "s", 's', potatoes_seed_bag.copy());
+        GameRegistry.addRecipe(new ItemStack(Items.CARROT, 9, 0), "s", 's', carrots_seed_bag.copy());
         GameRegistry.addRecipe(new ItemStack(Items.NETHER_WART, 9, 0), "s", 's', nether_wart_seed_bag.copy());
         GameRegistry.addRecipe(new ItemStack(Items.DYE, 9, 15), "s", 's', boneMealBag);
 
