@@ -29,7 +29,10 @@ public class DecorativeClientProxy extends ClientProxy
     {
         for (Block block : NaturaDecorative.fenceGates)
         {
-            ModelLoader.setCustomStateMapper(block, (new StateMap.Builder()).ignore(BlockFenceGate.POWERED).build());
+            if (block != null)
+            {
+                ModelLoader.setCustomStateMapper(block, (new StateMap.Builder()).ignore(BlockFenceGate.POWERED).build());
+            }
         }
 
         for (Block block : NaturaDecorative.buttons)
