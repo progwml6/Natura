@@ -229,7 +229,7 @@ public class OverworldTreeGenerator extends BaseTreeGenerator
             IBlockState state = world.getBlockState(blockpos);
             Block block = state.getBlock();
 
-            if (block == null || block.isAir(state, world, pos) || block.isLeaves(state, world, pos) || block.isReplaceable(world, pos))
+            if (block == null || block.isAir(state, world, blockpos) || block.isLeaves(state, world, blockpos) || block.isReplaceable(world, blockpos))
             {
                 world.setBlockState(blockpos, this.log, 2);
             }

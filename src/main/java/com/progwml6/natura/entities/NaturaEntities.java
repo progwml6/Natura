@@ -19,14 +19,16 @@ import com.progwml6.natura.shared.NaturaCommons;
 
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.item.crafting.FurnaceRecipes;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.storage.loot.LootTableList;
 import net.minecraftforge.common.BiomeDictionary;
+import net.minecraftforge.event.RegistryEvent.Register;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.registry.EntityEntry;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
 import slimeknights.mantle.pulsar.pulse.Pulse;
 
@@ -40,21 +42,25 @@ public class NaturaEntities extends NaturaPulse
     @SidedProxy(clientSide = "com.progwml6.natura.entities.EntitiesClientProxy", serverSide = "com.progwml6.natura.common.CommonProxy")
     public static CommonProxy proxy;
 
-    @Subscribe
-    public void preInit(FMLPreInitializationEvent event)
+    @SubscribeEvent
+    public void registerEntities(Register<EntityEntry> event)
     {
-        EntityRegistry.registerModEntity(new ResourceLocation("natura", "imp"), EntityImp.class, "imp", EntityIDs.IMP, Natura.instance, 32, 5, true, 0xF29735, 0x2E1F10);
+        EntityRegistry.registerModEntity(Util.getResource("imp"), EntityImp.class, "imp", EntityIDs.IMP, Natura.instance, 32, 5, true, 0xF29735, 0x2E1F10);
         LootTableList.register(EntityImp.LOOT_TABLE);
 
         if (Config.enableHeatscarSpider)
         {
-            EntityRegistry.registerModEntity(new ResourceLocation("natura", "heatscarspider"), EntityHeatscarSpider.class, "heatscarspider", EntityIDs.HEATSCARSPIDER, Natura.instance, 32, 5, true, 0xE64D10, 0x57B1BD);
-            EntityRegistry.registerModEntity(new ResourceLocation("natura", "babyheatscarspider"), EntityBabyHeatscarSpider.class, "babyheatscarspider", EntityIDs.BABYHEATSCARSPIDER, Natura.instance, 32, 5, true, 0xE64D10, 0x57B1BD);
+            EntityRegistry.registerModEntity(Util.getResource("heatscarspider"), EntityHeatscarSpider.class, "heatscarspider", EntityIDs.HEATSCARSPIDER, Natura.instance, 32, 5, true, 0xE64D10, 0x57B1BD);
+            EntityRegistry.registerModEntity(Util.getResource("babyheatscarspider"), EntityBabyHeatscarSpider.class, "babyheatscarspider", EntityIDs.BABYHEATSCARSPIDER, Natura.instance, 32, 5, true, 0xE64D10, 0x57B1BD);
             LootTableList.register(EntityHeatscarSpider.LOOT_TABLE);
         }
 
-        EntityRegistry.registerModEntity(new ResourceLocation("natura", "nitrocreeper"), EntityNitroCreeper.class, "nitrocreeper", EntityIDs.NITROCREEPER, Natura.instance, 64, 5, true, 0xF73E6C, 0x9B5004);
+        EntityRegistry.registerModEntity(Util.getResource("nitrocreeper"), EntityNitroCreeper.class, "nitrocreeper", EntityIDs.NITROCREEPER, Natura.instance, 64, 5, true, 0xF73E6C, 0x9B5004);
+    }
 
+    @Subscribe
+    public void preInit(FMLPreInitializationEvent event)
+    {
         proxy.preInit();
     }
 
@@ -63,7 +69,6 @@ public class NaturaEntities extends NaturaPulse
     {
         proxy.init();
 
-        this.registerRecipes();
         this.registerSmelting();
     }
 
@@ -86,11 +91,6 @@ public class NaturaEntities extends NaturaPulse
         EntityRegistry.addSpawn(EntityNitroCreeper.class, 8, 4, 6, EnumCreatureType.MONSTER, biomes);
 
         proxy.postInit();
-    }
-
-    private void registerRecipes()
-    {
-
     }
 
     private void registerSmelting()
