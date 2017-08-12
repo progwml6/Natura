@@ -177,7 +177,10 @@ public class NaturaTools extends NaturaPulse
                 addShapedRecipe(new ItemStack(tools[i][2], 1, 0), "#", "s", "s", '#', new ItemStack(NaturaNether.netherPlanks, 1, plankMeta[i]), 's', stickItem[i]);
                 addShapedRecipe(new ItemStack(tools[i][3], 1, 0), "##", "#s", " s", '#', new ItemStack(NaturaNether.netherPlanks, 1, plankMeta[i]), 's', stickItem[i]);
                 addShapedRecipe(new ItemStack(tools[i][4], 1, 0), "##", " s", " s", '#', new ItemStack(NaturaNether.netherPlanks, 1, plankMeta[i]), 's', stickItem[i]);
-                addShapedRecipe(new ItemStack(tools[i][5], 1, 0), "#s ", "# s", "#s ", '#', NaturaCommons.flameString.copy(), 's', stickItem[i]);
+                if (isEntitiesLoaded())
+                {
+                    addShapedRecipe(new ItemStack(tools[i][5], 1, 0), "#s ", "# s", "#s ", '#', NaturaCommons.flameString.copy(), 's', stickItem[i]);
+                }
             }
 
             GameRegistry.addRecipe(new ItemStack(netherquartzSword, 1, 0), "#", "#", "s", '#', new ItemStack(Blocks.QUARTZ_BLOCK, 1, OreDictionary.WILDCARD_VALUE), 's', NaturaCommons.ghostwood_stick.copy());
