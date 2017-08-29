@@ -241,7 +241,7 @@ public class TileEntityNetherrackFurnace extends TileEntityLockable implements I
             {
                 if (!this.isBurning() && this.canSmelt())
                 {
-                    this.furnaceBurnTime = getItemBurnTime(this.furnaceItemStacks[1]);
+                    this.furnaceBurnTime = getItemBurnTime(this.furnaceItemStacks[1]) * 2;
                     this.currentItemBurnTime = this.furnaceBurnTime;
 
                     if (this.isBurning())
