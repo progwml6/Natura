@@ -92,7 +92,7 @@ task buildInfo {
 version = "${minecraft_version}-${mod_version}.${project.buildInfo.buildNum}"
 
 minecraft {
-    version = minecraft_version + "-" + forge_version
+    version = minecraft_version_patch + "-" + forge_version
     mappings = mappings_version
     runDir = "run"
     replace '${version}', project.version
@@ -111,6 +111,10 @@ processResources
     from(sourceSets.main.resources.srcDirs) {
         exclude '**/*.info'
     }
+}
+
+jar {
+    finalizedBy reobfJar
 }
 
 // because the normal output has been made to be obfuscated
