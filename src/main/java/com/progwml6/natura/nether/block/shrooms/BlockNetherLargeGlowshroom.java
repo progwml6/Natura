@@ -125,6 +125,19 @@ public class BlockNetherLargeGlowshroom extends Block
 
     @Override
     @Deprecated
+    protected boolean canSilkHarvest()
+    {
+        return true;
+    }
+
+    @Override
+    protected ItemStack getSilkTouchDrop(IBlockState state)
+    {
+        return new ItemStack(Item.getItemFromBlock(this), 1, 0);
+    }
+
+    @Override
+    @Deprecated
     @SideOnly(Side.CLIENT)
     public boolean shouldSideBeRendered(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side)
     {
