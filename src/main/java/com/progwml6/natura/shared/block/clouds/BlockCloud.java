@@ -69,11 +69,14 @@ public class BlockCloud extends EnumBlock<BlockCloud.CloudType>
     {
         ItemStack itemstack = playerIn.getHeldItem(hand);
 
-        if (state.getValue(BlockCloud.TYPE) == BlockCloud.CloudType.SULFUR && itemstack.getItem() != Items.AIR && itemstack.getItem() == Items.FLINT_AND_STEEL)
+        if (!itemstack.isEmpty())
         {
-            worldIn.setBlockToAir(pos);
-            this.explode(worldIn, pos, 1, playerIn);
-            return true;
+            if (state.getValue(BlockCloud.TYPE) == BlockCloud.CloudType.SULFUR && itemstack.getItem() != Items.AIR && itemstack.getItem() == Items.FLINT_AND_STEEL)
+            {
+                worldIn.setBlockToAir(pos);
+                this.explode(worldIn, pos, 1, playerIn);
+                return true;
+            }
         }
 
         return super.onBlockActivated(worldIn, pos, state, playerIn, hand, facing, hitX, hitY, hitZ);
