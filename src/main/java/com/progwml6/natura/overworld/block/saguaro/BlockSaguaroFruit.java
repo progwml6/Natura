@@ -1,5 +1,7 @@
 package com.progwml6.natura.overworld.block.saguaro;
 
+import java.util.Random;
+
 import com.progwml6.natura.library.NaturaRegistry;
 import com.progwml6.natura.overworld.NaturaOverworld;
 
@@ -11,6 +13,7 @@ import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.Mirror;
@@ -96,6 +99,12 @@ public class BlockSaguaroFruit extends Block
         case EAST:
             return EAST_AABB;
         }
+    }
+
+    @Override
+    public Item getItemDropped(IBlockState state, Random rand, int fortune)
+    {
+        return NaturaOverworld.saguaroFruitItem;
     }
 
     @Override
