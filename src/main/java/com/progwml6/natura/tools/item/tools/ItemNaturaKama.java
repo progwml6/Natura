@@ -56,11 +56,11 @@ public class ItemNaturaKama extends ItemSword
     }
 
     @Override
-    public float getStrVsBlock(ItemStack stack, IBlockState state)
+    public float getDestroySpeed(ItemStack stack, IBlockState state)
     {
         Block block = state.getBlock();
 
-        return block != Blocks.WEB && state.getMaterial() != Material.LEAVES ? (block == Blocks.WOOL ? 5.0F : super.getStrVsBlock(stack, state)) : 15.0F;
+        return block != Blocks.WEB && state.getMaterial() != Material.LEAVES ? (block == Blocks.WOOL ? 5.0F : super.getDestroySpeed(stack, state)) : 15.0F;
     }
 
     /**

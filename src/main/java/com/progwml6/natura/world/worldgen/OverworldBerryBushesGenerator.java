@@ -9,8 +9,8 @@ import com.progwml6.natura.world.worldgen.berry.overworld.OverworldBerryBushGene
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
-import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraft.world.chunk.IChunkProvider;
+import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.BiomeDictionary.Type;
 import net.minecraftforge.fml.common.IWorldGenerator;
@@ -129,7 +129,7 @@ public class OverworldBerryBushesGenerator implements IWorldGenerator
 
     public boolean goodClimate(Biome biome, float minTemp, float maxTemp, float minRain, float maxRain)
     {
-        float temp = biome.getTemperature();
+        float temp = biome.getDefaultTemperature();
         float rain = biome.getRainfall();
 
         if (minTemp <= temp && temp <= maxTemp && minRain <= rain && rain <= maxRain)

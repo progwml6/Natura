@@ -74,7 +74,7 @@ public class NetherClientProxy extends ClientProxy
         minecraft.getItemColors().registerItemColorHandler(new IItemColor()
         {
             @Override
-            public int getColorFromItemstack(@Nonnull ItemStack stack, int tintIndex)
+            public int colorMultiplier(@Nonnull ItemStack stack, int tintIndex)
             {
                 @SuppressWarnings("deprecation")
                 IBlockState iblockstate = ((ItemBlock) stack.getItem()).getBlock().getStateFromMeta(stack.getMetadata());
