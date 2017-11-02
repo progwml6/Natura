@@ -151,7 +151,7 @@ public class BlockRedwoodSapling extends BlockSapling
         }
 
         // replace saplings with air
-        worldIn.setBlockToAir(pos);
+        this.replaceBlocksWithAir(worldIn, pos);
 
         // try generating
         gen.generateTree(rand, worldIn, pos);
@@ -190,6 +190,23 @@ public class BlockRedwoodSapling extends BlockSapling
     {
         IBlockState iblockstate = worldIn.getBlockState(pos);
         return iblockstate.getBlock() == this && iblockstate.getValue(FOLIAGE) == type;
+    }
+
+    /**
+     * Replaces redwood sapling's with air
+     */
+    public void replaceBlocksWithAir(World worldIn, BlockPos pos)
+    {
+        for (int x = -3; x <= 3; x++)
+        {
+            for (int z = -3; z <= 3; z++)
+            {
+                if (this.isRedwoodComplete(worldIn, pos.add(x, 0, z), SaplingType.REDWOOD))
+                {
+                    worldIn.setBlockToAir(pos.add(x, 0, z));
+                }
+            }
+        }
     }
 
     public enum SaplingType implements IStringSerializable, EnumBlock.IEnumMeta
