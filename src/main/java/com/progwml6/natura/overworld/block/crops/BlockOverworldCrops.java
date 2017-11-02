@@ -19,6 +19,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.common.ForgeHooks;
 
 public abstract class BlockOverworldCrops extends BlockBush implements IGrowable
 {
@@ -79,9 +80,11 @@ public abstract class BlockOverworldCrops extends BlockBush implements IGrowable
             {
                 float f = getGrowthChance(this, worldIn, pos);
 
-                if (rand.nextInt((int) (25.0F / f) + 1) == 0)
+                if (ForgeHooks.onCropsGrowPre(worldIn, pos, state, rand.nextInt((int) (25.0F / f) + 1) == 0))
                 {
                     worldIn.setBlockState(pos, this.withAge(i + 1), 2);
+
+                    ForgeHooks.onCropsGrowPost(worldIn, pos, state, worldIn.getBlockState(pos));
                 }
             }
         }
