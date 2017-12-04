@@ -6,6 +6,7 @@
         }
     ],
     "type": "minecraft:crafting_shaped",
+    "group": "natura:overworld_doors",
     "pattern": [
         "AA",
         "AA",
@@ -19,6 +20,7 @@
     },
     "result": {
         "item": "natura:overworld_doors",
-        "data": 2
+        "data": 2,
+        "count": 3
     }
 }
