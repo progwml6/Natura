@@ -10,6 +10,7 @@
         }
     ],
     "type": "minecraft:crafting_shaped",
+    "group": "natura:nether_fence_gates",
     "pattern": [
         "ABA",
         "ABA"

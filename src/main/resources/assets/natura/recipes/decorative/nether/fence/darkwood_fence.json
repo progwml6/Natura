@@ -10,6 +10,7 @@
         }
     ],
     "type": "minecraft:crafting_shaped",
+    "group": "natura:nether_fences",
     "pattern": [
         "AAA",
         "AAA"

@@ -6,6 +6,7 @@
         }
     ],
     "type": "minecraft:crafting_shapeless",
+    "group": "natura:nether_glowshroom_stews",
     "ingredients": [
         {
             "item": "minecraft:bowl"
