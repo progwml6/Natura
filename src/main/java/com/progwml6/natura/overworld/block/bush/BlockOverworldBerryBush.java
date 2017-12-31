@@ -79,7 +79,7 @@ public class BlockOverworldBerryBush extends BlockEnumBerryBush
     @Override
     public boolean canSustainPlant(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing direction, net.minecraftforge.common.IPlantable plantable)
     {
-        if (plantable instanceof BlockOverworldBerryBush)
+        if (plantable instanceof BlockOverworldBerryBush && state.getPropertyKeys().contains(AGE))
         {
             return (state.getValue(AGE) > 2);
         }
