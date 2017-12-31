@@ -6,13 +6,12 @@ import java.util.Random;
 import javax.annotation.Nonnull;
 
 import com.google.common.collect.Lists;
+import com.progwml6.natura.common.block.base.BlockLeavesBase;
 import com.progwml6.natura.library.NaturaRegistry;
 import com.progwml6.natura.overworld.NaturaOverworld;
 import com.progwml6.natura.overworld.block.logs.BlockOverworldLog;
 import com.progwml6.natura.overworld.block.logs.BlockOverworldLog.LogType;
 
-import net.minecraft.block.BlockLeaves;
-import net.minecraft.block.BlockPlanks;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
@@ -28,7 +27,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class BlockOverworldLeaves extends BlockLeaves
+public class BlockOverworldLeaves extends BlockLeavesBase
 {
     public BlockOverworldLeaves()
     {
@@ -53,29 +52,6 @@ public class BlockOverworldLeaves extends BlockLeaves
         {
             list.add(new ItemStack(this, 1, this.getMetaFromState(this.getDefaultState().withProperty(BlockOverworldLog.TYPE, type))));
         }
-    }
-
-    @Override
-    public boolean isOpaqueCube(IBlockState state)
-    {
-        return Blocks.LEAVES.isOpaqueCube(state);
-    }
-
-    @Nonnull
-    @SideOnly(Side.CLIENT)
-    @Override
-    public BlockRenderLayer getBlockLayer()
-    {
-        return Blocks.LEAVES.getBlockLayer();
-    }
-
-    @Override
-    public boolean shouldSideBeRendered(@Nonnull IBlockState blockState, @Nonnull IBlockAccess blockAccess, @Nonnull BlockPos pos, @Nonnull EnumFacing side)
-    {
-        // isOpaqueCube returns !leavesFancy to us. We have to fix the variable before calling super
-        this.leavesFancy = !Blocks.LEAVES.isOpaqueCube(blockState);
-
-        return super.shouldSideBeRendered(blockState, blockAccess, pos, side);
     }
 
     @Override
@@ -151,13 +127,6 @@ public class BlockOverworldLeaves extends BlockLeaves
         return meta;
     }
 
-    @Nonnull
-    @Override
-    public BlockPlanks.EnumType getWoodType(int meta)
-    {
-        throw new UnsupportedOperationException(); // unused by our code.
-    }
-
     @Override
     public List<ItemStack> onSheared(ItemStack item, IBlockAccess world, BlockPos pos, int fortune)
     {
@@ -171,4 +140,26 @@ public class BlockOverworldLeaves extends BlockLeaves
         return true;
     }
 
+    /**
+     * Used to determine ambient occlusion and culling when rebuilding chunks for render
+     */
+    @Override
+    public boolean isOpaqueCube(IBlockState state)
+    {
+        return !NaturaOverworld.proxy.fancyGraphicsEnabled();
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public BlockRenderLayer getBlockLayer()
+    {
+        return NaturaOverworld.proxy.fancyGraphicsEnabled() ? BlockRenderLayer.CUTOUT_MIPPED : BlockRenderLayer.SOLID;
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public boolean shouldSideBeRendered(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side)
+    {
+        return !NaturaOverworld.proxy.fancyGraphicsEnabled() && blockAccess.getBlockState(pos.offset(side)).getBlock() == this ? false : super.shouldSideBeRendered(blockState, blockAccess, pos, side);
+    }
 }

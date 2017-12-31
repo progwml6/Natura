@@ -8,6 +8,7 @@ import javax.annotation.Nonnull;
 import com.progwml6.natura.common.ClientProxy;
 import com.progwml6.natura.common.block.BlockEnumBerryBush;
 import com.progwml6.natura.common.block.BlockGrassStairs;
+import com.progwml6.natura.common.block.base.BlockLeavesBase;
 import com.progwml6.natura.common.client.GrassColorizer;
 import com.progwml6.natura.common.client.LeavesColorizer;
 import com.progwml6.natura.overworld.block.crops.BlockNaturaBarley;
@@ -22,7 +23,6 @@ import com.progwml6.natura.overworld.block.saplings.BlockOverworldSapling2;
 import com.progwml6.natura.overworld.block.saplings.BlockRedwoodSapling;
 
 import net.minecraft.block.BlockDoor;
-import net.minecraft.block.BlockLeaves;
 import net.minecraft.block.BlockSapling;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
@@ -155,9 +155,9 @@ public class OverworldClientProxy extends ClientProxy
     protected void registerModels()
     {
         // blocks
-        ModelLoader.setCustomStateMapper(NaturaOverworld.overworldLeaves, (new StateMap.Builder()).ignore(BlockLeaves.CHECK_DECAY, BlockLeaves.DECAYABLE).build());
-        ModelLoader.setCustomStateMapper(NaturaOverworld.overworldLeaves2, (new StateMap.Builder()).ignore(BlockLeaves.CHECK_DECAY, BlockLeaves.DECAYABLE).build());
-        ModelLoader.setCustomStateMapper(NaturaOverworld.redwoodLeaves, (new StateMap.Builder()).ignore(BlockLeaves.CHECK_DECAY, BlockLeaves.DECAYABLE).build());
+        ModelLoader.setCustomStateMapper(NaturaOverworld.overworldLeaves, (new StateMap.Builder()).ignore(BlockLeavesBase.CHECK_DECAY, BlockLeavesBase.DECAYABLE).build());
+        ModelLoader.setCustomStateMapper(NaturaOverworld.overworldLeaves2, (new StateMap.Builder()).ignore(BlockLeavesBase.CHECK_DECAY, BlockLeavesBase.DECAYABLE).build());
+        ModelLoader.setCustomStateMapper(NaturaOverworld.redwoodLeaves, (new StateMap.Builder()).ignore(BlockLeavesBase.CHECK_DECAY, BlockLeavesBase.DECAYABLE).build());
 
         ModelLoader.setCustomStateMapper(NaturaOverworld.overworldSapling, (new StateMap.Builder()).ignore(BlockOverworldSapling.STAGE, BlockSapling.TYPE).build());
         ModelLoader.setCustomStateMapper(NaturaOverworld.overworldSapling2, (new StateMap.Builder()).ignore(BlockOverworldSapling2.STAGE, BlockSapling.TYPE).build());
