@@ -545,10 +545,10 @@ item.natura.netherquartz_bow.name=Quartz Bow
 #   Entities    #
 #################
 
-entity.natura.imp.name=Imp
-entity.natura.heatscarspider.name=Heatscar Spider
-entity.natura.babyheatscarspider.name=Baby Heatscar Spider
-entity.natura.nitrocreeper.name=Nitro Creeper
+entity.imp.name=Imp
+entity.heatscarspider.name=Heatscar Spider
+entity.babyheatscarspider.name=Baby Heatscar Spider
+entity.nitrocreeper.name=Nitro Creeper
 
 ################
 #     GUIs     #
