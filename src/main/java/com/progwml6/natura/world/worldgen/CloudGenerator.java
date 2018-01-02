@@ -113,7 +113,7 @@ public class CloudGenerator implements IWorldGenerator
         {
             xSpawn = xPos + random.nextInt(16);
             ySpawn = random.nextInt(Config.cloudSpawnRange) + Config.cloudSpawnHeight;
-            zSpawn = xPos + random.nextInt(16);
+            zSpawn = zPos + random.nextInt(16);
             position = new BlockPos(xSpawn, ySpawn, zSpawn);
 
             int size = random.nextInt(12);
@@ -242,7 +242,7 @@ public class CloudGenerator implements IWorldGenerator
         if (Config.generateDarkClouds && biome == Biomes.SKY && world.provider.getDimension() == 1 && random.nextInt(4) == 0 && this.shouldGenerateInDimension(world.provider.getDimension(), Config.darkCloudBlacklist))
         {
             xSpawn = xPos + random.nextInt(16);
-            zSpawn = xPos + random.nextInt(16);
+            zSpawn = zPos + random.nextInt(16);
 
             for (int iter = 0; iter < Config.darkCloudSpawnRarity; iter++)
             {
