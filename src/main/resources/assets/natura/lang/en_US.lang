@@ -550,6 +550,11 @@ entity.heatscarspider.name=Heatscar Spider
 entity.babyheatscarspider.name=Baby Heatscar Spider
 entity.nitrocreeper.name=Nitro Creeper
 
+entity.natura.imp.name=Imp
+entity.natura.heatscarspider.name=Heatscar Spider
+entity.natura.babyheatscarspider.name=Baby Heatscar Spider
+entity.natura.nitrocreeper.name=Nitro Creeper
+
 ################
 #     GUIs     #
 ################
