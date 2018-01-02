@@ -62,12 +62,20 @@ sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 dependencies {
-    deobfCompile "slimeknights.mantle:Mantle:${minecraft_version}-${mantle_version}"
-    deobfCompile "slimeknights:TConstruct:${minecraft_version}-${tconstruct_version}"
+    deobfCompile ("slimeknights.mantle:Mantle:${minecraft_version}-${mantle_version}") {
+        transitive = false
+    }
+    deobfCompile ("slimeknights:TConstruct:${minecraft_version}-${tconstruct_version}") {
+        transitive = false
+    }
 
-    deobfCompile "mcp.mobius.waila:Hwyla:${hwyla_version}_1.12"
+    deobfCompile ("mcp.mobius.waila:Hwyla:${hwyla_version}_1.12") {
+        transitive = false
+    }
 
-    deobfCompile "mezz.jei:jei_${minecraft_version_patch}:${jei_version}"
+    deobfCompile ("mezz.jei:jei_${minecraft_version_patch}:${jei_version}") {
+        transitive = false
+    }
 
     //deobfCompile "MCMultiPart2:MCMultiPart-exp:${mcmultipart_version}"
 }
