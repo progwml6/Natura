@@ -11,8 +11,8 @@ import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldType;
-import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraft.world.chunk.IChunkProvider;
+import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraftforge.fml.common.IWorldGenerator;
 
 public class SaguaroGenerator implements IWorldGenerator
@@ -49,6 +49,17 @@ public class SaguaroGenerator implements IWorldGenerator
         if (this.findGround)
         {
             this.basePos = this.findGround(worldIn, position);
+            while (position.getY() > 1 && worldIn.isAirBlock(position) || worldIn.getBlockState(position).getBlock().isLeaves(worldIn.getBlockState(position), worldIn, position))
+            {
+                this.basePos = position.down();
+            }
+
+            if (!(blocksMatch(worldIn, position)))
+            {
+                return;
+            }
+
+            this.basePos = this.basePos.up();
         }
         else
         {
@@ -65,6 +76,20 @@ public class SaguaroGenerator implements IWorldGenerator
         {
             this.generateSaguaro();
             this.world = null; //Fix vanilla Mem leak, holds latest world
+        }
+    }
+
+    private boolean blocksMatch(World world, BlockPos pos)
+    {
+        Block underBlock = world.getBlockState(pos).getBlock();
+
+        if (!(underBlock == Blocks.SAND))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
         }
     }
 

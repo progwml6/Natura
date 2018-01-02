@@ -6,8 +6,8 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraft.world.chunk.IChunkProvider;
+import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraftforge.fml.common.IWorldGenerator;
 
 public class CloudsGenerator implements IWorldGenerator
@@ -37,14 +37,14 @@ public class CloudsGenerator implements IWorldGenerator
 
     public void generateCloud(Random random, World world, BlockPos pos)
     {
-        int rand = random.nextInt(3) - 1;
-        int rand1 = random.nextInt(3) - 1;
+        int xRand = random.nextInt(3) - 1;
+        int zRand = random.nextInt(3) - 1;
 
         for (int block = 0; block < this.cloudSize; block++)
         {
-            int xIter = pos.getX() + (random.nextInt(3) - 1) + rand;
+            int xIter = pos.getX() + (random.nextInt(3) - 1) + xRand;
             int yIter = pos.getY();
-            int zIter = pos.getZ() + (random.nextInt(3) - 1) + rand1;
+            int zIter = pos.getZ() + (random.nextInt(3) - 1) + zRand;
 
             if (random.nextBoolean() && !this.flatCloud || this.flatCloud && random.nextInt(10) == 0)
             {

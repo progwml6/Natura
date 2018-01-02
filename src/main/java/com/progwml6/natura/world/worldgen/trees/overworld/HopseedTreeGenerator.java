@@ -2,7 +2,6 @@ package com.progwml6.natura.world.worldgen.trees.overworld;
 
 import java.util.Random;
 
-import com.progwml6.natura.common.config.Config;
 import com.progwml6.natura.overworld.NaturaOverworld;
 import com.progwml6.natura.world.worldgen.trees.BaseTreeGenerator;
 
@@ -13,9 +12,8 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockPos.MutableBlockPos;
 import net.minecraft.world.World;
-import net.minecraft.world.WorldType;
-import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraft.world.chunk.IChunkProvider;
+import net.minecraft.world.gen.IChunkGenerator;
 
 public class HopseedTreeGenerator extends BaseTreeGenerator
 {
@@ -58,7 +56,10 @@ public class HopseedTreeGenerator extends BaseTreeGenerator
 
         if (this.seekHeight)
         {
-            position = this.findGround(worldIn, position);
+            while (position.getY() > 1 && worldIn.isAirBlock(position) || worldIn.getBlockState(position).getBlock().isLeaves(worldIn.getBlockState(position), worldIn, position))
+            {
+                position = position.down();
+            }
 
             if (position.getY() < 0)
             {
@@ -66,46 +67,55 @@ public class HopseedTreeGenerator extends BaseTreeGenerator
             }
         }
 
-        boolean flag = true;
+        if (!(blocksMatch(worldIn, position)))
+        {
+            return;
+        }
+
+        position = position.up();
+
+        boolean hasSpace = true;
 
         if (position.getY() >= 1 && position.getY() + height + 1 <= 256)
         {
-            for (int j = position.getY(); j <= position.getY() + 1 + height; ++j)
-            {
-                int k = 2;
+            int radius;
 
-                if (j == position.getY())
+            for (int y = position.getY(); y <= position.getY() + 1 + height; ++y)
+            {
+                radius = 1;
+
+                if (y == position.getY())
                 {
-                    k = 1;
+                    radius = 0;
                 }
 
-                if (j >= position.getY() + 1 + height - 2)
+                if (y >= position.getY() + 1 + height - 2)
                 {
-                    k = 2;
+                    radius = 2;
                 }
 
                 MutableBlockPos mutableblockpos = new MutableBlockPos();
 
-                for (int l = position.getX() - k; l <= position.getX() + k && flag; ++l)
+                for (int x = position.getX() - radius; x <= position.getX() + radius && hasSpace; ++x)
                 {
-                    for (int i1 = position.getZ() - k; i1 <= position.getZ() + k && flag; ++i1)
+                    for (int z = position.getZ() - radius; z <= position.getZ() + radius && hasSpace; ++z)
                     {
-                        if (j >= 0 && j < 256)
+                        if (y >= 0 && y < 256)
                         {
-                            if (!this.isReplaceable(worldIn, mutableblockpos.setPos(l, j, i1)))
+                            if (!this.isReplaceable(worldIn, mutableblockpos.setPos(x, y, z)))
                             {
-                                flag = false;
+                                hasSpace = false;
                             }
                         }
                         else
                         {
-                            flag = false;
+                            hasSpace = false;
                         }
                     }
                 }
             }
 
-            if (!flag)
+            if (!hasSpace)
             {
             }
             else
@@ -173,124 +183,82 @@ public class HopseedTreeGenerator extends BaseTreeGenerator
         }
     }
 
-    BlockPos findGround(World world, BlockPos pos)
+    private boolean blocksMatch(World world, BlockPos pos)
     {
-        if (world.getWorldType() == WorldType.FLAT && this.isSapling)
+        Block underBlock = world.getBlockState(pos).getBlock();
+
+        if (!(underBlock == Blocks.DIRT || underBlock == Blocks.GRASS))
         {
-            int returnHeight = 0;
-
-            boolean foundGround = false;
-
-            int height = Config.flatSeaLevel + 64;
-
-            do
-            {
-                height--;
-                BlockPos position = new BlockPos(pos.getX(), height, pos.getZ());
-
-                Block underBlock = world.getBlockState(position).getBlock();
-
-                if (underBlock == Blocks.DIRT || underBlock == Blocks.GRASS || height < Config.flatSeaLevel)
-                {
-                    returnHeight = height + 1;
-
-                    foundGround = true;
-                }
-            }
-            while (!foundGround);
-
-            return new BlockPos(pos.getX(), returnHeight, pos.getZ());
+            return true;
         }
         else
         {
-            int returnHeight = 0;
-
-            boolean foundGround = false;
-
-            int height = Config.seaLevel + 64;
-
-            do
-            {
-                height--;
-                BlockPos position = new BlockPos(pos.getX(), height, pos.getZ());
-
-                Block underBlock = world.getBlockState(position).getBlock();
-
-                if (underBlock == Blocks.DIRT || underBlock == Blocks.GRASS || height < Config.seaLevel)
-                {
-                    returnHeight = height + 1;
-
-                    foundGround = true;
-                }
-            }
-            while (!foundGround);
-
-            return new BlockPos(pos.getX(), returnHeight, pos.getZ());
+            return false;
         }
     }
 
-    private void growLogs(World worldIn, BlockPos position)
+    private void growLogs(World worldIn, BlockPos positionIn)
     {
-        this.setBlockAndMetadata(worldIn, position, this.log);
-        this.setBlockAndMetadata(worldIn, position.add(+1, 0, 0), this.log);
-        this.setBlockAndMetadata(worldIn, position.add(0, 0, +1), this.log);
-        this.setBlockAndMetadata(worldIn, position.add(+1, 0, +1), this.log);
+        this.setBlockAndMetadata(worldIn, positionIn, this.log);
+        this.setBlockAndMetadata(worldIn, positionIn.add(+1, 0, 0), this.log);
+        this.setBlockAndMetadata(worldIn, positionIn.add(0, 0, +1), this.log);
+        this.setBlockAndMetadata(worldIn, positionIn.add(+1, 0, +1), this.log);
 
-        this.setBlockAndMetadata(worldIn, position.add(0, +1, 0), this.log);
-        this.setBlockAndMetadata(worldIn, position.add(+1, +1, 0), this.log);
-        this.setBlockAndMetadata(worldIn, position.add(0, +1, +1), this.log);
-        this.setBlockAndMetadata(worldIn, position.add(+1, +1, +1), this.log);
+        this.setBlockAndMetadata(worldIn, positionIn.add(0, +1, 0), this.log);
+        this.setBlockAndMetadata(worldIn, positionIn.add(+1, +1, 0), this.log);
+        this.setBlockAndMetadata(worldIn, positionIn.add(0, +1, +1), this.log);
+        this.setBlockAndMetadata(worldIn, positionIn.add(+1, +1, +1), this.log);
     }
 
-    protected void growLeaves(World world, Random random, BlockPos pos, int height)
+    protected void growLeaves(World worldIn, Random random, BlockPos positionIn, int height)
     {
-        for (int y = pos.getY() - 2 + height; y <= pos.getY() + height; ++y)
+        for (int y = positionIn.getY() - 2 + height; y <= positionIn.getY() + height; ++y)
         {
-            int subract = y - (pos.getY() + height);
+            int subract = y - (positionIn.getY() + height);
             int subract2 = 2 + 1 - subract;
 
-            for (int x = pos.getX() - subract2; x <= pos.getX() + subract2; ++x)
+            for (int x = positionIn.getX() - subract2; x <= positionIn.getX() + subract2; ++x)
             {
-                int mathX = x - pos.getX();
+                int mathX = x - positionIn.getX();
 
-                for (int z = pos.getZ() - subract2; z <= pos.getZ() + subract2; ++z)
+                for (int z = positionIn.getZ() - subract2; z <= positionIn.getZ() + subract2; ++z)
                 {
-                    int mathZ = z - pos.getZ();
+                    int mathZ = z - positionIn.getZ();
 
                     BlockPos blockpos = new BlockPos(x, y, z);
-                    IBlockState state = world.getBlockState(blockpos);
+                    IBlockState state = worldIn.getBlockState(blockpos);
 
-                    if ((mathX >= 0 || mathZ >= 0 || mathX * mathX + mathZ * mathZ <= subract2 * subract2) && (mathX <= 0 && mathZ <= 0 || mathX * mathX + mathZ * mathZ <= (subract2 + 1) * (subract2 + 1)) && (random.nextInt(4) != 0 || mathX * mathX + mathZ * mathZ <= (subract2 - 1) * (subract2 - 1)) && (state.getBlock().isAir(state, world, blockpos) || state.getBlock().isLeaves(state, world, blockpos) || state.getBlock().canBeReplacedByLeaves(state, world, blockpos)))
+                    if ((mathX >= 0 || mathZ >= 0 || mathX * mathX + mathZ * mathZ <= subract2 * subract2) && (mathX <= 0 && mathZ <= 0 || mathX * mathX + mathZ * mathZ <= (subract2 + 1) * (subract2 + 1)) && (random.nextInt(4) != 0 || mathX * mathX + mathZ * mathZ <= (subract2 - 1) * (subract2 - 1)) && (state.getBlock().isAir(state, worldIn, blockpos) || state.getBlock().isLeaves(state, worldIn, blockpos) || state.getBlock().canBeReplacedByLeaves(state, worldIn, blockpos)))
                     {
-                        this.setBlockAndMetadata(world, blockpos, this.leaves);
+                        this.setBlockAndMetadata(worldIn, blockpos, this.leaves);
                     }
                 }
             }
         }
     }
 
-    protected void setBlockAndMetadata(World world, BlockPos pos, IBlockState stateNew)
+    protected void setBlockAndMetadata(World worldIn, BlockPos positionIn, IBlockState stateNew)
     {
-        IBlockState state = world.getBlockState(pos);
+        IBlockState state = worldIn.getBlockState(positionIn);
         Block block = state.getBlock();
 
-        if (block.isAir(state, world, pos) || block.canPlaceBlockAt(world, pos) || world.getBlockState(pos) == this.leaves)
+        if (block.isAir(state, worldIn, positionIn) || block.canPlaceBlockAt(worldIn, positionIn) || worldIn.getBlockState(positionIn) == this.leaves)
         {
-            world.setBlockState(pos, stateNew, 2);
+            worldIn.setBlockState(positionIn, stateNew, 2);
         }
     }
 
-    public boolean isReplaceable(World world, BlockPos pos)
+    public boolean isReplaceable(World worldIn, BlockPos positionIn)
     {
-        IBlockState state = world.getBlockState(pos);
+        IBlockState state = worldIn.getBlockState(positionIn);
 
-        return state.getBlock().isAir(state, world, pos) || state.getBlock().isLeaves(state, world, pos) || state.getBlock().isWood(world, pos);
+        return state.getBlock().isAir(state, worldIn, positionIn) || state.getBlock().isLeaves(state, worldIn, positionIn) || state.getBlock().isWood(worldIn, positionIn);
     }
 
-    private void onPlantGrow(World world, BlockPos pos, BlockPos source)
+    private void onPlantGrow(World worldIn, BlockPos positionIn, BlockPos source)
     {
-        IBlockState state = world.getBlockState(pos);
+        IBlockState state = worldIn.getBlockState(positionIn);
 
-        state.getBlock().onPlantGrow(state, world, pos, source);
+        state.getBlock().onPlantGrow(state, worldIn, positionIn, source);
     }
 }
