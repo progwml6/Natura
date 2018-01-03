@@ -334,44 +334,44 @@ tile.natura.blaze_rail_golden.name=充能烈焰轨道
 tile.natura.blaze_rail_activator.name=激活烈焰轨道
 tile.natura.blaze_rail_detector.name=探测烈焰轨道
 
-tile.natura.blaze_hopper.name=Blaze Hopper
+tile.natura.blaze_hopper.name=烈焰漏斗
 
-tile.natura.netherrack_furnace.name=Nether Furnace
-tile.natura.lit_netherrack_furnace.name=Nether Furnace
+tile.natura.netherrack_furnace.name=下界熔炉
+tile.natura.lit_netherrack_furnace.name=下界熔炉
 
-tile.natura.ghostwood_button.name=Ghostwood Button
-tile.natura.ghostwood_pressure_plate.name=Ghostwood Pressure Plate
-tile.natura.ghostwood_trap_door.name=Ghostwood Trap Door
-tile.natura.ghostwood_fence.name=Ghostwood Fence
-tile.natura.ghostwood_fence_gate.name=Ghostwood Fence Gate
+tile.natura.ghostwood_button.name=幽魂按钮
+tile.natura.ghostwood_pressure_plate.name=幽魂压力板
+tile.natura.ghostwood_trap_door.name=幽魂活板门
+tile.natura.ghostwood_fence.name=幽魂栅栏
+tile.natura.ghostwood_fence_gate.name=幽魂栅栏门
 
-tile.natura.bloodwood_button.name=Bloodwood Button
-tile.natura.bloodwood_pressure_plate.name=Bloodwood Pressure Plate
-tile.natura.bloodwood_trap_door.name=Bloodwood Trap Door
-tile.natura.bloodwood_fence.name=Bloodwood Fence
-tile.natura.bloodwood_fence_gate.name=Bloodwood Fence Gate
+tile.natura.bloodwood_button.name=血木按钮
+tile.natura.bloodwood_pressure_plate.name=血木压力板
+tile.natura.bloodwood_trap_door.name=血木活板门
+tile.natura.bloodwood_fence.name=血木栅栏
+tile.natura.bloodwood_fence_gate.name=血木栅栏门
 
-tile.natura.fusewood_button.name=Fusewood Button
-tile.natura.fusewood_pressure_plate.name=Fusewood Pressure Plate
-tile.natura.fusewood_trap_door.name=Fusewood Trap Door
-tile.natura.fusewood_fence.name=Fusewood Fence
-tile.natura.fusewood_fence_gate.name=Fusewood Fence Gate
+tile.natura.fusewood_button.name=熔融按钮
+tile.natura.fusewood_pressure_plate.name=熔融压力板
+tile.natura.fusewood_trap_door.name=熔融活板门
+tile.natura.fusewood_fence.name=熔融栅栏
+tile.natura.fusewood_fence_gate.name=熔融栅栏门
 
-tile.natura.darkwood_button.name=Darkwood Button
-tile.natura.darkwood_pressure_plate.name=Darkwood Pressure Plate
-tile.natura.darkwood_trap_door.name=Darkwood Trap Door
-tile.natura.darkwood_fence.name=Darkwood Fence
-tile.natura.darkwood_fence_gate.name=Darkwood Fence Gate
+tile.natura.darkwood_button.name=黑暗按钮
+tile.natura.darkwood_pressure_plate.name=黑暗压力板
+tile.natura.darkwood_trap_door.name=黑暗活板门
+tile.natura.darkwood_fence.name=黑暗栅栏
+tile.natura.darkwood_fence_gate.name=黑暗栅栏门
 
-tile.natura.nether_bookshelves.ghostwood.name=Ghostwood Bookshelf
-tile.natura.nether_bookshelves.bloodwood.name=Bloodwood Bookshelf
-tile.natura.nether_bookshelves.fusewood.name=Fusewood Bookshelf
-tile.natura.nether_bookshelves.darkwood.name=Darkwood Bookshelf
+tile.natura.nether_bookshelves.ghostwood.name=幽魂书架
+tile.natura.nether_bookshelves.bloodwood.name=血木书架
+tile.natura.nether_bookshelves.fusewood.name=熔融书架
+tile.natura.nether_bookshelves.darkwood.name=黑暗书架
 
-tile.natura.nether_workbenches.ghostwood.name=Maple Workbench
-tile.natura.nether_workbenches.bloodwood.name=Bloodwood Workbench
-tile.natura.nether_workbenches.fusewood.name=Fusewood Workbench
-tile.natura.nether_workbenches.darkwood.name=Darkwood Workbench
+tile.natura.nether_workbenches.ghostwood.name=幽魂工作台
+tile.natura.nether_workbenches.bloodwood.name=血木工作台
+tile.natura.nether_workbenches.fusewood.name=熔融工作台
+tile.natura.nether_workbenches.darkwood.name=黑暗工作台
 
 ################
 #    Items     #
@@ -400,11 +400,11 @@ item.natura.edibles.skyberry.tooltip=略显邪恶\n缓慢下沉
 item.natura.edibles.stingberry.name=刺莓
 item.natura.edibles.stingberry.tooltip=略显邪恶\n像卡车一样冲撞
 
-item.natura.edibles.potashapple.name=Potash Apple
-item.natura.edibles.potashapple.tooltip=Tastes a bit like chalk
+item.natura.edibles.potashapple.name=富钾苹果
+item.natura.edibles.potashapple.tooltip=味道有点像粉笔
 
-item.natura.edibles.cactusjuice.name=Cactus Juice
-item.natura.edibles.cactusjuice.tooltip=Refreshing!
+item.natura.edibles.cactusjuice.name=仙人掌汁
+item.natura.edibles.cactusjuice.tooltip=神清气爽！
 
 item.natura.materials.barley.name=大麦
 item.natura.materials.barley.tooltip=类似小麦，生长在野外
@@ -424,19 +424,19 @@ item.natura.materials.flame_string.name=火线
 item.natura.materials.flame_string.tooltip=比丝线还更耐用
 item.natura.materials.blue_dye.name=蓝颜料
 
-item.natura.sticks.maple_stick.name=Maple Sticks
-item.natura.sticks.silverbell_stick.name=Silverbell Sticks
-item.natura.sticks.amaranth_stick.name=Amaranth Sticks
-item.natura.sticks.tiger_stick.name=Tiger Sticks
-item.natura.sticks.willow_stick.name=Willow Sticks
-item.natura.sticks.eucalyptus_stick.name=Eucalyptus Sticks
-item.natura.sticks.hopseed_stick.name=Hopseed Sticks
-item.natura.sticks.sakura_stick.name=Sakura Sticks
-item.natura.sticks.redwood_stick.name=Redwood Sticks
-item.natura.sticks.ghostwood_stick.name=Ghostwood Sticks
-item.natura.sticks.darkwood_stick.name=Darkwood Sticks
-item.natura.sticks.fusewood_stick.name=Fusewood Sticks
-item.natura.sticks.bloodwood_stick.name=Bloodwood Sticks
+item.natura.sticks.maple_stick.name=枫树木棍
+item.natura.sticks.silverbell_stick.name=银铃木棍
+item.natura.sticks.amaranth_stick.name=紫檀木棍
+item.natura.sticks.tiger_stick.name=核桃木棍
+item.natura.sticks.willow_stick.name=柳树木棍
+item.natura.sticks.eucalyptus_stick.name=桉木棍
+item.natura.sticks.hopseed_stick.name=车桑子木棍
+item.natura.sticks.sakura_stick.name=樱树木棍
+item.natura.sticks.redwood_stick.name=红木棍
+item.natura.sticks.ghostwood_stick.name=幽魂木棍
+item.natura.sticks.darkwood_stick.name=黑暗木棍
+item.natura.sticks.fusewood_stick.name=熔融木棍
+item.natura.sticks.bloodwood_stick.name=血木棍
 
 item.natura.empty_bowls.ghostwood_bowl.name=幽魂树碗
 item.natura.empty_bowls.bloodwood_bowl.name=血树碗
@@ -457,98 +457,98 @@ item.natura.soups.fusewood_glowshroomstew.name=荧光蘑菇煲
 item.natura.soups.berry_medley.name=浆果拼盘
 item.natura.soups.berry_medley.tooltip=难以抵挡的浆果拼盘
 
-item.natura.imp_armor_helmet.name=Impskin Helmet
-item.natura.imp_armor_chestplate.name=Impskin Jerkin
-item.natura.imp_armor_leggings.name=Impskin Leggings
-item.natura.imp_armor_boots.name=Impskin Boots
+item.natura.imp_armor_helmet.name=恶魔皮头盔
+item.natura.imp_armor_chestplate.name=恶魔皮胸甲
+item.natura.imp_armor_leggings.name=恶魔皮护腿
+item.natura.imp_armor_boots.name=恶魔皮靴子
 
-item.natura.seed_bags.wheat_seed_bag.name=Wheat Seed Bag
-item.natura.seed_bags.wheat_seed_bag.tooltip=Plants in a 3x3 area
-item.natura.seed_bags.potatoes_seed_bag.name=Potato Bag
-item.natura.seed_bags.potatoes_seed_bag.tooltip=Plants in a 3x3 area
-item.natura.seed_bags.carrots_seed_bag.name=Carrot Bag
-item.natura.seed_bags.carrots_seed_bag.tooltip=Plants in a 3x3 area
-item.natura.seed_bags.nether_wart_seed_bag.name=Nether Wart Bag
-item.natura.seed_bags.nether_wart_seed_bag.tooltip=Plants in a 3x3 area
-item.natura.bonemeal_bag.name=Bone Meal Bag
-item.natura.bonemeal_bag.tooltip=Grows plants in a 3x3 area
-item.natura.overworld_seed_bags.barley_seed_bag.name=Barley Seed Bag
-item.natura.overworld_seed_bags.barley_seed_bag.tooltip=Plants in a 3x3 area
-item.natura.overworld_seed_bags.cotton_seed_bag.name=Cotton Seed Bag
-item.natura.overworld_seed_bags.cotton_seed_bag.tooltip=Plants in a 3x3 area
+item.natura.seed_bags.wheat_seed_bag.name=小麦种子袋
+item.natura.seed_bags.wheat_seed_bag.tooltip=播种3x3范围内的田地
+item.natura.seed_bags.potatoes_seed_bag.name=马铃薯袋
+item.natura.seed_bags.potatoes_seed_bag.tooltip=播种3x3范围内的田地
+item.natura.seed_bags.carrots_seed_bag.name=胡萝卜袋
+item.natura.seed_bags.carrots_seed_bag.tooltip=播种3x3范围内的田地
+item.natura.seed_bags.nether_wart_seed_bag.name=地狱疣袋
+item.natura.seed_bags.nether_wart_seed_bag.tooltip=播种3x3范围内的田地
+item.natura.bonemeal_bag.name=骨粉袋
+item.natura.bonemeal_bag.tooltip=催生3x3范围内作物
+item.natura.overworld_seed_bags.barley_seed_bag.name=大麦种子袋
+item.natura.overworld_seed_bags.barley_seed_bag.tooltip=播种3x3范围内的田地
+item.natura.overworld_seed_bags.cotton_seed_bag.name=棉花种子袋
+item.natura.overworld_seed_bags.cotton_seed_bag.tooltip=播种3x3范围内的田地
 
-item.natura.overworld_seeds.barley_seeds.name=Barley Seeds
-item.natura.overworld_seeds.barley_seeds.tooltip=Similar to wheat, it grows in the wild
-item.natura.overworld_seeds.cotton_seeds.name=Cotton Seeds
-item.natura.overworld_seeds.cotton_seeds.tooltip=The source of all string and wool
+item.natura.overworld_seeds.barley_seeds.name=大麦种子
+item.natura.overworld_seeds.barley_seeds.tooltip=类似小麦，但生长在野外
+item.natura.overworld_seeds.cotton_seeds.name=棉花种子
+item.natura.overworld_seeds.cotton_seeds.tooltip=羊毛和丝线的来源
 
-item.natura.overworld_doors.eucalyptus_door.name=Eucalyptus Door
-item.natura.overworld_doors.eucalyptus_door.tooltip=The pink wood
-item.natura.overworld_doors.hopseed_door.name=Hopseed Door
-item.natura.overworld_doors.hopseed_door.tooltip=Ascended Glitch
-item.natura.overworld_doors.sakura_door.name=Sakura Door
-item.natura.overworld_doors.sakura_door.tooltip=Flowering Cherry
-item.natura.overworld_doors.redwood_door.name=Redwood Door
-item.natura.overworld_doors.redwood_door.tooltip=Giant Sequoia
-item.natura.overworld_doors.redwood_bark_door.name=Redwood Bark Door
-item.natura.overworld_doors.redwood_bark_door.tooltip=Secret Tunnel
+item.natura.overworld_doors.eucalyptus_door.name=桉木门
+item.natura.overworld_doors.eucalyptus_door.tooltip=粉色的木料
+item.natura.overworld_doors.hopseed_door.name=车桑子木门
+item.natura.overworld_doors.hopseed_door.tooltip=增加故障
+item.natura.overworld_doors.sakura_door.name=樱树木门
+item.natura.overworld_doors.sakura_door.tooltip=开满樱花
+item.natura.overworld_doors.redwood_door.name=红木木门
+item.natura.overworld_doors.redwood_door.tooltip=巨杉
+item.natura.overworld_doors.redwood_bark_door.name=红木树皮门
+item.natura.overworld_doors.redwood_bark_door.tooltip=秘密通道
 
-item.natura.nether_doors.ghostwood_door.name=Ghostwood Door
-item.natura.nether_doors.ghostwood_door.tooltip=Pale as a ghost
-item.natura.nether_doors.bloodwood_door.name=Bloodwood Door
-item.natura.nether_doors.bloodwood_door.tooltip=Fire-resistant door
+item.natura.nether_doors.ghostwood_door.name=幽魂木门
+item.natura.nether_doors.ghostwood_door.tooltip=苍白如鬼魂
+item.natura.nether_doors.bloodwood_door.name=血木木门
+item.natura.nether_doors.bloodwood_door.tooltip=防火木材
 
-item.natura.saguaro_fruit_item.name=Saguaro Fruit
+item.natura.saguaro_fruit_item.name=仙人掌果
 
 ################
 #    Tools     #
 ################
 
-item.natura.flint_and_blaze.name=Flint and Blaze
+item.natura.flint_and_blaze.name=烈焰打火石
 
-item.natura.ghostwood_sword.name=Ghostwood Sword
-item.natura.ghostwood_pickaxe.name=Ghostwood Pickaxe
-item.natura.ghostwood_shovel.name=Ghostwood Shovel
-item.natura.ghostwood_axe.name=Ghostwood Hatchet
-item.natura.ghostwood_kama.name=Ghostwood Kama
-item.natura.ghostwood_bow.name=Ghostwood Bow
+item.natura.ghostwood_sword.name=幽魂木剑
+item.natura.ghostwood_pickaxe.name=幽魂木镐
+item.natura.ghostwood_shovel.name=幽魂木铲
+item.natura.ghostwood_axe.name=幽魂木斧
+item.natura.ghostwood_kama.name=幽魂木镰
+item.natura.ghostwood_bow.name=幽魂木弓
 
-item.natura.bloodwood_sword.name=Bloodwood Sword
-item.natura.bloodwood_pickaxe.name=Bloodwood Pickaxe
-item.natura.bloodwood_shovel.name=Bloodwood Shovel
-item.natura.bloodwood_axe.name=Bloodwood Hatchet
-item.natura.bloodwood_kama.name=Bloodwood Kama
-item.natura.bloodwood_bow.name=Bloodwood Bow
+item.natura.bloodwood_sword.name=血木剑
+item.natura.bloodwood_pickaxe.name=血木镐
+item.natura.bloodwood_shovel.name=血木铲
+item.natura.bloodwood_axe.name=血木斧
+item.natura.bloodwood_kama.name=血木镰
+item.natura.bloodwood_bow.name=血木弓
 
-item.natura.darkwood_sword.name=Darkwood Sword
-item.natura.darkwood_pickaxe.name=Darkwood Pickaxe
-item.natura.darkwood_shovel.name=Darkwood Shovel
-item.natura.darkwood_axe.name=Darkwood Hatchet
-item.natura.darkwood_kama.name=Darkwood Kama
-item.natura.darkwood_bow.name=Darkwood Bow
+item.natura.darkwood_sword.name=黑暗木剑
+item.natura.darkwood_pickaxe.name=黑暗木镐
+item.natura.darkwood_shovel.name=黑暗木铲
+item.natura.darkwood_axe.name=黑暗木斧
+item.natura.darkwood_kama.name=黑暗木镰
+item.natura.darkwood_bow.name=黑暗木弓
 
-item.natura.fusewood_sword.name=Fusewood Sword
-item.natura.fusewood_pickaxe.name=Fusewood Pickaxe
-item.natura.fusewood_shovel.name=Fusewood Shovel
-item.natura.fusewood_axe.name=Fusewood Hatchet
-item.natura.fusewood_kama.name=Fusewood Kama
-item.natura.fusewood_bow.name=Fusewood Bow
+item.natura.fusewood_sword.name=熔融木剑
+item.natura.fusewood_pickaxe.name=熔融木镐
+item.natura.fusewood_shovel.name=熔融木铲
+item.natura.fusewood_axe.name=熔融木斧
+item.natura.fusewood_kama.name=熔融木镰
+item.natura.fusewood_bow.name=熔融木弓
 
-item.natura.netherquartz_sword.name=Quartz Sword
-item.natura.netherquartz_pickaxe.name=Quartz Pickaxe
-item.natura.netherquartz_shovel.name=Quartz Shovel
-item.natura.netherquartz_axe.name=Quartz Hatchet
-item.natura.netherquartz_kama.name=Quartz Kama
-item.natura.netherquartz_bow.name=Quartz Bow
+item.natura.netherquartz_sword.name=石英剑
+item.natura.netherquartz_pickaxe.name=石英镐
+item.natura.netherquartz_shovel.name=石英铲
+item.natura.netherquartz_axe.name=石英斧
+item.natura.netherquartz_kama.name=石英镰
+item.natura.netherquartz_bow.name=石英弓
 
 #################
 #   Entities    #
 #################
 
-entity.imp.name=Imp
-entity.heatscarspider.name=Heatscar Spider
-entity.babyheatscarspider.name=Baby Heatscar Spider
-entity.nitrocreeper.name=Nitro Creeper
+entity.imp.name=小恶魔
+entity.heatscarspider.name=灼疤蜘蛛
+entity.babyheatscarspider.name=幼年灼疤蜘蛛
+entity.nitrocreeper.name=硝基爬行者
 
 entity.natura.imp.name=小恶魔
 entity.natura.heatscarspider.name=灼疤蜘蛛
@@ -559,9 +559,9 @@ entity.natura.nitrocreeper.name=硝基爬行者
 #     GUIs     #
 ################
 
-itemGroup.NaturaGeneral=Natura|一般物品
-itemGroup.NaturaWorld=Natura|世界生成
-itemGroup.NaturaDecorative=Natura|装饰性
+itemGroup.NaturaGeneral=自然|一般物品
+itemGroup.NaturaWorld=自然|世界生成
+itemGroup.NaturaDecorative=自然|装饰性
 
 ###############
 #    HWYLA    #
