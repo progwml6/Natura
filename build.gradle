@@ -62,18 +62,18 @@ sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 dependencies {
-    deobfCompile ("slimeknights.mantle:Mantle:${minecraft_version}-${mantle_version}") {
+    deobfCompile ("slimeknights.mantle:Mantle:${minecraft_version_short}-${mantle_version}") {
         transitive = false
     }
     deobfCompile ("slimeknights:TConstruct:${minecraft_version}-${tconstruct_version}") {
         transitive = false
     }
 
-    deobfCompile ("mcp.mobius.waila:Hwyla:${hwyla_version}_1.12") {
+    deobfCompile ("mcp.mobius.waila:Hwyla:${hwyla_version}_${minecraft_version_short}") {
         transitive = false
     }
 
-    deobfCompile ("mezz.jei:jei_${minecraft_version_patch}:${jei_version}") {
+    deobfCompile ("mezz.jei:jei_${minecraft_version}:${jei_version}") {
         transitive = false
     }
 
@@ -100,7 +100,7 @@ task buildInfo {
 version = "${minecraft_version}-${mod_version}.${project.buildInfo.buildNum}"
 
 minecraft {
-    version = minecraft_version_patch + "-" + forge_version
+    version = minecraft_version + "-" + forge_version
     mappings = mappings_version
     runDir = "run"
     replace '${version}', project.version
