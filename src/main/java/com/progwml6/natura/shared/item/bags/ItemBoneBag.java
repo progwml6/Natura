@@ -93,10 +93,12 @@ public class ItemBoneBag extends Item
         IBlockState iblockstate = worldIn.getBlockState(target);
 
         BonemealEvent event = new BonemealEvent(player, worldIn, target, iblockstate, hand, stack);
+
         if (MinecraftForge.EVENT_BUS.post(event))
         {
             return false;
         }
+
         if (event.getResult() == Result.ALLOW)
         {
             return true;
