@@ -7,7 +7,6 @@ import javax.annotation.Nonnull;
 
 import com.progwml6.natura.common.ClientProxy;
 import com.progwml6.natura.common.block.BlockEnumBerryBush;
-import com.progwml6.natura.common.block.base.BlockLeavesBase;
 import com.progwml6.natura.common.client.LeavesColorizer;
 import com.progwml6.natura.library.Util;
 import com.progwml6.natura.library.client.state.CustomStateMap;
@@ -22,6 +21,7 @@ import com.progwml6.natura.nether.block.shrooms.BlockNetherLargeGlowshroom;
 
 import net.minecraft.block.BlockDoor;
 import net.minecraft.block.BlockHopper;
+import net.minecraft.block.BlockLeaves;
 import net.minecraft.block.BlockSapling;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
@@ -89,8 +89,8 @@ public class NetherClientProxy extends ClientProxy
     protected void registerModels()
     {
         // blocks
-        ModelLoader.setCustomStateMapper(NaturaNether.netherLeaves, (new StateMap.Builder()).ignore(BlockLeavesBase.CHECK_DECAY, BlockLeavesBase.DECAYABLE).build());
-        ModelLoader.setCustomStateMapper(NaturaNether.netherLeaves2, (new StateMap.Builder()).ignore(BlockLeavesBase.CHECK_DECAY, BlockLeavesBase.DECAYABLE).build());
+        ModelLoader.setCustomStateMapper(NaturaNether.netherLeaves, (new StateMap.Builder()).ignore(BlockLeaves.CHECK_DECAY, BlockLeaves.DECAYABLE).build());
+        ModelLoader.setCustomStateMapper(NaturaNether.netherLeaves2, (new StateMap.Builder()).ignore(BlockLeaves.CHECK_DECAY, BlockLeaves.DECAYABLE).build());
 
         ModelLoader.setCustomStateMapper(NaturaNether.netherSapling, (new StateMap.Builder()).ignore(BlockNetherSapling.STAGE, BlockSapling.TYPE).build());
         ModelLoader.setCustomStateMapper(NaturaNether.netherSapling2, (new StateMap.Builder()).ignore(BlockNetherSapling2.STAGE, BlockSapling.TYPE).build());
