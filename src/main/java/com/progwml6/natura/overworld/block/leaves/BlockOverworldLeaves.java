@@ -18,8 +18,6 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.BlockRenderLayer;
-import net.minecraft.util.EnumFacing;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
@@ -138,28 +136,5 @@ public class BlockOverworldLeaves extends BlockLeavesBase
     public boolean isLeaves(IBlockState state, IBlockAccess world, BlockPos pos)
     {
         return true;
-    }
-
-    /**
-     * Used to determine ambient occlusion and culling when rebuilding chunks for render
-     */
-    @Override
-    public boolean isOpaqueCube(IBlockState state)
-    {
-        return !NaturaOverworld.proxy.fancyGraphicsEnabled();
-    }
-
-    @Override
-    @SideOnly(Side.CLIENT)
-    public BlockRenderLayer getBlockLayer()
-    {
-        return NaturaOverworld.proxy.fancyGraphicsEnabled() ? BlockRenderLayer.CUTOUT_MIPPED : BlockRenderLayer.SOLID;
-    }
-
-    @Override
-    @SideOnly(Side.CLIENT)
-    public boolean shouldSideBeRendered(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side)
-    {
-        return !NaturaOverworld.proxy.fancyGraphicsEnabled() && blockAccess.getBlockState(pos.offset(side)).getBlock() == this ? false : super.shouldSideBeRendered(blockState, blockAccess, pos, side);
     }
 }
