@@ -49,17 +49,16 @@ public class SaguaroGenerator implements IWorldGenerator
         if (this.findGround)
         {
             this.basePos = this.findGround(worldIn, position);
-            while (position.getY() > 1 && worldIn.isAirBlock(position) || worldIn.getBlockState(position).getBlock().isLeaves(worldIn.getBlockState(position), worldIn, position))
-            {
-                this.basePos = position.down();
-            }
 
-            if (!(blocksMatch(worldIn, position)))
+            if (position.getY() < 0)
             {
                 return;
             }
 
-            this.basePos = this.basePos.up();
+            if (!blocksMatch(worldIn, position))
+            {
+                return;
+            }
         }
         else
         {
@@ -81,9 +80,9 @@ public class SaguaroGenerator implements IWorldGenerator
 
     private boolean blocksMatch(World world, BlockPos pos)
     {
-        Block underBlock = world.getBlockState(pos).getBlock();
+        Block underBlock = world.getBlockState(pos.down()).getBlock();
 
-        if (!(underBlock == Blocks.SAND))
+        if (underBlock == Blocks.SAND)
         {
             return true;
         }
@@ -241,48 +240,49 @@ public class SaguaroGenerator implements IWorldGenerator
 
     BlockPos findGround(World world, BlockPos pos)
     {
+        int returnHeight = 0;
+
+        int height = pos.getY();
+
         if (world.getWorldType() == WorldType.FLAT && this.isBaby)
         {
-            boolean foundGround = false;
-
-            int height = Config.flatSeaLevel + 64;
-
             do
             {
-                height--;
                 BlockPos position = new BlockPos(pos.getX(), height, pos.getZ());
-                Block underBlock = world.getBlockState(position).getBlock();
 
-                if (underBlock == Blocks.SAND || height < Config.flatSeaLevel)
+                Block block = world.getBlockState(position).getBlock();
+
+                if (block == Blocks.SAND && !world.getBlockState(position.up()).isFullBlock())
                 {
-                    foundGround = true;
+                    returnHeight = height + 1;
+                    break;
                 }
-            }
-            while (!foundGround);
 
-            return new BlockPos(pos.getX(), height + 1, pos.getZ());
+                height--;
+            }
+            while (height > Config.flatSeaLevel);
+
+            return new BlockPos(pos.getX(), returnHeight, pos.getZ());
         }
         else
         {
-            boolean foundGround = false;
-
-            int height = Config.seaLevel + 64;
-
             do
             {
-                height--;
                 BlockPos position = new BlockPos(pos.getX(), height, pos.getZ());
-                Block underBlock = world.getBlockState(position).getBlock();
 
-                if (underBlock == Blocks.SAND || height < Config.seaLevel)
+                Block block = world.getBlockState(position).getBlock();
+
+                if (block == Blocks.SAND && !world.getBlockState(position.up()).isFullBlock())
                 {
-                    foundGround = true;
+                    returnHeight = height + 1;
+                    break;
                 }
-            }
-            while (!foundGround);
 
-            return new BlockPos(pos.getX(), height + 1, pos.getZ());
+                height--;
+            }
+            while (height > Config.seaLevel);
+
+            return new BlockPos(pos.getX(), returnHeight, pos.getZ());
         }
     }
-
 }

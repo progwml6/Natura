@@ -69,7 +69,7 @@ public class OverworldTreesGenerator implements IWorldGenerator
 
         this.redwoodTreeGen = new RedwoodTreeGenerator(redwoodLog.withProperty(BlockRedwoodLog.TYPE, BlockRedwoodLog.RedwoodType.BARK), redwoodLog.withProperty(BlockRedwoodLog.TYPE, BlockRedwoodLog.RedwoodType.HEART), redwoodLog.withProperty(BlockRedwoodLog.TYPE, BlockRedwoodLog.RedwoodType.ROOT), redwoodLeaves.withProperty(BlockRedwoodLeaves.TYPE, BlockRedwoodLeaves.RedwoodType.NORMAL), false, false);
 
-        this.saguaroGen = new SaguaroGenerator(NaturaOverworld.saguaro.getDefaultState(), false, false);
+        this.saguaroGen = new SaguaroGenerator(NaturaOverworld.saguaro.getDefaultState(), true, false);
     }
 
     @Override
@@ -270,7 +270,7 @@ public class OverworldTreesGenerator implements IWorldGenerator
                 if (Config.generateSaguaro && random.nextInt(Config.saguaroSpawnRarity) == 0)
                 {
                     xSpawn = xPos + random.nextInt(16);
-                    ySpawn = random.nextInt(Config.seaLevel) + 16;
+                    ySpawn = Config.seaLevel + random.nextInt(16);
                     zSpawn = zPos + random.nextInt(16);
                     position = new BlockPos(xSpawn, ySpawn, zSpawn);
 
