@@ -57,7 +57,9 @@ public class ItemSaguaroFruit extends ItemSeedFood
                 if (block != null && block.canSustainPlant(state, worldIn, pos, EnumFacing.UP, (IPlantable) this.crop) && worldIn.isAirBlock(pos.up()))
                 {
                     worldIn.setBlockState(pos.up(), this.crop.getDefaultState());
+
                     itemstack.shrink(1);
+
                     return EnumActionResult.SUCCESS;
                 }
             }
@@ -75,6 +77,7 @@ public class ItemSaguaroFruit extends ItemSeedFood
     public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn)
     {
         addOptionalTooltip(stack, tooltip);
+
         super.addInformation(stack, worldIn, tooltip, flagIn);
     }
 
@@ -82,13 +85,11 @@ public class ItemSaguaroFruit extends ItemSeedFood
     {
         if (I18n.canTranslate(stack.getUnlocalizedName() + ".tooltip"))
         {
-            tooltip.addAll(LocUtils.getTooltips(TextFormatting.GRAY.toString() +
-                    LocUtils.translateRecursive(stack.getUnlocalizedName() + ".tooltip")));
+            tooltip.addAll(LocUtils.getTooltips(TextFormatting.GRAY.toString() + LocUtils.translateRecursive(stack.getUnlocalizedName() + ".tooltip")));
         }
         else if (I18n.canTranslate(stack.getUnlocalizedName() + ".tooltip"))
         {
-            tooltip.addAll(LocUtils.getTooltips(
-                    TextFormatting.GRAY.toString() + LocUtils.translateRecursive(stack.getUnlocalizedName() + ".tooltip")));
+            tooltip.addAll(LocUtils.getTooltips(TextFormatting.GRAY.toString() + LocUtils.translateRecursive(stack.getUnlocalizedName() + ".tooltip")));
         }
     }
 

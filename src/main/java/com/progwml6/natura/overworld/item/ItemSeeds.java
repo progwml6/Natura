@@ -66,7 +66,9 @@ public class ItemSeeds extends ItemMetaDynamic implements IPlantable
                     if (block != null && block.canSustainPlant(state, worldIn, pos, EnumFacing.UP, this) && worldIn.isAirBlock(pos.up()))
                     {
                         worldIn.setBlockState(pos.up(), this.states.get(meta));
+
                         itemstack.shrink(1);
+
                         return EnumActionResult.SUCCESS;
                     }
                 }

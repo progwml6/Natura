@@ -51,7 +51,9 @@ public class BlockCloud extends EnumBlock<BlockCloud.CloudType>
             if (entityarrow.isBurning())
             {
                 this.explode(worldIn, pos, 1, entityarrow.shootingEntity instanceof EntityLiving ? (EntityLiving) entityarrow.shootingEntity : null);
+
                 worldIn.setBlockToAir(pos);
+
                 return;
             }
         }
@@ -74,7 +76,9 @@ public class BlockCloud extends EnumBlock<BlockCloud.CloudType>
             if (state.getValue(BlockCloud.TYPE) == BlockCloud.CloudType.SULFUR && itemstack.getItem() != Items.AIR && itemstack.getItem() == Items.FLINT_AND_STEEL)
             {
                 worldIn.setBlockToAir(pos);
+
                 this.explode(worldIn, pos, 1, playerIn);
+
                 return true;
             }
         }
@@ -129,6 +133,7 @@ public class BlockCloud extends EnumBlock<BlockCloud.CloudType>
     public boolean isNormalCube(IBlockState state, IBlockAccess world, BlockPos pos)
     {
         Material material = world.getBlockState(pos).getMaterial();
+
         return material == this.blockMaterial ? false : super.isNormalCube(state, world, pos);
     }
 
