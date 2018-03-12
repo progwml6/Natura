@@ -105,44 +105,8 @@ public class OverworldTreesGenerator implements IWorldGenerator
 
         if (this.shouldGenerateInDimension(world.provider.getDimension()))
         {
-            if (BiomeDictionary.hasType(biome, Type.FOREST))
-            {
-                if (Config.generateSakura && random.nextInt(Config.sakuraSpawnRarity * 5) == 0)
-                {
-                    for (int iter = 0; iter < 3; iter++)
-                    {
-                        xSpawn = xPos + random.nextInt(16);
-                        ySpawn = random.nextInt(Config.sakuraSpawnRange) + Config.seaLevel;
-                        zSpawn = zPos + random.nextInt(16);
-                        position = new BlockPos(xSpawn, ySpawn, zSpawn);
-
-                        this.sakuraTreeGen.generateTree(random, world, position);
-                    }
-                }
-
-                if (Config.generateEucalyptus && random.nextInt(Config.eucalyptusSpawnRarity) == 0)
-                {
-                    xSpawn = xPos + random.nextInt(16);
-                    ySpawn = random.nextInt(Config.eucalyptusSpawnRange) + Config.seaLevel;
-                    zSpawn = zPos + random.nextInt(16);
-                    position = new BlockPos(xSpawn, ySpawn, zSpawn);
-
-                    this.eucalyptusTreeGen.generateTree(random, world, position);
-                }
-            }
-
             if (BiomeDictionary.hasType(biome, Type.PLAINS))
             {
-                if (!retroGen && Config.generateRedwood && random.nextInt(Config.redwoodSpawnRarity) == 0)
-                {
-                    xSpawn = xPos + random.nextInt(16);
-                    ySpawn = Config.seaLevel + 16;
-                    zSpawn = zPos + random.nextInt(16);
-                    position = new BlockPos(xSpawn, ySpawn, zSpawn);
-
-                    this.redwoodTreeGen.generateTree(random, world, position);
-                }
-
                 if (Config.generateEucalyptus && random.nextInt((int) (Config.eucalyptusSpawnRarity * 1.5)) == 0)
                 {
                     xSpawn = xPos + random.nextInt(16);
@@ -246,6 +210,39 @@ public class OverworldTreesGenerator implements IWorldGenerator
                     position = new BlockPos(xSpawn, ySpawn, zSpawn);
 
                     this.tigerTreeGen.generateTree(random, world, position);
+                }
+
+                if (!retroGen && Config.generateRedwood && random.nextInt(Config.redwoodSpawnRarity) == 0)
+                {
+                    xSpawn = xPos + random.nextInt(16);
+                    ySpawn = Config.seaLevel + 16;
+                    zSpawn = zPos + random.nextInt(16);
+                    position = new BlockPos(xSpawn, ySpawn, zSpawn);
+
+                    this.redwoodTreeGen.generateTree(random, world, position);
+                }
+
+                if (Config.generateSakura && random.nextInt(Config.sakuraSpawnRarity * 5) == 0)
+                {
+                    for (int iter = 0; iter < 3; iter++)
+                    {
+                        xSpawn = xPos + random.nextInt(16);
+                        ySpawn = random.nextInt(Config.sakuraSpawnRange) + Config.seaLevel;
+                        zSpawn = zPos + random.nextInt(16);
+                        position = new BlockPos(xSpawn, ySpawn, zSpawn);
+
+                        this.sakuraTreeGen.generateTree(random, world, position);
+                    }
+                }
+
+                if (Config.generateEucalyptus && random.nextInt(Config.eucalyptusSpawnRarity) == 0)
+                {
+                    xSpawn = xPos + random.nextInt(16);
+                    ySpawn = random.nextInt(Config.eucalyptusSpawnRange) + Config.seaLevel;
+                    zSpawn = zPos + random.nextInt(16);
+                    position = new BlockPos(xSpawn, ySpawn, zSpawn);
+
+                    this.eucalyptusTreeGen.generateTree(random, world, position);
                 }
             }
 
