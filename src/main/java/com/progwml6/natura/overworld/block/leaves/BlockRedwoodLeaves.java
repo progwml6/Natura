@@ -25,8 +25,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockPos.MutableBlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 import slimeknights.mantle.block.EnumBlock;
 
 public class BlockRedwoodLeaves extends BlockLeavesBase
@@ -85,7 +83,6 @@ public class BlockRedwoodLeaves extends BlockLeavesBase
         worldIn.setBlockToAir(pos);
     }
 
-    @SideOnly(Side.CLIENT)
     @Override
     public void getSubBlocks(CreativeTabs tab, NonNullList<ItemStack> list)
     {

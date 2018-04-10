@@ -26,8 +26,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 import slimeknights.mantle.block.EnumBlock;
 
 public class BlockNetherLeaves2 extends BlockLeavesBase
@@ -49,7 +47,6 @@ public class BlockNetherLeaves2 extends BlockLeavesBase
         super.updateTick(worldIn, pos, state, rand);
     }
 
-    @SideOnly(Side.CLIENT)
     @Override
     public void getSubBlocks(CreativeTabs tab, NonNullList<ItemStack> list)
     {
