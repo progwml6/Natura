@@ -16,7 +16,7 @@ public class BlockBlazeRailPowered extends BlockRailPowered
 
     public BlockBlazeRailPowered(boolean isActivatorRail)
     {
-        super();
+        super(isActivatorRail);
         this.isActivatorRail = isActivatorRail;
         this.setHardness(0.7F);
         this.setSoundType(SoundType.METAL);
