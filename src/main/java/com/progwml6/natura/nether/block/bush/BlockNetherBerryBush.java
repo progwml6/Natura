@@ -10,6 +10,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.EnumPlantType;
+import net.minecraftforge.common.ForgeHooks;
 
 public class BlockNetherBerryBush extends BlockEnumBerryBush
 {
@@ -65,8 +66,10 @@ public class BlockNetherBerryBush extends BlockEnumBerryBush
         {
             ;
         }
+        
+        boolean canGrow = (rand.nextInt(75) == 0);
 
-        if (rand.nextInt(75) == 0)
+        if (ForgeHooks.onCropsGrowPre(worldIn, pos, state, canGrow))
         {
             int age = state.getValue(AGE).intValue();
 
@@ -79,6 +82,8 @@ public class BlockNetherBerryBush extends BlockEnumBerryBush
             {
                 worldIn.setBlockState(pos.up(), this.getDefaultState().withProperty(AGE, Integer.valueOf(0)), 2);
             }
+            
+            ForgeHooks.onCropsGrowPost(worldIn, pos, state, worldIn.getBlockState(pos));
         }
     }
 }

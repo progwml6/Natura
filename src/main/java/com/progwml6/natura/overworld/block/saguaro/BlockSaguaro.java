@@ -27,6 +27,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.EnumPlantType;
+import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -287,34 +288,41 @@ public class BlockSaguaro extends Block implements IPlantable
     @Override
     public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand)
     {
-        if (worldIn.getWorldInfo().isRaining() && rand.nextInt(20) == 0 && worldIn.isAirBlock(pos.up()))
+        if (worldIn.getWorldInfo().isRaining() && worldIn.isAirBlock(pos.up()))
         {
-            switch (rand.nextInt(4))
-            {
-            case 0:
-                if (worldIn.isAirBlock(pos.north()))
-                {
-                    worldIn.setBlockState(pos.north(), NaturaOverworld.saguaroFruit.getDefaultState().withProperty(BlockSaguaroFruit.FACING, EnumFacing.SOUTH), 3);
-                }
-                break;
-            case 1:
-                if (worldIn.isAirBlock(pos.east()))
-                {
-                    worldIn.setBlockState(pos.east(), NaturaOverworld.saguaroFruit.getDefaultState().withProperty(BlockSaguaroFruit.FACING, EnumFacing.WEST), 3);
-                }
-                break;
-            case 2:
-                if (worldIn.isAirBlock(pos.south()))
-                {
-                    worldIn.setBlockState(pos.south(), NaturaOverworld.saguaroFruit.getDefaultState().withProperty(BlockSaguaroFruit.FACING, EnumFacing.NORTH), 3);
-                }
-                break;
-            case 3:
-                if (worldIn.isAirBlock(pos.west()))
-                {
-                    worldIn.setBlockState(pos.west(), NaturaOverworld.saguaroFruit.getDefaultState().withProperty(BlockSaguaroFruit.FACING, EnumFacing.EAST), 3);
-                }
-                break;
+        	boolean canGrow = (rand.nextInt(20) == 0);
+        	
+        	if (ForgeHooks.onCropsGrowPre(worldIn, pos, state, canGrow))
+            { 	
+	            switch (rand.nextInt(4))
+	            {
+	            case 0:
+	                if (worldIn.isAirBlock(pos.north()))
+	                {
+	                    worldIn.setBlockState(pos.north(), NaturaOverworld.saguaroFruit.getDefaultState().withProperty(BlockSaguaroFruit.FACING, EnumFacing.SOUTH), 3);
+	                }
+	                break;
+	            case 1:
+	                if (worldIn.isAirBlock(pos.east()))
+	                {
+	                    worldIn.setBlockState(pos.east(), NaturaOverworld.saguaroFruit.getDefaultState().withProperty(BlockSaguaroFruit.FACING, EnumFacing.WEST), 3);
+	                }
+	                break;
+	            case 2:
+	                if (worldIn.isAirBlock(pos.south()))
+	                {
+	                    worldIn.setBlockState(pos.south(), NaturaOverworld.saguaroFruit.getDefaultState().withProperty(BlockSaguaroFruit.FACING, EnumFacing.NORTH), 3);
+	                }
+	                break;
+	            case 3:
+	                if (worldIn.isAirBlock(pos.west()))
+	                {
+	                    worldIn.setBlockState(pos.west(), NaturaOverworld.saguaroFruit.getDefaultState().withProperty(BlockSaguaroFruit.FACING, EnumFacing.EAST), 3);
+	                }
+	                break;
+	            }
+	            
+	            ForgeHooks.onCropsGrowPost(worldIn, pos, state, worldIn.getBlockState(pos));
             }
         }
     }
