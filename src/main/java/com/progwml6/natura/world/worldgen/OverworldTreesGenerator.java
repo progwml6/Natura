@@ -205,7 +205,7 @@ public class OverworldTreesGenerator implements IWorldGenerator
 
             if (BiomeDictionary.hasType(biome, Type.JUNGLE))
             {
-                if (Config.generateAmaranth)
+                if (Config.generateAmaranth && random.nextInt(Config.amaranthRarity) == 0)
                 {
                     xSpawn = xPos + random.nextInt(16);
                     ySpawn = Config.seaLevel + 48;
