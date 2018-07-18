@@ -60,7 +60,7 @@ public class NaturaOredict extends NaturaPulse
         oredict(NaturaCommons.barleyFlour, "foodFlour");
         oredict(NaturaCommons.wheatFlour, "foodFlour");
 
-        oredict(NaturaCommons.barley, "listAllGrain");
+        oredict(NaturaCommons.barley, "listAllgrain");
         oredict(NaturaCommons.wheatFlour, "foodEqualswheat");
 
         oredict(NaturaCommons.blueDye, "dyeBlue");
@@ -86,9 +86,13 @@ public class NaturaOredict extends NaturaPulse
 
             // Food
             oredict(NaturaCommons.raspberry, "cropRaspberry");
+            oredict(NaturaCommons.raspberry, "listAllfruit");
             oredict(NaturaCommons.blueberry, "cropBlueberry");
+            oredict(NaturaCommons.blueberry, "listAllfruit");
             oredict(NaturaCommons.blackberry, "cropBlackberry");
+            oredict(NaturaCommons.blackberry, "listAllfruit");
             oredict(NaturaCommons.maloberry, "cropMaloberry");
+            oredict(NaturaCommons.maloberry, "listAllfruit");
 
             // Planks
             oredict(NaturaOverworld.overworldPlanks, "plankWood");
@@ -140,9 +144,13 @@ public class NaturaOredict extends NaturaPulse
         if (isNetherLoaded())
         {
             oredict(NaturaCommons.blightberry, "cropBlightberry");
+            oredict(NaturaCommons.blightberry, "listAllfruit");
             oredict(NaturaCommons.duskberry, "cropDuskberry");
+            oredict(NaturaCommons.duskberry, "listAllfruit");
             oredict(NaturaCommons.skyberry, "cropSkyberry");
+            oredict(NaturaCommons.skyberry, "listAllfruit");
             oredict(NaturaCommons.stingberry, "cropStingberry");
+            oredict(NaturaCommons.stingberry, "listAllfruit");
 
             // Tained Soil
             oredict(NaturaNether.netherTaintedSoil, "taintedSoil");
