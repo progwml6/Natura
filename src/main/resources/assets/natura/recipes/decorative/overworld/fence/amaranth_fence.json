@@ -12,12 +12,16 @@
     "type": "minecraft:crafting_shaped",
     "group": "natura:overworld_fences",
     "pattern": [
-        "AAA",
-        "AAA"
+        "BAB",
+        "BAB"
     ],
     "key": {
         "A": {
             "item": "natura:sticks",
+            "data": 2
+        },
+        "B": {
+            "item": "natura:overworld_planks",
             "data": 2
         }
     },

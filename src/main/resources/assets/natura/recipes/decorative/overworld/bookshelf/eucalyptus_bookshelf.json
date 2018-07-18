@@ -12,9 +12,9 @@
     "type": "minecraft:crafting_shaped",
     "group": "natura:overworld_bookshelves",
     "pattern": [
-        "AAA",
-        "BBB",
-        "AAA"
+        "ABA",
+        "ABA",
+        "ABA"
     ],
     "key": {
         "A": {

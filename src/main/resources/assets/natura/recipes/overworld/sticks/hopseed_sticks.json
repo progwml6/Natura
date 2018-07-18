@@ -8,8 +8,8 @@
     "type": "minecraft:crafting_shaped",
     "group": "natura:overworld_sticks",
     "pattern": [
-        "A",
-        "A"
+        "A ",
+        " A"
     ],
     "key": {
         "A": {

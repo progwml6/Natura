@@ -12,13 +12,17 @@
     "type": "minecraft:crafting_shaped",
     "group": "natura:nether_fences",
     "pattern": [
-        "AAA",
-        "AAA"
+        "BAB",
+        "BAB"
     ],
     "key": {
         "A": {
             "item": "natura:sticks",
             "data": 9
+        },
+        "B": {
+            "item": "natura:nether_planks",
+            "data": 0
         }
     },
     "result": {
