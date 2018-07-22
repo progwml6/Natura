@@ -28,6 +28,9 @@ public class PluginJEI implements IModPlugin
             ingredientBlacklist.addIngredientToBlacklist(new ItemStack(NaturaOverworld.sakuraDoor, 1, OreDictionary.WILDCARD_VALUE));
             ingredientBlacklist.addIngredientToBlacklist(new ItemStack(NaturaOverworld.redwoodDoor, 1, OreDictionary.WILDCARD_VALUE));
             ingredientBlacklist.addIngredientToBlacklist(new ItemStack(NaturaOverworld.redwoodBarkDoor, 1, OreDictionary.WILDCARD_VALUE));
+            ingredientBlacklist.addIngredientToBlacklist(new ItemStack(NaturaOverworld.tigerDoor, 1, OreDictionary.WILDCARD_VALUE));
+            ingredientBlacklist.addIngredientToBlacklist(new ItemStack(NaturaOverworld.mapleDoor, 1, OreDictionary.WILDCARD_VALUE));
+            ingredientBlacklist.addIngredientToBlacklist(new ItemStack(NaturaOverworld.silverbellDoor, 1, OreDictionary.WILDCARD_VALUE));
 
             ingredientBlacklist.addIngredientToBlacklist(new ItemStack(NaturaOverworld.barleyCrop, 1, OreDictionary.WILDCARD_VALUE));
             ingredientBlacklist.addIngredientToBlacklist(new ItemStack(NaturaOverworld.cottonCrop, 1, OreDictionary.WILDCARD_VALUE));
@@ -37,6 +40,8 @@ public class PluginJEI implements IModPlugin
         {
             ingredientBlacklist.addIngredientToBlacklist(new ItemStack(NaturaNether.ghostwoodDoor, 1, OreDictionary.WILDCARD_VALUE));
             ingredientBlacklist.addIngredientToBlacklist(new ItemStack(NaturaNether.bloodwoodDoor, 1, OreDictionary.WILDCARD_VALUE));
+            ingredientBlacklist.addIngredientToBlacklist(new ItemStack(NaturaNether.darkwoodDoor, 1, OreDictionary.WILDCARD_VALUE));
+            ingredientBlacklist.addIngredientToBlacklist(new ItemStack(NaturaNether.fusewoodDoor, 1, OreDictionary.WILDCARD_VALUE));
 
             ingredientBlacklist.addIngredientToBlacklist(new ItemStack(NaturaNether.litNetherrackFurnace, 1, OreDictionary.WILDCARD_VALUE));
         }

@@ -97,6 +97,8 @@ public class NetherClientProxy extends ClientProxy
 
         ModelLoader.setCustomStateMapper(NaturaNether.ghostwoodDoor, (new StateMap.Builder()).ignore(BlockDoor.POWERED).build());
         ModelLoader.setCustomStateMapper(NaturaNether.bloodwoodDoor, (new StateMap.Builder()).ignore(BlockDoor.POWERED).build());
+        ModelLoader.setCustomStateMapper(NaturaNether.darkwoodDoor, (new StateMap.Builder()).ignore(BlockDoor.POWERED).build());
+        ModelLoader.setCustomStateMapper(NaturaNether.fusewoodDoor, (new StateMap.Builder()).ignore(BlockDoor.POWERED).build());
 
         ModelLoader.setCustomStateMapper(NaturaNether.blazeHopper, (new StateMap.Builder()).ignore(BlockHopper.ENABLED).build());
 

@@ -98,6 +98,8 @@ public class NaturaNether extends NaturaPulse
 
     public static BlockNaturaDoor ghostwoodDoor;
     public static BlockNaturaDoor bloodwoodDoor;
+    public static BlockNaturaDoor darkwoodDoor;
+    public static BlockNaturaDoor fusewoodDoor;
 
     public static BlockBlazeHopper blazeHopper;
 
@@ -120,6 +122,8 @@ public class NaturaNether extends NaturaPulse
 
     public static ItemStack ghostwood_door;
     public static ItemStack bloodwood_door;
+    public static ItemStack darkwood_door;
+    public static ItemStack fusewood_door;
     //@formatter:on
 
     @SubscribeEvent
@@ -166,6 +170,8 @@ public class NaturaNether extends NaturaPulse
 
         ghostwoodDoor = registerBlock(registry, new BlockNaturaDoor(), "nether_door_ghostwood");
         bloodwoodDoor = registerBlock(registry, new BlockNaturaDoor(), "nether_door_bloodwood");
+        darkwoodDoor = registerBlock(registry, new BlockNaturaDoor(), "nether_door_darkwood");
+        fusewoodDoor = registerBlock(registry, new BlockNaturaDoor(), "nether_door_fusewood");
 
         blazeHopper = registerBlock(registry, new BlockBlazeHopper(), "blaze_hopper");
 
@@ -237,6 +243,8 @@ public class NaturaNether extends NaturaPulse
 
         ghostwoodDoor = registerItemBlock(registry, ghostwoodDoor, "nether_door_ghostwood");
         bloodwoodDoor = registerItemBlock(registry, bloodwoodDoor, "nether_door_bloodwood");
+        darkwoodDoor = registerItemBlock(registry, darkwoodDoor, "nether_door_darkwood");
+        fusewoodDoor = registerItemBlock(registry, fusewoodDoor, "nether_door_fusewood");
 
         blazeHopper = registerItemBlock(registry, blazeHopper, "blaze_hopper");
 
@@ -262,9 +270,13 @@ public class NaturaNether extends NaturaPulse
 
         ghostwood_door = netherDoors.addMeta(0, "ghostwood_door", NaturaNether.ghostwoodDoor.getDefaultState());
         bloodwood_door = netherDoors.addMeta(1, "bloodwood_door", NaturaNether.bloodwoodDoor.getDefaultState());
+        darkwood_door = netherDoors.addMeta(2, "darkwood_door", NaturaNether.darkwoodDoor.getDefaultState());
+        fusewood_door = netherDoors.addMeta(3, "fusewood_door", NaturaNether.fusewoodDoor.getDefaultState());
 
         ghostwoodDoor.setDoor(NaturaNether.ghostwood_door);
         bloodwoodDoor.setDoor(NaturaNether.bloodwood_door);
+        darkwoodDoor.setDoor(NaturaNether.darkwood_door);
+        fusewoodDoor.setDoor(NaturaNether.fusewood_door);
         // Items End
 
         if (!isOverworldLoaded())

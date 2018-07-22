@@ -9,6 +9,9 @@
         "hopseed_door": [{ "textures": { "layer0": "natura:items/doors/hopseed_door" }}],
         "sakura_door": [{ "textures": { "layer0": "natura:items/doors/sakura_door" }}],
         "redwood_door": [{ "textures": { "layer0": "natura:items/doors/redwood_door" }}],
-        "redwood_bark_door": [{ "textures": { "layer0": "natura:items/doors/redwood_bark_door" }}]
+        "redwood_bark_door": [{ "textures": { "layer0": "natura:items/doors/redwood_bark_door" }}],
+        "tiger_door": [{ "textures": { "layer0": "natura:items/doors/tiger_door" }}],
+        "maple_door": [{ "textures": { "layer0": "natura:items/doors/maple_door" }}],
+        "silverbell_door": [{ "textures": { "layer0": "natura:items/doors/silverbell_door" }}]
     }
 }
