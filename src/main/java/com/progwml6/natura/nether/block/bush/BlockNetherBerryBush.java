@@ -66,7 +66,7 @@ public class BlockNetherBerryBush extends BlockEnumBerryBush
         {
             ;
         }
-        
+
         boolean canGrow = (rand.nextInt(75) == 0);
 
         if (ForgeHooks.onCropsGrowPre(worldIn, pos, state, canGrow))
@@ -82,7 +82,7 @@ public class BlockNetherBerryBush extends BlockEnumBerryBush
             {
                 worldIn.setBlockState(pos.up(), this.getDefaultState().withProperty(AGE, Integer.valueOf(0)), 2);
             }
-            
+
             ForgeHooks.onCropsGrowPost(worldIn, pos, state, worldIn.getBlockState(pos));
         }
     }

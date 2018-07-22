@@ -374,7 +374,9 @@ public class TileEntityNetherrackFurnace extends TileEntityLockable implements I
         {
             int burnTime = net.minecraftforge.event.ForgeEventFactory.getItemBurnTime(stack);
             if (burnTime >= 0)
+            {
                 return burnTime;
+            }
             Item item = stack.getItem();
 
             if (item == Item.getItemFromBlock(Blocks.WOODEN_SLAB))
@@ -628,12 +630,20 @@ public class TileEntityNetherrackFurnace extends TileEntityLockable implements I
     public <T> T getCapability(net.minecraftforge.common.capabilities.Capability<T> capability, @javax.annotation.Nullable net.minecraft.util.EnumFacing facing)
     {
         if (facing != null && capability == net.minecraftforge.items.CapabilityItemHandler.ITEM_HANDLER_CAPABILITY)
+        {
             if (facing == EnumFacing.DOWN)
-                return (T) handlerBottom;
+            {
+                return (T) this.handlerBottom;
+            }
             else if (facing == EnumFacing.UP)
-                return (T) handlerTop;
+            {
+                return (T) this.handlerTop;
+            }
             else
-                return (T) handlerSide;
+            {
+                return (T) this.handlerSide;
+            }
+        }
         return super.getCapability(capability, facing);
     }
 }

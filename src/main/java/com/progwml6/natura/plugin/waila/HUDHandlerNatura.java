@@ -29,11 +29,15 @@ public class HUDHandlerNatura implements IWailaDataProvider
         {
             // Barley crop should display Barley item
             if (block == NaturaOverworld.barleyCrop)
+            {
                 return NaturaCommons.barley.copy();
+            }
 
             // Cotton crop should display Cotton item
             if (block == NaturaOverworld.cottonCrop)
+            {
                 return NaturaCommons.cotton.copy();
+            }
         }
 
         return ItemStack.EMPTY;

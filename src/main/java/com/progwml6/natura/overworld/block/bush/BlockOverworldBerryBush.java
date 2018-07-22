@@ -60,27 +60,27 @@ public class BlockOverworldBerryBush extends BlockEnumBerryBush
         {
             ;
         }
-        
+
         boolean canGrow = (rand.nextInt(20) == 0);
 
         if (worldIn.getLightFromNeighbors(pos) >= 8)
         {
-        	if (ForgeHooks.onCropsGrowPre(worldIn, pos, state, canGrow))
-        	{
-	            int age = state.getValue(AGE).intValue();
-	
-	            if (age < 3)
-	            {
-	                worldIn.setBlockState(pos, this.getDefaultState().withProperty(AGE, Integer.valueOf(age + 1)), 2);
-	            }
-	
-	            if (rand.nextInt(3) == 0 && height < 3 && worldIn.getBlockState(pos.up()).getBlock() == Blocks.AIR && age >= 2)
-	            {
-	                worldIn.setBlockState(pos.up(), this.getDefaultState().withProperty(AGE, Integer.valueOf(0)), 2);
-	            }
-	            
-	            ForgeHooks.onCropsGrowPost(worldIn, pos, state, worldIn.getBlockState(pos));
-        	}
+            if (ForgeHooks.onCropsGrowPre(worldIn, pos, state, canGrow))
+            {
+                int age = state.getValue(AGE).intValue();
+
+                if (age < 3)
+                {
+                    worldIn.setBlockState(pos, this.getDefaultState().withProperty(AGE, Integer.valueOf(age + 1)), 2);
+                }
+
+                if (rand.nextInt(3) == 0 && height < 3 && worldIn.getBlockState(pos.up()).getBlock() == Blocks.AIR && age >= 2)
+                {
+                    worldIn.setBlockState(pos.up(), this.getDefaultState().withProperty(AGE, Integer.valueOf(0)), 2);
+                }
+
+                ForgeHooks.onCropsGrowPost(worldIn, pos, state, worldIn.getBlockState(pos));
+            }
         }
     }
 

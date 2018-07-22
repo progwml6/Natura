@@ -86,7 +86,9 @@ public class BlockNaturaBarley extends BlockOverworldCrops
         if (age == 3)
         {
             if (worldIn.isRemote)
+            {
                 return true;
+            }
 
             worldIn.setBlockState(pos, this.getDefaultState().withProperty(AGE, Integer.valueOf(1)), 3);
 

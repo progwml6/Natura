@@ -45,10 +45,10 @@ public class NaturaDecorative extends NaturaPulse
     public static Block[] trapDoors = new Block[WoodTypes.values().length];
     public static Block[] fences = new Block[WoodTypes.values().length];
     public static Block[] fenceGates = new Block[WoodTypes.values().length];
-    
+
     public static BlockOverworldBookshelves overworldBookshelves;
     public static BlockNetherBookshelves netherBookshelves;
-    
+
     public static BlockOverworldWorkbenches overworldWorkbenches;
     public static BlockNetherWorkbenches netherWorkbenches;
     //@formatter:on

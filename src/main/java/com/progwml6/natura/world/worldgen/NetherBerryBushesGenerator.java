@@ -8,8 +8,8 @@ import com.progwml6.natura.world.worldgen.berry.nether.NetherBerryBushGenerator;
 
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraft.world.chunk.IChunkProvider;
+import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraftforge.fml.common.IWorldGenerator;
 
 public class NetherBerryBushesGenerator implements IWorldGenerator

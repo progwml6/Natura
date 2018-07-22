@@ -55,7 +55,7 @@ public class SaguaroGenerator implements IWorldGenerator
                 return;
             }
 
-            if (!blocksMatch(worldIn, position))
+            if (!this.blocksMatch(worldIn, position))
             {
                 return;
             }
@@ -99,7 +99,7 @@ public class SaguaroGenerator implements IWorldGenerator
         IBlockState currentState = this.world.getBlockState(this.basePos);
         Block currentBlock = currentState.getBlock();
 
-        IBlockState stateBelow = world.getBlockState(down);
+        IBlockState stateBelow = this.world.getBlockState(down);
         Block blockBelow = stateBelow.getBlock();
 
         if (!this.world.isAirBlock(this.basePos))

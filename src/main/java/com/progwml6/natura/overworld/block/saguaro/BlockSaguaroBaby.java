@@ -69,20 +69,20 @@ public class BlockSaguaroBaby extends Block implements IPlantable
         int age = state.getValue(AGE).intValue();
 
         boolean canGrow = (rand.nextInt(200) == 0);
-        
+
         if (ForgeHooks.onCropsGrowPre(worldIn, pos, state, canGrow))
         {
-	        if (age == 0)
-	        {
-	            worldIn.setBlockState(pos, state.withProperty(AGE, age + 1), 3);
-	        }
-	        else if (age == 1)
-	        {
-	            SaguaroGenerator gen = new SaguaroGenerator(NaturaOverworld.saguaro.getDefaultState(), true, true);
-	            gen.generateSaguaro(rand, worldIn, pos);
-	        }
-	        
-	        ForgeHooks.onCropsGrowPost(worldIn, pos, state, worldIn.getBlockState(pos));
+            if (age == 0)
+            {
+                worldIn.setBlockState(pos, state.withProperty(AGE, age + 1), 3);
+            }
+            else if (age == 1)
+            {
+                SaguaroGenerator gen = new SaguaroGenerator(NaturaOverworld.saguaro.getDefaultState(), true, true);
+                gen.generateSaguaro(rand, worldIn, pos);
+            }
+
+            ForgeHooks.onCropsGrowPost(worldIn, pos, state, worldIn.getBlockState(pos));
         }
     }
 
@@ -171,6 +171,6 @@ public class BlockSaguaroBaby extends Block implements IPlantable
     @Override
     public IBlockState getPlant(IBlockAccess world, BlockPos pos)
     {
-        return getDefaultState();
+        return this.getDefaultState();
     }
 }

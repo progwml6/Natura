@@ -174,10 +174,10 @@ public abstract class NaturaPulse
 
     /**
      * Used to register TileEntitys with the GameRegistry.
-     * 
+     *
      * @param teClazz
      * @param name
-     * 
+     *
      */
     protected static void registerTE(Class<? extends TileEntity> teClazz, String name)
     {

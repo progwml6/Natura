@@ -86,7 +86,9 @@ public class BlockNaturaCotton extends BlockOverworldCrops
         if (age == 4)
         {
             if (worldIn.isRemote)
+            {
                 return true;
+            }
 
             worldIn.setBlockState(pos, this.getDefaultState().withProperty(AGE, Integer.valueOf(2)), 3);
 

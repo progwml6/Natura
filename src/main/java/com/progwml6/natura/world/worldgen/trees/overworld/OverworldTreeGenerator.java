@@ -74,7 +74,7 @@ public class OverworldTreeGenerator extends BaseTreeGenerator
 
             if (isSoil)
             {
-                if (!checkIfCanGrow(position, heightRange, worldIn))
+                if (!this.checkIfCanGrow(position, heightRange, worldIn))
                 {
                     return;
                 }
