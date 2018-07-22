@@ -22,6 +22,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.EnumPlantType;
+import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -67,14 +68,21 @@ public class BlockSaguaroBaby extends Block implements IPlantable
     {
         int age = state.getValue(AGE).intValue();
 
-        if (age == 0 && rand.nextInt(200) == 0)
+        boolean canGrow = (rand.nextInt(200) == 0);
+        
+        if (ForgeHooks.onCropsGrowPre(worldIn, pos, state, canGrow))
         {
-            worldIn.setBlockState(pos, state.withProperty(AGE, age + 1), 3);
-        }
-        else if (age == 1 && rand.nextInt(200) == 0)
-        {
-            SaguaroGenerator gen = new SaguaroGenerator(NaturaOverworld.saguaro.getDefaultState(), true, true);
-            gen.generateSaguaro(rand, worldIn, pos);
+	        if (age == 0)
+	        {
+	            worldIn.setBlockState(pos, state.withProperty(AGE, age + 1), 3);
+	        }
+	        else if (age == 1)
+	        {
+	            SaguaroGenerator gen = new SaguaroGenerator(NaturaOverworld.saguaro.getDefaultState(), true, true);
+	            gen.generateSaguaro(rand, worldIn, pos);
+	        }
+	        
+	        ForgeHooks.onCropsGrowPost(worldIn, pos, state, worldIn.getBlockState(pos));
         }
     }
 
