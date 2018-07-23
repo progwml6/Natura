@@ -1,5 +1,4 @@
-# [Natura](https://minecraft.curseforge.com/projects/natura)
-
+[Natura](https://minecraft.curseforge.com/projects/natura)
 ====================================
 
 We work all day and we work all night 	 
