@@ -74,7 +74,7 @@ public class NetherMinableGenerator implements IWorldGenerator
                         ySpawn = yPos + random.nextInt(10);
                         zSpawn = zPos + random.nextInt(16);
 
-                        tainedSoilGen.generate(world, random, new BlockPos(xSpawn, ySpawn, zSpawn));
+                        this.tainedSoilGen.generate(world, random, new BlockPos(xSpawn, ySpawn, zSpawn));
                     }
                 }
 
@@ -86,7 +86,7 @@ public class NetherMinableGenerator implements IWorldGenerator
                         ySpawn = yPos + random.nextInt(10);
                         zSpawn = zPos + random.nextInt(16);
 
-                        heatSandGen.generate(world, random, new BlockPos(xSpawn, ySpawn, zSpawn));
+                        this.heatSandGen.generate(world, random, new BlockPos(xSpawn, ySpawn, zSpawn));
                     }
                 }
             }

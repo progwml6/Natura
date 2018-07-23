@@ -18,6 +18,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IStringSerializable;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraftforge.registries.IForgeRegistryEntry;
@@ -174,10 +175,10 @@ public abstract class NaturaPulse
 
     /**
      * Used to register TileEntitys with the GameRegistry.
-     * 
+     *
      * @param teClazz
      * @param name
-     * 
+     *
      */
     protected static void registerTE(Class<? extends TileEntity> teClazz, String name)
     {
@@ -186,6 +187,6 @@ public abstract class NaturaPulse
             throw new IllegalArgumentException(String.format("Unlocalized names need to be all lowercase! TE: %s", name));
         }
 
-        GameRegistry.registerTileEntity(teClazz, Util.prefix(name));
+        GameRegistry.registerTileEntity(teClazz, new ResourceLocation(Util.prefix(name)));
     }
 }

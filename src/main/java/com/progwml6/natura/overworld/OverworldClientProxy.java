@@ -168,6 +168,9 @@ public class OverworldClientProxy extends ClientProxy
         ModelLoader.setCustomStateMapper(NaturaOverworld.sakuraDoor, (new StateMap.Builder()).ignore(BlockDoor.POWERED).build());
         ModelLoader.setCustomStateMapper(NaturaOverworld.redwoodDoor, (new StateMap.Builder()).ignore(BlockDoor.POWERED).build());
         ModelLoader.setCustomStateMapper(NaturaOverworld.redwoodBarkDoor, (new StateMap.Builder()).ignore(BlockDoor.POWERED).build());
+        ModelLoader.setCustomStateMapper(NaturaOverworld.tigerDoor, (new StateMap.Builder()).ignore(BlockDoor.POWERED).build());
+        ModelLoader.setCustomStateMapper(NaturaOverworld.mapleDoor, (new StateMap.Builder()).ignore(BlockDoor.POWERED).build());
+        ModelLoader.setCustomStateMapper(NaturaOverworld.silverbellDoor, (new StateMap.Builder()).ignore(BlockDoor.POWERED).build());
 
         registerItemBlockMeta(NaturaOverworld.redwoodLog);
         registerItemBlockMeta(NaturaOverworld.overworldPlanks);
@@ -308,6 +311,12 @@ public class OverworldClientProxy extends ClientProxy
         this.registerItemModelNatura(stack, "overworld_door_redwood");
         stack = new ItemStack(Item.getItemFromBlock(NaturaOverworld.redwoodBarkDoor), 1, NaturaOverworld.redwoodBarkDoor.getMetaFromState(NaturaOverworld.redwoodBarkDoor.getDefaultState().withProperty(BlockDoor.FACING, EnumFacing.EAST).withProperty(BlockDoor.OPEN, Boolean.valueOf(false)).withProperty(BlockDoor.HINGE, BlockDoor.EnumHingePosition.LEFT).withProperty(BlockDoor.HALF, BlockDoor.EnumDoorHalf.LOWER)));
         this.registerItemModelNatura(stack, "overworld_door_redwood_bark");
+        stack = new ItemStack(Item.getItemFromBlock(NaturaOverworld.tigerDoor), 1, NaturaOverworld.tigerDoor.getMetaFromState(NaturaOverworld.tigerDoor.getDefaultState().withProperty(BlockDoor.FACING, EnumFacing.EAST).withProperty(BlockDoor.OPEN, Boolean.valueOf(false)).withProperty(BlockDoor.HINGE, BlockDoor.EnumHingePosition.LEFT).withProperty(BlockDoor.HALF, BlockDoor.EnumDoorHalf.LOWER)));
+        this.registerItemModelNatura(stack, "overworld_door_tiger");
+        stack = new ItemStack(Item.getItemFromBlock(NaturaOverworld.mapleDoor), 1, NaturaOverworld.mapleDoor.getMetaFromState(NaturaOverworld.mapleDoor.getDefaultState().withProperty(BlockDoor.FACING, EnumFacing.EAST).withProperty(BlockDoor.OPEN, Boolean.valueOf(false)).withProperty(BlockDoor.HINGE, BlockDoor.EnumHingePosition.LEFT).withProperty(BlockDoor.HALF, BlockDoor.EnumDoorHalf.LOWER)));
+        this.registerItemModelNatura(stack, "overworld_door_maple");
+        stack = new ItemStack(Item.getItemFromBlock(NaturaOverworld.silverbellDoor), 1, NaturaOverworld.silverbellDoor.getMetaFromState(NaturaOverworld.silverbellDoor.getDefaultState().withProperty(BlockDoor.FACING, EnumFacing.EAST).withProperty(BlockDoor.OPEN, Boolean.valueOf(false)).withProperty(BlockDoor.HINGE, BlockDoor.EnumHingePosition.LEFT).withProperty(BlockDoor.HALF, BlockDoor.EnumDoorHalf.LOWER)));
+        this.registerItemModelNatura(stack, "overworld_door_silverbell");
 
         registerItemModel(NaturaOverworld.saguaro);
 

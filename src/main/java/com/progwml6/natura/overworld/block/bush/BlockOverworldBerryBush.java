@@ -10,6 +10,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.common.ForgeHooks;
 
 public class BlockOverworldBerryBush extends BlockEnumBerryBush
 {
@@ -60,18 +61,25 @@ public class BlockOverworldBerryBush extends BlockEnumBerryBush
             ;
         }
 
-        if (rand.nextInt(20) == 0 && worldIn.getLightFromNeighbors(pos) >= 8)
+        boolean canGrow = (rand.nextInt(20) == 0);
+
+        if (worldIn.getLightFromNeighbors(pos) >= 8)
         {
-            int age = state.getValue(AGE).intValue();
-
-            if (age < 3)
+            if (ForgeHooks.onCropsGrowPre(worldIn, pos, state, canGrow))
             {
-                worldIn.setBlockState(pos, this.getDefaultState().withProperty(AGE, Integer.valueOf(age + 1)), 2);
-            }
+                int age = state.getValue(AGE).intValue();
 
-            if (rand.nextInt(3) == 0 && height < 3 && worldIn.getBlockState(pos.up()).getBlock() == Blocks.AIR && age >= 2)
-            {
-                worldIn.setBlockState(pos.up(), this.getDefaultState().withProperty(AGE, Integer.valueOf(0)), 2);
+                if (age < 3)
+                {
+                    worldIn.setBlockState(pos, this.getDefaultState().withProperty(AGE, Integer.valueOf(age + 1)), 2);
+                }
+
+                if (rand.nextInt(3) == 0 && height < 3 && worldIn.getBlockState(pos.up()).getBlock() == Blocks.AIR && age >= 2)
+                {
+                    worldIn.setBlockState(pos.up(), this.getDefaultState().withProperty(AGE, Integer.valueOf(0)), 2);
+                }
+
+                ForgeHooks.onCropsGrowPost(worldIn, pos, state, worldIn.getBlockState(pos));
             }
         }
     }

@@ -47,19 +47,19 @@ public enum WoodTypes implements IStringSerializable
     @Nonnull
     public WorldType getWorldType()
     {
-        return worldType;
+        return this.worldType;
     }
 
     @Nonnull
     public int getPlankMeta()
     {
-        return plankMeta;
+        return this.plankMeta;
     }
 
     @Nonnull
     public int getStickMeta()
     {
-        return stickMeta;
+        return this.stickMeta;
     }
 
     public enum WorldType

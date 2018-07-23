@@ -17,6 +17,8 @@ import com.progwml6.natura.entities.entity.passive.EntityImp;
 import com.progwml6.natura.library.Util;
 import com.progwml6.natura.shared.NaturaCommons;
 
+import net.minecraft.entity.EntityLiving.SpawnPlacementType;
+import net.minecraft.entity.EntitySpawnPlacementRegistry;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.world.biome.Biome;
@@ -81,6 +83,8 @@ public class NaturaEntities extends NaturaPulse
         Biome[] biomes = biomeList.toArray(new Biome[biomeList.size()]);
 
         EntityRegistry.addSpawn(EntityImp.class, 10, 8, 12, EnumCreatureType.CREATURE, biomes);
+
+        EntitySpawnPlacementRegistry.setPlacementType(EntityImp.class, SpawnPlacementType.ON_GROUND);
 
         if (Config.enableHeatscarSpider)
         {

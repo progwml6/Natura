@@ -67,7 +67,7 @@ public class HopseedTreeGenerator extends BaseTreeGenerator
             }
         }
 
-        if (!(blocksMatch(worldIn, position)))
+        if (!(this.blocksMatch(worldIn, position)))
         {
             return;
         }

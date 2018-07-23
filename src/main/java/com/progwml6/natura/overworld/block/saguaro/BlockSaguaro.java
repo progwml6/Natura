@@ -27,6 +27,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.EnumPlantType;
+import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -50,13 +51,13 @@ public class BlockSaguaro extends Block implements IPlantable
     public static final AxisAlignedBB BASE_AABB = new AxisAlignedBB(0.125D, 0.0D, 0.125D, 0.875D, 0.875D, 0.875D);
     public static final AxisAlignedBB NORMAL_BOUNDING_BOX = new AxisAlignedBB(0.125D, 0.0D, 0.125D, 0.875D, 0.875D, 0.875D);
     public static final AxisAlignedBB UP_BOUNDING_BOX = new AxisAlignedBB(0.125D, 0.0D, 0.125D, 0.875D, 1.0D, 0.875D);
-    
+
     // TODO: Redo bounding boxes
     /*protected static final AxisAlignedBB[] BOUNDING_BOXES = new AxisAlignedBB[] {
             new AxisAlignedBB(0.125D, 0.0D, 0.125D, 0.875D, 0.875D, 0.875D),
             new AxisAlignedBB(0.375D, 0.0D, 0.375D, 0.625D, 1.0D, 1.0D),
             new AxisAlignedBB(0.0D, 0.0D, 0.375D, 0.625D, 1.0D, 0.625D),
-            new AxisAlignedBB(0.0D, 0.0D, 0.375D, 0.625D, 1.0D, 1.0D), 
+            new AxisAlignedBB(0.0D, 0.0D, 0.375D, 0.625D, 1.0D, 1.0D),
             new AxisAlignedBB(0.375D, 0.0D, 0.0D, 0.625D, 1.0D, 0.625D),
             new AxisAlignedBB(0.375D, 0.0D, 0.0D, 0.625D, 1.0D, 1.0D),
             new AxisAlignedBB(0.0D, 0.0D, 0.0D, 0.625D, 1.0D, 0.625D),
@@ -107,27 +108,27 @@ public class BlockSaguaro extends Block implements IPlantable
         {
             addCollisionBoxToList(pos, entityBox, collidingBoxes, NORTH_AABB);
         }
-        
+
         if (state.getValue(EAST).booleanValue())
         {
             addCollisionBoxToList(pos, entityBox, collidingBoxes, EAST_AABB);
         }
-        
+
         if (state.getValue(SOUTH).booleanValue())
         {
             addCollisionBoxToList(pos, entityBox, collidingBoxes, SOUTH_AABB);
         }
-        
+
         if (state.getValue(WEST).booleanValue())
         {
             addCollisionBoxToList(pos, entityBox, collidingBoxes, WEST_AABB);
         }
-        
+
         if (state.getValue(UP).booleanValue())
         {
             addCollisionBoxToList(pos, entityBox, collidingBoxes, UP_AABB);
         }
-        
+
         if (state.getValue(DOWN).booleanValue())
         {
             addCollisionBoxToList(pos, entityBox, collidingBoxes, DOWN_AABB);
@@ -161,32 +162,32 @@ public class BlockSaguaro extends Block implements IPlantable
     private static int getBoundingBoxIdx(IBlockState state)
     {
         int i = 0;
-    
+
         if (state.getValue(NORTH).booleanValue())
         {
             i |= 1 << EnumFacing.NORTH.getHorizontalIndex();
         }
-    
+
         if (state.getValue(EAST).booleanValue())
         {
             i |= 1 << EnumFacing.EAST.getHorizontalIndex();
         }
-    
+
         if (state.getValue(SOUTH).booleanValue())
         {
             i |= 1 << EnumFacing.SOUTH.getHorizontalIndex();
         }
-    
+
         if (state.getValue(WEST).booleanValue())
         {
             i |= 1 << EnumFacing.WEST.getHorizontalIndex();
         }
-    
+
         if (state.getValue(UP).booleanValue())
         {
             i |= 1 << 4; // TEMP FIX FOR UP
         }
-    
+
         return i;
     }*/
 
@@ -287,34 +288,41 @@ public class BlockSaguaro extends Block implements IPlantable
     @Override
     public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand)
     {
-        if (worldIn.getWorldInfo().isRaining() && rand.nextInt(20) == 0 && worldIn.isAirBlock(pos.up()))
+        if (worldIn.getWorldInfo().isRaining() && worldIn.isAirBlock(pos.up()))
         {
-            switch (rand.nextInt(4))
+            boolean canGrow = (rand.nextInt(20) == 0);
+
+            if (ForgeHooks.onCropsGrowPre(worldIn, pos, state, canGrow))
             {
-            case 0:
-                if (worldIn.isAirBlock(pos.north()))
+                switch (rand.nextInt(4))
                 {
-                    worldIn.setBlockState(pos.north(), NaturaOverworld.saguaroFruit.getDefaultState().withProperty(BlockSaguaroFruit.FACING, EnumFacing.SOUTH), 3);
+                case 0:
+                    if (worldIn.isAirBlock(pos.north()))
+                    {
+                        worldIn.setBlockState(pos.north(), NaturaOverworld.saguaroFruit.getDefaultState().withProperty(BlockSaguaroFruit.FACING, EnumFacing.SOUTH), 3);
+                    }
+                    break;
+                case 1:
+                    if (worldIn.isAirBlock(pos.east()))
+                    {
+                        worldIn.setBlockState(pos.east(), NaturaOverworld.saguaroFruit.getDefaultState().withProperty(BlockSaguaroFruit.FACING, EnumFacing.WEST), 3);
+                    }
+                    break;
+                case 2:
+                    if (worldIn.isAirBlock(pos.south()))
+                    {
+                        worldIn.setBlockState(pos.south(), NaturaOverworld.saguaroFruit.getDefaultState().withProperty(BlockSaguaroFruit.FACING, EnumFacing.NORTH), 3);
+                    }
+                    break;
+                case 3:
+                    if (worldIn.isAirBlock(pos.west()))
+                    {
+                        worldIn.setBlockState(pos.west(), NaturaOverworld.saguaroFruit.getDefaultState().withProperty(BlockSaguaroFruit.FACING, EnumFacing.EAST), 3);
+                    }
+                    break;
                 }
-                break;
-            case 1:
-                if (worldIn.isAirBlock(pos.east()))
-                {
-                    worldIn.setBlockState(pos.east(), NaturaOverworld.saguaroFruit.getDefaultState().withProperty(BlockSaguaroFruit.FACING, EnumFacing.WEST), 3);
-                }
-                break;
-            case 2:
-                if (worldIn.isAirBlock(pos.south()))
-                {
-                    worldIn.setBlockState(pos.south(), NaturaOverworld.saguaroFruit.getDefaultState().withProperty(BlockSaguaroFruit.FACING, EnumFacing.NORTH), 3);
-                }
-                break;
-            case 3:
-                if (worldIn.isAirBlock(pos.west()))
-                {
-                    worldIn.setBlockState(pos.west(), NaturaOverworld.saguaroFruit.getDefaultState().withProperty(BlockSaguaroFruit.FACING, EnumFacing.EAST), 3);
-                }
-                break;
+
+                ForgeHooks.onCropsGrowPost(worldIn, pos, state, worldIn.getBlockState(pos));
             }
         }
     }
@@ -351,6 +359,6 @@ public class BlockSaguaro extends Block implements IPlantable
     @Override
     public IBlockState getPlant(IBlockAccess world, BlockPos pos)
     {
-        return getDefaultState();
+        return this.getDefaultState();
     }
 }

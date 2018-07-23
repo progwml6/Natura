@@ -53,20 +53,20 @@ public class TickHandlerWorldRetrogen
         // Overworld
         if (Natura.pulseManager.isPulseLoaded(NaturaOverworld.PulseId))
         {
-            overworldTreesGenerator = new OverworldTreesGenerator();
-            overworldBerryBushesGenerator = new OverworldBerryBushesGenerator();
-            cloudGenerator = new CloudGenerator();
-            cropGenerator = new CropGenerator();
+            this.overworldTreesGenerator = new OverworldTreesGenerator();
+            this.overworldBerryBushesGenerator = new OverworldBerryBushesGenerator();
+            this.cloudGenerator = new CloudGenerator();
+            this.cropGenerator = new CropGenerator();
         }
 
         // Nether
         if (Natura.pulseManager.isPulseLoaded(NaturaNether.PulseId))
         {
-            netherTreesGenerator = new NetherTreesGenerator();
-            netherBerryBushesGenerator = new NetherBerryBushesGenerator();
-            glowshroomGenerator = new GlowshroomGenerator();
-            vineGenerator = new VineGenerator();
-            netherMineableGenerator = new NetherMinableGenerator();
+            this.netherTreesGenerator = new NetherTreesGenerator();
+            this.netherBerryBushesGenerator = new NetherBerryBushesGenerator();
+            this.glowshroomGenerator = new GlowshroomGenerator();
+            this.vineGenerator = new VineGenerator();
+            this.netherMineableGenerator = new NetherMinableGenerator();
         }
     }
 

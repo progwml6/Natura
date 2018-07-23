@@ -343,7 +343,7 @@ public final class Config
     // Mineables Start
     public static boolean generateTaintedSoil = true;
     public static boolean generateHeatSand = true;
-    
+
     public static int tainedSoilClusterCount = 4;
     public static int heatSandClusterCount = 4;
 
