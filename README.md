@@ -18,4 +18,4 @@ Note: Git MUST be installed and in the system path to use our scripts.
 
 [![Discord](https://img.shields.io/discord/102860784329052160.svg?style=for-the-badge)](https://discord.gg/njGrvuh)
 
-If you have queries about any license or the other restrictions, please drop by our IRC channel, #TinkersConstruct on irc.esper.net
+If you have queries about any license or the other restrictions, please drop by our IRC channel, #progsmods on irc.esper.net
