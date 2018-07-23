@@ -9,23 +9,6 @@ Heyo, Redwood trees! Chop them all day long~
 Heyo, Redwood trees! Chop them all day long~ 	
 
 ## Development
-Install Forge as usual, and setup your IDE as with any other Forge project. Forge Multipart, and CClib must be installed to `forge/mcp/jars/mods/` from the Forge File Server: [ForgeMultipart](http://files.minecraftforge.net/ForgeMultipart/) and [CClib](http://files.minecraftforge.net/CodeChickenLib/). The DEVELOPMENT version of NEI must be installed to the same directory from [Chicken Bones Site](http://www.chickenbones.craftsaddle.org/Files/New_Versions/links.php). Tinkers' Construct must be installed as well from [dvs1](https://dvs1.progwml6.com/jenkins/job/TConstruct_1.7.x/).
+Install Forge as usual, and setup your IDE as with any other Forge project. Forge Multipart, DEOBF version of NEI and CodeChickenlib must be installed to `~/run/mods/`. You can download them at [chickenbones.net](http://chickenbones.net/Pages/links.html). Tinkers' Construct must be installed as well from [CurseForge](https://minecraft.curseforge.com/projects/tinkers-construct/files.
 
-## Issue reporting
-Please include the following:
-
-* Minecraft version
-* Natura version
-* Forge version/build
-* Versions of any mods potentially related to the issue 
-* Any relevant screenshots are greatly appreciated.
-* For crashes:
-	* Steps to reproduce
-	* ForgeModLoader-client-0.log (the FML log) from the root folder of the client
-
-
-Most code is public domain under [Creative Commons 0](http://creativecommons.org/publicdomain/zero/1.0/) 	 
-Textures and binaries are licensed under [Creative Commons 3](http://creativecommons.org/licenses/by/3.0/) 
-Any alternate licenses are noted where appropriate
-We do not take bug reports for outdated builds of Minecraft, or unofficial builds.
 If you have queries about any license or the other restrictions, please drop by our IRC channel, #TinkersConstruct on irc.esper.net

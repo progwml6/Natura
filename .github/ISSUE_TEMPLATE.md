@@ -1,5 +1,6 @@
-<!--- Provide a general summary of the issue in the Title above -->
+<!--- We do not take bug reports for outdated builds of Minecraft, or unofficial builds. -->
 
+<!--- Provide a general summary of the issue in the Title above -->
 ## Version Information
 `Minecraft: `
 `Forge: `
