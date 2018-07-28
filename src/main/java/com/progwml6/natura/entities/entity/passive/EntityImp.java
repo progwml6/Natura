@@ -130,6 +130,25 @@ public class EntityImp extends EntityAnimal
     }
 
     @Override
+    protected void consumeItemFromStack(EntityPlayer player, ItemStack stack)
+    {
+        if (stack.getItem() == soups)
+        {
+            ItemStack bowl = soups.getBowlType(stack.getItemDamage());
+
+            if (!player.inventory.addItemStackToInventory(bowl))
+            {
+                player.dropItem(bowl, false, false);
+            }
+        }
+
+        if (!player.capabilities.isCreativeMode)
+        {
+            stack.shrink(1);
+        }
+    }
+
+    @Override
     public EntityAgeable createChild(EntityAgeable par1EntityAgeable)
     {
         return new EntityImp(this.world);

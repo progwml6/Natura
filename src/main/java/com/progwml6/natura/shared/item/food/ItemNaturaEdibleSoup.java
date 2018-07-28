@@ -54,4 +54,9 @@ public class ItemNaturaEdibleSoup extends ItemNaturaEdible
 
         return stack.getCount() <= 0 ? ItemStack.EMPTY : stack;
     }
+
+    public ItemStack getBowlType(int metadata)
+    {
+        return this.bowlsList.get(metadata).copy();
+    }
 }
