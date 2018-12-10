@@ -127,6 +127,12 @@ public class BlockRespawnObelisk extends EnumBlock<BlockRespawnObelisk.ObeliskTy
         return 0;
     }
 
+    @Override
+    public void onBlockHarvested(World worldIn, BlockPos pos, IBlockState state, EntityPlayer player)
+    {
+        player.setSpawnDimension(null);
+    }
+
     public enum ObeliskType implements IStringSerializable, EnumBlock.IEnumMeta
     {
         INACTIVE, ACTIVE;
