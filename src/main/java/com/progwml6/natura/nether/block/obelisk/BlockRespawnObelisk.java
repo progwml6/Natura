@@ -70,7 +70,9 @@ public class BlockRespawnObelisk extends EnumBlock<BlockRespawnObelisk.ObeliskTy
         {
             return false;
         }
+
         playerIn.setSpawnChunk(pos, false, worldIn.provider.getDimension());
+        playerIn.setSpawnDimension(worldIn.provider.getDimension());
 
         if (!worldIn.isRemote)
         {
