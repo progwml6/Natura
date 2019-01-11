@@ -2,7 +2,6 @@ package com.progwml6.natura.oredict;
 
 import org.apache.logging.log4j.Logger;
 
-import com.google.common.eventbus.Subscribe;
 import com.progwml6.natura.common.NaturaPulse;
 import com.progwml6.natura.common.config.Config;
 import com.progwml6.natura.decorative.NaturaDecorative;
@@ -18,7 +17,8 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.oredict.OreDictionary;
 import slimeknights.mantle.pulsar.pulse.Pulse;
 
@@ -29,8 +29,8 @@ public class NaturaOredict extends NaturaPulse
 
     static final Logger log = Util.getLogger(PulseId);
 
-    @Subscribe
-    public void init(FMLInitializationEvent event)
+    @SubscribeEvent
+    public void registerItems(RegistryEvent.Register<Item> event)
     {
         ensureOredict();
 
