@@ -1,10 +1,12 @@
 package com.progwml6.natura.overworld.block.saplings;
 
+import java.util.List;
 import java.util.Locale;
 import java.util.Random;
 
 import javax.annotation.Nonnull;
 
+import com.google.common.collect.Lists;
 import com.progwml6.natura.Natura;
 import com.progwml6.natura.library.NaturaRegistry;
 import com.progwml6.natura.overworld.NaturaOverworld;
@@ -34,6 +36,8 @@ import slimeknights.mantle.block.EnumBlock;
 public class BlockRedwoodSapling extends BlockSapling
 {
     public static PropertyEnum<SaplingType> FOLIAGE = PropertyEnum.create("foliage", SaplingType.class);
+
+    public List<BlockPos> redwoodSaplingPositions = Lists.newArrayList();
 
     public BlockRedwoodSapling()
     {
@@ -151,7 +155,6 @@ public class BlockRedwoodSapling extends BlockSapling
         }
 
         // replace saplings with air
-
         this.replaceBlocksWithAir(worldIn, pos);
 
         // try generating
@@ -159,8 +162,22 @@ public class BlockRedwoodSapling extends BlockSapling
 
         if (worldIn.isAirBlock(pos))
         {
+            this.replaceAirWithBlocks(worldIn, state);
             worldIn.setBlockState(pos, state, 4);
         }
+    }
+
+    private void replaceAirWithBlocks(World worldIn, IBlockState state)
+    {
+        for (BlockPos pos : redwoodSaplingPositions)
+        {
+            if (worldIn.isAirBlock(pos))
+            {
+                worldIn.setBlockState(pos, state, 4);
+            }
+        }
+
+        redwoodSaplingPositions.clear();
     }
 
     /**
@@ -204,6 +221,7 @@ public class BlockRedwoodSapling extends BlockSapling
             {
                 if (this.isRedwoodComplete(worldIn, pos.add(x, 0, z), SaplingType.REDWOOD))
                 {
+                    redwoodSaplingPositions.add(pos.add(x, 0, z));
                     worldIn.setBlockToAir(pos.add(x, 0, z));
                 }
             }
