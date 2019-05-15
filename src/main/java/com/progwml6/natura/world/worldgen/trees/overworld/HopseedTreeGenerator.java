@@ -187,7 +187,7 @@ public class HopseedTreeGenerator extends BaseTreeGenerator
     {
         Block underBlock = world.getBlockState(pos).getBlock();
 
-        if (!(underBlock == Blocks.DIRT || underBlock == Blocks.GRASS))
+        if (underBlock == Blocks.DIRT || underBlock == Blocks.GRASS)
         {
             return true;
         }
