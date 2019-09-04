@@ -1,5 +1,4 @@
 #ant stuff
-build.xml
 /bin/
 /download/
 #Remove OS generated garbage
@@ -20,12 +19,13 @@ Thumbs.db
 /*.iml
 /*.ipr
 /*.iws
-out/
 #Vim backups
 *~
+#manual version override
+version.properties
 #eclipse stuffs
-/.classpath
-/.project
+/*.classpath
+/*.project
 /.settings/
-/eclipse/
 /*.launch
+/out

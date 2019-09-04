@@ -4,81 +4,48 @@
  * Based on TConstruct's master build file
  * Authors: Sunstrike, ProgWML6
  * Help from AbrarSyed
- */
+*/
 
 buildscript {
     repositories {
-        mavenCentral()
+        mavenLocal()
+        maven { url = 'https://files.minecraftforge.net/maven' }
         jcenter()
-        maven {
-            name = "forge"
-            url = "http://files.minecraftforge.net/maven"
-        }
+        mavenCentral()
         maven {
             name = "sonatype"
             url = "https://oss.sonatype.org/content/repositories/snapshots/"
         }
     }
     dependencies {
-        classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'
+        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '3.+', changing: true
     }
 }
 
-apply plugin: 'net.minecraftforge.gradle.forge'
+apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'maven'
 apply plugin: 'eclipse'
-apply plugin: 'idea'
 apply plugin: 'maven-publish'
 
 repositories {
+    mavenLocal()
     maven {
-        name 'CB Maven FS'
-        url "http://chickenbones.net/maven/"
+        name 'ForgeFS'
+        url 'https://files.minecraftforge.net/maven'
     }
     maven {
         name 'DVS1 Maven FS'
-        url 'http://dvs1.progwml6.com/files/maven'
+        url 'https://dvs1.progwml6.com/files/maven'
     }
     maven {
-        name 'ForgeFS'
-        url 'http://files.minecraftforge.net/maven'
-    }
-    maven {
-        name 'MCMultiPart'
-        url 'http://maven.amadornes.com/'
-    }
-    maven {
-         name "Tehnut Maven FS"
-         url "http://tehnut.info/maven"
-    }
-    maven {
-         name "ProfMobius Maven FS"
-         url "http://mobiusstrip.eu/maven"
+        name "Tehnut Maven FS"
+        url "http://tehnut.info/maven"
     }
 }
 
 group = 'com.progwml6.natura'
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
 
-dependencies {
-    deobfCompile ("slimeknights.mantle:Mantle:${minecraft_version_short}-${mantle_version}") {
-        transitive = false
-    }
-    deobfCompile ("slimeknights:TConstruct:${minecraft_version}-${tconstruct_version}") {
-        transitive = false
-    }
-
-    deobfCompile ("mcp.mobius.waila:Hwyla:${hwyla_version}_${minecraft_version_short}") {
-        transitive = false
-    }
-
-    deobfCompile ("mezz.jei:jei_${minecraft_version}:${jei_version}") {
-        transitive = false
-    }
-
-    //deobfCompile "MCMultiPart2:MCMultiPart-exp:${mcmultipart_version}"
-}
+sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8'
 
 // sets version to the slimeKnights version format
 task buildInfo {
@@ -97,35 +64,119 @@ task buildInfo {
         ext.buildNum = "DEV.${project.buildInfo.revision}"
     }
 }
-version = "${minecraft_version}-${mod_version}.${project.buildInfo.buildNum}"
-
-minecraft {
-    version = minecraft_version + "-" + forge_version
-    mappings = mappings_version
-    runDir = "run"
-    replace '${version}', project.version
-    useDepAts = true
+ext.artifact_version = 'NFG'
+if (System.getenv().ARTIFACT_VERSION == null) {
+    artifact_version = "${mod_version}.${project.buildInfo.buildNum}"
+}
+if (System.getenv().ARTIFACT_VERSION != null) {
+    artifact_version = "${system.getenv().ARTIFACT_VERSION}"
 }
 
-processResources
-{
-    // replace stuff in text files, not binary ones.
-    from(sourceSets.main.resources.srcDirs) {
-        include '**/*.info'
-        // replace version and MCVersion
-        expand 'version':project.version, 'mcversion':project.minecraft.version
+version = "${minecraft_version}-${artifact_version}"
+
+minecraft {
+    mappings channel: 'snapshot', version: mappings_version
+
+    accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
+
+    runs {
+        client {
+            workingDirectory project.file('run')
+
+            // Recommended logging data for a userdev environment
+            property 'forge.logging.markers', 'REGISTRIES,REGISTRYDUMP,CORE,PULSAR'
+            // property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP,CORE,PULSAR' enable if you want spam from the scanner.
+
+            // Recommended logging level for the console
+            property 'forge.logging.console.level', 'debug'
+
+            mods {
+                natura {
+                    source sourceSets.main
+                }
+            }
+        }
+
+        server {
+            workingDirectory project.file('run')
+
+            // Recommended logging data for a userdev environment
+            property 'forge.logging.markers', 'REGISTRIES,REGISTRYDUMP,CORE,PULSAR'
+
+            // Recommended logging level for the console
+            property 'forge.logging.console.level', 'debug'
+
+            mods {
+                natura {
+                    source sourceSets.main
+                }
+            }
+        }
+
+        data {
+            workingDirectory project.file('run')
+
+            // Recommended logging data for a userdev environment
+            property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP,CORE,PULSAR'
+
+            // Recommended logging level for the console
+            property 'forge.logging.console.level', 'debug'
+
+            args '--mod', 'natura', '--all', '--output', file('generated/resources/')
+
+            mods {
+                natura {
+                    source sourceSets.main
+                }
+            }
+        }
     }
-    // copy everything else, thats not text
+}
+
+dependencies {
+    minecraft 'net.minecraftforge:forge:' + minecraft_version + '-' + forge_version
+
+    compile fg.deobf("slimeknights.mantle:Mantle:${minecraft_version}-${mantle_version}")
+
+    // compile against the JEI API but do not include it at runtime
+    compileOnly fg.deobf("mezz.jei:jei-${minecraft_version}:${jei_version}:api")
+    // at runtime, use the full JEI jar
+    runtimeOnly fg.deobf("mezz.jei:jei-${minecraft_version}:${jei_version}")
+    
+    compile fg.deobf("mcp.mobius.waila:Hwyla:${hwyla_version}_${minecraft_version}")
+}
+
+processResources {
+    inputs.property "version", mod_version
+    inputs.property "MCversion", minecraft_version
+
     from(sourceSets.main.resources.srcDirs) {
-        exclude '**/*.info'
+        include 'META-INF/mods.toml'
+
+        expand 'version': artifact_version, 'MCversion': minecraft_version, 'forge_version': forge_version_toml, 'mantle_version': mantle_version
+    }
+
+    from(sourceSets.main.resources.srcDirs) {
+        exclude 'META-INF/mods.toml'
     }
 }
 
 jar {
-    finalizedBy reobfJar
+    manifest {
+        attributes([
+                "Specification-Title"     : "Natura",
+                "Specification-Vendor"    : "ProgWML6",
+                "Specification-Version"   : "1", // We are version 1 of ourselves
+                "Implementation-Title"    : project.name,
+                "Implementation-Version"  : "${version}",
+                "Implementation-Vendor"   : "ProgWML6",
+                "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
+        ])
+    }
+
+    // finalizedBy reobfJar
 }
 
-// because the normal output has been made to be obfuscated
 task sourcesJar(type: Jar) {
     from sourceSets.main.allJava
     classifier = 'sources'
@@ -134,6 +185,7 @@ task sourcesJar(type: Jar) {
 artifacts {
     archives sourcesJar
 }
+
 publishing {
     publications {
         mavenJava(MavenPublication) {

@@ -1,0 +1,26 @@
+modLoader="javafml"
+loaderVersion="[24,)"
+issueTrackerURL="https://github.com/progwml6/Mantle/issues"
+
+[[mods]]
+    modId="natura"
+    namespace="natura"
+    version="${version}"
+    displayName="Natura"
+    authors="mDiyo, Slime Knights"
+    description='''
+Heyo, Redwood trees! Chop them all day long!
+    '''
+    displayURL="https://minecraft.curseforge.com/projects/natura"
+    [[dependencies.natura]]
+        modId="forge"
+        mandatory=true
+        versionRange="[${forge_version},)"
+        ordering="NONE"
+        side="BOTH"
+    [[dependencies.natura]]
+        modId="mantle"
+        mandatory=true
+        versionRange="[${mantle_version},)"
+        ordering="NONE"
+        side="BOTH"
