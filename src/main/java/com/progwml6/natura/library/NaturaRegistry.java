@@ -15,9 +15,9 @@ public final class NaturaRegistry {
   | ITEM GROUPS                                                               |
   ---------------------------------------------------------------------------*/
 
-  public static CreativeTab generalItemGroup = new CreativeTab("NaturaGeneral", new ItemStack(Items.SLIME_BALL));
-  public static CreativeTab worldItemGroup = new CreativeTab("NaturaWorld", new ItemStack(Items.SLIME_BALL));
-  public static CreativeTab decorativeItemGroup = new CreativeTab("NaturaDecorative", new ItemStack(Items.SLIME_BALL));
+  public static CreativeTab tabGeneral = new CreativeTab("natura_general", new ItemStack(Items.SLIME_BALL));
+  public static CreativeTab tabWorld = new CreativeTab("natura_world", new ItemStack(Items.SLIME_BALL));
+  public static CreativeTab tabDecorative = new CreativeTab("natura_decorative", new ItemStack(Items.SLIME_BALL));
 
   /*---------------------------------------------------------------------------
   | MATERIALS                                                                 |

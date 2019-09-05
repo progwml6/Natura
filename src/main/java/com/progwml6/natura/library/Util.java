@@ -3,14 +3,16 @@ package com.progwml6.natura.library;
 import net.minecraft.util.ResourceLocation;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.Marker;
+import org.apache.logging.log4j.MarkerManager;
 
 import java.util.Locale;
 
 public class Util {
 
   public static final String MODID = "natura";
-
   public static final String RESOURCE = MODID.toLowerCase(Locale.US);
+  public static final Marker NATURA = MarkerManager.getMarker("NATURA");
 
   public static Logger getLogger(String type) {
     String log = MODID;

@@ -6,6 +6,7 @@ import com.progwml6.natura.common.ServerProxy;
 import com.progwml6.natura.library.NaturaPulseIds;
 import com.progwml6.natura.library.NaturaRegistry;
 import com.progwml6.natura.library.Util;
+import com.progwml6.natura.shared.block.CloudBlock;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -28,14 +29,29 @@ public class NaturaCommons extends NaturaPulse {
 
   public static ServerProxy proxy = DistExecutor.runForDist(() -> CommonsClientProxy::new, () -> ServerProxy::new);
 
+  public static final CloudBlock white_cloud = null;
+  public static final CloudBlock dark_cloud = null;
+  public static final CloudBlock ash_cloud = null;
+  public static final CloudBlock sulfur_cloud = null;
+
   @SubscribeEvent
   public void registerBlocks(final RegistryEvent.Register<Block> event) {
     IForgeRegistry<Block> registry = event.getRegistry();
+
+    register(registry, new CloudBlock(), "white_cloud");
+    register(registry, new CloudBlock(), "dark_cloud");
+    register(registry, new CloudBlock(), "ash_cloud");
+    register(registry, new CloudBlock(true), "sulfur_cloud");
   }
 
   @SubscribeEvent
   public void registerItems(final RegistryEvent.Register<Item> event) {
     IForgeRegistry<Item> registry = event.getRegistry();
+
+    registerBlockItem(registry, white_cloud, NaturaRegistry.tabWorld);
+    registerBlockItem(registry, dark_cloud, NaturaRegistry.tabWorld);
+    registerBlockItem(registry, ash_cloud, NaturaRegistry.tabWorld);
+    registerBlockItem(registry, sulfur_cloud, NaturaRegistry.tabWorld);
   }
 
   @SubscribeEvent
@@ -51,10 +67,11 @@ public class NaturaCommons extends NaturaPulse {
   @SubscribeEvent
   public void postInit(final InterModProcessEvent event) {
     proxy.postInit();
-    NaturaRegistry.generalItemGroup.setDisplayIcon(new ItemStack(cotton));
+
+    NaturaRegistry.tabGeneral.setDisplayIcon(new ItemStack(cotton));
 
     if (!isOverworldLoaded()) {
-      NaturaRegistry.worldItemGroup.setDisplayIcon(new ItemStack(new ItemStack(white_cloud)));
+      NaturaRegistry.tabWorld.setDisplayIcon(new ItemStack(white_cloud));
     }
   }
 }
