@@ -14,7 +14,7 @@ public class Tags {
     public static final Tag<Block> CLOUDS = tag("clouds");
 
     private static Tag<Block> tag(String name) {
-      return new BlockTags.Wrapper(new ResourceLocation("tconstruct", name));
+      return new BlockTags.Wrapper(new ResourceLocation("natura", name));
     }
 
     private static Tag<Block> forgeTag(String name) {
@@ -28,7 +28,7 @@ public class Tags {
     public static final Tag<Item> CROPS_BARLEY = forgeTag("crops/barley");
 
     private static Tag<Item> tag(String name) {
-      return new ItemTags.Wrapper(new ResourceLocation("tconstruct", name));
+      return new ItemTags.Wrapper(new ResourceLocation("natura", name));
     }
 
     private static Tag<Item> forgeTag(String name) {

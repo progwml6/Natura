@@ -1,6 +1,6 @@
 {
-  "parent": "item/generated",
-  "textures": {
-    "layer0": "natura:item/bags/potatoes_seed_bag"
-  }
+    "parent": "item/generated",
+    "textures": {
+        "layer0": "natura:item/bags/potatoes_seed_bag"
+    }
 }

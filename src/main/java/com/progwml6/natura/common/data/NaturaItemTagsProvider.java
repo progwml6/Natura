@@ -37,7 +37,7 @@ public class NaturaItemTagsProvider extends ItemTagsProvider {
 
   @Override
   public String getName() {
-    return "Tconstruct Item Tags";
+    return "Natura Item Tags";
   }
 
 }

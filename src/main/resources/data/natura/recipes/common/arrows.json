@@ -1,35 +1,36 @@
 {
-  "type": "forge:conditional",
-  "recipes": [
-    {
-      "conditions": [
+    "type": "forge:conditional",
+    "recipes": [
         {
-          "type": "forge:true"
+            "conditions": [
+                {
+                    "pulseid": "natura_nether",
+                    "type": "natura:pulse_loaded"
+                }
+            ],
+            "recipe": {
+                "type": "minecraft:crafting_shaped",
+                "pattern": [
+                    " # ",
+                    "XYX",
+                    " X "
+                ],
+                "key": {
+                    "#": {
+                        "item": "minecraft:flint"
+                    },
+                    "X": {
+                        "item": "natura:ghostwood_fletching"
+                    },
+                    "Y": {
+                        "tag": "forge:rods/wooden"
+                    }
+                },
+                "result": {
+                    "item": "minecraft:arrow",
+                    "count": 4
+                }
+            }
         }
-      ],
-      "recipe": {
-        "type": "minecraft:crafting_shaped",
-        "pattern": [
-          " # ",
-          "XYX",
-          " X "
-        ],
-        "key": {
-          "#": {
-            "item": "minecraft:flint"
-          },
-          "X": {
-            "item": "natura:ghostwood_fletching"
-          },
-          "Y": {
-            "tag": "forge:rods/wooden"
-          }
-        },
-        "result": {
-          "item": "minecraft:arrow",
-          "count": 4
-        }
-      }
-    }
-  ]
+    ]
 }

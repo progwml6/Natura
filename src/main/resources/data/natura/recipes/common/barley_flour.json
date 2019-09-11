@@ -1,23 +1,23 @@
 {
-  "type": "forge:conditional",
-  "recipes": [
-    {
-      "conditions": [
+    "type": "forge:conditional",
+    "recipes": [
         {
-          "type": "forge:true"
+            "conditions": [
+                {
+                    "type": "forge:true"
+                }
+            ],
+            "recipe": {
+                "type": "minecraft:crafting_shapeless",
+                "ingredients": [
+                    {
+                        "tag": "forge:crops/barley"
+                    }
+                ],
+                "result": {
+                    "item": "natura:barley_flour"
+                }
+            }
         }
-      ],
-      "recipe": {
-        "type": "minecraft:crafting_shapeless",
-        "ingredients": [
-          {
-            "tag": "forge:crops/barley"
-          }
-        ],
-        "result": {
-          "item": "natura:barley_flour"
-        }
-      }
-    }
-  ]
+    ]
 }

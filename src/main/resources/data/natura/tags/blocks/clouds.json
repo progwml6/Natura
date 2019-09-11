@@ -1,0 +1,9 @@
+{
+    "replace": false,
+    "values": [
+        "natura:white_cloud",
+        "natura:dark_cloud",
+        "natura:ash_cloud",
+        "natura:sulfur_cloud"
+    ]
+}

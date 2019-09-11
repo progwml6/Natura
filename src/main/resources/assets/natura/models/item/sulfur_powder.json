@@ -1,6 +1,6 @@
 {
-  "parent": "item/generated",
-  "textures": {
-    "layer0": "natura:item/materials/sulfur_powder"
-  }
+    "parent": "item/generated",
+    "textures": {
+        "layer0": "natura:item/materials/sulfur_powder"
+    }
 }

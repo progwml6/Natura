@@ -1,19 +1,19 @@
 {
-  "type": "minecraft:block",
-  "pools": [
-    {
-      "rolls": 1,
-      "entries": [
+    "type": "minecraft:block",
+    "pools": [
         {
-          "type": "minecraft:item",
-          "name": "natura:white_cloud"
+            "rolls": 1,
+            "entries": [
+                {
+                    "type": "minecraft:item",
+                    "name": "natura:white_cloud"
+                }
+            ],
+            "conditions": [
+                {
+                    "condition": "minecraft:survives_explosion"
+                }
+            ]
         }
-      ],
-      "conditions": [
-        {
-          "condition": "minecraft:survives_explosion"
-        }
-      ]
-    }
-  ]
+    ]
 }

@@ -1,36 +1,37 @@
 {
-  "advancements": [
-    {
-      "conditions": [
+    "advancements": [
         {
-          "type": "forge:true"
-        }
-      ],
-      "advancement": {
-        "parent": "minecraft:root",
-        "rewards": {
-          "recipes": [
-            "natura:common/arrows"
-          ]
-        },
-        "criteria": {
-          "has_ghostwood_fletching": {
-            "trigger": "minecraft:inventory_changed",
-            "conditions": {
-              "items": [
+            "conditions": [
                 {
-                  "item": "natura:ghostwood_fletching"
+                    "pulseid": "natura_nether",
+                    "type": "natura:pulse_loaded"
                 }
-              ]
+            ],
+            "advancement": {
+                "parent": "minecraft:recipes/root",
+                "rewards": {
+                    "recipes": [
+                        "natura:common/arrows"
+                    ]
+                },
+                "criteria": {
+                    "has_ghostwood_fletching": {
+                        "trigger": "minecraft:inventory_changed",
+                        "conditions": {
+                            "items": [
+                                {
+                                    "item": "natura:ghostwood_fletching"
+                                }
+                            ]
+                        }
+                    }
+                },
+                "requirements": [
+                    [
+                        "has_ghostwood_fletching"
+                    ]
+                ]
             }
-          }
-        },
-        "requirements": [
-          [
-            "has_ghostwood_fletching"
-          ]
-        ]
-      }
-    }
-  ]
+        }
+    ]
 }
