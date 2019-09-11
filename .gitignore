@@ -29,3 +29,4 @@ version.properties
 /.settings/
 /*.launch
 /out
+/generated

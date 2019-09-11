@@ -3,6 +3,8 @@ package com.progwml6.natura;
 import com.progwml6.natura.common.ClientProxy;
 import com.progwml6.natura.common.Config;
 import com.progwml6.natura.common.ServerProxy;
+import com.progwml6.natura.common.data.NaturaLootTableProvider;
+import com.progwml6.natura.common.data.NaturaRecipeProvider;
 import com.progwml6.natura.library.Util;
 import com.progwml6.natura.shared.NaturaCommons;
 import net.minecraft.data.DataGenerator;
@@ -62,6 +64,9 @@ public class Natura {
     DataGenerator gen = event.getGenerator();
 
     if (event.includeServer()) {
+      gen.addProvider(new NaturaLootTableProvider(gen));
+      gen.addProvider(new NaturaRecipeProvider(gen));
+
       gen.addProvider(new BlockStateJsonGenerator(gen, modID));
       gen.addProvider(new ModelJsonGenerator(gen, modID));
       gen.addProvider(new LanguageJsonGenerator(gen, modID));

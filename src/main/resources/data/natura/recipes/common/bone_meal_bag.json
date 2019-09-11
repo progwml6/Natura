@@ -1,0 +1,35 @@
+{
+  "type": "forge:conditional",
+  "recipes": [
+    {
+      "conditions": [
+        {
+          "type": "forge:true"
+        }
+      ],
+      "recipe": {
+        "type": "minecraft:crafting_shaped",
+        "pattern": [
+          "#X#",
+          "#Y#",
+          "###"
+        ],
+        "key": {
+          "#": {
+            "item": "minecraft:string"
+          },
+          "X": {
+            "item": "minecraft:paper"
+          },
+          "Y": {
+            "item": "minecraft:bone_block"
+          }
+        },
+        "result": {
+          "item": "natura:bone_meal_bag",
+          "count": 4
+        }
+      }
+    }
+  ]
+}

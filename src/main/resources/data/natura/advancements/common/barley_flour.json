@@ -1,0 +1,36 @@
+{
+  "advancements": [
+    {
+      "conditions": [
+        {
+          "type": "forge:true"
+        }
+      ],
+      "advancement": {
+        "parent": "minecraft:root",
+        "rewards": {
+          "recipes": [
+            "natura:common/barley_flour"
+          ]
+        },
+        "criteria": {
+          "has_barley": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+              "items": [
+                {
+                  "tag": "forge:crops/barley"
+                }
+              ]
+            }
+          }
+        },
+        "requirements": [
+          [
+            "has_barley"
+          ]
+        ]
+      }
+    }
+  ]
+}
