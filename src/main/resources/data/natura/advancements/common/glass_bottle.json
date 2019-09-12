@@ -1,0 +1,37 @@
+{
+    "advancements": [
+        {
+            "conditions": [
+                {
+                    "pulseid": "natura_nether",
+                    "type": "natura:pulse_loaded"
+                }
+            ],
+            "advancement": {
+                "parent": "minecraft:recipes/root",
+                "rewards": {
+                    "recipes": [
+                        "natura:common/glass_bottle"
+                    ]
+                },
+                "criteria": {
+                    "has_glass": {
+                        "trigger": "minecraft:inventory_changed",
+                        "conditions": {
+                            "items": [
+                                {
+                                    "tag": "forge:glass"
+                                }
+                            ]
+                        }
+                    }
+                },
+                "requirements": [
+                    [
+                        "has_glass"
+                    ]
+                ]
+            }
+        }
+    ]
+}

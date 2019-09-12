@@ -28,6 +28,9 @@ public class NaturaItemTagsProvider extends ItemTagsProvider {
     this.copy(Tags.Blocks.CLOUDS, Tags.Items.CLOUDS);
 
     getBuilder(Tags.Items.CROPS_BARLEY).add(NaturaCommons.barley);
+    getBuilder(Tags.Items.BARLEY).add(NaturaCommons.barley, NaturaCommons.barley_flour);
+    getBuilder(Tags.Items.DUST_SULFUR).add(NaturaCommons.sulfur_powder);
+    getBuilder(Tags.Items.CROPS_COTTON).add(NaturaCommons.cotton);
   }
 
   @Override

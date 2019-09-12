@@ -1,0 +1,36 @@
+{
+    "advancements": [
+        {
+            "conditions": [
+                {
+                    "type": "forge:true"
+                }
+            ],
+            "advancement": {
+                "parent": "minecraft:recipes/root",
+                "rewards": {
+                    "recipes": [
+                        "natura:common/wool"
+                    ]
+                },
+                "criteria": {
+                    "has_cotton": {
+                        "trigger": "minecraft:inventory_changed",
+                        "conditions": {
+                            "items": [
+                                {
+                                    "tag": "forge:crops/cotton"
+                                }
+                            ]
+                        }
+                    }
+                },
+                "requirements": [
+                    [
+                        "has_cotton"
+                    ]
+                ]
+            }
+        }
+    ]
+}

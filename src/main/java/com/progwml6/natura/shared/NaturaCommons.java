@@ -3,6 +3,7 @@ package com.progwml6.natura.shared;
 import com.progwml6.natura.Natura;
 import com.progwml6.natura.common.NaturaPulse;
 import com.progwml6.natura.common.ServerProxy;
+import com.progwml6.natura.common.conditions.ConfigOptionCondition;
 import com.progwml6.natura.common.conditions.PulseLoadedCondition;
 import com.progwml6.natura.library.NaturaPulseIds;
 import com.progwml6.natura.library.NaturaRegistry;
@@ -174,6 +175,7 @@ public class NaturaCommons extends NaturaPulse {
   @SubscribeEvent
   public void registerRecipeSerializers(RegistryEvent.Register<IRecipeSerializer<?>> event) {
     CraftingHelper.register(PulseLoadedCondition.Serializer.INSTANCE);
+    CraftingHelper.register(ConfigOptionCondition.Serializer.INSTANCE);
   }
 
   @SubscribeEvent

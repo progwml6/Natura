@@ -10,23 +10,17 @@
             "recipe": {
                 "type": "minecraft:crafting_shaped",
                 "pattern": [
-                    "#X#",
-                    "#Y#",
-                    "###"
+                    "AAA",
+                    "AAA",
+                    "AAA"
                 ],
                 "key": {
-                    "#": {
-                        "item": "minecraft:string"
-                    },
-                    "X": {
-                        "item": "minecraft:paper"
-                    },
-                    "Y": {
-                        "item": "minecraft:bone_block"
+                    "A": {
+                        "tag": "forge:crops/carrot"
                     }
                 },
                 "result": {
-                    "item": "natura:bone_meal_bag"
+                    "item": "natura:carrots_seed_bag"
                 }
             }
         }

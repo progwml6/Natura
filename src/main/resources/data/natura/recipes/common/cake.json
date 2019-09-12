@@ -10,23 +10,26 @@
             "recipe": {
                 "type": "minecraft:crafting_shaped",
                 "pattern": [
-                    "#X#",
-                    "#Y#",
-                    "###"
+                    "AAA",
+                    "BCB",
+                    " D "
                 ],
                 "key": {
-                    "#": {
-                        "item": "minecraft:string"
+                    "A": {
+                        "item": "minecraft:milk_bucket"
                     },
-                    "X": {
-                        "item": "minecraft:paper"
+                    "B": {
+                        "item": "minecraft:sugar"
                     },
-                    "Y": {
-                        "item": "minecraft:bone_block"
+                    "C": {
+                        "item": "minecraft:egg"
+                    },
+                    "D": {
+                        "tag": "natura:barley"
                     }
                 },
                 "result": {
-                    "item": "natura:bone_meal_bag"
+                    "item": "minecraft:cake"
                 }
             }
         }

@@ -10,23 +10,23 @@
             "recipe": {
                 "type": "minecraft:crafting_shaped",
                 "pattern": [
-                    "#X#",
-                    "#Y#",
-                    "###"
+                    "BCB",
+                    "BAB",
+                    "BBB"
                 ],
                 "key": {
-                    "#": {
+                    "A": {
+                        "item": "minecraft:nether_wart_block"
+                    },
+                    "B": {
                         "item": "minecraft:string"
                     },
-                    "X": {
+                    "C": {
                         "item": "minecraft:paper"
-                    },
-                    "Y": {
-                        "item": "minecraft:bone_block"
                     }
                 },
                 "result": {
-                    "item": "natura:bone_meal_bag"
+                    "item": "natura:nether_wart_seed_bag"
                 }
             }
         }

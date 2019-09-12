@@ -26,6 +26,9 @@ public class Tags {
 
     public static final Tag<Item> CLOUDS = tag("clouds");
     public static final Tag<Item> CROPS_BARLEY = forgeTag("crops/barley");
+    public static final Tag<Item> BARLEY = tag("barley");
+    public static final Tag<Item> DUST_SULFUR = forgeTag("dust/sulfur");
+    public static final Tag<Item> CROPS_COTTON = forgeTag("crops/cotton");
 
     private static Tag<Item> tag(String name) {
       return new ItemTags.Wrapper(new ResourceLocation("natura", name));

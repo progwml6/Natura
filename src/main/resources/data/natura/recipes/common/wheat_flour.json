@@ -1,0 +1,25 @@
+{
+    "type": "forge:conditional",
+    "recipes": [
+        {
+            "conditions": [
+                {
+                    "configSetting": "enableWheatRecipe",
+                    "type": "natura:config_option_enabled"
+                }
+            ],
+            "recipe": {
+                "type": "minecraft:crafting_shapeless",
+                "ingredients": [
+                    {
+                        "item": "minecraft:wheat"
+                    }
+                ],
+                "result": {
+                    "item": "natura:wheat_flour",
+                    "count": 9
+                }
+            }
+        }
+    ]
+}

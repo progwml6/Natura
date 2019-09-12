@@ -1,0 +1,28 @@
+{
+    "type": "forge:conditional",
+    "recipes": [
+        {
+            "conditions": [
+                {
+                    "pulseid": "natura_entities",
+                    "type": "natura:pulse_loaded"
+                }
+            ],
+            "recipe": {
+                "type": "minecraft:crafting_shaped",
+                "pattern": [
+                    "AA",
+                    "AA"
+                ],
+                "key": {
+                    "A": {
+                        "item": "natura:imp_leather"
+                    }
+                },
+                "result": {
+                    "item": "minecraft:leather"
+                }
+            }
+        }
+    ]
+}

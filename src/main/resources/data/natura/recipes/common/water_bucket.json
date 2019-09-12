@@ -10,23 +10,20 @@
             "recipe": {
                 "type": "minecraft:crafting_shaped",
                 "pattern": [
-                    "#X#",
-                    "#Y#",
-                    "###"
+                    "AAA",
+                    "ABA",
+                    "AAA"
                 ],
                 "key": {
-                    "#": {
-                        "item": "minecraft:string"
+                    "A": {
+                        "item": "natura:cactus_juice"
                     },
-                    "X": {
-                        "item": "minecraft:paper"
-                    },
-                    "Y": {
-                        "item": "minecraft:bone_block"
+                    "B": {
+                        "item": "minecraft:bucket"
                     }
                 },
                 "result": {
-                    "item": "natura:bone_meal_bag"
+                    "item": "minecraft:water_bucket"
                 }
             }
         }

@@ -1,0 +1,37 @@
+{
+    "advancements": [
+        {
+            "conditions": [
+                {
+                    "configSetting": "enableWheatRecipe",
+                    "type": "natura:config_option_enabled"
+                }
+            ],
+            "advancement": {
+                "parent": "minecraft:recipes/root",
+                "rewards": {
+                    "recipes": [
+                        "natura:common/wheat_flour"
+                    ]
+                },
+                "criteria": {
+                    "has_wheat": {
+                        "trigger": "minecraft:inventory_changed",
+                        "conditions": {
+                            "items": [
+                                {
+                                    "item": "minecraft:wheat"
+                                }
+                            ]
+                        }
+                    }
+                },
+                "requirements": [
+                    [
+                        "has_wheat"
+                    ]
+                ]
+            }
+        }
+    ]
+}

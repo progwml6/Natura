@@ -1,0 +1,29 @@
+{
+    "type": "forge:conditional",
+    "recipes": [
+        {
+            "conditions": [
+                {
+                    "pulseid": "natura_nether",
+                    "type": "natura:pulse_loaded"
+                }
+            ],
+            "recipe": {
+                "type": "minecraft:crafting_shaped",
+                "pattern": [
+                    "A A",
+                    " A "
+                ],
+                "key": {
+                    "A": {
+                        "tag": "forge:glass"
+                    }
+                },
+                "result": {
+                    "item": "minecraft:glass_bottle",
+                    "count": 3
+                }
+            }
+        }
+    ]
+}

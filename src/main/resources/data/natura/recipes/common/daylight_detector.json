@@ -1,0 +1,35 @@
+{
+    "type": "forge:conditional",
+    "recipes": [
+        {
+            "conditions": [
+                {
+                    "pulseid": "natura_nether",
+                    "type": "natura:pulse_loaded"
+                }
+            ],
+            "recipe": {
+                "type": "minecraft:crafting_shaped",
+                "pattern": [
+                    "AAA",
+                    "BBB",
+                    "CCC"
+                ],
+                "key": {
+                    "A": {
+                        "tag": "forge:glass"
+                    },
+                    "B": {
+                        "tag": "minecraft:wooden_slabs"
+                    },
+                    "C": {
+                        "tag": "forge:gems/quartz"
+                    }
+                },
+                "result": {
+                    "item": "minecraft:daylight_detector"
+                }
+            }
+        }
+    ]
+}
