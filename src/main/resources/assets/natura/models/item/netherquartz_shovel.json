@@ -1,6 +1,0 @@
-{
-    "parent": "item/handheld",
-    "textures": {
-        "layer0": "natura:items/weapons/shovel/netherquartz_shovel"
-    }
-}

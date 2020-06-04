@@ -1,6 +1,0 @@
-{
-    "parent": "block/button_inventory",
-    "textures": {
-        "texture": "natura:blocks/planks/overworld/eucalyptus_planks"
-    }
-}

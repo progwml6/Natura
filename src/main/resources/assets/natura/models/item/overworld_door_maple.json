@@ -1,6 +1,0 @@
-{
-    "parent": "item/generated",
-    "textures": {
-        "layer0": "natura:blocks/doors/maple/maple_door_bottom"
-    }
-}
