@@ -1,7 +1,7 @@
 package com.progwml6.natura.shared.item;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.IGrowable;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
@@ -13,21 +13,22 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.world.World;
-import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.entity.player.BonemealEvent;
-import net.minecraftforge.eventbus.api.Event;
+import net.minecraftforge.common.IPlantable;
 import slimeknights.mantle.item.TooltipItem;
 
 import javax.annotation.Nullable;
 import java.util.List;
 
-public class BoneMealBagItem extends Item {
+public class SeedBagItem extends Item {
 
-  public BoneMealBagItem(Properties properties) {
+  private final BlockState placedState;
+
+  public SeedBagItem(Properties properties, BlockState state) {
     super(properties);
+
+    this.placedState = state;
   }
 
   @Override
@@ -53,17 +54,20 @@ public class BoneMealBagItem extends Item {
 
       boolean planted = false;
 
+      BlockPos position = pos;
+
       for (int posX = pos.getX() - 1; posX <= pos.getX() + 1; posX++) {
         for (int posZ = pos.getZ() - 1; posZ <= pos.getZ() + 1; posZ++) {
-          BlockPos position = mutable.setPos(posX, posY, posZ);
+          position = mutable.setPos(posX, posY, posZ);
 
           if (player.canPlayerEdit(position, facing, stack) && player.canPlayerEdit(position.up(), facing, stack)) {
-            if (applyBoneMeal(stack, world, position, player)) {
+            BlockState blockState = world.getBlockState(position);
+            Block block = blockState.getBlock();
+
+            if (block.canSustainPlant(blockState, world, position, Direction.UP, (IPlantable) this.placedState.getBlock()) && world.isAirBlock(position.up())) {
               planted = true;
 
-              if (!world.isRemote) {
-                world.playEvent(2005, position, 0);
-              }
+              world.setBlockState(position.up(), this.placedState, 3);
             }
           }
         }
@@ -77,44 +81,14 @@ public class BoneMealBagItem extends Item {
         if (stack.getCount() < 1) {
           net.minecraftforge.event.ForgeEventFactory.onPlayerDestroyItem(player, stack, hand);
 
-          player.setHeldItem(hand, ItemStack.EMPTY);
+          world.playEvent(2001, position, Block.getStateId(this.placedState));
         }
 
         return ActionResultType.SUCCESS;
       }
-
-      return ActionResultType.PASS;
-    }
-  }
-
-  public static boolean applyBoneMeal(ItemStack itemStack, World worldIn, BlockPos target, PlayerEntity playerEntity) {
-    BlockState blockState = worldIn.getBlockState(target);
-
-    BonemealEvent event = new BonemealEvent(playerEntity, worldIn, target, blockState, itemStack);
-
-    if (MinecraftForge.EVENT_BUS.post(event)) {
-      return false;
     }
 
-    if (event.getResult() == Event.Result.ALLOW) {
-      return true;
-    }
-
-    if (blockState.getBlock() instanceof IGrowable) {
-      IGrowable growable = (IGrowable) blockState.getBlock();
-
-      if (growable.canGrow(worldIn, target, blockState, worldIn.isRemote)) {
-        if (worldIn instanceof ServerWorld) {
-          if (growable.canUseBonemeal(worldIn, worldIn.rand, target, blockState)) {
-            growable.grow((ServerWorld) worldIn, worldIn.rand, target, blockState);
-          }
-        }
-
-        return true;
-      }
-    }
-
-    return false;
+    return ActionResultType.PASS;
   }
 
   @Override

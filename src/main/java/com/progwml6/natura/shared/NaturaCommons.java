@@ -5,16 +5,20 @@ import com.progwml6.natura.library.NaturaRegistry;
 import com.progwml6.natura.library.registration.object.EnumObject;
 import com.progwml6.natura.library.registration.object.ItemObject;
 import com.progwml6.natura.shared.block.CloudBlock;
+import com.progwml6.natura.shared.item.BoneMealBagItem;
 import com.progwml6.natura.shared.item.EdibleNaturaItem;
 import com.progwml6.natura.shared.item.EdibleSoupItem;
+import com.progwml6.natura.shared.item.SeedBagItem;
 import net.minecraft.block.Block;
+import net.minecraft.block.Blocks;
+import net.minecraft.block.CropsBlock;
+import net.minecraft.block.NetherWartBlock;
 import net.minecraft.block.SoundType;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import org.apache.logging.log4j.Logger;
-import slimeknights.mantle.item.EdibleItem;
 import slimeknights.tconstruct.library.Util;
 
 /**
@@ -61,6 +65,13 @@ public final class NaturaCommons extends NaturaModule {
   public static final ItemObject<EdibleSoupItem> berryMedley = ITEMS.register("berry_medley", () -> new EdibleSoupItem(NaturaFood.BERRY_MEDLEY, NaturaRegistry.tabGeneral));
 
   public static final ItemObject<EdibleSoupItem> glowshroomStew = ITEMS.register("glowshroom_stew", () -> new EdibleSoupItem(NaturaFood.GLOWSHROOM_STEW, NaturaRegistry.tabGeneral));
+
+  public static final ItemObject<BoneMealBagItem> boneMealBag = ITEMS.register("bone_meal_bag", () -> new BoneMealBagItem(GENERAL_PROPS));
+
+  public static final ItemObject<SeedBagItem> wheatSeedsBag = ITEMS.register("wheat_seeds_bag", () -> new SeedBagItem(GENERAL_PROPS, Blocks.WHEAT.getDefaultState().with(CropsBlock.AGE, 0)));
+  public static final ItemObject<SeedBagItem> carrotsSeedBag = ITEMS.register("carrots_seed_bag", () -> new SeedBagItem(GENERAL_PROPS, Blocks.CARROTS.getDefaultState().with(CropsBlock.AGE, 0)));
+  public static final ItemObject<SeedBagItem> potatoesSeedBag = ITEMS.register("potatoes_seed_bag", () -> new SeedBagItem(GENERAL_PROPS, Blocks.POTATOES.getDefaultState().with(CropsBlock.AGE, 0)));
+  public static final ItemObject<SeedBagItem> netherWartSeedBag = ITEMS.register("nether_wart_seed_bag", () -> new SeedBagItem(GENERAL_PROPS, Blocks.NETHER_WART.getDefaultState().with(NetherWartBlock.AGE, 0)));
 
   @SubscribeEvent
   void commonSetup(final FMLCommonSetupEvent event) {

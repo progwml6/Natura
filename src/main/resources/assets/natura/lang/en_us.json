@@ -62,6 +62,19 @@
 
     "item.natura.glowshroom_stew": "Glowshroom Stew",
 
+    "item.natura.bone_meal_bag": "Bone Meal Bag",
+    "item.natura.bone_meal_bag.tooltip": "Grows plants in a 3x3 area",
+
+    "item.natura.wheat_seeds_bag": "Wheat Seed Bag",
+    "item.natura.wheat_seeds_bag.tooltip": "item.natura.seed_bag.tooltip",
+    "item.natura.carrots_seed_bag": "Carrot Bag",
+    "item.natura.carrots_seed_bag.tooltip": "item.natura.seed_bag.tooltip",
+    "item.natura.potatoes_seed_bag": "Potato Bag",
+    "item.natura.potatoes_seed_bag.tooltip": "item.natura.seed_bag.tooltip",
+    "item.natura.nether_wart_seed_bag": "Nether Wart Bag",
+    "item.natura.nether_wart_seed_bag.tooltip": "item.natura.seed_bag.tooltip",
+    "item.natura.seed_bag.tooltip": "Plants in a 3x3 area",
+
     "_comment": "GUIs",
 
     "itemGroup.natura_general": "Natura's General Items",
