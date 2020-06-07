@@ -24,7 +24,6 @@ buildscript {
     }
     dependencies {
         classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '3.+', changing: true
-        classpath "io.freefair.gradle:lombok-plugin:4.1.6"
     }
 }
 
@@ -32,7 +31,6 @@ apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'maven'
 apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
-apply plugin: "io.freefair.lombok"
 
 repositories {
     mavenLocal()
@@ -98,6 +96,8 @@ version = "${minecraft_version}-${artifact_version}"
 minecraft {
     mappings channel: 'snapshot', version: mappings_version
 
+    accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
+
     runs {
         client {
             workingDirectory project.file('run')
@@ -136,7 +136,7 @@ minecraft {
             workingDirectory project.file('run')
 
             // Recommended logging data for a userdev environment
-            property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP,CORE,PULSAR'
+            property 'forge.logging.markers', 'REGISTRIES,REGISTRYDUMP,CORE,PULSAR'
 
             // Recommended logging level for the console
             property 'forge.logging.console.level', 'debug'
@@ -154,6 +154,22 @@ minecraft {
 
 configurations {
     deployerJars
+}
+
+dependencies {
+    minecraft 'net.minecraftforge:forge:' + minecraft_version + '-' + forge_version
+
+    compile fg.deobf("slimeknights.mantle:Mantle:${minecraft_version}-${mantle_version}")
+    compile fg.deobf("slimeknights.tconstruct:TConstruct:${minecraft_version}-${tinkers_construct_version}")
+
+    // compile against the JEI API but do not include it at runtime
+    compileOnly fg.deobf("mezz.jei:jei-${minecraft_version}:${jei_version}:api")
+    // at runtime, use the full JEI jar
+    runtimeOnly fg.deobf("mezz.jei:jei-${minecraft_version}:${jei_version}")
+
+    compile fg.deobf("mcp.mobius.waila:Hwyla:${hwyla_version}_${minecraft_version}")
+    compile fg.deobf("mcjty.theoneprobe:TheOneProbe-1.15:${probe_version}")
+    //deobfCompile "cofh:RedstoneFlux:${config.redstoneflux_version}:universal"
 }
 
 processResources {

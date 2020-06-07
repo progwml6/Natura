@@ -1,0 +1,7 @@
+{
+    "parent": "item/generated",
+    "textures": {
+        "layer0": "item/bowl",
+        "layer1": "natura:item/food/glowshroom_stew"
+    }
+}
