@@ -1,0 +1,35 @@
+modLoader="javafml"
+loaderVersion="[${javafml_min},${javafml_max})"
+issueTrackerURL="https://github.com/progwml6/Natura/issues"
+license="Creative Commons 3"
+
+[[mods]]
+    modId="natura"
+    version="${version}"
+    displayName="Natura"
+    authors="mDiyo, Slime Knights"
+    description='''
+Heyo, Redwood trees! Chop them all day long!
+    '''
+    displayURL="https://www.curseforge.com/minecraft/mc-mods/natura"
+    
+[[dependencies.tconstruct]]
+    modId="forge"
+    mandatory=true
+    versionRange="[${forge_version_min},${forge_version_max})"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.tconstruct]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="[${minecraft_version_min},${minecraft_version_max})"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.tconstruct]]
+    modId="mantle"
+    mandatory=true
+    versionRange="[${mantle_version},)"
+    ordering="NONE"
+    side="BOTH"
