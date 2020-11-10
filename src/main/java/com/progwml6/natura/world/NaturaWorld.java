@@ -1,12 +1,15 @@
-package com.progwml6.natura.overworld;
+package com.progwml6.natura.world;
 
 import com.progwml6.natura.Natura;
 import com.progwml6.natura.common.NaturaModule;
 import com.progwml6.natura.library.Util;
-import com.progwml6.natura.overworld.block.TreeType;
+import com.progwml6.natura.world.block.OverworldLeavesBlock;
+import com.progwml6.natura.world.block.TreeType;
+import com.progwml6.natura.world.worldgen.trees.OverworldTree;
 import net.minecraft.block.Block;
 import net.minecraft.block.LeavesBlock;
 import net.minecraft.block.RotatedPillarBlock;
+import net.minecraft.block.SaplingBlock;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.EntityType;
@@ -14,6 +17,7 @@ import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
+import net.minecraft.state.IntegerProperty;
 import net.minecraftforge.common.ToolType;
 import org.apache.logging.log4j.Logger;
 import slimeknights.mantle.item.BlockTooltipItem;
@@ -23,10 +27,10 @@ import slimeknights.mantle.util.SupplierItemGroup;
 import java.util.function.Function;
 
 @SuppressWarnings("unused")
-public class NaturaOverworld extends NaturaModule {
+public class NaturaWorld extends NaturaModule {
 
-  public static final ItemGroup TAB_OVERWORLD = new SupplierItemGroup(Natura.modID, "world", () -> new ItemStack(NaturaOverworld.logs.get(TreeType.MAPLE)));
-  static final Logger log = Util.getLogger("tinker_commons");
+  public static final ItemGroup TAB_OVERWORLD = new SupplierItemGroup(Natura.modID, "world", () -> new ItemStack(NaturaWorld.logs.get(TreeType.MAPLE)));
+  static final Logger log = Util.getLogger("natura_world");
 
   /*
    * Block base properties
@@ -42,8 +46,10 @@ public class NaturaOverworld extends NaturaModule {
   private static final Block.Properties LEAVES = builder(Material.LEAVES, NO_TOOL, SoundType.PLANT).hardnessAndResistance(0.2F).tickRandomly().notSolid()
     .setAllowsSpawn((state, reader, pos, entityType) -> entityType == EntityType.OCELOT || entityType == EntityType.PARROT)
     .setSuffocates((state, reader, pos) -> false).setBlocksVision((state, reader, pos) -> false);
-  public static final EnumObject<TreeType, LeavesBlock> leaves = BLOCKS.registerEnum(TreeType.values(), "leaves", (type) -> new LeavesBlock(LEAVES), DEFAULT_BLOCK_ITEM);
+  public static final EnumObject<TreeType, OverworldLeavesBlock> leaves = BLOCKS.registerEnum(TreeType.values(), "leaves", (type) -> new OverworldLeavesBlock(type, LEAVES), DEFAULT_BLOCK_ITEM);
 
   private static final Block.Properties SAPLING = builder(Material.PLANTS, NO_TOOL, SoundType.PLANT).doesNotBlockMovement().tickRandomly().zeroHardnessAndResistance();
-  public static final EnumObject<TreeType, Block> sapling = BLOCKS.registerEnum(TreeType.values(), "sapling", (type) -> new Block(SAPLING), DEFAULT_BLOCK_ITEM);
+  public static final EnumObject<TreeType, Block> sapling = BLOCKS.registerEnum(TreeType.values(), "sapling", (type) -> new SaplingBlock(new OverworldTree(type), SAPLING), DEFAULT_BLOCK_ITEM);
+
+  public static final IntegerProperty EXTENDED_TREE_DISTANCE = IntegerProperty.create("distance_extended", 1, 10);
 }

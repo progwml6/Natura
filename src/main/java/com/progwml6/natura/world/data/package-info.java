@@ -1,6 +1,6 @@
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
-package com.progwml6.natura.overworld.client;
+package com.progwml6.natura.world.data;
 
 import mcp.MethodsReturnNonnullByDefault;
 

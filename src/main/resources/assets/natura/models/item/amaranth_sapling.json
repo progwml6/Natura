@@ -1,3 +1,6 @@
 {
-    "parent": "natura:block/saplings/amaranth"
+    "parent": "minecraft:item/generated",
+    "textures": {
+        "layer0": "natura:block/saplings/amaranth_sapling"
+    }
 }

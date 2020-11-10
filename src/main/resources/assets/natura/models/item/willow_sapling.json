@@ -1,3 +1,6 @@
 {
-    "parent": "natura:block/saplings/willow"
+    "parent": "minecraft:item/generated",
+    "textures": {
+        "layer0": "natura:block/saplings/willow_sapling"
+    }
 }

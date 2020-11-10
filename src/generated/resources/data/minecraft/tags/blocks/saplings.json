@@ -1,0 +1,13 @@
+{
+  "replace": false,
+  "values": [
+    "natura:maple_sapling",
+    "natura:silverbell_sapling",
+    "natura:amaranth_sapling",
+    "natura:tiger_sapling",
+    "natura:willow_sapling",
+    "natura:eucalyptus_sapling",
+    "natura:hopseed_sapling",
+    "natura:sakura_sapling"
+  ]
+}

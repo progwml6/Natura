@@ -1,7 +1,7 @@
 {
     "variants": {
         "": {
-            "model": "natura:block/sapling/tiger"
+            "model": "natura:block/saplings/tiger"
         }
     }
 }

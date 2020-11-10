@@ -1,6 +1,6 @@
-package com.progwml6.natura.overworld.client;
+package com.progwml6.natura.world.client;
 
-import com.progwml6.natura.overworld.block.TreeType;
+import com.progwml6.natura.world.block.TreeType;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockDisplayReader;
 import net.minecraft.world.biome.BiomeColors;

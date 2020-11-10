@@ -1,4 +1,4 @@
-package com.progwml6.natura.overworld.block;
+package com.progwml6.natura.world.block;
 
 import net.minecraft.util.IStringSerializable;
 
@@ -9,15 +9,21 @@ public enum TreeType implements IStringSerializable {
   SILVERBELL,
   AMARANTH,
   TIGER,
-  WILLOW,
+  WILLOW(10),
   EUCALYPTUS,
   HOPSEED,
   SAKURA;
 
   private final String name;
+  private final int maxDistance;
 
   TreeType() {
+    this(7);
+  }
+
+  TreeType(int maxDistance) {
     this.name = this.name().toLowerCase(Locale.US);
+    this.maxDistance = maxDistance;
   }
 
   @Override
@@ -28,5 +34,9 @@ public enum TreeType implements IStringSerializable {
   @Override
   public String toString() {
     return name;
+  }
+
+  public int getMaxDistance() {
+    return maxDistance;
   }
 }

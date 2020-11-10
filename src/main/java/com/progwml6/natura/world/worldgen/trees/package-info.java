@@ -1,6 +1,6 @@
 @ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
-package com.progwml6.natura.overworld.data;
+package com.progwml6.natura.world.worldgen.trees;
 
 import mcp.MethodsReturnNonnullByDefault;
 

@@ -1,9 +1,9 @@
-package com.progwml6.natura.overworld;
+package com.progwml6.natura.world;
 
 import com.progwml6.natura.Natura;
 import com.progwml6.natura.common.ClientEventBase;
-import com.progwml6.natura.overworld.block.TreeType;
-import com.progwml6.natura.overworld.client.LeavesColorizer;
+import com.progwml6.natura.world.block.TreeType;
+import com.progwml6.natura.world.client.LeavesColorizer;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.RenderTypeLookup;
 import net.minecraft.client.renderer.color.BlockColors;
@@ -20,13 +20,13 @@ import javax.annotation.Nullable;
 
 @SuppressWarnings("unused")
 @Mod.EventBusSubscriber(modid = Natura.modID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)
-public class OverworldClientEvents extends ClientEventBase {
+public class WorldClientEvents extends ClientEventBase {
 
   @SubscribeEvent
   static void clientSetup(FMLClientSetupEvent event) {
     for (TreeType type : TreeType.values()) {
-      RenderTypeLookup.setRenderLayer(NaturaOverworld.leaves.get(type), RenderType.getCutoutMipped());
-      RenderTypeLookup.setRenderLayer(NaturaOverworld.sapling.get(type), RenderType.getCutout());
+      RenderTypeLookup.setRenderLayer(NaturaWorld.leaves.get(type), RenderType.getCutoutMipped());
+      RenderTypeLookup.setRenderLayer(NaturaWorld.sapling.get(type), RenderType.getCutout());
     }
   }
 
@@ -38,11 +38,11 @@ public class OverworldClientEvents extends ClientEventBase {
     for (TreeType type : TreeType.values()) {
       blockColors.register(
         (state, reader, pos, index) -> getLeavesColorByPos(reader, pos, type),
-        NaturaOverworld.leaves.get(type)
+        NaturaWorld.leaves.get(type)
       );
     }
 
-    registerBlockItemColorAlias(blockColors, itemColors, NaturaOverworld.leaves);
+    registerBlockItemColorAlias(blockColors, itemColors, NaturaWorld.leaves);
   }
 
   private static int getLeavesColorByPos(@Nullable IBlockDisplayReader reader, @Nullable BlockPos pos, TreeType type) {

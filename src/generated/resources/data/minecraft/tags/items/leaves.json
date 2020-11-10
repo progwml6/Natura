@@ -1,0 +1,13 @@
+{
+  "replace": false,
+  "values": [
+    "natura:maple_leaves",
+    "natura:silverbell_leaves",
+    "natura:amaranth_leaves",
+    "natura:tiger_leaves",
+    "natura:willow_leaves",
+    "natura:eucalyptus_leaves",
+    "natura:hopseed_leaves",
+    "natura:sakura_leaves"
+  ]
+}

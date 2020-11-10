@@ -1,8 +1,8 @@
 package com.progwml6.natura.common.data;
 
 import com.progwml6.natura.Natura;
-import com.progwml6.natura.overworld.NaturaOverworld;
-import com.progwml6.natura.overworld.block.TreeType;
+import com.progwml6.natura.world.NaturaWorld;
+import com.progwml6.natura.world.block.TreeType;
 import net.minecraft.block.Block;
 import net.minecraft.data.loot.BlockLootTables;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -22,14 +22,14 @@ public class NaturaBlockLootTables extends BlockLootTables {
 
   @Override
   protected void addTables() {
-    this.addOverworld();
+    this.addWorld();
   }
 
-  private void addOverworld() {
+  private void addWorld() {
     for (TreeType type : TreeType.values()) {
-      this.registerDropSelfLootTable(NaturaOverworld.logs.get(type));
-      this.registerLootTable(NaturaOverworld.leaves.get(type), (leaves) -> droppingWithChancesAndSticks(leaves, NaturaOverworld.sapling.get(type), DEFAULT_SAPLING_DROP_RATES));
-      this.registerDropSelfLootTable(NaturaOverworld.sapling.get(type));
+      this.registerDropSelfLootTable(NaturaWorld.logs.get(type));
+      this.registerLootTable(NaturaWorld.leaves.get(type), (leaves) -> droppingWithChancesAndSticks(leaves, NaturaWorld.sapling.get(type), DEFAULT_SAPLING_DROP_RATES));
+      this.registerDropSelfLootTable(NaturaWorld.sapling.get(type));
     }
   }
 }
