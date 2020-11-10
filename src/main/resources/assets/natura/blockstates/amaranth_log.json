@@ -1,0 +1,16 @@
+{
+    "variants": {
+        "axis=x": {
+            "model": "natura:block/log/amaranth_horizontal",
+            "x": 90,
+            "y": 90
+        },
+        "axis=y": {
+            "model": "natura:block/log/amaranth"
+        },
+        "axis=z": {
+            "model": "natura:block/log/amaranth_horizontal",
+            "x": 90
+        }
+    }
+}

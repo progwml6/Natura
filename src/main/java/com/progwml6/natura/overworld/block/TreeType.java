@@ -4,7 +4,7 @@ import net.minecraft.util.IStringSerializable;
 
 import java.util.Locale;
 
-public enum LogType implements IStringSerializable {
+public enum TreeType implements IStringSerializable {
   MAPLE,
   SILVERBELL,
   AMARANTH,
@@ -16,7 +16,7 @@ public enum LogType implements IStringSerializable {
 
   private final String name;
 
-  LogType() {
+  TreeType() {
     this.name = this.name().toLowerCase(Locale.US);
   }
 

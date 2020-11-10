@@ -3,11 +3,13 @@ package com.progwml6.natura.overworld;
 import com.progwml6.natura.Natura;
 import com.progwml6.natura.common.NaturaModule;
 import com.progwml6.natura.library.Util;
-import com.progwml6.natura.overworld.block.LogType;
+import com.progwml6.natura.overworld.block.TreeType;
 import net.minecraft.block.Block;
+import net.minecraft.block.LeavesBlock;
 import net.minecraft.block.RotatedPillarBlock;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
+import net.minecraft.entity.EntityType;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
@@ -20,9 +22,10 @@ import slimeknights.mantle.util.SupplierItemGroup;
 
 import java.util.function.Function;
 
+@SuppressWarnings("unused")
 public class NaturaOverworld extends NaturaModule {
 
-  public static final ItemGroup TAB_OVERWORLD = new SupplierItemGroup(Natura.modID, "world", () -> new ItemStack(NaturaOverworld.logs.get(LogType.MAPLE)));
+  public static final ItemGroup TAB_OVERWORLD = new SupplierItemGroup(Natura.modID, "world", () -> new ItemStack(NaturaOverworld.logs.get(TreeType.MAPLE)));
   static final Logger log = Util.getLogger("tinker_commons");
 
   /*
@@ -34,6 +37,13 @@ public class NaturaOverworld extends NaturaModule {
   private static final Function<Block, ? extends BlockItem> TOOLTIP_BLOCK_ITEM = (b) -> new BlockTooltipItem(b, OVERWORLD_PROPS);
 
   private static final Block.Properties LOG = builder(Material.WOOD, ToolType.AXE, SoundType.WOOD).hardnessAndResistance(1.5F, 5.0F);
+  public static final EnumObject<TreeType, RotatedPillarBlock> logs = BLOCKS.registerEnum(TreeType.values(), "log", (type) -> new RotatedPillarBlock(LOG), DEFAULT_BLOCK_ITEM);
 
-  public static final EnumObject<LogType, RotatedPillarBlock> logs = BLOCKS.registerEnum(LogType.values(), "log", (type) -> new RotatedPillarBlock(LOG), DEFAULT_BLOCK_ITEM);
+  private static final Block.Properties LEAVES = builder(Material.LEAVES, NO_TOOL, SoundType.PLANT).hardnessAndResistance(0.2F).tickRandomly().notSolid()
+    .setAllowsSpawn((state, reader, pos, entityType) -> entityType == EntityType.OCELOT || entityType == EntityType.PARROT)
+    .setSuffocates((state, reader, pos) -> false).setBlocksVision((state, reader, pos) -> false);
+  public static final EnumObject<TreeType, LeavesBlock> leaves = BLOCKS.registerEnum(TreeType.values(), "leaves", (type) -> new LeavesBlock(LEAVES), DEFAULT_BLOCK_ITEM);
+
+  private static final Block.Properties SAPLING = builder(Material.PLANTS, NO_TOOL, SoundType.PLANT).doesNotBlockMovement().tickRandomly().zeroHardnessAndResistance();
+  public static final EnumObject<TreeType, Block> sapling = BLOCKS.registerEnum(TreeType.values(), "sapling", (type) -> new Block(SAPLING), DEFAULT_BLOCK_ITEM);
 }

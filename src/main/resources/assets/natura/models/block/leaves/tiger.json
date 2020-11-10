@@ -1,0 +1,6 @@
+{
+    "parent": "minecraft:block/leaves",
+    "textures": {
+        "all": "natura:block/leaves/tiger_leaves"
+    }
+}

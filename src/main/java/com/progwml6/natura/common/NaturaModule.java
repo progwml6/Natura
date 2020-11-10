@@ -56,6 +56,9 @@ public class NaturaModule {
     BLOCK_STATE_PROVIDER_TYPES.register(bus);
   }
 
+  /** Constant to use for blocks with no tool for more readable code */
+  protected static final ToolType NO_TOOL = null;
+
   /**
    * We use this builder to ensure that our blocks all have the most important properties set.
    * This way it'll stick out if a block doesn't have a tooltype or sound set.

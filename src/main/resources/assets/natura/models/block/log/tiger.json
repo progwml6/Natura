@@ -1,0 +1,7 @@
+{
+    "parent": "minecraft:block/cube_column",
+    "textures": {
+        "end": "natura:block/log/tiger_log_top",
+        "side": "natura:block/log/tiger_log"
+    }
+}
