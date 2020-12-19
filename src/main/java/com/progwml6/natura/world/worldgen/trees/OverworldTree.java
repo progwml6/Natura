@@ -38,6 +38,8 @@ public class OverworldTree extends Tree {
         return NaturaStructures.AMARANTH_TREE;
       case TIGER:
         return NaturaStructures.TIGER_TREE;
+      case SAKURA:
+        return NaturaStructures.SAKURA_TREE;
     }
 
     return null;
@@ -52,11 +54,9 @@ public class OverworldTree extends Tree {
       case WILLOW:
         return NaturaStructures.WILLOW_TREE;
       case EUCALYPTUS:
-        break;
+        return NaturaStructures.EUCALYPTUS_TREE;
       case HOPSEED:
-        break;
-      case SAKURA:
-        break;
+        return NaturaStructures.HOPSEED_TREE;
     }
 
     return null;

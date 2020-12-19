@@ -86,11 +86,11 @@ public class OverworldTreeFeature extends Feature<BaseTreeFeatureConfig> {
     int k = i - j;
     int l = configIn.foliagePlacer.func_230376_a_(rand, k);
     BlockPos blockPos;
-    
+
     if (!configIn.forcePlacement) {
       int i1 = generationReader.getHeight(Heightmap.Type.OCEAN_FLOOR, positionIn).getY();
       int j1 = generationReader.getHeight(Heightmap.Type.WORLD_SURFACE, positionIn).getY();
-      
+
       if (j1 - i1 > configIn.maxWaterDepth) {
         return false;
       }
@@ -118,13 +118,16 @@ public class OverworldTreeFeature extends Feature<BaseTreeFeatureConfig> {
       }
       else {
         OptionalInt minimumSize = configIn.minimumSize.func_236710_c_();
-        
+
         int l1 = this.getHeight(generationReader, i, blockPos, configIn);
-        
+
         if (l1 >= i || minimumSize.isPresent() && l1 >= minimumSize.getAsInt()) {
           List<FoliagePlacer.Foliage> list = configIn.trunkPlacer.func_230382_a_(generationReader, rand, l1, blockPos, blockPosSet, boundingBoxIn, configIn);
-          list.forEach((p_236407_8_) -> configIn.foliagePlacer.func_236752_a_(generationReader, rand, configIn, l1, p_236407_8_, j, l, blockPosSet2, boundingBoxIn));
-          
+
+          list.forEach((foliage) ->
+            configIn.foliagePlacer.func_236752_a_(generationReader, rand, configIn, l1, foliage, j, l, blockPosSet2, boundingBoxIn)
+          );
+
           return true;
         }
         else {
