@@ -1,6 +1,7 @@
 package com.progwml6.natura.common.data;
 
 import com.progwml6.natura.Natura;
+import com.progwml6.natura.common.NaturaTags;
 import net.minecraft.data.BlockTagsProvider;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.ItemTagsProvider;
@@ -25,5 +26,7 @@ public class NaturaItemTagsProvider extends ItemTagsProvider {
     this.copy(BlockTags.LOGS, ItemTags.LOGS);
     this.copy(BlockTags.LEAVES, ItemTags.LEAVES);
     this.copy(BlockTags.SAPLINGS, ItemTags.SAPLINGS);
+
+    this.copy(NaturaTags.Blocks.REDWOOD_LOGS, NaturaTags.Items.REDWOOD_LOGS);
   }
 }

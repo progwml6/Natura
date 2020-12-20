@@ -1,7 +1,9 @@
 package com.progwml6.natura.common.data;
 
 import com.progwml6.natura.Natura;
+import com.progwml6.natura.common.NaturaTags;
 import com.progwml6.natura.world.NaturaWorld;
+import com.progwml6.natura.world.block.RedwoodType;
 import com.progwml6.natura.world.block.TreeType;
 import net.minecraft.block.Block;
 import net.minecraft.data.BlockTagsProvider;
@@ -28,10 +30,18 @@ public class NaturaBlockTagsProvider extends BlockTagsProvider {
     TagsProvider.Builder<Block> leavesBuilder = this.getOrCreateBuilder(BlockTags.LEAVES);
     TagsProvider.Builder<Block> saplingsBuilder = this.getOrCreateBuilder(BlockTags.SAPLINGS);
 
-    for(TreeType type : TreeType.values()) {
+    for (TreeType type : TreeType.values()) {
       logsBuilder.add(NaturaWorld.logs.get(type));
       leavesBuilder.add(NaturaWorld.leaves.get(type));
       saplingsBuilder.add(NaturaWorld.sapling.get(type));
     }
+
+    TagsProvider.Builder<Block> redwoodLogsBuilder = this.getOrCreateBuilder(NaturaTags.Blocks.REDWOOD_LOGS);
+    for (RedwoodType type : RedwoodType.values()) {
+      redwoodLogsBuilder.add(NaturaWorld.redwood.get(type));
+    }
+
+    leavesBuilder.add(NaturaWorld.redwood_leaves.get());
+    saplingsBuilder.add(NaturaWorld.redwood_sapling.get());
   }
 }

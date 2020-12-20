@@ -3,12 +3,15 @@ package com.progwml6.natura.world;
 import com.google.common.collect.ImmutableList;
 import com.progwml6.natura.common.NaturaModule;
 import com.progwml6.natura.library.Util;
+import com.progwml6.natura.world.block.RedwoodType;
 import com.progwml6.natura.world.block.TreeType;
 import com.progwml6.natura.world.worldgen.trees.SupplierBlockStateProvider;
 import com.progwml6.natura.world.worldgen.trees.config.BaseOverworldTreeFeatureConfig;
+import com.progwml6.natura.world.worldgen.trees.config.RedwoodTreeFeatureConfig;
 import com.progwml6.natura.world.worldgen.trees.feature.EucalyptusTreeFeature;
 import com.progwml6.natura.world.worldgen.trees.feature.HopseedTreeFeature;
 import com.progwml6.natura.world.worldgen.trees.feature.OverworldTreeFeature;
+import com.progwml6.natura.world.worldgen.trees.feature.RedwoodTreeFeature;
 import com.progwml6.natura.world.worldgen.trees.feature.WillowTreeFeature;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.util.registry.WorldGenRegistries;
@@ -59,6 +62,8 @@ public final class NaturaStructures extends NaturaModule {
     .register("eucalyptus_tree", () -> new EucalyptusTreeFeature(BaseOverworldTreeFeatureConfig.CODEC));
   public static final RegistryObject<Feature<BaseOverworldTreeFeatureConfig>> HOPSEED_TREE_FEATURE = FEATURES
     .register("hopseed_tree", () -> new HopseedTreeFeature(BaseOverworldTreeFeatureConfig.CODEC));
+  public static final RegistryObject<Feature<RedwoodTreeFeatureConfig>> REDWOOD_TREE_FEATURE = FEATURES
+    .register("redwood_tree", () -> new RedwoodTreeFeature(RedwoodTreeFeatureConfig.CODEC));
 
   public static ConfiguredFeature<BaseTreeFeatureConfig, ?> MAPLE_TREE;
   public static ConfiguredFeature<BaseTreeFeatureConfig, ?> SILVERBELL_TREE;
@@ -69,6 +74,19 @@ public final class NaturaStructures extends NaturaModule {
   public static ConfiguredFeature<BaseOverworldTreeFeatureConfig, ?> WILLOW_TREE;
   public static ConfiguredFeature<BaseOverworldTreeFeatureConfig, ?> EUCALYPTUS_TREE;
   public static ConfiguredFeature<BaseOverworldTreeFeatureConfig, ?> HOPSEED_TREE;
+
+  public static ConfiguredFeature<RedwoodTreeFeatureConfig, ?> REDWOOD_TREE;
+
+  // Bee Trees!
+  public static ConfiguredFeature<BaseTreeFeatureConfig, ?> MAPLE_TREE_005;
+  public static ConfiguredFeature<BaseTreeFeatureConfig, ?> SILVERBELL_TREE_005;
+  public static ConfiguredFeature<BaseTreeFeatureConfig, ?> AMARANTH_TREE_005;
+  public static ConfiguredFeature<BaseTreeFeatureConfig, ?> TIGER_TREE_005;
+  public static ConfiguredFeature<BaseTreeFeatureConfig, ?> SAKURA_TREE_005;
+
+  public static ConfiguredFeature<BaseOverworldTreeFeatureConfig, ?> WILLOW_TREE_005;
+  public static ConfiguredFeature<BaseOverworldTreeFeatureConfig, ?> EUCALYPTUS_TREE_005;
+  public static ConfiguredFeature<BaseOverworldTreeFeatureConfig, ?> HOPSEED_TREE_005;
 
   public static ConfiguredFeature<?, ?> TREES_JUNGLE;
   public static ConfiguredFeature<?, ?> TREES_FOREST;
@@ -157,6 +175,49 @@ public final class NaturaStructures extends NaturaModule {
         new TwoLayerFeature(0, 0, 0, OptionalInt.of(4))))
         .setIgnoreVines().func_236702_a_(Heightmap.Type.MOTION_BLOCKING).build())
     );
+
+    REDWOOD_TREE = Registry
+      .register(WorldGenRegistries.CONFIGURED_FEATURE, location("redwood_tree"), REDWOOD_TREE_FEATURE.get().withConfiguration((
+        new RedwoodTreeFeatureConfig.Builder(
+          new SupplierBlockStateProvider(() -> NaturaWorld.redwood.get(RedwoodType.BARK).getDefaultState()),
+          new SupplierBlockStateProvider(() -> NaturaWorld.redwood.get(RedwoodType.HEART).getDefaultState()),
+          new SupplierBlockStateProvider(() -> NaturaWorld.redwood.get(RedwoodType.ROOT).getDefaultState()),
+          new SupplierBlockStateProvider(() -> NaturaWorld.redwood_leaves.get().getDefaultState()),
+          80,
+          60,
+          12,
+          4,
+          0.618D,
+          0.381D,
+          1.0D,
+          0.5D))
+        .build())
+      );
+
+    // Bee Trees
+    MAPLE_TREE_005 = Registry.register(WorldGenRegistries.CONFIGURED_FEATURE, location("maple_tree_005"), OVERWORLD_TREE_FEATURE.get()
+      .withConfiguration(MAPLE_TREE.getConfig().func_236685_a_(ImmutableList.of(Features.Placements.BEES_005_PLACEMENT))));
+
+    SILVERBELL_TREE_005 = Registry.register(WorldGenRegistries.CONFIGURED_FEATURE, location("silverbell_tree_005"), OVERWORLD_TREE_FEATURE.get()
+      .withConfiguration(SILVERBELL_TREE.getConfig().func_236685_a_(ImmutableList.of(Features.Placements.BEES_005_PLACEMENT))));
+
+    AMARANTH_TREE_005 = Registry.register(WorldGenRegistries.CONFIGURED_FEATURE, location("amaranth_tree_005"), OVERWORLD_TREE_FEATURE.get()
+      .withConfiguration(AMARANTH_TREE.getConfig().func_236685_a_(ImmutableList.of(Features.Placements.BEES_005_PLACEMENT))));
+
+    TIGER_TREE_005 = Registry.register(WorldGenRegistries.CONFIGURED_FEATURE, location("tiger_tree_005"), OVERWORLD_TREE_FEATURE.get()
+      .withConfiguration(TIGER_TREE.getConfig().func_236685_a_(ImmutableList.of(Features.Placements.BEES_005_PLACEMENT))));
+
+    SAKURA_TREE_005 = Registry.register(WorldGenRegistries.CONFIGURED_FEATURE, location("sakura_tree_005"), OVERWORLD_TREE_FEATURE.get()
+      .withConfiguration(SAKURA_TREE.getConfig().func_236685_a_(ImmutableList.of(Features.Placements.BEES_005_PLACEMENT))));
+
+    WILLOW_TREE_005 = Registry.register(WorldGenRegistries.CONFIGURED_FEATURE, location("willow_tree_005"),
+      WILLOW_TREE_FEATURE.get().withConfiguration(WILLOW_TREE.getConfig().withDecorators(ImmutableList.of(Features.Placements.BEES_005_PLACEMENT))));
+
+    EUCALYPTUS_TREE_005 = Registry.register(WorldGenRegistries.CONFIGURED_FEATURE, location("eucalyptus_tree_005"), EUCALYPTUS_TREE_FEATURE.get()
+      .withConfiguration(EUCALYPTUS_TREE.getConfig().withDecorators(ImmutableList.of(Features.Placements.BEES_005_PLACEMENT))));
+
+    HOPSEED_TREE_005 = Registry.register(WorldGenRegistries.CONFIGURED_FEATURE, location("hopseed_tree_005"), HOPSEED_TREE_FEATURE.get()
+      .withConfiguration(HOPSEED_TREE.getConfig().withDecorators(ImmutableList.of(Features.Placements.BEES_005_PLACEMENT))));
 
     // Used for world gen
 

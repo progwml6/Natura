@@ -31,15 +31,15 @@ public class OverworldTree extends Tree {
   protected ConfiguredFeature<BaseTreeFeatureConfig, ?> getTreeFeature(Random randomIn, boolean largeHive) {
     switch (this.treeType) {
       case MAPLE:
-        return NaturaStructures.MAPLE_TREE;
+        return largeHive ? NaturaStructures.MAPLE_TREE_005 : NaturaStructures.MAPLE_TREE;
       case SILVERBELL:
-        return NaturaStructures.SILVERBELL_TREE;
+        return largeHive ? NaturaStructures.SILVERBELL_TREE_005 : NaturaStructures.SILVERBELL_TREE;
       case AMARANTH:
-        return NaturaStructures.AMARANTH_TREE;
+        return largeHive ? NaturaStructures.AMARANTH_TREE_005 : NaturaStructures.AMARANTH_TREE;
       case TIGER:
-        return NaturaStructures.TIGER_TREE;
+        return largeHive ? NaturaStructures.TIGER_TREE_005 : NaturaStructures.TIGER_TREE;
       case SAKURA:
-        return NaturaStructures.SAKURA_TREE;
+        return largeHive ? NaturaStructures.SAKURA_TREE_005 : NaturaStructures.SAKURA_TREE;
     }
 
     return null;
@@ -52,11 +52,11 @@ public class OverworldTree extends Tree {
   public ConfiguredFeature<BaseOverworldTreeFeatureConfig, ?> getOverworldTreeFeature(Random randomIn, boolean largeHive) {
     switch (this.treeType) {
       case WILLOW:
-        return NaturaStructures.WILLOW_TREE;
+        return largeHive ? NaturaStructures.WILLOW_TREE_005 : NaturaStructures.WILLOW_TREE;
       case EUCALYPTUS:
-        return NaturaStructures.EUCALYPTUS_TREE;
+        return largeHive ? NaturaStructures.EUCALYPTUS_TREE_005 : NaturaStructures.EUCALYPTUS_TREE;
       case HOPSEED:
-        return NaturaStructures.HOPSEED_TREE;
+        return largeHive ? NaturaStructures.HOPSEED_TREE_005 : NaturaStructures.HOPSEED_TREE;
     }
 
     return null;
@@ -66,7 +66,7 @@ public class OverworldTree extends Tree {
   public boolean attemptGrowTree(ServerWorld world, ChunkGenerator chunkGenerator, BlockPos pos, BlockState state, Random rand) {
     ConfiguredFeature<BaseTreeFeatureConfig, ?> configuredTreeFeature = this.getTreeFeature(rand, this.hasNearbyFlora(world, pos));
 
-    if(configuredTreeFeature == null) {
+    if (configuredTreeFeature == null) {
       ConfiguredFeature<BaseOverworldTreeFeatureConfig, ?> configuredFeature = this.getOverworldTreeFeature(rand, this.hasNearbyFlora(world, pos));
 
       if (configuredFeature == null) {
@@ -85,7 +85,8 @@ public class OverworldTree extends Tree {
           return false;
         }
       }
-    } else {
+    }
+    else {
       world.setBlockState(pos, Blocks.AIR.getDefaultState(), 4);
 
       configuredTreeFeature.config.forcePlacement();

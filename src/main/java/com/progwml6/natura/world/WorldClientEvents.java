@@ -10,6 +10,7 @@ import net.minecraft.client.renderer.color.BlockColors;
 import net.minecraft.client.renderer.color.ItemColors;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockDisplayReader;
+import net.minecraft.world.biome.BiomeColors;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.ColorHandlerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -28,6 +29,9 @@ public class WorldClientEvents extends ClientEventBase {
       RenderTypeLookup.setRenderLayer(NaturaWorld.leaves.get(type), RenderType.getCutoutMipped());
       RenderTypeLookup.setRenderLayer(NaturaWorld.sapling.get(type), RenderType.getCutout());
     }
+
+    RenderTypeLookup.setRenderLayer(NaturaWorld.redwood_leaves.get(), RenderType.getCutoutMipped());
+    RenderTypeLookup.setRenderLayer(NaturaWorld.redwood_sapling.get(), RenderType.getCutout());
   }
 
   @SubscribeEvent
@@ -42,7 +46,10 @@ public class WorldClientEvents extends ClientEventBase {
       );
     }
 
+    blockColors.register((state, reader, pos, index) -> getLeavesColorByPos(reader, pos), NaturaWorld.redwood_leaves.get());
+
     registerBlockItemColorAlias(blockColors, itemColors, NaturaWorld.leaves);
+    registerBlockItemColorAlias(blockColors, itemColors, NaturaWorld.redwood_leaves);
   }
 
   private static int getLeavesColorByPos(@Nullable IBlockDisplayReader reader, @Nullable BlockPos pos, TreeType type) {
@@ -51,5 +58,13 @@ public class WorldClientEvents extends ClientEventBase {
     }
 
     return LeavesColorizer.getColorForPos(reader, pos, type);
+  }
+
+  private static int getLeavesColorByPos(@Nullable IBlockDisplayReader reader, @Nullable BlockPos pos) {
+    if (pos == null || reader == null) {
+      return LeavesColorizer.leaves2Color;
+    }
+
+    return BiomeColors.getFoliageColor(reader, pos);
   }
 }

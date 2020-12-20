@@ -167,23 +167,24 @@ public class OverworldTreeFeature extends Feature<BaseTreeFeatureConfig> {
 
   @Override
   public final boolean generate(ISeedReader reader, ChunkGenerator generator, Random rand, BlockPos pos, BaseTreeFeatureConfig config) {
-    Set<BlockPos> set = Sets.newHashSet();
-    Set<BlockPos> set1 = Sets.newHashSet();
-    Set<BlockPos> set2 = Sets.newHashSet();
-    MutableBoundingBox mutableboundingbox = MutableBoundingBox.getNewBoundingBox();
-    boolean flag = this.place(reader, rand, pos, set, set1, mutableboundingbox, config);
+    Set<BlockPos> trunkBlockPosSet = Sets.newHashSet();
+    Set<BlockPos> leavesBlockPosSet = Sets.newHashSet();
+    Set<BlockPos> decoratorsBlockPosSet = Sets.newHashSet();
+    MutableBoundingBox boundingBox = MutableBoundingBox.getNewBoundingBox();
 
-    if (mutableboundingbox.minX <= mutableboundingbox.maxX && flag && !set.isEmpty()) {
+    boolean flag = this.place(reader, rand, pos, trunkBlockPosSet, leavesBlockPosSet, boundingBox, config);
+
+    if (boundingBox.minX <= boundingBox.maxX && flag && !trunkBlockPosSet.isEmpty()) {
       if (!config.decorators.isEmpty()) {
-        List<BlockPos> list = Lists.newArrayList(set);
-        List<BlockPos> list1 = Lists.newArrayList(set1);
-        list.sort(Comparator.comparingInt(Vector3i::getY));
-        list1.sort(Comparator.comparingInt(Vector3i::getY));
-        config.decorators.forEach((decorator) -> decorator.func_225576_a_(reader, rand, list, list1, set2, mutableboundingbox));
+        List<BlockPos> logBlockPosList = Lists.newArrayList(trunkBlockPosSet);
+        List<BlockPos> leavesBlockPosList = Lists.newArrayList(leavesBlockPosSet);
+        logBlockPosList.sort(Comparator.comparingInt(Vector3i::getY));
+        leavesBlockPosList.sort(Comparator.comparingInt(Vector3i::getY));
+        config.decorators.forEach((decorator) -> decorator.func_225576_a_(reader, rand, logBlockPosList, leavesBlockPosList, decoratorsBlockPosSet, boundingBox));
       }
 
-      VoxelShapePart voxelShapePart = this.createVoxelShape(reader, mutableboundingbox, set, set2);
-      Template.func_222857_a(reader, 3, voxelShapePart, mutableboundingbox.minX, mutableboundingbox.minY, mutableboundingbox.minZ);
+      VoxelShapePart voxelshapepart = this.createVoxelShape(reader, boundingBox, trunkBlockPosSet, decoratorsBlockPosSet);
+      Template.func_222857_a(reader, 3, voxelshapepart, boundingBox.minX, boundingBox.minY, boundingBox.minZ);
       return true;
     }
     else {

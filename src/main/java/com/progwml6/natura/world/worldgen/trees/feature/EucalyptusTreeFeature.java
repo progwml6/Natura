@@ -16,6 +16,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MutableBoundingBox;
 import net.minecraft.util.math.shapes.BitSetVoxelShapePart;
 import net.minecraft.util.math.shapes.VoxelShapePart;
+import net.minecraft.util.math.vector.Vector3i;
 import net.minecraft.world.ISeedReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldWriter;
@@ -26,6 +27,7 @@ import net.minecraft.world.gen.IWorldGenerationReader;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.template.Template;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Random;
 import java.util.Set;
@@ -37,16 +39,26 @@ public class EucalyptusTreeFeature extends Feature<BaseOverworldTreeFeatureConfi
   }
 
   @Override
-  public final boolean generate(ISeedReader seedReader, ChunkGenerator chunkGenerator, Random random, BlockPos blockPos, BaseOverworldTreeFeatureConfig config) {
-    Set<BlockPos> set = Sets.newHashSet();
-    Set<BlockPos> set1 = Sets.newHashSet();
-    Set<BlockPos> set2 = Sets.newHashSet();
-    MutableBoundingBox mutableboundingbox = MutableBoundingBox.getNewBoundingBox();
-    boolean flag = this.place(seedReader, random, blockPos, set, set1, mutableboundingbox, config);
+  public final boolean generate(ISeedReader seedReader, ChunkGenerator chunkGenerator, Random random, BlockPos blockPos,
+    BaseOverworldTreeFeatureConfig config) {
+    Set<BlockPos> trunkBlockPosSet = Sets.newHashSet();
+    Set<BlockPos> leavesBlockPosSet = Sets.newHashSet();
+    Set<BlockPos> decoratorsBlockPosSet = Sets.newHashSet();
+    MutableBoundingBox boundingBox = MutableBoundingBox.getNewBoundingBox();
 
-    if (mutableboundingbox.minX <= mutableboundingbox.maxX && flag && !set.isEmpty()) {
-      VoxelShapePart voxelshapepart = this.createVoxelShape(seedReader, mutableboundingbox, set, set2);
-      Template.func_222857_a(seedReader, 3, voxelshapepart, mutableboundingbox.minX, mutableboundingbox.minY, mutableboundingbox.minZ);
+    boolean flag = this.place(seedReader, random, blockPos, trunkBlockPosSet, leavesBlockPosSet, boundingBox, config);
+
+    if (boundingBox.minX <= boundingBox.maxX && flag && !trunkBlockPosSet.isEmpty()) {
+      if (!config.decorators.isEmpty()) {
+        List<BlockPos> logBlockPosList = Lists.newArrayList(trunkBlockPosSet);
+        List<BlockPos> leavesBlockPosList = Lists.newArrayList(leavesBlockPosSet);
+        logBlockPosList.sort(Comparator.comparingInt(Vector3i::getY));
+        leavesBlockPosList.sort(Comparator.comparingInt(Vector3i::getY));
+        config.decorators.forEach((decorator) -> decorator.func_225576_a_(seedReader, random, logBlockPosList, leavesBlockPosList, decoratorsBlockPosSet, boundingBox));
+      }
+
+      VoxelShapePart voxelshapepart = this.createVoxelShape(seedReader, boundingBox, trunkBlockPosSet, decoratorsBlockPosSet);
+      Template.func_222857_a(seedReader, 3, voxelshapepart, boundingBox.minX, boundingBox.minY, boundingBox.minZ);
       return true;
     }
     else {
@@ -54,7 +66,8 @@ public class EucalyptusTreeFeature extends Feature<BaseOverworldTreeFeatureConfi
     }
   }
 
-  private boolean place(IWorldGenerationReader generationReader, Random rand, BlockPos positionIn, Set<BlockPos> trunkBlockPosSet, Set<BlockPos> leavesBlockPosSet, MutableBoundingBox boundingBoxIn, BaseOverworldTreeFeatureConfig configIn) {
+  private boolean place(IWorldGenerationReader generationReader, Random rand, BlockPos positionIn, Set<BlockPos> trunkBlockPosSet,
+    Set<BlockPos> leavesBlockPosSet, MutableBoundingBox boundingBoxIn, BaseOverworldTreeFeatureConfig configIn) {
     int height = rand.nextInt(configIn.randomHeight) + configIn.baseHeight;
 
     if (!(generationReader instanceof IWorld)) {
@@ -81,17 +94,25 @@ public class EucalyptusTreeFeature extends Feature<BaseOverworldTreeFeatureConfi
 
         this.placeTrunk(generationReader, rand, height, blockPos, trunkBlockPosSet, boundingBoxIn, configIn);
 
-        this.placeBranch(generationReader, rand, height, blockPos, trunkBlockPosSet, boundingBoxIn, configIn, BranchDirection.NORTH);
-        this.placeBranch(generationReader, rand, height, blockPos, trunkBlockPosSet, boundingBoxIn, configIn, BranchDirection.SOUTH);
-        this.placeBranch(generationReader, rand, height, blockPos, trunkBlockPosSet, boundingBoxIn, configIn, BranchDirection.EAST);
-        this.placeBranch(generationReader, rand, height, blockPos, trunkBlockPosSet, boundingBoxIn, configIn, BranchDirection.WEST);
+        this
+          .placeBranch(generationReader, rand, height, blockPos, trunkBlockPosSet, leavesBlockPosSet, boundingBoxIn, configIn, BranchDirection.NORTH);
+        this
+          .placeBranch(generationReader, rand, height, blockPos, trunkBlockPosSet, leavesBlockPosSet, boundingBoxIn, configIn, BranchDirection.SOUTH);
+        this
+          .placeBranch(generationReader, rand, height, blockPos, trunkBlockPosSet, leavesBlockPosSet, boundingBoxIn, configIn, BranchDirection.EAST);
+        this
+          .placeBranch(generationReader, rand, height, blockPos, trunkBlockPosSet, leavesBlockPosSet, boundingBoxIn, configIn, BranchDirection.WEST);
 
-        this.placeStraightBranch(generationReader, rand, height, blockPos, trunkBlockPosSet, boundingBoxIn, configIn, BranchDirection.NORTH);
-        this.placeStraightBranch(generationReader, rand, height, blockPos, trunkBlockPosSet, boundingBoxIn, configIn, BranchDirection.SOUTH);
-        this.placeStraightBranch(generationReader, rand, height, blockPos, trunkBlockPosSet, boundingBoxIn, configIn, BranchDirection.EAST);
-        this.placeStraightBranch(generationReader, rand, height, blockPos, trunkBlockPosSet, boundingBoxIn, configIn, BranchDirection.WEST);
+        this.placeStraightBranch(generationReader, rand, height, blockPos, trunkBlockPosSet, leavesBlockPosSet, boundingBoxIn, configIn,
+          BranchDirection.NORTH);
+        this.placeStraightBranch(generationReader, rand, height, blockPos, trunkBlockPosSet, leavesBlockPosSet, boundingBoxIn, configIn,
+          BranchDirection.SOUTH);
+        this.placeStraightBranch(generationReader, rand, height, blockPos, trunkBlockPosSet, leavesBlockPosSet, boundingBoxIn, configIn,
+          BranchDirection.EAST);
+        this.placeStraightBranch(generationReader, rand, height, blockPos, trunkBlockPosSet, leavesBlockPosSet, boundingBoxIn, configIn,
+          BranchDirection.WEST);
 
-        this.placeNode(generationReader, rand, blockPos.up(height), trunkBlockPosSet, boundingBoxIn, configIn);
+        this.placeNode(generationReader, rand, blockPos.up(height), trunkBlockPosSet, leavesBlockPosSet, boundingBoxIn, configIn);
         return true;
       }
     }
@@ -108,16 +129,19 @@ public class EucalyptusTreeFeature extends Feature<BaseOverworldTreeFeatureConfi
     ((IWorld) reader).getBlockState(pos).getBlock().onPlantGrow(((IWorld) reader).getBlockState(pos), (IWorld) reader, pos, origin);
   }
 
-  protected void placeTrunk(IWorldGenerationReader worldIn, Random randomIn, int treeHeight, BlockPos blockPos, Set<BlockPos> blockPosSet, MutableBoundingBox mutableBoundingBoxIn, BaseOverworldTreeFeatureConfig treeFeatureConfigIn) {
+  protected void placeTrunk(IWorldGenerationReader worldIn, Random randomIn, int treeHeight, BlockPos blockPos, Set<BlockPos> trunkBlockPosSet,
+    MutableBoundingBox mutableBoundingBoxIn, BaseOverworldTreeFeatureConfig treeFeatureConfigIn) {
     while (treeHeight > 0) {
-      this.setLog(worldIn, randomIn, blockPos, blockPosSet, mutableBoundingBoxIn, treeFeatureConfigIn);
+      this.setLog(worldIn, randomIn, blockPos, trunkBlockPosSet, mutableBoundingBoxIn, treeFeatureConfigIn);
 
       blockPos = blockPos.up();
       treeHeight--;
     }
   }
 
-  protected void placeBranch(IWorldGenerationReader worldIn, Random randomIn, int treeHeight, BlockPos blockPos, Set<BlockPos> blockPosSet, MutableBoundingBox mutableBoundingBoxIn, BaseOverworldTreeFeatureConfig treeFeatureConfigIn, BranchDirection direction) {
+  protected void placeBranch(IWorldGenerationReader worldIn, Random randomIn, int treeHeight, BlockPos blockPos, Set<BlockPos> trunkBlockPosSet,
+    Set<BlockPos> leavesBlockPosSet, MutableBoundingBox mutableBoundingBoxIn, BaseOverworldTreeFeatureConfig treeFeatureConfigIn,
+    BranchDirection direction) {
     int posX = blockPos.getX();
     int posY = blockPos.getY() + treeHeight - 3;
     int posZ = blockPos.getZ();
@@ -164,20 +188,22 @@ public class EucalyptusTreeFeature extends Feature<BaseOverworldTreeFeatureConfi
       BlockPos blockPos1 = new BlockPos(posX, posY, posZ);
 
       if (branch == 2) {
-        this.setLog(worldIn, randomIn, blockPos1.down(), blockPosSet, mutableBoundingBoxIn, treeFeatureConfigIn);
+        this.setLog(worldIn, randomIn, blockPos1.down(), trunkBlockPosSet, mutableBoundingBoxIn, treeFeatureConfigIn);
       }
 
-      this.setLog(worldIn, randomIn, blockPos1, blockPosSet, mutableBoundingBoxIn, treeFeatureConfigIn);
+      this.setLog(worldIn, randomIn, blockPos1, trunkBlockPosSet, mutableBoundingBoxIn, treeFeatureConfigIn);
 
       if (bIter == 1) {
-        this.placeNode(worldIn, randomIn, blockPos1, blockPosSet, mutableBoundingBoxIn, treeFeatureConfigIn);
+        this.placeNode(worldIn, randomIn, blockPos1, trunkBlockPosSet, leavesBlockPosSet, mutableBoundingBoxIn, treeFeatureConfigIn);
       }
 
       heightShift = randomIn.nextInt(6);
     }
   }
 
-  protected void placeStraightBranch(IWorldGenerationReader worldIn, Random randomIn, int treeHeight, BlockPos blockPos, Set<BlockPos> blockPosSet, MutableBoundingBox mutableBoundingBoxIn, BaseOverworldTreeFeatureConfig treeFeatureConfigIn, BranchDirection direction) {
+  protected void placeStraightBranch(IWorldGenerationReader worldIn, Random randomIn, int treeHeight, BlockPos blockPos,
+    Set<BlockPos> trunkBlockPosSet, Set<BlockPos> leavesBlockPosSet, MutableBoundingBox mutableBoundingBoxIn,
+    BaseOverworldTreeFeatureConfig treeFeatureConfigIn, BranchDirection direction) {
     int posX = blockPos.getX();
     int posY = blockPos.getY() + treeHeight - 3;
     int posZ = blockPos.getZ();
@@ -227,64 +253,67 @@ public class EucalyptusTreeFeature extends Feature<BaseOverworldTreeFeatureConfi
       BlockPos blockPos1 = new BlockPos(posX, posY, posZ);
 
       if (branch == 2) {
-        this.setLog(worldIn, randomIn, blockPos1.down(), blockPosSet, mutableBoundingBoxIn, treeFeatureConfigIn);
+        this.setLog(worldIn, randomIn, blockPos1.down(), trunkBlockPosSet, mutableBoundingBoxIn, treeFeatureConfigIn);
       }
 
-      this.setLog(worldIn, randomIn, blockPos1, blockPosSet, mutableBoundingBoxIn, treeFeatureConfigIn);
+      this.setLog(worldIn, randomIn, blockPos1, trunkBlockPosSet, mutableBoundingBoxIn, treeFeatureConfigIn);
 
       if (j2 == 1) {
-        this.placeNode(worldIn, randomIn, blockPos1, blockPosSet, mutableBoundingBoxIn, treeFeatureConfigIn);
+        this.placeNode(worldIn, randomIn, blockPos1, trunkBlockPosSet, leavesBlockPosSet, mutableBoundingBoxIn, treeFeatureConfigIn);
       }
 
       heightShift = randomIn.nextInt(6);
     }
   }
 
-  protected void placeNode(IWorldGenerationReader worldIn, Random randomIn, BlockPos blockPos, Set<BlockPos> blockPosSet, MutableBoundingBox mutableBoundingBoxIn, BaseOverworldTreeFeatureConfig treeFeatureConfigIn) {
-    this.setLog(worldIn, randomIn, blockPos, blockPosSet, mutableBoundingBoxIn, treeFeatureConfigIn);
+  protected void placeNode(IWorldGenerationReader worldIn, Random randomIn, BlockPos blockPos, Set<BlockPos> trunkBlockPosSet,
+    Set<BlockPos> leavesBlockPosSet, MutableBoundingBox mutableBoundingBoxIn, BaseOverworldTreeFeatureConfig treeFeatureConfigIn) {
+    this.setLog(worldIn, randomIn, blockPos, trunkBlockPosSet, mutableBoundingBoxIn, treeFeatureConfigIn);
 
     for (int xIter = blockPos.getX() - 2; xIter <= blockPos.getX() + 2; xIter++) {
       for (int zIter = blockPos.getZ() - 1; zIter <= blockPos.getZ() + 1; zIter++) {
         BlockPos newPos = new BlockPos(xIter, blockPos.getY(), zIter);
-        this.setLeaf(worldIn, randomIn, newPos, blockPosSet, mutableBoundingBoxIn, treeFeatureConfigIn);
+        this.setLeaf(worldIn, randomIn, newPos, leavesBlockPosSet, mutableBoundingBoxIn, treeFeatureConfigIn);
       }
     }
 
     for (int xIter = blockPos.getX() - 1; xIter <= blockPos.getX() + 1; xIter++) {
       for (int zIter = blockPos.getZ() - 2; zIter <= blockPos.getZ() + 2; zIter++) {
         BlockPos newPos = new BlockPos(xIter, blockPos.getY(), zIter);
-        this.setLeaf(worldIn, randomIn, newPos, blockPosSet, mutableBoundingBoxIn, treeFeatureConfigIn);
+        this.setLeaf(worldIn, randomIn, newPos, leavesBlockPosSet, mutableBoundingBoxIn, treeFeatureConfigIn);
       }
     }
 
     for (int xIter = blockPos.getX() - 1; xIter <= blockPos.getX() + 1; xIter++) {
       for (int zIter = blockPos.getZ() - 1; zIter <= blockPos.getZ() + 1; zIter++) {
         BlockPos newPos = new BlockPos(xIter, blockPos.getY() + 1, zIter);
-        this.setLeaf(worldIn, randomIn, newPos, blockPosSet, mutableBoundingBoxIn, treeFeatureConfigIn);
+        this.setLeaf(worldIn, randomIn, newPos, leavesBlockPosSet, mutableBoundingBoxIn, treeFeatureConfigIn);
       }
     }
   }
 
-  protected boolean setLog(IWorldGenerationReader worldIn, Random randomIn, BlockPos blockPos, Set<BlockPos> blockPosSet, MutableBoundingBox mutableBoundingBoxIn, BaseOverworldTreeFeatureConfig treeFeatureConfigIn) {
+  protected boolean setLog(IWorldGenerationReader worldIn, Random randomIn, BlockPos blockPos, Set<BlockPos> trunkBlockPosSet,
+    MutableBoundingBox mutableBoundingBoxIn, BaseOverworldTreeFeatureConfig treeFeatureConfigIn) {
     if (!isAirOrLeavesAt(worldIn, blockPos)) {
       return false;
     }
     else {
       this.setBlockState(worldIn, blockPos, treeFeatureConfigIn.trunkProvider.getBlockState(randomIn, blockPos));
       mutableBoundingBoxIn.expandTo(new MutableBoundingBox(blockPos, blockPos));
-      blockPosSet.add(blockPos.toImmutable());
+      trunkBlockPosSet.add(blockPos.toImmutable());
       return true;
     }
   }
 
-  protected boolean setLeaf(IWorldGenerationReader worldIn, Random random, BlockPos blockPos, Set<BlockPos> blockPosSet, MutableBoundingBox mutableBoundingBoxIn, BaseOverworldTreeFeatureConfig treeFeatureConfigIn) {
+  protected boolean setLeaf(IWorldGenerationReader worldIn, Random random, BlockPos blockPos, Set<BlockPos> leavesBlockPosSet,
+    MutableBoundingBox mutableBoundingBoxIn, BaseOverworldTreeFeatureConfig treeFeatureConfigIn) {
     if (!isAirOrLeavesAt(worldIn, blockPos)) {
       return false;
     }
     else {
       this.setBlockState(worldIn, blockPos, treeFeatureConfigIn.leavesProvider.getBlockState(random, blockPos));
       mutableBoundingBoxIn.expandTo(new MutableBoundingBox(blockPos, blockPos));
-      blockPosSet.add(blockPos.toImmutable());
+      leavesBlockPosSet.add(blockPos.toImmutable());
       return true;
     }
   }
@@ -294,7 +323,7 @@ public class EucalyptusTreeFeature extends Feature<BaseOverworldTreeFeatureConfi
   }
 
   public static boolean isAirOrLeavesAt(IWorldGenerationBaseReader reader, BlockPos blockPos) {
-    return reader.hasBlockState(blockPos, (p_236411_0_) -> p_236411_0_.isAir() || p_236411_0_.isIn(BlockTags.LEAVES));
+    return reader.hasBlockState(blockPos, (state) -> state.isAir() || state.isIn(BlockTags.LEAVES));
   }
 
   public static boolean isAirAt(IWorldGenerationBaseReader reader, BlockPos blockPos) {
@@ -323,7 +352,8 @@ public class EucalyptusTreeFeature extends Feature<BaseOverworldTreeFeatureConfi
     writer.setBlockState(blockPos, state, 19);
   }
 
-  private VoxelShapePart createVoxelShape(IWorld world, MutableBoundingBox boundingBox, Set<BlockPos> blockPosSet, Set<BlockPos> blockPosSet2) {
+  private VoxelShapePart createVoxelShape(IWorld world, MutableBoundingBox boundingBox, Set<BlockPos> trunkBlockPosSet,
+    Set<BlockPos> decoratorsBlockPosSet) {
     List<Set<BlockPos>> list = Lists.newArrayList();
     VoxelShapePart voxelShapePart = new BitSetVoxelShapePart(boundingBox.getXSize(), boundingBox.getYSize(), boundingBox.getZSize());
 
@@ -333,21 +363,23 @@ public class EucalyptusTreeFeature extends Feature<BaseOverworldTreeFeatureConfi
 
     BlockPos.Mutable mutable = new BlockPos.Mutable();
 
-    for (BlockPos blockPos : Lists.newArrayList(blockPosSet2)) {
+    for (BlockPos blockPos : Lists.newArrayList(decoratorsBlockPosSet)) {
       if (boundingBox.isVecInside(blockPos)) {
-        voxelShapePart.setFilled(blockPos.getX() - boundingBox.minX, blockPos.getY() - boundingBox.minY, blockPos.getZ() - boundingBox.minZ, true, true);
+        voxelShapePart
+          .setFilled(blockPos.getX() - boundingBox.minX, blockPos.getY() - boundingBox.minY, blockPos.getZ() - boundingBox.minZ, true, true);
       }
     }
 
-    for (BlockPos blockPos : Lists.newArrayList(blockPosSet)) {
+    for (BlockPos blockPos : Lists.newArrayList(trunkBlockPosSet)) {
       if (boundingBox.isVecInside(blockPos)) {
-        voxelShapePart.setFilled(blockPos.getX() - boundingBox.minX, blockPos.getY() - boundingBox.minY, blockPos.getZ() - boundingBox.minZ, true, true);
+        voxelShapePart
+          .setFilled(blockPos.getX() - boundingBox.minX, blockPos.getY() - boundingBox.minY, blockPos.getZ() - boundingBox.minZ, true, true);
       }
 
       for (Direction direction : Direction.values()) {
         mutable.setAndMove(blockPos, direction);
 
-        if (!blockPosSet.contains(mutable)) {
+        if (!trunkBlockPosSet.contains(mutable)) {
           BlockState blockstate = world.getBlockState(mutable);
 
           if (blockstate.hasProperty(NaturaWorld.EXTENDED_TREE_DISTANCE)) {
@@ -356,7 +388,8 @@ public class EucalyptusTreeFeature extends Feature<BaseOverworldTreeFeatureConfi
             setBlockStateAt(world, mutable, blockstate.with(NaturaWorld.EXTENDED_TREE_DISTANCE, 1));
 
             if (boundingBox.isVecInside(mutable)) {
-              voxelShapePart.setFilled(mutable.getX() - boundingBox.minX, mutable.getY() - boundingBox.minY, mutable.getZ() - boundingBox.minZ, true, true);
+              voxelShapePart
+                .setFilled(mutable.getX() - boundingBox.minX, mutable.getY() - boundingBox.minY, mutable.getZ() - boundingBox.minZ, true, true);
             }
           }
         }
@@ -369,7 +402,8 @@ public class EucalyptusTreeFeature extends Feature<BaseOverworldTreeFeatureConfi
 
       for (BlockPos blockPos : set) {
         if (boundingBox.isVecInside(blockPos)) {
-          voxelShapePart.setFilled(blockPos.getX() - boundingBox.minX, blockPos.getY() - boundingBox.minY, blockPos.getZ() - boundingBox.minZ, true, true);
+          voxelShapePart
+            .setFilled(blockPos.getX() - boundingBox.minX, blockPos.getY() - boundingBox.minY, blockPos.getZ() - boundingBox.minZ, true, true);
         }
 
         for (Direction direction : Direction.values()) {
@@ -387,7 +421,8 @@ public class EucalyptusTreeFeature extends Feature<BaseOverworldTreeFeatureConfi
                 setBlockStateAt(world, mutable, blockStateWithDistance);
 
                 if (boundingBox.isVecInside(mutable)) {
-                  voxelShapePart.setFilled(mutable.getX() - boundingBox.minX, mutable.getY() - boundingBox.minY, mutable.getZ() - boundingBox.minZ, true, true);
+                  voxelShapePart
+                    .setFilled(mutable.getX() - boundingBox.minX, mutable.getY() - boundingBox.minY, mutable.getZ() - boundingBox.minZ, true, true);
                 }
 
                 set1.add(mutable.toImmutable());
