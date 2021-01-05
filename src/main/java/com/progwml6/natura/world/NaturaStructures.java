@@ -2,9 +2,14 @@ package com.progwml6.natura.world;
 
 import com.google.common.collect.ImmutableList;
 import com.progwml6.natura.common.NaturaModule;
+import com.progwml6.natura.common.config.Config;
 import com.progwml6.natura.library.Util;
 import com.progwml6.natura.world.block.RedwoodType;
 import com.progwml6.natura.world.block.TreeType;
+import com.progwml6.natura.world.config.FeatureType;
+import com.progwml6.natura.world.worldgen.helper.ChanceRandomFeature;
+import com.progwml6.natura.world.worldgen.helper.ChanceRandomFeatureConfig;
+import com.progwml6.natura.world.worldgen.helper.DisableableConfiguredFeature;
 import com.progwml6.natura.world.worldgen.trees.SupplierBlockStateProvider;
 import com.progwml6.natura.world.worldgen.trees.config.BaseOverworldTreeFeatureConfig;
 import com.progwml6.natura.world.worldgen.trees.config.RedwoodTreeFeatureConfig;
@@ -22,7 +27,6 @@ import net.minecraft.world.gen.feature.ConfiguredFeature;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.FeatureSpread;
 import net.minecraft.world.gen.feature.Features;
-import net.minecraft.world.gen.feature.MultipleRandomFeatureConfig;
 import net.minecraft.world.gen.feature.TwoLayerFeature;
 import net.minecraft.world.gen.foliageplacer.BlobFoliagePlacer;
 import net.minecraft.world.gen.foliageplacer.FancyFoliagePlacer;
@@ -35,6 +39,7 @@ import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import org.apache.logging.log4j.Logger;
 
+import javax.annotation.Nonnull;
 import java.util.OptionalInt;
 
 /**
@@ -64,6 +69,8 @@ public final class NaturaStructures extends NaturaModule {
     .register("hopseed_tree", () -> new HopseedTreeFeature(BaseOverworldTreeFeatureConfig.CODEC));
   public static final RegistryObject<Feature<RedwoodTreeFeatureConfig>> REDWOOD_TREE_FEATURE = FEATURES
     .register("redwood_tree", () -> new RedwoodTreeFeature(RedwoodTreeFeatureConfig.CODEC));
+  public static final RegistryObject<Feature<ChanceRandomFeatureConfig>> CHANCE_FEATURE = FEATURES
+    .register("chance_feature", () -> new ChanceRandomFeature(ChanceRandomFeatureConfig.CODEC));
 
   public static ConfiguredFeature<BaseTreeFeatureConfig, ?> MAPLE_TREE;
   public static ConfiguredFeature<BaseTreeFeatureConfig, ?> SILVERBELL_TREE;
@@ -88,10 +95,26 @@ public final class NaturaStructures extends NaturaModule {
   public static ConfiguredFeature<BaseOverworldTreeFeatureConfig, ?> EUCALYPTUS_TREE_005;
   public static ConfiguredFeature<BaseOverworldTreeFeatureConfig, ?> HOPSEED_TREE_005;
 
-  public static ConfiguredFeature<?, ?> TREES_JUNGLE;
-  public static ConfiguredFeature<?, ?> TREES_FOREST;
-  public static ConfiguredFeature<?, ?> TREES_SWAMP;
+  public static ConfiguredFeature<?, ?> MAPLE_TREE_GEN;
 
+  public static ConfiguredFeature<?, ?> SILVERBELL_TREE_GEN;
+
+  public static ConfiguredFeature<?, ?> AMARANTH_TREE_GEN;
+
+  public static ConfiguredFeature<?, ?> TIGER_TREE_GEN;
+
+  public static ConfiguredFeature<?, ?> WILLOW_TREE_GEN;
+  public static ConfiguredFeature<?, ?> WILLOW_TREE_3_GEN;
+
+  public static ConfiguredFeature<?, ?> EUCALYPTUS_TREE_GEN;
+  public static ConfiguredFeature<?, ?> EUCALYPTUS_PLAINS_TREE_GEN;
+
+  public static ConfiguredFeature<?, ?> SAKURA_TREE_GEN;
+  public static ConfiguredFeature<?, ?> SAKURA_FOREST_TREE_GEN;
+
+  public static ConfiguredFeature<?, ?> HOPSEED_TREE_GEN;
+
+  public static ConfiguredFeature<?, ?> REDWOOD_TREE_GEN;
 
   /**
    * Feature configuration
@@ -190,7 +213,7 @@ public final class NaturaStructures extends NaturaModule {
           0.618D,
           0.381D,
           1.0D,
-          0.5D))
+          1.0D))
         .build())
       );
 
@@ -219,22 +242,43 @@ public final class NaturaStructures extends NaturaModule {
     HOPSEED_TREE_005 = Registry.register(WorldGenRegistries.CONFIGURED_FEATURE, location("hopseed_tree_005"), HOPSEED_TREE_FEATURE.get()
       .withConfiguration(HOPSEED_TREE.getConfig().withDecorators(ImmutableList.of(Features.Placements.BEES_005_PLACEMENT))));
 
-    // Used for world gen
+    // World Gen
+    MAPLE_TREE_GEN = getFeature(FeatureType.MAPLE, CHANCE_FEATURE.get(), MAPLE_TREE, 1);
 
-    TREES_JUNGLE = Registry.register(WorldGenRegistries.CONFIGURED_FEATURE, location("trees_jungle"),
-      Feature.RANDOM_SELECTOR.withConfiguration(new MultipleRandomFeatureConfig(ImmutableList.of(AMARANTH_TREE.withChance(0.01F)), AMARANTH_TREE))
-        .withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT)
-        .withPlacement(Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(1, 0.1F, 1))));
+    SILVERBELL_TREE_GEN = getFeature(FeatureType.SIVERBELL, CHANCE_FEATURE.get(), SILVERBELL_TREE, 1);
 
-    TREES_FOREST = Registry.register(WorldGenRegistries.CONFIGURED_FEATURE, location("trees_forest"), Feature.RANDOM_SELECTOR.withConfiguration(
-      new MultipleRandomFeatureConfig(
-        ImmutableList.of(SILVERBELL_TREE.withChance(0.7F), AMARANTH_TREE.withChance(0.01F), TIGER_TREE.withChance(0.1F)), SILVERBELL_TREE))
-      .withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT).withPlacement(Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(1, 0.1F, 1)))
-    );
+    AMARANTH_TREE_GEN = getFeature(FeatureType.AMARANTH, CHANCE_FEATURE.get(), AMARANTH_TREE, 1);
 
-    TREES_SWAMP = Registry.register(WorldGenRegistries.CONFIGURED_FEATURE, location("trees_swamp"),
-      Feature.RANDOM_SELECTOR.withConfiguration(new MultipleRandomFeatureConfig(ImmutableList.of(WILLOW_TREE.withChance(0.5F)), WILLOW_TREE))
-        .withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT)
-        .withPlacement(Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(3, 0.1F, 1))));
+    TIGER_TREE_GEN = getFeature(FeatureType.TIGER, CHANCE_FEATURE.get(), TIGER_TREE, 1);
+
+    WILLOW_TREE_GEN = getFeature(FeatureType.WILLOW, CHANCE_FEATURE.get(), WILLOW_TREE, 1);
+    WILLOW_TREE_3_GEN = getFeature(FeatureType.WILLOW, CHANCE_FEATURE.get(), WILLOW_TREE, 3);
+
+    EUCALYPTUS_TREE_GEN = getFeature(FeatureType.EUCALYPTUS, CHANCE_FEATURE.get(), EUCALYPTUS_TREE, 1);
+    EUCALYPTUS_PLAINS_TREE_GEN = getFeature(FeatureType.EUCALYPTUS_PLAINS, CHANCE_FEATURE.get(), EUCALYPTUS_TREE, 1);
+
+    HOPSEED_TREE_GEN = getFeature(FeatureType.HOPSEED, CHANCE_FEATURE.get(), HOPSEED_TREE, 1);
+
+    SAKURA_TREE_GEN = getFeature(FeatureType.SAKURA, CHANCE_FEATURE.get(), SAKURA_TREE, 3);
+    SAKURA_FOREST_TREE_GEN = getFeature(FeatureType.SAKURA_FOREST, CHANCE_FEATURE.get(), SAKURA_TREE, 3);
+
+    REDWOOD_TREE_GEN = getFeature(FeatureType.REDWOOD, CHANCE_FEATURE.get(), REDWOOD_TREE, 1);
+  }
+
+  @Nonnull
+  private static ConfiguredFeature<?, ?> getFeature(FeatureType type, Feature<ChanceRandomFeatureConfig> feature,
+    ConfiguredFeature<?, ?> actualFeature, int count) {
+    Config.FeatureConfig featureConfig = Config.features.get(type);
+
+    ConfiguredFeature<?, ?> configuredFeature = new DisableableConfiguredFeature<>(feature,
+      new ChanceRandomFeatureConfig(actualFeature, type, featureConfig.chance), featureConfig.shouldGenerate)
+      .withPlacement(Features.Placements.HEIGHTMAP_PLACEMENT)
+      .withPlacement(Placement.COUNT_EXTRA.configure(new AtSurfaceWithExtraConfig(count, 0.1F, 1)));
+
+    //Register the configured feature
+    String name = type.getType() + "_" + type.getName();
+
+    Registry.register(WorldGenRegistries.CONFIGURED_FEATURE, location(name), configuredFeature);
+    return configuredFeature;
   }
 }

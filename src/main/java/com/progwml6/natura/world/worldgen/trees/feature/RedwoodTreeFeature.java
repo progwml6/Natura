@@ -55,10 +55,7 @@ public class RedwoodTreeFeature extends Feature<RedwoodTreeFeatureConfig> {
         List<BlockPos> leavesList = Lists.newArrayList(leavesBlockPosSet);
         logsBlockPosList.sort(Comparator.comparingInt(Vector3i::getY));
         leavesList.sort(Comparator.comparingInt(Vector3i::getY));
-
-        System.out.println("hi decorator");
-        config.decorators
-          .forEach((decorator) -> decorator.func_225576_a_(seedReader, random, logsBlockPosList, leavesList, decoratorsBlockPosSet, boundingBox));
+        config.decorators.forEach((decorator) -> decorator.func_225576_a_(seedReader, random, logsBlockPosList, leavesList, decoratorsBlockPosSet, boundingBox));
       }
 
       VoxelShapePart voxelShape = this.createVoxelShape(seedReader, boundingBox, logsBlockPosSet, decoratorsBlockPosSet);
