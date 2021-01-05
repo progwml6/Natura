@@ -17,19 +17,14 @@ public class WorldEvents {
     BiomeGenerationSettingsBuilder generation = event.getGeneration();
 
     if (event.getCategory() == Biome.Category.FOREST) {
-      // sakura
       generation.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, NaturaStructures.SAKURA_FOREST_TREE_GEN);
 
-      // eucalyptus
       generation.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, NaturaStructures.EUCALYPTUS_TREE_GEN);
 
-      // maple
       generation.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, NaturaStructures.MAPLE_TREE_GEN);
 
-      // siverbell
       generation.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, NaturaStructures.SILVERBELL_TREE_GEN);
 
-      // tiger
       generation.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, NaturaStructures.TIGER_TREE_GEN);
     }
 
@@ -49,17 +44,17 @@ public class WorldEvents {
       generation.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, NaturaStructures.EUCALYPTUS_TREE_GEN);
     }
 
-    if(event.getCategory() == Biome.Category.RIVER) {
+    if (event.getCategory() == Biome.Category.RIVER) {
       generation.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, NaturaStructures.SAKURA_TREE_GEN);
 
       generation.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, NaturaStructures.WILLOW_TREE_GEN);
     }
 
-    if(event.getCategory() == Biome.Category.JUNGLE) {
+    if (event.getCategory() == Biome.Category.JUNGLE) {
       generation.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, NaturaStructures.AMARANTH_TREE_GEN);
     }
 
-    if(event.getCategory() == Biome.Category.SWAMP) {
+    if (event.getCategory() == Biome.Category.SWAMP) {
       generation.withFeature(GenerationStage.Decoration.VEGETAL_DECORATION, NaturaStructures.WILLOW_TREE_3_GEN);
     }
   }

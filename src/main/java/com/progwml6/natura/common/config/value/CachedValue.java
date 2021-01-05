@@ -1,7 +1,6 @@
 package com.progwml6.natura.common.config.value;
 
 import net.minecraftforge.common.ForgeConfigSpec.ConfigValue;
-
 import java.util.function.Supplier;
 
 /**

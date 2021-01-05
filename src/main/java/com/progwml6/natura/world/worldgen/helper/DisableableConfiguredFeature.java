@@ -1,4 +1,6 @@
-// Credit to Mekanism and Pupnewfster for these classes
+// Credit to Mekanism and Pupnewfster for this class
+// See: https://github.com/mekanism/Mekanism/blob/1.16.x/src/main/java/mekanism/common/world/DisableableConfiguredFeature.java
+
 package com.progwml6.natura.world.worldgen.helper;
 
 import net.minecraft.util.math.BlockPos;
