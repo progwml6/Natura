@@ -1,4 +1,4 @@
-package com.progwml6.natura.common.data;
+package com.progwml6.natura.common.data.tags;
 
 import com.progwml6.natura.Natura;
 import com.progwml6.natura.common.NaturaTags;

@@ -1,6 +1,7 @@
-package com.progwml6.natura.common.data;
+package com.progwml6.natura.common.data.loot;
 
 import com.progwml6.natura.Natura;
+import com.progwml6.natura.gadgets.NaturaGadgets;
 import com.progwml6.natura.world.NaturaWorld;
 import com.progwml6.natura.world.block.RedwoodType;
 import com.progwml6.natura.world.block.TreeType;
@@ -23,7 +24,18 @@ public class NaturaBlockLootTables extends BlockLootTables {
 
   @Override
   protected void addTables() {
+    this.addGadgets();
     this.addWorld();
+  }
+
+  private void addGadgets() {
+    this.registerDropSelfLootTable(NaturaGadgets.stoneLadder.get());
+
+    this.registerDropSelfLootTable(NaturaGadgets.stoneTorch.get());
+
+    this.registerDropping(NaturaGadgets.wallStoneTorch.get(), NaturaGadgets.stoneTorch.get());
+
+    this.registerDropSelfLootTable(NaturaGadgets.punji.get());
   }
 
   private void addWorld() {

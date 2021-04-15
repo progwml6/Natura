@@ -1,5 +1,5 @@
 modLoader="javafml"
-loaderVersion="[${javafml_min},${javafml_max})"
+loaderVersion="${loader_range}"
 issueTrackerURL="https://github.com/progwml6/Natura/issues"
 license="Creative Commons 3"
 
@@ -13,23 +13,23 @@ Heyo, Redwood trees! Chop them all day long!
     '''
     displayURL="https://www.curseforge.com/minecraft/mc-mods/natura"
     
-[[dependencies.tconstruct]]
+[[dependencies.natura]]
     modId="forge"
     mandatory=true
-    versionRange="[${forge_version_min},${forge_version_max})"
+    versionRange="${forge_range}"
     ordering="NONE"
     side="BOTH"
 
-[[dependencies.tconstruct]]
+[[dependencies.natura]]
     modId="minecraft"
     mandatory=true
-    versionRange="[${minecraft_version_min},${minecraft_version_max})"
+    versionRange="${minecraft_range}"
     ordering="NONE"
     side="BOTH"
 
-[[dependencies.tconstruct]]
+[[dependencies.natura]]
     modId="mantle"
     mandatory=true
-    versionRange="[${mantle_version},)"
+    versionRange="${mantle_range}"
     ordering="NONE"
     side="BOTH"

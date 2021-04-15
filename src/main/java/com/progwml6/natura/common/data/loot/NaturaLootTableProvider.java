@@ -1,4 +1,4 @@
-package com.progwml6.natura.common.data;
+package com.progwml6.natura.common.data.loot;
 
 import com.google.common.collect.ImmutableList;
 import com.mojang.datafixers.util.Pair;

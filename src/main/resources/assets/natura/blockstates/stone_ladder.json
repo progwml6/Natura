@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "facing=north": { "model": "natura:block/stone_ladder" },
+        "facing=east": { "model": "natura:block/stone_ladder", "y": 90 },
+        "facing=south": { "model": "natura:block/stone_ladder", "y": 180 },
+        "facing=west": { "model": "natura:block/stone_ladder", "y": 270 }
+    }
+}

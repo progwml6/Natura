@@ -1,0 +1,4 @@
+{
+  "parent": "natura:block/punji/stick",
+  "transform": { "translation": [ 0, 0, -0.5 ] }
+}

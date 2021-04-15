@@ -2,9 +2,10 @@ package com.progwml6.natura;
 
 import com.progwml6.natura.common.NaturaModule;
 import com.progwml6.natura.common.config.Config;
-import com.progwml6.natura.common.data.NaturaBlockTagsProvider;
-import com.progwml6.natura.common.data.NaturaItemTagsProvider;
-import com.progwml6.natura.common.data.NaturaLootTableProvider;
+import com.progwml6.natura.common.data.tags.NaturaBlockTagsProvider;
+import com.progwml6.natura.common.data.tags.NaturaItemTagsProvider;
+import com.progwml6.natura.common.data.loot.NaturaLootTableProvider;
+import com.progwml6.natura.gadgets.NaturaGadgets;
 import com.progwml6.natura.library.Util;
 import com.progwml6.natura.world.NaturaStructures;
 import com.progwml6.natura.world.NaturaWorld;
@@ -53,6 +54,7 @@ public class Natura {
     // initialize modules, done this way rather than with annotations to give us control over the order
     IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
 
+    bus.register(new NaturaGadgets());
     bus.register(new NaturaWorld());
     bus.register(new NaturaStructures());
 

@@ -1,0 +1,47 @@
+{
+  "_comment": "Natura Common",
+
+  "item.natura.dried_brick": "Dried Brick",
+
+  "block.natura.dried_clay": "Dried Clay",
+  "block.natura.dried_clay_bricks": "Dried Bricks",
+  "block.natura.dried_clay_slab": "Dried Clay Slab",
+  "block.natura.dried_clay_bricks_slab": "Dried Bricks Slab",
+  "block.natura.dried_clay_stairs": "Dried Clay Stairs",
+  "block.natura.dried_clay_bricks_stairs": "Dried Bricks Stairs",
+
+  "item.natura.beef_jerky": "Beef Jerky",
+  "item.natura.beef_jerky.tooltip": "Saturating!",
+  "item.natura.chicken_jerky": "Chicken Jerky",
+  "item.natura.chicken_jerky.tooltip": "Saturating!",
+  "item.natura.pork_jerky": "Bacon Jerky",
+  "item.natura.pork_jerky.tooltip": "Saturating!",
+  "item.natura.mutton_jerky": "Mutton Jerky",
+  "item.natura.mutton_jerky.tooltip": "Saturating!",
+  "item.natura.rabbit_jerky": "Rabbit Jerky",
+  "item.natura.rabbit_jerky.tooltip": "Saturating!",
+  "item.natura.fish_jerky": "Cod Jerky",
+  "item.natura.fish_jerky.tooltip": "Saturating!",
+  "item.natura.salmon_jerky": "Salmon Jerky",
+  "item.natura.salmon_jerky.tooltip": "Saturating!",
+  "item.natura.clownfish_jerky": "Tropical Fish Jerky",
+  "item.natura.clownfish_jerky.tooltip": "Colorful!",
+  "item.natura.pufferfish_jerky": "Fugu Jerky",
+  "item.natura.pufferfish_jerky.tooltip": "Safe to eat!",
+  "item.natura.monster_jerky": "Monster Jerky",
+  "item.natura.monster_jerky.tooltip": "Safe to eat!",
+
+  "_comment": "Natura Gadgets",
+
+  "item.natura.stone_stick": "Stone Rod",
+
+  "block.natura.stone_torch": "Stone Torch",
+  "block.natura.stone_ladder": "Stone Ladder",
+
+  "block.natura.punji": "Punji Sticks",
+  "block.natura.punji.tooltip": "Pointy! Also sticks to walls.",
+
+  "_comment": "GUIs",
+  "itemGroup.natura.general": "Natura's General Items",
+  "itemGroup.natura.world": "Natura's World Items"
+}

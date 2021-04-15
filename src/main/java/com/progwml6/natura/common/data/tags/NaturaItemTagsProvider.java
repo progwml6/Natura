@@ -1,12 +1,14 @@
-package com.progwml6.natura.common.data;
+package com.progwml6.natura.common.data.tags;
 
 import com.progwml6.natura.Natura;
 import com.progwml6.natura.common.NaturaTags;
+import com.progwml6.natura.gadgets.NaturaGadgets;
 import net.minecraft.data.BlockTagsProvider;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.ItemTagsProvider;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
+import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
 import javax.annotation.Nullable;
@@ -19,6 +21,7 @@ public class NaturaItemTagsProvider extends ItemTagsProvider {
 
   @Override
   protected void registerTags() {
+    this.addGadgets();
     this.addWorld();
   }
 
@@ -28,5 +31,10 @@ public class NaturaItemTagsProvider extends ItemTagsProvider {
     this.copy(BlockTags.SAPLINGS, ItemTags.SAPLINGS);
 
     this.copy(NaturaTags.Blocks.REDWOOD_LOGS, NaturaTags.Items.REDWOOD_LOGS);
+  }
+
+  private void addGadgets() {
+    this.getOrCreateBuilder(Tags.Items.RODS).addTag(NaturaTags.Items.RODS_STONE);
+    this.getOrCreateBuilder(NaturaTags.Items.RODS_STONE).add(NaturaGadgets.stoneStick.get());
   }
 }

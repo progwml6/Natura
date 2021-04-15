@@ -24,6 +24,8 @@ public class NaturaTags {
   public static class Items {
     public static final IOptionalNamedTag<Item> REDWOOD_LOGS = tag("redwood_logs");
 
+    public static final IOptionalNamedTag<Item> RODS_STONE = forgeTag("rods/stone");
+
     private static IOptionalNamedTag<Item> tag(String name) {
       return ItemTags.createOptional(Util.getResource(name));
     }

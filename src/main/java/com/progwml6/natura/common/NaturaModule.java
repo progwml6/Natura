@@ -1,6 +1,7 @@
 package com.progwml6.natura.common;
 
 import com.progwml6.natura.Natura;
+import com.progwml6.natura.gadgets.NaturaGadgets;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.SoundType;
@@ -19,44 +20,62 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import slimeknights.mantle.item.BlockTooltipItem;
+import slimeknights.mantle.item.TooltipItem;
 import slimeknights.mantle.registration.deferred.BlockDeferredRegister;
+import slimeknights.mantle.registration.deferred.EntityTypeDeferredRegister;
 import slimeknights.mantle.registration.deferred.ItemDeferredRegister;
 import slimeknights.mantle.util.SupplierItemGroup;
 
 import javax.annotation.Nullable;
 import java.util.function.Function;
+import java.util.function.Supplier;
 
 /**
  * Contains base helpers for all Natura modules
  */
-public class NaturaModule {
+public abstract class NaturaModule {
+
   // deferred register instances
   protected static final BlockDeferredRegister BLOCKS = new BlockDeferredRegister(Natura.modID);
   protected static final ItemDeferredRegister ITEMS = new ItemDeferredRegister(Natura.modID);
+  protected static final EntityTypeDeferredRegister ENTITIES = new EntityTypeDeferredRegister(Natura.modID);
   protected static final DeferredRegister<Feature<?>> FEATURES = DeferredRegister.create(ForgeRegistries.FEATURES, Natura.modID);
   protected static final DeferredRegister<Structure<?>> STRUCTURE_FEATURES = DeferredRegister.create(ForgeRegistries.STRUCTURE_FEATURES, Natura.modID);
   protected static final DeferredRegister<BlockStateProviderType<?>> BLOCK_STATE_PROVIDER_TYPES = DeferredRegister.create(ForgeRegistries.BLOCK_STATE_PROVIDER_TYPES, Natura.modID);
 
-  /** Creative tab for items that do not fit in another tab */
+  // base block properties
+  protected static final Block.Properties GENERIC_SAND_BLOCK = builder(Material.SAND, ToolType.SHOVEL, SoundType.SAND).hardnessAndResistance(3.0f).slipperiness(0.8F);
+  protected static final Block.Properties GENERIC_METAL_BLOCK = builder(Material.IRON, ToolType.PICKAXE, SoundType.METAL).setRequiresTool().hardnessAndResistance(5.0f);
+  protected static final Block.Properties GENERIC_GEM_BLOCK = GENERIC_METAL_BLOCK;
+
+  /**
+   * Creative tab for items that do not fit in another tab
+   */
   @SuppressWarnings("WeakerAccess")
-  public static final ItemGroup TAB_GENERAL = new SupplierItemGroup(Natura.modID, "general", () -> new ItemStack(Item.getItemFromBlock(Blocks.SLIME_BLOCK)));
+  public static final ItemGroup TAB_GENERAL = new SupplierItemGroup(Natura.modID, "general", () -> new ItemStack(NaturaGadgets.stoneStick));
 
   // base item properties
   protected static final Item.Properties GENERAL_PROPS = new Item.Properties().group(TAB_GENERAL);
-  protected static final Function<Block,? extends BlockItem> GENERAL_BLOCK_ITEM = (b) -> new BlockItem(b, GENERAL_PROPS);
-  protected static final Function<Block,? extends BlockItem> GENERAL_TOOLTIP_BLOCK_ITEM = (b) -> new BlockTooltipItem(b, GENERAL_PROPS);
+  protected static final Function<Block, ? extends BlockItem> GENERAL_BLOCK_ITEM = (b) -> new BlockItem(b, GENERAL_PROPS);
+  protected static final Function<Block, ? extends BlockItem> GENERAL_TOOLTIP_BLOCK_ITEM = (b) -> new BlockTooltipItem(b, GENERAL_PROPS);
+  protected static final Supplier<Item> TOOLTIP_ITEM = () -> new TooltipItem(GENERAL_PROPS);
 
-  /** Called during construction to initialize the registers for this mod */
+  /**
+   * Called during construction to initialize the registers for this mod
+   */
   public static void initRegisters() {
     IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
     BLOCKS.register(bus);
     ITEMS.register(bus);
+    ENTITIES.register(bus);
     FEATURES.register(bus);
     STRUCTURE_FEATURES.register(bus);
     BLOCK_STATE_PROVIDER_TYPES.register(bus);
   }
 
-  /** Constant to use for blocks with no tool for more readable code */
+  /**
+   * Constant to use for blocks with no tool for more readable code
+   */
   protected static final ToolType NO_TOOL = null;
 
   /**
@@ -72,10 +91,21 @@ public class NaturaModule {
 
   /**
    * Creates a Natura resource location
-   * @param id  Resource path
-   * @return  Natura resource location
+   *
+   * @param id Resource path
+   * @return Natura resource location
    */
   protected static ResourceLocation location(String id) {
     return new ResourceLocation(Natura.modID, id);
+  }
+
+  /**
+   * Creates a Natura resource location string
+   *
+   * @param id Resource path
+   * @return Natura resource location string
+   */
+  protected static String locationString(String id) {
+    return Natura.modID + ":" + id;
   }
 }
