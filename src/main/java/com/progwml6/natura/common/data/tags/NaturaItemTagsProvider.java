@@ -3,6 +3,7 @@ package com.progwml6.natura.common.data.tags;
 import com.progwml6.natura.Natura;
 import com.progwml6.natura.common.NaturaTags;
 import com.progwml6.natura.gadgets.NaturaGadgets;
+import com.progwml6.natura.shared.NaturaCommons;
 import net.minecraft.data.BlockTagsProvider;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.ItemTagsProvider;
@@ -21,8 +22,13 @@ public class NaturaItemTagsProvider extends ItemTagsProvider {
 
   @Override
   protected void registerTags() {
+    this.addCommon();
     this.addGadgets();
     this.addWorld();
+  }
+
+  private void addCommon() {
+    this.getOrCreateBuilder(Tags.Items.INGOTS).add(NaturaCommons.driedBrick.get());
   }
 
   private void addWorld() {

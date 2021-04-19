@@ -118,7 +118,7 @@ public final class NaturaStructures extends NaturaModule {
 
   /**
    * Feature configuration
-   *
+   * <p>
    * PLACEMENT MOVED TO WorldEvents#onBiomeLoad
    */
   @SubscribeEvent
@@ -266,8 +266,7 @@ public final class NaturaStructures extends NaturaModule {
   }
 
   @Nonnull
-  private static ConfiguredFeature<?, ?> getFeature(FeatureType type, Feature<ChanceRandomFeatureConfig> feature,
-    ConfiguredFeature<?, ?> actualFeature, int count) {
+  private static ConfiguredFeature<?, ?> getFeature(FeatureType type, Feature<ChanceRandomFeatureConfig> feature, ConfiguredFeature<?, ?> actualFeature, int count) {
     Config.FeatureConfig featureConfig = Config.features.get(type);
 
     ConfiguredFeature<?, ?> configuredFeature = new DisableableConfiguredFeature<>(feature,

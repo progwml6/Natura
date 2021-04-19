@@ -3,6 +3,7 @@ package com.progwml6.natura.gadgets.data;
 import com.progwml6.natura.common.NaturaTags;
 import com.progwml6.natura.common.data.BaseRecipeProvider;
 import com.progwml6.natura.gadgets.NaturaGadgets;
+import com.progwml6.natura.shared.NaturaCommons;
 import net.minecraft.block.Blocks;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.IFinishedRecipe;
@@ -63,7 +64,7 @@ public class GadgetRecipeProvider extends BaseRecipeProvider {
       .patternLine("X")
       .addCriterion("has_item", hasItem(NaturaTags.Items.RODS_STONE))
       .build(consumer, prefix(NaturaGadgets.stoneTorch, folder));
-    
+
     folder = "gadgets/";
     ShapedRecipeBuilder.shapedRecipe(NaturaGadgets.punji.get(), 3)
       .key('#', Items.SUGAR_CANE)
@@ -72,5 +73,16 @@ public class GadgetRecipeProvider extends BaseRecipeProvider {
       .patternLine("# #")
       .addCriterion("has_item", hasItem(Items.SUGAR_CANE))
       .build(consumer, prefix(NaturaGadgets.punji, folder));
+
+    // dried clay
+    folder = "gadgets/building/";
+    ShapedRecipeBuilder.shapedRecipe(NaturaCommons.driedClayBricks)
+      .key('b', NaturaCommons.driedBrick)
+      .patternLine("bb")
+      .patternLine("bb")
+      .addCriterion("has_item", hasItem(NaturaCommons.driedClay))
+      .build(consumer, prefix(NaturaCommons.driedClayBricks, folder));
+    registerSlabStair(consumer, NaturaCommons.driedClay, folder, true);
+    registerSlabStair(consumer, NaturaCommons.driedClayBricks, folder, true);
   }
 }

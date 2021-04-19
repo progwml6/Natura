@@ -3,12 +3,42 @@
 
   "item.natura.dried_brick": "Dried Brick",
 
+  "item.natura.barley": "Barley",
+  "item.natura.barley.tooltip": "Similar to wheat, it grows in the wild",
+
+  "item.natura.barley_flour": "Barley Flour",
+  "item.natura.barley_flour.tooltip": "Bake me to make bread\nAlso used in baking cake",
+
+  "item.natura.wheat_flour": "Wheat Flour",
+  "item.natura.wheat_flour.tooltip": "Bake me to make bread\nAlso used in baking cake",
+
+  "item.natura.cotton": "Cotton",
+  "item.natura.cotton.tooltip": "The source of all string and wool",
+
+  "item.natura.wheat_seed_bag": "Wheat Seed Bag",
+  "item.natura.wheat_seed_bag.tooltip": "Plants in a 3x3 area",
+
+  "item.natura.potatoes_seed_bag": "Potato Bag",
+  "item.natura.potatoes_seed_bag.tooltip": "Plants in a 3x3 area",
+
+  "item.natura.carrots_seed_bag": "Carrot Bag",
+  "item.natura.carrots_seed_bag.tooltip": "Plants in a 3x3 area",
+
+  "item.natura.nether_wart_seed_bag": "Nether Wart Bag",
+  "item.natura.nether_wart_seed_bag.tooltip": "Plants in a 3x3 area",
+
+  "item.natura.bone_meal_bag": "Bone Meal Bag",
+  "item.natura.bone_meal_bag.tooltip": "Grows plants in a 3x3 area",
+
   "block.natura.dried_clay": "Dried Clay",
   "block.natura.dried_clay_bricks": "Dried Bricks",
   "block.natura.dried_clay_slab": "Dried Clay Slab",
   "block.natura.dried_clay_bricks_slab": "Dried Bricks Slab",
   "block.natura.dried_clay_stairs": "Dried Clay Stairs",
   "block.natura.dried_clay_bricks_stairs": "Dried Bricks Stairs",
+
+  "item.natura.cactus_juice": "Cactus Juice",
+  "item.natura.cactus_juice.tooltip": "Saturating!",
 
   "item.natura.beef_jerky": "Beef Jerky",
   "item.natura.beef_jerky.tooltip": "Saturating!",
@@ -42,6 +72,6 @@
   "block.natura.punji.tooltip": "Pointy! Also sticks to walls.",
 
   "_comment": "GUIs",
-  "itemGroup.natura.general": "Natura's General Items",
-  "itemGroup.natura.world": "Natura's World Items"
+  "itemGroup.natura.general": "Natura's General",
+  "itemGroup.natura.world": "Natura's World"
 }

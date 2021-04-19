@@ -7,11 +7,17 @@ import com.progwml6.natura.common.data.tags.NaturaItemTagsProvider;
 import com.progwml6.natura.common.data.loot.NaturaLootTableProvider;
 import com.progwml6.natura.gadgets.NaturaGadgets;
 import com.progwml6.natura.library.Util;
+import com.progwml6.natura.shared.NaturaCommons;
 import com.progwml6.natura.world.NaturaStructures;
 import com.progwml6.natura.world.NaturaWorld;
 import com.progwml6.natura.world.config.FeatureType;
+import net.minecraft.block.Block;
 import net.minecraft.data.DataGenerator;
+import net.minecraft.item.Item;
+import net.minecraft.item.Items;
+import net.minecraft.util.IItemProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
+import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.ModLoadingContext;
@@ -21,7 +27,9 @@ import net.minecraftforge.fml.event.lifecycle.GatherDataEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import slimeknights.mantle.registration.RegistrationHelper;
 
+import javax.annotation.Nullable;
 import java.util.Random;
 
 @SuppressWarnings("unused")
@@ -54,6 +62,7 @@ public class Natura {
     // initialize modules, done this way rather than with annotations to give us control over the order
     IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
 
+    bus.register(new NaturaCommons());
     bus.register(new NaturaGadgets());
     bus.register(new NaturaWorld());
     bus.register(new NaturaStructures());
@@ -84,5 +93,29 @@ public class Natura {
         configLoaded = true;
       }
     }
+  }
+
+  @Nullable
+  private static Block missingBlock(String name) {
+    return null;
+  }
+
+  @SubscribeEvent
+  void missingItems(final RegistryEvent.MissingMappings<Item> event) {
+    RegistrationHelper.handleMissingMappings(event, modID, name -> {
+      switch (name) {
+        case "bonemeal_bag":
+          return NaturaCommons.boneMealBag.get();
+        case "blue_dye":
+          return Items.BLUE_DYE;
+      }
+      IItemProvider block = missingBlock(name);
+      return block == null ? null : block.asItem();
+    });
+  }
+
+  @SubscribeEvent
+  void missingBlocks(final RegistryEvent.MissingMappings<Block> event) {
+    RegistrationHelper.handleMissingMappings(event, modID, Natura::missingBlock);
   }
 }

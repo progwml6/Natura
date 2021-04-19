@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "natura:wheat_seed_bag"
+    }
+  ],
+  "result": {
+    "item": "minecraft:wheat_seeds",
+    "count": 9
+  }
+}

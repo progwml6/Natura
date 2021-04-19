@@ -2,12 +2,15 @@ package com.progwml6.natura.common.data.loot;
 
 import com.progwml6.natura.Natura;
 import com.progwml6.natura.gadgets.NaturaGadgets;
+import com.progwml6.natura.shared.NaturaCommons;
 import com.progwml6.natura.world.NaturaWorld;
 import com.progwml6.natura.world.block.RedwoodType;
 import com.progwml6.natura.world.block.TreeType;
 import net.minecraft.block.Block;
 import net.minecraft.data.loot.BlockLootTables;
 import net.minecraftforge.registries.ForgeRegistries;
+import slimeknights.mantle.registration.object.BuildingBlockObject;
+import slimeknights.tconstruct.shared.TinkerCommons;
 
 import javax.annotation.Nonnull;
 import java.util.stream.Collectors;
@@ -24,8 +27,14 @@ public class NaturaBlockLootTables extends BlockLootTables {
 
   @Override
   protected void addTables() {
+    this.addDecorative();
     this.addGadgets();
     this.addWorld();
+  }
+
+  private void addDecorative() {
+    this.registerBuildingLootTables(NaturaCommons.driedClay);
+    this.registerBuildingLootTables(NaturaCommons.driedClayBricks);
   }
 
   private void addGadgets() {
@@ -53,5 +62,16 @@ public class NaturaBlockLootTables extends BlockLootTables {
     this.registerLootTable(NaturaWorld.redwood_leaves.get(),
       (leaves) -> droppingWithChancesAndSticks(leaves, NaturaWorld.redwood_sapling.get(), DEFAULT_SAPLING_DROP_RATES));
     this.registerDropSelfLootTable(NaturaWorld.redwood_sapling.get());
+  }
+
+  /**
+   * Registers all loot tables for a building block object
+   *
+   * @param object Object instance
+   */
+  private void registerBuildingLootTables(BuildingBlockObject object) {
+    this.registerDropSelfLootTable(object.get());
+    this.registerLootTable(object.getSlab(), BlockLootTables::droppingSlab);
+    this.registerDropSelfLootTable(object.getStairs());
   }
 }

@@ -5,6 +5,8 @@ import net.minecraft.item.Food;
 @SuppressWarnings("WeakerAccess")
 public final class NaturaFood {
 
+  public static final Food CACTUS_JUICE = (new Food.Builder()).hunger(1).saturation(0.1F).build();
+
   /* Jerkies from drying racks */
   // for jerky that are similar to cooked meats, start with 1 less hunger
   // saturation is enough so (hunger + (hunger * saturation * 2) between [0.5,1] larger than vanilla
@@ -19,6 +21,8 @@ public final class NaturaFood {
   public static final Food MONSTER_JERKY = (new Food.Builder()).hunger(5).saturation(0.4F).build();
   public static final Food CLOWNFISH_JERKY = (new Food.Builder()).hunger(3).saturation(0.9F).build();
   public static final Food PUFFERFISH_JERKY = (new Food.Builder()).hunger(4).saturation(0.5F).build();
+
+  public static final Food POTASH_APPLE = (new Food.Builder()).hunger(4).saturation(0.4F).build();
 
   private NaturaFood() {}
 }

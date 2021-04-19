@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "sss",
+    "sss",
+    "sss"
+  ],
+  "key": {
+    "s": {
+      "tag": "forge:crops/carrot"
+    }
+  },
+  "result": {
+    "item": "natura:carrots_seed_bag"
+  }
+}
