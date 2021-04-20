@@ -5,10 +5,7 @@ import com.progwml6.natura.world.worldgen.trees.config.BaseOverworldTreeFeatureC
 import net.minecraft.block.material.Material;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MutableBoundingBox;
-import net.minecraft.world.IWorld;
-import net.minecraft.world.gen.Heightmap;
 import net.minecraft.world.gen.IWorldGenerationReader;
-import net.minecraft.world.gen.feature.TreeFeature;
 
 import java.util.Random;
 import java.util.Set;
