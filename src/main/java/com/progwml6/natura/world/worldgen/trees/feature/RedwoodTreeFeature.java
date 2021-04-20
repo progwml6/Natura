@@ -42,7 +42,7 @@ public class RedwoodTreeFeature extends Feature<RedwoodTreeFeatureConfig> {
 
   @Override
   public final boolean generate(ISeedReader seedReader, ChunkGenerator chunkGenerator, Random random, BlockPos blockPos,
-    RedwoodTreeFeatureConfig config) {
+                                RedwoodTreeFeatureConfig config) {
     Set<BlockPos> logsBlockPosSet = Sets.newHashSet();
     Set<BlockPos> leavesBlockPosSet = Sets.newHashSet();
     Set<BlockPos> decoratorsBlockPosSet = Sets.newHashSet();
@@ -59,16 +59,15 @@ public class RedwoodTreeFeature extends Feature<RedwoodTreeFeatureConfig> {
       }
 
       VoxelShapePart voxelShape = this.createVoxelShape(seedReader, boundingBox, logsBlockPosSet, decoratorsBlockPosSet);
-      Template.func_222857_a(seedReader, 3, voxelShape, boundingBox.minX, boundingBox.minY, boundingBox.minZ);
+      Template.updatePostProcessing(seedReader, 3, voxelShape, boundingBox.minX, boundingBox.minY, boundingBox.minZ);
       return true;
-    }
-    else {
+    } else {
       return false;
     }
   }
 
   private boolean place(IWorldGenerationReader generationReader, Random rand, BlockPos positionIn, Set<BlockPos> trunkBlockPosSet,
-    Set<BlockPos> leavesBlockPosSet, MutableBoundingBox boundingBoxIn, RedwoodTreeFeatureConfig configIn) {
+                        Set<BlockPos> leavesBlockPosSet, MutableBoundingBox boundingBoxIn, RedwoodTreeFeatureConfig configIn) {
 
     int height = rand.nextInt(configIn.randomHeight) + configIn.baseHeight;
     int heightLimit = 5 + rand.nextInt(configIn.heightLimit);
@@ -84,61 +83,50 @@ public class RedwoodTreeFeature extends Feature<RedwoodTreeFeatureConfig> {
       int oceanFloorHeight = generationReader.getHeight(Heightmap.Type.OCEAN_FLOOR, positionIn).getY();
 
       blockPos = new BlockPos(positionIn.getX(), oceanFloorHeight, positionIn.getZ());
-    }
-    else {
+    } else {
       blockPos = positionIn;
     }
 
     if (blockPos.getY() >= 1 && blockPos.getY() + height + 1 <= 256) {
       if (!isDirtOrFarmlandAt(generationReader, blockPos.down())) {
         return false;
-      }
-      else {
+      } else {
         if (height > 120) {
           for (int currentTreeHeight = 0; currentTreeHeight < height; currentTreeHeight++) {
             if (currentTreeHeight < height / 10) {
               this.genRing13(generationReader, rand, blockPos.up(currentTreeHeight), trunkBlockPosSet, boundingBoxIn, configIn);
-            }
-            else if (currentTreeHeight < height * 2 / 10) {
+            } else if (currentTreeHeight < height * 2 / 10) {
               this.genRing12(generationReader, rand, blockPos.up(currentTreeHeight), trunkBlockPosSet, boundingBoxIn, configIn);
-            }
-            else if (currentTreeHeight < height * 3 / 10) {
+            } else if (currentTreeHeight < height * 3 / 10) {
               this.genRing11(generationReader, rand, blockPos.up(currentTreeHeight), trunkBlockPosSet, boundingBoxIn, configIn);
-            }
-            else if (currentTreeHeight < height * 4 / 10) {
+            } else if (currentTreeHeight < height * 4 / 10) {
               this.genRing10(generationReader, rand, blockPos.up(currentTreeHeight), trunkBlockPosSet, boundingBoxIn, configIn);
-            }
-            else if (currentTreeHeight < height * 5 / 10) {
+            } else if (currentTreeHeight < height * 5 / 10) {
               this.genRing9(generationReader, rand, blockPos.up(currentTreeHeight), trunkBlockPosSet, boundingBoxIn, configIn);
 
               currentHeight = this.growLowBranch(generationReader, rand, blockPos.up(currentTreeHeight),
                 heightLimit, trunkBlockPosSet, leavesBlockPosSet, boundingBoxIn, configIn);
-            }
-            else if (currentTreeHeight < height * 6 / 10) {
+            } else if (currentTreeHeight < height * 6 / 10) {
               this.genRing8(generationReader, rand, blockPos.up(currentTreeHeight), trunkBlockPosSet, boundingBoxIn, configIn);
 
               currentHeight = this.growLowBranch(generationReader, rand, blockPos.up(currentTreeHeight),
                 heightLimit, trunkBlockPosSet, leavesBlockPosSet, boundingBoxIn, configIn);
-            }
-            else if (currentTreeHeight < height * 7 / 10) {
+            } else if (currentTreeHeight < height * 7 / 10) {
               this.genRing7(generationReader, rand, blockPos.up(currentTreeHeight), trunkBlockPosSet, boundingBoxIn, configIn);
 
               currentHeight = this.growMiddleBranch(generationReader, rand, blockPos.up(currentTreeHeight),
                 heightLimit, trunkBlockPosSet, leavesBlockPosSet, boundingBoxIn, configIn);
-            }
-            else if (currentTreeHeight < height * 8 / 10) {
+            } else if (currentTreeHeight < height * 8 / 10) {
               this.genRing6(generationReader, rand, blockPos.up(currentTreeHeight), trunkBlockPosSet, boundingBoxIn, configIn);
 
               currentHeight = this.growHighBranch(generationReader, rand, blockPos.up(currentTreeHeight),
                 heightLimit, trunkBlockPosSet, leavesBlockPosSet, boundingBoxIn, configIn);
-            }
-            else if (currentTreeHeight < height * 9 / 10) {
+            } else if (currentTreeHeight < height * 9 / 10) {
               this.genRing5(generationReader, rand, blockPos.up(currentTreeHeight), trunkBlockPosSet, boundingBoxIn, configIn);
 
               currentHeight = this.growHighBranch(generationReader, rand, blockPos.up(currentTreeHeight),
                 heightLimit, trunkBlockPosSet, leavesBlockPosSet, boundingBoxIn, configIn);
-            }
-            else {
+            } else {
               this.genRing3(generationReader, rand, blockPos.up(currentTreeHeight), trunkBlockPosSet, boundingBoxIn, configIn);
 
               currentHeight = this.growHighBranch(generationReader, rand, blockPos.up(currentTreeHeight),
@@ -150,40 +138,32 @@ public class RedwoodTreeFeature extends Feature<RedwoodTreeFeatureConfig> {
 
           this.growTop(generationReader, rand, blockPos.up(currentHeight),
             heightLimit, trunkBlockPosSet, leavesBlockPosSet, boundingBoxIn, configIn);
-        }
-        else if (height > 100) {
+        } else if (height > 100) {
           for (int currentTreeHeight = 0; currentTreeHeight < height; currentTreeHeight++) {
             if (currentTreeHeight < height / 8) {
               this.genRing11(generationReader, rand, blockPos.up(currentTreeHeight), trunkBlockPosSet, boundingBoxIn, configIn);
-            }
-            else if (currentTreeHeight < height * 2 / 8) {
+            } else if (currentTreeHeight < height * 2 / 8) {
               this.genRing10(generationReader, rand, blockPos.up(currentTreeHeight), trunkBlockPosSet, boundingBoxIn, configIn);
-            }
-            else if (currentTreeHeight < height * 3 / 8) {
+            } else if (currentTreeHeight < height * 3 / 8) {
               this.genRing9(generationReader, rand, blockPos.up(currentTreeHeight), trunkBlockPosSet, boundingBoxIn, configIn);
-            }
-            else if (currentTreeHeight < height * 4 / 8) {
+            } else if (currentTreeHeight < height * 4 / 8) {
               this.genRing8(generationReader, rand, blockPos.up(currentTreeHeight), trunkBlockPosSet, boundingBoxIn, configIn);
-            }
-            else if (currentTreeHeight < height * 5 / 8) {
+            } else if (currentTreeHeight < height * 5 / 8) {
               this.genRing7(generationReader, rand, blockPos.up(currentTreeHeight), trunkBlockPosSet, boundingBoxIn, configIn);
 
               currentHeight = this.growMiddleBranch(generationReader, rand, blockPos.up(currentTreeHeight),
                 heightLimit, trunkBlockPosSet, leavesBlockPosSet, boundingBoxIn, configIn);
-            }
-            else if (currentTreeHeight < height * 6 / 8) {
+            } else if (currentTreeHeight < height * 6 / 8) {
               this.genRing6(generationReader, rand, blockPos.up(currentTreeHeight), trunkBlockPosSet, boundingBoxIn, configIn);
 
               currentHeight = this.growMiddleBranch(generationReader, rand, blockPos.up(currentTreeHeight),
                 heightLimit, trunkBlockPosSet, leavesBlockPosSet, boundingBoxIn, configIn);
-            }
-            else if (currentTreeHeight < height * 7 / 8) {
+            } else if (currentTreeHeight < height * 7 / 8) {
               this.genRing5(generationReader, rand, blockPos.up(currentTreeHeight), trunkBlockPosSet, boundingBoxIn, configIn);
 
               currentHeight = this.growHighBranch(generationReader, rand, blockPos.up(currentTreeHeight),
                 heightLimit, trunkBlockPosSet, leavesBlockPosSet, boundingBoxIn, configIn);
-            }
-            else {
+            } else {
               this.genRing3(generationReader, rand, blockPos.up(currentTreeHeight), trunkBlockPosSet, boundingBoxIn, configIn);
 
               currentHeight = this.growHighBranch(generationReader, rand, blockPos.up(currentTreeHeight),
@@ -194,31 +174,25 @@ public class RedwoodTreeFeature extends Feature<RedwoodTreeFeatureConfig> {
 
           this.growTop(generationReader, rand, blockPos.up(currentHeight),
             heightLimit, trunkBlockPosSet, leavesBlockPosSet, boundingBoxIn, configIn);
-        }
-        else {
+        } else {
           for (int currentTreeHeight = 0; currentTreeHeight < height; currentTreeHeight++) {
             if (currentTreeHeight < height / 6) {
               this.genRing9(generationReader, rand, blockPos.up(currentTreeHeight), trunkBlockPosSet, boundingBoxIn, configIn);
-            }
-            else if (currentTreeHeight < height * 2 / 6) {
+            } else if (currentTreeHeight < height * 2 / 6) {
               this.genRing8(generationReader, rand, blockPos.up(currentTreeHeight), trunkBlockPosSet, boundingBoxIn, configIn);
-            }
-            else if (currentTreeHeight < height * 3 / 6) {
+            } else if (currentTreeHeight < height * 3 / 6) {
               this.genRing7(generationReader, rand, blockPos.up(currentTreeHeight), trunkBlockPosSet, boundingBoxIn, configIn);
-            }
-            else if (currentTreeHeight < height * 4 / 6) {
+            } else if (currentTreeHeight < height * 4 / 6) {
               this.genRing6(generationReader, rand, blockPos.up(currentTreeHeight), trunkBlockPosSet, boundingBoxIn, configIn);
 
               currentHeight = this.growMiddleBranch(generationReader, rand, blockPos.up(currentTreeHeight),
                 heightLimit, trunkBlockPosSet, leavesBlockPosSet, boundingBoxIn, configIn);
-            }
-            else if (currentTreeHeight < height * 5 / 6) {
+            } else if (currentTreeHeight < height * 5 / 6) {
               this.genRing5(generationReader, rand, blockPos.up(currentTreeHeight), trunkBlockPosSet, boundingBoxIn, configIn);
 
               currentHeight = this.growHighBranch(generationReader, rand, blockPos.up(currentTreeHeight),
                 heightLimit, trunkBlockPosSet, leavesBlockPosSet, boundingBoxIn, configIn);
-            }
-            else {
+            } else {
               this.genRing3(generationReader, rand, blockPos.up(currentTreeHeight), trunkBlockPosSet, boundingBoxIn, configIn);
 
               currentHeight = this.growHighBranch(generationReader, rand, blockPos.up(currentTreeHeight),
@@ -234,8 +208,7 @@ public class RedwoodTreeFeature extends Feature<RedwoodTreeFeatureConfig> {
         }
         return true;
       }
-    }
-    else {
+    } else {
       return false;
     }
   }
@@ -246,7 +219,7 @@ public class RedwoodTreeFeature extends Feature<RedwoodTreeFeatureConfig> {
    * Generates a list of leaf nodes for the tree, to be populated by generateLeaves.
    */
   private int generateLeafNodeList(IWorldGenerationReader worldIn, BlockPos position, Random random, int heightLimit,
-    List<FoliageCoordinates> foliageCoords, RedwoodTreeFeatureConfig treeFeatureConfigIn) {
+                                   List<FoliageCoordinates> foliageCoords, RedwoodTreeFeatureConfig treeFeatureConfigIn) {
     int currentHeight = (int) (heightLimit * treeFeatureConfigIn.heightAttenuation);
 
     if (currentHeight >= heightLimit) {
@@ -295,7 +268,7 @@ public class RedwoodTreeFeature extends Feature<RedwoodTreeFeatureConfig> {
   }
 
   private void crossSection(IWorldGenerationReader worldIn, Random randomIn, BlockPos position, Set<BlockPos> leavesBlockPosSet,
-    MutableBoundingBox mutableBoundingBoxIn, RedwoodTreeFeatureConfig treeFeatureConfigIn, float size) {
+                            MutableBoundingBox mutableBoundingBoxIn, RedwoodTreeFeatureConfig treeFeatureConfigIn, float size) {
     int i = (int) (size + 0.618D);
 
     for (int j = -i; j <= i; ++j) {
@@ -313,16 +286,14 @@ public class RedwoodTreeFeature extends Feature<RedwoodTreeFeatureConfig> {
   private float layerSize(int y, int heightLimit) {
     if (y < heightLimit * 0.3F) {
       return -1.0F;
-    }
-    else {
+    } else {
       float f = heightLimit / 2.0F;
       float f1 = f - y;
       float f2 = MathHelper.sqrt(f * f - f1 * f1);
 
       if (f1 == 0.0F) {
         f2 = f;
-      }
-      else if (Math.abs(f1) >= f) {
+      } else if (Math.abs(f1) >= f) {
         return 0.0F;
       }
 
@@ -338,7 +309,7 @@ public class RedwoodTreeFeature extends Feature<RedwoodTreeFeatureConfig> {
    * Generates the leaves surrounding an individual entry in the leafNodes list.
    */
   private void generateLeafNode(IWorldGenerationReader worldIn, Random randomIn, BlockPos blockPos, Set<BlockPos> leavesBlockPosSet,
-    MutableBoundingBox mutableBoundingBoxIn, RedwoodTreeFeatureConfig treeFeatureConfigIn) {
+                                MutableBoundingBox mutableBoundingBoxIn, RedwoodTreeFeatureConfig treeFeatureConfigIn) {
     for (int i = 0; i < treeFeatureConfigIn.leafDistanceLimit; ++i) {
 
       this.crossSection(worldIn, randomIn, blockPos.up(i), leavesBlockPosSet, mutableBoundingBoxIn, treeFeatureConfigIn, this.leafSize(i));
@@ -346,7 +317,7 @@ public class RedwoodTreeFeature extends Feature<RedwoodTreeFeatureConfig> {
   }
 
   private void limb(IWorldGenerationReader worldIn, Random randomIn, BlockPos pos1, BlockPos pos2, Set<BlockPos> blockPosSet,
-    MutableBoundingBox mutableBoundingBoxIn, RedwoodTreeFeatureConfig treeFeatureConfigIn) {
+                    MutableBoundingBox mutableBoundingBoxIn, RedwoodTreeFeatureConfig treeFeatureConfigIn) {
     BlockPos blockpos = pos2.add(-pos1.getX(), -pos1.getY(), -pos1.getZ());
     int i = this.getGreatestDistance(blockpos);
     float f = (float) blockpos.getX() / (float) i;
@@ -373,8 +344,8 @@ public class RedwoodTreeFeature extends Feature<RedwoodTreeFeatureConfig> {
    * Generates the leaf portion of the tree as specified by the leafNodes list.
    */
   private void generateLeaves(IWorldGenerationReader worldIn, Random randomIn, Set<BlockPos> leavesBlockPosSet,
-    MutableBoundingBox mutableBoundingBoxIn,
-    RedwoodTreeFeatureConfig treeFeatureConfigIn, List<FoliageCoordinates> foliageCoords) {
+                              MutableBoundingBox mutableBoundingBoxIn,
+                              RedwoodTreeFeatureConfig treeFeatureConfigIn, List<FoliageCoordinates> foliageCoords) {
     for (FoliageCoordinates foliageCoordinates : foliageCoords) {
       this.generateLeafNode(worldIn, randomIn, foliageCoordinates, leavesBlockPosSet, mutableBoundingBoxIn, treeFeatureConfigIn);
     }
@@ -391,8 +362,8 @@ public class RedwoodTreeFeature extends Feature<RedwoodTreeFeatureConfig> {
    * Generates additional wood blocks to fill out the bases of different leaf nodes that would otherwise degrade.
    */
   private void generateLeafNodeBases(IWorldGenerationReader worldIn, Random randomIn,
-    Set<BlockPos> blockPosSet, MutableBoundingBox mutableBoundingBoxIn, RedwoodTreeFeatureConfig treeFeatureConfigIn, BlockPos position,
-    int heightLimit, List<FoliageCoordinates> foliageCoords) {
+                                     Set<BlockPos> blockPosSet, MutableBoundingBox mutableBoundingBoxIn, RedwoodTreeFeatureConfig treeFeatureConfigIn, BlockPos position,
+                                     int heightLimit, List<FoliageCoordinates> foliageCoords) {
 
     for (FoliageCoordinates foliageCoordinates : foliageCoords) {
       int i = foliageCoordinates.getBranchBase();
@@ -434,8 +405,7 @@ public class RedwoodTreeFeature extends Feature<RedwoodTreeFeatureConfig> {
     mutableBoundingBoxIn, RedwoodTreeFeatureConfig treeFeatureConfigIn) {
     if (!isAirOrLeavesAt(worldIn, blockPos)) {
       return false;
-    }
-    else {
+    } else {
       this.setBlockState(worldIn, blockPos, treeFeatureConfigIn.barkProvider.getBlockState(randomIn, blockPos));
       mutableBoundingBoxIn.expandTo(new MutableBoundingBox(blockPos, blockPos));
       blockPosSet.add(blockPos.toImmutable());
@@ -447,8 +417,7 @@ public class RedwoodTreeFeature extends Feature<RedwoodTreeFeatureConfig> {
     mutableBoundingBoxIn, RedwoodTreeFeatureConfig treeFeatureConfigIn) {
     if (!isAirOrLeavesAt(worldIn, blockPos)) {
       return false;
-    }
-    else {
+    } else {
       this.setBlockState(worldIn, blockPos, treeFeatureConfigIn.heartProvider.getBlockState(randomIn, blockPos));
       mutableBoundingBoxIn.expandTo(new MutableBoundingBox(blockPos, blockPos));
       blockPosSet.add(blockPos.toImmutable());
@@ -460,8 +429,7 @@ public class RedwoodTreeFeature extends Feature<RedwoodTreeFeatureConfig> {
     mutableBoundingBoxIn, RedwoodTreeFeatureConfig treeFeatureConfigIn) {
     if (!isAirOrLeavesAt(worldIn, blockPos)) {
       return false;
-    }
-    else {
+    } else {
       this.setBlockState(worldIn, blockPos, treeFeatureConfigIn.rootProvider.getBlockState(randomIn, blockPos));
       mutableBoundingBoxIn.expandTo(new MutableBoundingBox(blockPos, blockPos));
       blockPosSet.add(blockPos.toImmutable());
@@ -473,8 +441,7 @@ public class RedwoodTreeFeature extends Feature<RedwoodTreeFeatureConfig> {
     mutableBoundingBoxIn, RedwoodTreeFeatureConfig treeFeatureConfigIn) {
     if (!isAirOrLeavesAt(worldIn, blockPos)) {
       return false;
-    }
-    else {
+    } else {
       this.setBlockState(worldIn, blockPos, treeFeatureConfigIn.leavesProvider.getBlockState(random, blockPos));
       mutableBoundingBoxIn.expandTo(new MutableBoundingBox(blockPos, blockPos));
       leavesBlockPosSet.add(blockPos.toImmutable());
@@ -483,7 +450,7 @@ public class RedwoodTreeFeature extends Feature<RedwoodTreeFeatureConfig> {
   }
 
   private static boolean isWaterAt(IWorldGenerationBaseReader reader, BlockPos blockPos) {
-    return reader.hasBlockState(blockPos, (state) -> state.isIn(Blocks.WATER));
+    return reader.hasBlockState(blockPos, (state) -> state.matchesBlock(Blocks.WATER));
   }
 
   public static boolean isAirOrLeavesAt(IWorldGenerationBaseReader reader, BlockPos blockPos) {
@@ -537,7 +504,7 @@ public class RedwoodTreeFeature extends Feature<RedwoodTreeFeatureConfig> {
   }
 
   private VoxelShapePart createVoxelShape(IWorld world, MutableBoundingBox boundingBox, Set<BlockPos> blockPosSet,
-    Set<BlockPos> decoratorsBlockPosSet) {
+                                          Set<BlockPos> decoratorsBlockPosSet) {
     List<Set<BlockPos>> list = Lists.newArrayList();
     VoxelShapePart voxelShapePart = new BitSetVoxelShapePart(boundingBox.getXSize(), boundingBox.getYSize(), boundingBox.getZSize());
 
@@ -622,7 +589,7 @@ public class RedwoodTreeFeature extends Feature<RedwoodTreeFeatureConfig> {
 
   // BRANCHES AND TOP START
   public void growTop(IWorldGenerationReader worldIn, Random randomIn, BlockPos blockPos, int heightLimit, Set<BlockPos> blockPosSet,
-    Set<BlockPos> leavesBlockPosSet, MutableBoundingBox mutableBoundingBoxIn, RedwoodTreeFeatureConfig treeFeatureConfigIn) {
+                      Set<BlockPos> leavesBlockPosSet, MutableBoundingBox mutableBoundingBoxIn, RedwoodTreeFeatureConfig treeFeatureConfigIn) {
 
     List<FoliageCoordinates> foliageCoords = Lists.newArrayList();
     BlockPos newPos = blockPos.up(4);
@@ -655,7 +622,7 @@ public class RedwoodTreeFeature extends Feature<RedwoodTreeFeatureConfig> {
   }
 
   public int growHighBranch(IWorldGenerationReader worldIn, Random randomIn, BlockPos blockPos, int heightLimit, Set<BlockPos> blockPosSet,
-    Set<BlockPos> leavesBlockPosSet, MutableBoundingBox mutableBoundingBoxIn, RedwoodTreeFeatureConfig treeFeatureConfigIn) {
+                            Set<BlockPos> leavesBlockPosSet, MutableBoundingBox mutableBoundingBoxIn, RedwoodTreeFeatureConfig treeFeatureConfigIn) {
     int xPos = blockPos.getX();
     int yPos = blockPos.getY();
     int zPos = blockPos.getZ();
@@ -674,7 +641,7 @@ public class RedwoodTreeFeature extends Feature<RedwoodTreeFeatureConfig> {
   }
 
   public int growMiddleBranch(IWorldGenerationReader worldIn, Random randomIn, BlockPos blockPos, int heightLimit, Set<BlockPos> blockPosSet,
-    Set<BlockPos> leavesBlockPosSet, MutableBoundingBox mutableBoundingBoxIn, RedwoodTreeFeatureConfig treeFeatureConfigIn) {
+                              Set<BlockPos> leavesBlockPosSet, MutableBoundingBox mutableBoundingBoxIn, RedwoodTreeFeatureConfig treeFeatureConfigIn) {
     int xPos = blockPos.getX();
     int yPos = blockPos.getY();
     int zPos = blockPos.getZ();
@@ -693,7 +660,7 @@ public class RedwoodTreeFeature extends Feature<RedwoodTreeFeatureConfig> {
   }
 
   public int growLowBranch(IWorldGenerationReader worldIn, Random randomIn, BlockPos blockPos, int heightLimit, Set<BlockPos> blockPosSet,
-    Set<BlockPos> leavesBlockPosSet, MutableBoundingBox mutableBoundingBoxIn, RedwoodTreeFeatureConfig treeFeatureConfigIn) {
+                           Set<BlockPos> leavesBlockPosSet, MutableBoundingBox mutableBoundingBoxIn, RedwoodTreeFeatureConfig treeFeatureConfigIn) {
     int xPos = blockPos.getX();
     int yPos = blockPos.getY();
     int zPos = blockPos.getZ();
@@ -728,7 +695,7 @@ public class RedwoodTreeFeature extends Feature<RedwoodTreeFeatureConfig> {
 
   // ROOTS START
   public void growSmallRoots(IWorldGenerationReader worldIn, Random randomIn, BlockPos blockPos, Set<BlockPos> blockPosSet,
-    MutableBoundingBox mutableBoundingBoxIn, RedwoodTreeFeatureConfig treeFeatureConfigIn) {
+                             MutableBoundingBox mutableBoundingBoxIn, RedwoodTreeFeatureConfig treeFeatureConfigIn) {
 
     this.genRing9(worldIn, randomIn, blockPos, blockPosSet, mutableBoundingBoxIn, treeFeatureConfigIn);
 
@@ -749,7 +716,7 @@ public class RedwoodTreeFeature extends Feature<RedwoodTreeFeatureConfig> {
   }
 
   public void growMediumRoots(IWorldGenerationReader worldIn, Random randomIn, BlockPos blockPos, Set<BlockPos> blockPosSet,
-    MutableBoundingBox mutableBoundingBoxIn, RedwoodTreeFeatureConfig treeFeatureConfigIn) {
+                              MutableBoundingBox mutableBoundingBoxIn, RedwoodTreeFeatureConfig treeFeatureConfigIn) {
     this.genRing11(worldIn, randomIn, blockPos, blockPosSet, mutableBoundingBoxIn, treeFeatureConfigIn);
 
     this.mediumRoot1(worldIn, randomIn, blockPos.down(1), blockPosSet, mutableBoundingBoxIn, treeFeatureConfigIn);
@@ -773,7 +740,7 @@ public class RedwoodTreeFeature extends Feature<RedwoodTreeFeatureConfig> {
   }
 
   public void growBigRoots(IWorldGenerationReader worldIn, Random randomIn, BlockPos blockPos, Set<BlockPos> blockPosSet,
-    MutableBoundingBox mutableBoundingBoxIn, RedwoodTreeFeatureConfig treeFeatureConfigIn) {
+                           MutableBoundingBox mutableBoundingBoxIn, RedwoodTreeFeatureConfig treeFeatureConfigIn) {
     this.genRing13(worldIn, randomIn, blockPos, blockPosSet, mutableBoundingBoxIn, treeFeatureConfigIn);
 
     this.bigRoot1(worldIn, randomIn, blockPos.down(1), blockPosSet, mutableBoundingBoxIn, treeFeatureConfigIn);
@@ -804,7 +771,7 @@ public class RedwoodTreeFeature extends Feature<RedwoodTreeFeatureConfig> {
 
   // RINGS START
   public boolean genRing13(IWorldGenerationReader worldIn, Random randomIn, BlockPos blockPos, Set<BlockPos> blockPosSet,
-    MutableBoundingBox mutableBoundingBoxIn, RedwoodTreeFeatureConfig treeFeatureConfigIn) {
+                           MutableBoundingBox mutableBoundingBoxIn, RedwoodTreeFeatureConfig treeFeatureConfigIn) {
     if (!isBedrockAt(worldIn, blockPos) && blockPos.getY() > 0) {
       this.setBark(worldIn, randomIn, blockPos.add(-6, 0, -2), blockPosSet, mutableBoundingBoxIn, treeFeatureConfigIn);
       this.setBark(worldIn, randomIn, blockPos.add(-6, 0, -1), blockPosSet, mutableBoundingBoxIn, treeFeatureConfigIn);
@@ -963,7 +930,7 @@ public class RedwoodTreeFeature extends Feature<RedwoodTreeFeatureConfig> {
   }
 
   public boolean genRing12(IWorldGenerationReader worldIn, Random randomIn, BlockPos blockPos, Set<BlockPos> blockPosSet,
-    MutableBoundingBox mutableBoundingBoxIn, RedwoodTreeFeatureConfig treeFeatureConfigIn) {
+                           MutableBoundingBox mutableBoundingBoxIn, RedwoodTreeFeatureConfig treeFeatureConfigIn) {
     if (!isBedrockAt(worldIn, blockPos) && blockPos.getY() > 0) {
       this.setBark(worldIn, randomIn, blockPos.add(-6, 0, -1), blockPosSet, mutableBoundingBoxIn, treeFeatureConfigIn);
       this.setBark(worldIn, randomIn, blockPos.add(-6, 0, 0), blockPosSet, mutableBoundingBoxIn, treeFeatureConfigIn);
@@ -1110,7 +1077,7 @@ public class RedwoodTreeFeature extends Feature<RedwoodTreeFeatureConfig> {
   }
 
   public boolean genRing11(IWorldGenerationReader worldIn, Random randomIn, BlockPos blockPos, Set<BlockPos> blockPosSet,
-    MutableBoundingBox mutableBoundingBoxIn, RedwoodTreeFeatureConfig treeFeatureConfigIn) {
+                           MutableBoundingBox mutableBoundingBoxIn, RedwoodTreeFeatureConfig treeFeatureConfigIn) {
     if (!isBedrockAt(worldIn, blockPos) && blockPos.getY() > 0) {
       this.setBark(worldIn, randomIn, blockPos.add(-5, 0, -1), blockPosSet, mutableBoundingBoxIn, treeFeatureConfigIn);
       this.setBark(worldIn, randomIn, blockPos.add(-5, 0, 0), blockPosSet, mutableBoundingBoxIn, treeFeatureConfigIn);
@@ -1218,8 +1185,8 @@ public class RedwoodTreeFeature extends Feature<RedwoodTreeFeatureConfig> {
     return true;
   }
 
-  public boolean genRing10(IWorldGenerationReader worldIn, Random randomIn, BlockPos blockPos, Set<BlockPos> blockPosSet,
-    MutableBoundingBox mutableBoundingBoxIn, RedwoodTreeFeatureConfig treeFeatureConfigIn) {
+  public void genRing10(IWorldGenerationReader worldIn, Random randomIn, BlockPos blockPos, Set<BlockPos> blockPosSet,
+                        MutableBoundingBox mutableBoundingBoxIn, RedwoodTreeFeatureConfig treeFeatureConfigIn) {
     if (!isBedrockAt(worldIn, blockPos) && blockPos.getY() > 0) {
       this.setBark(worldIn, randomIn, blockPos.add(-4, 0, -2), blockPosSet, mutableBoundingBoxIn, treeFeatureConfigIn);
       this.setBark(worldIn, randomIn, blockPos.add(-4, 0, -1), blockPosSet, mutableBoundingBoxIn, treeFeatureConfigIn);
@@ -1301,12 +1268,10 @@ public class RedwoodTreeFeature extends Feature<RedwoodTreeFeatureConfig> {
       this.setBark(worldIn, randomIn, blockPos.add(4, 0, 1), blockPosSet, mutableBoundingBoxIn, treeFeatureConfigIn);
       this.setBark(worldIn, randomIn, blockPos.add(4, 0, 2), blockPosSet, mutableBoundingBoxIn, treeFeatureConfigIn);
     }
-
-    return true;
   }
 
   public void genRing9(IWorldGenerationReader worldIn, Random randomIn, BlockPos blockPos, Set<BlockPos> blockPosSet,
-    MutableBoundingBox mutableBoundingBoxIn, RedwoodTreeFeatureConfig treeFeatureConfigIn) {
+                       MutableBoundingBox mutableBoundingBoxIn, RedwoodTreeFeatureConfig treeFeatureConfigIn) {
     if (!isBedrockAt(worldIn, blockPos) && blockPos.getY() > 0) {
       this.setBark(worldIn, randomIn, blockPos.add(-4, 0, -1), blockPosSet, mutableBoundingBoxIn, treeFeatureConfigIn);
       this.setBark(worldIn, randomIn, blockPos.add(-4, 0, 0), blockPosSet, mutableBoundingBoxIn, treeFeatureConfigIn);
@@ -1382,8 +1347,8 @@ public class RedwoodTreeFeature extends Feature<RedwoodTreeFeatureConfig> {
     }
   }
 
-  public boolean genRing8(IWorldGenerationReader worldIn, Random randomIn, BlockPos blockPos, Set<BlockPos> blockPosSet,
-    MutableBoundingBox mutableBoundingBoxIn, RedwoodTreeFeatureConfig treeFeatureConfigIn) {
+  public void genRing8(IWorldGenerationReader worldIn, Random randomIn, BlockPos blockPos, Set<BlockPos> blockPosSet,
+                       MutableBoundingBox mutableBoundingBoxIn, RedwoodTreeFeatureConfig treeFeatureConfigIn) {
     if (!isBedrockAt(worldIn, blockPos) && blockPos.getY() > 0) {
       this.setBark(worldIn, randomIn, blockPos.add(-3, 0, -2), blockPosSet, mutableBoundingBoxIn, treeFeatureConfigIn);
       this.setBark(worldIn, randomIn, blockPos.add(-3, 0, -1), blockPosSet, mutableBoundingBoxIn, treeFeatureConfigIn);
@@ -1439,12 +1404,10 @@ public class RedwoodTreeFeature extends Feature<RedwoodTreeFeatureConfig> {
       this.setBark(worldIn, randomIn, blockPos.add(3, 0, 1), blockPosSet, mutableBoundingBoxIn, treeFeatureConfigIn);
       this.setBark(worldIn, randomIn, blockPos.add(3, 0, 2), blockPosSet, mutableBoundingBoxIn, treeFeatureConfigIn);
     }
-
-    return true;
   }
 
-  public boolean genRing7(IWorldGenerationReader worldIn, Random randomIn, BlockPos blockPos, Set<BlockPos> blockPosSet,
-    MutableBoundingBox mutableBoundingBoxIn, RedwoodTreeFeatureConfig treeFeatureConfigIn) {
+  public void genRing7(IWorldGenerationReader worldIn, Random randomIn, BlockPos blockPos, Set<BlockPos> blockPosSet,
+                       MutableBoundingBox mutableBoundingBoxIn, RedwoodTreeFeatureConfig treeFeatureConfigIn) {
     if (!isBedrockAt(worldIn, blockPos) && blockPos.getY() > 0) {
       this.setBark(worldIn, randomIn, blockPos.add(-3, 0, -1), blockPosSet, mutableBoundingBoxIn, treeFeatureConfigIn);
       this.setBark(worldIn, randomIn, blockPos.add(-3, 0, 0), blockPosSet, mutableBoundingBoxIn, treeFeatureConfigIn);
@@ -1492,12 +1455,10 @@ public class RedwoodTreeFeature extends Feature<RedwoodTreeFeatureConfig> {
       this.setBark(worldIn, randomIn, blockPos.add(3, 0, 0), blockPosSet, mutableBoundingBoxIn, treeFeatureConfigIn);
       this.setBark(worldIn, randomIn, blockPos.add(3, 0, 1), blockPosSet, mutableBoundingBoxIn, treeFeatureConfigIn);
     }
-
-    return true;
   }
 
   public boolean genRing6(IWorldGenerationReader worldIn, Random randomIn, BlockPos blockPos, Set<BlockPos> blockPosSet,
-    MutableBoundingBox mutableBoundingBoxIn, RedwoodTreeFeatureConfig treeFeatureConfigIn) {
+                          MutableBoundingBox mutableBoundingBoxIn, RedwoodTreeFeatureConfig treeFeatureConfigIn) {
     if (!isBedrockAt(worldIn, blockPos) && blockPos.getY() > 0) {
       this.setBark(worldIn, randomIn, blockPos.add(-2, 0, -2), blockPosSet, mutableBoundingBoxIn, treeFeatureConfigIn);
       this.setBark(worldIn, randomIn, blockPos.add(-2, 0, -1), blockPosSet, mutableBoundingBoxIn, treeFeatureConfigIn);
@@ -1536,7 +1497,7 @@ public class RedwoodTreeFeature extends Feature<RedwoodTreeFeatureConfig> {
   }
 
   public boolean genRing5(IWorldGenerationReader worldIn, Random randomIn, BlockPos blockPos, Set<BlockPos> blockPosSet,
-    MutableBoundingBox mutableBoundingBoxIn, RedwoodTreeFeatureConfig treeFeatureConfigIn) {
+                          MutableBoundingBox mutableBoundingBoxIn, RedwoodTreeFeatureConfig treeFeatureConfigIn) {
     if (!isBedrockAt(worldIn, blockPos) && blockPos.getY() > 0) {
       this.setBark(worldIn, randomIn, blockPos.add(-2, 0, -1), blockPosSet, mutableBoundingBoxIn, treeFeatureConfigIn);
       this.setBark(worldIn, randomIn, blockPos.add(-2, 0, 0), blockPosSet, mutableBoundingBoxIn, treeFeatureConfigIn);
@@ -1571,7 +1532,7 @@ public class RedwoodTreeFeature extends Feature<RedwoodTreeFeatureConfig> {
   }
 
   public boolean genRing3(IWorldGenerationReader worldIn, Random randomIn, BlockPos blockPos, Set<BlockPos> blockPosSet,
-    MutableBoundingBox mutableBoundingBoxIn, RedwoodTreeFeatureConfig treeFeatureConfigIn) {
+                          MutableBoundingBox mutableBoundingBoxIn, RedwoodTreeFeatureConfig treeFeatureConfigIn) {
     if (!isBedrockAt(worldIn, blockPos) && blockPos.getY() > 0) {
       this.setBark(worldIn, randomIn, blockPos.add(-1, 0, -1), blockPosSet, mutableBoundingBoxIn, treeFeatureConfigIn);
       this.setBark(worldIn, randomIn, blockPos.add(-1, 0, 0), blockPosSet, mutableBoundingBoxIn, treeFeatureConfigIn);
@@ -1596,7 +1557,7 @@ public class RedwoodTreeFeature extends Feature<RedwoodTreeFeatureConfig> {
   // SMALL ROOTS START
 
   public boolean smallRoot1(IWorldGenerationReader worldIn, Random randomIn, BlockPos blockPos, Set<BlockPos> blockPosSet,
-    MutableBoundingBox mutableBoundingBoxIn, RedwoodTreeFeatureConfig treeFeatureConfigIn) {
+                            MutableBoundingBox mutableBoundingBoxIn, RedwoodTreeFeatureConfig treeFeatureConfigIn) {
     if (!isBedrockAt(worldIn, blockPos) && blockPos.getY() > 0) {
       this.setRoot(worldIn, randomIn, blockPos.add(-4, 0, -1), blockPosSet, mutableBoundingBoxIn, treeFeatureConfigIn);
       this.setRoot(worldIn, randomIn, blockPos.add(-4, 0, 1), blockPosSet, mutableBoundingBoxIn, treeFeatureConfigIn);
@@ -1655,7 +1616,7 @@ public class RedwoodTreeFeature extends Feature<RedwoodTreeFeatureConfig> {
   }
 
   public boolean smallRoot2(IWorldGenerationReader worldIn, Random randomIn, BlockPos blockPos, Set<BlockPos> blockPosSet,
-    MutableBoundingBox mutableBoundingBoxIn, RedwoodTreeFeatureConfig treeFeatureConfigIn) {
+                            MutableBoundingBox mutableBoundingBoxIn, RedwoodTreeFeatureConfig treeFeatureConfigIn) {
     if (!isBedrockAt(worldIn, blockPos) && blockPos.getY() > 0) {
       this.setRoot(worldIn, randomIn, blockPos.add(-4, 0, -1), blockPosSet, mutableBoundingBoxIn, treeFeatureConfigIn);
       this.setRoot(worldIn, randomIn, blockPos.add(-4, 0, 1), blockPosSet, mutableBoundingBoxIn, treeFeatureConfigIn);
@@ -1706,7 +1667,7 @@ public class RedwoodTreeFeature extends Feature<RedwoodTreeFeatureConfig> {
   }
 
   public boolean smallRoot3(IWorldGenerationReader worldIn, Random randomIn, BlockPos blockPos, Set<BlockPos> blockPosSet,
-    MutableBoundingBox mutableBoundingBoxIn, RedwoodTreeFeatureConfig treeFeatureConfigIn) {
+                            MutableBoundingBox mutableBoundingBoxIn, RedwoodTreeFeatureConfig treeFeatureConfigIn) {
     if (!isBedrockAt(worldIn, blockPos) && blockPos.getY() > 0) {
       this.setRoot(worldIn, randomIn, blockPos.add(-2, 0, -2), blockPosSet, mutableBoundingBoxIn, treeFeatureConfigIn);
       this.setRoot(worldIn, randomIn, blockPos.add(-2, 0, 2), blockPosSet, mutableBoundingBoxIn, treeFeatureConfigIn);
@@ -1729,7 +1690,7 @@ public class RedwoodTreeFeature extends Feature<RedwoodTreeFeatureConfig> {
   }
 
   public boolean smallRoot4(IWorldGenerationReader worldIn, Random randomIn, BlockPos blockPos, Set<BlockPos> blockPosSet,
-    MutableBoundingBox mutableBoundingBoxIn, RedwoodTreeFeatureConfig treeFeatureConfigIn) {
+                            MutableBoundingBox mutableBoundingBoxIn, RedwoodTreeFeatureConfig treeFeatureConfigIn) {
     if (!isBedrockAt(worldIn, blockPos) && blockPos.getY() > 0) {
       this.setRoot(worldIn, randomIn, blockPos.add(-1, 0, -2), blockPosSet, mutableBoundingBoxIn, treeFeatureConfigIn);
       this.setRoot(worldIn, randomIn, blockPos.add(-1, 0, 2), blockPosSet, mutableBoundingBoxIn, treeFeatureConfigIn);
@@ -1745,7 +1706,7 @@ public class RedwoodTreeFeature extends Feature<RedwoodTreeFeatureConfig> {
   // MEDIUM ROOTS START
 
   public boolean mediumRoot1(IWorldGenerationReader worldIn, Random randomIn, BlockPos blockPos, Set<BlockPos> blockPosSet,
-    MutableBoundingBox mutableBoundingBoxIn, RedwoodTreeFeatureConfig treeFeatureConfigIn) {
+                             MutableBoundingBox mutableBoundingBoxIn, RedwoodTreeFeatureConfig treeFeatureConfigIn) {
     if (!isBedrockAt(worldIn, blockPos) && blockPos.getY() > 0) {
       this.setRoot(worldIn, randomIn, blockPos.add(-5, 0, -1), blockPosSet, mutableBoundingBoxIn, treeFeatureConfigIn);
       this.setRoot(worldIn, randomIn, blockPos.add(-5, 0, 1), blockPosSet, mutableBoundingBoxIn, treeFeatureConfigIn);
@@ -1830,7 +1791,7 @@ public class RedwoodTreeFeature extends Feature<RedwoodTreeFeatureConfig> {
   }
 
   public boolean mediumRoot2(IWorldGenerationReader worldIn, Random randomIn, BlockPos blockPos, Set<BlockPos> blockPosSet,
-    MutableBoundingBox mutableBoundingBoxIn, RedwoodTreeFeatureConfig treeFeatureConfigIn) {
+                             MutableBoundingBox mutableBoundingBoxIn, RedwoodTreeFeatureConfig treeFeatureConfigIn) {
     if (!isBedrockAt(worldIn, blockPos) && blockPos.getY() > 0) {
       this.setRoot(worldIn, randomIn, blockPos.add(-4, 0, -1), blockPosSet, mutableBoundingBoxIn, treeFeatureConfigIn);
       this.setRoot(worldIn, randomIn, blockPos.add(-4, 0, 1), blockPosSet, mutableBoundingBoxIn, treeFeatureConfigIn);
@@ -1885,7 +1846,7 @@ public class RedwoodTreeFeature extends Feature<RedwoodTreeFeatureConfig> {
   }
 
   public boolean mediumRoot3(IWorldGenerationReader worldIn, Random randomIn, BlockPos blockPos, Set<BlockPos> blockPosSet,
-    MutableBoundingBox mutableBoundingBoxIn, RedwoodTreeFeatureConfig treeFeatureConfigIn) {
+                             MutableBoundingBox mutableBoundingBoxIn, RedwoodTreeFeatureConfig treeFeatureConfigIn) {
     if (!isBedrockAt(worldIn, blockPos) && blockPos.getY() > 0) {
       this.setRoot(worldIn, randomIn, blockPos.add(-3, 0, -2), blockPosSet, mutableBoundingBoxIn, treeFeatureConfigIn);
       this.setRoot(worldIn, randomIn, blockPos.add(-3, 0, 2), blockPosSet, mutableBoundingBoxIn, treeFeatureConfigIn);
@@ -1918,7 +1879,7 @@ public class RedwoodTreeFeature extends Feature<RedwoodTreeFeatureConfig> {
   }
 
   public boolean mediumRoot4(IWorldGenerationReader worldIn, Random randomIn, BlockPos blockPos, Set<BlockPos> blockPosSet,
-    MutableBoundingBox mutableBoundingBoxIn, RedwoodTreeFeatureConfig treeFeatureConfigIn) {
+                             MutableBoundingBox mutableBoundingBoxIn, RedwoodTreeFeatureConfig treeFeatureConfigIn) {
     if (!isBedrockAt(worldIn, blockPos) && blockPos.getY() > 0) {
       this.setRoot(worldIn, randomIn, blockPos.add(-2, 0, -2), blockPosSet, mutableBoundingBoxIn, treeFeatureConfigIn);
       this.setRoot(worldIn, randomIn, blockPos.add(-2, 0, 2), blockPosSet, mutableBoundingBoxIn, treeFeatureConfigIn);
@@ -1937,7 +1898,7 @@ public class RedwoodTreeFeature extends Feature<RedwoodTreeFeatureConfig> {
   }
 
   public boolean mediumRoot5(IWorldGenerationReader worldIn, Random randomIn, BlockPos blockPos, Set<BlockPos> blockPosSet,
-    MutableBoundingBox mutableBoundingBoxIn, RedwoodTreeFeatureConfig treeFeatureConfigIn) {
+                             MutableBoundingBox mutableBoundingBoxIn, RedwoodTreeFeatureConfig treeFeatureConfigIn) {
     if (!isBedrockAt(worldIn, blockPos) && blockPos.getY() > 0) {
       this.setRoot(worldIn, randomIn, blockPos.add(-1, 0, -3), blockPosSet, mutableBoundingBoxIn, treeFeatureConfigIn);
       this.setRoot(worldIn, randomIn, blockPos.add(-1, 0, 3), blockPosSet, mutableBoundingBoxIn, treeFeatureConfigIn);
@@ -1952,7 +1913,7 @@ public class RedwoodTreeFeature extends Feature<RedwoodTreeFeatureConfig> {
   //BIG ROOTS START
 
   public boolean bigRoot1(IWorldGenerationReader worldIn, Random randomIn, BlockPos blockPos, Set<BlockPos> blockPosSet,
-    MutableBoundingBox mutableBoundingBoxIn, RedwoodTreeFeatureConfig treeFeatureConfigIn) {
+                          MutableBoundingBox mutableBoundingBoxIn, RedwoodTreeFeatureConfig treeFeatureConfigIn) {
     if (!isBedrockAt(worldIn, blockPos) && blockPos.getY() > 0) {
       this.setRoot(worldIn, randomIn, blockPos.add(-6, 0, -2), blockPosSet, mutableBoundingBoxIn, treeFeatureConfigIn);
       this.setRoot(worldIn, randomIn, blockPos.add(-6, 0, -1), blockPosSet, mutableBoundingBoxIn, treeFeatureConfigIn);
@@ -2083,7 +2044,7 @@ public class RedwoodTreeFeature extends Feature<RedwoodTreeFeatureConfig> {
   }
 
   public void bigRoot2(IWorldGenerationReader worldIn, Random randomIn, BlockPos blockPos, Set<BlockPos> blockPosSet,
-    MutableBoundingBox mutableBoundingBoxIn, RedwoodTreeFeatureConfig treeFeatureConfigIn) {
+                       MutableBoundingBox mutableBoundingBoxIn, RedwoodTreeFeatureConfig treeFeatureConfigIn) {
     if (!isBedrockAt(worldIn, blockPos) && blockPos.getY() > 0) {
       this.setRoot(worldIn, randomIn, blockPos.add(-5, 0, -4), blockPosSet, mutableBoundingBoxIn, treeFeatureConfigIn);
       this.setRoot(worldIn, randomIn, blockPos.add(-5, 0, -3), blockPosSet, mutableBoundingBoxIn, treeFeatureConfigIn);
@@ -2202,7 +2163,7 @@ public class RedwoodTreeFeature extends Feature<RedwoodTreeFeatureConfig> {
   }
 
   public void bigRoot3(IWorldGenerationReader worldIn, Random randomIn, BlockPos blockPos, Set<BlockPos> blockPosSet,
-    MutableBoundingBox mutableBoundingBoxIn, RedwoodTreeFeatureConfig treeFeatureConfigIn) {
+                       MutableBoundingBox mutableBoundingBoxIn, RedwoodTreeFeatureConfig treeFeatureConfigIn) {
     if (!isBedrockAt(worldIn, blockPos) && blockPos.getY() > 0) {
       this.setRoot(worldIn, randomIn, blockPos.add(-4, 0, -3), blockPosSet, mutableBoundingBoxIn, treeFeatureConfigIn);
       this.setRoot(worldIn, randomIn, blockPos.add(-4, 0, -2), blockPosSet, mutableBoundingBoxIn, treeFeatureConfigIn);
@@ -2263,7 +2224,7 @@ public class RedwoodTreeFeature extends Feature<RedwoodTreeFeatureConfig> {
   }
 
   public void bigRoot4(IWorldGenerationReader worldIn, Random randomIn, BlockPos blockPos, Set<BlockPos> blockPosSet,
-    MutableBoundingBox mutableBoundingBoxIn, RedwoodTreeFeatureConfig treeFeatureConfigIn) {
+                       MutableBoundingBox mutableBoundingBoxIn, RedwoodTreeFeatureConfig treeFeatureConfigIn) {
     if (!isBedrockAt(worldIn, blockPos) && blockPos.getY() > 0) {
       this.setRoot(worldIn, randomIn, blockPos.add(-4, 0, -3), blockPosSet, mutableBoundingBoxIn, treeFeatureConfigIn);
       this.setRoot(worldIn, randomIn, blockPos.add(-4, 0, 3), blockPosSet, mutableBoundingBoxIn, treeFeatureConfigIn);
@@ -2304,7 +2265,7 @@ public class RedwoodTreeFeature extends Feature<RedwoodTreeFeatureConfig> {
   }
 
   public void bigRoot5(IWorldGenerationReader worldIn, Random randomIn, BlockPos blockPos, Set<BlockPos> blockPosSet,
-    MutableBoundingBox mutableBoundingBoxIn, RedwoodTreeFeatureConfig treeFeatureConfigIn) {
+                       MutableBoundingBox mutableBoundingBoxIn, RedwoodTreeFeatureConfig treeFeatureConfigIn) {
     if (!isBedrockAt(worldIn, blockPos) && blockPos.getY() > 0) {
       this.setRoot(worldIn, randomIn, blockPos.add(-3, 0, -3), blockPosSet, mutableBoundingBoxIn, treeFeatureConfigIn);
       this.setRoot(worldIn, randomIn, blockPos.add(-3, 0, 3), blockPosSet, mutableBoundingBoxIn, treeFeatureConfigIn);
@@ -2331,7 +2292,7 @@ public class RedwoodTreeFeature extends Feature<RedwoodTreeFeatureConfig> {
   }
 
   public void bigRoot6(IWorldGenerationReader worldIn, Random randomIn, BlockPos blockPos, Set<BlockPos> blockPosSet,
-    MutableBoundingBox mutableBoundingBoxIn, RedwoodTreeFeatureConfig treeFeatureConfigIn) {
+                       MutableBoundingBox mutableBoundingBoxIn, RedwoodTreeFeatureConfig treeFeatureConfigIn) {
     if (!isBedrockAt(worldIn, blockPos) && blockPos.getY() > 0) {
       this.setRoot(worldIn, randomIn, blockPos.add(-2, 0, -4), blockPosSet, mutableBoundingBoxIn, treeFeatureConfigIn);
       this.setRoot(worldIn, randomIn, blockPos.add(-2, 0, -3), blockPosSet, mutableBoundingBoxIn, treeFeatureConfigIn);

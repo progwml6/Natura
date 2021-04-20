@@ -95,7 +95,7 @@ public class BoneMealBagItem extends TooltipItem {
   }
 
   public static boolean growSeagrass(ItemStack stack, World worldIn, BlockPos pos, @Nullable Direction side) {
-    if (worldIn.getBlockState(pos).isIn(Blocks.WATER) && worldIn.getFluidState(pos).getLevel() == 8) {
+    if (worldIn.getBlockState(pos).matchesBlock(Blocks.WATER) && worldIn.getFluidState(pos).getLevel() == 8) {
       if (!(worldIn instanceof ServerWorld)) {
         return true;
       } else {
@@ -128,9 +128,9 @@ public class BoneMealBagItem extends TooltipItem {
 
           if (blockstate.isValidPosition(worldIn, blockpos)) {
             BlockState blockstate1 = worldIn.getBlockState(blockpos);
-            if (blockstate1.isIn(Blocks.WATER) && worldIn.getFluidState(blockpos).getLevel() == 8) {
+            if (blockstate1.matchesBlock(Blocks.WATER) && worldIn.getFluidState(blockpos).getLevel() == 8) {
               worldIn.setBlockState(blockpos, blockstate, 3);
-            } else if (blockstate1.isIn(Blocks.SEAGRASS) && random.nextInt(10) == 0) {
+            } else if (blockstate1.matchesBlock(Blocks.SEAGRASS) && random.nextInt(10) == 0) {
               ((IGrowable) Blocks.SEAGRASS).grow((ServerWorld) worldIn, random, blockpos, blockstate1);
             }
           }

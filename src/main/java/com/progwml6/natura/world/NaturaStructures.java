@@ -126,7 +126,7 @@ public final class NaturaStructures extends NaturaModule {
     MAPLE_TREE = Registry.register(WorldGenRegistries.CONFIGURED_FEATURE, location("maple_tree"), OVERWORLD_TREE_FEATURE.get().withConfiguration(
       (new BaseTreeFeatureConfig.Builder(new SupplierBlockStateProvider(() -> NaturaWorld.logs.get(TreeType.MAPLE).getDefaultState()),
         new SupplierBlockStateProvider(() -> NaturaWorld.leaves.get(TreeType.MAPLE).getDefaultState()),
-        new BlobFoliagePlacer(FeatureSpread.func_242252_a(2), FeatureSpread.func_242252_a(0), 3),
+        new BlobFoliagePlacer(FeatureSpread.create(2), FeatureSpread.create(0), 3),
         new StraightTrunkPlacer(4, 2, 0),
         new TwoLayerFeature(1, 0, 1)))
         .setIgnoreVines().build())
@@ -136,7 +136,7 @@ public final class NaturaStructures extends NaturaModule {
       .withConfiguration(
         (new BaseTreeFeatureConfig.Builder(new SupplierBlockStateProvider(() -> NaturaWorld.logs.get(TreeType.SILVERBELL).getDefaultState()),
           new SupplierBlockStateProvider(() -> NaturaWorld.leaves.get(TreeType.SILVERBELL).getDefaultState()),
-          new BlobFoliagePlacer(FeatureSpread.func_242252_a(2), FeatureSpread.func_242252_a(0), 3),
+          new BlobFoliagePlacer(FeatureSpread.create(2), FeatureSpread.create(0), 3),
           new StraightTrunkPlacer(4, 2, 0),
           new TwoLayerFeature(1, 0, 1)))
           .setIgnoreVines().build())
@@ -146,7 +146,7 @@ public final class NaturaStructures extends NaturaModule {
       .withConfiguration(
         (new BaseTreeFeatureConfig.Builder(new SupplierBlockStateProvider(() -> NaturaWorld.logs.get(TreeType.AMARANTH).getDefaultState()),
           new SupplierBlockStateProvider(() -> NaturaWorld.leaves.get(TreeType.AMARANTH).getDefaultState()),
-          new BlobFoliagePlacer(FeatureSpread.func_242252_a(2), FeatureSpread.func_242252_a(0), 3),
+          new BlobFoliagePlacer(FeatureSpread.create(2), FeatureSpread.create(0), 3),
           new StraightTrunkPlacer(9, 8, 0),
           new TwoLayerFeature(1, 0, 1)))
           .setIgnoreVines().build())
@@ -155,7 +155,7 @@ public final class NaturaStructures extends NaturaModule {
     TIGER_TREE = Registry.register(WorldGenRegistries.CONFIGURED_FEATURE, location("tiger_tree"), OVERWORLD_TREE_FEATURE.get().withConfiguration(
       (new BaseTreeFeatureConfig.Builder(new SupplierBlockStateProvider(() -> NaturaWorld.logs.get(TreeType.TIGER).getDefaultState()),
         new SupplierBlockStateProvider(() -> NaturaWorld.leaves.get(TreeType.TIGER).getDefaultState()),
-        new BlobFoliagePlacer(FeatureSpread.func_242252_a(2), FeatureSpread.func_242252_a(0), 3),
+        new BlobFoliagePlacer(FeatureSpread.create(2), FeatureSpread.create(0), 3),
         new StraightTrunkPlacer(6, 4, 0),
         new TwoLayerFeature(1, 0, 1)))
         .setIgnoreVines().build())
@@ -193,10 +193,10 @@ public final class NaturaStructures extends NaturaModule {
     SAKURA_TREE = Registry.register(WorldGenRegistries.CONFIGURED_FEATURE, location("sakura_tree"), OVERWORLD_TREE_FEATURE.get().withConfiguration(
       (new BaseTreeFeatureConfig.Builder(new SupplierBlockStateProvider(() -> NaturaWorld.logs.get(TreeType.SAKURA).getDefaultState()),
         new SupplierBlockStateProvider(() -> NaturaWorld.leaves.get(TreeType.SAKURA).getDefaultState()),
-        new FancyFoliagePlacer(FeatureSpread.func_242252_a(2), FeatureSpread.func_242252_a(4), 4),
+        new FancyFoliagePlacer(FeatureSpread.create(2), FeatureSpread.create(4), 4),
         new FancyTrunkPlacer(3, 11, 0),
         new TwoLayerFeature(0, 0, 0, OptionalInt.of(4))))
-        .setIgnoreVines().func_236702_a_(Heightmap.Type.MOTION_BLOCKING).build())
+        .setIgnoreVines().setHeightmap(Heightmap.Type.MOTION_BLOCKING).build())
     );
 
     REDWOOD_TREE = Registry
@@ -219,19 +219,19 @@ public final class NaturaStructures extends NaturaModule {
 
     // Bee Trees
     MAPLE_TREE_005 = Registry.register(WorldGenRegistries.CONFIGURED_FEATURE, location("maple_tree_005"), OVERWORLD_TREE_FEATURE.get()
-      .withConfiguration(MAPLE_TREE.getConfig().func_236685_a_(ImmutableList.of(Features.Placements.BEES_005_PLACEMENT))));
+      .withConfiguration(MAPLE_TREE.getConfig().copy(ImmutableList.of(Features.Placements.BEES_005_PLACEMENT))));
 
     SILVERBELL_TREE_005 = Registry.register(WorldGenRegistries.CONFIGURED_FEATURE, location("silverbell_tree_005"), OVERWORLD_TREE_FEATURE.get()
-      .withConfiguration(SILVERBELL_TREE.getConfig().func_236685_a_(ImmutableList.of(Features.Placements.BEES_005_PLACEMENT))));
+      .withConfiguration(SILVERBELL_TREE.getConfig().copy(ImmutableList.of(Features.Placements.BEES_005_PLACEMENT))));
 
     AMARANTH_TREE_005 = Registry.register(WorldGenRegistries.CONFIGURED_FEATURE, location("amaranth_tree_005"), OVERWORLD_TREE_FEATURE.get()
-      .withConfiguration(AMARANTH_TREE.getConfig().func_236685_a_(ImmutableList.of(Features.Placements.BEES_005_PLACEMENT))));
+      .withConfiguration(AMARANTH_TREE.getConfig().copy(ImmutableList.of(Features.Placements.BEES_005_PLACEMENT))));
 
     TIGER_TREE_005 = Registry.register(WorldGenRegistries.CONFIGURED_FEATURE, location("tiger_tree_005"), OVERWORLD_TREE_FEATURE.get()
-      .withConfiguration(TIGER_TREE.getConfig().func_236685_a_(ImmutableList.of(Features.Placements.BEES_005_PLACEMENT))));
+      .withConfiguration(TIGER_TREE.getConfig().copy(ImmutableList.of(Features.Placements.BEES_005_PLACEMENT))));
 
     SAKURA_TREE_005 = Registry.register(WorldGenRegistries.CONFIGURED_FEATURE, location("sakura_tree_005"), OVERWORLD_TREE_FEATURE.get()
-      .withConfiguration(SAKURA_TREE.getConfig().func_236685_a_(ImmutableList.of(Features.Placements.BEES_005_PLACEMENT))));
+      .withConfiguration(SAKURA_TREE.getConfig().copy(ImmutableList.of(Features.Placements.BEES_005_PLACEMENT))));
 
     WILLOW_TREE_005 = Registry.register(WorldGenRegistries.CONFIGURED_FEATURE, location("willow_tree_005"),
       WILLOW_TREE_FEATURE.get().withConfiguration(WILLOW_TREE.getConfig().withDecorators(ImmutableList.of(Features.Placements.BEES_005_PLACEMENT))));

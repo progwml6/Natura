@@ -38,7 +38,7 @@ public class BerryBushFeature extends Feature<BerryBushFeatureConfig> {
 
     if (boundingBox.minX <= boundingBox.maxX && flag && !bushBlockPosSet.isEmpty()) {
       VoxelShapePart voxelshapepart = this.createVoxelShape(boundingBox, bushBlockPosSet);
-      Template.func_222857_a(seedReader, 3, voxelshapepart, boundingBox.minX, boundingBox.minY, boundingBox.minZ);
+      Template.updatePostProcessing(seedReader, 3, voxelshapepart, boundingBox.minX, boundingBox.minY, boundingBox.minZ);
       return true;
     }
     else {
