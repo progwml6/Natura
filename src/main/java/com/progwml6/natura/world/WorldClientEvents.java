@@ -20,7 +20,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import javax.annotation.Nullable;
 
 @SuppressWarnings("unused")
-@Mod.EventBusSubscriber(modid = Natura.modID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)
+@Mod.EventBusSubscriber(modid = Natura.MOD_ID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class WorldClientEvents extends ClientEventBase {
 
   @SubscribeEvent
@@ -32,6 +32,9 @@ public class WorldClientEvents extends ClientEventBase {
 
     RenderTypeLookup.setRenderLayer(NaturaWorld.redwood_leaves.get(), RenderType.getCutoutMipped());
     RenderTypeLookup.setRenderLayer(NaturaWorld.redwood_sapling.get(), RenderType.getCutout());
+
+    RenderTypeLookup.setRenderLayer(NaturaWorld.cotton_crop.get(), RenderType.getCutout());
+    RenderTypeLookup.setRenderLayer(NaturaWorld.barley_crop.get(), RenderType.getCutout());
   }
 
   @SubscribeEvent

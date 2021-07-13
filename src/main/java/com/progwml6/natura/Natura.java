@@ -2,11 +2,10 @@ package com.progwml6.natura;
 
 import com.progwml6.natura.common.NaturaModule;
 import com.progwml6.natura.common.config.Config;
-import com.progwml6.natura.common.data.tags.NaturaBlockTagsProvider;
-import com.progwml6.natura.common.data.tags.NaturaItemTagsProvider;
+import com.progwml6.natura.common.data.tags.BlockTagProvider;
+import com.progwml6.natura.common.data.tags.ItemTagProvider;
 import com.progwml6.natura.common.data.loot.NaturaLootTableProvider;
 import com.progwml6.natura.gadgets.NaturaGadgets;
-import com.progwml6.natura.library.Util;
 import com.progwml6.natura.shared.NaturaCommons;
 import com.progwml6.natura.world.NaturaStructures;
 import com.progwml6.natura.world.NaturaWorld;
@@ -16,6 +15,7 @@ import net.minecraft.data.DataGenerator;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.util.IItemProvider;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -30,17 +30,17 @@ import org.apache.logging.log4j.Logger;
 import slimeknights.mantle.registration.RegistrationHelper;
 
 import javax.annotation.Nullable;
+import java.util.Locale;
 import java.util.Random;
 
 @SuppressWarnings("unused")
-@Mod(Natura.modID)
+@Mod(Natura.MOD_ID)
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
 public class Natura {
 
-  public static final String modID = Util.MODID;
-  public static final Logger log = LogManager.getLogger(modID);
-
-  public static final Random random = new Random();
+  public static final String MOD_ID = "natura";
+  public static final Logger LOG = LogManager.getLogger(MOD_ID);
+  public static final Random RANDOM = new Random();
 
   /* Instance of this mod, used for grabbing prototype fields */
   public static Natura instance;
@@ -76,10 +76,10 @@ public class Natura {
     if (event.includeServer()) {
       DataGenerator datagenerator = event.getGenerator();
       ExistingFileHelper existingFileHelper = event.getExistingFileHelper();
-      NaturaBlockTagsProvider blockTags = new NaturaBlockTagsProvider(datagenerator, existingFileHelper);
+      BlockTagProvider blockTags = new BlockTagProvider(datagenerator, existingFileHelper);
 
       datagenerator.addProvider(blockTags);
-      datagenerator.addProvider(new NaturaItemTagsProvider(datagenerator, blockTags, existingFileHelper));
+      datagenerator.addProvider(new ItemTagProvider(datagenerator, blockTags, existingFileHelper));
       datagenerator.addProvider(new NaturaLootTableProvider(datagenerator));
     }
   }
@@ -87,7 +87,7 @@ public class Natura {
   @SubscribeEvent
   static void configChanged(final ModConfig.ModConfigEvent configEvent) {
     ModConfig config = configEvent.getConfig();
-    if (config.getModId().equals(modID)) {
+    if (config.getModId().equals(MOD_ID)) {
       Config.clearCache(config.getSpec());
       if (config.getSpec() == Config.SERVER_SPEC) {
         configLoaded = true;
@@ -102,7 +102,7 @@ public class Natura {
 
   @SubscribeEvent
   void missingItems(final RegistryEvent.MissingMappings<Item> event) {
-    RegistrationHelper.handleMissingMappings(event, modID, name -> {
+    RegistrationHelper.handleMissingMappings(event, MOD_ID, name -> {
       switch (name) {
         case "bonemeal_bag":
           return NaturaCommons.boneMealBag.get();
@@ -116,6 +116,33 @@ public class Natura {
 
   @SubscribeEvent
   void missingBlocks(final RegistryEvent.MissingMappings<Block> event) {
-    RegistrationHelper.handleMissingMappings(event, modID, Natura::missingBlock);
+    RegistrationHelper.handleMissingMappings(event, MOD_ID, Natura::missingBlock);
+  }
+
+  /* Utils */
+
+  /**
+   * Gets a resource location for Natura
+   * @param name  Resource path
+   * @return  Location for tinkers
+   */
+  public static ResourceLocation getResource(String name) {
+    return new ResourceLocation(MOD_ID, name);
+  }
+
+  /**
+   * Returns the given Resource prefixed with natura resource location. Use this function instead of hardcoding
+   * resource locations.
+   */
+  public static String resourceString(String res) {
+    return String.format("%s:%s", MOD_ID, res);
+  }
+
+  /**
+   * Prefixes the given unlocalized name with natura prefix. Use this when passing unlocalized names for a uniform
+   * namespace.
+   */
+  public static String prefix(String name) {
+    return String.format("%s.%s", MOD_ID, name.toLowerCase(Locale.US));
   }
 }

@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/crop",
+  "textures": {
+    "crop": "natura:block/crops/cotton/stage_0"
+  }
+}

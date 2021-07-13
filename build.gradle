@@ -9,10 +9,11 @@
 
 buildscript {
     repositories {
-        mavenLocal()
-        maven { url = 'https://files.minecraftforge.net/maven' }
-        jcenter()
+        maven { url = 'https://libraries.minecraft.net/' }
         mavenCentral()
+        maven { url = 'https://maven.minecraftforge.net/' }
+        mavenLocal()
+        jcenter()
         maven {
             name = "sonatype"
             url = "https://oss.sonatype.org/content/repositories/snapshots/"
@@ -22,7 +23,7 @@ buildscript {
         }
     }
     dependencies {
-        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '4.0.9', changing: true
+        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '4.1.7', changing: true
         classpath "io.freefair.gradle:lombok-plugin:4.+"
     }
 }
@@ -34,11 +35,10 @@ apply plugin: 'maven-publish'
 apply plugin: "io.freefair.lombok"
 
 repositories {
+    maven { url = 'https://libraries.minecraft.net/' }
+    mavenCentral()
+    maven { url = 'https://maven.minecraftforge.net/' }
     mavenLocal()
-    maven { // Forge
-        name 'ForgeFS'
-        url 'https://files.minecraftforge.net/maven'
-    }
     maven { // Mantle and JEI
         name 'DVS1 Maven FS'
         url 'https://dvs1.progwml6.com/files/maven'

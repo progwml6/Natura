@@ -36,12 +36,12 @@ import java.util.function.Supplier;
 public abstract class NaturaModule {
 
   // deferred register instances
-  protected static final BlockDeferredRegister BLOCKS = new BlockDeferredRegister(Natura.modID);
-  protected static final ItemDeferredRegister ITEMS = new ItemDeferredRegister(Natura.modID);
-  protected static final EntityTypeDeferredRegister ENTITIES = new EntityTypeDeferredRegister(Natura.modID);
-  protected static final DeferredRegister<Feature<?>> FEATURES = DeferredRegister.create(ForgeRegistries.FEATURES, Natura.modID);
-  protected static final DeferredRegister<Structure<?>> STRUCTURE_FEATURES = DeferredRegister.create(ForgeRegistries.STRUCTURE_FEATURES, Natura.modID);
-  protected static final DeferredRegister<BlockStateProviderType<?>> BLOCK_STATE_PROVIDER_TYPES = DeferredRegister.create(ForgeRegistries.BLOCK_STATE_PROVIDER_TYPES, Natura.modID);
+  protected static final BlockDeferredRegister BLOCKS = new BlockDeferredRegister(Natura.MOD_ID);
+  protected static final ItemDeferredRegister ITEMS = new ItemDeferredRegister(Natura.MOD_ID);
+  protected static final EntityTypeDeferredRegister ENTITIES = new EntityTypeDeferredRegister(Natura.MOD_ID);
+  protected static final DeferredRegister<Feature<?>> FEATURES = DeferredRegister.create(ForgeRegistries.FEATURES, Natura.MOD_ID);
+  protected static final DeferredRegister<Structure<?>> STRUCTURE_FEATURES = DeferredRegister.create(ForgeRegistries.STRUCTURE_FEATURES, Natura.MOD_ID);
+  protected static final DeferredRegister<BlockStateProviderType<?>> BLOCK_STATE_PROVIDER_TYPES = DeferredRegister.create(ForgeRegistries.BLOCK_STATE_PROVIDER_TYPES, Natura.MOD_ID);
 
   // base block properties
   protected static final Block.Properties GENERIC_SAND_BLOCK = builder(Material.SAND, ToolType.SHOVEL, SoundType.SAND).hardnessAndResistance(3.0f).slipperiness(0.8F);
@@ -52,7 +52,7 @@ public abstract class NaturaModule {
    * Creative tab for items that do not fit in another tab
    */
   @SuppressWarnings("WeakerAccess")
-  public static final ItemGroup TAB_GENERAL = new SupplierItemGroup(Natura.modID, "general", () -> new ItemStack(NaturaGadgets.stoneStick));
+  public static final ItemGroup TAB_GENERAL = new SupplierItemGroup(Natura.MOD_ID, "general", () -> new ItemStack(NaturaGadgets.stoneStick));
 
   // base item properties
   protected static final Item.Properties GENERAL_PROPS = new Item.Properties().group(TAB_GENERAL);
@@ -92,20 +92,10 @@ public abstract class NaturaModule {
   /**
    * Creates a Natura resource location
    *
-   * @param id Resource path
+   * @param poth Resource path
    * @return Natura resource location
    */
-  protected static ResourceLocation location(String id) {
-    return new ResourceLocation(Natura.modID, id);
-  }
-
-  /**
-   * Creates a Natura resource location string
-   *
-   * @param id Resource path
-   * @return Natura resource location string
-   */
-  protected static String locationString(String id) {
-    return Natura.modID + ":" + id;
+  protected static ResourceLocation resource(String path) {
+    return Natura.getResource(path);
   }
 }

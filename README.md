@@ -11,7 +11,7 @@ Heyo, Redwood trees! Chop them all day long~
 
 ## Setting up a Workspace/Compiling from Source
 Note: Git MUST be installed and in the system path to use our scripts.
-* Setup: Run [gradle]in the repository root: `gradlew[.bat] [setupDevWorkspace|setupDecompWorkspace] [eclipse|idea]`
+* Setup: Run [gradle]in the repository root: `gradlew[.bat] [eclipse]` or import build.gradle into intellij
 * Build: Run [gradle]in the repository root: `gradlew[.bat] build`
 * If obscure Gradle issues are found try running `gradlew clean` and `gradlew cleanCache`
 

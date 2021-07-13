@@ -31,6 +31,8 @@ public class Config {
 
   public static final Map<FeatureType, FeatureConfig> features = new EnumMap<>(FeatureType.class);
 
+  public static final CachedValue<List<String>> treesBiomesBlacklist;
+
   static {
     Builder server = new Builder();
     Builder client = new Builder();
@@ -40,6 +42,10 @@ public class Config {
     for (FeatureType feature : Natura.FEATURE_TYPES) {
       features.put(feature, new FeatureConfig(server, feature.getName(), feature.getType(), feature.isShouldGenerate(), feature.getChance()));
     }
+
+    treesBiomesBlacklist = server(server.comment(
+      "Any biome ids added to this list will not have any of the natura trees generate in it. Requires world restart to take effect. For example: [\"minecraft:forest\"]")
+      .define("treesBiomesBlacklist", new ArrayList<>()));
 
     // build all specs
     SERVER_SPEC = server.build();

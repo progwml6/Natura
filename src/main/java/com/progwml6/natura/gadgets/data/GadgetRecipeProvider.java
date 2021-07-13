@@ -3,6 +3,7 @@ package com.progwml6.natura.gadgets.data;
 import com.progwml6.natura.common.NaturaTags;
 import com.progwml6.natura.common.data.BaseRecipeProvider;
 import com.progwml6.natura.gadgets.NaturaGadgets;
+import com.progwml6.natura.library.data.recipe.ICommonRecipeHelper;
 import com.progwml6.natura.shared.NaturaCommons;
 import net.minecraft.block.Blocks;
 import net.minecraft.data.DataGenerator;
@@ -16,7 +17,7 @@ import net.minecraftforge.common.Tags;
 import java.util.function.Consumer;
 import java.util.stream.Stream;
 
-public class GadgetRecipeProvider extends BaseRecipeProvider {
+public class GadgetRecipeProvider extends BaseRecipeProvider implements ICommonRecipeHelper {
 
   public GadgetRecipeProvider(DataGenerator generator) {
     super(generator);
@@ -37,7 +38,7 @@ public class GadgetRecipeProvider extends BaseRecipeProvider {
       .patternLine("#")
       .patternLine("X")
       .addCriterion("has_item", hasItem(Blocks.CARVED_PUMPKIN))
-      .build(consumer, location(folder + "jack_o_lantern"));
+      .build(consumer, modResource(folder + "jack_o_lantern"));
     ShapedRecipeBuilder.shapedRecipe(NaturaGadgets.stoneLadder.get(), 3)
       .key('#', NaturaTags.Items.RODS_STONE)
       .patternLine("# #")
@@ -82,7 +83,7 @@ public class GadgetRecipeProvider extends BaseRecipeProvider {
       .patternLine("bb")
       .addCriterion("has_item", hasItem(NaturaCommons.driedClay))
       .build(consumer, prefix(NaturaCommons.driedClayBricks, folder));
-    registerSlabStair(consumer, NaturaCommons.driedClay, folder, true);
-    registerSlabStair(consumer, NaturaCommons.driedClayBricks, folder, true);
+    slabStairsCrafting(consumer, NaturaCommons.driedClay, folder, true);
+    slabStairsCrafting(consumer, NaturaCommons.driedClayBricks, folder, true);
   }
 }
