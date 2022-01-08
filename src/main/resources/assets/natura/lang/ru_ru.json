@@ -1,0 +1,77 @@
+{
+  "_comment": "Natura Common",
+
+  "item.natura.dried_brick": "Высохший кирпич",
+
+  "item.natura.barley": "Ячмень",
+  "item.natura.barley.tooltip": "Схож на пшеницу, он растёт в дикой природе",
+
+  "item.natura.barley_flour": "Ячменная мука",
+  "item.natura.barley_flour.tooltip": "Испеки меня, чтобы выпечь хлеб.\nТакже используется в выпекании торта.",
+
+  "item.natura.wheat_flour": "Пшеничная мука",
+  "item.natura.wheat_flour.tooltip": "Испеки меня, чтобы выпечь хлеб.\nТакже используется в выпекании торта.",
+
+  "item.natura.cotton": "Хлопок",
+  "item.natura.cotton.tooltip": "Источник всех нитей и шерсти.",
+
+  "item.natura.wheat_seed_bag": "Мешок с семенами пшеницы",
+  "item.natura.wheat_seed_bag.tooltip": "Сажает по области 3х3",
+
+  "item.natura.potatoes_seed_bag": "Мешок с семенами картофеля",
+  "item.natura.potatoes_seed_bag.tooltip": "Сажает по области 3х3",
+
+  "item.natura.carrots_seed_bag": "Мешок с семенами моркови",
+  "item.natura.carrots_seed_bag.tooltip": "Сажает по области 3х3",
+
+  "item.natura.nether_wart_seed_bag": "Мешок с незерскими наростами",
+  "item.natura.nether_wart_seed_bag.tooltip": "Сажает по области 3х3",
+
+  "item.natura.bone_meal_bag": "Мешок с костной мукой",
+  "item.natura.bone_meal_bag.tooltip": "Выращивает растения по области 3х3.",
+
+  "block.natura.dried_clay": "Высушенная глина",
+  "block.natura.dried_clay_bricks": "Высушенные кирпичи",
+  "block.natura.dried_clay_slab": "Высушенная глиняная плита",
+  "block.natura.dried_clay_bricks_slab": "Высушенная кирпичная плита",
+  "block.natura.dried_clay_stairs": "Высушенные глиняные ступеньки",
+  "block.natura.dried_clay_bricks_stairs": "Высушенная кирпичные ступеньки",
+
+  "item.natura.cactus_juice": "Кактусовый сок",
+  "item.natura.cactus_juice.tooltip": "Насыщение!",
+
+  "item.natura.beef_jerky": "Вяленая говядина",
+  "item.natura.beef_jerky.tooltip": "Насыщение!",
+  "item.natura.chicken_jerky": "Вяленая курица",
+  "item.natura.chicken_jerky.tooltip": "Насыщение!",
+  "item.natura.pork_jerky": "Вяленый бекон",
+  "item.natura.pork_jerky.tooltip": "Насыщение!",
+  "item.natura.mutton_jerky": "Вяленая баранина",
+  "item.natura.mutton_jerky.tooltip": "Насыщение!",
+  "item.natura.rabbit_jerky": "Вяленый кролик",
+  "item.natura.rabbit_jerky.tooltip": "Насыщение!",
+  "item.natura.fish_jerky": "Вяленая треска",
+  "item.natura.fish_jerky.tooltip": "Насыщение!",
+  "item.natura.salmon_jerky": "Вяленый лосось",
+  "item.natura.salmon_jerky.tooltip": "Насыщение!",
+  "item.natura.clownfish_jerky": "Валяная тропическая рыба",
+  "item.natura.clownfish_jerky.tooltip": "Красочная!",
+  "item.natura.pufferfish_jerky": "Вяленое фугу",
+  "item.natura.pufferfish_jerky.tooltip": "Можно кушать!",
+  "item.natura.monster_jerky": "Вяленый монстр",
+  "item.natura.monster_jerky.tooltip": "Можно кушать!",
+
+  "_comment": "Natura Gadgets",
+
+  "item.natura.stone_stick": "Каменный стержень",
+
+  "block.natura.stone_torch": "Каменный факел",
+  "block.natura.stone_ladder": "Каменная лестница",
+
+  "block.natura.punji": "Колы пунджи",
+  "block.natura.punji.tooltip": "Заострённые! Также липнет к оградам.",
+
+  "_comment": "GUIs",
+  "itemGroup.natura.general": "Общее natura",
+  "itemGroup.natura.world": "Мир natura"
+}
