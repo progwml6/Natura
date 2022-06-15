@@ -1,6 +1,6 @@
 package com.progwml6.natura.library.item;
 
-import net.minecraft.block.Block;
+import net.minecraft.world.level.block.Block;
 import slimeknights.mantle.item.BlockTooltipItem;
 
 public class BlockNamedTooltipItem extends BlockTooltipItem {
@@ -12,8 +12,7 @@ public class BlockNamedTooltipItem extends BlockTooltipItem {
   /**
    * Returns the unlocalized name of this item.
    */
-  @Override
-  public String getTranslationKey() {
-    return this.getDefaultTranslationKey();
+  public String getDescriptionId() {
+    return this.getOrCreateDescriptionId();
   }
 }

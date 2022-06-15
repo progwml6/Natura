@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "natura:dried_clay"
-  },
-  "result": "natura:dried_clay_stairs",
-  "count": 1
-}

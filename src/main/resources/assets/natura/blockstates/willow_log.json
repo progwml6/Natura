@@ -1,16 +1,16 @@
 {
-    "variants": {
-        "axis=x": {
-            "model": "natura:block/log/willow_horizontal",
-            "x": 90,
-            "y": 90
-        },
-        "axis=y": {
-            "model": "natura:block/log/willow"
-        },
-        "axis=z": {
-            "model": "natura:block/log/willow_horizontal",
-            "x": 90
-        }
+  "variants": {
+    "axis=x": {
+      "model": "natura:block/wood/willow/log_horizontal",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "natura:block/wood/willow/log"
+    },
+    "axis=z": {
+      "model": "natura:block/wood/willow/log_horizontal",
+      "x": 90
     }
+  }
 }

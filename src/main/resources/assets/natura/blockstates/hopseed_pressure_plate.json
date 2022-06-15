@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "powered=false": {
+      "model": "natura:block/wood/hopseed/pressure_plate"
+    },
+    "powered=true": {
+      "model": "natura:block/wood/hopseed/pressure_plate_down"
+    }
+  }
+}

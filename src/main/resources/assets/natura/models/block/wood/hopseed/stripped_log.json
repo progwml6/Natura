@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "natura:block/wood/hopseed/stripped_log_top",
+    "side": "natura:block/wood/hopseed/stripped_log"
+  }
+}

@@ -1,8 +1,0 @@
-{
-  "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "natura:dried_clay_bricks"
-  },
-  "result": "natura:dried_clay_bricks_slab",
-  "count": 2
-}

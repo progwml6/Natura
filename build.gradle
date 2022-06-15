@@ -9,11 +9,11 @@
 
 buildscript {
     repositories {
-        maven { url = 'https://libraries.minecraft.net/' }
-        mavenCentral()
-        maven { url = 'https://maven.minecraftforge.net/' }
         mavenLocal()
+        maven { url = 'https://maven.minecraftforge.net/' }
+        maven { url = 'https://libraries.minecraft.net/' }
         jcenter()
+        mavenCentral()
         maven {
             name = "sonatype"
             url = "https://oss.sonatype.org/content/repositories/snapshots/"
@@ -21,24 +21,35 @@ buildscript {
         maven {
             url "https://plugins.gradle.org/m2/"
         }
+        maven {
+            name "Parchment"
+            url "https://maven.parchmentmc.org"
+        }
     }
     dependencies {
-        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '4.1.7', changing: true
-        classpath "io.freefair.gradle:lombok-plugin:4.+"
+        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '5.1.+', changing: true
+        classpath 'io.freefair.gradle:lombok-plugin:6.3.0'
+        classpath 'org.parchmentmc:librarian:1.+'
     }
 }
 
 apply plugin: 'net.minecraftforge.gradle'
-apply plugin: 'maven'
 apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 apply plugin: "io.freefair.lombok"
+apply plugin: 'org.parchmentmc.librarian.forgegradle'
 
 repositories {
-    maven { url = 'https://libraries.minecraft.net/' }
     mavenCentral()
-    maven { url = 'https://maven.minecraftforge.net/' }
     mavenLocal()
+    maven { // Vanilla
+        name 'Vanilla'
+        url 'https://libraries.minecraft.net/'
+    }
+    maven { // Forge
+        name 'ForgeFS'
+        url 'https://maven.minecraftforge.net/'
+    }
     maven { // Mantle and JEI
         name 'DVS1 Maven FS'
         url 'https://dvs1.progwml6.com/files/maven'
@@ -47,10 +58,19 @@ repositories {
         name 'tterrag maven'
         url "https://maven.tterrag.com/"
     }
+    maven { // CraftTweaker, Immersive Engineering
+        name 'BlameJared Maven'
+        url 'https://maven.blamejared.com'
+    }
+    maven {
+        url "https://www.cursemaven.com"
+        content {
+            includeGroup "curse.maven"
+        }
+    }
 }
 
 group = 'com.progwml6.natura'
-sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8'
 
 // sets version to the slimeKnights version format
 task buildInfo {
@@ -86,6 +106,8 @@ if (System.getenv().ARTIFACT_VERSION != null) {
 
 version = "${minecraft_version}-${artifact_version}"
 
+java.toolchain.languageVersion = JavaLanguageVersion.of(17)
+
 sourceSets {
     main {
         resources {
@@ -97,7 +119,7 @@ sourceSets {
 }
 
 minecraft {
-    mappings channel: 'snapshot', version: mappings_version
+    mappings channel: 'parchment', version: "${parchment_version}-${minecraft_version}"
 
     accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
 
@@ -185,15 +207,14 @@ configurations {
 dependencies {
     minecraft 'net.minecraftforge:forge:' + minecraft_version + '-' + forge_version
 
-    compile fg.deobf("slimeknights.mantle:Mantle:${minecraft_version}-${mantle_version}")
-    compile fg.deobf("slimeknights.tconstruct:TConstruct:${minecraft_version}-${tconstruct_version}")
+    // would ideally use API for this, but that does not work well with fg.deobf in my understanding
+    implementation fg.deobf("slimeknights.mantle:Mantle:${minecraft_version}-${mantle_version}")
+    implementation fg.deobf("slimeknights.tconstruct:TConstruct:${minecraft_version}-${tconstruct_version}")
 
     // compile against the JEI API but do not include it at runtime
-    compileOnly fg.deobf("mezz.jei:jei-${jei_version}:api")
+    compileOnly fg.deobf("mezz.jei:jei-${minecraft_version}:${jei_version}:api")
     // at runtime, use the full JEI jar
-    runtimeOnly fg.deobf("mezz.jei:jei-${jei_version}")
-
-    compile fg.deobf("mcjty.theoneprobe:TheOneProbe-1.16:${probe_version}")
+    runtimeOnly fg.deobf("mezz.jei:jei-${minecraft_version}:${jei_version}")
 
     deployerJars 'org.apache.maven.wagon:wagon-ssh:2.2'
 }

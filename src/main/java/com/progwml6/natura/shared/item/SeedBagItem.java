@@ -1,12 +1,12 @@
 package com.progwml6.natura.shared.item;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.item.ItemUseContext;
-import net.minecraft.util.ActionResultType;
-import net.minecraft.util.Direction;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.item.context.UseOnContext;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.IPlantable;
 import slimeknights.mantle.item.TooltipItem;
 
@@ -22,29 +22,29 @@ public class SeedBagItem extends TooltipItem {
   }
 
   @Override
-  public ActionResultType onItemUse(ItemUseContext context) {
-    World world = context.getWorld();
-    BlockPos blockPos = context.getPos();
+  public InteractionResult useOn(UseOnContext pContext) {
+    Level level = pContext.getLevel();
+    BlockPos blockPos = pContext.getClickedPos();
 
-    BlockPos.Mutable mutable = new BlockPos.Mutable();
+    BlockPos.MutableBlockPos mutable = new BlockPos.MutableBlockPos();
     boolean planted = false;
 
     for (int posX = blockPos.getX() - 1; posX <= blockPos.getX() + 1; posX++) {
       for (int posZ = blockPos.getZ() - 1; posZ <= blockPos.getZ() + 1; posZ++) {
-        BlockPos position = mutable.setPos(posX, blockPos.getY(), posZ);
-        BlockPos position1 = position.offset(context.getFace());
+        BlockPos position = mutable.set(posX, blockPos.getY(), posZ);
+        BlockPos position1 = position.relative(pContext.getClickedFace());
 
-        if (context.getPlayer().canPlayerEdit(position1, context.getFace(), context.getItem())) {
-          BlockState state = world.getBlockState(position);
+        if (pContext.getPlayer().mayUseItemAt(position1, pContext.getClickedFace(), pContext.getItemInHand())) {
+          BlockState state = level.getBlockState(position);
           Block block = state.getBlock();
 
-          if (block.canSustainPlant(state, world, position, Direction.UP, (IPlantable) this.supplier.get().getBlock()) && world.isAirBlock(position.up())) {
+          if (block.canSustainPlant(state, level, position, Direction.UP, (IPlantable) this.supplier.get().getBlock()) && level.isEmptyBlock(position.above())) {
             planted = true;
 
-            world.setBlockState(position.up(), this.supplier.get(), 3);
+            level.setBlock(position.above(), this.supplier.get(), 3);
 
-            if (!world.isRemote) {
-              world.playEvent(2001, position, Block.getStateId(this.supplier.get()));
+            if (!level.isClientSide) {
+              level.levelEvent(2001, position, Block.getId(this.supplier.get()));
             }
           }
         }
@@ -52,10 +52,10 @@ public class SeedBagItem extends TooltipItem {
     }
 
     if (planted) {
-      context.getItem().shrink(1);
-      return ActionResultType.func_233537_a_(world.isRemote);
+      pContext.getItemInHand().shrink(1);
+      return InteractionResult.sidedSuccess(level.isClientSide);
     }
 
-    return ActionResultType.PASS;
+    return InteractionResult.PASS;
   }
 }

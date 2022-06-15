@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "natura:block/wood/amaranth/slab"
+    },
+    "type=double": {
+      "model": "natura:block/wood/amaranth/planks"
+    },
+    "type=top": {
+      "model": "natura:block/wood/amaranth/slab_top"
+    }
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "natura:block/wood/hopseed/slab"
+    },
+    "type=double": {
+      "model": "natura:block/wood/hopseed/planks"
+    },
+    "type=top": {
+      "model": "natura:block/wood/hopseed/slab_top"
+    }
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "natura:block/wood/eucalyptus/slab"
+    },
+    "type=double": {
+      "model": "natura:block/wood/eucalyptus/planks"
+    },
+    "type=top": {
+      "model": "natura:block/wood/eucalyptus/slab_top"
+    }
+  }
+}

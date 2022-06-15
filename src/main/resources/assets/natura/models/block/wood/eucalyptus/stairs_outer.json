@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/outer_stairs",
+  "textures": {
+    "bottom": "natura:block/wood/eucalyptus/planks",
+    "top": "natura:block/wood/eucalyptus/planks",
+    "side": "natura:block/wood/eucalyptus/planks"
+  }
+}

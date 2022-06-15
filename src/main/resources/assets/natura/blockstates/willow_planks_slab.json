@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "natura:block/wood/willow/slab"
+    },
+    "type=double": {
+      "model": "natura:block/wood/willow/planks"
+    },
+    "type=top": {
+      "model": "natura:block/wood/willow/slab_top"
+    }
+  }
+}

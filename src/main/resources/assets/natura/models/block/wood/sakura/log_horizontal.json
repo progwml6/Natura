@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column_horizontal",
+  "textures": {
+    "end": "natura:block/wood/sakura/log_top",
+    "side": "natura:block/wood/sakura/log"
+  }
+}

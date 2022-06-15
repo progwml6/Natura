@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/door_top",
+  "textures": {
+    "top": "natura:block/wood/amaranth/door_top",
+    "bottom": "natura:block/wood/amaranth/door_bottom"
+  }
+}

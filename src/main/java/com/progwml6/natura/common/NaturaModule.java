@@ -2,19 +2,21 @@ package com.progwml6.natura.common;
 
 import com.progwml6.natura.Natura;
 import com.progwml6.natura.gadgets.NaturaGadgets;
-import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.SoundType;
-import net.minecraft.block.material.Material;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroup;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.gen.blockstateprovider.BlockStateProviderType;
-import net.minecraft.world.gen.feature.Feature;
-import net.minecraft.world.gen.feature.structure.Structure;
-import net.minecraftforge.common.ToolType;
+import net.minecraft.core.Registry;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.levelgen.feature.ConfiguredStructureFeature;
+import net.minecraft.world.level.levelgen.feature.Feature;
+import net.minecraft.world.level.levelgen.feature.StructureFeature;
+import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProviderType;
+import net.minecraft.world.level.levelgen.structure.pieces.StructurePieceType;
+import net.minecraft.world.level.material.Material;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.DeferredRegister;
@@ -24,38 +26,52 @@ import slimeknights.mantle.item.TooltipItem;
 import slimeknights.mantle.registration.deferred.BlockDeferredRegister;
 import slimeknights.mantle.registration.deferred.EntityTypeDeferredRegister;
 import slimeknights.mantle.registration.deferred.ItemDeferredRegister;
-import slimeknights.mantle.util.SupplierItemGroup;
+import slimeknights.mantle.util.SupplierCreativeTab;
+import slimeknights.tconstruct.common.registration.ConfiguredFeatureDeferredRegister;
+import slimeknights.tconstruct.common.registration.PlacedFeatureDeferredRegister;
 
-import javax.annotation.Nullable;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
 /**
- * Contains base helpers for all Natura modules
+ * Contains base helpers for all Natura modules. Should not be extended by other mods, this is only for internal usage.
  */
-public abstract class NaturaModule {
+public class NaturaModule {
+
+  protected NaturaModule() {
+    // "seal" this class to prevent other mods from using our deferred registers, basically, prevent anyone from outside our package from instantiating an instance. Yes, it happened
+    // if you are a mod dev and need a protected method here, just copy it, they are all trivial
+    if (!this.getClass().getName().startsWith("com.progwml6.natura.")) {
+      throw new IllegalStateException("NaturaModule being extended from invalid package " + this.getClass().getName() + ". This is a bug with the mod containing that class, they should create their own deferred registers.");
+    }
+  }
 
   // deferred register instances
+  // gameplay singleton
   protected static final BlockDeferredRegister BLOCKS = new BlockDeferredRegister(Natura.MOD_ID);
   protected static final ItemDeferredRegister ITEMS = new ItemDeferredRegister(Natura.MOD_ID);
-  protected static final EntityTypeDeferredRegister ENTITIES = new EntityTypeDeferredRegister(Natura.MOD_ID);
-  protected static final DeferredRegister<Feature<?>> FEATURES = DeferredRegister.create(ForgeRegistries.FEATURES, Natura.MOD_ID);
-  protected static final DeferredRegister<Structure<?>> STRUCTURE_FEATURES = DeferredRegister.create(ForgeRegistries.STRUCTURE_FEATURES, Natura.MOD_ID);
-  protected static final DeferredRegister<BlockStateProviderType<?>> BLOCK_STATE_PROVIDER_TYPES = DeferredRegister.create(ForgeRegistries.BLOCK_STATE_PROVIDER_TYPES, Natura.MOD_ID);
 
-  // base block properties
-  protected static final Block.Properties GENERIC_SAND_BLOCK = builder(Material.SAND, ToolType.SHOVEL, SoundType.SAND).hardnessAndResistance(3.0f).slipperiness(0.8F);
-  protected static final Block.Properties GENERIC_METAL_BLOCK = builder(Material.IRON, ToolType.PICKAXE, SoundType.METAL).setRequiresTool().hardnessAndResistance(5.0f);
-  protected static final Block.Properties GENERIC_GEM_BLOCK = GENERIC_METAL_BLOCK;
+  // gameplay instances
+  protected static final EntityTypeDeferredRegister ENTITIES = new EntityTypeDeferredRegister(Natura.MOD_ID);
+  // worldgen
+  protected static final DeferredRegister<Feature<?>> FEATURES = DeferredRegister.create(ForgeRegistries.FEATURES, Natura.MOD_ID);
+  protected static final ConfiguredFeatureDeferredRegister CONFIGURED_FEATURES = new ConfiguredFeatureDeferredRegister(Natura.MOD_ID);
+  protected static final PlacedFeatureDeferredRegister PLACED_FEATURES = new PlacedFeatureDeferredRegister(Natura.MOD_ID);
+  protected static final DeferredRegister<StructureFeature<?>> STRUCTURE_FEATURES = DeferredRegister.create(ForgeRegistries.STRUCTURE_FEATURES, Natura.MOD_ID);
+  protected static final DeferredRegister<ConfiguredStructureFeature<?, ?>> CONFIGURED_STRUCTURE_FEATURES = DeferredRegister.create(Registry.CONFIGURED_STRUCTURE_FEATURE_REGISTRY, Natura.MOD_ID);
+  protected static final DeferredRegister<StructurePieceType> STRUCTURE_PIECE = DeferredRegister.create(Registry.STRUCTURE_PIECE_REGISTRY, Natura.MOD_ID);
+  protected static final DeferredRegister<BlockStateProviderType<?>> BLOCK_STATE_PROVIDER_TYPES = DeferredRegister.create(ForgeRegistries.BLOCK_STATE_PROVIDER_TYPES, Natura.MOD_ID);
 
   /**
    * Creative tab for items that do not fit in another tab
    */
   @SuppressWarnings("WeakerAccess")
-  public static final ItemGroup TAB_GENERAL = new SupplierItemGroup(Natura.MOD_ID, "general", () -> new ItemStack(NaturaGadgets.stoneStick));
+  public static final CreativeModeTab TAB_GENERAL = new SupplierCreativeTab(Natura.MOD_ID, "general", () -> new ItemStack(NaturaGadgets.stoneStick));
 
   // base item properties
-  protected static final Item.Properties GENERAL_PROPS = new Item.Properties().group(TAB_GENERAL);
+  protected static final Item.Properties HIDDEN_PROPS = new Item.Properties();
+  protected static final Item.Properties GENERAL_PROPS = new Item.Properties().tab(TAB_GENERAL);
+  protected static final Function<Block, ? extends BlockItem> HIDDEN_BLOCK_ITEM = (b) -> new BlockItem(b, HIDDEN_PROPS);
   protected static final Function<Block, ? extends BlockItem> GENERAL_BLOCK_ITEM = (b) -> new BlockItem(b, GENERAL_PROPS);
   protected static final Function<Block, ? extends BlockItem> GENERAL_TOOLTIP_BLOCK_ITEM = (b) -> new BlockTooltipItem(b, GENERAL_PROPS);
   protected static final Supplier<Item> TOOLTIP_ITEM = () -> new TooltipItem(GENERAL_PROPS);
@@ -65,18 +81,20 @@ public abstract class NaturaModule {
    */
   public static void initRegisters() {
     IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
+    // gameplay singleton
     BLOCKS.register(bus);
     ITEMS.register(bus);
+    // gameplay instance
     ENTITIES.register(bus);
+    // worldgen
     FEATURES.register(bus);
+    CONFIGURED_FEATURES.register(bus);
+    PLACED_FEATURES.register(bus);
     STRUCTURE_FEATURES.register(bus);
+    STRUCTURE_PIECE.register(bus);
+    CONFIGURED_STRUCTURE_FEATURES.register(bus);
     BLOCK_STATE_PROVIDER_TYPES.register(bus);
   }
-
-  /**
-   * Constant to use for blocks with no tool for more readable code
-   */
-  protected static final ToolType NO_TOOL = null;
 
   /**
    * We use this builder to ensure that our blocks all have the most important properties set.
@@ -84,16 +102,15 @@ public abstract class NaturaModule {
    * It may be a bit less clear at first, since the actual builder methods tell you what each value means,
    * but as long as we don't statically import the enums it should be just as readable.
    */
-  protected static Block.Properties builder(Material material, @Nullable ToolType toolType, SoundType soundType) {
-    //noinspection ConstantConditions
-    return Block.Properties.create(material).harvestTool(toolType).sound(soundType);
+  protected static BlockBehaviour.Properties builder(Material material, SoundType soundType) {
+    return Block.Properties.of(material).sound(soundType);
   }
 
   /**
-   * Creates a Natura resource location
+   * Creates a Tinkers Construct resource location
    *
-   * @param poth Resource path
-   * @return Natura resource location
+   * @param path Resource path
+   * @return Tinkers Construct resource location
    */
   protected static ResourceLocation resource(String path) {
     return Natura.getResource(path);

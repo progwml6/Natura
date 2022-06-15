@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "natura:block/wood/eucalyptus/wood",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "natura:block/wood/eucalyptus/wood"
+    },
+    "axis=z": {
+      "model": "natura:block/wood/eucalyptus/wood",
+      "x": 90
+    }
+  }
+}

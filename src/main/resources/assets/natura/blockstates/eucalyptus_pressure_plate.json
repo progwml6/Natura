@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "powered=false": {
+      "model": "natura:block/wood/eucalyptus/pressure_plate"
+    },
+    "powered=true": {
+      "model": "natura:block/wood/eucalyptus/pressure_plate_down"
+    }
+  }
+}

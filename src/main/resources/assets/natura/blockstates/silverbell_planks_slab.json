@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "natura:block/wood/silverbell/slab"
+    },
+    "type=double": {
+      "model": "natura:block/wood/silverbell/planks"
+    },
+    "type=top": {
+      "model": "natura:block/wood/silverbell/slab_top"
+    }
+  }
+}
