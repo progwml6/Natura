@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "wooden_trapdoor",
+  "pattern": [
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "natura:amaranth_planks"
+    }
+  },
+  "result": {
+    "item": "natura:amaranth_trapdoor",
+    "count": 2
+  }
+}

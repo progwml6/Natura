@@ -1,13 +1,20 @@
 package com.progwml6.natura;
 
 import com.progwml6.natura.common.NaturaModule;
+import com.progwml6.natura.common.data.loot.NaturaLootTableProvider;
+import com.progwml6.natura.common.data.tags.BlockTagProvider;
+import com.progwml6.natura.common.data.tags.ItemTagProvider;
 import com.progwml6.natura.gadgets.NaturaGadgets;
 import com.progwml6.natura.shared.NaturaCommons;
 import com.progwml6.natura.world.NaturaWorld;
+import net.minecraft.data.DataGenerator;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.forge.event.lifecycle.GatherDataEvent;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -38,6 +45,19 @@ public class Natura {
 
     // init deferred registers
     NaturaModule.initRegisters();
+  }
+
+  @SubscribeEvent
+  static void gatherData(final GatherDataEvent event) {
+    DataGenerator datagenerator = event.getGenerator();
+    ExistingFileHelper existingFileHelper = event.getExistingFileHelper();
+    if (event.includeServer()) {
+      BlockTagProvider blockTags = new BlockTagProvider(datagenerator, existingFileHelper);
+
+      datagenerator.addProvider(blockTags);
+      datagenerator.addProvider(new ItemTagProvider(datagenerator, blockTags, existingFileHelper));
+      datagenerator.addProvider(new NaturaLootTableProvider(datagenerator));
+    }
   }
 
   /* Utils */

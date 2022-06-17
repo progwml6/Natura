@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "planks",
+  "ingredients": [
+    {
+      "tag": "natura:silverbell_logs"
+    }
+  ],
+  "result": {
+    "item": "natura:silverbell_planks",
+    "count": 4
+  }
+}

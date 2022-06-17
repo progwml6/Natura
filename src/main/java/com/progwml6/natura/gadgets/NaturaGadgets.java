@@ -2,8 +2,10 @@ package com.progwml6.natura.gadgets;
 
 import com.progwml6.natura.common.NaturaModule;
 import com.progwml6.natura.gadgets.block.PunjiBlock;
+import com.progwml6.natura.gadgets.data.GadgetRecipeProvider;
 import com.progwml6.natura.shared.NaturaFood;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.data.DataGenerator;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.StandingAndWallBlockItem;
 import net.minecraft.world.level.block.Block;
@@ -12,6 +14,8 @@ import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.TorchBlock;
 import net.minecraft.world.level.block.WallTorchBlock;
 import net.minecraft.world.level.material.Material;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.forge.event.lifecycle.GatherDataEvent;
 import net.minecraftforge.registries.RegistryObject;
 import slimeknights.mantle.item.EdibleItem;
 import slimeknights.mantle.registration.object.ItemObject;
@@ -28,11 +32,9 @@ public final class NaturaGadgets extends NaturaModule {
   // torch
   private static final Block.Properties STONE_TORCH = builder(Material.DECORATION, SoundType.STONE).noCollission().instabreak().lightLevel(s -> 14);
   public static final RegistryObject<WallTorchBlock> wallStoneTorch = BLOCKS.registerNoItem("wall_stone_torch", () -> new WallTorchBlock(STONE_TORCH, ParticleTypes.FLAME) {});
-  public static final ItemObject<TorchBlock> stoneTorch = BLOCKS.register("stone_torch",
-    () -> new TorchBlock(STONE_TORCH, ParticleTypes.FLAME) {},
-    (block) -> new StandingAndWallBlockItem(block, wallStoneTorch.get(), GENERAL_PROPS));
+  public static final ItemObject<TorchBlock> stoneTorch = BLOCKS.register("stone_torch", () -> new TorchBlock(STONE_TORCH, ParticleTypes.FLAME) {}, (block) -> new StandingAndWallBlockItem(block, wallStoneTorch.get(), GENERAL_PROPS));
 
-  /*1
+  /*
    * Items
    */
   public static final ItemObject<Item> stoneStick = ITEMS.register("stone_stick", GENERAL_PROPS);
@@ -48,5 +50,13 @@ public final class NaturaGadgets extends NaturaModule {
   public static final ItemObject<EdibleItem> salmonJerky = ITEMS.register("salmon_jerky", () -> new EdibleItem(NaturaFood.SALMON_JERKY, TAB_GENERAL));
   public static final ItemObject<EdibleItem> clownfishJerky = ITEMS.register("clownfish_jerky", () -> new EdibleItem(NaturaFood.CLOWNFISH_JERKY, TAB_GENERAL));
   public static final ItemObject<EdibleItem> pufferfishJerky = ITEMS.register("pufferfish_jerky", () -> new EdibleItem(NaturaFood.PUFFERFISH_JERKY, TAB_GENERAL));
+
+  @SubscribeEvent
+  void gatherData(final GatherDataEvent event) {
+    if (event.includeServer()) {
+      DataGenerator datagenerator = event.getGenerator();
+      datagenerator.addProvider(new GadgetRecipeProvider(datagenerator));
+    }
+  }
 
 }

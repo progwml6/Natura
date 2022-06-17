@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "natura:tiger_log",
+    "natura:stripped_tiger_log",
+    "natura:tiger_wood",
+    "natura:stripped_tiger_wood"
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "replace": false,
+  "values": [
+    "natura:maple_sign",
+    "natura:silverbell_sign",
+    "natura:amaranth_sign",
+    "natura:tiger_sign",
+    "natura:willow_sign",
+    "natura:eucalyptus_sign",
+    "natura:hopseed_sign",
+    "natura:sakura_sign",
+    "natura:redwood_sign"
+  ]
+}

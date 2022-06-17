@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "wooden_button",
+  "ingredients": [
+    {
+      "item": "natura:amaranth_planks"
+    }
+  ],
+  "result": {
+    "item": "natura:amaranth_button"
+  }
+}

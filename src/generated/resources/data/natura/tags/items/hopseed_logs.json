@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "natura:hopseed_log",
+    "natura:stripped_hopseed_log",
+    "natura:hopseed_wood",
+    "natura:stripped_hopseed_wood"
+  ]
+}

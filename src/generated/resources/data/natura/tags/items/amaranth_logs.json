@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "natura:amaranth_log",
+    "natura:stripped_amaranth_log",
+    "natura:amaranth_wood",
+    "natura:stripped_amaranth_wood"
+  ]
+}

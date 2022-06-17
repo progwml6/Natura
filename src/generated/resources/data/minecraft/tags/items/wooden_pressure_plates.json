@@ -1,0 +1,14 @@
+{
+  "replace": false,
+  "values": [
+    "natura:maple_pressure_plate",
+    "natura:silverbell_pressure_plate",
+    "natura:amaranth_pressure_plate",
+    "natura:tiger_pressure_plate",
+    "natura:willow_pressure_plate",
+    "natura:eucalyptus_pressure_plate",
+    "natura:hopseed_pressure_plate",
+    "natura:sakura_pressure_plate",
+    "natura:redwood_pressure_plate"
+  ]
+}

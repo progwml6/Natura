@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "planks",
+  "ingredients": [
+    {
+      "tag": "natura:amaranth_logs"
+    }
+  ],
+  "result": {
+    "item": "natura:amaranth_planks",
+    "count": 4
+  }
+}

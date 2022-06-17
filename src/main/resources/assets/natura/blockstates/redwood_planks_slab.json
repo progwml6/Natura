@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "natura:block/wood/redwood/slab"
+    },
+    "type=double": {
+      "model": "natura:block/wood/redwood/planks"
+    },
+    "type=top": {
+      "model": "natura:block/wood/redwood/slab_top"
+    }
+  }
+}

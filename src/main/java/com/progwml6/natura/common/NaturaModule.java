@@ -1,6 +1,7 @@
 package com.progwml6.natura.common;
 
 import com.progwml6.natura.Natura;
+import com.progwml6.natura.common.registration.BlockDeferredRegisterExtension;
 import com.progwml6.natura.gadgets.NaturaGadgets;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
@@ -23,12 +24,9 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import slimeknights.mantle.item.BlockTooltipItem;
 import slimeknights.mantle.item.TooltipItem;
-import slimeknights.mantle.registration.deferred.BlockDeferredRegister;
 import slimeknights.mantle.registration.deferred.EntityTypeDeferredRegister;
 import slimeknights.mantle.registration.deferred.ItemDeferredRegister;
 import slimeknights.mantle.util.SupplierCreativeTab;
-import slimeknights.tconstruct.common.registration.ConfiguredFeatureDeferredRegister;
-import slimeknights.tconstruct.common.registration.PlacedFeatureDeferredRegister;
 
 import java.util.function.Function;
 import java.util.function.Supplier;
@@ -48,15 +46,13 @@ public class NaturaModule {
 
   // deferred register instances
   // gameplay singleton
-  protected static final BlockDeferredRegister BLOCKS = new BlockDeferredRegister(Natura.MOD_ID);
+  protected static final BlockDeferredRegisterExtension BLOCKS = new BlockDeferredRegisterExtension(Natura.MOD_ID);
   protected static final ItemDeferredRegister ITEMS = new ItemDeferredRegister(Natura.MOD_ID);
 
   // gameplay instances
   protected static final EntityTypeDeferredRegister ENTITIES = new EntityTypeDeferredRegister(Natura.MOD_ID);
   // worldgen
   protected static final DeferredRegister<Feature<?>> FEATURES = DeferredRegister.create(ForgeRegistries.FEATURES, Natura.MOD_ID);
-  protected static final ConfiguredFeatureDeferredRegister CONFIGURED_FEATURES = new ConfiguredFeatureDeferredRegister(Natura.MOD_ID);
-  protected static final PlacedFeatureDeferredRegister PLACED_FEATURES = new PlacedFeatureDeferredRegister(Natura.MOD_ID);
   protected static final DeferredRegister<StructureFeature<?>> STRUCTURE_FEATURES = DeferredRegister.create(ForgeRegistries.STRUCTURE_FEATURES, Natura.MOD_ID);
   protected static final DeferredRegister<ConfiguredStructureFeature<?, ?>> CONFIGURED_STRUCTURE_FEATURES = DeferredRegister.create(Registry.CONFIGURED_STRUCTURE_FEATURE_REGISTRY, Natura.MOD_ID);
   protected static final DeferredRegister<StructurePieceType> STRUCTURE_PIECE = DeferredRegister.create(Registry.STRUCTURE_PIECE_REGISTRY, Natura.MOD_ID);
@@ -88,8 +84,6 @@ public class NaturaModule {
     ENTITIES.register(bus);
     // worldgen
     FEATURES.register(bus);
-    CONFIGURED_FEATURES.register(bus);
-    PLACED_FEATURES.register(bus);
     STRUCTURE_FEATURES.register(bus);
     STRUCTURE_PIECE.register(bus);
     CONFIGURED_STRUCTURE_FEATURES.register(bus);

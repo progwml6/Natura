@@ -1,7 +1,7 @@
 {
     "variants": {
         "": {
-            "model": "natura:block/log/redwood_bark"
+            "model": "natura:block/wood/redwood/bark"
         }
     }
 }

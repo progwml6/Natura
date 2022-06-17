@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "planks",
+  "ingredients": [
+    {
+      "tag": "natura:tiger_logs"
+    }
+  ],
+  "result": {
+    "item": "natura:tiger_planks",
+    "count": 4
+  }
+}

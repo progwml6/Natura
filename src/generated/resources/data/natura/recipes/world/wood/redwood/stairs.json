@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "wooden_stairs",
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "natura:redwood_planks"
+    }
+  },
+  "result": {
+    "item": "natura:redwood_planks_stairs",
+    "count": 4
+  }
+}

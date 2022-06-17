@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "planks",
+  "ingredients": [
+    {
+      "tag": "natura:eucalyptus_logs"
+    }
+  ],
+  "result": {
+    "item": "natura:eucalyptus_planks",
+    "count": 4
+  }
+}

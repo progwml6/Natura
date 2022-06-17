@@ -21,8 +21,6 @@ public class NaturaTags {
 
     private static void init() {}
 
-    public static final TagKey<Block> REDWOOD_LOGS = tag("redwood_logs");
-
     /**
      * Makes a tag in the tinkers domain
      */
@@ -39,7 +37,6 @@ public class NaturaTags {
 
     private static void init() {}
 
-    public static final TagKey<Item> REDWOOD_LOGS = tag("redwood_logs");
     public static final TagKey<Item> RODS_STONE = forgeTag("rods/stone");
 
     /**

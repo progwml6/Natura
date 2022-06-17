@@ -2,6 +2,7 @@ package com.progwml6.natura.shared;
 
 import com.progwml6.natura.common.NaturaModule;
 import com.progwml6.natura.library.utils.Util;
+import com.progwml6.natura.shared.data.CommonRecipeProvider;
 import com.progwml6.natura.shared.item.BoneMealBagItem;
 import com.progwml6.natura.shared.item.SeedBagItem;
 import net.minecraft.data.DataGenerator;
@@ -58,7 +59,7 @@ public class NaturaCommons extends NaturaModule {
   void gatherData(final GatherDataEvent event) {
     if (event.includeServer()) {
       DataGenerator dataGenerator = event.getGenerator();
-      //dataGenerator.addProvider(new CommonRecipeProvider(dataGenerator));
+      dataGenerator.addProvider(new CommonRecipeProvider(dataGenerator));
     }
   }
 }

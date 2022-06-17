@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "planks",
+  "ingredients": [
+    {
+      "item": "natura:redwood_heart"
+    }
+  ],
+  "result": {
+    "item": "natura:redwood_planks",
+    "count": 4
+  }
+}

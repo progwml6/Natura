@@ -1,0 +1,14 @@
+{
+  "replace": false,
+  "values": [
+    "natura:maple_trapdoor",
+    "natura:silverbell_trapdoor",
+    "natura:amaranth_trapdoor",
+    "natura:tiger_trapdoor",
+    "natura:willow_trapdoor",
+    "natura:eucalyptus_trapdoor",
+    "natura:hopseed_trapdoor",
+    "natura:sakura_trapdoor",
+    "natura:redwood_trapdoor"
+  ]
+}

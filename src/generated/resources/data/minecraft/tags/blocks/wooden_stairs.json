@@ -1,0 +1,14 @@
+{
+  "replace": false,
+  "values": [
+    "natura:maple_planks_stairs",
+    "natura:silverbell_planks_stairs",
+    "natura:amaranth_planks_stairs",
+    "natura:tiger_planks_stairs",
+    "natura:willow_planks_stairs",
+    "natura:eucalyptus_planks_stairs",
+    "natura:hopseed_planks_stairs",
+    "natura:sakura_planks_stairs",
+    "natura:redwood_planks_stairs"
+  ]
+}

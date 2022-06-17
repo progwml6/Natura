@@ -1,0 +1,14 @@
+{
+  "replace": false,
+  "values": [
+    "natura:maple_button",
+    "natura:silverbell_button",
+    "natura:amaranth_button",
+    "natura:tiger_button",
+    "natura:willow_button",
+    "natura:eucalyptus_button",
+    "natura:hopseed_button",
+    "natura:sakura_button",
+    "natura:redwood_button"
+  ]
+}

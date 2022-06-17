@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "natura:silverbell_log",
+    "natura:stripped_silverbell_log",
+    "natura:silverbell_wood",
+    "natura:stripped_silverbell_wood"
+  ]
+}

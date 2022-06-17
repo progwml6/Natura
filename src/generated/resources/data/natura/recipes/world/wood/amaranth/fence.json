@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "wooden_fence",
+  "pattern": [
+    "W#W",
+    "W#W"
+  ],
+  "key": {
+    "#": {
+      "tag": "forge:rods/wooden"
+    },
+    "W": {
+      "item": "natura:amaranth_planks"
+    }
+  },
+  "result": {
+    "item": "natura:amaranth_fence",
+    "count": 3
+  }
+}

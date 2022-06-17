@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "sps",
+    "sbs",
+    "sss"
+  ],
+  "key": {
+    "b": {
+      "item": "minecraft:bone_block"
+    },
+    "s": {
+      "item": "minecraft:string"
+    },
+    "p": {
+      "item": "minecraft:paper"
+    }
+  },
+  "result": {
+    "item": "natura:bone_meal_bag"
+  }
+}

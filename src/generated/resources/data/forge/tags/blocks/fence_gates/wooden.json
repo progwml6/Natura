@@ -1,0 +1,14 @@
+{
+  "replace": false,
+  "values": [
+    "natura:maple_fence_gate",
+    "natura:silverbell_fence_gate",
+    "natura:amaranth_fence_gate",
+    "natura:tiger_fence_gate",
+    "natura:willow_fence_gate",
+    "natura:eucalyptus_fence_gate",
+    "natura:hopseed_fence_gate",
+    "natura:sakura_fence_gate",
+    "natura:redwood_fence_gate"
+  ]
+}

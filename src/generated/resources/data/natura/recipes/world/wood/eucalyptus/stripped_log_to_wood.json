@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "bark",
+  "pattern": [
+    "##",
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "natura:stripped_eucalyptus_log"
+    }
+  },
+  "result": {
+    "item": "natura:stripped_eucalyptus_wood",
+    "count": 3
+  }
+}
