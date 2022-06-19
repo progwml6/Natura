@@ -1,6 +1,0 @@
-{
-    "conditions": {
-        "config_option_enabled": "com.progwml6.natura.common.recipe.ConfigOptionEnabledConditionFactory",
-        "is_pulse_loaded": "com.progwml6.natura.common.recipe.IsPulseLoadedConditionFactory"
-    }
-}

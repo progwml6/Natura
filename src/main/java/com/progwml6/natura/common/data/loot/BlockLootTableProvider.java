@@ -67,8 +67,8 @@ public class BlockLootTableProvider extends BlockLoot {
 
     this.registerWoodLootTables(NaturaWorld.redwood);
 
-//    this.registerLootTable(NaturaWorld.redwood_leaves.get(), (leaves) -> createLeavesDrops(leaves, NaturaWorld.redwood_sapling.get(), NORMAL_LEAVES_SAPLING_CHANCES));
-//    this.dropSelf(NaturaWorld.redwood_sapling.get());
+    this.add(NaturaWorld.redwood_leaves.get(), (leaves) -> createLeavesDrops(leaves, NaturaWorld.redwood_sapling.get(), NORMAL_LEAVES_SAPLING_CHANCES));
+    this.dropSelf(NaturaWorld.redwood_sapling.get());
 //
 //    this.registerLootTable(NaturaWorld.cotton_crop.get(), droppingAndBonusWhen(NaturaWorld.cotton_crop.get(), NaturaCommons.cotton.get(),
 //      NaturaWorld.cotton_crop.asItem(), BlockStateProperty.builder(NaturaWorld.cotton_crop.get()).fromProperties(StatePropertiesPredicate.Builder.newBuilder().withIntProp(CottonCropBlock.AGE, 4))));

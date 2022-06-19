@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:block/cube_column",
   "textures": {
-    "end": "natura:block/wood/maple/stripped_log_top",
+    "end": "natura:block/wood/maple/stripped_log",
     "side": "natura:block/wood/maple/stripped_log"
   }
 }

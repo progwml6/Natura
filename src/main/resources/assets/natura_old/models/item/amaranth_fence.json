@@ -1,6 +1,0 @@
-{
-    "parent": "block/fence_inventory",
-    "textures": {
-        "texture": "natura:blocks/planks/overworld/amaranth_planks"
-    }
-}

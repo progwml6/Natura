@@ -63,10 +63,9 @@ public class BlockTagProvider extends BlockTagsProvider {
       .add(NaturaWorld.hopseed.get())
       .add(NaturaWorld.sakura.get())
       .add(NaturaWorld.redwood.get());
-
-//
-//    leavesBuilder.add(NaturaWorld.redwood_leaves.get());
-//    saplingsBuilder.add(NaturaWorld.redwood_sapling.get());
+    
+    leavesBuilder.add(NaturaWorld.redwood_leaves.get());
+    saplingsBuilder.add(NaturaWorld.redwood_sapling.get());
 
     addWoodTags(NaturaWorld.maple, true);
     addWoodTags(NaturaWorld.silverbell, true);

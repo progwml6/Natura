@@ -8,6 +8,7 @@ import com.progwml6.natura.library.utils.Util;
 import com.progwml6.natura.world.block.OverworldLeavesBlock;
 import com.progwml6.natura.world.block.RedwoodLeavesBlock;
 import com.progwml6.natura.world.block.TreeType;
+import com.progwml6.natura.world.data.WorldGeneratorProvider;
 import com.progwml6.natura.world.data.WorldRecipeProvider;
 import com.progwml6.natura.world.worldgen.trees.growers.OverworldTreeGrower;
 import com.progwml6.natura.world.worldgen.trees.growers.RedwoodTreeGrower;
@@ -72,12 +73,12 @@ public class NaturaWorld extends NaturaModule {
   private static final Block.Properties LEAVES = builder(Material.LEAVES, SoundType.GRASS).strength(0.2F).randomTicks().noOcclusion()
     .isValidSpawn((state, reader, pos, entityType) -> entityType == EntityType.OCELOT || entityType == EntityType.PARROT)
     .isSuffocating((state, reader, pos) -> false).isViewBlocking((state, reader, pos) -> false);
-  public static final EnumObject<TreeType, OverworldLeavesBlock> leaves = BLOCKS.registerEnum(TreeType.values(), "leaves", (type) -> new OverworldLeavesBlock(type, LEAVES), DEFAULT_BLOCK_ITEM);
-  public static final ItemObject<RedwoodLeavesBlock> redwood_leaves = BLOCKS.register("redwood_leaves", () -> new RedwoodLeavesBlock(LEAVES), DEFAULT_BLOCK_ITEM);
+  public static final EnumObject<TreeType, OverworldLeavesBlock> leaves = BLOCKS.registerEnum(TreeType.values(), "leaves", (type) -> new OverworldLeavesBlock(type, LEAVES), TOOLTIP_BLOCK_ITEM);
+  public static final ItemObject<RedwoodLeavesBlock> redwood_leaves = BLOCKS.register("redwood_leaves", () -> new RedwoodLeavesBlock(LEAVES), TOOLTIP_BLOCK_ITEM);
 
   private static final Block.Properties SAPLING = builder(Material.PLANT, SoundType.GRASS).noCollission().randomTicks().instabreak();
-  public static final EnumObject<TreeType, Block> sapling = BLOCKS.registerEnum(TreeType.values(), "sapling", (type) -> new SaplingBlock(new OverworldTreeGrower(type), SAPLING), DEFAULT_BLOCK_ITEM);
-  public static final ItemObject<Block> redwood_sapling = BLOCKS.register("redwood_sapling", () -> new SaplingBlock(new RedwoodTreeGrower(), SAPLING), DEFAULT_BLOCK_ITEM);
+  public static final EnumObject<TreeType, Block> sapling = BLOCKS.registerEnum(TreeType.values(), "sapling", (type) -> new SaplingBlock(new OverworldTreeGrower(type), SAPLING), TOOLTIP_BLOCK_ITEM);
+  public static final ItemObject<Block> redwood_sapling = BLOCKS.register("redwood_sapling", () -> new SaplingBlock(new RedwoodTreeGrower(), SAPLING), TOOLTIP_BLOCK_ITEM);
 
   public static final IntegerProperty EXTENDED_TREE_DISTANCE = IntegerProperty.create("distance_extended", 1, 10);
   public static final IntegerProperty REDWOOD_TREE_DISTANCE = IntegerProperty.create("distance_redwood", 1, 25);
@@ -87,6 +88,7 @@ public class NaturaWorld extends NaturaModule {
     if (event.includeServer()) {
       DataGenerator datagenerator = event.getGenerator();
       datagenerator.addProvider(new WorldRecipeProvider(datagenerator));
+      datagenerator.addProvider(new WorldGeneratorProvider(datagenerator));
     }
   }
 }
